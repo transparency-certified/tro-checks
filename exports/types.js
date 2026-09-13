@@ -13,13 +13,16 @@ module.exports = {}
  * @typedef {object} Tier
  * @property {number}   number
  * @property {string}   name
+ * @property {string}   description   the commitment a candidate claiming the tier makes
  * @property {string[]} expectations  the names of the expectations it holds
  */
 /**
  * @typedef {object} Expectation  a condition a candidate is expected to satisfy
  * @property {string} name
- * @property {string} path   the schema file that states it
- * @property {Tier}   tier   the tier it belongs to
+ * @property {string} path         the schema file that states it
+ * @property {Tier}   tier         the tier it belongs to
+ * @property {string} summary      what it checks, in a few words
+ * @property {string} description  what it checks, in one sentence
  */
 /**
  * @typedef {object} Candidate

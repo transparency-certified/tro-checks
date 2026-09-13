@@ -47,15 +47,21 @@ const expectationsDirectory = __dirname
 
 /**
  * @returns {Tier[]}  in ascending order
- * @throws {Error} if the tier definitions cannot be read or parsed.
+ * @throws {Error} if the tier definitions cannot be read or parsed, or a tier has no description.
  */
 function readTierDefinitions() {
     const definitions = JSON.parse(
         fs.readFileSync(path.join(expectationsDirectory, 'tiers.json'), 'utf8'))
 
-    return Object.keys(definitions)
+    const tiers = Object.keys(definitions)
         .map((key) => ({ number: Number(key), ...definitions[key] }))
         .sort((one, other) => one.number - other.number)
+
+    for (const tier of tiers) {
+        if (typeof tier.description !== 'string') throw new Error(`tier ${tier.number} has no description`)
+    }
+
+    return tiers
 }
 
 /**
@@ -96,6 +102,29 @@ function tierOfExpectation(tiers, name) {
     const tier = tiers.find((each) => each.expectations.includes(name))
     if (!tier) throw new Error(`${name} belongs to no tier`)
     return tier
+}
+
+/**
+ * Reads an expectation from its schema file: its name, its tier, and what the schema says it checks.
+ * @param {Tier[]} tiers
+ * @param {string} expectationPath
+ * @returns {Expectation}
+ * @throws {Error} if the schema cannot be read or parsed, belongs to no tier, or has no summary or description.
+ */
+function readExpectation(tiers, expectationPath) {
+    const name = path.basename(expectationPath, '.schema.json')
+    const schema = JSON.parse(fs.readFileSync(expectationPath, 'utf8'))
+
+    if (typeof schema.summary !== 'string') throw new Error(`${name} has no summary`)
+    if (typeof schema.description !== 'string') throw new Error(`${name} has no description`)
+
+    return {
+        name,
+        path: expectationPath,
+        tier: tierOfExpectation(tiers, name),
+        summary: schema.summary,
+        description: schema.description,
+    }
 }
 
 /**
@@ -292,8 +321,7 @@ function checkCandidateAgainstExpectations(candidate) {
 
     /** @type {Finding[]} */ const findings = []
     for (const expectationPath of expectationPaths) {
-        const name = path.basename(expectationPath, '.schema.json')
-        const expectation = { name, path: expectationPath, tier: tierOfExpectation(tiers, name) }
+        const expectation = readExpectation(tiers, expectationPath)
 
         if (expectation.tier.number > candidate.targetTier.number) {
             findings.push({ expectation, outcome: EXPECTATION.NOT_CLAIMED, errors: [] })
