@@ -1,8 +1,9 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://w3id.org/trace/tro/0.1/context-base.schema.json",
-    "title": "Context base",
+    "$id": "https://w3id.org/trace/tro/0.1/base-declared.schema.json",
+    "title": "Base declared",
     "description": "The @context declares an @base.",
+    "summary": "The `@context` includes an `@base`",
     "type": "object",
     "required": ["@context"],
     "properties": {

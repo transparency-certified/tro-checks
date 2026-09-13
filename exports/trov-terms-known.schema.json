@@ -2,7 +2,8 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://w3id.org/trace/tro/0.1/trov-terms-known.schema.json",
     "title": "TROV terms known",
-    "description": "Where a property name or a string value carries the trov: prefix, it is a term the TROV vocabulary defines.",
+    "description": "Where a property name or a string value carries the trov: prefix, it is a term TROV defines.",
+    "summary": "Every `trov:` name is one TROV defines",
     "$defs": {
         "knownTrovTerm": {
             "$comment": "Most terms are transcribed from the published Vocabulary Reference. trov:TRSCapabilityType and trov:TRPAttributeType are prescribed by the published Extension Guide and used in the Declaration Format; trov:SigningMechanism, trov:GPGSigning and trov:X509CMSSigning were announced separately.",
@@ -88,7 +89,7 @@
                     "trov:wasTimestampedBy"
                 ],
                 "errorMessage": {
-                    "enum": "not a term the TROV vocabulary defines"
+                    "enum": "not a term TROV defines"
                 }
             }
         },

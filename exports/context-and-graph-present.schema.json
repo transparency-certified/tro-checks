@@ -1,7 +1,9 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://w3id.org/trace/tro/0.1/tro-minimal.schema.json",
-    "title": "TRO minimal",
+    "$id": "https://w3id.org/trace/tro/0.1/context-and-graph-present.schema.json",
+    "title": "Context and graph present",
+    "description": "A TRO declaration is a JSON object that declares an @context and carries its nodes in an @graph.",
+    "summary": "A JSON object with an `@context` and an `@graph`",
     "type": "object",
     "required": ["@context", "@graph"],
     "errorMessage": {

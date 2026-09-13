@@ -1,8 +1,9 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://w3id.org/trace/tro/0.1/node-id-present.schema.json",
-    "title": "Node id present",
+    "$id": "https://w3id.org/trace/tro/0.1/node-ids-present.schema.json",
+    "title": "Node ids present",
     "description": "Every node object carries an explicit @id.",
+    "summary": "Every node carries an explicit `@id`",
     "$defs": {
         "isNodeObject": {
             "type": "object",

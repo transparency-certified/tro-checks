@@ -1,8 +1,9 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://w3id.org/trace/tro/0.1/composition-fingerprint.schema.json",
-    "title": "Composition fingerprint",
-    "description": "The composition carries a fingerprint.",
+    "$id": "https://w3id.org/trace/tro/0.1/composition-fingerprinted.schema.json",
+    "title": "Composition fingerprinted",
+    "description": "Where the TRO carries a trov:hasComposition, the composition carries a trov:hasFingerprint.",
+    "summary": "The TRO's composition, if any, carries a fingerprint",
     "type": "object",
     "properties": {
         "@graph": {

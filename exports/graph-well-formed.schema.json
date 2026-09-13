@@ -1,8 +1,9 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://w3id.org/trace/tro/0.1/has-well-formed-graph.schema.json",
-    "title": "Has a well-formed graph",
-    "description": "Where a document carries an @graph, its value must be a node object or an array of node objects.",
+    "$id": "https://w3id.org/trace/tro/0.1/graph-well-formed.schema.json",
+    "title": "Graph well-formed",
+    "description": "Where the document carries an @graph at its root, the value is an object or an array of objects.",
+    "summary": "The root `@graph`, if any, holds objects, not bare values",
     "properties": {
         "@graph": {
             "type": ["object", "array"],

@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 01: node-rooted (Tier 0)"
+title "tro-checks  ·  demo 01: document-rooted-in-nodes (Tier 0)"
 
 show "expectation met: the document is a node object" \
     report_on instance-node-object.jsonld

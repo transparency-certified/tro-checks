@@ -1,8 +1,9 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://w3id.org/trace/tro/0.1/node-rooted.schema.json",
-    "title": "Is a node object or an array of them",
-    "description": "The root of a JSON-LD 1.1 document must take the form of a single node object, or an array whose members are node objects.",
+    "$id": "https://w3id.org/trace/tro/0.1/document-rooted-in-nodes.schema.json",
+    "title": "Document rooted in nodes",
+    "description": "The document's root is an object, or an array whose members are all objects.",
+    "summary": "The document is an object or an array of objects",
     "type": ["object", "array"],
     "items": {
         "type": "object",

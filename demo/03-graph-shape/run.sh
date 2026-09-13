@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 03: has-well-formed-graph (Tier 0)"
+title "tro-checks  ·  demo 03: graph-well-formed (Tier 0)"
 
 show "expectation met: the @graph value is a node object" \
     report_on instance-graph-node-object.jsonld

@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 02: has-well-formed-context (Tier 0)"
+title "tro-checks  ·  demo 02: context-well-formed (Tier 0)"
 
 show "expectation met: the @context value is a string" \
     report_on instance-context-string.jsonld

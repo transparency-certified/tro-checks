@@ -1,27 +1,31 @@
 {
     "0": {
         "name": "Well-Formed",
+        "description": "Valid JSON-LD conforming to the profile TRACE tooling expects",
         "expectations": [
-            "has-well-formed-context",
-            "has-well-formed-graph",
-            "node-rooted"
+            "context-well-formed",
+            "graph-well-formed",
+            "document-rooted-in-nodes"
         ]
     },
     "1": {
         "name": "Self-Contained",
+        "description": "References within the TRO resolve; its identifiers need not be unique outside it",
         "expectations": [
-            "composition-fingerprint",
+            "composition-fingerprinted",
             "trov-terms-known",
-            "hash-form",
-            "tro-minimal",
-            "trs-typed"
+            "hashes-well-formed",
+            "context-and-graph-present",
+            "tro-top-level-in-graph",
+            "tro-assembled-by-trs"
         ]
     },
     "2": {
         "name": "Linkable-Data",
+        "description": "Element identifiers cannot collide with another TRO's; TRO elements can be published",
         "expectations": [
-            "context-base",
-            "node-id-present"
+            "base-declared",
+            "node-ids-present"
         ]
     }
 }

@@ -3,6 +3,8 @@
     "@graph": [
         {
             "@id": "tro",
+            "@type": "trov:TransparentResearchObject",
+            "trov:wasAssembledBy": { "@id": "trs", "@type": "trov:TrustedResearchSystem" },
             "trov:vocabularyRelease": "0.1"
         }
     ]

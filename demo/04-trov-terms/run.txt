@@ -12,6 +12,8 @@ $ report_on instance-property-name-known.jsonld
     "@graph": [
         {
             "@id": "tro",
+            "@type": "trov:TransparentResearchObject",
+            "trov:wasAssembledBy": { "@id": "trs", "@type": "trov:TrustedResearchSystem" },
             "trov:vocabularyVersion": "0.1"
         }
     ]
@@ -26,16 +28,17 @@ Target: Tier 1 -- Self-Contained (assigned via --target option)
 - Tier 0 -- Well-Formed: met
 - Tier 1 -- Self-Contained: met
 ## Findings
-### has-well-formed-context (Tier 0): met
-### has-well-formed-graph (Tier 0): met
-### node-rooted (Tier 0): met
-### composition-fingerprint (Tier 1): met
-### hash-form (Tier 1): met
-### tro-minimal (Tier 1): met
+### context-well-formed (Tier 0): met
+### document-rooted-in-nodes (Tier 0): met
+### graph-well-formed (Tier 0): met
+### composition-fingerprinted (Tier 1): met
+### context-and-graph-present (Tier 1): met
+### hashes-well-formed (Tier 1): met
+### tro-assembled-by-trs (Tier 1): met
+### tro-top-level-in-graph (Tier 1): met
 ### trov-terms-known (Tier 1): met
-### trs-typed (Tier 1): met
-### context-base (Tier 2): not claimed
-### node-id-present (Tier 2): not claimed
+### base-declared (Tier 2): not claimed
+### node-ids-present (Tier 2): not claimed
 
 ----- [2] expectation unmet: the property name trov:vocabularyRelease is not defined by TROV -----
 
@@ -45,6 +48,8 @@ $ report_on instance-property-name-unknown.jsonld
     "@graph": [
         {
             "@id": "tro",
+            "@type": "trov:TransparentResearchObject",
+            "trov:wasAssembledBy": { "@id": "trs", "@type": "trov:TrustedResearchSystem" },
             "trov:vocabularyRelease": "0.1"
         }
     ]
@@ -59,17 +64,18 @@ Target: Tier 1 -- Self-Contained (assigned via --target option)
 - Tier 0 -- Well-Formed: met
 - Tier 1 -- Self-Contained: unmet
 ## Findings
-### has-well-formed-context (Tier 0): met
-### has-well-formed-graph (Tier 0): met
-### node-rooted (Tier 0): met
-### composition-fingerprint (Tier 1): met
-### hash-form (Tier 1): met
-### tro-minimal (Tier 1): met
+### context-well-formed (Tier 0): met
+### document-rooted-in-nodes (Tier 0): met
+### graph-well-formed (Tier 0): met
+### composition-fingerprinted (Tier 1): met
+### context-and-graph-present (Tier 1): met
+### hashes-well-formed (Tier 1): met
+### tro-assembled-by-trs (Tier 1): met
+### tro-top-level-in-graph (Tier 1): met
 ### trov-terms-known (Tier 1): unmet
-- `/@graph/0` found `{"@id":"tro","trov:vocabularyRelease":"0.1"}` — not a term the TROV vocabulary defines
-### trs-typed (Tier 1): met
-### context-base (Tier 2): not claimed
-### node-id-present (Tier 2): not claimed
+- `/@graph/0` found `{"@id":"tro","@type":"trov:TransparentResearchObject","trov:wasAssembledBy":{"@id":"trs","@type":"trov:TrustedResearchSystem"},"trov:vocabularyRelease":"0.1"}` — not a term TROV defines
+### base-declared (Tier 2): not claimed
+### node-ids-present (Tier 2): not claimed
 
 ----- [3] expectation met: the @id trov:IncludesAllInputData is defined by TROV -----
 
@@ -79,6 +85,8 @@ $ report_on instance-id-known.jsonld
     "@graph": [
         {
             "@id": "tro",
+            "@type": "trov:TransparentResearchObject",
+            "trov:wasAssembledBy": { "@id": "trs", "@type": "trov:TrustedResearchSystem" },
             "trov:hasAttribute": { "@id": "trov:IncludesAllInputData" }
         }
     ]
@@ -93,16 +101,17 @@ Target: Tier 1 -- Self-Contained (assigned via --target option)
 - Tier 0 -- Well-Formed: met
 - Tier 1 -- Self-Contained: met
 ## Findings
-### has-well-formed-context (Tier 0): met
-### has-well-formed-graph (Tier 0): met
-### node-rooted (Tier 0): met
-### composition-fingerprint (Tier 1): met
-### hash-form (Tier 1): met
-### tro-minimal (Tier 1): met
+### context-well-formed (Tier 0): met
+### document-rooted-in-nodes (Tier 0): met
+### graph-well-formed (Tier 0): met
+### composition-fingerprinted (Tier 1): met
+### context-and-graph-present (Tier 1): met
+### hashes-well-formed (Tier 1): met
+### tro-assembled-by-trs (Tier 1): met
+### tro-top-level-in-graph (Tier 1): met
 ### trov-terms-known (Tier 1): met
-### trs-typed (Tier 1): met
-### context-base (Tier 2): not claimed
-### node-id-present (Tier 2): not claimed
+### base-declared (Tier 2): not claimed
+### node-ids-present (Tier 2): not claimed
 
 ----- [4] expectation unmet: the @id trov:IncludesAllOutputData is not defined by TROV -----
 
@@ -112,6 +121,8 @@ $ report_on instance-id-unknown.jsonld
     "@graph": [
         {
             "@id": "tro",
+            "@type": "trov:TransparentResearchObject",
+            "trov:wasAssembledBy": { "@id": "trs", "@type": "trov:TrustedResearchSystem" },
             "trov:hasAttribute": { "@id": "trov:IncludesAllOutputData" }
         }
     ]
@@ -126,17 +137,18 @@ Target: Tier 1 -- Self-Contained (assigned via --target option)
 - Tier 0 -- Well-Formed: met
 - Tier 1 -- Self-Contained: unmet
 ## Findings
-### has-well-formed-context (Tier 0): met
-### has-well-formed-graph (Tier 0): met
-### node-rooted (Tier 0): met
-### composition-fingerprint (Tier 1): met
-### hash-form (Tier 1): met
-### tro-minimal (Tier 1): met
+### context-well-formed (Tier 0): met
+### document-rooted-in-nodes (Tier 0): met
+### graph-well-formed (Tier 0): met
+### composition-fingerprinted (Tier 1): met
+### context-and-graph-present (Tier 1): met
+### hashes-well-formed (Tier 1): met
+### tro-assembled-by-trs (Tier 1): met
+### tro-top-level-in-graph (Tier 1): met
 ### trov-terms-known (Tier 1): unmet
-- `/@graph/0/trov:hasAttribute/@id` found `"trov:IncludesAllOutputData"` — not a term the TROV vocabulary defines
-### trs-typed (Tier 1): met
-### context-base (Tier 2): not claimed
-### node-id-present (Tier 2): not claimed
+- `/@graph/0/trov:hasAttribute/@id` found `"trov:IncludesAllOutputData"` — not a term TROV defines
+### base-declared (Tier 2): not claimed
+### node-ids-present (Tier 2): not claimed
 
 ----- [5] expectation met: the @type trov:TrustedResearchPerformance is defined by TROV -----
 
@@ -146,6 +158,8 @@ $ report_on instance-type-known.jsonld
     "@graph": [
         {
             "@id": "tro",
+            "@type": "trov:TransparentResearchObject",
+            "trov:wasAssembledBy": { "@id": "trs", "@type": "trov:TrustedResearchSystem" },
             "trov:hasPerformance": { "@type": "trov:TrustedResearchPerformance" }
         }
     ]
@@ -160,16 +174,17 @@ Target: Tier 1 -- Self-Contained (assigned via --target option)
 - Tier 0 -- Well-Formed: met
 - Tier 1 -- Self-Contained: met
 ## Findings
-### has-well-formed-context (Tier 0): met
-### has-well-formed-graph (Tier 0): met
-### node-rooted (Tier 0): met
-### composition-fingerprint (Tier 1): met
-### hash-form (Tier 1): met
-### tro-minimal (Tier 1): met
+### context-well-formed (Tier 0): met
+### document-rooted-in-nodes (Tier 0): met
+### graph-well-formed (Tier 0): met
+### composition-fingerprinted (Tier 1): met
+### context-and-graph-present (Tier 1): met
+### hashes-well-formed (Tier 1): met
+### tro-assembled-by-trs (Tier 1): met
+### tro-top-level-in-graph (Tier 1): met
 ### trov-terms-known (Tier 1): met
-### trs-typed (Tier 1): met
-### context-base (Tier 2): not claimed
-### node-id-present (Tier 2): not claimed
+### base-declared (Tier 2): not claimed
+### node-ids-present (Tier 2): not claimed
 
 ----- [6] expectation unmet: the @type trov:TrustedResearchPerformace is not defined by TROV -----
 
@@ -179,6 +194,8 @@ $ report_on instance-type-unknown.jsonld
     "@graph": [
         {
             "@id": "tro",
+            "@type": "trov:TransparentResearchObject",
+            "trov:wasAssembledBy": { "@id": "trs", "@type": "trov:TrustedResearchSystem" },
             "trov:hasPerformance": { "@type": "trov:TrustedResearchPerformace" }
         }
     ]
@@ -193,17 +210,18 @@ Target: Tier 1 -- Self-Contained (assigned via --target option)
 - Tier 0 -- Well-Formed: met
 - Tier 1 -- Self-Contained: unmet
 ## Findings
-### has-well-formed-context (Tier 0): met
-### has-well-formed-graph (Tier 0): met
-### node-rooted (Tier 0): met
-### composition-fingerprint (Tier 1): met
-### hash-form (Tier 1): met
-### tro-minimal (Tier 1): met
+### context-well-formed (Tier 0): met
+### document-rooted-in-nodes (Tier 0): met
+### graph-well-formed (Tier 0): met
+### composition-fingerprinted (Tier 1): met
+### context-and-graph-present (Tier 1): met
+### hashes-well-formed (Tier 1): met
+### tro-assembled-by-trs (Tier 1): met
+### tro-top-level-in-graph (Tier 1): met
 ### trov-terms-known (Tier 1): unmet
-- `/@graph/0/trov:hasPerformance/@type` found `"trov:TrustedResearchPerformace"` — not a term the TROV vocabulary defines
-### trs-typed (Tier 1): met
-### context-base (Tier 2): not claimed
-### node-id-present (Tier 2): not claimed
+- `/@graph/0/trov:hasPerformance/@type` found `"trov:TrustedResearchPerformace"` — not a term TROV defines
+### base-declared (Tier 2): not claimed
+### node-ids-present (Tier 2): not claimed
 
 ----- [7] expectation met: the bare value trov:CanIsolateEnvironment is defined by TROV -----
 
@@ -213,6 +231,8 @@ $ report_on instance-value-known.jsonld
     "@graph": [
         {
             "@id": "tro",
+            "@type": "trov:TransparentResearchObject",
+            "trov:wasAssembledBy": { "@id": "trs", "@type": "trov:TrustedResearchSystem" },
             "trov:hasCapability": "trov:CanIsolateEnvironment"
         }
     ]
@@ -227,16 +247,17 @@ Target: Tier 1 -- Self-Contained (assigned via --target option)
 - Tier 0 -- Well-Formed: met
 - Tier 1 -- Self-Contained: met
 ## Findings
-### has-well-formed-context (Tier 0): met
-### has-well-formed-graph (Tier 0): met
-### node-rooted (Tier 0): met
-### composition-fingerprint (Tier 1): met
-### hash-form (Tier 1): met
-### tro-minimal (Tier 1): met
+### context-well-formed (Tier 0): met
+### document-rooted-in-nodes (Tier 0): met
+### graph-well-formed (Tier 0): met
+### composition-fingerprinted (Tier 1): met
+### context-and-graph-present (Tier 1): met
+### hashes-well-formed (Tier 1): met
+### tro-assembled-by-trs (Tier 1): met
+### tro-top-level-in-graph (Tier 1): met
 ### trov-terms-known (Tier 1): met
-### trs-typed (Tier 1): met
-### context-base (Tier 2): not claimed
-### node-id-present (Tier 2): not claimed
+### base-declared (Tier 2): not claimed
+### node-ids-present (Tier 2): not claimed
 
 ----- [8] expectation unmet: the bare value trov:CanIsolateNetwork is not defined by TROV -----
 
@@ -246,6 +267,8 @@ $ report_on instance-value-unknown.jsonld
     "@graph": [
         {
             "@id": "tro",
+            "@type": "trov:TransparentResearchObject",
+            "trov:wasAssembledBy": { "@id": "trs", "@type": "trov:TrustedResearchSystem" },
             "trov:hasCapability": "trov:CanIsolateNetwork"
         }
     ]
@@ -260,14 +283,15 @@ Target: Tier 1 -- Self-Contained (assigned via --target option)
 - Tier 0 -- Well-Formed: met
 - Tier 1 -- Self-Contained: unmet
 ## Findings
-### has-well-formed-context (Tier 0): met
-### has-well-formed-graph (Tier 0): met
-### node-rooted (Tier 0): met
-### composition-fingerprint (Tier 1): met
-### hash-form (Tier 1): met
-### tro-minimal (Tier 1): met
+### context-well-formed (Tier 0): met
+### document-rooted-in-nodes (Tier 0): met
+### graph-well-formed (Tier 0): met
+### composition-fingerprinted (Tier 1): met
+### context-and-graph-present (Tier 1): met
+### hashes-well-formed (Tier 1): met
+### tro-assembled-by-trs (Tier 1): met
+### tro-top-level-in-graph (Tier 1): met
 ### trov-terms-known (Tier 1): unmet
-- `/@graph/0/trov:hasCapability` found `"trov:CanIsolateNetwork"` — not a term the TROV vocabulary defines
-### trs-typed (Tier 1): met
-### context-base (Tier 2): not claimed
-### node-id-present (Tier 2): not claimed
+- `/@graph/0/trov:hasCapability` found `"trov:CanIsolateNetwork"` — not a term TROV defines
+### base-declared (Tier 2): not claimed
+### node-ids-present (Tier 2): not claimed

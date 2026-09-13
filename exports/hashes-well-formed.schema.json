@@ -1,8 +1,9 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://w3id.org/trace/tro/0.1/hash-form.schema.json",
-    "title": "Hash form",
-    "description": "Every hash in the declaration names its algorithm and carries a value of the right shape for it.",
+    "$id": "https://w3id.org/trace/tro/0.1/hashes-well-formed.schema.json",
+    "title": "Hashes well-formed",
+    "description": "Each trov:hash on the TRO's artifacts and composition fingerprint names sha256 as its algorithm and carries a value of 64 lowercase hexadecimal digits.",
+    "summary": "The TRO's artifact and fingerprint hashes are well-formed sha256",
     "type": "object",
     "properties": {
         "@graph": {

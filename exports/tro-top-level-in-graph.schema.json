@@ -1,0 +1,27 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/tro-top-level-in-graph.schema.json",
+    "title": "TRO top-level in graph",
+    "description": "Where a declaration carries an @graph, it is an array and a top-level member of it is the TRO: a node typed trov:TransparentResearchObject.",
+    "summary": "The TRO is a top-level member of the `@graph`",
+    "properties": {
+        "@graph": {
+            "type": "array",
+            "contains": {
+                "type": "object",
+                "required": ["@type"],
+                "properties": {
+                    "@type": {
+                        "if": { "type": "array" },
+                        "then": { "contains": { "const": "trov:TransparentResearchObject" } },
+                        "else": { "const": "trov:TransparentResearchObject" }
+                    }
+                }
+            },
+            "errorMessage": {
+                "type": "a TRO declaration carries its nodes in an @graph array",
+                "contains": "no top-level member of the @graph is typed trov:TransparentResearchObject"
+            }
+        }
+    }
+}

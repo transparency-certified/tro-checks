@@ -1,8 +1,9 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://w3id.org/trace/tro/0.1/has-well-formed-context.schema.json",
-    "title": "Has a well-formed context",
-    "description": "Where a document carries an @context, its value must be null, a string naming an external context, a context object, or an array of those.",
+    "$id": "https://w3id.org/trace/tro/0.1/context-well-formed.schema.json",
+    "title": "Context well-formed",
+    "description": "Where the document carries an @context at its root, the value is null, a string naming an external context, a context object, or an array of those.",
+    "summary": "The root `@context`, if any, has a form JSON-LD allows",
     "properties": {
         "@context": {
             "type": ["null", "string", "object", "array"],

@@ -1,6 +1,6 @@
 ##############################################################################
 #
-#   tro-checks  ·  demo 01: node-rooted (Tier 0)
+#   tro-checks  ·  demo 01: document-rooted-in-nodes (Tier 0)
 #
 ##############################################################################
 
@@ -20,16 +20,17 @@ Target: Tier 0 -- Well-Formed (assigned via --target option)
 ## Assessment
 - Tier 0 -- Well-Formed: met
 ## Findings
-### has-well-formed-context (Tier 0): met
-### has-well-formed-graph (Tier 0): met
-### node-rooted (Tier 0): met
-### composition-fingerprint (Tier 1): not claimed
-### hash-form (Tier 1): not claimed
-### tro-minimal (Tier 1): not claimed
+### context-well-formed (Tier 0): met
+### document-rooted-in-nodes (Tier 0): met
+### graph-well-formed (Tier 0): met
+### composition-fingerprinted (Tier 1): not claimed
+### context-and-graph-present (Tier 1): not claimed
+### hashes-well-formed (Tier 1): not claimed
+### tro-assembled-by-trs (Tier 1): not claimed
+### tro-top-level-in-graph (Tier 1): not claimed
 ### trov-terms-known (Tier 1): not claimed
-### trs-typed (Tier 1): not claimed
-### context-base (Tier 2): not claimed
-### node-id-present (Tier 2): not claimed
+### base-declared (Tier 2): not claimed
+### node-ids-present (Tier 2): not claimed
 
 ----- [2] expectation unmet: the document is a string ------------------------
 
@@ -44,17 +45,18 @@ Target: Tier 0 -- Well-Formed (assigned via --target option)
 ## Assessment
 - Tier 0 -- Well-Formed: unmet
 ## Findings
-### has-well-formed-context (Tier 0): met
-### has-well-formed-graph (Tier 0): met
-### node-rooted (Tier 0): unmet
+### context-well-formed (Tier 0): met
+### document-rooted-in-nodes (Tier 0): unmet
 - the document found `"a document whose whole content is one string"` — a JSON-LD document is a node object, or an array of node objects
-### composition-fingerprint (Tier 1): not claimed
-### hash-form (Tier 1): not claimed
-### tro-minimal (Tier 1): not claimed
+### graph-well-formed (Tier 0): met
+### composition-fingerprinted (Tier 1): not claimed
+### context-and-graph-present (Tier 1): not claimed
+### hashes-well-formed (Tier 1): not claimed
+### tro-assembled-by-trs (Tier 1): not claimed
+### tro-top-level-in-graph (Tier 1): not claimed
 ### trov-terms-known (Tier 1): not claimed
-### trs-typed (Tier 1): not claimed
-### context-base (Tier 2): not claimed
-### node-id-present (Tier 2): not claimed
+### base-declared (Tier 2): not claimed
+### node-ids-present (Tier 2): not claimed
 
 ----- [3] expectation met: every member of the array is a node object --------
 
@@ -72,16 +74,17 @@ Target: Tier 0 -- Well-Formed (assigned via --target option)
 ## Assessment
 - Tier 0 -- Well-Formed: met
 ## Findings
-### has-well-formed-context (Tier 0): met
-### has-well-formed-graph (Tier 0): met
-### node-rooted (Tier 0): met
-### composition-fingerprint (Tier 1): not claimed
-### hash-form (Tier 1): not claimed
-### tro-minimal (Tier 1): not claimed
+### context-well-formed (Tier 0): met
+### document-rooted-in-nodes (Tier 0): met
+### graph-well-formed (Tier 0): met
+### composition-fingerprinted (Tier 1): not claimed
+### context-and-graph-present (Tier 1): not claimed
+### hashes-well-formed (Tier 1): not claimed
+### tro-assembled-by-trs (Tier 1): not claimed
+### tro-top-level-in-graph (Tier 1): not claimed
 ### trov-terms-known (Tier 1): not claimed
-### trs-typed (Tier 1): not claimed
-### context-base (Tier 2): not claimed
-### node-id-present (Tier 2): not claimed
+### base-declared (Tier 2): not claimed
+### node-ids-present (Tier 2): not claimed
 
 ----- [4] expectation unmet: a member of the array is a string ---------------
 
@@ -99,14 +102,15 @@ Target: Tier 0 -- Well-Formed (assigned via --target option)
 ## Assessment
 - Tier 0 -- Well-Formed: unmet
 ## Findings
-### has-well-formed-context (Tier 0): met
-### has-well-formed-graph (Tier 0): met
-### node-rooted (Tier 0): unmet
+### context-well-formed (Tier 0): met
+### document-rooted-in-nodes (Tier 0): unmet
 - `/1` found `"not a node object"` — every member of a JSON-LD document written as an array is a node object
-### composition-fingerprint (Tier 1): not claimed
-### hash-form (Tier 1): not claimed
-### tro-minimal (Tier 1): not claimed
+### graph-well-formed (Tier 0): met
+### composition-fingerprinted (Tier 1): not claimed
+### context-and-graph-present (Tier 1): not claimed
+### hashes-well-formed (Tier 1): not claimed
+### tro-assembled-by-trs (Tier 1): not claimed
+### tro-top-level-in-graph (Tier 1): not claimed
 ### trov-terms-known (Tier 1): not claimed
-### trs-typed (Tier 1): not claimed
-### context-base (Tier 2): not claimed
-### node-id-present (Tier 2): not claimed
+### base-declared (Tier 2): not claimed
+### node-ids-present (Tier 2): not claimed
