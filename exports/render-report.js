@@ -10,16 +10,21 @@
 /** @typedef {import('./types.js').Assessment} Assessment */
 /** @typedef {import('./types.js').Finding} Finding */
 /** @typedef {import('./types.js').ErrorReport} ErrorReport */
-/** @typedef {import('./types.js').Rejection} Rejection */
 
 module.exports = {
     renderReportAsMarkdown,
 }
 
 const TARGET_SOURCE_LABELS = {
-    default: 'default when not declared',
-    manifest: 'from manifest declaration',
-    option: 'assigned via --target option',
+    default: 'the default',
+    manifest: 'the candidate manifest',
+    option: 'the `--target` option',
+}
+
+const STATUS_LABELS = {
+    'met': '✅ met',
+    'unmet': '❌ not met',
+    'not claimed': 'not claimed',
 }
 
 /**
@@ -55,40 +60,145 @@ function stateConstraint({ keyword, constraint = {}, particulars = {} }) {
 }
 
 /**
- * @param {ErrorReport} error
- * @returns {string}  one line: where, what was found, what the expectation says
+ * @param {string} outcome
+ * @returns {string}  the status as the report shows it
+ * @throws {Error} if the outcome has no label.
  */
-function describeError(error) {
-    const where = error.site ? `\`${pointerOf(error.site)}\`` : 'the document'
-    const found = 'found' in error ? ` found \`${JSON.stringify(error.found)}\`` : ''
-    return `${where}${found} — ${error.message ?? stateConstraint(error)}`
+function statusLabel(outcome) {
+    const label = STATUS_LABELS[/** @type {keyof STATUS_LABELS} */ (outcome)]
+    if (label === undefined) throw new Error(`no status label for outcome: ${outcome}`)
+    return label
 }
 
 /**
- * @param {Rejection} rejection
- * @returns {string}  one line naming the alternative tried
+ * Makes text safe inside a Markdown table cell: a pipe would end the cell and a newline the row.
+ * @param {string} text
+ * @returns {string}
  */
-function describeRejection(rejection) {
-    if (rejection.site) return `element \`${pointerOf(rejection.site)}\` was tried and refused:`
-    if (rejection.clause) return `alternative \`${rejection.clause[rejection.clause.length - 1]}\` was tried and refused:`
-    throw new Error('rejection names neither an element nor a clause')
+function cellText(text) {
+    return text.replace(/\|/g, '\\|').replace(/\r?\n/g, ' ')
 }
 
 /**
- * @param {ErrorReport[]} errors
- * @param {string}        [indentation]  prefixed to every line
- * @returns {string[]}  one bullet per error, alternatives nested beneath
+ * Sets text as inline code, fenced with one more backtick than the longest run of backticks it contains.
+ * @param {string} text
+ * @returns {string}
  */
-function renderErrorsAsLines(errors, indentation = '') {
-    const lines = []
-    for (const error of errors) {
-        lines.push(`${indentation}- ${describeError(error)}`)
-        for (const rejection of error.rejections ?? []) {
-            lines.push(`${indentation}  - ${describeRejection(rejection)}`)
-            lines.push(...renderErrorsAsLines(rejection.errors, `${indentation}    `))
-        }
+function codeSpan(text) {
+    const longestRun = Math.max(0, ...(text.match(/`+/g) ?? []).map((run) => run.length))
+    const fence = '`'.repeat(longestRun + 1)
+    const padding = text.startsWith('`') || text.endsWith('`') ? ' ' : ''
+    return `${fence}${padding}${text}${padding}${fence}`
+}
+
+/**
+ * @param {string[]}   headings
+ * @param {string[][]} rows  each row's cells, already made safe
+ * @returns {string[]}  the table's lines, cells unpadded
+ */
+function tableLines(headings, rows) {
+    const lines = [
+        `| ${headings.join(' | ')} |`,
+        `| ${headings.map(() => '---').join(' | ')} |`,
+    ]
+    for (const cells of rows) {
+        lines.push(`| ${cells.join(' | ')} |`)
     }
     return lines
+}
+
+/**
+ * A row of a tier or expectation not claimed is set entirely in italics, its status carrying no glyph.
+ * @param {string[]} cells
+ * @returns {string[]}
+ */
+function italicized(cells) {
+    return cells.map((cell) => `*${cell}*`)
+}
+
+/**
+ * @param {Candidate} candidate
+ * @returns {string[]}  the Candidate Information section's lines
+ */
+function candidateLines(candidate) {
+    const targetSourceLabel = TARGET_SOURCE_LABELS[candidate.targetSource]
+    if (targetSourceLabel === undefined) throw new Error(`no such target source: ${candidate.targetSource}`)
+
+    const rows = [['Candidate', cellText(codeSpan(candidate.fileName))]]
+    if (candidate.description) rows.push(['Description', cellText(candidate.description)])
+    rows.push(['Target', `Tier ${candidate.targetTier.number} — ${cellText(candidate.targetTier.name)}`])
+    rows.push(['Target declared by', targetSourceLabel])
+
+    return ['## Candidate Information', '', ...tableLines(['', ''], rows)]
+}
+
+/**
+ * Every tier an expectation belongs to, including those above the target, which carry no assessment.
+ * @param {Finding[]}    findings
+ * @param {Assessment[]} assessments
+ * @returns {string[]}  the By Representation Tier table's lines
+ */
+function tierTableLines(findings, assessments) {
+    /** @type {Tier[]} */ const tiers = []
+    for (const finding of findings) {
+        if (!tiers.some((tier) => tier.number === finding.expectation.tier.number)) tiers.push(finding.expectation.tier)
+    }
+    tiers.sort((one, other) => one.number - other.number)
+
+    const rows = []
+    for (const tier of tiers) {
+        const assessment = assessments.find((each) => each.tier.number === tier.number)
+        const cells = [String(tier.number), cellText(tier.name), cellText(tier.description)]
+        if (assessment) {
+            rows.push([...cells, statusLabel(assessment.outcome)])
+        } else {
+            rows.push(italicized([...cells, statusLabel('not claimed')]))
+        }
+    }
+
+    return tableLines(['Tier', 'Name', 'Description', 'Status'], rows)
+}
+
+/**
+ * @param {Finding[]} findings
+ * @returns {string[]}  the By Individual Expectation table's lines
+ */
+function expectationTableLines(findings) {
+    const rows = []
+    for (const finding of findings) {
+        const { expectation } = finding
+        const cells = [String(expectation.tier.number), cellText(expectation.name), cellText(expectation.summary), statusLabel(finding.outcome)]
+        if (finding.outcome === 'not claimed') {
+            rows.push(italicized(cells))
+        } else {
+            rows.push(cells)
+        }
+    }
+
+    return tableLines(['Tier', 'Expectation', 'Summary', 'Status'], rows)
+}
+
+/**
+ * An unmet expectation's details: what it checks, then one row per error -- what was found, where, and why.
+ * @param {Finding} finding
+ * @returns {string[]}
+ */
+function unmetExpectationLines(finding) {
+    const rows = []
+    for (const error of finding.errors) {
+        const found = 'found' in error ? cellText(codeSpan(JSON.stringify(error.found))) : ''
+        const where = error.site && error.site.length > 0 ? cellText(codeSpan(pointerOf(error.site))) : 'the document'
+        const because = cellText(error.message ?? stateConstraint(error))
+        rows.push([found, where, because])
+    }
+
+    return [
+        `### Unmet expectation: ${finding.expectation.name}`,
+        '',
+        `Expectation details: ${finding.expectation.description.replace(/\r?\n/g, ' ')}`,
+        '',
+        ...tableLines(['Found', 'Where', 'Expectation not met because'], rows),
+    ]
 }
 
 /**
@@ -99,39 +209,31 @@ function renderErrorsAsLines(errors, indentation = '') {
  * @returns {string}
  */
 function renderReportAsMarkdown(candidate, findings, assessments, compactly) {
-    const targetSourceLabel = TARGET_SOURCE_LABELS[candidate.targetSource]
-    if (targetSourceLabel === undefined) throw new Error(`no such target source: ${candidate.targetSource}`)
-
     const reportLines = [
         '# Report',
         '',
-        `Candidate: \`${candidate.fileName}\``,
+        ...candidateLines(candidate),
         '',
+        '## Assessments',
+        '',
+        '### By Representation Tier',
+        '',
+        ...tierTableLines(findings, assessments),
+        '',
+        '### By Individual Expectation',
+        '',
+        ...expectationTableLines(findings),
     ]
 
-    if (candidate.description) reportLines.push(candidate.description, '')
-
-    reportLines.push(
-        `Target: Tier ${candidate.targetTier.number} -- ${candidate.targetTier.name} (${targetSourceLabel})`,
-        '',
-        '## Assessment',
-        '',
-    )
-
-    for (const assessment of assessments) {
-        reportLines.push(`- Tier ${assessment.tier.number} -- ${assessment.tier.name}: ${assessment.outcome}`)
-    }
-
-    reportLines.push('', '## Findings', '')
-
-    for (const finding of findings) {
-        reportLines.push(`### ${finding.expectation.name} (Tier ${finding.expectation.tier.number}): ${finding.outcome}`, '')
-        if (finding.errors.length > 0) {
-            reportLines.push(...renderErrorsAsLines(finding.errors), '')
+    const unmetFindings = findings.filter((finding) => finding.outcome === 'unmet')
+    if (unmetFindings.length > 0) {
+        reportLines.push('', '## Details')
+        for (const finding of unmetFindings) {
+            reportLines.push('', ...unmetExpectationLines(finding))
         }
     }
 
     if (compactly) return `${reportLines.filter((line) => line !== '').join('\n')}\n`
 
-    return reportLines.join('\n')
+    return `${reportLines.join('\n')}\n`
 }

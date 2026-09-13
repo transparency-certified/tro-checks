@@ -75,21 +75,16 @@
 
 ## What the report says
 
-**The report names the candidate and describes it.**
+**The report names the candidate, describes it, and states the tier aimed at and where that tier came from.**
 
-**The report states the tier aimed at, and where that tier came from.**
+**The report lists every tier, giving its name, the commitment it describes, and its status — met or not met for each tier at or below the one aimed at, and not claimed for each above it.**
 
-**The report gives the assessment of each tier at or below the one aimed at.**
+**The report lists every expectation, in tier order and alphabetically within a tier, giving its tier, what it checks in a few words, and its status.**
 
-**The report states every finding, in tier order and alphabetically within a tier, giving...**
-- The expectation.
-- Its tier.
-- Its outcome.
-- For those unmet, each error, giving...
-  - Where in the candidate.
-  - What was found there.
-  - What the expectation says about it, in its own words where it has them, and in the terms of the constraint where it does not.
-  - Beneath an error that offered alternatives, each alternative tried and the errors that refused it.
+**The report details each expectation not met, giving what it checks in a sentence and each error it found...**
+- What was found there, if anything.
+- Where in the candidate.
+- Why the expectation is not met, in its own words where it has them, and in the terms of the constraint where it does not.
 
 **The report names no validator.**
 

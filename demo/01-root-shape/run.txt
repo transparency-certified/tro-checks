@@ -15,22 +15,33 @@ $ report_on instance-node-object.jsonld
 wrote tmp/instance-node-object.md; Tier 0 met
 
 # Report
-Candidate: `instance-node-object.jsonld`
-Target: Tier 0 -- Well-Formed (assigned via --target option)
-## Assessment
-- Tier 0 -- Well-Formed: met
-## Findings
-### context-well-formed (Tier 0): met
-### document-rooted-in-nodes (Tier 0): met
-### graph-well-formed (Tier 0): met
-### composition-fingerprinted (Tier 1): not claimed
-### context-and-graph-present (Tier 1): not claimed
-### hashes-well-formed (Tier 1): not claimed
-### tro-assembled-by-trs (Tier 1): not claimed
-### tro-top-level-in-graph (Tier 1): not claimed
-### trov-terms-known (Tier 1): not claimed
-### base-declared (Tier 2): not claimed
-### node-ids-present (Tier 2): not claimed
+## Candidate Information
+|  |  |
+| --- | --- |
+| Candidate | `instance-node-object.jsonld` |
+| Target | Tier 0 — Well-Formed |
+| Target declared by | the `--target` option |
+## Assessments
+### By Representation Tier
+| Tier | Name | Description | Status |
+| --- | --- | --- | --- |
+| 0 | Well-Formed | Valid JSON-LD conforming to the profile TRACE tooling expects | ✅ met |
+| *1* | *Self-Contained* | *References within the TRO resolve; its identifiers need not be unique outside it* | *not claimed* |
+| *2* | *Linkable-Data* | *Element identifiers cannot collide with another TRO's; TRO elements can be published* | *not claimed* |
+### By Individual Expectation
+| Tier | Expectation | Summary | Status |
+| --- | --- | --- | --- |
+| 0 | context-well-formed | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
+| 0 | document-rooted-in-nodes | The document is an object or an array of objects | ✅ met |
+| 0 | graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| *1* | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
+| *1* | *context-and-graph-present* | *A JSON object with an `@context` and an `@graph`* | *not claimed* |
+| *1* | *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
+| *1* | *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *1* | *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *1* | *trov-terms-known* | *Every `trov:` name is one TROV defines* | *not claimed* |
+| *2* | *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
+| *2* | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
 
 ----- [2] expectation unmet: the document is a string ------------------------
 
@@ -40,23 +51,39 @@ $ report_on instance-string.jsonld
 wrote tmp/instance-string.md; Tier 0 unmet
 
 # Report
-Candidate: `instance-string.jsonld`
-Target: Tier 0 -- Well-Formed (assigned via --target option)
-## Assessment
-- Tier 0 -- Well-Formed: unmet
-## Findings
-### context-well-formed (Tier 0): met
-### document-rooted-in-nodes (Tier 0): unmet
-- the document found `"a document whose whole content is one string"` — a JSON-LD document is a node object, or an array of node objects
-### graph-well-formed (Tier 0): met
-### composition-fingerprinted (Tier 1): not claimed
-### context-and-graph-present (Tier 1): not claimed
-### hashes-well-formed (Tier 1): not claimed
-### tro-assembled-by-trs (Tier 1): not claimed
-### tro-top-level-in-graph (Tier 1): not claimed
-### trov-terms-known (Tier 1): not claimed
-### base-declared (Tier 2): not claimed
-### node-ids-present (Tier 2): not claimed
+## Candidate Information
+|  |  |
+| --- | --- |
+| Candidate | `instance-string.jsonld` |
+| Target | Tier 0 — Well-Formed |
+| Target declared by | the `--target` option |
+## Assessments
+### By Representation Tier
+| Tier | Name | Description | Status |
+| --- | --- | --- | --- |
+| 0 | Well-Formed | Valid JSON-LD conforming to the profile TRACE tooling expects | ❌ not met |
+| *1* | *Self-Contained* | *References within the TRO resolve; its identifiers need not be unique outside it* | *not claimed* |
+| *2* | *Linkable-Data* | *Element identifiers cannot collide with another TRO's; TRO elements can be published* | *not claimed* |
+### By Individual Expectation
+| Tier | Expectation | Summary | Status |
+| --- | --- | --- | --- |
+| 0 | context-well-formed | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
+| 0 | document-rooted-in-nodes | The document is an object or an array of objects | ❌ not met |
+| 0 | graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| *1* | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
+| *1* | *context-and-graph-present* | *A JSON object with an `@context` and an `@graph`* | *not claimed* |
+| *1* | *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
+| *1* | *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *1* | *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *1* | *trov-terms-known* | *Every `trov:` name is one TROV defines* | *not claimed* |
+| *2* | *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
+| *2* | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
+## Details
+### Unmet expectation: document-rooted-in-nodes
+Expectation details: The document's root is an object, or an array whose members are all objects.
+| Found | Where | Expectation not met because |
+| --- | --- | --- |
+| `"a document whose whole content is one string"` | the document | a JSON-LD document is a node object, or an array of node objects |
 
 ----- [3] expectation met: every member of the array is a node object --------
 
@@ -69,22 +96,33 @@ $ report_on instance-array-of-node-objects.jsonld
 wrote tmp/instance-array-of-node-objects.md; Tier 0 met
 
 # Report
-Candidate: `instance-array-of-node-objects.jsonld`
-Target: Tier 0 -- Well-Formed (assigned via --target option)
-## Assessment
-- Tier 0 -- Well-Formed: met
-## Findings
-### context-well-formed (Tier 0): met
-### document-rooted-in-nodes (Tier 0): met
-### graph-well-formed (Tier 0): met
-### composition-fingerprinted (Tier 1): not claimed
-### context-and-graph-present (Tier 1): not claimed
-### hashes-well-formed (Tier 1): not claimed
-### tro-assembled-by-trs (Tier 1): not claimed
-### tro-top-level-in-graph (Tier 1): not claimed
-### trov-terms-known (Tier 1): not claimed
-### base-declared (Tier 2): not claimed
-### node-ids-present (Tier 2): not claimed
+## Candidate Information
+|  |  |
+| --- | --- |
+| Candidate | `instance-array-of-node-objects.jsonld` |
+| Target | Tier 0 — Well-Formed |
+| Target declared by | the `--target` option |
+## Assessments
+### By Representation Tier
+| Tier | Name | Description | Status |
+| --- | --- | --- | --- |
+| 0 | Well-Formed | Valid JSON-LD conforming to the profile TRACE tooling expects | ✅ met |
+| *1* | *Self-Contained* | *References within the TRO resolve; its identifiers need not be unique outside it* | *not claimed* |
+| *2* | *Linkable-Data* | *Element identifiers cannot collide with another TRO's; TRO elements can be published* | *not claimed* |
+### By Individual Expectation
+| Tier | Expectation | Summary | Status |
+| --- | --- | --- | --- |
+| 0 | context-well-formed | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
+| 0 | document-rooted-in-nodes | The document is an object or an array of objects | ✅ met |
+| 0 | graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| *1* | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
+| *1* | *context-and-graph-present* | *A JSON object with an `@context` and an `@graph`* | *not claimed* |
+| *1* | *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
+| *1* | *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *1* | *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *1* | *trov-terms-known* | *Every `trov:` name is one TROV defines* | *not claimed* |
+| *2* | *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
+| *2* | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
 
 ----- [4] expectation unmet: a member of the array is a string ---------------
 
@@ -97,20 +135,36 @@ $ report_on instance-array-with-scalar.jsonld
 wrote tmp/instance-array-with-scalar.md; Tier 0 unmet
 
 # Report
-Candidate: `instance-array-with-scalar.jsonld`
-Target: Tier 0 -- Well-Formed (assigned via --target option)
-## Assessment
-- Tier 0 -- Well-Formed: unmet
-## Findings
-### context-well-formed (Tier 0): met
-### document-rooted-in-nodes (Tier 0): unmet
-- `/1` found `"not a node object"` — every member of a JSON-LD document written as an array is a node object
-### graph-well-formed (Tier 0): met
-### composition-fingerprinted (Tier 1): not claimed
-### context-and-graph-present (Tier 1): not claimed
-### hashes-well-formed (Tier 1): not claimed
-### tro-assembled-by-trs (Tier 1): not claimed
-### tro-top-level-in-graph (Tier 1): not claimed
-### trov-terms-known (Tier 1): not claimed
-### base-declared (Tier 2): not claimed
-### node-ids-present (Tier 2): not claimed
+## Candidate Information
+|  |  |
+| --- | --- |
+| Candidate | `instance-array-with-scalar.jsonld` |
+| Target | Tier 0 — Well-Formed |
+| Target declared by | the `--target` option |
+## Assessments
+### By Representation Tier
+| Tier | Name | Description | Status |
+| --- | --- | --- | --- |
+| 0 | Well-Formed | Valid JSON-LD conforming to the profile TRACE tooling expects | ❌ not met |
+| *1* | *Self-Contained* | *References within the TRO resolve; its identifiers need not be unique outside it* | *not claimed* |
+| *2* | *Linkable-Data* | *Element identifiers cannot collide with another TRO's; TRO elements can be published* | *not claimed* |
+### By Individual Expectation
+| Tier | Expectation | Summary | Status |
+| --- | --- | --- | --- |
+| 0 | context-well-formed | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
+| 0 | document-rooted-in-nodes | The document is an object or an array of objects | ❌ not met |
+| 0 | graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| *1* | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
+| *1* | *context-and-graph-present* | *A JSON object with an `@context` and an `@graph`* | *not claimed* |
+| *1* | *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
+| *1* | *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *1* | *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *1* | *trov-terms-known* | *Every `trov:` name is one TROV defines* | *not claimed* |
+| *2* | *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
+| *2* | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
+## Details
+### Unmet expectation: document-rooted-in-nodes
+Expectation details: The document's root is an object, or an array whose members are all objects.
+| Found | Where | Expectation not met because |
+| --- | --- | --- |
+| `"not a node object"` | `/1` | every member of a JSON-LD document written as an array is a node object |
