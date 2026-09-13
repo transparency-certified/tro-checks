@@ -20,6 +20,7 @@
 
 **The program checks the candidate against each expectation in the target.**
 - It finds the expectation files the module ships.
+- It stops if a tier lists an expectation that has no file.
 - It settles which tier each expectation belongs to.
 - It reports an expectation above the candidate's tier as not claimed.
 - It has every validator make its determination of the candidate against an expectation at or below the candidate's tier, as in [making a determination](#making-a-determination).
@@ -38,8 +39,8 @@
 - Each tier's assessment.
 
 **The program answers with an exit status, one of...**
-- Nothing unmet.
-- Something unmet.
+- Every claimed tier met.
+- Some claimed tier unmet.
 - Could not check.
 
 ## Making a determination

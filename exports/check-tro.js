@@ -99,6 +99,22 @@ function tierOfExpectation(tiers, name) {
 }
 
 /**
+ * @param {Tier[]}   tiers
+ * @param {string[]} expectationPaths
+ * @throws {Error} if a tier lists an expectation that has no file.
+ */
+function vetTierExpectations(tiers, expectationPaths) {
+    const names = expectationPaths.map((expectationPath) => path.basename(expectationPath, '.schema.json'))
+
+    for (const tier of tiers) {
+        const absent = tier.expectations.filter((name) => !names.includes(name))
+        if (absent.length > 0) {
+            throw new Error(`no expectation file for ${absent.join(', ')}, listed in tier ${tier.number}`)
+        }
+    }
+}
+
+/**
  * Has a validator make its determination: runs it on the candidate against the expectation, and reads back its JSON report.
  * @param {string}      validator  the command
  * @param {Expectation} expectation
@@ -271,9 +287,11 @@ function byTierThenName(one, other) {
  */
 function checkCandidateAgainstExpectations(candidate) {
     const tiers = readTierDefinitions()
+    const expectationPaths = findExpectationFiles()
+    vetTierExpectations(tiers, expectationPaths)
 
     /** @type {Finding[]} */ const findings = []
-    for (const expectationPath of findExpectationFiles()) {
+    for (const expectationPath of expectationPaths) {
         const name = path.basename(expectationPath, '.schema.json')
         const expectation = { name, path: expectationPath, tier: tierOfExpectation(tiers, name) }
 
@@ -343,8 +361,8 @@ const USAGE =
 const ASSUMED_TIER = 1
 
 const EXIT = {
-    ALL_MET: 0,
-    SOME_UNMET: 1,
+    ALL_CLAIMED_TIERS_MET: 0,
+    SOME_CLAIMED_TIER_UNMET: 1,
     COULD_NOT_CHECK: 2,
 }
 
@@ -385,9 +403,9 @@ function runAsCommand() {
         writeReport(reportPath, candidate, findings, assessments, optionValues.compact)
         process.stdout.write(`${summarizeInOneLine(reportPath, assessments)}\n`)
 
-        return findings.some((finding) => finding.outcome === EXPECTATION.UNMET)
-            ? EXIT.SOME_UNMET
-            : EXIT.ALL_MET
+        return assessments.some((assessment) => assessment.outcome === EXPECTATION.UNMET)
+            ? EXIT.SOME_CLAIMED_TIER_UNMET
+            : EXIT.ALL_CLAIMED_TIERS_MET
     } catch (error) {
         process.stderr.write(`check-tro: ${error instanceof Error ? error.message : String(error)}\n`)
         return EXIT.COULD_NOT_CHECK
