@@ -1,0 +1,37 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/base-web-scheme.schema.json",
+    "title": "Base web scheme",
+    "description": "Where an @context declares a non-null @base, it is a string using the https or http scheme.",
+    "summary": "The `@base`, if any, uses the `https` or `http` scheme",
+    "$defs": {
+        "base": {
+            "type": ["string", "null"],
+            "pattern": "^https?://",
+            "errorMessage": {
+                "type": "an @base is a string",
+                "pattern": "an @base uses the https or http scheme"
+            }
+        },
+        "context": {
+            "if": { "type": "object" },
+            "then": { "properties": { "@base": { "$ref": "#/$defs/base" } } },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/context" } }
+            }
+        },
+        "node": {
+            "if": { "type": "object" },
+            "then": {
+                "properties": { "@context": { "$ref": "#/$defs/context" } },
+                "additionalProperties": { "$ref": "#/$defs/node" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/node" } }
+            }
+        }
+    },
+    "$ref": "#/$defs/node"
+}

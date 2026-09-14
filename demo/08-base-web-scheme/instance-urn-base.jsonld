@@ -1,0 +1,8 @@
+{
+    "@context": {
+        "@base": "urn:uuid:2f8a1c94-7b3e-4d21-9f6a-0c5e83b7d410"
+    },
+    "@graph": [
+        { "@id": "tro" }
+    ]
+}

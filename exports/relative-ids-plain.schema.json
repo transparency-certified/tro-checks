@@ -1,0 +1,49 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/relative-ids-plain.schema.json",
+    "title": "Relative ids plain",
+    "description": "Outside the @context, every @id with no colon before its first /, ? or # is a plain relative path: it does not begin with /, has no . or .. segments, and contains no ? or #.",
+    "summary": "Every relative `@id` is a plain path, with no leading `/`, no `.` or `..` segments, and no `?` or `#`",
+    "$defs": {
+        "id": {
+            "if": { "type": "string", "not": { "pattern": "^[^/?#]*:" } },
+            "then": {
+                "allOf": [
+                    {
+                        "not": { "pattern": "^/" },
+                        "errorMessage": {
+                            "not": "a relative @id does not begin with /"
+                        }
+                    },
+                    {
+                        "not": { "pattern": "(^|/)\\.\\.?([/?#]|$)" },
+                        "errorMessage": {
+                            "not": "a relative @id has no . or .. segments"
+                        }
+                    },
+                    {
+                        "not": { "pattern": "[?#]" },
+                        "errorMessage": {
+                            "not": "a relative @id contains no ? or #"
+                        }
+                    }
+                ]
+            }
+        },
+        "node": {
+            "if": { "type": "object" },
+            "then": {
+                "properties": {
+                    "@context": true,
+                    "@id": { "$ref": "#/$defs/id" }
+                },
+                "additionalProperties": { "$ref": "#/$defs/node" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/node" } }
+            }
+        }
+    },
+    "$ref": "#/$defs/node"
+}

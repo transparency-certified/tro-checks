@@ -30,6 +30,10 @@ Expectations in tiers above the target are reported as *not claimed*.
 | 0 | `disallowed-node-keywords-absent` | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` |
 | 0 | `disallowed-context-keywords-absent` | No keyword in the `@context` other than `@base` |
 | 0 | `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings |
+| 0 | `base-web-scheme` | The `@base`, if any, uses the `https` or `http` scheme |
+| 0 | `base-simple-url` | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` |
+| 0 | `relative-ids-plain` | Every relative `@id` is a plain path, with no leading `/`, no `.` or `..` segments, and no `?` or `#` |
+| 0 | `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` |
 | 1 | `context-and-graph-present` | A JSON object with an `@context` and an `@graph` |
 | 1 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` |
 | 1 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS |

@@ -1,0 +1,8 @@
+{
+    "@context": {
+        "schema": "https://schema.org"
+    },
+    "@graph": [
+        { "@id": "https://example.org/thing/1", "schema:name": "Thing one" }
+    ]
+}

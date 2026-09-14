@@ -10,6 +10,10 @@ graph-well-formed.schema.json
 disallowed-node-keywords-absent.schema.json
 disallowed-context-keywords-absent.schema.json
 ids-and-types-strings.schema.json
+base-web-scheme.schema.json
+base-simple-url.schema.json
+relative-ids-plain.schema.json
+prefix-namespaces-terminated.schema.json
 trov-terms-known.schema.json
 context-and-graph-present.schema.json
 tro-top-level-in-graph.schema.json

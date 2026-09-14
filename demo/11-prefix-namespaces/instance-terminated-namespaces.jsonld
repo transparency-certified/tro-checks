@@ -1,0 +1,10 @@
+{
+    "@context": {
+        "trov": "https://w3id.org/trace/trov/0.1#",
+        "ex": "https://example.org/terms#",
+        "exdata": "https://example.org/data/"
+    },
+    "@graph": [
+        { "@id": "https://example.org/thing/1", "@type": "ex:Thing" }
+    ]
+}

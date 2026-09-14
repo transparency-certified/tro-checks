@@ -8,7 +8,11 @@
             "document-rooted-in-nodes",
             "disallowed-node-keywords-absent",
             "disallowed-context-keywords-absent",
-            "ids-and-types-strings"
+            "ids-and-types-strings",
+            "base-web-scheme",
+            "base-simple-url",
+            "relative-ids-plain",
+            "prefix-namespaces-terminated"
         ]
     },
     "1": {

@@ -1,0 +1,51 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/prefix-namespaces-terminated.schema.json",
+    "title": "Prefix namespaces terminated",
+    "description": "In every @context, each prefix that maps to a string maps to an absolute IRI ending in # or /.",
+    "summary": "Every prefix maps to an absolute IRI ending in `#` or `/`",
+    "$defs": {
+        "namespace": {
+            "if": { "type": "string" },
+            "then": {
+                "allOf": [
+                    {
+                        "pattern": "^[A-Za-z][A-Za-z0-9+.-]*:",
+                        "errorMessage": {
+                            "pattern": "a prefix maps to an absolute IRI"
+                        }
+                    },
+                    {
+                        "pattern": "[#/]$",
+                        "errorMessage": {
+                            "pattern": "a prefix's namespace ends in # or /"
+                        }
+                    }
+                ]
+            }
+        },
+        "context": {
+            "if": { "type": "object" },
+            "then": {
+                "patternProperties": { "^@": true },
+                "additionalProperties": { "$ref": "#/$defs/namespace" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/context" } }
+            }
+        },
+        "node": {
+            "if": { "type": "object" },
+            "then": {
+                "properties": { "@context": { "$ref": "#/$defs/context" } },
+                "additionalProperties": { "$ref": "#/$defs/node" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/node" } }
+            }
+        }
+    },
+    "$ref": "#/$defs/node"
+}

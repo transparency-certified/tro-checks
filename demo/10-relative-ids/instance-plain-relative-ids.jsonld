@@ -1,0 +1,18 @@
+{
+    "@context": {
+        "@base": "https://example.org/tro/2f8a1c94/",
+        "ex": "https://example.org/terms#"
+    },
+    "@graph": [
+        {
+            "@id": "composition/1",
+            "@type": "ex:Composition",
+            "ex:part": [
+                { "@id": "composition/1/artifact/0" },
+                { "@id": "https://example.org/elsewhere/artifact" },
+                { "@id": "ex:SomeTerm" },
+                { "@id": "_:b0" }
+            ]
+        }
+    ]
+}

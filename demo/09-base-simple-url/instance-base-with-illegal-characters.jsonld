@@ -1,0 +1,8 @@
+{
+    "@context": {
+        "@base": "https://example.org/my tro/%zz/"
+    },
+    "@graph": [
+        { "@id": "tro" }
+    ]
+}
