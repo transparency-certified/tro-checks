@@ -27,6 +27,9 @@ Expectations in tiers above the target are reported as *not claimed*.
 | 0 | `context-well-formed` | The root `@context`, if any, has a form JSON-LD allows |
 | 0 | `graph-well-formed` | The root `@graph`, if any, holds objects, not bare values |
 | 0 | `document-rooted-in-nodes` | The document is an object or an array of objects |
+| 0 | `disallowed-node-keywords-absent` | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` |
+| 0 | `disallowed-context-keywords-absent` | No keyword in the `@context` other than `@base` |
+| 0 | `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings |
 | 1 | `context-and-graph-present` | A JSON object with an `@context` and an `@graph` |
 | 1 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` |
 | 1 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS |

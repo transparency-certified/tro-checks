@@ -7,6 +7,9 @@ tiers.json
 document-rooted-in-nodes.schema.json
 context-well-formed.schema.json
 graph-well-formed.schema.json
+disallowed-node-keywords-absent.schema.json
+disallowed-context-keywords-absent.schema.json
+ids-and-types-strings.schema.json
 trov-terms-known.schema.json
 context-and-graph-present.schema.json
 tro-top-level-in-graph.schema.json

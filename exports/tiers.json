@@ -5,7 +5,10 @@
         "expectations": [
             "context-well-formed",
             "graph-well-formed",
-            "document-rooted-in-nodes"
+            "document-rooted-in-nodes",
+            "disallowed-node-keywords-absent",
+            "disallowed-context-keywords-absent",
+            "ids-and-types-strings"
         ]
     },
     "1": {

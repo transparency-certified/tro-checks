@@ -1,0 +1,31 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/disallowed-node-keywords-absent.schema.json",
+    "title": "Disallowed node keywords absent",
+    "description": "Outside the @context, every member name beginning with @ is @context, @graph, @id or @type.",
+    "summary": "No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type`",
+    "$defs": {
+        "nodeKeyword": {
+            "if": { "type": "string", "pattern": "^@" },
+            "then": {
+                "enum": ["@context", "@graph", "@id", "@type"],
+                "errorMessage": {
+                    "enum": "a keyword outside the @context is @context, @graph, @id or @type"
+                }
+            }
+        },
+        "node": {
+            "if": { "type": "object" },
+            "then": {
+                "propertyNames": { "$ref": "#/$defs/nodeKeyword" },
+                "properties": { "@context": true },
+                "additionalProperties": { "$ref": "#/$defs/node" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/node" } }
+            }
+        }
+    },
+    "$ref": "#/$defs/node"
+}

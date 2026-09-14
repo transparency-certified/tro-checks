@@ -1,0 +1,41 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/ids-and-types-strings.schema.json",
+    "title": "Ids and types strings",
+    "description": "Outside the @context, every @id is a string, and every @type is a string or an array of strings.",
+    "summary": "Every `@id` is a string; every `@type` a string or an array of strings",
+    "$defs": {
+        "node": {
+            "if": { "type": "object" },
+            "then": {
+                "properties": {
+                    "@context": true,
+                    "@id": {
+                        "type": "string",
+                        "errorMessage": {
+                            "type": "an @id is a string"
+                        }
+                    },
+                    "@type": {
+                        "type": ["string", "array"],
+                        "items": {
+                            "type": "string",
+                            "errorMessage": {
+                                "type": "an @type is a string or an array of strings"
+                            }
+                        },
+                        "errorMessage": {
+                            "type": "an @type is a string or an array of strings"
+                        }
+                    }
+                },
+                "additionalProperties": { "$ref": "#/$defs/node" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/node" } }
+            }
+        }
+    },
+    "$ref": "#/$defs/node"
+}

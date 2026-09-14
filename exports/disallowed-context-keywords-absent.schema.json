@@ -1,0 +1,38 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/disallowed-context-keywords-absent.schema.json",
+    "title": "Disallowed context keywords absent",
+    "description": "Within every @context, the only member name beginning with @ is @base.",
+    "summary": "No keyword in the `@context` other than `@base`",
+    "$defs": {
+        "contextKeyword": {
+            "if": { "type": "string", "pattern": "^@" },
+            "then": {
+                "const": "@base",
+                "errorMessage": {
+                    "const": "the only keyword in an @context is @base"
+                }
+            }
+        },
+        "context": {
+            "if": { "type": "object" },
+            "then": { "propertyNames": { "$ref": "#/$defs/contextKeyword" } },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/context" } }
+            }
+        },
+        "node": {
+            "if": { "type": "object" },
+            "then": {
+                "properties": { "@context": { "$ref": "#/$defs/context" } },
+                "additionalProperties": { "$ref": "#/$defs/node" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/node" } }
+            }
+        }
+    },
+    "$ref": "#/$defs/node"
+}
