@@ -76,3 +76,9 @@
 {"kind":"review","path":"exports/check-tros.js","blob":"66b9165d5ba307a8eed27e136d04c18ae5d2266b","by":"Timothy McPhillips","date":"2026-09-11","type":"cursory"}
 {"kind":"review","path":"exports/types.js","blob":"e5598bcc405fe3ce87a4abb92ce09547a58d5e04","by":"Timothy McPhillips","date":"2026-09-11","type":"cursory"}
 {"kind":"review","path":"exports/render-report.js","blob":"ff15e9cdd2cda68c9fcc6b856abde163b971e466","by":"Timothy McPhillips","date":"2026-09-11","type":"cursory"}
+{"kind":"review","path":"README.md","blob":"d156893a9ee34b831439d8b1970331ad8831b490","by":"Timothy McPhillips","date":"2026-09-14","type":"careful"}
+{"kind":"review","path":"GLOSSARY.md","blob":"cf6e55ebea69e21fb57a18b525b8cd4faae9c391","by":"Timothy McPhillips","date":"2026-09-14","type":"careful"}
+{"kind":"review","path":"models/README.md","blob":"453e16445b5c052dc828f8f50811fdcdabe07de6","by":"Timothy McPhillips","date":"2026-09-14","type":"careful"}
+{"kind":"review","path":"models/checker-classes.md","blob":"619facdf992d8ba540c0882e3c448c4867da1642","by":"Timothy McPhillips","date":"2026-09-14","type":"cursory"}
+{"kind":"review","path":"models/checker-erd.md","blob":"25d4d6646a3f98b901d96de6ae282c367f837508","by":"Timothy McPhillips","date":"2026-09-14","type":"cursory"}
+{"kind":"review","path":"models/checker-erd.md","blob":"3a14a7d840ae7e4cba203cef1f7758ca2d490f73","by":"Timothy McPhillips","date":"2026-09-14","type":"cursory"}
