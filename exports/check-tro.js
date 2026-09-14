@@ -17,13 +17,13 @@ const { renderReportAsMarkdown } = require('./render-report.js')
 /** @typedef {import('./types.js').Candidate} Candidate */
 /** @typedef {import('./types.js').Assessment} Assessment */
 /** @typedef {import('./types.js').Finding} Finding */
-/** @typedef {import('./types.js').ErrorReport} ErrorReport */
+/** @typedef {import('./types.js').Diagnostic} Diagnostic */
 /** @typedef {import('./types.js').ValidatorReport} ValidatorReport */
 /**
  * @typedef {object} Determination  what one validator determined about one candidate against one expectation
  * @property {string}      validator
  * @property {Expectation} expectation
- * @property {boolean}     valid
+ * @property {boolean}     isValid
  * @property {ValidatorReport} report
  */
 
@@ -120,7 +120,7 @@ function readExpectation(tiers, expectationPath) {
 
     return {
         name,
-        path: expectationPath,
+        schemaPath: expectationPath,
         tier: tierOfExpectation(tiers, name),
         summary: schema.summary,
         description: schema.description,
@@ -154,7 +154,7 @@ function vetTierExpectations(tiers, expectationPaths) {
 function makeDetermination(validator, expectation, candidatePath) {
     const childResult = childProcess.spawnSync(
         validator,
-        ['--schema', expectation.path, '--instance', candidatePath, '--json', '-'],
+        ['--schema', expectation.schemaPath,'--instance', candidatePath, '--json', '-'],
         { encoding: 'utf8' }
     )
 
@@ -164,10 +164,10 @@ function makeDetermination(validator, expectation, candidatePath) {
     if (childResult.stderr) diagnostics = childResult.stderr.trimEnd()
     if (childResult.signal) throw new Error(`${validator}: killed by ${childResult.signal}\n${diagnostics}`)
 
-    let valid
+    let isValid
     switch (childResult.status) {
-        case 0: valid = true; break
-        case 1: valid = false; break
+        case 0: isValid = true; break
+        case 1: isValid = false; break
         default: throw new Error(`${validator}: exit status ${childResult.status}\n${diagnostics}`)
     }
 
@@ -177,80 +177,80 @@ function makeDetermination(validator, expectation, candidatePath) {
     } catch (error) {
         throw new Error(`${validator}: wrote no readable report: ${String(error)}\n${diagnostics}`)
     }
-    return { validator, expectation, valid, report }
+    return { validator, expectation, isValid, report }
 }
 
 /**
- * Copies an error report leaving out its message, and its rejections' error reports' likewise.
- * @param {ErrorReport} errorReport
- * @returns {ErrorReport}
+ * Copies a diagnostic leaving out its message, and its attempts' diagnostics' likewise.
+ * @param {Diagnostic} diagnostic
+ * @returns {Diagnostic}
  */
-function withoutMessage(errorReport) {
-    const copy = Object.assign({}, errorReport)
+function withoutMessage(diagnostic) {
+    const copy = Object.assign({}, diagnostic)
     delete copy.message
 
     if (copy.rejections !== undefined) {
-        const rejections = []
-        for (const rejection of copy.rejections) {
-            const rejectionCopy = Object.assign({}, rejection)
-            rejectionCopy.errors = []
-            for (const error of rejection.errors) rejectionCopy.errors.push(withoutMessage(error))
-            rejections.push(rejectionCopy)
+        const attempts = []
+        for (const attempt of copy.rejections) {
+            const attemptCopy = Object.assign({}, attempt)
+            attemptCopy.errors = []
+            for (const error of attempt.errors) attemptCopy.errors.push(withoutMessage(error))
+            attempts.push(attemptCopy)
         }
-        copy.rejections = rejections
+        copy.rejections = attempts
     }
 
     return copy
 }
 
 /**
- * Whether two error reports report the same error, whatever their messages.
- * @param {ErrorReport} errorReport
- * @param {ErrorReport} other
+ * Whether two diagnostics report the same error, whatever their messages.
+ * @param {Diagnostic} diagnostic
+ * @param {Diagnostic} other
  * @returns {boolean}
  */
-function isSameError(errorReport, other) {
-    return JSON.stringify(withoutMessage(errorReport)) === JSON.stringify(withoutMessage(other))
+function isSameError(diagnostic, other) {
+    return JSON.stringify(withoutMessage(diagnostic)) === JSON.stringify(withoutMessage(other))
 }
 
 /**
- * Whether two reports of the same error carry the same messages, their rejections' included.
- * @param {ErrorReport} errorReport
- * @param {ErrorReport} other
+ * Whether two diagnostics of the same error carry the same messages, their attempts' included.
+ * @param {Diagnostic} diagnostic
+ * @param {Diagnostic} other
  * @returns {boolean}
  */
-function isSameMessage(errorReport, other) {
-    return JSON.stringify(errorReport) === JSON.stringify(other)
+function isSameMessage(diagnostic, other) {
+    return JSON.stringify(diagnostic) === JSON.stringify(other)
 }
 
 /**
  * Reconciles what the validators that found the candidate invalid reported: every error any of them reported, once,
  * with its message where every validator that gave one gave the same. Says on stderr when their reports differ.
  * @param {Determination[]} determinedInvalid
- * @returns {ErrorReport[]}  in the order first reported
+ * @returns {Diagnostic[]}  in the order first reported
  */
-function reconcileErrorReports(determinedInvalid) {
-    /** @type {ErrorReport[]} */ const errorReports = []
+function reconcileDiagnostics(determinedInvalid) {
+    /** @type {Diagnostic[]} */ const diagnostics = []
     for (const determination of determinedInvalid) {
-        for (const errorReport of determination.report.errors) errorReports.push(errorReport)
+        for (const diagnostic of determination.report.errors) diagnostics.push(diagnostic)
     }
 
-    /** @type {ErrorReport[]} */ const errors = []
+    /** @type {Diagnostic[]} */ const errors = []
     let reportsDiffer = false
-    for (const errorReport of errorReports) {
-        if (!errors.some((error) => isSameError(error, errorReport))) {
-            const reportsOfThisError = errorReports.filter((one) => isSameError(one, errorReport))
-            const reportsWithMessage = reportsOfThisError.filter((one) => one.message !== undefined)
+    for (const diagnostic of diagnostics) {
+        if (!errors.some((error) => isSameError(error, diagnostic))) {
+            const diagnosticsOfThisError = diagnostics.filter((one) => isSameError(one, diagnostic))
+            const diagnosticsWithMessage = diagnosticsOfThisError.filter((one) => one.message !== undefined)
 
-            if (reportsWithMessage.length === 0) {
-                errors.push(errorReport)
-            } else if (reportsWithMessage.every((one) => isSameMessage(one, reportsWithMessage[0]))) {
-                errors.push(reportsWithMessage[0])
+            if (diagnosticsWithMessage.length === 0) {
+                errors.push(diagnostic)
+            } else if (diagnosticsWithMessage.every((one) => isSameMessage(one, diagnosticsWithMessage[0]))) {
+                errors.push(diagnosticsWithMessage[0])
             } else {
-                errors.push(withoutMessage(reportsWithMessage[0]))
+                errors.push(withoutMessage(diagnosticsWithMessage[0]))
             }
 
-            if (reportsOfThisError.length !== determinedInvalid.length) reportsDiffer = true
+            if (diagnosticsOfThisError.length !== determinedInvalid.length) reportsDiffer = true
         }
     }
 
@@ -276,7 +276,7 @@ function checkExpectation(candidate, expectation) {
     /** @type {Determination[]} */ const determinedInvalid = []
     for (const validator of VALIDATORS) {
         const determination = makeDetermination(validator, expectation, candidate.path)
-        if (determination.valid) {
+        if (determination.isValid) {
             determinedValid.push(determination)
         } else {
             determinedInvalid.push(determination)
@@ -291,7 +291,7 @@ function checkExpectation(candidate, expectation) {
             process.stderr.write(`check-tro: ${expectation.name}: ${validatorNames(determinedValid)} found the candidate valid `
             + `and ${validatorNames(determinedInvalid)} found it invalid\n`)
         }
-        finding = { expectation, outcome: EXPECTATION.UNMET, errors: reconcileErrorReports(determinedInvalid) }
+        finding = { expectation, outcome: EXPECTATION.UNMET, errors: reconcileDiagnostics(determinedInvalid) }
     }
 
     return finding

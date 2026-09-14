@@ -27,7 +27,7 @@
 - If every validator determines the candidate valid, it reports the expectation met.
 - If every validator determines it invalid, it reports the expectation unmet.
 - Otherwise it warns that the validators disagree, and reports the expectation unmet.
-- It takes every error any validator reported, once, as in [reconciling the error reports](#reconciling-the-error-reports).
+- It takes every error any validator reported, once, as in [reconciling the diagnostics](#reconciling-the-diagnostics).
 
 **The program assesses each tier at or below the candidate's.**
 - It reports the tier met when every finding in it was met, unmet when any was not.
@@ -63,11 +63,11 @@
 - Which validator refused.
 - What it wrote.
 
-## Reconciling the error reports
+## Reconciling the diagnostics
 
 **The program takes every error any validator reported, once.**
 
-**The program warns on the diagnostic stream when...**
+**The program warns on the standard error stream when...**
 - Some validator determined valid what another determined invalid.
 - The validators reported different errors.
 

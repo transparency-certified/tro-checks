@@ -19,7 +19,7 @@ module.exports = {}
 /**
  * @typedef {object} Expectation  a condition a candidate is expected to satisfy
  * @property {string} name
- * @property {string} path         the schema file that states it
+ * @property {string} schemaPath   the schema file that states it
  * @property {Tier}   tier         the tier it belongs to
  * @property {string} summary      what it checks, in a few words
  * @property {string} description  what it checks, in one sentence
@@ -42,15 +42,15 @@ module.exports = {}
  * @typedef {object} Finding  what checking one expectation against a candidate established
  * @property {Expectation}                  expectation
  * @property {'met'|'unmet'|'not claimed'}  outcome
- * @property {ErrorReport[]}                errors   empty unless unmet
+ * @property {Diagnostic[]}                 errors   empty unless unmet
  */
 /**
  * @typedef {object} ValidatorReport  what one validator wrote when asked for its JSON report
- * @property {boolean}       valid
- * @property {ErrorReport[]} errors   empty when valid
+ * @property {boolean}      valid
+ * @property {Diagnostic[]} errors   empty when valid
  */
 /**
- * @typedef {object} ErrorReport  one entry of a validator's JSON report, as CONTRACT.md shapes it
+ * @typedef {object} Diagnostic  one entry of a validator's JSON report, as CONTRACT.md shapes it
  * @property {(string|number)[]}     [site]         where in the candidate; absent for the document itself
  * @property {string}                [keyword]      the keyword that failed; absent for a boolean schema
  * @property {(string|number)[]}     clause         where that keyword lives in the schema
@@ -59,11 +59,11 @@ module.exports = {}
  * @property {Object<string, *>}     [particulars]  what specifically went wrong
  * @property {*}                     [found]        the value at site
  * @property {string}                [message]      the expectation's own words, where it has them
- * @property {Rejection[]}           [rejections]   the alternatives tried, for a keyword that offered any
+ * @property {Attempt[]}             [rejections]   the attempts, for a keyword that offered alternatives
  */
 /**
- * @typedef {object} Rejection  one alternative tried and refused, with the errors that refused it
+ * @typedef {object} Attempt  one way a check could have been passed that a validator tried and that did not work
  * @property {(string|number)[]} [clause]  the branch, for anyOf and oneOf
  * @property {(string|number)[]} [site]    the element, for contains
- * @property {ErrorReport[]}     errors
+ * @property {Diagnostic[]}      errors    why it did not work
  */

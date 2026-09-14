@@ -9,7 +9,7 @@
 /** @typedef {import('./types.js').Candidate} Candidate */
 /** @typedef {import('./types.js').Assessment} Assessment */
 /** @typedef {import('./types.js').Finding} Finding */
-/** @typedef {import('./types.js').ErrorReport} ErrorReport */
+/** @typedef {import('./types.js').Diagnostic} Diagnostic */
 
 module.exports = {
     renderReportAsMarkdown,
@@ -36,7 +36,7 @@ function pointerOf(segments) {
 }
 
 /**
- * @param {ErrorReport} error
+ * @param {Diagnostic} diagnostic
  * @returns {string}  what the keyword demanded, in its own terms
  */
 function stateConstraint({ keyword, constraint = {}, particulars = {} }) {
