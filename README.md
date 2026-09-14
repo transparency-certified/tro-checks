@@ -107,6 +107,7 @@ manifest, the `--target` option, or the default.
 | [`exports/check-tros.js`](exports/check-tros.js) | Runs the checker over the candidates the manifest names, each at its own target, writing `reports/<name>.md` for each. Installed as `check-tros`. |
 | [`pseudocode/`](pseudocode) | What the checker does, in outline. |
 | [`GLOSSARY.md`](GLOSSARY.md) | The key entities the tools in this repository concern. |
+| [`models/`](models/README.md) | How the key entities fit together, each subject modeled in more than one paradigm. |
 | [`CAPABILITIES.md`](CAPABILITIES.md) | The JSON Schema capabilities the expectations use, each with its demo in [`json-schema-demos`](https://github.com/CIRSS/json-schema-demos). |
 | [`REVIEWS.md`](REVIEWS.md) | Who has reviewed each file, at what level of detail. |
 | [`demo/`](demo) | Demos of checking particular expectations. |
