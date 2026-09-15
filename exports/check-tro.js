@@ -364,26 +364,155 @@ function reconcileDiagnostics(determinedInvalid) {
     return errors
 }
 
+/** @type {Map<string, string>} */ const candidateTexts = new Map()
+/** @type {Map<string, *>} */ const parsedCandidates = new Map()
+
 /**
- * Checks that the candidate's text is JSON by parsing it.
- * @param {Candidate}   candidate
- * @param {Expectation} expectation
- * @returns {Finding}
+ * The candidate's text, read once and kept for every check that needs it.
+ * @param {Candidate} candidate
+ * @returns {string}
  * @throws {Error} if the candidate cannot be read.
  */
-function checkJsonParses(candidate, expectation) {
-    const text = fs.readFileSync(candidate.path, 'utf8')
+function candidateText(candidate) {
+    let text = candidateTexts.get(candidate.path)
+    if (text === undefined) {
+        text = fs.readFileSync(candidate.path, 'utf8')
+        candidateTexts.set(candidate.path, text)
+    }
+    return text
+}
 
-    try {
-        JSON.parse(text)
-    } catch {
-        return {
-            expectation,
-            outcome: EXPECTATION.UNMET,
-            errors: [{ keyword: 'parse', clause: [], message: 'the candidate is not JSON' }],
+/**
+ * The candidate parsed as JSON, parsed once and kept for every check that needs it.
+ * @param {Candidate} candidate
+ * @returns {*}
+ * @throws {Error} if the candidate cannot be read or is not JSON.
+ */
+function parsedCandidate(candidate) {
+    if (!parsedCandidates.has(candidate.path)) parsedCandidates.set(candidate.path, JSON.parse(candidateText(candidate)))
+    return parsedCandidates.get(candidate.path)
+}
+
+/**
+ * Visits every value and member name in a parsed JSON value, with where each sits.
+ * @param {*} value
+ * @param {(string|number)[]} site
+ * @param {(value: *, site: (string|number)[], isMemberName: boolean) => void} visit
+ */
+function visitParsed(value, site, visit) {
+    if (Array.isArray(value)) {
+        value.forEach((each, index) => visitParsed(each, [...site, index], visit))
+    } else if (value !== null && typeof value === 'object') {
+        for (const [name, member] of Object.entries(value)) {
+            visit(name, [...site, name], true)
+            visitParsed(member, [...site, name], visit)
+        }
+    } else {
+        visit(value, site, false)
+    }
+}
+
+const UNPAIRED_SURROGATE = /[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/
+
+/**
+ * The checks check-tro makes itself as it reads a candidate, one per parse expectation, each returning its diagnostics.
+ * @type {Object<string, (candidate: Candidate) => Diagnostic[]>}
+ */
+const PARSE_CHECKS = {
+    'utf8-encoded': (candidate) => {
+        try {
+            new TextDecoder('utf-8', { fatal: true }).decode(fs.readFileSync(candidate.path))
+        } catch {
+            return [{ keyword: 'encoding', clause: [], message: 'the candidate is not valid UTF-8' }]
+        }
+        return []
+    },
+    'json-parses': (candidate) => {
+        try {
+            parsedCandidate(candidate)
+        } catch {
+            return [{ keyword: 'parse', clause: [], message: 'the candidate is not JSON' }]
+        }
+        return []
+    },
+    'lone-surrogates-absent': (candidate) => {
+        /** @type {Diagnostic[]} */ const diagnostics = []
+        visitParsed(parsedCandidate(candidate), [], (value, site, isMemberName) => {
+            if (typeof value === 'string' && UNPAIRED_SURROGATE.test(value)) {
+                diagnostics.push({
+                    site, keyword: 'surrogate', clause: [], found: value,
+                    message: isMemberName ? 'a member name contains no unpaired surrogate' : 'a string contains no unpaired surrogate',
+                })
+            }
+        })
+        return diagnostics
+    },
+    'numbers-within-range': (candidate) => {
+        /** @type {Diagnostic[]} */ const diagnostics = []
+        visitNumberSources(candidateText(candidate), [], (value, source, site) => {
+            if (!Number.isFinite(value)) {
+                diagnostics.push({ site, keyword: 'numberRange', clause: [], message: 'a number is within the range of an IEEE 754 double' })
+            } else if (/^-?\d+$/.test(source)) {
+                const digits = source.replace(/^-/, '')
+                if (digits.length > 16 || (digits.length === 16 && digits > '9007199254740991')) {
+                    diagnostics.push({ site, keyword: 'numberRange', clause: [], message: 'an integer is between -(2^53 - 1) and 2^53 - 1' })
+                }
+            }
+        })
+        return diagnostics
+    },
+}
+
+/** A number as parsed, with the text it was written as. */
+class NumberSource {
+    /**
+     * @param {number} value
+     * @param {string} source
+     */
+    constructor(value, source) {
+        this.value = value
+        this.source = source
+    }
+}
+
+/**
+ * Visits every number in JSON text with the text it was written as, which parsing alone loses to rounding.
+ * @param {string} text  JSON known to parse
+ * @param {(string|number)[]} site
+ * @param {(value: number, source: string, site: (string|number)[]) => void} visit
+ */
+function visitNumberSources(text, site, visit) {
+    /** @param {string} key @param {*} value @param {{ source?: string }} context */
+    const keepingSource = (key, value, context) =>
+        typeof value === 'number' ? new NumberSource(value, context.source ?? String(value)) : value
+
+    /** @param {*} value @param {(string|number)[]} at */
+    const walk = (value, at) => {
+        if (value instanceof NumberSource) {
+            visit(value.value, value.source, at)
+        } else if (Array.isArray(value)) {
+            value.forEach((each, index) => walk(each, [...at, index]))
+        } else if (value !== null && typeof value === 'object') {
+            for (const [name, member] of Object.entries(value)) walk(member, [...at, name])
         }
     }
 
+    walk(JSON.parse(text, /** @type {*} */ (keepingSource)), site)
+}
+
+/**
+ * Checks the candidate against an expectation check-tro checks itself as it reads the candidate.
+ * @param {Candidate}   candidate
+ * @param {Expectation} expectation
+ * @returns {Finding}
+ * @throws {Error} if the candidate cannot be read, or check-tro has no check for the expectation.
+ */
+function checkAsParsed(candidate, expectation) {
+    const check = PARSE_CHECKS[expectation.name]
+    if (check === undefined) throw new Error(`${expectation.name} is a parse expectation check-tro has no check for`)
+
+    const diagnostics = check(candidate)
+    if (diagnostics.length > 0) return { expectation, outcome: EXPECTATION.UNMET, errors: diagnostics }
     return { expectation, outcome: EXPECTATION.MET, errors: [] }
 }
 
@@ -392,10 +521,11 @@ function checkJsonParses(candidate, expectation) {
  * @param {Candidate}   candidate
  * @param {Expectation} expectation
  * @returns {Finding}
- * @throws {Error} if the candidate cannot be read, or a validator makes no determination.
+ * @throws {Error} if the candidate cannot be read, check-tro has no check for a parse expectation, or a validator
+ *   makes no determination.
  */
 function checkExpectation(candidate, expectation) {
-    if (expectation.instrument === 'parse') return checkJsonParses(candidate, expectation)
+    if (expectation.instrument === 'parse') return checkAsParsed(candidate, expectation)
     return checkAgainstSchema(candidate, expectation)
 }
 

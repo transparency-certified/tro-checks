@@ -1,0 +1,6 @@
+{
+    "title": "Lone surrogates absent",
+    "description": "No string or member name in the candidate contains a UTF-16 surrogate escape without its pair.",
+    "summary": "No string or member name has an unpaired surrogate",
+    "requires": ["json-parses"]
+}

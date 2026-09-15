@@ -27,7 +27,7 @@
 - It goes through the tiers in order, and through each tier's expectations with each after those it requires.
 - It reports an expectation above the candidate's tier as not claimed.
 - It reports an expectation as not assessed when a lower tier is not met, or an expectation it requires is not met.
-- It checks a parse expectation at or below the candidate's tier itself: met if the candidate's text parses as JSON, unmet if it does not.
+- It checks a parse expectation at or below the candidate's tier itself, reading and parsing the candidate once for all of them: that its bytes are UTF-8, that its text is JSON, that no string or member name has an unpaired surrogate, and that every number is within range.
 - It has every validator make its determination of the candidate against a JSON Schema expectation at or below the candidate's tier, as in [making a determination](#making-a-determination).
 - If every validator determines the candidate valid, it reports the expectation met.
 - If every validator determines it invalid, it reports the expectation unmet.

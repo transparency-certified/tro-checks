@@ -27,8 +27,11 @@ above the target are reported as *not claimed*.
 
 | Tier | Expectation | What it checks |
 | --- | --- | --- |
+| 1 | `utf8-encoded` | The candidate is UTF-8 |
 | 1 | `json-parses` | The candidate is JSON |
 | 1 | `duplicate-member-names-absent` | No object repeats a member name |
+| 1 | `lone-surrogates-absent` | No string or member name has an unpaired surrogate |
+| 1 | `numbers-within-range` | Every number fits a double; every integer is exact |
 | 2 | `context-well-formed` | The root `@context`, if any, has a form JSON-LD allows |
 | 2 | `graph-well-formed` | The root `@graph`, if any, holds objects, not bare values |
 | 2 | `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings |

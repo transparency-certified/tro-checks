@@ -3,8 +3,11 @@
         "id": "SAFE-JSON",
         "description": "JSON that every parser reads the same way",
         "expectations": [
+            "utf8-encoded",
             "json-parses",
-            "duplicate-member-names-absent"
+            "duplicate-member-names-absent",
+            "lone-surrogates-absent",
+            "numbers-within-range"
         ]
     },
     {

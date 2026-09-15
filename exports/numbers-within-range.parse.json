@@ -1,0 +1,6 @@
+{
+    "title": "Numbers within range",
+    "description": "Every number in the candidate is within the range of an IEEE 754 double, and every integer is between -(2^53 - 1) and 2^53 - 1, so no parser rounds it.",
+    "summary": "Every number fits a double; every integer is exact",
+    "requires": ["json-parses"]
+}
