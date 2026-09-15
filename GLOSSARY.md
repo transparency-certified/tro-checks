@@ -14,9 +14,9 @@ The key entities the tools in this repository concern.
 
 **Specification** — the TRACE documentation representing the source of Expectations
 
-**Tier** — a subset of the Expectations, named by the Specification
+**Tier** — an ordered subset of the Expectations; meeting a Tier means meeting it along with every Tier below
 
-**Target** — the Tiers a Candidate is expected by a Producer or Consumer to satisfy
+**Target** — the Tier a Candidate is expected by a Producer or Consumer to satisfy, along with every Tier below
 
 **Validator** — a tool that determines whether an Expectation is met by a particular Candidate
 

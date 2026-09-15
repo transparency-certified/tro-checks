@@ -20,14 +20,16 @@ classDiagram
     }
     class Tier {
         number
-        name
+        id
         description
     }
     class Expectation {
         name
-        schemaPath
+        instrument
+        definitionPath
         summary
         description
+        validatorFlags
     }
     class Validator {
         command
@@ -65,7 +67,8 @@ classDiagram
     class Report
 
     Candidate "1" --> "1" Tier : targets
-    Tier "1" o-- "0..n" Expectation : holds
+    Tier "1" o-- "1..n" Expectation : holds
+    Expectation "0..n" --> "0..n" Expectation : requires, in its Tier
     Expectation "1" *-- "1..n" Check : verified by performing
     Determination "1" --> "1" Validator : by
     Determination "1" --> "1" Expectation : of

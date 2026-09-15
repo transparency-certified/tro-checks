@@ -19,14 +19,16 @@ erDiagram
     }
     Tier {
         int number
-        string name
+        string id
         string description
     }
     Expectation {
         string name
-        string schemaPath
+        string instrument
+        string definitionPath
         string summary
         string description
+        list validatorFlags
     }
     Validator {
         string command
@@ -66,7 +68,8 @@ erDiagram
     }
 
     Candidate }o--|| Tier : targets
-    Tier ||--o{ Expectation : holds
+    Tier ||--|{ Expectation : holds
+    Expectation }o--o{ Expectation : "requires, in its Tier"
     Expectation ||--|{ Check : "is verified by performing"
     Determination }o--|| Validator : "is made by"
     Determination }o--|| Expectation : "is made against"
