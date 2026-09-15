@@ -19,7 +19,7 @@
 - It says which `.jsonld` files in the directory the manifest does not name.
 
 **The program builds a candidate from each entry.**
-- It settles the candidate's tier — the one given on the command line, the one its entry names, or tier 1.
+- It settles the candidate's tier — the one given on the command line, the one its entry names, or `STANDALONE-TRO`.
 - It records where the tier came from — the command line, the manifest, or the default.
 - It names the candidate's report after the candidate.
 

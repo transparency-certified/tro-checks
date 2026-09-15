@@ -24,6 +24,7 @@ const TARGET_SOURCE_LABELS = {
 const STATUS_LABELS = {
     'met': '✅ met',
     'unmet': '❌ not met',
+    'not assessed': 'not assessed',
     'not claimed': 'not claimed',
 }
 
@@ -126,7 +127,7 @@ function candidateLines(candidate) {
 
     const rows = [['Candidate', cellText(codeSpan(candidate.fileName))]]
     if (candidate.description) rows.push(['Description', cellText(candidate.description)])
-    rows.push(['Target', `Tier ${candidate.targetTier.number} — ${cellText(candidate.targetTier.name)}`])
+    rows.push(['Target', `${candidate.targetTier.number} ${cellText(candidate.targetTier.id)}`])
     rows.push(['Target declared by', targetSourceLabel])
 
     return ['## Candidate Information', '', ...tableLines(['', ''], rows)]
@@ -148,7 +149,7 @@ function tierTableLines(findings, assessments) {
     const rows = []
     for (const tier of tiers) {
         const assessment = assessments.find((each) => each.tier.number === tier.number)
-        const cells = [String(tier.number), cellText(tier.name), cellText(tier.description)]
+        const cells = [String(tier.number), cellText(tier.id), cellText(tier.description)]
         if (assessment) {
             rows.push([...cells, statusLabel(assessment.outcome)])
         } else {
@@ -156,7 +157,7 @@ function tierTableLines(findings, assessments) {
         }
     }
 
-    return tableLines(['Tier', 'Name', 'Description', 'Status'], rows)
+    return tableLines(['Tier', 'ID', 'Description', 'Status'], rows)
 }
 
 /**

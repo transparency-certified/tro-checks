@@ -18,7 +18,7 @@ const checkTro = require('./check-tro.js')
 /** @typedef {import('./types.js').Candidate} Candidate */
 /**
  * @typedef {object} ManifestEntry  what candidates/manifest.json says about one candidate
- * @property {number} [target]       the tier it aims at
+ * @property {string} [target]       the id of the tier it aims at
  * @property {string} [description]  copied into its report
  */
 
@@ -146,7 +146,7 @@ function checkEach(candidates, reportsDirectory) {
 }
 
 const USAGE = 'usage: check-tros --candidates DIR --reports DIR [--target TIER]'
-const ASSUMED_TIER = 1
+const ASSUMED_TIER = 'STANDALONE-TRO'
 
 /** @returns {number}  the exit status */
 function runAsCommand() {
@@ -167,7 +167,7 @@ function runAsCommand() {
 
         /** @type {Tier|undefined} */ let overrideTier
         if (optionValues.target !== undefined) {
-            overrideTier = checkTro.lookUpTier(Number(optionValues.target))
+            overrideTier = checkTro.lookUpTier(optionValues.target)
         }
 
         const manifest = readCandidatesManifest(candidatesDirectory)
