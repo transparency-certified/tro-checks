@@ -21,9 +21,9 @@ above the target are reported as *not claimed*.
 | --- | --- | --- |
 | 1 | `SAFE-JSON` | JSON that every parser reads the same way |
 | 2 | `VALID-JSON-LD` | Valid JSON-LD |
-| 3 | `TRACE-JSON-LD` | JSON-LD in the restricted form the TRACE Specification defines for TRO declarations |
-| 4 | `STANDALONE-TRO` | A TRO declaration with the structure the Specification requires, whose references resolve within it |
-| 5 | `LINKABLE-TRO` | A TRO declaration whose element identifiers cannot collide with another TRO's |
+| 3 | `TRACE-JSON-LD` | JSON-LD in the restricted form the TRACE Specification<br>defines for TRO declarations |
+| 4 | `STANDALONE-TRO` | A TRO declaration with the structure the Specification<br>requires, whose references resolve within it |
+| 5 | `LINKABLE-TRO` | A TRO declaration whose element identifiers<br>cannot collide with another TRO's |
 
 Each expectation is defined by a file in [`exports/`](exports) named for the
 expectation, whose suffix says what checks it. A `<name>.parse.json` expectation
@@ -56,7 +56,7 @@ Valid JSON-LD.
 | --- | --- |
 | `context-well-formed` | The root `@context`, if any, has a form JSON-LD allows |
 | `graph-well-formed` | The root `@graph`, if any, holds objects, not bare values |
-| `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings |
+| `ids-and-types-strings` | Every `@id` is a string; every `@type`<br>a string or an array of strings |
 
 ### Tier 3 — TRACE-JSON-LD
 
@@ -64,12 +64,12 @@ JSON-LD in the restricted form the TRACE Specification defines for TRO declarati
 
 | Expectation | What it checks |
 | --- | --- |
-| `root-context-and-graph-only` | A JSON object with an `@context`, an `@graph`, and nothing else |
-| `disallowed-node-keywords-absent` | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` |
+| `root-context-and-graph-only` | A JSON object with an `@context`, an `@graph`,<br>and nothing else |
+| `disallowed-node-keywords-absent` | No keyword outside the `@context` other than<br>`@context`, `@graph`, `@id` and `@type` |
 | `disallowed-context-keywords-absent` | No keyword in the `@context` other than `@base` |
 | `base-web-scheme` | The `@base`, if any, uses the `https` or `http` scheme |
-| `base-simple-url` | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` |
-| `relative-ids-plain` | Every relative `@id` is a plain path, with no leading `/`, no `.` or `..` segments, and no `?` or `#` |
+| `base-simple-url` | The `@base`, if any, is a simple URL: a host,<br>no user info, dot segments, query or fragment,<br>only URL characters, and a final `/` |
+| `relative-ids-plain` | Every relative `@id` is a plain path, with no leading `/`,<br>no `.` or `..` segments, and no `?` or `#` |
 | `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` |
 
 ### Tier 4 — STANDALONE-TRO
@@ -82,7 +82,7 @@ A TRO declaration with the structure the Specification requires, whose reference
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` |
 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS |
 | `composition-fingerprinted` | The TRO's composition, if any, carries a fingerprint |
-| `hashes-well-formed` | The TRO's artifact and fingerprint hashes are well-formed sha256 |
+| `hashes-well-formed` | The TRO's artifact and fingerprint hashes<br>are well-formed sha256 |
 
 ### Tier 5 — LINKABLE-TRO
 
