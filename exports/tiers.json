@@ -12,7 +12,7 @@
     },
     {
         "id": "VALID-JSON-LD",
-        "description": "Valid JSON-LD, whatever vocabulary it uses",
+        "description": "Valid JSON-LD",
         "expectations": [
             "context-well-formed",
             "graph-well-formed",

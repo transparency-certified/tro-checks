@@ -28,7 +28,7 @@ wrote tmp/instance-object.md; 1 SAFE-JSON met
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
 | 1 | SAFE-JSON | JSON that every parser reads the same way | ✅ met |
-| *2* | *VALID-JSON-LD* | *Valid JSON-LD, whatever vocabulary it uses* | *not claimed* |
+| *2* | *VALID-JSON-LD* | *Valid JSON-LD* | *not claimed* |
 | *3* | *TRACE-JSON-LD* | *JSON-LD in the restricted form the TRACE Specification defines for TRO declarations* | *not claimed* |
 | *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the Specification requires, whose references resolve within it* | *not claimed* |
 | *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
@@ -36,7 +36,7 @@ wrote tmp/instance-object.md; 1 SAFE-JSON met
 | Tier | Expectation | Summary | Status |
 | --- | --- | --- | --- |
 | 1 | duplicate-member-names-absent | No object repeats a member name | ✅ met |
-| 1 | json-parses | The candidate is JSON | ✅ met |
+| 1 | json-parses | The candidate parses as JSON without errors | ✅ met |
 | 1 | lone-surrogates-absent | No string or member name has an unpaired surrogate | ✅ met |
 | 1 | numbers-within-range | Every number fits a double; every integer is exact | ✅ met |
 | 1 | utf8-encoded | The candidate is UTF-8 | ✅ met |
@@ -77,7 +77,7 @@ wrote tmp/instance-number.md; 1 SAFE-JSON met
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
 | 1 | SAFE-JSON | JSON that every parser reads the same way | ✅ met |
-| *2* | *VALID-JSON-LD* | *Valid JSON-LD, whatever vocabulary it uses* | *not claimed* |
+| *2* | *VALID-JSON-LD* | *Valid JSON-LD* | *not claimed* |
 | *3* | *TRACE-JSON-LD* | *JSON-LD in the restricted form the TRACE Specification defines for TRO declarations* | *not claimed* |
 | *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the Specification requires, whose references resolve within it* | *not claimed* |
 | *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
@@ -85,7 +85,7 @@ wrote tmp/instance-number.md; 1 SAFE-JSON met
 | Tier | Expectation | Summary | Status |
 | --- | --- | --- | --- |
 | 1 | duplicate-member-names-absent | No object repeats a member name | ✅ met |
-| 1 | json-parses | The candidate is JSON | ✅ met |
+| 1 | json-parses | The candidate parses as JSON without errors | ✅ met |
 | 1 | lone-surrogates-absent | No string or member name has an unpaired surrogate | ✅ met |
 | 1 | numbers-within-range | Every number fits a double; every integer is exact | ✅ met |
 | 1 | utf8-encoded | The candidate is UTF-8 | ✅ met |
@@ -126,7 +126,7 @@ wrote tmp/instance-bare-word.md; 1 SAFE-JSON unmet
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
 | 1 | SAFE-JSON | JSON that every parser reads the same way | ❌ not met |
-| *2* | *VALID-JSON-LD* | *Valid JSON-LD, whatever vocabulary it uses* | *not claimed* |
+| *2* | *VALID-JSON-LD* | *Valid JSON-LD* | *not claimed* |
 | *3* | *TRACE-JSON-LD* | *JSON-LD in the restricted form the TRACE Specification defines for TRO declarations* | *not claimed* |
 | *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the Specification requires, whose references resolve within it* | *not claimed* |
 | *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
@@ -134,7 +134,7 @@ wrote tmp/instance-bare-word.md; 1 SAFE-JSON unmet
 | Tier | Expectation | Summary | Status |
 | --- | --- | --- | --- |
 | 1 | duplicate-member-names-absent | No object repeats a member name | not assessed |
-| 1 | json-parses | The candidate is JSON | ❌ not met |
+| 1 | json-parses | The candidate parses as JSON without errors | ❌ not met |
 | 1 | lone-surrogates-absent | No string or member name has an unpaired surrogate | not assessed |
 | 1 | numbers-within-range | Every number fits a double; every integer is exact | not assessed |
 | 1 | utf8-encoded | The candidate is UTF-8 | ✅ met |
@@ -157,7 +157,7 @@ wrote tmp/instance-bare-word.md; 1 SAFE-JSON unmet
 | *5* | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
 ## Details
 ### Unmet expectation: json-parses
-Expectation details: The candidate's text is JSON: a single JSON value with nothing before or after it.
+Expectation details: The candidate's text parses as a single JSON value, with nothing before or after it, without errors.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 |  | the document | the candidate is not JSON |
@@ -186,7 +186,7 @@ wrote tmp/instance-trailing-comma.md; 1 SAFE-JSON unmet
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
 | 1 | SAFE-JSON | JSON that every parser reads the same way | ❌ not met |
-| *2* | *VALID-JSON-LD* | *Valid JSON-LD, whatever vocabulary it uses* | *not claimed* |
+| *2* | *VALID-JSON-LD* | *Valid JSON-LD* | *not claimed* |
 | *3* | *TRACE-JSON-LD* | *JSON-LD in the restricted form the TRACE Specification defines for TRO declarations* | *not claimed* |
 | *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the Specification requires, whose references resolve within it* | *not claimed* |
 | *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
@@ -194,7 +194,7 @@ wrote tmp/instance-trailing-comma.md; 1 SAFE-JSON unmet
 | Tier | Expectation | Summary | Status |
 | --- | --- | --- | --- |
 | 1 | duplicate-member-names-absent | No object repeats a member name | not assessed |
-| 1 | json-parses | The candidate is JSON | ❌ not met |
+| 1 | json-parses | The candidate parses as JSON without errors | ❌ not met |
 | 1 | lone-surrogates-absent | No string or member name has an unpaired surrogate | not assessed |
 | 1 | numbers-within-range | Every number fits a double; every integer is exact | not assessed |
 | 1 | utf8-encoded | The candidate is UTF-8 | ✅ met |
@@ -217,7 +217,7 @@ wrote tmp/instance-trailing-comma.md; 1 SAFE-JSON unmet
 | *5* | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
 ## Details
 ### Unmet expectation: json-parses
-Expectation details: The candidate's text is JSON: a single JSON value with nothing before or after it.
+Expectation details: The candidate's text parses as a single JSON value, with nothing before or after it, without errors.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 |  | the document | the candidate is not JSON |
@@ -241,7 +241,7 @@ wrote tmp/instance-bare-word-at-trace-json-ld.md; 1 SAFE-JSON unmet, 2 VALID-JSO
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
 | 1 | SAFE-JSON | JSON that every parser reads the same way | ❌ not met |
-| 2 | VALID-JSON-LD | Valid JSON-LD, whatever vocabulary it uses | not assessed |
+| 2 | VALID-JSON-LD | Valid JSON-LD | not assessed |
 | 3 | TRACE-JSON-LD | JSON-LD in the restricted form the TRACE Specification defines for TRO declarations | not assessed |
 | *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the Specification requires, whose references resolve within it* | *not claimed* |
 | *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
@@ -249,7 +249,7 @@ wrote tmp/instance-bare-word-at-trace-json-ld.md; 1 SAFE-JSON unmet, 2 VALID-JSO
 | Tier | Expectation | Summary | Status |
 | --- | --- | --- | --- |
 | 1 | duplicate-member-names-absent | No object repeats a member name | not assessed |
-| 1 | json-parses | The candidate is JSON | ❌ not met |
+| 1 | json-parses | The candidate parses as JSON without errors | ❌ not met |
 | 1 | lone-surrogates-absent | No string or member name has an unpaired surrogate | not assessed |
 | 1 | numbers-within-range | Every number fits a double; every integer is exact | not assessed |
 | 1 | utf8-encoded | The candidate is UTF-8 | ✅ met |
@@ -272,7 +272,7 @@ wrote tmp/instance-bare-word-at-trace-json-ld.md; 1 SAFE-JSON unmet, 2 VALID-JSO
 | *5* | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
 ## Details
 ### Unmet expectation: json-parses
-Expectation details: The candidate's text is JSON: a single JSON value with nothing before or after it.
+Expectation details: The candidate's text parses as a single JSON value, with nothing before or after it, without errors.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 |  | the document | the candidate is not JSON |

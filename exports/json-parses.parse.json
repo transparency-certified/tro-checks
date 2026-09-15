@@ -1,6 +1,6 @@
 {
     "title": "JSON parses",
-    "description": "The candidate's text is JSON: a single JSON value with nothing before or after it.",
-    "summary": "The candidate is JSON",
+    "description": "The candidate's text parses as a single JSON value, with nothing before or after it, without errors.",
+    "summary": "The candidate parses as JSON without errors",
     "requires": ["utf8-encoded"]
 }

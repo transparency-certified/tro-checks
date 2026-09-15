@@ -20,35 +20,10 @@ above the target are reported as *not claimed*.
 | Tier | ID | What meeting it means |
 | --- | --- | --- |
 | 1 | `SAFE-JSON` | JSON that every parser reads the same way |
-| 2 | `VALID-JSON-LD` | Valid JSON-LD, whatever vocabulary it uses |
+| 2 | `VALID-JSON-LD` | Valid JSON-LD |
 | 3 | `TRACE-JSON-LD` | JSON-LD in the restricted form the TRACE Specification defines for TRO declarations |
 | 4 | `STANDALONE-TRO` | A TRO declaration with the structure the Specification requires, whose references resolve within it |
 | 5 | `LINKABLE-TRO` | A TRO declaration whose element identifiers cannot collide with another TRO's |
-
-| Tier | Expectation | What it checks |
-| --- | --- | --- |
-| 1 | `utf8-encoded` | The candidate is UTF-8 |
-| 1 | `json-parses` | The candidate is JSON |
-| 1 | `duplicate-member-names-absent` | No object repeats a member name |
-| 1 | `lone-surrogates-absent` | No string or member name has an unpaired surrogate |
-| 1 | `numbers-within-range` | Every number fits a double; every integer is exact |
-| 2 | `context-well-formed` | The root `@context`, if any, has a form JSON-LD allows |
-| 2 | `graph-well-formed` | The root `@graph`, if any, holds objects, not bare values |
-| 2 | `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings |
-| 3 | `root-context-and-graph-only` | A JSON object with an `@context`, an `@graph`, and nothing else |
-| 3 | `disallowed-node-keywords-absent` | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` |
-| 3 | `disallowed-context-keywords-absent` | No keyword in the `@context` other than `@base` |
-| 3 | `base-web-scheme` | The `@base`, if any, uses the `https` or `http` scheme |
-| 3 | `base-simple-url` | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` |
-| 3 | `relative-ids-plain` | Every relative `@id` is a plain path, with no leading `/`, no `.` or `..` segments, and no `?` or `#` |
-| 3 | `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` |
-| 4 | `trov-terms-known` | Every `trov:` name is one TROV defines |
-| 4 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` |
-| 4 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS |
-| 4 | `composition-fingerprinted` | The TRO's composition, if any, carries a fingerprint |
-| 4 | `hashes-well-formed` | The TRO's artifact and fingerprint hashes are well-formed sha256 |
-| 5 | `base-declared` | The `@context` includes an `@base` |
-| 5 | `node-ids-present` | Every node carries an explicit `@id` |
 
 Each expectation is defined by a file in [`exports/`](exports) named for the
 expectation, whose suffix says what checks it. A `<name>.parse.json` expectation
@@ -60,6 +35,63 @@ and [Ajv](https://ajv.js.org/), through the wrappers in
 either rejects the candidate. A schema's `validatorFlags` are passed to both
 validators with it, as `duplicate-member-names-absent` passes
 `--reject-duplicate-members`.
+
+### Tier 1 — SAFE-JSON
+
+JSON that every parser reads the same way.
+
+| Expectation | What it checks |
+| --- | --- |
+| `utf8-encoded` | The candidate is UTF-8 |
+| `json-parses` | The candidate parses as JSON without errors |
+| `duplicate-member-names-absent` | No object repeats a member name |
+| `lone-surrogates-absent` | No string or member name has an unpaired surrogate |
+| `numbers-within-range` | Every number fits a double; every integer is exact |
+
+### Tier 2 — VALID-JSON-LD
+
+Valid JSON-LD.
+
+| Expectation | What it checks |
+| --- | --- |
+| `context-well-formed` | The root `@context`, if any, has a form JSON-LD allows |
+| `graph-well-formed` | The root `@graph`, if any, holds objects, not bare values |
+| `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings |
+
+### Tier 3 — TRACE-JSON-LD
+
+JSON-LD in the restricted form the TRACE Specification defines for TRO declarations.
+
+| Expectation | What it checks |
+| --- | --- |
+| `root-context-and-graph-only` | A JSON object with an `@context`, an `@graph`, and nothing else |
+| `disallowed-node-keywords-absent` | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` |
+| `disallowed-context-keywords-absent` | No keyword in the `@context` other than `@base` |
+| `base-web-scheme` | The `@base`, if any, uses the `https` or `http` scheme |
+| `base-simple-url` | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` |
+| `relative-ids-plain` | Every relative `@id` is a plain path, with no leading `/`, no `.` or `..` segments, and no `?` or `#` |
+| `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` |
+
+### Tier 4 — STANDALONE-TRO
+
+A TRO declaration with the structure the Specification requires, whose references resolve within it.
+
+| Expectation | What it checks |
+| --- | --- |
+| `trov-terms-known` | Every `trov:` name is one TROV defines |
+| `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` |
+| `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS |
+| `composition-fingerprinted` | The TRO's composition, if any, carries a fingerprint |
+| `hashes-well-formed` | The TRO's artifact and fingerprint hashes are well-formed sha256 |
+
+### Tier 5 — LINKABLE-TRO
+
+A TRO declaration whose element identifiers cannot collide with another TRO's.
+
+| Expectation | What it checks |
+| --- | --- |
+| `base-declared` | The `@context` includes an `@base` |
+| `node-ids-present` | Every node carries an explicit `@id` |
 
 ## Reports
 
@@ -154,6 +186,6 @@ Put a `<name>.schema.json` with a `summary` and a `description` in
 [`exports/`](exports), and a `requires` listing any expectations in its tier
 that must be met before it is checked. List it in
 [`exports/base-manifest`](exports/base-manifest), and assign it to a tier in
-[`exports/tiers.json`](exports/tiers.json). Add its row to *What is checked*
+[`exports/tiers.json`](exports/tiers.json). Add its row to its tier's table under *What is checked*
 above and to [`CAPABILITIES.md`](CAPABILITIES.md), and include a demo in
 [`demo/`](demo).
