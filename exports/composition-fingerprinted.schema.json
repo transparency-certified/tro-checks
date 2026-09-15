@@ -4,6 +4,7 @@
     "title": "Composition fingerprinted",
     "description": "Where the TRO carries a trov:hasComposition, the composition carries a trov:hasFingerprint.",
     "summary": "The TRO's composition, if any, carries a fingerprint",
+    "requires": ["tro-top-level-in-graph"],
     "type": "object",
     "properties": {
         "@graph": {

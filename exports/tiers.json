@@ -1,38 +1,51 @@
-{
-    "0": {
-        "name": "Well-Formed",
-        "description": "Valid JSON-LD conforming to the profile TRACE tooling expects",
+[
+    {
+        "id": "SAFE-JSON",
+        "description": "JSON that every parser reads the same way",
+        "expectations": [
+            "json-parses",
+            "duplicate-member-names-absent"
+        ]
+    },
+    {
+        "id": "VALID-JSON-LD",
+        "description": "Valid JSON-LD, whatever vocabulary it uses",
         "expectations": [
             "context-well-formed",
             "graph-well-formed",
-            "document-rooted-in-nodes",
+            "ids-and-types-strings"
+        ]
+    },
+    {
+        "id": "TRACE-JSON-LD",
+        "description": "JSON-LD in the restricted form the TRACE Specification defines for TRO declarations",
+        "expectations": [
+            "root-context-and-graph-only",
             "disallowed-node-keywords-absent",
             "disallowed-context-keywords-absent",
-            "ids-and-types-strings",
             "base-web-scheme",
             "base-simple-url",
             "relative-ids-plain",
             "prefix-namespaces-terminated"
         ]
     },
-    "1": {
-        "name": "Self-Contained",
-        "description": "References within the TRO resolve; its identifiers need not be unique outside it",
+    {
+        "id": "STANDALONE-TRO",
+        "description": "A TRO declaration with the structure the Specification requires, whose references resolve within it",
         "expectations": [
-            "composition-fingerprinted",
             "trov-terms-known",
-            "hashes-well-formed",
-            "context-and-graph-present",
             "tro-top-level-in-graph",
-            "tro-assembled-by-trs"
+            "tro-assembled-by-trs",
+            "composition-fingerprinted",
+            "hashes-well-formed"
         ]
     },
-    "2": {
-        "name": "Linkable-Data",
-        "description": "Element identifiers cannot collide with another TRO's; TRO elements can be published",
+    {
+        "id": "LINKABLE-TRO",
+        "description": "A TRO declaration whose element identifiers cannot collide with another TRO's",
         "expectations": [
             "base-declared",
             "node-ids-present"
         ]
     }
-}
+]

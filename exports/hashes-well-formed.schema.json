@@ -4,6 +4,7 @@
     "title": "Hashes well-formed",
     "description": "Each trov:hash on the TRO's artifacts and composition fingerprint names sha256 as its algorithm and carries a value of 64 lowercase hexadecimal digits.",
     "summary": "The TRO's artifact and fingerprint hashes are well-formed sha256",
+    "requires": ["tro-top-level-in-graph"],
     "type": "object",
     "properties": {
         "@graph": {

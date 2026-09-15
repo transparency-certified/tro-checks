@@ -1,0 +1,22 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/root-context-and-graph-only.schema.json",
+    "title": "Root context and graph only",
+    "description": "A TRO declaration is a JSON object whose only members are an @context and an @graph carrying its nodes.",
+    "summary": "A JSON object with an `@context`, an `@graph`, and nothing else",
+    "type": "object",
+    "required": ["@context", "@graph"],
+    "properties": {
+        "@context": true,
+        "@graph": true
+    },
+    "additionalProperties": false,
+    "errorMessage": {
+        "type": "a TRO declaration is a JSON object",
+        "required": {
+            "@context": "a TRO declaration declares an @context",
+            "@graph": "a TRO declaration carries its nodes in an @graph"
+        },
+        "additionalProperties": "a TRO declaration's root has no members other than @context and @graph"
+    }
+}

@@ -4,6 +4,7 @@
     "title": "TRO assembled by TRS",
     "description": "The TRO names the system that assembled it, and that system is typed trov:TrustedResearchSystem.",
     "summary": "The TRO names its assembling system, typed as a TRS",
+    "requires": ["tro-top-level-in-graph"],
     "type": "object",
     "properties": {
         "@graph": {

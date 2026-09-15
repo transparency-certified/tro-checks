@@ -1,0 +1,5 @@
+{
+    "title": "JSON parses",
+    "description": "The candidate's text is JSON: a single JSON value with nothing before or after it.",
+    "summary": "The candidate is JSON"
+}

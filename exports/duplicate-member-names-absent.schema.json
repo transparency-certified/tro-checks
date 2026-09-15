@@ -1,0 +1,9 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/duplicate-member-names-absent.schema.json",
+    "title": "Duplicate member names absent",
+    "description": "No object in the candidate repeats a member name. The validators check this as they parse the candidate, so the schema itself asserts nothing.",
+    "summary": "No object repeats a member name",
+    "requires": ["json-parses"],
+    "validatorFlags": ["--reject-duplicate-members"]
+}
