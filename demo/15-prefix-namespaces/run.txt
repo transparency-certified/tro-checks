@@ -27,8 +27,7 @@ wrote tmp/instance-terminated-namespaces.md; 1 SAFE-JSON met, 2 VALID-JSON-LD me
 | Candidate | `instance-terminated-namespaces.jsonld` |
 | Target | 3 TRACE-JSON-LD |
 | Target declared by | the `--target` option |
-## Assessments
-### By Representation Tier
+## Tier Assessments
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
 | 1 | SAFE-JSON | JSON that every parser reads the same way | ✅ met |
@@ -36,31 +35,49 @@ wrote tmp/instance-terminated-namespaces.md; 1 SAFE-JSON met, 2 VALID-JSON-LD me
 | 3 | TRACE-JSON-LD | JSON-LD in the restricted form the TRACE Specification defines for TRO declarations | ✅ met |
 | *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the Specification requires, whose references resolve within it* | *not claimed* |
 | *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
-### By Individual Expectation
-| Tier | Expectation | Summary | Status |
-| --- | --- | --- | --- |
-| 1 | duplicate-member-names-absent | No object repeats a member name | ✅ met |
-| 1 | json-parses | The candidate parses as JSON without errors | ✅ met |
-| 1 | lone-surrogates-absent | No string or member name has an unpaired surrogate | ✅ met |
-| 1 | numbers-within-range | Every number fits a double; every integer is exact | ✅ met |
-| 1 | utf8-encoded | The candidate is UTF-8 | ✅ met |
-| 2 | context-well-formed | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
-| 2 | graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
-| 2 | ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
-| 3 | base-simple-url | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
-| 3 | base-web-scheme | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
-| 3 | disallowed-context-keywords-absent | No keyword in the `@context` other than `@base` | ✅ met |
-| 3 | disallowed-node-keywords-absent | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
-| 3 | prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
-| 3 | relative-ids-plain | Every relative `@id` is a plain path, with no leading `/`, no `.` or `..` segments, and no `?` or `#` | ✅ met |
-| 3 | root-context-and-graph-only | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
-| *4* | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
-| *4* | *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
-| *4* | *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
-| *4* | *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
-| *4* | *trov-terms-known* | *Every `trov:` name is one TROV defines* | *not claimed* |
-| *5* | *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
-| *5* | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
+## Expectation Findings by Tier
+### Tier 1 — SAFE-JSON
+| Expectation | Summary | Status |
+| --- | --- | --- |
+| duplicate-member-names-absent | No object repeats a member name | ✅ met |
+| json-parses | The candidate parses as JSON without errors | ✅ met |
+| lone-surrogates-absent | No string or member name has an unpaired surrogate | ✅ met |
+| numbers-within-range | Every number fits a double; every integer is exact | ✅ met |
+| utf8-encoded | The candidate is UTF-8 | ✅ met |
+Assessment status: ✅ met
+### Tier 2 — VALID-JSON-LD
+| Expectation | Summary | Status |
+| --- | --- | --- |
+| context-well-formed | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
+| graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
+Assessment status: ✅ met
+### Tier 3 — TRACE-JSON-LD
+| Expectation | Summary | Status |
+| --- | --- | --- |
+| base-simple-url | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
+| base-web-scheme | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
+| disallowed-context-keywords-absent | No keyword in the `@context` other than `@base` | ✅ met |
+| disallowed-node-keywords-absent | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
+| prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
+| relative-ids-plain | Every relative `@id` is a plain path, with no leading `/`, no `.` or `..` segments, and no `?` or `#` | ✅ met |
+| root-context-and-graph-only | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
+Assessment status: ✅ met
+### Tier 4 — STANDALONE-TRO
+| Expectation | Summary | Status |
+| --- | --- | --- |
+| *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
+| *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
+| *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *trov-terms-known* | *Every `trov:` name is one TROV defines* | *not claimed* |
+Assessment status: *not claimed*
+### Tier 5 — LINKABLE-TRO
+| Expectation | Summary | Status |
+| --- | --- | --- |
+| *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
+| *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
+Assessment status: *not claimed*
 
 ----- [2] expectation unmet: the ex prefix's namespace ends in neither # nor / -----
 
@@ -83,8 +100,7 @@ wrote tmp/instance-unterminated-namespace.md; 1 SAFE-JSON met, 2 VALID-JSON-LD m
 | Candidate | `instance-unterminated-namespace.jsonld` |
 | Target | 3 TRACE-JSON-LD |
 | Target declared by | the `--target` option |
-## Assessments
-### By Representation Tier
+## Tier Assessments
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
 | 1 | SAFE-JSON | JSON that every parser reads the same way | ✅ met |
@@ -92,31 +108,49 @@ wrote tmp/instance-unterminated-namespace.md; 1 SAFE-JSON met, 2 VALID-JSON-LD m
 | 3 | TRACE-JSON-LD | JSON-LD in the restricted form the TRACE Specification defines for TRO declarations | ❌ not met |
 | *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the Specification requires, whose references resolve within it* | *not claimed* |
 | *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
-### By Individual Expectation
-| Tier | Expectation | Summary | Status |
-| --- | --- | --- | --- |
-| 1 | duplicate-member-names-absent | No object repeats a member name | ✅ met |
-| 1 | json-parses | The candidate parses as JSON without errors | ✅ met |
-| 1 | lone-surrogates-absent | No string or member name has an unpaired surrogate | ✅ met |
-| 1 | numbers-within-range | Every number fits a double; every integer is exact | ✅ met |
-| 1 | utf8-encoded | The candidate is UTF-8 | ✅ met |
-| 2 | context-well-formed | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
-| 2 | graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
-| 2 | ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
-| 3 | base-simple-url | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
-| 3 | base-web-scheme | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
-| 3 | disallowed-context-keywords-absent | No keyword in the `@context` other than `@base` | ✅ met |
-| 3 | disallowed-node-keywords-absent | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
-| 3 | prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | ❌ not met |
-| 3 | relative-ids-plain | Every relative `@id` is a plain path, with no leading `/`, no `.` or `..` segments, and no `?` or `#` | ✅ met |
-| 3 | root-context-and-graph-only | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
-| *4* | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
-| *4* | *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
-| *4* | *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
-| *4* | *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
-| *4* | *trov-terms-known* | *Every `trov:` name is one TROV defines* | *not claimed* |
-| *5* | *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
-| *5* | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
+## Expectation Findings by Tier
+### Tier 1 — SAFE-JSON
+| Expectation | Summary | Status |
+| --- | --- | --- |
+| duplicate-member-names-absent | No object repeats a member name | ✅ met |
+| json-parses | The candidate parses as JSON without errors | ✅ met |
+| lone-surrogates-absent | No string or member name has an unpaired surrogate | ✅ met |
+| numbers-within-range | Every number fits a double; every integer is exact | ✅ met |
+| utf8-encoded | The candidate is UTF-8 | ✅ met |
+Assessment status: ✅ met
+### Tier 2 — VALID-JSON-LD
+| Expectation | Summary | Status |
+| --- | --- | --- |
+| context-well-formed | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
+| graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
+Assessment status: ✅ met
+### Tier 3 — TRACE-JSON-LD
+| Expectation | Summary | Status |
+| --- | --- | --- |
+| base-simple-url | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
+| base-web-scheme | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
+| disallowed-context-keywords-absent | No keyword in the `@context` other than `@base` | ✅ met |
+| disallowed-node-keywords-absent | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
+| prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | ❌ not met |
+| relative-ids-plain | Every relative `@id` is a plain path, with no leading `/`, no `.` or `..` segments, and no `?` or `#` | ✅ met |
+| root-context-and-graph-only | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
+Assessment status: ❌ not met
+### Tier 4 — STANDALONE-TRO
+| Expectation | Summary | Status |
+| --- | --- | --- |
+| *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
+| *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
+| *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *trov-terms-known* | *Every `trov:` name is one TROV defines* | *not claimed* |
+Assessment status: *not claimed*
+### Tier 5 — LINKABLE-TRO
+| Expectation | Summary | Status |
+| --- | --- | --- |
+| *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
+| *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
+Assessment status: *not claimed*
 ## Details
 ### Unmet expectation: prefix-namespaces-terminated
 Expectation details: In every @context, each prefix that maps to a string maps to an absolute IRI ending in # or /.
@@ -145,8 +179,7 @@ wrote tmp/instance-relative-namespace.md; 1 SAFE-JSON met, 2 VALID-JSON-LD met, 
 | Candidate | `instance-relative-namespace.jsonld` |
 | Target | 3 TRACE-JSON-LD |
 | Target declared by | the `--target` option |
-## Assessments
-### By Representation Tier
+## Tier Assessments
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
 | 1 | SAFE-JSON | JSON that every parser reads the same way | ✅ met |
@@ -154,31 +187,49 @@ wrote tmp/instance-relative-namespace.md; 1 SAFE-JSON met, 2 VALID-JSON-LD met, 
 | 3 | TRACE-JSON-LD | JSON-LD in the restricted form the TRACE Specification defines for TRO declarations | ❌ not met |
 | *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the Specification requires, whose references resolve within it* | *not claimed* |
 | *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
-### By Individual Expectation
-| Tier | Expectation | Summary | Status |
-| --- | --- | --- | --- |
-| 1 | duplicate-member-names-absent | No object repeats a member name | ✅ met |
-| 1 | json-parses | The candidate parses as JSON without errors | ✅ met |
-| 1 | lone-surrogates-absent | No string or member name has an unpaired surrogate | ✅ met |
-| 1 | numbers-within-range | Every number fits a double; every integer is exact | ✅ met |
-| 1 | utf8-encoded | The candidate is UTF-8 | ✅ met |
-| 2 | context-well-formed | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
-| 2 | graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
-| 2 | ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
-| 3 | base-simple-url | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
-| 3 | base-web-scheme | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
-| 3 | disallowed-context-keywords-absent | No keyword in the `@context` other than `@base` | ✅ met |
-| 3 | disallowed-node-keywords-absent | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
-| 3 | prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | ❌ not met |
-| 3 | relative-ids-plain | Every relative `@id` is a plain path, with no leading `/`, no `.` or `..` segments, and no `?` or `#` | ✅ met |
-| 3 | root-context-and-graph-only | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
-| *4* | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
-| *4* | *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
-| *4* | *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
-| *4* | *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
-| *4* | *trov-terms-known* | *Every `trov:` name is one TROV defines* | *not claimed* |
-| *5* | *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
-| *5* | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
+## Expectation Findings by Tier
+### Tier 1 — SAFE-JSON
+| Expectation | Summary | Status |
+| --- | --- | --- |
+| duplicate-member-names-absent | No object repeats a member name | ✅ met |
+| json-parses | The candidate parses as JSON without errors | ✅ met |
+| lone-surrogates-absent | No string or member name has an unpaired surrogate | ✅ met |
+| numbers-within-range | Every number fits a double; every integer is exact | ✅ met |
+| utf8-encoded | The candidate is UTF-8 | ✅ met |
+Assessment status: ✅ met
+### Tier 2 — VALID-JSON-LD
+| Expectation | Summary | Status |
+| --- | --- | --- |
+| context-well-formed | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
+| graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
+Assessment status: ✅ met
+### Tier 3 — TRACE-JSON-LD
+| Expectation | Summary | Status |
+| --- | --- | --- |
+| base-simple-url | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
+| base-web-scheme | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
+| disallowed-context-keywords-absent | No keyword in the `@context` other than `@base` | ✅ met |
+| disallowed-node-keywords-absent | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
+| prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | ❌ not met |
+| relative-ids-plain | Every relative `@id` is a plain path, with no leading `/`, no `.` or `..` segments, and no `?` or `#` | ✅ met |
+| root-context-and-graph-only | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
+Assessment status: ❌ not met
+### Tier 4 — STANDALONE-TRO
+| Expectation | Summary | Status |
+| --- | --- | --- |
+| *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
+| *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
+| *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *trov-terms-known* | *Every `trov:` name is one TROV defines* | *not claimed* |
+Assessment status: *not claimed*
+### Tier 5 — LINKABLE-TRO
+| Expectation | Summary | Status |
+| --- | --- | --- |
+| *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
+| *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
+Assessment status: *not claimed*
 ## Details
 ### Unmet expectation: prefix-namespaces-terminated
 Expectation details: In every @context, each prefix that maps to a string maps to an absolute IRI ending in # or /.
@@ -207,8 +258,7 @@ wrote tmp/instance-core-prefix-unterminated.md; 1 SAFE-JSON met, 2 VALID-JSON-LD
 | Candidate | `instance-core-prefix-unterminated.jsonld` |
 | Target | 3 TRACE-JSON-LD |
 | Target declared by | the `--target` option |
-## Assessments
-### By Representation Tier
+## Tier Assessments
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
 | 1 | SAFE-JSON | JSON that every parser reads the same way | ✅ met |
@@ -216,31 +266,49 @@ wrote tmp/instance-core-prefix-unterminated.md; 1 SAFE-JSON met, 2 VALID-JSON-LD
 | 3 | TRACE-JSON-LD | JSON-LD in the restricted form the TRACE Specification defines for TRO declarations | ❌ not met |
 | *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the Specification requires, whose references resolve within it* | *not claimed* |
 | *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
-### By Individual Expectation
-| Tier | Expectation | Summary | Status |
-| --- | --- | --- | --- |
-| 1 | duplicate-member-names-absent | No object repeats a member name | ✅ met |
-| 1 | json-parses | The candidate parses as JSON without errors | ✅ met |
-| 1 | lone-surrogates-absent | No string or member name has an unpaired surrogate | ✅ met |
-| 1 | numbers-within-range | Every number fits a double; every integer is exact | ✅ met |
-| 1 | utf8-encoded | The candidate is UTF-8 | ✅ met |
-| 2 | context-well-formed | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
-| 2 | graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
-| 2 | ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
-| 3 | base-simple-url | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
-| 3 | base-web-scheme | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
-| 3 | disallowed-context-keywords-absent | No keyword in the `@context` other than `@base` | ✅ met |
-| 3 | disallowed-node-keywords-absent | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
-| 3 | prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | ❌ not met |
-| 3 | relative-ids-plain | Every relative `@id` is a plain path, with no leading `/`, no `.` or `..` segments, and no `?` or `#` | ✅ met |
-| 3 | root-context-and-graph-only | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
-| *4* | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
-| *4* | *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
-| *4* | *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
-| *4* | *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
-| *4* | *trov-terms-known* | *Every `trov:` name is one TROV defines* | *not claimed* |
-| *5* | *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
-| *5* | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
+## Expectation Findings by Tier
+### Tier 1 — SAFE-JSON
+| Expectation | Summary | Status |
+| --- | --- | --- |
+| duplicate-member-names-absent | No object repeats a member name | ✅ met |
+| json-parses | The candidate parses as JSON without errors | ✅ met |
+| lone-surrogates-absent | No string or member name has an unpaired surrogate | ✅ met |
+| numbers-within-range | Every number fits a double; every integer is exact | ✅ met |
+| utf8-encoded | The candidate is UTF-8 | ✅ met |
+Assessment status: ✅ met
+### Tier 2 — VALID-JSON-LD
+| Expectation | Summary | Status |
+| --- | --- | --- |
+| context-well-formed | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
+| graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
+Assessment status: ✅ met
+### Tier 3 — TRACE-JSON-LD
+| Expectation | Summary | Status |
+| --- | --- | --- |
+| base-simple-url | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
+| base-web-scheme | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
+| disallowed-context-keywords-absent | No keyword in the `@context` other than `@base` | ✅ met |
+| disallowed-node-keywords-absent | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
+| prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | ❌ not met |
+| relative-ids-plain | Every relative `@id` is a plain path, with no leading `/`, no `.` or `..` segments, and no `?` or `#` | ✅ met |
+| root-context-and-graph-only | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
+Assessment status: ❌ not met
+### Tier 4 — STANDALONE-TRO
+| Expectation | Summary | Status |
+| --- | --- | --- |
+| *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
+| *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
+| *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *trov-terms-known* | *Every `trov:` name is one TROV defines* | *not claimed* |
+Assessment status: *not claimed*
+### Tier 5 — LINKABLE-TRO
+| Expectation | Summary | Status |
+| --- | --- | --- |
+| *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
+| *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
+Assessment status: *not claimed*
 ## Details
 ### Unmet expectation: prefix-namespaces-terminated
 Expectation details: In every @context, each prefix that maps to a string maps to an absolute IRI ending in # or /.

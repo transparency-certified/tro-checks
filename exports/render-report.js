@@ -201,50 +201,75 @@ function candidateLines(candidate, prose) {
 
 /**
  * Every tier an expectation belongs to, including those above the target, which carry no assessment.
- * @param {Finding[]}    findings
- * @param {Assessment[]} assessments
- * @param {(text: string) => string} prose
- * @returns {string[]}  the By Representation Tier table's lines
+ * @param {Finding[]} findings
+ * @returns {Tier[]}  in tier order
  */
-function tierTableLines(findings, assessments, prose) {
+function tiersOf(findings) {
     /** @type {Tier[]} */ const tiers = []
     for (const finding of findings) {
         if (!tiers.some((tier) => tier.number === finding.expectation.tier.number)) tiers.push(finding.expectation.tier)
     }
-    tiers.sort((one, other) => one.number - other.number)
+    return tiers.sort((one, other) => one.number - other.number)
+}
 
+/**
+ * @param {Tier}         tier
+ * @param {Assessment[]} assessments
+ * @returns {string}  the tier's status as the report shows it, italicized when not claimed
+ */
+function tierStatusLabel(tier, assessments) {
+    const assessment = assessments.find((each) => each.tier.number === tier.number)
+    return assessment ? statusLabel(assessment.outcome) : `*${statusLabel('not claimed')}*`
+}
+
+/**
+ * @param {Tier[]}       tiers
+ * @param {Assessment[]} assessments
+ * @param {(text: string) => string} prose
+ * @returns {string[]}  the Tier Assessments table's lines
+ */
+function tierTableLines(tiers, assessments, prose) {
     const rows = []
     for (const tier of tiers) {
-        const assessment = assessments.find((each) => each.tier.number === tier.number)
         const cells = [String(tier.number), cellText(tier.id), prose(cellText(tier.description))]
-        if (assessment) {
-            rows.push([...cells, statusLabel(assessment.outcome)])
-        } else {
-            rows.push(italicized([...cells, statusLabel('not claimed')]))
-        }
+        const claimed = assessments.some((each) => each.tier.number === tier.number)
+        rows.push([...(claimed ? cells : italicized(cells)), tierStatusLabel(tier, assessments)])
     }
 
     return tableLines(['Tier', 'ID', 'Description', 'Status'], rows)
 }
 
 /**
- * @param {Finding[]} findings
+ * One section per tier: its expectations' findings, then the tier's assessment status.
+ * @param {Tier[]}       tiers
+ * @param {Finding[]}    findings
+ * @param {Assessment[]} assessments
  * @param {(text: string) => string} prose
- * @returns {string[]}  the By Individual Expectation table's lines
+ * @returns {string[]}  the Expectation Findings by Tier sections' lines
  */
-function expectationTableLines(findings, prose) {
-    const rows = []
-    for (const finding of findings) {
-        const { expectation } = finding
-        const cells = [String(expectation.tier.number), cellText(expectation.name), prose(cellText(expectation.summary)), statusLabel(finding.outcome)]
-        if (finding.outcome === 'not claimed') {
-            rows.push(italicized(cells))
-        } else {
-            rows.push(cells)
+function tierFindingsLines(tiers, findings, assessments, prose) {
+    const lines = []
+    for (const tier of tiers) {
+        const rows = []
+        for (const finding of findings.filter((each) => each.expectation.tier.number === tier.number)) {
+            const { expectation } = finding
+            const cells = [cellText(expectation.name), prose(cellText(expectation.summary)), statusLabel(finding.outcome)]
+            if (finding.outcome === 'not claimed') {
+                rows.push(italicized(cells))
+            } else {
+                rows.push(cells)
+            }
         }
+        lines.push(
+            '',
+            `### Tier ${tier.number} — ${tier.id}`,
+            '',
+            ...tableLines(['Expectation', 'Summary', 'Status'], rows),
+            '',
+            `Assessment status: ${tierStatusLabel(tier, assessments)}`,
+        )
     }
-
-    return tableLines(['Tier', 'Expectation', 'Summary', 'Status'], rows)
+    return lines
 }
 
 /**
@@ -280,20 +305,18 @@ function unmetExpectationLines(finding, prose) {
  */
 function renderReportAsMarkdown(candidate, findings, assessments, compactly) {
     const prose = compactly ? (/** @type {string} */ text) => text : brokenCell
+    const tiers = tiersOf(findings)
     const reportLines = [
         '# Report',
         '',
         ...candidateLines(candidate, prose),
         '',
-        '## Assessments',
+        '## Tier Assessments',
         '',
-        '### By Representation Tier',
+        ...tierTableLines(tiers, assessments, prose),
         '',
-        ...tierTableLines(findings, assessments, prose),
-        '',
-        '### By Individual Expectation',
-        '',
-        ...expectationTableLines(findings, prose),
+        '## Expectation Findings by Tier',
+        ...tierFindingsLines(tiers, findings, assessments, prose),
     ]
 
     const unmetFindings = findings.filter((finding) => finding.outcome === 'unmet')

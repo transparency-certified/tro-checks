@@ -84,7 +84,7 @@
 
 **The report lists every tier, giving its number and ID, the commitment it describes, and its status — met, not met, or not assessed for each tier at or below the one aimed at, and not claimed for each above it.**
 
-**The report lists every expectation, in tier order and alphabetically within a tier, giving its tier, what it checks in a few words, and its status.**
+**The report lists every expectation under its tier, alphabetically within the tier, giving what it checks in a few words and its status, and closes each tier's list with the tier's status.**
 
 **The report details each expectation not met, giving what it checks in a sentence and each error it found...**
 - What was found there, if anything.
