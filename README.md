@@ -12,51 +12,63 @@ See [`GLOSSARY.md`](GLOSSARY.md) for these and the other terms used here.
 
 ## What is checked
 
-The tiers are ordered and cumulative. A candidate **targets** one tier, and
-meeting it means meeting every expectation in that tier and in the tiers below.
-Expectations in tiers above the target are reported as *not claimed*.
+The tiers are ordered and cumulative. A
+candidate **targets** one tier, named by its ID, and meeting it means meeting
+every expectation in that tier and in the tiers below. Expectations in tiers
+above the target are reported as *not claimed*.
 
-| Tier | What meeting it means |
-| --- | --- |
-| 0 — Well-Formed | Valid JSON-LD conforming to the profile TRACE tooling expects |
-| 1 — Self-Contained | References within the TRO resolve; its identifiers need not be unique outside it |
-| 2 — Linkable-Data | Element identifiers cannot collide with another TRO's; TRO elements can be published |
+| Tier | ID | What meeting it means |
+| --- | --- | --- |
+| 1 | `SAFE-JSON` | JSON that every parser reads the same way |
+| 2 | `VALID-JSON-LD` | Valid JSON-LD, whatever vocabulary it uses |
+| 3 | `TRACE-JSON-LD` | JSON-LD in the restricted form the TRACE Specification defines for TRO declarations |
+| 4 | `STANDALONE-TRO` | A TRO declaration with the structure the Specification requires, whose references resolve within it |
+| 5 | `LINKABLE-TRO` | A TRO declaration whose element identifiers cannot collide with another TRO's |
 
 | Tier | Expectation | What it checks |
 | --- | --- | --- |
-| 0 | `context-well-formed` | The root `@context`, if any, has a form JSON-LD allows |
-| 0 | `graph-well-formed` | The root `@graph`, if any, holds objects, not bare values |
-| 0 | `document-rooted-in-nodes` | The document is an object or an array of objects |
-| 0 | `disallowed-node-keywords-absent` | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` |
-| 0 | `disallowed-context-keywords-absent` | No keyword in the `@context` other than `@base` |
-| 0 | `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings |
-| 0 | `base-web-scheme` | The `@base`, if any, uses the `https` or `http` scheme |
-| 0 | `base-simple-url` | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` |
-| 0 | `relative-ids-plain` | Every relative `@id` is a plain path, with no leading `/`, no `.` or `..` segments, and no `?` or `#` |
-| 0 | `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` |
-| 1 | `context-and-graph-present` | A JSON object with an `@context` and an `@graph` |
-| 1 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` |
-| 1 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS |
-| 1 | `composition-fingerprinted` | The TRO's composition, if any, carries a fingerprint |
-| 1 | `hashes-well-formed` | The TRO's artifact and fingerprint hashes are well-formed sha256 |
-| 1 | `trov-terms-known` | Every `trov:` name is one TROV defines |
-| 2 | `base-declared` | The `@context` includes an `@base` |
-| 2 | `node-ids-present` | Every node carries an explicit `@id` |
+| 1 | `json-parses` | The candidate is JSON |
+| 1 | `duplicate-member-names-absent` | No object repeats a member name |
+| 2 | `context-well-formed` | The root `@context`, if any, has a form JSON-LD allows |
+| 2 | `graph-well-formed` | The root `@graph`, if any, holds objects, not bare values |
+| 2 | `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings |
+| 3 | `root-context-and-graph-only` | A JSON object with an `@context`, an `@graph`, and nothing else |
+| 3 | `disallowed-node-keywords-absent` | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` |
+| 3 | `disallowed-context-keywords-absent` | No keyword in the `@context` other than `@base` |
+| 3 | `base-web-scheme` | The `@base`, if any, uses the `https` or `http` scheme |
+| 3 | `base-simple-url` | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` |
+| 3 | `relative-ids-plain` | Every relative `@id` is a plain path, with no leading `/`, no `.` or `..` segments, and no `?` or `#` |
+| 3 | `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` |
+| 4 | `trov-terms-known` | Every `trov:` name is one TROV defines |
+| 4 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` |
+| 4 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS |
+| 4 | `composition-fingerprinted` | The TRO's composition, if any, carries a fingerprint |
+| 4 | `hashes-well-formed` | The TRO's artifact and fingerprint hashes are well-formed sha256 |
+| 5 | `base-declared` | The `@context` includes an `@base` |
+| 5 | `node-ids-present` | Every node carries an explicit `@id` |
 
-Each expectation is a JSON Schema in [`exports/`](exports), named for the
-expectation. Every expectation is put to two widely used JSON Schema validators,
-[python-jsonschema](https://github.com/python-jsonschema/jsonschema) and
-[Ajv](https://ajv.js.org/), through the wrappers in
-[`json-schema-dev`](https://github.com/CIRSS/json-schema-dev). An expectation is
-not met if either rejects the candidate.
+Each expectation is defined by a file in [`exports/`](exports) named for the
+expectation, whose suffix says what checks it. A `<name>.parse.json` expectation
+is checked by `check-tro` itself as it parses the candidate. A
+`<name>.schema.json` expectation is a JSON Schema, put to two widely used JSON
+Schema validators, [python-jsonschema](https://github.com/python-jsonschema/jsonschema)
+and [Ajv](https://ajv.js.org/), through the wrappers in
+[`json-schema-dev`](https://github.com/CIRSS/json-schema-dev); it is not met if
+either rejects the candidate. A schema's `validatorFlags` are passed to both
+validators with it, as `duplicate-member-names-absent` passes
+`--reject-duplicate-members`.
 
 ## Reports
 
 One report is written per candidate. It gives the candidate and its target,
-then the status of each tier and of each expectation — met, not met, or not
-claimed — and, for each expectation not met, every error found: what was found,
-where in the candidate, and why it does not meet the expectation. Each error is
-listed once, whichever validator reported it.
+then the status of each tier and of each expectation — met, not met, not
+assessed, or not claimed — and, for each expectation not met, every error found:
+what was found, where in the candidate, and why it does not meet the
+expectation. Each error is listed once, whichever validator reported it.
+
+Checking stops at the first tier not met: the tiers above it, up to the target,
+and their expectations are not assessed. Within a tier, an expectation whose
+`requires` names an expectation not met is not assessed.
 
 [`spec-tro-checks`](https://github.com/transparency-certified/spec-tro-checks/tree/main/reports)
 has example reports, including one with an expectation not met.
@@ -88,7 +100,7 @@ declared in `candidates/manifest.json` under a key naming its file, so the key
 ```json
 {
     "spec-example-2026-04-08": {
-        "target": 1,
+        "target": "STANDALONE-TRO",
         "description": "What this candidate is. Copied into its report."
     }
 }
@@ -100,7 +112,7 @@ the directory stops the run. `make build-reports` in the REPRO writes one report
 per candidate to `reports/<name>.md`.
 
 `check-tros` takes each candidate's target tier from the manifest, and assumes
-tier 1 when the manifest names none. `--target` overrides the manifest for
+`STANDALONE-TRO` when the manifest names none. `--target` overrides the manifest for
 every candidate in the run. The report says where the target came from: the
 manifest, the `--target` option, or the default.
 
@@ -108,8 +120,9 @@ manifest, the `--target` option, or the default.
 
 | File | What it is |
 | --- | --- |
-| [`exports/*.schema.json`](exports) | The expectations, one JSON Schema each. |
-| [`exports/tiers.json`](exports/tiers.json) | Each tier's name and description, and which expectations belong to it. An expectation file that no tier lists, or a listed expectation with no file, stops every run. |
+| [`exports/*.parse.json`](exports) | The expectations `check-tro` checks as it parses a candidate, each giving its summary and description. |
+| [`exports/*.schema.json`](exports) | The expectations checked by JSON Schema, one schema each. |
+| [`exports/tiers.json`](exports/tiers.json) | The tiers in order, each with its ID, description, and the expectations that belong to it. An expectation file that no tier lists, a listed expectation with no file, or a tier with no expectations stops every run. |
 | [`exports/check-tro.js`](exports/check-tro.js) | The checker. Applies the expectations in a candidate's target and writes the report. Installed as `check-tro`. |
 | [`exports/check-tros.js`](exports/check-tros.js) | Runs the checker over the candidates the manifest names, each at its own target, writing `reports/<name>.md` for each. Installed as `check-tros`. |
 | [`pseudocode/`](pseudocode) | What the checker does, in outline. |
@@ -134,7 +147,10 @@ reads. A field renamed in one file and not in another fails there.
 
 ## Adding an expectation
 
-Put a `<name>.schema.json` with a `summary` in [`exports/`](exports), list it in
+Put a `<name>.schema.json` with a `summary` and a `description` in
+[`exports/`](exports), and a `requires` listing any expectations in its tier
+that must be met before it is checked. List it in
 [`exports/base-manifest`](exports/base-manifest), and assign it to a tier in
 [`exports/tiers.json`](exports/tiers.json). Add its row to *What is checked*
-above, and include a demo in [`demo/`](demo).
+above and to [`CAPABILITIES.md`](CAPABILITIES.md), and include a demo in
+[`demo/`](demo).

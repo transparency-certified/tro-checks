@@ -1,21 +1,28 @@
 # Capabilities
 
-What each expectation in [`exports/`](exports) depends on, named without its `.schema.json` suffix. A capability is a JSON Schema construct; the number beside it is the demo in [`CIRSS/json-schema-demos`](https://github.com/CIRSS/json-schema-demos) that demonstrates it. Capability names and demo numbers are that gallery's, from its [`CAPABILITIES.md`](https://github.com/CIRSS/json-schema-demos/blob/main/CAPABILITIES.md).
+What each JSON Schema expectation in [`exports/`](exports) depends on, named without its `.schema.json` suffix. A capability is a JSON Schema construct; the number beside it is the demo in [`CIRSS/json-schema-demos`](https://github.com/CIRSS/json-schema-demos) that demonstrates it. Capability names and demo numbers are that gallery's, from its [`CAPABILITIES.md`](https://github.com/CIRSS/json-schema-demos/blob/main/CAPABILITIES.md). Expectations checked by `check-tro` as it parses a candidate, such as `json-parses`, use no JSON Schema capabilities and are not listed.
 
-Every expectation uses `dialect-declaration` (`22`), `id-and-anchor` (`13`), `error-message` (`19`), `type` (`02`), and `annotations` (`06`). The table below lists what each uses beyond those.
+Every expectation listed uses `dialect-declaration` (`22`), `id-and-anchor` (`13`), and `annotations` (`06`), and all but `duplicate-member-names-absent` use `error-message` (`19`) and `type` (`02`). The table below lists what each uses beyond those. `summary`, `requires` and `validatorFlags` are this repository's own keywords, which `check-tro` reads and the validators ignore.
 
-| Expectation | Tier | Capabilities used |
+| Tier | Expectation | Capabilities used |
 | --- | --- | --- |
-| `context-well-formed` | 0 | `type-applicability` (`05`), `properties` (`02`), `items` (`03`) |
-| `graph-well-formed` | 0 | `type-applicability` (`05`), `properties` (`02`), `items` (`03`) |
-| `document-rooted-in-nodes` | 0 | `type-applicability` (`05`), `items` (`03`) |
-| `composition-fingerprinted` | 1 | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`) |
-| `trov-terms-known` | 1 | `properties` (`02`), `items` (`03`), `boolean-schema` (`01`), `additional-properties` (`09`), `pattern` (`07`), `enum` (`05`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `property-names` (*no demo* \*) |
-| `hashes-well-formed` | 1 | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `const` (`10`), `pattern` (`07`), `defs-and-ref` (`12`) |
-| `context-and-graph-present` | 1 | `required` (`04`) |
-| `tro-top-level-in-graph` | 1 | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `const` (`10`), `contains` (`18`), `if-then-else` (`11`) |
-| `tro-assembled-by-trs` | 1 | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `const` (`10`), `contains` (`18`), `if-then-else` (`11`) |
-| `base-declared` | 2 | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `contains` (`18`), `if-then-else` (`11`) |
-| `node-ids-present` | 2 | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `additional-properties` (`09`), `boolean-schema` (`01`), `not` (`08`), `anyOf` (`08`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
+| 1 | `duplicate-member-names-absent` | no schema capabilities; the validator-contract capability `duplicate-member-detection` (`21`) |
+| 2 | `context-well-formed` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`) |
+| 2 | `graph-well-formed` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`) |
+| 2 | `ids-and-types-strings` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `boolean-schema` (`01`), `additional-properties` (`09`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
+| 3 | `root-context-and-graph-only` | `properties` (`02`), `required` (`04`), `boolean-schema` (`01`), `additional-properties` (`09`) |
+| 3 | `disallowed-node-keywords-absent` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `boolean-schema` (`01`), `additional-properties` (`09`), `pattern` (`07`), `enum` (`05`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `property-names` (*no demo* \*) |
+| 3 | `disallowed-context-keywords-absent` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `pattern` (`07`), `const` (`10`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `property-names` (*no demo* \*) |
+| 3 | `base-web-scheme` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `pattern` (`07`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
+| 3 | `base-simple-url` | `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `pattern` (`07`), `not` (`08`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
+| 3 | `relative-ids-plain` | `properties` (`02`), `items` (`03`), `boolean-schema` (`01`), `additional-properties` (`09`), `pattern` (`07`), `not` (`08`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
+| 3 | `prefix-namespaces-terminated` | `properties` (`02`), `items` (`03`), `boolean-schema` (`01`), `additional-properties` (`09`), `pattern` (`07`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `pattern-properties` (*no demo* \*) |
+| 4 | `trov-terms-known` | `properties` (`02`), `items` (`03`), `boolean-schema` (`01`), `additional-properties` (`09`), `pattern` (`07`), `enum` (`05`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `property-names` (*no demo* \*) |
+| 4 | `tro-top-level-in-graph` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `const` (`10`), `contains` (`18`), `if-then-else` (`11`) |
+| 4 | `tro-assembled-by-trs` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `const` (`10`), `contains` (`18`), `anyOf` (`08`), `if-then-else` (`11`) |
+| 4 | `composition-fingerprinted` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`) |
+| 4 | `hashes-well-formed` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `const` (`10`), `pattern` (`07`), `defs-and-ref` (`12`) |
+| 5 | `base-declared` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `contains` (`18`), `if-then-else` (`11`) |
+| 5 | `node-ids-present` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `additional-properties` (`09`), `boolean-schema` (`01`), `not` (`08`), `anyOf` (`08`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 
-\* The gallery has no demo for `property-names`.
+\* The gallery has no demo for `property-names` or `pattern-properties`.
