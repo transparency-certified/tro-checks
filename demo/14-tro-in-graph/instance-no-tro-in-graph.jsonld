@@ -1,0 +1,9 @@
+{
+    "@context": { "trov": "https://w3id.org/trace/trov/0.1#" },
+    "@graph": [
+        {
+            "@id": "trs",
+            "@type": "trov:TrustedResearchSystem"
+        }
+    ]
+}

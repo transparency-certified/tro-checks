@@ -1,0 +1,261 @@
+##############################################################################
+#
+#   tro-checks  ·  demo 11: relative-ids-plain (TIER 3 - TRACE-JSON-LD)
+#
+##############################################################################
+
+----- [1] expectation met: relative ids are plain paths; absolute, compact and blank node ids are not relative -----
+
+$ report_on instance-plain-relative-ids.jsonld
+{
+    "@context": {
+        "@base": "https://example.org/tro/2f8a1c94/",
+        "ex": "https://example.org/terms#"
+    },
+    "@graph": [
+        {
+            "@id": "composition/1",
+            "@type": "ex:Composition",
+            "ex:part": [
+                { "@id": "composition/1/artifact/0" },
+                { "@id": "https://example.org/elsewhere/artifact" },
+                { "@id": "ex:SomeTerm" },
+                { "@id": "_:b0" }
+            ]
+        }
+    ]
+}
+
+wrote tmp/instance-plain-relative-ids.md; 1 SAFE-JSON met, 2 VALID-JSON-LD met, 3 TRACE-JSON-LD met
+
+# Report
+## Candidate Information
+|  |  |
+| --- | --- |
+| Candidate | `instance-plain-relative-ids.jsonld` |
+| Target | 3 TRACE-JSON-LD |
+| Target declared by | the `--target` option |
+## Assessments
+### By Representation Tier
+| Tier | ID | Description | Status |
+| --- | --- | --- | --- |
+| 1 | SAFE-JSON | JSON that every parser reads the same way | ✅ met |
+| 2 | VALID-JSON-LD | Valid JSON-LD, whatever vocabulary it uses | ✅ met |
+| 3 | TRACE-JSON-LD | JSON-LD in the restricted form the TRACE Specification defines for TRO declarations | ✅ met |
+| *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the Specification requires, whose references resolve within it* | *not claimed* |
+| *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
+### By Individual Expectation
+| Tier | Expectation | Summary | Status |
+| --- | --- | --- | --- |
+| 1 | duplicate-member-names-absent | No object repeats a member name | ✅ met |
+| 1 | json-parses | The candidate is JSON | ✅ met |
+| 2 | context-well-formed | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
+| 2 | graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| 2 | ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
+| 3 | base-simple-url | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
+| 3 | base-web-scheme | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
+| 3 | disallowed-context-keywords-absent | No keyword in the `@context` other than `@base` | ✅ met |
+| 3 | disallowed-node-keywords-absent | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
+| 3 | prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
+| 3 | relative-ids-plain | Every relative `@id` is a plain path, with no leading `/`, no `.` or `..` segments, and no `?` or `#` | ✅ met |
+| 3 | root-context-and-graph-only | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
+| *4* | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
+| *4* | *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
+| *4* | *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *4* | *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *4* | *trov-terms-known* | *Every `trov:` name is one TROV defines* | *not claimed* |
+| *5* | *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
+| *5* | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
+
+----- [2] expectation unmet: a relative @id begins with / --------------------
+
+$ report_on instance-leading-slash.jsonld
+{
+    "@context": {
+        "@base": "https://example.org/tro/2f8a1c94/"
+    },
+    "@graph": [
+        { "@id": "/composition/1" }
+    ]
+}
+
+wrote tmp/instance-leading-slash.md; 1 SAFE-JSON met, 2 VALID-JSON-LD met, 3 TRACE-JSON-LD unmet
+
+# Report
+## Candidate Information
+|  |  |
+| --- | --- |
+| Candidate | `instance-leading-slash.jsonld` |
+| Target | 3 TRACE-JSON-LD |
+| Target declared by | the `--target` option |
+## Assessments
+### By Representation Tier
+| Tier | ID | Description | Status |
+| --- | --- | --- | --- |
+| 1 | SAFE-JSON | JSON that every parser reads the same way | ✅ met |
+| 2 | VALID-JSON-LD | Valid JSON-LD, whatever vocabulary it uses | ✅ met |
+| 3 | TRACE-JSON-LD | JSON-LD in the restricted form the TRACE Specification defines for TRO declarations | ❌ not met |
+| *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the Specification requires, whose references resolve within it* | *not claimed* |
+| *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
+### By Individual Expectation
+| Tier | Expectation | Summary | Status |
+| --- | --- | --- | --- |
+| 1 | duplicate-member-names-absent | No object repeats a member name | ✅ met |
+| 1 | json-parses | The candidate is JSON | ✅ met |
+| 2 | context-well-formed | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
+| 2 | graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| 2 | ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
+| 3 | base-simple-url | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
+| 3 | base-web-scheme | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
+| 3 | disallowed-context-keywords-absent | No keyword in the `@context` other than `@base` | ✅ met |
+| 3 | disallowed-node-keywords-absent | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
+| 3 | prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
+| 3 | relative-ids-plain | Every relative `@id` is a plain path, with no leading `/`, no `.` or `..` segments, and no `?` or `#` | ❌ not met |
+| 3 | root-context-and-graph-only | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
+| *4* | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
+| *4* | *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
+| *4* | *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *4* | *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *4* | *trov-terms-known* | *Every `trov:` name is one TROV defines* | *not claimed* |
+| *5* | *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
+| *5* | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
+## Details
+### Unmet expectation: relative-ids-plain
+Expectation details: Outside the @context, every @id with no colon before its first /, ? or # is a plain relative path: it does not begin with /, has no . or .. segments, and contains no ? or #.
+| Found | Where | Expectation not met because |
+| --- | --- | --- |
+| `"/composition/1"` | `/@graph/0/@id` | a relative @id does not begin with / |
+
+----- [3] expectation unmet: relative @ids have . and .. segments ------------
+
+$ report_on instance-dot-segments.jsonld
+{
+    "@context": {
+        "@base": "https://example.org/tro/2f8a1c94/",
+        "ex": "https://example.org/terms#"
+    },
+    "@graph": [
+        {
+            "@id": "composition/1",
+            "ex:part": [
+                { "@id": "./artifact/0" },
+                { "@id": "composition/1/../artifact/1" }
+            ]
+        }
+    ]
+}
+
+wrote tmp/instance-dot-segments.md; 1 SAFE-JSON met, 2 VALID-JSON-LD met, 3 TRACE-JSON-LD unmet
+
+# Report
+## Candidate Information
+|  |  |
+| --- | --- |
+| Candidate | `instance-dot-segments.jsonld` |
+| Target | 3 TRACE-JSON-LD |
+| Target declared by | the `--target` option |
+## Assessments
+### By Representation Tier
+| Tier | ID | Description | Status |
+| --- | --- | --- | --- |
+| 1 | SAFE-JSON | JSON that every parser reads the same way | ✅ met |
+| 2 | VALID-JSON-LD | Valid JSON-LD, whatever vocabulary it uses | ✅ met |
+| 3 | TRACE-JSON-LD | JSON-LD in the restricted form the TRACE Specification defines for TRO declarations | ❌ not met |
+| *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the Specification requires, whose references resolve within it* | *not claimed* |
+| *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
+### By Individual Expectation
+| Tier | Expectation | Summary | Status |
+| --- | --- | --- | --- |
+| 1 | duplicate-member-names-absent | No object repeats a member name | ✅ met |
+| 1 | json-parses | The candidate is JSON | ✅ met |
+| 2 | context-well-formed | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
+| 2 | graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| 2 | ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
+| 3 | base-simple-url | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
+| 3 | base-web-scheme | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
+| 3 | disallowed-context-keywords-absent | No keyword in the `@context` other than `@base` | ✅ met |
+| 3 | disallowed-node-keywords-absent | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
+| 3 | prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
+| 3 | relative-ids-plain | Every relative `@id` is a plain path, with no leading `/`, no `.` or `..` segments, and no `?` or `#` | ❌ not met |
+| 3 | root-context-and-graph-only | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
+| *4* | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
+| *4* | *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
+| *4* | *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *4* | *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *4* | *trov-terms-known* | *Every `trov:` name is one TROV defines* | *not claimed* |
+| *5* | *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
+| *5* | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
+## Details
+### Unmet expectation: relative-ids-plain
+Expectation details: Outside the @context, every @id with no colon before its first /, ? or # is a plain relative path: it does not begin with /, has no . or .. segments, and contains no ? or #.
+| Found | Where | Expectation not met because |
+| --- | --- | --- |
+| `"./artifact/0"` | `/@graph/0/ex:part/0/@id` | a relative @id has no . or .. segments |
+| `"composition/1/../artifact/1"` | `/@graph/0/ex:part/1/@id` | a relative @id has no . or .. segments |
+
+----- [4] expectation unmet: relative @ids carry a query and a fragment ------
+
+$ report_on instance-query-and-fragment.jsonld
+{
+    "@context": {
+        "@base": "https://example.org/tro/2f8a1c94/",
+        "ex": "https://example.org/terms#"
+    },
+    "@graph": [
+        {
+            "@id": "composition/1",
+            "ex:part": [
+                { "@id": "artifact?version=2" },
+                { "@id": "#artifact-0" }
+            ]
+        }
+    ]
+}
+
+wrote tmp/instance-query-and-fragment.md; 1 SAFE-JSON met, 2 VALID-JSON-LD met, 3 TRACE-JSON-LD unmet
+
+# Report
+## Candidate Information
+|  |  |
+| --- | --- |
+| Candidate | `instance-query-and-fragment.jsonld` |
+| Target | 3 TRACE-JSON-LD |
+| Target declared by | the `--target` option |
+## Assessments
+### By Representation Tier
+| Tier | ID | Description | Status |
+| --- | --- | --- | --- |
+| 1 | SAFE-JSON | JSON that every parser reads the same way | ✅ met |
+| 2 | VALID-JSON-LD | Valid JSON-LD, whatever vocabulary it uses | ✅ met |
+| 3 | TRACE-JSON-LD | JSON-LD in the restricted form the TRACE Specification defines for TRO declarations | ❌ not met |
+| *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the Specification requires, whose references resolve within it* | *not claimed* |
+| *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
+### By Individual Expectation
+| Tier | Expectation | Summary | Status |
+| --- | --- | --- | --- |
+| 1 | duplicate-member-names-absent | No object repeats a member name | ✅ met |
+| 1 | json-parses | The candidate is JSON | ✅ met |
+| 2 | context-well-formed | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
+| 2 | graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| 2 | ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
+| 3 | base-simple-url | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
+| 3 | base-web-scheme | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
+| 3 | disallowed-context-keywords-absent | No keyword in the `@context` other than `@base` | ✅ met |
+| 3 | disallowed-node-keywords-absent | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
+| 3 | prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
+| 3 | relative-ids-plain | Every relative `@id` is a plain path, with no leading `/`, no `.` or `..` segments, and no `?` or `#` | ❌ not met |
+| 3 | root-context-and-graph-only | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
+| *4* | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
+| *4* | *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
+| *4* | *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *4* | *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *4* | *trov-terms-known* | *Every `trov:` name is one TROV defines* | *not claimed* |
+| *5* | *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
+| *5* | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
+## Details
+### Unmet expectation: relative-ids-plain
+Expectation details: Outside the @context, every @id with no colon before its first /, ? or # is a plain relative path: it does not begin with /, has no . or .. segments, and contains no ? or #.
+| Found | Where | Expectation not met because |
+| --- | --- | --- |
+| `"artifact?version=2"` | `/@graph/0/ex:part/0/@id` | a relative @id contains no ? or # |
+| `"#artifact-0"` | `/@graph/0/ex:part/1/@id` | a relative @id contains no ? or # |

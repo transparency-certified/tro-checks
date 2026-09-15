@@ -1,0 +1,7 @@
+{
+    "@context": { "ex": "https://example.org/terms#" },
+    "@graph": [
+        { "@id": "https://example.org/thing/1", "@type": "ex:Thing" }
+    ],
+    "ex:note": "a member beside @graph makes the root a node"
+}
