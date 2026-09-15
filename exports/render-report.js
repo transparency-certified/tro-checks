@@ -81,6 +81,71 @@ function cellText(text) {
 }
 
 /**
+ * Longest line, in rendered characters, of a prose cell broken for rendering, so the table's other columns stay on one line.
+ */
+const CELL_LINE_LENGTH = 55
+
+/**
+ * Splits cell text at the spaces lying outside code spans and link text, which must not be broken.
+ * @param {string} text
+ * @returns {string[]}
+ */
+function unbreakableRuns(text) {
+    const runs = []
+    let run = ''
+    let fence = 0
+    let inLink = false
+    for (let i = 0; i < text.length; i++) {
+        if (text[i] === '`') {
+            const length = (text.slice(i).match(/^`+/) ?? ['`'])[0].length
+            if (fence === 0) fence = length
+            else if (fence === length) fence = 0
+            run += text.slice(i, i + length)
+            i += length - 1
+            continue
+        }
+        if (fence === 0 && text[i] === '[') inLink = true
+        if (fence === 0 && text[i] === ')') inLink = false
+        if (text[i] === ' ' && fence === 0 && !inLink) {
+            if (run) runs.push(run)
+            run = ''
+            continue
+        }
+        run += text[i]
+    }
+    if (run) runs.push(run)
+    return runs
+}
+
+/**
+ * @param {string} run
+ * @returns {number}  its length as rendered, without code fences or link targets
+ */
+function renderedLength(run) {
+    return run.replace(/\[([^\]]*)\]\([^)]*\)/g, '$1').replace(/`/g, '').length
+}
+
+/**
+ * Breaks a prose cell into lines of at most CELL_LINE_LENGTH rendered characters, where the text allows.
+ * @param {string} text  already made safe
+ * @returns {string}
+ */
+function brokenCell(text) {
+    const lines = []
+    let line = ''
+    for (const run of unbreakableRuns(text)) {
+        if (line && renderedLength(`${line} ${run}`) > CELL_LINE_LENGTH) {
+            lines.push(line)
+            line = run
+        } else {
+            line = line ? `${line} ${run}` : run
+        }
+    }
+    if (line) lines.push(line)
+    return lines.join('<br>')
+}
+
+/**
  * Sets text as inline code, fenced with one more backtick than the longest run of backticks it contains.
  * @param {string} text
  * @returns {string}
@@ -119,14 +184,15 @@ function italicized(cells) {
 
 /**
  * @param {Candidate} candidate
+ * @param {(text: string) => string} prose  sets a prose cell's safe text for the report
  * @returns {string[]}  the Candidate Information section's lines
  */
-function candidateLines(candidate) {
+function candidateLines(candidate, prose) {
     const targetSourceLabel = TARGET_SOURCE_LABELS[candidate.targetSource]
     if (targetSourceLabel === undefined) throw new Error(`no such target source: ${candidate.targetSource}`)
 
     const rows = [['Candidate', cellText(codeSpan(candidate.fileName))]]
-    if (candidate.description) rows.push(['Description', cellText(candidate.description)])
+    if (candidate.description) rows.push(['Description', prose(cellText(candidate.description))])
     rows.push(['Target', `${candidate.targetTier.number} ${cellText(candidate.targetTier.id)}`])
     rows.push(['Target declared by', targetSourceLabel])
 
@@ -137,9 +203,10 @@ function candidateLines(candidate) {
  * Every tier an expectation belongs to, including those above the target, which carry no assessment.
  * @param {Finding[]}    findings
  * @param {Assessment[]} assessments
+ * @param {(text: string) => string} prose
  * @returns {string[]}  the By Representation Tier table's lines
  */
-function tierTableLines(findings, assessments) {
+function tierTableLines(findings, assessments, prose) {
     /** @type {Tier[]} */ const tiers = []
     for (const finding of findings) {
         if (!tiers.some((tier) => tier.number === finding.expectation.tier.number)) tiers.push(finding.expectation.tier)
@@ -149,7 +216,7 @@ function tierTableLines(findings, assessments) {
     const rows = []
     for (const tier of tiers) {
         const assessment = assessments.find((each) => each.tier.number === tier.number)
-        const cells = [String(tier.number), cellText(tier.id), cellText(tier.description)]
+        const cells = [String(tier.number), cellText(tier.id), prose(cellText(tier.description))]
         if (assessment) {
             rows.push([...cells, statusLabel(assessment.outcome)])
         } else {
@@ -162,13 +229,14 @@ function tierTableLines(findings, assessments) {
 
 /**
  * @param {Finding[]} findings
+ * @param {(text: string) => string} prose
  * @returns {string[]}  the By Individual Expectation table's lines
  */
-function expectationTableLines(findings) {
+function expectationTableLines(findings, prose) {
     const rows = []
     for (const finding of findings) {
         const { expectation } = finding
-        const cells = [String(expectation.tier.number), cellText(expectation.name), cellText(expectation.summary), statusLabel(finding.outcome)]
+        const cells = [String(expectation.tier.number), cellText(expectation.name), prose(cellText(expectation.summary)), statusLabel(finding.outcome)]
         if (finding.outcome === 'not claimed') {
             rows.push(italicized(cells))
         } else {
@@ -182,14 +250,15 @@ function expectationTableLines(findings) {
 /**
  * An unmet expectation's details: what it checks, then one row per error -- what was found, where, and why.
  * @param {Finding} finding
+ * @param {(text: string) => string} prose
  * @returns {string[]}
  */
-function unmetExpectationLines(finding) {
+function unmetExpectationLines(finding, prose) {
     const rows = []
     for (const error of finding.errors) {
         const found = 'found' in error ? cellText(codeSpan(JSON.stringify(error.found))) : ''
         const where = error.site && error.site.length > 0 ? cellText(codeSpan(pointerOf(error.site))) : 'the document'
-        const because = cellText(error.message ?? stateConstraint(error))
+        const because = prose(cellText(error.message ?? stateConstraint(error)))
         rows.push([found, where, because])
     }
 
@@ -210,27 +279,28 @@ function unmetExpectationLines(finding) {
  * @returns {string}
  */
 function renderReportAsMarkdown(candidate, findings, assessments, compactly) {
+    const prose = compactly ? (/** @type {string} */ text) => text : brokenCell
     const reportLines = [
         '# Report',
         '',
-        ...candidateLines(candidate),
+        ...candidateLines(candidate, prose),
         '',
         '## Assessments',
         '',
         '### By Representation Tier',
         '',
-        ...tierTableLines(findings, assessments),
+        ...tierTableLines(findings, assessments, prose),
         '',
         '### By Individual Expectation',
         '',
-        ...expectationTableLines(findings),
+        ...expectationTableLines(findings, prose),
     ]
 
     const unmetFindings = findings.filter((finding) => finding.outcome === 'unmet')
     if (unmetFindings.length > 0) {
         reportLines.push('', '## Details')
         for (const finding of unmetFindings) {
-            reportLines.push('', ...unmetExpectationLines(finding))
+            reportLines.push('', ...unmetExpectationLines(finding, prose))
         }
     }
 

@@ -93,4 +93,6 @@
 
 **The report names no validator.**
 
-**The report is written without its blank lines when asked for compactly, which suits reading rather than rendering.**
+**The report breaks long prose in its tables into short lines, so that IDs, names and statuses stay on one line when rendered.**
+
+**The report is written without its blank lines, and without those breaks, when asked for compactly, which suits reading rather than rendering.**
