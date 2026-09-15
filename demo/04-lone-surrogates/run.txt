@@ -1,0 +1,179 @@
+##############################################################################
+#
+#   tro-checks  ·  demo 04: lone-surrogates-absent (TIER 1 - SAFE-JSON)
+#
+##############################################################################
+
+----- [1] expectation met: an emoji escaped as a surrogate pair --------------
+
+$ report_on instance-paired-surrogates.jsonld
+{
+    "@context": { "ex": "https://example.org/terms#" },
+    "@graph": [
+        { "@id": "https://example.org/thing/1", "ex:name": "smile 😀" }
+    ]
+}
+
+wrote tmp/instance-paired-surrogates.md; 1 SAFE-JSON met
+
+# Report
+## Candidate Information
+|  |  |
+| --- | --- |
+| Candidate | `instance-paired-surrogates.jsonld` |
+| Target | 1 SAFE-JSON |
+| Target declared by | the `--target` option |
+## Assessments
+### By Representation Tier
+| Tier | ID | Description | Status |
+| --- | --- | --- | --- |
+| 1 | SAFE-JSON | JSON that every parser reads the same way | ✅ met |
+| *2* | *VALID-JSON-LD* | *Valid JSON-LD, whatever vocabulary it uses* | *not claimed* |
+| *3* | *TRACE-JSON-LD* | *JSON-LD in the restricted form the TRACE Specification defines for TRO declarations* | *not claimed* |
+| *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the Specification requires, whose references resolve within it* | *not claimed* |
+| *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
+### By Individual Expectation
+| Tier | Expectation | Summary | Status |
+| --- | --- | --- | --- |
+| 1 | duplicate-member-names-absent | No object repeats a member name | ✅ met |
+| 1 | json-parses | The candidate is JSON | ✅ met |
+| 1 | lone-surrogates-absent | No string or member name has an unpaired surrogate | ✅ met |
+| 1 | numbers-within-range | Every number fits a double; every integer is exact | ✅ met |
+| 1 | utf8-encoded | The candidate is UTF-8 | ✅ met |
+| *2* | *context-well-formed* | *The root `@context`, if any, has a form JSON-LD allows* | *not claimed* |
+| *2* | *graph-well-formed* | *The root `@graph`, if any, holds objects, not bare values* | *not claimed* |
+| *2* | *ids-and-types-strings* | *Every `@id` is a string; every `@type` a string or an array of strings* | *not claimed* |
+| *3* | *base-simple-url* | *The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/`* | *not claimed* |
+| *3* | *base-web-scheme* | *The `@base`, if any, uses the `https` or `http` scheme* | *not claimed* |
+| *3* | *disallowed-context-keywords-absent* | *No keyword in the `@context` other than `@base`* | *not claimed* |
+| *3* | *disallowed-node-keywords-absent* | *No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type`* | *not claimed* |
+| *3* | *prefix-namespaces-terminated* | *Every prefix maps to an absolute IRI ending in `#` or `/`* | *not claimed* |
+| *3* | *relative-ids-plain* | *Every relative `@id` is a plain path, with no leading `/`, no `.` or `..` segments, and no `?` or `#`* | *not claimed* |
+| *3* | *root-context-and-graph-only* | *A JSON object with an `@context`, an `@graph`, and nothing else* | *not claimed* |
+| *4* | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
+| *4* | *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
+| *4* | *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *4* | *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *4* | *trov-terms-known* | *Every `trov:` name is one TROV defines* | *not claimed* |
+| *5* | *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
+| *5* | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
+
+----- [2] expectation unmet: a string ends with the first half of a surrogate pair -----
+
+$ report_on instance-lone-surrogate-in-string.jsonld
+{
+    "@context": { "ex": "https://example.org/terms#" },
+    "@graph": [
+        { "@id": "https://example.org/thing/1", "ex:name": "half a smile \ud83d" }
+    ]
+}
+
+wrote tmp/instance-lone-surrogate-in-string.md; 1 SAFE-JSON unmet
+
+# Report
+## Candidate Information
+|  |  |
+| --- | --- |
+| Candidate | `instance-lone-surrogate-in-string.jsonld` |
+| Target | 1 SAFE-JSON |
+| Target declared by | the `--target` option |
+## Assessments
+### By Representation Tier
+| Tier | ID | Description | Status |
+| --- | --- | --- | --- |
+| 1 | SAFE-JSON | JSON that every parser reads the same way | ❌ not met |
+| *2* | *VALID-JSON-LD* | *Valid JSON-LD, whatever vocabulary it uses* | *not claimed* |
+| *3* | *TRACE-JSON-LD* | *JSON-LD in the restricted form the TRACE Specification defines for TRO declarations* | *not claimed* |
+| *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the Specification requires, whose references resolve within it* | *not claimed* |
+| *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
+### By Individual Expectation
+| Tier | Expectation | Summary | Status |
+| --- | --- | --- | --- |
+| 1 | duplicate-member-names-absent | No object repeats a member name | ✅ met |
+| 1 | json-parses | The candidate is JSON | ✅ met |
+| 1 | lone-surrogates-absent | No string or member name has an unpaired surrogate | ❌ not met |
+| 1 | numbers-within-range | Every number fits a double; every integer is exact | ✅ met |
+| 1 | utf8-encoded | The candidate is UTF-8 | ✅ met |
+| *2* | *context-well-formed* | *The root `@context`, if any, has a form JSON-LD allows* | *not claimed* |
+| *2* | *graph-well-formed* | *The root `@graph`, if any, holds objects, not bare values* | *not claimed* |
+| *2* | *ids-and-types-strings* | *Every `@id` is a string; every `@type` a string or an array of strings* | *not claimed* |
+| *3* | *base-simple-url* | *The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/`* | *not claimed* |
+| *3* | *base-web-scheme* | *The `@base`, if any, uses the `https` or `http` scheme* | *not claimed* |
+| *3* | *disallowed-context-keywords-absent* | *No keyword in the `@context` other than `@base`* | *not claimed* |
+| *3* | *disallowed-node-keywords-absent* | *No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type`* | *not claimed* |
+| *3* | *prefix-namespaces-terminated* | *Every prefix maps to an absolute IRI ending in `#` or `/`* | *not claimed* |
+| *3* | *relative-ids-plain* | *Every relative `@id` is a plain path, with no leading `/`, no `.` or `..` segments, and no `?` or `#`* | *not claimed* |
+| *3* | *root-context-and-graph-only* | *A JSON object with an `@context`, an `@graph`, and nothing else* | *not claimed* |
+| *4* | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
+| *4* | *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
+| *4* | *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *4* | *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *4* | *trov-terms-known* | *Every `trov:` name is one TROV defines* | *not claimed* |
+| *5* | *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
+| *5* | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
+## Details
+### Unmet expectation: lone-surrogates-absent
+Expectation details: No string or member name in the candidate contains a UTF-16 surrogate escape without its pair.
+| Found | Where | Expectation not met because |
+| --- | --- | --- |
+| `"half a smile \ud83d"` | `/@graph/0/ex:name` | a string contains no unpaired surrogate |
+
+----- [3] expectation unmet: a member name contains the second half of a surrogate pair -----
+
+$ report_on instance-lone-surrogate-in-member-name.jsonld
+{
+    "@context": { "ex": "https://example.org/terms#" },
+    "@graph": [
+        { "@id": "https://example.org/thing/1", "ex:\ude00name": "one" }
+    ]
+}
+
+wrote tmp/instance-lone-surrogate-in-member-name.md; 1 SAFE-JSON unmet
+
+# Report
+## Candidate Information
+|  |  |
+| --- | --- |
+| Candidate | `instance-lone-surrogate-in-member-name.jsonld` |
+| Target | 1 SAFE-JSON |
+| Target declared by | the `--target` option |
+## Assessments
+### By Representation Tier
+| Tier | ID | Description | Status |
+| --- | --- | --- | --- |
+| 1 | SAFE-JSON | JSON that every parser reads the same way | ❌ not met |
+| *2* | *VALID-JSON-LD* | *Valid JSON-LD, whatever vocabulary it uses* | *not claimed* |
+| *3* | *TRACE-JSON-LD* | *JSON-LD in the restricted form the TRACE Specification defines for TRO declarations* | *not claimed* |
+| *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the Specification requires, whose references resolve within it* | *not claimed* |
+| *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
+### By Individual Expectation
+| Tier | Expectation | Summary | Status |
+| --- | --- | --- | --- |
+| 1 | duplicate-member-names-absent | No object repeats a member name | ✅ met |
+| 1 | json-parses | The candidate is JSON | ✅ met |
+| 1 | lone-surrogates-absent | No string or member name has an unpaired surrogate | ❌ not met |
+| 1 | numbers-within-range | Every number fits a double; every integer is exact | ✅ met |
+| 1 | utf8-encoded | The candidate is UTF-8 | ✅ met |
+| *2* | *context-well-formed* | *The root `@context`, if any, has a form JSON-LD allows* | *not claimed* |
+| *2* | *graph-well-formed* | *The root `@graph`, if any, holds objects, not bare values* | *not claimed* |
+| *2* | *ids-and-types-strings* | *Every `@id` is a string; every `@type` a string or an array of strings* | *not claimed* |
+| *3* | *base-simple-url* | *The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/`* | *not claimed* |
+| *3* | *base-web-scheme* | *The `@base`, if any, uses the `https` or `http` scheme* | *not claimed* |
+| *3* | *disallowed-context-keywords-absent* | *No keyword in the `@context` other than `@base`* | *not claimed* |
+| *3* | *disallowed-node-keywords-absent* | *No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type`* | *not claimed* |
+| *3* | *prefix-namespaces-terminated* | *Every prefix maps to an absolute IRI ending in `#` or `/`* | *not claimed* |
+| *3* | *relative-ids-plain* | *Every relative `@id` is a plain path, with no leading `/`, no `.` or `..` segments, and no `?` or `#`* | *not claimed* |
+| *3* | *root-context-and-graph-only* | *A JSON object with an `@context`, an `@graph`, and nothing else* | *not claimed* |
+| *4* | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
+| *4* | *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
+| *4* | *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *4* | *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *4* | *trov-terms-known* | *Every `trov:` name is one TROV defines* | *not claimed* |
+| *5* | *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
+| *5* | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
+## Details
+### Unmet expectation: lone-surrogates-absent
+Expectation details: No string or member name in the candidate contains a UTF-16 surrogate escape without its pair.
+| Found | Where | Expectation not met because |
+| --- | --- | --- |
+| `"ex:\ude00name"` | `/@graph/0/ex:�name` | a member name contains no unpaired surrogate |

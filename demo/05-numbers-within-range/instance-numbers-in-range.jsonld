@@ -1,0 +1,11 @@
+{
+    "@context": { "ex": "https://example.org/terms#" },
+    "@graph": [
+        {
+            "@id": "https://example.org/thing/1",
+            "ex:count": 42,
+            "ex:largestExactInteger": 9007199254740991,
+            "ex:large": 1.5e300
+        }
+    ]
+}

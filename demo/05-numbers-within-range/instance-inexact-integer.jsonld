@@ -1,0 +1,6 @@
+{
+    "@context": { "ex": "https://example.org/terms#" },
+    "@graph": [
+        { "@id": "https://example.org/thing/1", "ex:count": 9007199254740993 }
+    ]
+}
