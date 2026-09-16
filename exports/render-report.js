@@ -11,6 +11,25 @@
 /** @typedef {import('./types.js').Finding} Finding */
 /** @typedef {import('./types.js').Diagnostic} Diagnostic */
 
+/**
+ * @typedef {string | {code: string}} Cell  prose in the report's own Markdown, or a value set as code
+ */
+/**
+ * @typedef {object} Row
+ * @property {Cell[]}  cells
+ * @property {boolean} [emphasized]  set where the row states something not claimed
+ */
+/**
+ * @typedef {object} Band  a row naming the group the rows below it belong to
+ * @property {string}  label
+ * @property {string}  status       shown in the table's last column, beneath the rows' own statuses
+ * @property {boolean} [emphasized]
+ */
+/**
+ * @typedef {object} Dialect  how one rendering of the report sets its tables
+ * @property {(headings: string[], rows: (Row|Band)[]) => string[]} table
+ */
+
 module.exports = {
     renderReportAsMarkdown,
 }
@@ -72,77 +91,34 @@ function statusLabel(outcome) {
 }
 
 /**
- * Makes text safe inside a Markdown table cell: a pipe would end the cell and a newline the row.
+ * Collapses the newlines an authored sentence may carry, which no cell can hold.
+ * @param {string} text
+ * @returns {string}
+ */
+function oneLine(text) {
+    return text.replace(/\r?\n/g, ' ')
+}
+
+/**
+ * @param {(Row|Band)} row
+ * @returns {row is Band}
+ */
+function isBand(row) {
+    return 'label' in row
+}
+
+//
+// The pipe dialect: the Markdown tables the terminal rendering keeps, where a band
+// is an ordinary row carrying its label and its status.
+//
+
+/**
+ * Makes text safe inside a Markdown table cell: a pipe would end the cell.
  * @param {string} text
  * @returns {string}
  */
 function cellText(text) {
-    return text.replace(/\|/g, '\\|').replace(/\r?\n/g, ' ')
-}
-
-/**
- * Longest line, in rendered characters, of a prose cell broken for rendering, so the table's other columns stay on one line.
- */
-const CELL_LINE_LENGTH = 55
-
-/**
- * Splits cell text at the spaces lying outside code spans and link text, which must not be broken.
- * @param {string} text
- * @returns {string[]}
- */
-function unbreakableRuns(text) {
-    const runs = []
-    let run = ''
-    let fence = 0
-    let inLink = false
-    for (let i = 0; i < text.length; i++) {
-        if (text[i] === '`') {
-            const length = (text.slice(i).match(/^`+/) ?? ['`'])[0].length
-            if (fence === 0) fence = length
-            else if (fence === length) fence = 0
-            run += text.slice(i, i + length)
-            i += length - 1
-            continue
-        }
-        if (fence === 0 && text[i] === '[') inLink = true
-        if (fence === 0 && text[i] === ')') inLink = false
-        if (text[i] === ' ' && fence === 0 && !inLink) {
-            if (run) runs.push(run)
-            run = ''
-            continue
-        }
-        run += text[i]
-    }
-    if (run) runs.push(run)
-    return runs
-}
-
-/**
- * @param {string} run
- * @returns {number}  its length as rendered, without code fences or link targets
- */
-function renderedLength(run) {
-    return run.replace(/\[([^\]]*)\]\([^)]*\)/g, '$1').replace(/`/g, '').length
-}
-
-/**
- * Breaks a prose cell into lines of at most CELL_LINE_LENGTH rendered characters, where the text allows.
- * @param {string} text  already made safe
- * @returns {string}
- */
-function brokenCell(text) {
-    const lines = []
-    let line = ''
-    for (const run of unbreakableRuns(text)) {
-        if (line && renderedLength(`${line} ${run}`) > CELL_LINE_LENGTH) {
-            lines.push(line)
-            line = run
-        } else {
-            line = line ? `${line} ${run}` : run
-        }
-    }
-    if (line) lines.push(line)
-    return lines.join('<br>')
+    return oneLine(text).replace(/\|/g, '\\|')
 }
 
 /**
@@ -157,46 +133,125 @@ function codeSpan(text) {
     return `${fence}${padding}${text}${padding}${fence}`
 }
 
+/** @type {Dialect} */
+const pipeDialect = {
+    table(headings, rows) {
+        /**
+         * @param {Cell} cell
+         * @param {boolean} [emphasized]
+         * @returns {string}
+         */
+        const setCell = (cell, emphasized) => {
+            const text = typeof cell === 'string' ? cellText(cell) : cellText(codeSpan(cell.code))
+            return emphasized && text ? `*${text}*` : text
+        }
+
+        const lines = [
+            `| ${headings.join(' | ')} |`,
+            `| ${headings.map(() => '---').join(' | ')} |`,
+        ]
+        for (const row of rows) {
+            if (isBand(row)) {
+                const label = row.emphasized ? `*${cellText(row.label)}*` : `**${cellText(row.label)}**`
+                const status = row.emphasized ? `*${cellText(row.status)}*` : cellText(row.status)
+                const padding = new Array(Math.max(0, headings.length - 2)).fill('')
+                lines.push(`| ${[label, ...padding, status].join(' | ')} |`)
+            } else {
+                lines.push(`| ${row.cells.map((cell) => setCell(cell, row.emphasized)).join(' | ')} |`)
+            }
+        }
+        return lines
+    },
+}
+
+//
+// The HTML dialect: one table per section, each band a row spanning every column but
+// the last, so the reader's browser wraps the prose and the columns align throughout.
+//
+
 /**
- * @param {string[]}   headings
- * @param {string[][]} rows  each row's cells, already made safe
- * @returns {string[]}  the table's lines, cells unpadded
+ * @param {string} text
+ * @returns {string}  with the characters that would open markup written as entities
  */
-function tableLines(headings, rows) {
-    const lines = [
-        `| ${headings.join(' | ')} |`,
-        `| ${headings.map(() => '---').join(' | ')} |`,
-    ]
-    for (const cells of rows) {
-        lines.push(`| ${cells.join(' | ')} |`)
-    }
-    return lines
+function escapeHtml(text) {
+    return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 }
 
 /**
- * A row of a tier or expectation not claimed is set entirely in italics, its status carrying no glyph.
- * @param {string[]} cells
- * @returns {string[]}
+ * Sets an authored sentence as HTML, honoring the code spans and links its Markdown carries.
+ * @param {string} text
+ * @returns {string}
  */
-function italicized(cells) {
-    return cells.map((cell) => `*${cell}*`)
+function inlineHtml(text) {
+    return oneLine(text)
+        .split(/(`+[^`]*`+)/)
+        .map((part) => {
+            if (/^`+[^`]*`+$/.test(part)) {
+                return `<code>${escapeHtml(part.replace(/^`+ ?/, '').replace(/ ?`+$/, ''))}</code>`
+            }
+            return escapeHtml(part).replace(
+                /\[([^\]]*)\]\(([^)\s]*)\)/g,
+                (_, label, target) => `<a href="${escapeHtml(target)}">${label}</a>`,
+            )
+        })
+        .join('')
+}
+
+/** @type {Dialect} */
+const htmlDialect = {
+    table(headings, rows) {
+        /**
+         * @param {Cell} cell
+         * @param {boolean} [emphasized]
+         * @returns {string}
+         */
+        const setCell = (cell, emphasized) => {
+            const html = typeof cell === 'string' ? inlineHtml(cell) : `<code>${escapeHtml(oneLine(cell.code))}</code>`
+            return `<td>${emphasized && html ? `<em>${html}</em>` : html}</td>`
+        }
+
+        const lines = ['<table>']
+        if (headings.some((heading) => heading !== '')) {
+            lines.push(
+                '<thead>',
+                `<tr>${headings.map((heading) => `<th align="left">${inlineHtml(heading)}</th>`).join('')}</tr>`,
+                '</thead>',
+            )
+        }
+        lines.push('<tbody>')
+        for (const row of rows) {
+            if (isBand(row)) {
+                const label = row.emphasized ? `<em>${inlineHtml(row.label)}</em>` : inlineHtml(row.label)
+                const status = row.emphasized ? `<em>${inlineHtml(row.status)}</em>` : inlineHtml(row.status)
+                lines.push(
+                    `<tr><th colspan="${headings.length - 1}" align="left">${label}</th>` +
+                    `<th align="left">${status}</th></tr>`,
+                )
+            } else {
+                lines.push(`<tr>${row.cells.map((cell) => setCell(cell, row.emphasized)).join('')}</tr>`)
+            }
+        }
+        lines.push('</tbody>', '</table>')
+        return lines
+    },
 }
 
 /**
  * @param {Candidate} candidate
- * @param {(text: string) => string} prose  sets a prose cell's safe text for the report
+ * @param {Dialect}   dialect
  * @returns {string[]}  the Candidate Information section's lines
  */
-function candidateLines(candidate, prose) {
+function candidateLines(candidate, dialect) {
     const targetSourceLabel = TARGET_SOURCE_LABELS[candidate.targetSource]
     if (targetSourceLabel === undefined) throw new Error(`no such target source: ${candidate.targetSource}`)
 
-    const rows = [['Candidate', cellText(codeSpan(candidate.fileName))]]
-    if (candidate.description) rows.push(['Description', prose(cellText(candidate.description))])
-    rows.push(['Target', `${candidate.targetTier.number} ${cellText(candidate.targetTier.id)}`])
-    rows.push(['Target declared by', targetSourceLabel])
+    /** @type {Row[]} */
+    const rows = [{ cells: ['Candidate', { code: candidate.fileName }] }]
+    if (candidate.description) rows.push({ cells: ['Description', candidate.description] })
+    rows.push({ cells: ['Target', `${candidate.targetTier.number} ${candidate.targetTier.id}`] })
+    rows.push({ cells: ['Target declared by', targetSourceLabel] })
 
-    return ['## Candidate Information', '', ...tableLines(['', ''], rows)]
+    return ['## Candidate Information', '', ...dialect.table(['', ''], rows)]
 }
 
 /**
@@ -215,84 +270,83 @@ function tiersOf(findings) {
 /**
  * @param {Tier}         tier
  * @param {Assessment[]} assessments
- * @returns {string}  the tier's status as the report shows it, italicized when not claimed
+ * @returns {{label: string, emphasized: boolean}}  the tier's status, emphasized where the tier is not claimed
  */
-function tierStatusLabel(tier, assessments) {
+function tierStatus(tier, assessments) {
     const assessment = assessments.find((each) => each.tier.number === tier.number)
-    return assessment ? statusLabel(assessment.outcome) : `*${statusLabel('not claimed')}*`
+    return assessment
+        ? { label: statusLabel(assessment.outcome), emphasized: false }
+        : { label: statusLabel('not claimed'), emphasized: true }
 }
 
 /**
  * @param {Tier[]}       tiers
  * @param {Assessment[]} assessments
- * @param {(text: string) => string} prose
+ * @param {Dialect}      dialect
  * @returns {string[]}  the Tier Assessments table's lines
  */
-function tierTableLines(tiers, assessments, prose) {
-    const rows = []
-    for (const tier of tiers) {
-        const cells = [String(tier.number), cellText(tier.id), prose(cellText(tier.description))]
-        const claimed = assessments.some((each) => each.tier.number === tier.number)
-        rows.push([...(claimed ? cells : italicized(cells)), tierStatusLabel(tier, assessments)])
-    }
+function tierTableLines(tiers, assessments, dialect) {
+    /** @type {Row[]} */
+    const rows = tiers.map((tier) => {
+        const status = tierStatus(tier, assessments)
+        return {
+            cells: [String(tier.number), tier.id, tier.description, status.label],
+            emphasized: status.emphasized,
+        }
+    })
 
-    return tableLines(['Tier', 'ID', 'Description', 'Status'], rows)
+    return dialect.table(['Tier', 'ID', 'Description', 'Status'], rows)
 }
 
 /**
- * One section per tier: its expectations' findings, then the tier's assessment status.
+ * Every tier's expectations in one table, each tier introduced by a band carrying the
+ * tier's name and its assessment status.
  * @param {Tier[]}       tiers
  * @param {Finding[]}    findings
  * @param {Assessment[]} assessments
- * @param {(text: string) => string} prose
- * @returns {string[]}  the Expectation Findings by Tier sections' lines
+ * @param {Dialect}      dialect
+ * @returns {string[]}  the Expectation Findings by Tier section's lines
  */
-function tierFindingsLines(tiers, findings, assessments, prose) {
-    const lines = []
+function tierFindingsLines(tiers, findings, assessments, dialect) {
+    /** @type {(Row|Band)[]} */
+    const rows = []
     for (const tier of tiers) {
-        const rows = []
+        const status = tierStatus(tier, assessments)
+        rows.push({ label: `Tier ${tier.number} — ${tier.id}`, status: status.label, emphasized: status.emphasized })
         for (const finding of findings.filter((each) => each.expectation.tier.number === tier.number)) {
             const { expectation } = finding
-            const cells = [cellText(expectation.name), prose(cellText(expectation.summary)), statusLabel(finding.outcome)]
-            if (finding.outcome === 'not claimed') {
-                rows.push(italicized(cells))
-            } else {
-                rows.push(cells)
-            }
+            rows.push({
+                cells: [expectation.name, expectation.summary, statusLabel(finding.outcome)],
+                emphasized: finding.outcome === 'not claimed',
+            })
         }
-        lines.push(
-            '',
-            `### Tier ${tier.number} — ${tier.id}`,
-            '',
-            ...tableLines(['Expectation', 'Summary', 'Status'], rows),
-            '',
-            `Assessment status: ${tierStatusLabel(tier, assessments)}`,
-        )
     }
-    return lines
+
+    return dialect.table(['Expectation', 'Summary', 'Status'], rows)
 }
 
 /**
  * An unmet expectation's details: what it checks, then one row per error -- what was found, where, and why.
  * @param {Finding} finding
- * @param {(text: string) => string} prose
+ * @param {Dialect} dialect
  * @returns {string[]}
  */
-function unmetExpectationLines(finding, prose) {
-    const rows = []
-    for (const error of finding.errors) {
-        const found = 'found' in error ? cellText(codeSpan(JSON.stringify(error.found))) : ''
-        const where = error.site && error.site.length > 0 ? cellText(codeSpan(pointerOf(error.site))) : 'the document'
-        const because = prose(cellText(error.message ?? stateConstraint(error)))
-        rows.push([found, where, because])
-    }
+function unmetExpectationLines(finding, dialect) {
+    /** @type {Row[]} */
+    const rows = finding.errors.map((error) => ({
+        cells: [
+            'found' in error ? { code: JSON.stringify(error.found) } : '',
+            error.site && error.site.length > 0 ? { code: pointerOf(error.site) } : 'the document',
+            error.message ?? stateConstraint(error),
+        ],
+    }))
 
     return [
         `### Unmet expectation: ${finding.expectation.name}`,
         '',
-        `Expectation details: ${finding.expectation.description.replace(/\r?\n/g, ' ')}`,
+        `Expectation details: ${oneLine(finding.expectation.description)}`,
         '',
-        ...tableLines(['Found', 'Where', 'Expectation not met because'], rows),
+        ...dialect.table(['Found', 'Where', 'Expectation not met because'], rows),
     ]
 }
 
@@ -300,30 +354,31 @@ function unmetExpectationLines(finding, prose) {
  * @param {Candidate}    candidate
  * @param {Finding[]}    findings
  * @param {Assessment[]} assessments
- * @param {boolean}      [compactly]  without blank lines (for terminal output, yields invalid Markdown)
+ * @param {boolean}      [compactly]  without blank lines, tables in Markdown (for terminal output, yields invalid Markdown)
  * @returns {string}
  */
 function renderReportAsMarkdown(candidate, findings, assessments, compactly) {
-    const prose = compactly ? (/** @type {string} */ text) => text : brokenCell
+    const dialect = compactly ? pipeDialect : htmlDialect
     const tiers = tiersOf(findings)
     const reportLines = [
         '# Report',
         '',
-        ...candidateLines(candidate, prose),
+        ...candidateLines(candidate, dialect),
         '',
         '## Tier Assessments',
         '',
-        ...tierTableLines(tiers, assessments, prose),
+        ...tierTableLines(tiers, assessments, dialect),
         '',
         '## Expectation Findings by Tier',
-        ...tierFindingsLines(tiers, findings, assessments, prose),
+        '',
+        ...tierFindingsLines(tiers, findings, assessments, dialect),
     ]
 
     const unmetFindings = findings.filter((finding) => finding.outcome === 'unmet')
     if (unmetFindings.length > 0) {
         reportLines.push('', '## Details')
         for (const finding of unmetFindings) {
-            reportLines.push('', ...unmetExpectationLines(finding, prose))
+            reportLines.push('', ...unmetExpectationLines(finding, dialect))
         }
     }
 
