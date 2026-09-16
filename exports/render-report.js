@@ -12,7 +12,8 @@
 /** @typedef {import('./types.js').Diagnostic} Diagnostic */
 
 /**
- * @typedef {string | {code: string}} Cell  prose in the report's own Markdown, or a value set as code
+ * @typedef {string | {code: string} | {atom: string}} Cell  prose in the report's own Markdown, a value
+ *   set as code, or an atom -- a label or identifier the reader must not meet broken across two lines
  */
 /**
  * @typedef {object} Row
@@ -142,7 +143,9 @@ const pipeDialect = {
          * @returns {string}
          */
         const setCell = (cell, emphasized) => {
-            const text = typeof cell === 'string' ? cellText(cell) : cellText(codeSpan(cell.code))
+            const text = typeof cell === 'string'
+                ? cellText(cell)
+                : 'code' in cell ? cellText(codeSpan(cell.code)) : cellText(cell.atom)
             return emphasized && text ? `*${text}*` : text
         }
 
@@ -178,6 +181,16 @@ function escapeHtml(text) {
 }
 
 /**
+ * Sets an atom as HTML: the spaces and hyphens within it are the ones a browser would
+ * break at, so each is written as the character that does not break.
+ * @param {string} text  already escaped
+ * @returns {string}
+ */
+function unbroken(text) {
+    return text.replace(/ /g, '&nbsp;').replace(/-/g, '&#8209;')
+}
+
+/**
  * Sets an authored sentence as HTML, honoring the code spans and links its Markdown carries.
  * @param {string} text
  * @returns {string}
@@ -206,7 +219,11 @@ const htmlDialect = {
          * @returns {string}
          */
         const setCell = (cell, emphasized) => {
-            const html = typeof cell === 'string' ? inlineHtml(cell) : `<code>${escapeHtml(oneLine(cell.code))}</code>`
+            const html = typeof cell === 'string'
+                ? inlineHtml(cell)
+                : 'code' in cell
+                    ? `<code>${escapeHtml(oneLine(cell.code))}</code>`
+                    : unbroken(escapeHtml(oneLine(cell.atom)))
             return `<td>${emphasized && html ? `<em>${html}</em>` : html}</td>`
         }
 
@@ -222,7 +239,8 @@ const htmlDialect = {
         for (const row of rows) {
             if (isBand(row)) {
                 const label = row.emphasized ? `<em>${inlineHtml(row.label)}</em>` : inlineHtml(row.label)
-                const status = row.emphasized ? `<em>${inlineHtml(row.status)}</em>` : inlineHtml(row.status)
+                const shown = unbroken(escapeHtml(oneLine(row.status)))
+                const status = row.emphasized ? `<em>${shown}</em>` : shown
                 lines.push(
                     `<tr><th colspan="${headings.length - 1}" align="left">${label}</th>` +
                     `<th align="left">${status}</th></tr>`,
@@ -246,10 +264,10 @@ function candidateLines(candidate, dialect) {
     if (targetSourceLabel === undefined) throw new Error(`no such target source: ${candidate.targetSource}`)
 
     /** @type {Row[]} */
-    const rows = [{ cells: ['Candidate', { code: candidate.fileName }] }]
-    if (candidate.description) rows.push({ cells: ['Description', candidate.description] })
-    rows.push({ cells: ['Target', `${candidate.targetTier.number} ${candidate.targetTier.id}`] })
-    rows.push({ cells: ['Target declared by', targetSourceLabel] })
+    const rows = [{ cells: [{ atom: 'Candidate' }, { code: candidate.fileName }] }]
+    if (candidate.description) rows.push({ cells: [{ atom: 'Description' }, candidate.description] })
+    rows.push({ cells: [{ atom: 'Target' }, { atom: `${candidate.targetTier.number} ${candidate.targetTier.id}` }] })
+    rows.push({ cells: [{ atom: 'Target declared by' }, targetSourceLabel] })
 
     return ['## Candidate Information', '', ...dialect.table(['', ''], rows)]
 }
@@ -290,7 +308,7 @@ function tierTableLines(tiers, assessments, dialect) {
     const rows = tiers.map((tier) => {
         const status = tierStatus(tier, assessments)
         return {
-            cells: [String(tier.number), tier.id, tier.description, status.label],
+            cells: [String(tier.number), { atom: tier.id }, tier.description, { atom: status.label }],
             emphasized: status.emphasized,
         }
     })
@@ -316,7 +334,7 @@ function tierFindingsLines(tiers, findings, assessments, dialect) {
         for (const finding of findings.filter((each) => each.expectation.tier.number === tier.number)) {
             const { expectation } = finding
             rows.push({
-                cells: [expectation.name, expectation.summary, statusLabel(finding.outcome)],
+                cells: [expectation.name, expectation.summary, { atom: statusLabel(finding.outcome) }],
                 emphasized: finding.outcome === 'not claimed',
             })
         }
