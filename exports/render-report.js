@@ -153,10 +153,10 @@ const pipeDialect = {
         const lines = [headingRow, `| ${headings.map(() => '---').join(' | ')} |`]
         for (const row of rows) {
             if (isBand(row)) {
-                const label = row.emphasized ? `*${cellText(row.label)}*` : `**${cellText(row.label)}**`
-                const status = row.emphasized ? `*${cellText(row.status)}*` : cellText(row.status)
-                const padding = new Array(Math.max(0, headings.length - 2)).fill('')
-                lines.push(`| ${[label, ...padding, status].join(' | ')} |`, headingRow)
+                const named = cellText(`${row.label}  ${row.status}`)
+                const band = row.emphasized ? `*${named}*` : `**${named}**`
+                const padding = new Array(Math.max(0, headings.length - 1)).fill('')
+                lines.push(`| ${[band, ...padding].join(' | ')} |`, headingRow)
             } else {
                 lines.push(`| ${row.cells.map((cell) => setCell(cell, row.emphasized)).join(' | ')} |`)
             }
@@ -166,8 +166,8 @@ const pipeDialect = {
 }
 
 //
-// The HTML dialect: one table per section, each band a row spanning every column but
-// the last, so the reader's browser wraps the prose and the columns align throughout.
+// The HTML dialect: one table per section, each band a row spanning every column, so the
+// reader's browser wraps the prose and the columns align throughout.
 //
 
 /**
@@ -236,15 +236,12 @@ const htmlDialect = {
         lines.push('<tbody>')
         for (const row of rows) {
             if (isBand(row)) {
-                const label = row.emphasized ? `<em>${inlineHtml(row.label)}</em>` : inlineHtml(row.label)
-                const shown = unbroken(escapeHtml(oneLine(row.status)))
-                const status = row.emphasized ? `<em>${shown}</em>` : shown
+                // The whole band is one title, and a title is not shown broken.
+                const named = unbroken(escapeHtml(oneLine(`${row.label}  ${row.status}`)))
+                const band = row.emphasized ? `<em>${named}</em>` : named
                 // The leading break is the band's air: a table cannot be given space above
                 // its text without a stylesheet, and GitHub strips one.
-                lines.push(
-                    `<tr><th colspan="${headings.length - 1}" align="left"><br>${label}</th>` +
-                    `<th align="left"><br>${status}</th></tr>`,
-                )
+                lines.push(`<tr><th colspan="${headings.length}" align="left"><br>${band}</th></tr>`)
                 if (titled) lines.push(headingRow)
             } else {
                 lines.push(`<tr>${row.cells.map((cell) => setCell(cell, row.emphasized)).join('')}</tr>`)
