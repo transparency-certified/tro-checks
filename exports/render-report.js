@@ -91,13 +91,36 @@ function statusLabel(outcome) {
     return label
 }
 
+const HIGH_SURROGATE_FIRST = 0xD800
+const HIGH_SURROGATE_LAST = 0xDBFF
+const LOW_SURROGATE_FIRST = 0xDC00
+const LOW_SURROGATE_LAST = 0xDFFF
+
+/** @param {number} code */
+const isHighSurrogate = (code) => code >= HIGH_SURROGATE_FIRST && code <= HIGH_SURROGATE_LAST
+
+/** @param {number} code */
+const isLowSurrogate = (code) => code >= LOW_SURROGATE_FIRST && code <= LOW_SURROGATE_LAST
+
 /**
- * Collapses the newlines an authored sentence may carry, which no cell can hold.
+ * Text as the report can write it: the newlines an authored sentence may carry collapsed,
+ * no cell holding one, and every unpaired surrogate written as its escape. UTF-8 cannot
+ * encode a lone surrogate, so a report carrying one is written with U+FFFD in its place,
+ * and a pointer that named the offending member would name one the candidate does not have.
  * @param {string} text
  * @returns {string}
  */
-function oneLine(text) {
-    return text.replace(/\r?\n/g, ' ')
+function writable(text) {
+    const collapsed = text.replace(/\r?\n/g, ' ')
+    let written = ''
+    for (let i = 0; i < collapsed.length; i++) {
+        const code = collapsed.charCodeAt(i)
+        const paired = (isHighSurrogate(code) && isLowSurrogate(collapsed.charCodeAt(i + 1)))
+            || (isLowSurrogate(code) && isHighSurrogate(collapsed.charCodeAt(i - 1)))
+        const lone = (isHighSurrogate(code) || isLowSurrogate(code)) && !paired
+        written += lone ? `\\u${code.toString(16).padStart(4, '0')}` : collapsed[i]
+    }
+    return written
 }
 
 /**
@@ -119,7 +142,7 @@ function isBand(row) {
  * @returns {string}
  */
 function cellText(text) {
-    return oneLine(text).replace(/\|/g, '\\|')
+    return writable(text).replace(/\|/g, '\\|')
 }
 
 /**
@@ -150,7 +173,13 @@ const pipeDialect = {
         }
 
         const headingRow = `| ${headings.join(' | ')} |`
-        const lines = [headingRow, `| ${headings.map(() => '---').join(' | ')} |`]
+        // Markdown demands a header row. A banded table names its columns under each band
+        // instead, so the row it demands is left empty rather than said twice over.
+        const banded = rows.some(isBand)
+        const lines = [
+            banded ? `| ${headings.map(() => '').join(' | ')} |` : headingRow,
+            `| ${headings.map(() => '---').join(' | ')} |`,
+        ]
         for (const row of rows) {
             if (isBand(row)) {
                 const named = cellText(`${row.label}  ${row.status}`)
@@ -194,7 +223,7 @@ function unbroken(text) {
  * @returns {string}
  */
 function inlineHtml(text) {
-    return oneLine(text)
+    return writable(text)
         .split(/(`+[^`]*`+)/)
         .map((part) => {
             if (/^`+[^`]*`+$/.test(part)) {
@@ -226,8 +255,8 @@ const htmlDialect = {
             const html = typeof cell === 'string'
                 ? inlineHtml(cell)
                 : 'code' in cell
-                    ? `<code>${escapeHtml(oneLine(cell.code))}</code>`
-                    : unbroken(escapeHtml(oneLine(cell.atom)))
+                    ? `<code>${escapeHtml(writable(cell.code))}</code>`
+                    : unbroken(escapeHtml(writable(cell.atom)))
             return `<td>${emphasized && html ? `<em>${html}</em>` : html}</td>`
         }
 
@@ -245,7 +274,7 @@ const htmlDialect = {
         for (const row of rows) {
             if (isBand(row)) {
                 // The whole band is one title, and a title is not shown broken.
-                const named = unbroken(escapeHtml(oneLine(`${row.label}  ${row.status}`)))
+                const named = unbroken(escapeHtml(writable(`${row.label}  ${row.status}`)))
                 const band = row.emphasized ? `<em>${named}</em>` : named
                 // The leading break is the band's air: a table cannot be given space above
                 // its text without a stylesheet, and GitHub strips one.
@@ -370,7 +399,7 @@ function unmetExpectationLines(finding, dialect) {
     return [
         `### Unmet expectation: ${finding.expectation.name}`,
         '',
-        `Expectation details: ${oneLine(finding.expectation.description)}`,
+        `Expectation details: ${writable(finding.expectation.description)}`,
         '',
         ...dialect.table(['Found', 'Where', 'Expectation not met because'], rows),
     ]
