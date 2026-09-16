@@ -45,14 +45,14 @@ Assessment status: ✅ met
 | Expectation | Summary | Status |
 | --- | --- | --- |
 | containers-absent | No `@container` in a term definition | ✅ met |
-| context-at-root-only | The document's only `@context` is the one at its root: no node<br>below it and no term definition within it carries another | ✅ met |
+| context-at-root-only | The document's only `@context` is the one at its root: no node below it and no term definition within it carries another | ✅ met |
 | context-protection-absent | No `@protected`, `@propagate` or `@import` in a context | ✅ met |
 | context-well-formed | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
 | graph-at-root-only | `@graph` appears only at the root | ✅ met |
 | graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
 | id-coercion-absent | No `"@type": "@id"` in a term definition | ✅ met |
 | ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
-| relative-ids-plain | Every relative `@id` is a plain path, with no leading `/` or `@`, no `.` or `..` segments,<br>and no `?` or `#` | ✅ met |
+| relative-ids-plain | Every relative `@id` is a plain path, with no leading `/` or `@`, no `.` or `..` segments, and no `?` or `#` | ✅ met |
 | vocab-absent | No `@vocab` in a context | ✅ met |
 Assessment status: ✅ met
 ### Tier 3 — TRACE-JSON-LD
@@ -60,7 +60,7 @@ Assessment status: ✅ met
 | --- | --- | --- |
 | base-simple-url | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
 | base-web-scheme | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
-| disallowed-context-keywords-absent | No member of an `@context` is a keyword other than `@base`;<br>what a term definition holds is not a member of the `@context` | ✅ met |
+| disallowed-context-keywords-absent | No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context` | ✅ met |
 | disallowed-node-keywords-absent | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
 | prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
 | root-context-and-graph-only | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
@@ -119,14 +119,14 @@ Assessment status: ✅ met
 | Expectation | Summary | Status |
 | --- | --- | --- |
 | containers-absent | No `@container` in a term definition | ✅ met |
-| context-at-root-only | The document's only `@context` is the one at its root: no node<br>below it and no term definition within it carries another | ✅ met |
+| context-at-root-only | The document's only `@context` is the one at its root: no node below it and no term definition within it carries another | ✅ met |
 | context-protection-absent | No `@protected`, `@propagate` or `@import` in a context | ✅ met |
 | context-well-formed | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
 | graph-at-root-only | `@graph` appears only at the root | ✅ met |
 | graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
 | id-coercion-absent | No `"@type": "@id"` in a term definition | ✅ met |
 | ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
-| relative-ids-plain | Every relative `@id` is a plain path, with no leading `/` or `@`, no `.` or `..` segments,<br>and no `?` or `#` | ✅ met |
+| relative-ids-plain | Every relative `@id` is a plain path, with no leading `/` or `@`, no `.` or `..` segments, and no `?` or `#` | ✅ met |
 | vocab-absent | No `@vocab` in a context | ✅ met |
 Assessment status: ✅ met
 ### Tier 3 — TRACE-JSON-LD
@@ -134,7 +134,7 @@ Assessment status: ✅ met
 | --- | --- | --- |
 | base-simple-url | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
 | base-web-scheme | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
-| disallowed-context-keywords-absent | No member of an `@context` is a keyword other than `@base`;<br>what a term definition holds is not a member of the `@context` | ✅ met |
+| disallowed-context-keywords-absent | No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context` | ✅ met |
 | disallowed-node-keywords-absent | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
 | prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
 | root-context-and-graph-only | A JSON object with an `@context`, an `@graph`, and nothing else | ❌ not met |
@@ -201,14 +201,14 @@ Assessment status: ✅ met
 | Expectation | Summary | Status |
 | --- | --- | --- |
 | containers-absent | No `@container` in a term definition | ✅ met |
-| context-at-root-only | The document's only `@context` is the one at its root: no node<br>below it and no term definition within it carries another | ✅ met |
+| context-at-root-only | The document's only `@context` is the one at its root: no node below it and no term definition within it carries another | ✅ met |
 | context-protection-absent | No `@protected`, `@propagate` or `@import` in a context | ✅ met |
 | context-well-formed | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
 | graph-at-root-only | `@graph` appears only at the root | ✅ met |
 | graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
 | id-coercion-absent | No `"@type": "@id"` in a term definition | ✅ met |
 | ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
-| relative-ids-plain | Every relative `@id` is a plain path, with no leading `/` or `@`, no `.` or `..` segments,<br>and no `?` or `#` | ✅ met |
+| relative-ids-plain | Every relative `@id` is a plain path, with no leading `/` or `@`, no `.` or `..` segments, and no `?` or `#` | ✅ met |
 | vocab-absent | No `@vocab` in a context | ✅ met |
 Assessment status: ✅ met
 ### Tier 3 — TRACE-JSON-LD
@@ -216,7 +216,7 @@ Assessment status: ✅ met
 | --- | --- | --- |
 | base-simple-url | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
 | base-web-scheme | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
-| disallowed-context-keywords-absent | No member of an `@context` is a keyword other than `@base`;<br>what a term definition holds is not a member of the `@context` | ✅ met |
+| disallowed-context-keywords-absent | No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context` | ✅ met |
 | disallowed-node-keywords-absent | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
 | prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
 | root-context-and-graph-only | A JSON object with an `@context`, an `@graph`, and nothing else | ❌ not met |
@@ -287,14 +287,14 @@ Assessment status: ✅ met
 | Expectation | Summary | Status |
 | --- | --- | --- |
 | containers-absent | No `@container` in a term definition | ✅ met |
-| context-at-root-only | The document's only `@context` is the one at its root: no node<br>below it and no term definition within it carries another | ✅ met |
+| context-at-root-only | The document's only `@context` is the one at its root: no node below it and no term definition within it carries another | ✅ met |
 | context-protection-absent | No `@protected`, `@propagate` or `@import` in a context | ✅ met |
 | context-well-formed | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
 | graph-at-root-only | `@graph` appears only at the root | ✅ met |
 | graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
 | id-coercion-absent | No `"@type": "@id"` in a term definition | ✅ met |
 | ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
-| relative-ids-plain | Every relative `@id` is a plain path, with no leading `/` or `@`, no `.` or `..` segments,<br>and no `?` or `#` | ✅ met |
+| relative-ids-plain | Every relative `@id` is a plain path, with no leading `/` or `@`, no `.` or `..` segments, and no `?` or `#` | ✅ met |
 | vocab-absent | No `@vocab` in a context | ✅ met |
 Assessment status: ✅ met
 ### Tier 3 — TRACE-JSON-LD
@@ -302,7 +302,7 @@ Assessment status: ✅ met
 | --- | --- | --- |
 | base-simple-url | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
 | base-web-scheme | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
-| disallowed-context-keywords-absent | No member of an `@context` is a keyword other than `@base`;<br>what a term definition holds is not a member of the `@context` | ✅ met |
+| disallowed-context-keywords-absent | No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context` | ✅ met |
 | disallowed-node-keywords-absent | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
 | prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
 | root-context-and-graph-only | A JSON object with an `@context`, an `@graph`, and nothing else | ❌ not met |

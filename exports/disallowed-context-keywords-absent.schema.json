@@ -3,7 +3,7 @@
     "$id": "https://w3id.org/trace/tro/0.1/disallowed-context-keywords-absent.schema.json",
     "title": "Disallowed context keywords absent",
     "description": "Within every @context, the only member name beginning with @ is @base.",
-    "summary": "No member of an `@context` is a keyword other than `@base`;<br>what a term definition holds is not a member of the `@context`",
+    "summary": "No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context`",
     "$defs": {
         "contextKeyword": {
             "if": { "type": "string", "pattern": "^@" },

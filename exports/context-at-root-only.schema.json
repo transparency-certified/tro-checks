@@ -3,7 +3,7 @@
     "$id": "https://w3id.org/trace/tro/0.1/context-at-root-only.schema.json",
     "title": "Context at root only",
     "description": "The only @context is the one at the document's root: no node below it carries an @context, and no term definition within it carries one either.",
-    "summary": "The document's only `@context` is the one at its root: no node<br>below it and no term definition within it carries another",
+    "summary": "The document's only `@context` is the one at its root: no node below it and no term definition within it carries another",
     "$defs": {
         "contextFree": {
             "if": { "type": "object" },
