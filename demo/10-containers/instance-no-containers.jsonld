@@ -1,0 +1,14 @@
+{
+    "@context": {
+        "ex": "https://example.org/terms#",
+        "ex:part": {
+            "@type": "https://www.w3.org/2001/XMLSchema#string"
+        }
+    },
+    "@graph": [
+        {
+            "@id": "https://example.org/thing/1",
+            "ex:part": "x"
+        }
+    ]
+}

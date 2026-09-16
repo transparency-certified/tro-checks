@@ -1,0 +1,33 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/graph-at-root-only.schema.json",
+    "title": "Graph at root only",
+    "description": "The only @graph is the one at the document's root: no node within it carries an @graph of its own.",
+    "summary": "`@graph` appears only at the root",
+    "$defs": {
+        "graphFree": {
+            "if": { "type": "object" },
+            "then": {
+                "not": { "required": ["@graph"] },
+                "errorMessage": {
+                    "not": "the only @graph is the document root's"
+                },
+                "properties": { "@context": true },
+                "additionalProperties": { "$ref": "#/$defs/graphFree" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/graphFree" } }
+            }
+        }
+    },
+    "if": { "type": "object" },
+    "then": {
+        "properties": { "@context": true },
+        "additionalProperties": { "$ref": "#/$defs/graphFree" }
+    },
+    "else": {
+        "if": { "type": "array" },
+        "then": { "items": { "$ref": "#/$defs/graphFree" } }
+    }
+}

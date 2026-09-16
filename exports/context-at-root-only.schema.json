@@ -1,0 +1,32 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/context-at-root-only.schema.json",
+    "title": "Context at root only",
+    "description": "The only @context is the one at the document's root: no node below it carries an @context, and no term definition within it carries one either.",
+    "summary": "The document's only `@context` is the one at its root: no node<br>below it and no term definition within it carries another",
+    "$defs": {
+        "contextFree": {
+            "if": { "type": "object" },
+            "then": {
+                "not": { "required": ["@context"] },
+                "errorMessage": {
+                    "not": "the only @context is the document root's"
+                },
+                "additionalProperties": { "$ref": "#/$defs/contextFree" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/contextFree" } }
+            }
+        }
+    },
+    "if": { "type": "object" },
+    "then": {
+        "properties": { "@context": { "$ref": "#/$defs/contextFree" } },
+        "additionalProperties": { "$ref": "#/$defs/contextFree" }
+    },
+    "else": {
+        "if": { "type": "array" },
+        "then": { "items": { "$ref": "#/$defs/contextFree" } }
+    }
+}

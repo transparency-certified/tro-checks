@@ -1,0 +1,39 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/id-coercion-absent.schema.json",
+    "title": "Id coercion absent",
+    "description": "No term definition coerces its values to identifiers: no @type within a context is @id. A term definition typing its values with an absolute IRI is allowed.",
+    "summary": "No `\"@type\": \"@id\"` in a term definition",
+    "$defs": {
+        "contextValue": {
+            "if": { "type": "object" },
+            "then": {
+                "properties": {
+                    "@type": {
+                        "not": { "const": "@id" },
+                        "errorMessage": {
+                            "not": "a term definition does not coerce its values to @id"
+                        }
+                    }
+                },
+                "additionalProperties": { "$ref": "#/$defs/contextValue" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/contextValue" } }
+            }
+        },
+        "node": {
+            "if": { "type": "object" },
+            "then": {
+                "properties": { "@context": { "$ref": "#/$defs/contextValue" } },
+                "additionalProperties": { "$ref": "#/$defs/node" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/node" } }
+            }
+        }
+    },
+    "$ref": "#/$defs/node"
+}

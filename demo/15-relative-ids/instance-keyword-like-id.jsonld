@@ -1,0 +1,12 @@
+{
+    "@context": {
+        "@base": "https://example.org/tro/",
+        "ex": "https://example.org/terms#"
+    },
+    "@graph": [
+        {
+            "@id": "@ignoreMe",
+            "ex:part": "x"
+        }
+    ]
+}

@@ -14,6 +14,12 @@ graph-well-formed.schema.json
 disallowed-node-keywords-absent.schema.json
 disallowed-context-keywords-absent.schema.json
 ids-and-types-strings.schema.json
+context-at-root-only.schema.json
+containers-absent.schema.json
+vocab-absent.schema.json
+context-protection-absent.schema.json
+id-coercion-absent.schema.json
+graph-at-root-only.schema.json
 base-web-scheme.schema.json
 base-simple-url.schema.json
 relative-ids-plain.schema.json

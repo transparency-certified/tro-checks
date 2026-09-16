@@ -1,0 +1,35 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/vocab-absent.schema.json",
+    "title": "Vocab absent",
+    "description": "No @context declares a default vocabulary: @vocab appears nowhere within a context.",
+    "summary": "No `@vocab` in a context",
+    "$defs": {
+        "contextValue": {
+            "if": { "type": "object" },
+            "then": {
+                "not": { "required": ["@vocab"] },
+                "errorMessage": {
+                    "not": "a context has no @vocab"
+                },
+                "additionalProperties": { "$ref": "#/$defs/contextValue" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/contextValue" } }
+            }
+        },
+        "node": {
+            "if": { "type": "object" },
+            "then": {
+                "properties": { "@context": { "$ref": "#/$defs/contextValue" } },
+                "additionalProperties": { "$ref": "#/$defs/node" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/node" } }
+            }
+        }
+    },
+    "$ref": "#/$defs/node"
+}

@@ -1,0 +1,11 @@
+{
+    "@context": {
+        "@vocab": "https://example.org/terms#"
+    },
+    "@graph": [
+        {
+            "@id": "https://example.org/thing/1",
+            "part": "x"
+        }
+    ]
+}

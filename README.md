@@ -19,10 +19,10 @@ above the target are reported as *not claimed*.
 
 | Tier | ID | What meeting it means |
 | --- | --- | --- |
-| 1 | `SAFE-JSON` | JSON that every parser reads the same way |
-| 2 | `VALID-JSON-LD` | Valid JSON-LD |
+| 1 | `SAFE-JSON` | JSON that every supported parser reads the same way |
+| 2 | `SAFE-JSON-LD` | JSON-LD that every supported processor reads the same way |
 | 3 | `TRACE-JSON-LD` | JSON-LD in the restricted form the TRACE Specification<br>defines for TRO declarations |
-| 4 | `STANDALONE-TRO` | A TRO declaration with the structure the Specification<br>requires, whose references resolve within it |
+| 4 | `STANDALONE-TRO` | A TRO declaration with the structure the TRACE Specification<br>requires, whose references resolve within it |
 | 5 | `LINKABLE-TRO` | A TRO declaration whose element identifiers<br>cannot collide with another TRO's |
 
 Each expectation is defined by a file in [`exports/`](exports) named for the
@@ -36,9 +36,22 @@ either rejects the candidate. A schema's `validatorFlags` are passed to both
 validators with it, as `duplicate-member-names-absent` passes
 `--reject-duplicate-members`.
 
+### Supported parsers and processors
+
+`SAFE-JSON` and `SAFE-JSON-LD` promise that a candidate reads the same way in
+every *supported* implementation which includes the following:
+
+| | Implementation | Version |
+| --- | --- | --- |
+| JSON parser | Python `json` (via `jsonschema-validate`) | 3.10 |
+| JSON parser | Node.js `JSON.parse` (via `ajv-validate` and `check-tro`) | 22 |
+| JSON-LD processor | [jsonld.js](https://github.com/digitalbazaar/jsonld.js) | 8.3.3 |
+| JSON-LD processor | [PyLD](https://github.com/digitalbazaar/pyld) | 3.3.0 |
+| JSON-LD processor | [rdflib](https://github.com/RDFLib/rdflib) | 7.6.0 |
+
 ### Tier 1 — SAFE-JSON
 
-JSON that every parser reads the same way.
+JSON that every supported parser reads the same way.
 
 | Expectation | What it checks |
 | --- | --- |
@@ -48,15 +61,25 @@ JSON that every parser reads the same way.
 | `lone-surrogates-absent` | No string or member name has an unpaired surrogate |
 | `numbers-within-range` | Every number fits a double; every integer is exact |
 
-### Tier 2 — VALID-JSON-LD
+### Tier 2 — SAFE-JSON-LD
 
-Valid JSON-LD.
+JSON-LD that every supported processor reads the same way. The constructs excluded here are
+ones common JSON-LD processors do not support consistently: a document using them
+is read one way by one processor and another way by the next, usually without an
+error. The list grows as such constructs are found.
 
 | Expectation | What it checks |
 | --- | --- |
 | `context-well-formed` | The root `@context`, if any, has a form JSON-LD allows |
 | `graph-well-formed` | The root `@graph`, if any, holds objects, not bare values |
 | `ids-and-types-strings` | Every `@id` is a string; every `@type`<br>a string or an array of strings |
+| `context-at-root-only` | The document's only `@context` is the one at its root:<br>no node below it and no term definition<br>within it carries another |
+| `containers-absent` | No `@container` in a term definition |
+| `vocab-absent` | No `@vocab` in a context |
+| `context-protection-absent` | No `@protected`, `@propagate` or `@import`<br>in a context |
+| `id-coercion-absent` | No `"@type": "@id"` in a term definition |
+| `graph-at-root-only` | `@graph` appears only at the root |
+| `relative-ids-plain` | Every relative `@id` is a plain path, with no leading<br>`/` or `@`, no `.` or `..` segments, and no `?` or `#` |
 
 ### Tier 3 — TRACE-JSON-LD
 
@@ -66,15 +89,14 @@ JSON-LD in the restricted form the TRACE Specification defines for TRO declarati
 | --- | --- |
 | `root-context-and-graph-only` | A JSON object with an `@context`, an `@graph`,<br>and nothing else |
 | `disallowed-node-keywords-absent` | No keyword outside the `@context` other than<br>`@context`, `@graph`, `@id` and `@type` |
-| `disallowed-context-keywords-absent` | No keyword in the `@context` other than `@base` |
+| `disallowed-context-keywords-absent` | No member of an `@context` is a keyword other than<br>`@base`; what a term definition holds is not a member<br>of the `@context` |
 | `base-web-scheme` | The `@base`, if any, uses the `https` or `http` scheme |
 | `base-simple-url` | The `@base`, if any, is a simple URL: a host,<br>no user info, dot segments, query or fragment,<br>only URL characters, and a final `/` |
-| `relative-ids-plain` | Every relative `@id` is a plain path, with no leading `/`,<br>no `.` or `..` segments, and no `?` or `#` |
 | `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` |
 
 ### Tier 4 — STANDALONE-TRO
 
-A TRO declaration with the structure the Specification requires, whose references resolve within it.
+A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it.
 
 | Expectation | What it checks |
 | --- | --- |

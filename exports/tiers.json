@@ -1,7 +1,7 @@
 [
     {
         "id": "SAFE-JSON",
-        "description": "JSON that every parser reads the same way",
+        "description": "JSON that every supported parser reads the same way",
         "expectations": [
             "utf8-encoded",
             "json-parses",
@@ -11,12 +11,19 @@
         ]
     },
     {
-        "id": "VALID-JSON-LD",
-        "description": "Valid JSON-LD",
+        "id": "SAFE-JSON-LD",
+        "description": "JSON-LD that every supported processor reads the same way",
         "expectations": [
             "context-well-formed",
             "graph-well-formed",
-            "ids-and-types-strings"
+            "ids-and-types-strings",
+            "context-at-root-only",
+            "containers-absent",
+            "vocab-absent",
+            "context-protection-absent",
+            "id-coercion-absent",
+            "graph-at-root-only",
+            "relative-ids-plain"
         ]
     },
     {
@@ -28,13 +35,12 @@
             "disallowed-context-keywords-absent",
             "base-web-scheme",
             "base-simple-url",
-            "relative-ids-plain",
             "prefix-namespaces-terminated"
         ]
     },
     {
         "id": "STANDALONE-TRO",
-        "description": "A TRO declaration with the structure the Specification requires, whose references resolve within it",
+        "description": "A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it",
         "expectations": [
             "trov-terms-known",
             "tro-top-level-in-graph",

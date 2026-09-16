@@ -1,0 +1,12 @@
+{
+    "@context": {
+        "@protected": true,
+        "ex": "https://example.org/terms#"
+    },
+    "@graph": [
+        {
+            "@id": "https://example.org/thing/1",
+            "ex:part": "x"
+        }
+    ]
+}

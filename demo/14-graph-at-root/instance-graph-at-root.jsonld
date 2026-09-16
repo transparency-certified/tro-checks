@@ -1,0 +1,13 @@
+{
+    "@context": {
+        "ex": "https://example.org/terms#"
+    },
+    "@graph": [
+        {
+            "@id": "https://example.org/thing/1",
+            "ex:part": {
+                "@id": "https://example.org/thing/2"
+            }
+        }
+    ]
+}

@@ -1,0 +1,35 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/containers-absent.schema.json",
+    "title": "Containers absent",
+    "description": "No @context declares a container: @container appears nowhere within a context, in any of its forms.",
+    "summary": "No `@container` in a term definition",
+    "$defs": {
+        "contextValue": {
+            "if": { "type": "object" },
+            "then": {
+                "not": { "required": ["@container"] },
+                "errorMessage": {
+                    "not": "a term definition has no @container"
+                },
+                "additionalProperties": { "$ref": "#/$defs/contextValue" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/contextValue" } }
+            }
+        },
+        "node": {
+            "if": { "type": "object" },
+            "then": {
+                "properties": { "@context": { "$ref": "#/$defs/contextValue" } },
+                "additionalProperties": { "$ref": "#/$defs/node" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/node" } }
+            }
+        }
+    },
+    "$ref": "#/$defs/node"
+}

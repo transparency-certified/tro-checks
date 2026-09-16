@@ -1,0 +1,11 @@
+{
+    "@context": {
+        "@import": "https://example.org/base-context.jsonld",
+        "ex": "https://example.org/terms#"
+    },
+    "@graph": [
+        {
+            "@id": "https://example.org/thing/1"
+        }
+    ]
+}

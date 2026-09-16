@@ -1,0 +1,45 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/context-protection-absent.schema.json",
+    "title": "Context protection absent",
+    "description": "No @context protects its terms, controls their propagation, or imports another context: @protected, @propagate and @import appear nowhere within a context.",
+    "summary": "No `@protected`, `@propagate` or `@import` in a context",
+    "$defs": {
+        "contextValue": {
+            "if": { "type": "object" },
+            "then": {
+                "allOf": [
+                    {
+                        "not": { "required": ["@protected"] },
+                        "errorMessage": { "not": "a context has no @protected" }
+                    },
+                    {
+                        "not": { "required": ["@propagate"] },
+                        "errorMessage": { "not": "a context has no @propagate" }
+                    },
+                    {
+                        "not": { "required": ["@import"] },
+                        "errorMessage": { "not": "a context has no @import" }
+                    }
+                ],
+                "additionalProperties": { "$ref": "#/$defs/contextValue" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/contextValue" } }
+            }
+        },
+        "node": {
+            "if": { "type": "object" },
+            "then": {
+                "properties": { "@context": { "$ref": "#/$defs/contextValue" } },
+                "additionalProperties": { "$ref": "#/$defs/node" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/node" } }
+            }
+        }
+    },
+    "$ref": "#/$defs/node"
+}

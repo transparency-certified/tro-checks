@@ -1,0 +1,14 @@
+{
+    "@context": {
+        "ex": "https://example.org/terms#",
+        "ex:createdAt": {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+        }
+    },
+    "@graph": [
+        {
+            "@id": "https://example.org/thing/1",
+            "ex:createdAt": "2026-09-15T00:00:00Z"
+        }
+    ]
+}

@@ -7,12 +7,12 @@ mkdir -p tmp
 report_on() {
     cat "$1"
     echo
-    check-tro --target VALID-JSON-LD --compact --candidate "$1" --report "tmp/${1%.jsonld}.md"
+    check-tro --target SAFE-JSON-LD --compact --candidate "$1" --report "tmp/${1%.jsonld}.md"
     echo
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 06: context-well-formed (TIER 2 - VALID-JSON-LD)"
+title "tro-checks  ·  demo 06: context-well-formed (TIER 2 - SAFE-JSON-LD)"
 
 show "expectation met: the @context value is a string" \
     report_on instance-context-string.jsonld
