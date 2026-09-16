@@ -208,6 +208,12 @@ function inlineHtml(text) {
         .join('')
 }
 
+/**
+ * Sets a row back from the ones it sits among, for what the candidate does not claim.
+ * Readers whose renderer drops the attribute -- GitHub strips it -- still have the italics.
+ */
+const RECEDED = ' style="color: var(--vscode-descriptionForeground, #767676)"'
+
 /** @type {Dialect} */
 const htmlDialect = {
     table(headings, rows) {
@@ -226,13 +232,15 @@ const htmlDialect = {
         }
 
         const titled = headings.some((heading) => heading !== '')
-        const headingRow = `<tr>${headings.map((heading) => `<th align="left">${inlineHtml(heading)}</th>`).join('')}</tr>`
+        const headingCells = headings.map((heading) => `<th align="left">${inlineHtml(heading)}</th>`).join('')
+        /** @param {string} [receded] */
+        const headingRow = (receded = '') => `<tr${receded}>${headingCells}</tr>`
 
         const lines = ['<table>']
         // A banded table names its columns under each band rather than once at the top,
         // so each group reads as its own table while sharing the one set of column widths.
         const banded = rows.some(isBand)
-        if (titled && !banded) lines.push('<thead>', headingRow, '</thead>')
+        if (titled && !banded) lines.push('<thead>', headingRow(), '</thead>')
         lines.push('<tbody>')
         for (const row of rows) {
             if (isBand(row)) {
@@ -241,10 +249,12 @@ const htmlDialect = {
                 const band = row.emphasized ? `<em>${named}</em>` : named
                 // The leading break is the band's air: a table cannot be given space above
                 // its text without a stylesheet, and GitHub strips one.
-                lines.push(`<tr><th colspan="${headings.length}" align="left"><br>${band}</th></tr>`)
-                if (titled) lines.push(headingRow)
+                const receded = row.emphasized ? RECEDED : ''
+                lines.push(`<tr${receded}><th colspan="${headings.length}" align="left"><br>${band}</th></tr>`)
+                if (titled) lines.push(headingRow(receded))
             } else {
-                lines.push(`<tr>${row.cells.map((cell) => setCell(cell, row.emphasized)).join('')}</tr>`)
+                const receded = row.emphasized ? RECEDED : ''
+                lines.push(`<tr${receded}>${row.cells.map((cell) => setCell(cell, row.emphasized)).join('')}</tr>`)
             }
         }
         lines.push('</tbody>', '</table>')
