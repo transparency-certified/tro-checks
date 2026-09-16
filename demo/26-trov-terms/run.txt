@@ -1,6 +1,6 @@
 ##############################################################################
 #
-#   tro-checks  ·  demo 25: trov-terms-known (TIER 4 - STANDALONE-TRO)
+#   tro-checks  ·  demo 26: trov-terms-known (TIER 4 - STANDALONE-TRO)
 #
 ##############################################################################
 
@@ -8,7 +8,7 @@
 
 $ report_on instance-property-name-known.jsonld
 {
-    "@context": { "trov": "https://w3id.org/trace/trov/0.1/" },
+    "@context": { "trov": "https://w3id.org/trace/trov/0.1#" },
     "@graph": [
         {
             "@id": "tro",
@@ -72,6 +72,7 @@ wrote tmp/instance-property-name-known.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 
 | **Tier 4 — STANDALONE-TRO  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | composition-fingerprinted | The TRO's composition, if any, carries a fingerprint | ✅ met |
+| core-prefixes-pinned | The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces | ✅ met |
 | hashes-well-formed | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
 | tro-assembled-by-trs | The TRO names its assembling system, typed as a TRS | ✅ met |
 | tro-top-level-in-graph | The TRO is a top-level member of the `@graph` | ✅ met |
@@ -85,7 +86,7 @@ wrote tmp/instance-property-name-known.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 
 
 $ report_on instance-property-name-unknown.jsonld
 {
-    "@context": { "trov": "https://w3id.org/trace/trov/0.1/" },
+    "@context": { "trov": "https://w3id.org/trace/trov/0.1#" },
     "@graph": [
         {
             "@id": "tro",
@@ -149,6 +150,7 @@ wrote tmp/instance-property-name-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met
 | **Tier 4 — STANDALONE-TRO  ❌ not met** |  |  |
 | Expectation | Summary | Status |
 | composition-fingerprinted | The TRO's composition, if any, carries a fingerprint | ✅ met |
+| core-prefixes-pinned | The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces | ✅ met |
 | hashes-well-formed | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
 | tro-assembled-by-trs | The TRO names its assembling system, typed as a TRS | ✅ met |
 | tro-top-level-in-graph | The TRO is a top-level member of the `@graph` | ✅ met |
@@ -168,7 +170,7 @@ Expectation details: Where a property name or a string value carries the trov: p
 
 $ report_on instance-id-known.jsonld
 {
-    "@context": { "trov": "https://w3id.org/trace/trov/0.1/" },
+    "@context": { "trov": "https://w3id.org/trace/trov/0.1#" },
     "@graph": [
         {
             "@id": "tro",
@@ -232,6 +234,7 @@ wrote tmp/instance-id-known.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSO
 | **Tier 4 — STANDALONE-TRO  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | composition-fingerprinted | The TRO's composition, if any, carries a fingerprint | ✅ met |
+| core-prefixes-pinned | The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces | ✅ met |
 | hashes-well-formed | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
 | tro-assembled-by-trs | The TRO names its assembling system, typed as a TRS | ✅ met |
 | tro-top-level-in-graph | The TRO is a top-level member of the `@graph` | ✅ met |
@@ -245,7 +248,7 @@ wrote tmp/instance-id-known.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSO
 
 $ report_on instance-id-unknown.jsonld
 {
-    "@context": { "trov": "https://w3id.org/trace/trov/0.1/" },
+    "@context": { "trov": "https://w3id.org/trace/trov/0.1#" },
     "@graph": [
         {
             "@id": "tro",
@@ -309,6 +312,7 @@ wrote tmp/instance-id-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-J
 | **Tier 4 — STANDALONE-TRO  ❌ not met** |  |  |
 | Expectation | Summary | Status |
 | composition-fingerprinted | The TRO's composition, if any, carries a fingerprint | ✅ met |
+| core-prefixes-pinned | The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces | ✅ met |
 | hashes-well-formed | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
 | tro-assembled-by-trs | The TRO names its assembling system, typed as a TRS | ✅ met |
 | tro-top-level-in-graph | The TRO is a top-level member of the `@graph` | ✅ met |
@@ -328,7 +332,7 @@ Expectation details: Where a property name or a string value carries the trov: p
 
 $ report_on instance-type-known.jsonld
 {
-    "@context": { "trov": "https://w3id.org/trace/trov/0.1/" },
+    "@context": { "trov": "https://w3id.org/trace/trov/0.1#" },
     "@graph": [
         {
             "@id": "tro",
@@ -392,6 +396,7 @@ wrote tmp/instance-type-known.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-J
 | **Tier 4 — STANDALONE-TRO  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | composition-fingerprinted | The TRO's composition, if any, carries a fingerprint | ✅ met |
+| core-prefixes-pinned | The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces | ✅ met |
 | hashes-well-formed | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
 | tro-assembled-by-trs | The TRO names its assembling system, typed as a TRS | ✅ met |
 | tro-top-level-in-graph | The TRO is a top-level member of the `@graph` | ✅ met |
@@ -405,7 +410,7 @@ wrote tmp/instance-type-known.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-J
 
 $ report_on instance-type-unknown.jsonld
 {
-    "@context": { "trov": "https://w3id.org/trace/trov/0.1/" },
+    "@context": { "trov": "https://w3id.org/trace/trov/0.1#" },
     "@graph": [
         {
             "@id": "tro",
@@ -469,6 +474,7 @@ wrote tmp/instance-type-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | **Tier 4 — STANDALONE-TRO  ❌ not met** |  |  |
 | Expectation | Summary | Status |
 | composition-fingerprinted | The TRO's composition, if any, carries a fingerprint | ✅ met |
+| core-prefixes-pinned | The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces | ✅ met |
 | hashes-well-formed | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
 | tro-assembled-by-trs | The TRO names its assembling system, typed as a TRS | ✅ met |
 | tro-top-level-in-graph | The TRO is a top-level member of the `@graph` | ✅ met |
@@ -488,7 +494,7 @@ Expectation details: Where a property name or a string value carries the trov: p
 
 $ report_on instance-value-known.jsonld
 {
-    "@context": { "trov": "https://w3id.org/trace/trov/0.1/" },
+    "@context": { "trov": "https://w3id.org/trace/trov/0.1#" },
     "@graph": [
         {
             "@id": "tro",
@@ -552,6 +558,7 @@ wrote tmp/instance-value-known.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-
 | **Tier 4 — STANDALONE-TRO  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | composition-fingerprinted | The TRO's composition, if any, carries a fingerprint | ✅ met |
+| core-prefixes-pinned | The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces | ✅ met |
 | hashes-well-formed | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
 | tro-assembled-by-trs | The TRO names its assembling system, typed as a TRS | ✅ met |
 | tro-top-level-in-graph | The TRO is a top-level member of the `@graph` | ✅ met |
@@ -565,7 +572,7 @@ wrote tmp/instance-value-known.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-
 
 $ report_on instance-value-unknown.jsonld
 {
-    "@context": { "trov": "https://w3id.org/trace/trov/0.1/" },
+    "@context": { "trov": "https://w3id.org/trace/trov/0.1#" },
     "@graph": [
         {
             "@id": "tro",
@@ -629,6 +636,7 @@ wrote tmp/instance-value-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRAC
 | **Tier 4 — STANDALONE-TRO  ❌ not met** |  |  |
 | Expectation | Summary | Status |
 | composition-fingerprinted | The TRO's composition, if any, carries a fingerprint | ✅ met |
+| core-prefixes-pinned | The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces | ✅ met |
 | hashes-well-formed | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
 | tro-assembled-by-trs | The TRO names its assembling system, typed as a TRS | ✅ met |
 | tro-top-level-in-graph | The TRO is a top-level member of the `@graph` | ✅ met |

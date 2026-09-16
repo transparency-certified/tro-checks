@@ -67,6 +67,7 @@ wrote tmp/instance-context-and-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 | *Tier 4 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
+| *core-prefixes-pinned* | *The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces* | *not claimed* |
 | *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
 | *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
 | *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
@@ -136,6 +137,7 @@ wrote tmp/instance-context-only.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | *Tier 4 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
+| *core-prefixes-pinned* | *The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces* | *not claimed* |
 | *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
 | *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
 | *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
@@ -213,6 +215,7 @@ wrote tmp/instance-node-at-root.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | *Tier 4 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
+| *core-prefixes-pinned* | *The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces* | *not claimed* |
 | *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
 | *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
 | *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
@@ -294,6 +297,7 @@ wrote tmp/instance-extra-root-member.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 | *Tier 4 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
+| *core-prefixes-pinned* | *The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces* | *not claimed* |
 | *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
 | *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
 | *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |

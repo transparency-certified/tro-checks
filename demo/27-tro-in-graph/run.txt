@@ -1,6 +1,6 @@
 ##############################################################################
 #
-#   tro-checks  ·  demo 26: tro-top-level-in-graph (TIER 4 - STANDALONE-TRO)
+#   tro-checks  ·  demo 27: tro-top-level-in-graph (TIER 4 - STANDALONE-TRO)
 #
 ##############################################################################
 
@@ -71,6 +71,7 @@ wrote tmp/instance-tro-in-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | **Tier 4 — STANDALONE-TRO  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | composition-fingerprinted | The TRO's composition, if any, carries a fingerprint | ✅ met |
+| core-prefixes-pinned | The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces | ✅ met |
 | hashes-well-formed | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
 | tro-assembled-by-trs | The TRO names its assembling system, typed as a TRS | ✅ met |
 | tro-top-level-in-graph | The TRO is a top-level member of the `@graph` | ✅ met |
@@ -146,6 +147,7 @@ wrote tmp/instance-no-tro-in-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TR
 | **Tier 4 — STANDALONE-TRO  ❌ not met** |  |  |
 | Expectation | Summary | Status |
 | composition-fingerprinted | The TRO's composition, if any, carries a fingerprint | not assessed |
+| core-prefixes-pinned | The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces | ✅ met |
 | hashes-well-formed | The TRO's artifact and fingerprint hashes are well-formed sha256 | not assessed |
 | tro-assembled-by-trs | The TRO names its assembling system, typed as a TRS | not assessed |
 | tro-top-level-in-graph | The TRO is a top-level member of the `@graph` | ❌ not met |

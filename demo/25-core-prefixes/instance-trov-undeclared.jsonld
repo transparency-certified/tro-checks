@@ -1,0 +1,13 @@
+{
+    "@context": {
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "schema": "https://schema.org/"
+    },
+    "@graph": [
+        {
+            "@id": "https://example.org/tro/1",
+            "@type": "https://w3id.org/trace/trov/0.1#TransparentResearchObject"
+        }
+    ]
+}

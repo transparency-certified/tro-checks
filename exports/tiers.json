@@ -45,6 +45,7 @@
         "id": "STANDALONE-TRO",
         "description": "A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it",
         "expectations": [
+            "core-prefixes-pinned",
             "trov-terms-known",
             "tro-top-level-in-graph",
             "tro-assembled-by-trs",

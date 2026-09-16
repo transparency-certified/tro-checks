@@ -4,6 +4,7 @@
     "title": "TROV terms known",
     "description": "Where a property name or a string value carries the trov: prefix, it is a term TROV defines.",
     "summary": "Every `trov:` name is one TROV defines",
+    "requires": ["core-prefixes-pinned"],
     "$defs": {
         "knownTrovTerm": {
             "$comment": "Most terms are transcribed from the published Vocabulary Reference. trov:TRSCapabilityType and trov:TRPAttributeType are prescribed by the published Extension Guide and used in the Declaration Format; trov:SigningMechanism, trov:GPGSigning and trov:X509CMSSigning were announced separately.",

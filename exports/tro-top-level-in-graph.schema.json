@@ -4,6 +4,7 @@
     "title": "TRO top-level in graph",
     "description": "Where a declaration carries an @graph, it is an array and a top-level member of it is the TRO: a node typed trov:TransparentResearchObject.",
     "summary": "The TRO is a top-level member of the `@graph`",
+    "requires": ["core-prefixes-pinned"],
     "properties": {
         "@graph": {
             "type": "array",
