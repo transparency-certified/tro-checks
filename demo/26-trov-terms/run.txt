@@ -72,7 +72,7 @@ wrote tmp/instance-property-name-known.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 
 | **Tier 4 — STANDALONE-TRO  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | composition-fingerprinted | The TRO's composition, if any, carries a fingerprint | ✅ met |
-| core-prefixes-pinned | The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces | ✅ met |
+| core-prefixes-pinned | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | hashes-well-formed | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
 | tro-assembled-by-trs | The TRO names its assembling system, typed as a TRS | ✅ met |
 | tro-top-level-in-graph | The TRO is a top-level member of the `@graph` | ✅ met |
@@ -150,7 +150,7 @@ wrote tmp/instance-property-name-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met
 | **Tier 4 — STANDALONE-TRO  ❌ not met** |  |  |
 | Expectation | Summary | Status |
 | composition-fingerprinted | The TRO's composition, if any, carries a fingerprint | ✅ met |
-| core-prefixes-pinned | The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces | ✅ met |
+| core-prefixes-pinned | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | hashes-well-formed | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
 | tro-assembled-by-trs | The TRO names its assembling system, typed as a TRS | ✅ met |
 | tro-top-level-in-graph | The TRO is a top-level member of the `@graph` | ✅ met |
@@ -234,7 +234,7 @@ wrote tmp/instance-id-known.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSO
 | **Tier 4 — STANDALONE-TRO  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | composition-fingerprinted | The TRO's composition, if any, carries a fingerprint | ✅ met |
-| core-prefixes-pinned | The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces | ✅ met |
+| core-prefixes-pinned | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | hashes-well-formed | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
 | tro-assembled-by-trs | The TRO names its assembling system, typed as a TRS | ✅ met |
 | tro-top-level-in-graph | The TRO is a top-level member of the `@graph` | ✅ met |
@@ -312,7 +312,7 @@ wrote tmp/instance-id-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-J
 | **Tier 4 — STANDALONE-TRO  ❌ not met** |  |  |
 | Expectation | Summary | Status |
 | composition-fingerprinted | The TRO's composition, if any, carries a fingerprint | ✅ met |
-| core-prefixes-pinned | The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces | ✅ met |
+| core-prefixes-pinned | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | hashes-well-formed | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
 | tro-assembled-by-trs | The TRO names its assembling system, typed as a TRS | ✅ met |
 | tro-top-level-in-graph | The TRO is a top-level member of the `@graph` | ✅ met |
@@ -396,7 +396,7 @@ wrote tmp/instance-type-known.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-J
 | **Tier 4 — STANDALONE-TRO  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | composition-fingerprinted | The TRO's composition, if any, carries a fingerprint | ✅ met |
-| core-prefixes-pinned | The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces | ✅ met |
+| core-prefixes-pinned | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | hashes-well-formed | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
 | tro-assembled-by-trs | The TRO names its assembling system, typed as a TRS | ✅ met |
 | tro-top-level-in-graph | The TRO is a top-level member of the `@graph` | ✅ met |
@@ -474,7 +474,7 @@ wrote tmp/instance-type-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | **Tier 4 — STANDALONE-TRO  ❌ not met** |  |  |
 | Expectation | Summary | Status |
 | composition-fingerprinted | The TRO's composition, if any, carries a fingerprint | ✅ met |
-| core-prefixes-pinned | The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces | ✅ met |
+| core-prefixes-pinned | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | hashes-well-formed | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
 | tro-assembled-by-trs | The TRO names its assembling system, typed as a TRS | ✅ met |
 | tro-top-level-in-graph | The TRO is a top-level member of the `@graph` | ✅ met |
@@ -558,7 +558,7 @@ wrote tmp/instance-value-known.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-
 | **Tier 4 — STANDALONE-TRO  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | composition-fingerprinted | The TRO's composition, if any, carries a fingerprint | ✅ met |
-| core-prefixes-pinned | The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces | ✅ met |
+| core-prefixes-pinned | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | hashes-well-formed | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
 | tro-assembled-by-trs | The TRO names its assembling system, typed as a TRS | ✅ met |
 | tro-top-level-in-graph | The TRO is a top-level member of the `@graph` | ✅ met |
@@ -636,7 +636,7 @@ wrote tmp/instance-value-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRAC
 | **Tier 4 — STANDALONE-TRO  ❌ not met** |  |  |
 | Expectation | Summary | Status |
 | composition-fingerprinted | The TRO's composition, if any, carries a fingerprint | ✅ met |
-| core-prefixes-pinned | The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces | ✅ met |
+| core-prefixes-pinned | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | hashes-well-formed | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
 | tro-assembled-by-trs | The TRO names its assembling system, typed as a TRS | ✅ met |
 | tro-top-level-in-graph | The TRO is a top-level member of the `@graph` | ✅ met |

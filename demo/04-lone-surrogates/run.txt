@@ -67,7 +67,7 @@ wrote tmp/instance-paired-surrogates.md; 1 SAFE-JSON met
 | *Tier 4 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
-| *core-prefixes-pinned* | *The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces* | *not claimed* |
+| *core-prefixes-pinned* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
 | *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
 | *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
 | *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
@@ -140,7 +140,7 @@ wrote tmp/instance-lone-surrogate-in-string.md; 1 SAFE-JSON unmet
 | *Tier 4 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
-| *core-prefixes-pinned* | *The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces* | *not claimed* |
+| *core-prefixes-pinned* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
 | *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
 | *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
 | *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
@@ -219,7 +219,7 @@ wrote tmp/instance-lone-surrogate-in-member-name.md; 1 SAFE-JSON unmet
 | *Tier 4 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
-| *core-prefixes-pinned* | *The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces* | *not claimed* |
+| *core-prefixes-pinned* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
 | *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
 | *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
 | *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |

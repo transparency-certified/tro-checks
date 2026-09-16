@@ -3,7 +3,7 @@
     "$id": "https://w3id.org/trace/tro/0.1/core-prefixes-pinned.schema.json",
     "title": "Core prefixes pinned",
     "description": "The root @context declares the trov prefix, mapping it to one of the TROV namespaces this checker knows (https://w3id.org/trace/trov/0.1#), and where it declares rdf, rdfs or schema, each maps to exactly the namespace the Declaration Format's @context block gives it: rdf to http://www.w3.org/1999/02/22-rdf-syntax-ns#, rdfs to http://www.w3.org/2000/01/rdf-schema#, and schema to https://schema.org/. Every check that reads a trov: name out of the JSON relies on this pin to mean the TROV term of that name; a term under any other prefix is not read as TROV, whatever namespace that prefix maps to. Only the root @context is examined: by TRACE-JSON-LD there is no other.",
-    "summary": "The `@context` declares `trov`, mapped to a TROV namespace, and no other prefix maps there; `rdf`, `rdfs` and `schema`, where declared, map to their Declaration Format namespaces",
+    "summary": "`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones",
     "$defs": {
         "pins": {
             "properties": {

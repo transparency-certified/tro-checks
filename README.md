@@ -103,7 +103,7 @@ A TRO declaration with the structure the TRACE Specification requires, whose ref
 
 | Expectation | What it checks |
 | --- | --- |
-| `core-prefixes-pinned` | The `@context` declares `trov`, mapped to a TROV namespace,<br>and no other prefix maps there; `rdf`, `rdfs` and `schema`,<br>where declared, map to their Declaration Format namespaces |
+| `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace;<br>`rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones |
 | `trov-terms-known` | Every `trov:` name is one TROV defines |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` |
 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS |
