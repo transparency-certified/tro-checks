@@ -93,6 +93,9 @@ JSON-LD in the restricted form the TRACE Specification defines for TRO declarati
 | `base-web-scheme` | The `@base`, if any, uses the `https` or `http` scheme |
 | `base-simple-url` | The `@base`, if any, is a simple URL: a host,<br>no user info, dot segments, query or fragment,<br>only URL characters, and a final `/` |
 | `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` |
+| `context-local` | The `@context` is inline: no string names a remote context |
+| `context-aliases-absent` | No term definition aliases a property; a term definition<br>holds only a `@type` naming a datatype |
+| `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI,<br>never a bare name |
 
 ### Tier 4 — STANDALONE-TRO
 

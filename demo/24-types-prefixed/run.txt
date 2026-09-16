@@ -1,30 +1,34 @@
 ##############################################################################
 #
-#   tro-checks  ·  demo 21: prefix-namespaces-terminated (TIER 3 - TRACE-JSON-LD)
+#   tro-checks  ·  demo 24: types-prefixed-or-absolute (TIER 3 - TRACE-JSON-LD)
 #
 ##############################################################################
 
------ [1] expectation met: every prefix maps to an absolute IRI ending in # or / -----
+----- [1] expectation met: every @type is prefixed or absolute ---------------
 
-$ report_on instance-terminated-namespaces.jsonld
+$ report_on instance-prefixed-types.jsonld
 {
     "@context": {
-        "trov": "https://w3id.org/trace/trov/0.1#",
-        "ex": "https://example.org/terms#",
-        "exdata": "https://example.org/data/"
+        "ex": "https://example.org/terms#"
     },
     "@graph": [
-        { "@id": "https://example.org/thing/1", "@type": "ex:Thing" }
+        {
+            "@id": "https://example.org/thing/1",
+            "@type": [
+                "ex:Thing",
+                "https://example.org/terms#Other"
+            ]
+        }
     ]
 }
 
-wrote tmp/instance-terminated-namespaces.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSON-LD met
+wrote tmp/instance-prefixed-types.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSON-LD met
 
 # Report
 ## Candidate Information
 |  |  |
 | --- | --- |
-| Candidate | `instance-terminated-namespaces.jsonld` |
+| Candidate | `instance-prefixed-types.jsonld` |
 | Target | 3 TRACE-JSON-LD |
 | Target declared by | the `--target` option |
 ## Tier Assessments
@@ -80,25 +84,28 @@ wrote tmp/instance-terminated-namespaces.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met
 | *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
 | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
 
------ [2] expectation unmet: the ex prefix's namespace ends in neither # nor / -----
+----- [2] expectation unmet: a @type is a bare name --------------------------
 
-$ report_on instance-unterminated-namespace.jsonld
+$ report_on instance-bare-type.jsonld
 {
     "@context": {
-        "ex": "https://example.org/terms"
+        "ex": "https://example.org/terms#"
     },
     "@graph": [
-        { "@id": "https://example.org/thing/1", "@type": "ex:Thing" }
+        {
+            "@id": "https://example.org/thing/1",
+            "@type": "Thing"
+        }
     ]
 }
 
-wrote tmp/instance-unterminated-namespace.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSON-LD unmet
+wrote tmp/instance-bare-type.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSON-LD unmet
 
 # Report
 ## Candidate Information
 |  |  |
 | --- | --- |
-| Candidate | `instance-unterminated-namespace.jsonld` |
+| Candidate | `instance-bare-type.jsonld` |
 | Target | 3 TRACE-JSON-LD |
 | Target declared by | the `--target` option |
 ## Tier Assessments
@@ -139,9 +146,9 @@ wrote tmp/instance-unterminated-namespace.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD me
 | context-local | The `@context` is inline: no string names a remote context | ✅ met |
 | disallowed-context-keywords-absent | No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context` | ✅ met |
 | disallowed-node-keywords-absent | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
-| prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | ❌ not met |
+| prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
 | root-context-and-graph-only | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
-| types-prefixed-or-absolute | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
+| types-prefixed-or-absolute | Every `@type` value is a prefixed or absolute IRI, never a bare name | ❌ not met |
 | *Tier 4 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
@@ -154,31 +161,37 @@ wrote tmp/instance-unterminated-namespace.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD me
 | *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
 | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
 ## Details
-### Unmet expectation: prefix-namespaces-terminated
-Expectation details: In every @context, each prefix that maps to a string maps to an absolute IRI ending in # or /.
+### Unmet expectation: types-prefixed-or-absolute
+Expectation details: Outside the @context, every @type value is a compact IRI written with a prefix, or an absolute IRI: it has a colon before any slash. A bare name such as Thing would be resolved against the @base, naming a class nobody defined, without an error from any processor. Whether the prefix is declared is a separate expectation.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `"https://example.org/terms"` | `/@context/ex` | a prefix's namespace ends in # or / |
+| `"Thing"` | `/@graph/0/@type` | a @type is a compact IRI with a prefix, or an absolute IRI, not a bare name |
 
------ [3] expectation unmet: the ex prefix maps to a relative IRI ------------
+----- [3] expectation unmet: one of a node's types is a bare name ------------
 
-$ report_on instance-relative-namespace.jsonld
+$ report_on instance-bare-type-in-array.jsonld
 {
     "@context": {
-        "ex": "terms#"
+        "ex": "https://example.org/terms#"
     },
     "@graph": [
-        { "@id": "https://example.org/thing/1", "@type": "ex:Thing" }
+        {
+            "@id": "https://example.org/thing/1",
+            "@type": [
+                "ex:Thing",
+                "Other"
+            ]
+        }
     ]
 }
 
-wrote tmp/instance-relative-namespace.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSON-LD unmet
+wrote tmp/instance-bare-type-in-array.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSON-LD unmet
 
 # Report
 ## Candidate Information
 |  |  |
 | --- | --- |
-| Candidate | `instance-relative-namespace.jsonld` |
+| Candidate | `instance-bare-type-in-array.jsonld` |
 | Target | 3 TRACE-JSON-LD |
 | Target declared by | the `--target` option |
 ## Tier Assessments
@@ -219,9 +232,9 @@ wrote tmp/instance-relative-namespace.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | context-local | The `@context` is inline: no string names a remote context | ✅ met |
 | disallowed-context-keywords-absent | No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context` | ✅ met |
 | disallowed-node-keywords-absent | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
-| prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | ❌ not met |
+| prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
 | root-context-and-graph-only | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
-| types-prefixed-or-absolute | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
+| types-prefixed-or-absolute | Every `@type` value is a prefixed or absolute IRI, never a bare name | ❌ not met |
 | *Tier 4 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
@@ -234,88 +247,8 @@ wrote tmp/instance-relative-namespace.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
 | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
 ## Details
-### Unmet expectation: prefix-namespaces-terminated
-Expectation details: In every @context, each prefix that maps to a string maps to an absolute IRI ending in # or /.
+### Unmet expectation: types-prefixed-or-absolute
+Expectation details: Outside the @context, every @type value is a compact IRI written with a prefix, or an absolute IRI: it has a colon before any slash. A bare name such as Thing would be resolved against the @base, naming a class nobody defined, without an error from any processor. Whether the prefix is declared is a separate expectation.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `"terms#"` | `/@context/ex` | a prefix maps to an absolute IRI |
-
------ [4] expectation unmet: the core schema prefix's namespace lacks its final / -----
-
-$ report_on instance-core-prefix-unterminated.jsonld
-{
-    "@context": {
-        "schema": "https://schema.org"
-    },
-    "@graph": [
-        { "@id": "https://example.org/thing/1", "schema:name": "Thing one" }
-    ]
-}
-
-wrote tmp/instance-core-prefix-unterminated.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSON-LD unmet
-
-# Report
-## Candidate Information
-|  |  |
-| --- | --- |
-| Candidate | `instance-core-prefix-unterminated.jsonld` |
-| Target | 3 TRACE-JSON-LD |
-| Target declared by | the `--target` option |
-## Tier Assessments
-| Tier | ID | Description | Status |
-| --- | --- | --- | --- |
-| 1 | SAFE-JSON | JSON that every supported parser reads the same way | ✅ met |
-| 2 | SAFE-JSON-LD | JSON-LD that every supported processor reads the same way | ✅ met |
-| 3 | TRACE-JSON-LD | JSON-LD in the restricted form the TRACE Specification defines for TRO declarations | ❌ not met |
-| *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
-| *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
-## Expectation Findings by Tier
-|  |  |  |
-| --- | --- | --- |
-| **Tier 1 — SAFE-JSON  ✅ met** |  |  |
-| Expectation | Summary | Status |
-| duplicate-member-names-absent | No object repeats a member name | ✅ met |
-| json-parses | The candidate parses as JSON without errors | ✅ met |
-| lone-surrogates-absent | No string or member name has an unpaired surrogate | ✅ met |
-| numbers-within-range | Every number fits a double; every integer is exact | ✅ met |
-| utf8-encoded | The candidate is UTF-8 | ✅ met |
-| **Tier 2 — SAFE-JSON-LD  ✅ met** |  |  |
-| Expectation | Summary | Status |
-| containers-absent | No `@container` in a term definition | ✅ met |
-| context-at-root-only | The document's only `@context` is the one at its root: no node below it and no term definition within it carries another | ✅ met |
-| context-protection-absent | No `@protected`, `@propagate` or `@import` in a context | ✅ met |
-| context-well-formed | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
-| graph-at-root-only | `@graph` appears only at the root | ✅ met |
-| graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
-| id-coercion-absent | No `"@type": "@id"` in a term definition | ✅ met |
-| ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
-| relative-ids-plain | Every relative `@id` is a plain path, with no leading `/` or `@`, no `.` or `..` segments, and no `?` or `#` | ✅ met |
-| vocab-absent | No `@vocab` in a context | ✅ met |
-| **Tier 3 — TRACE-JSON-LD  ❌ not met** |  |  |
-| Expectation | Summary | Status |
-| base-simple-url | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
-| base-web-scheme | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
-| context-aliases-absent | No term definition aliases a property; a term definition holds only a `@type` naming a datatype | ✅ met |
-| context-local | The `@context` is inline: no string names a remote context | ✅ met |
-| disallowed-context-keywords-absent | No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context` | ✅ met |
-| disallowed-node-keywords-absent | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
-| prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | ❌ not met |
-| root-context-and-graph-only | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
-| types-prefixed-or-absolute | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
-| *Tier 4 — STANDALONE-TRO  not claimed* |  |  |
-| Expectation | Summary | Status |
-| *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
-| *hashes-well-formed* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
-| *tro-assembled-by-trs* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
-| *tro-top-level-in-graph* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
-| *trov-terms-known* | *Every `trov:` name is one TROV defines* | *not claimed* |
-| *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
-| Expectation | Summary | Status |
-| *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
-| *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
-## Details
-### Unmet expectation: prefix-namespaces-terminated
-Expectation details: In every @context, each prefix that maps to a string maps to an absolute IRI ending in # or /.
-| Found | Where | Expectation not met because |
-| --- | --- | --- |
-| `"https://schema.org"` | `/@context/schema` | a prefix's namespace ends in # or / |
+| `"Other"` | `/@graph/0/@type/1` | a @type is a compact IRI with a prefix, or an absolute IRI, not a bare name |

@@ -24,6 +24,9 @@ base-web-scheme.schema.json
 base-simple-url.schema.json
 relative-ids-plain.schema.json
 prefix-namespaces-terminated.schema.json
+context-local.schema.json
+context-aliases-absent.schema.json
+types-prefixed-or-absolute.schema.json
 trov-terms-known.schema.json
 root-context-and-graph-only.schema.json
 tro-top-level-in-graph.schema.json

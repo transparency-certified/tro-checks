@@ -1,0 +1,15 @@
+{
+    "@context": {
+        "ex": "https://example.org/terms#",
+        "created": {
+            "@id": "https://example.org/terms#createdAt"
+        }
+    },
+    "@graph": [
+        {
+            "@id": "https://example.org/thing/1",
+            "@type": "ex:Thing",
+            "created": "2026-09-15T00:00:00Z"
+        }
+    ]
+}

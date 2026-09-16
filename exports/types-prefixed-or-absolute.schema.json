@@ -1,0 +1,38 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/types-prefixed-or-absolute.schema.json",
+    "title": "Types prefixed or absolute",
+    "description": "Outside the @context, every @type value is a compact IRI written with a prefix, or an absolute IRI: it has a colon before any slash. A bare name such as Thing would be resolved against the @base, naming a class nobody defined, without an error from any processor. Whether the prefix is declared is a separate expectation.",
+    "summary": "Every `@type` value is a prefixed or absolute IRI, never a bare name",
+    "$defs": {
+        "typeName": {
+            "if": { "type": "string" },
+            "then": {
+                "pattern": "^[A-Za-z][A-Za-z0-9+.-]*:",
+                "errorMessage": {
+                    "pattern": "a @type is a compact IRI with a prefix, or an absolute IRI, not a bare name"
+                }
+            }
+        },
+        "type": {
+            "if": { "type": "array" },
+            "then": { "items": { "$ref": "#/$defs/typeName" } },
+            "else": { "$ref": "#/$defs/typeName" }
+        },
+        "node": {
+            "if": { "type": "object" },
+            "then": {
+                "properties": {
+                    "@context": true,
+                    "@type": { "$ref": "#/$defs/type" }
+                },
+                "additionalProperties": { "$ref": "#/$defs/node" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/node" } }
+            }
+        }
+    },
+    "$ref": "#/$defs/node"
+}

@@ -1,0 +1,54 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/context-aliases-absent.schema.json",
+    "title": "Context aliases absent",
+    "description": "No term definition in an @context renames a property: a term definition has no @id, and its only member is a @type naming a datatype by an absolute or prefixed IRI. A declaration's property names are therefore spelled the same in the JSON as in the vocabulary, so a reader of the plain JSON and a reader of the RDF see the same keys.",
+    "summary": "No term definition aliases a property; a term definition holds only a `@type` naming a datatype",
+    "$defs": {
+        "termDefinition": {
+            "if": { "type": "object" },
+            "then": {
+                "not": { "required": ["@id"] },
+                "properties": {
+                    "@id": true,
+                    "@type": {
+                        "type": "string",
+                        "pattern": "^[A-Za-z][A-Za-z0-9+.-]*:",
+                        "errorMessage": {
+                            "type": "a term definition's @type is a string",
+                            "pattern": "a term definition's @type names a datatype by an absolute or prefixed IRI"
+                        }
+                    }
+                },
+                "additionalProperties": false,
+                "errorMessage": {
+                    "not": "a term definition has no @id, so no term renames a property",
+                    "additionalProperties": "a term definition holds nothing but a @type"
+                }
+            }
+        },
+        "context": {
+            "if": { "type": "object" },
+            "then": {
+                "properties": { "@base": true },
+                "additionalProperties": { "$ref": "#/$defs/termDefinition" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/context" } }
+            }
+        },
+        "node": {
+            "if": { "type": "object" },
+            "then": {
+                "properties": { "@context": { "$ref": "#/$defs/context" } },
+                "additionalProperties": { "$ref": "#/$defs/node" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/node" } }
+            }
+        }
+    },
+    "$ref": "#/$defs/node"
+}

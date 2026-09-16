@@ -35,7 +35,10 @@
             "disallowed-context-keywords-absent",
             "base-web-scheme",
             "base-simple-url",
-            "prefix-namespaces-terminated"
+            "prefix-namespaces-terminated",
+            "context-local",
+            "context-aliases-absent",
+            "types-prefixed-or-absolute"
         ]
     },
     {

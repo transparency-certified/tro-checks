@@ -57,10 +57,13 @@ wrote tmp/instance-object.md; 1 SAFE-JSON met
 | Expectation | Summary | Status |
 | *base-simple-url* | *The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/`* | *not claimed* |
 | *base-web-scheme* | *The `@base`, if any, uses the `https` or `http` scheme* | *not claimed* |
+| *context-aliases-absent* | *No term definition aliases a property; a term definition holds only a `@type` naming a datatype* | *not claimed* |
+| *context-local* | *The `@context` is inline: no string names a remote context* | *not claimed* |
 | *disallowed-context-keywords-absent* | *No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context`* | *not claimed* |
 | *disallowed-node-keywords-absent* | *No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type`* | *not claimed* |
 | *prefix-namespaces-terminated* | *Every prefix maps to an absolute IRI ending in `#` or `/`* | *not claimed* |
 | *root-context-and-graph-only* | *A JSON object with an `@context`, an `@graph`, and nothing else* | *not claimed* |
+| *types-prefixed-or-absolute* | *Every `@type` value is a prefixed or absolute IRI, never a bare name* | *not claimed* |
 | *Tier 4 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
@@ -121,10 +124,13 @@ wrote tmp/instance-number.md; 1 SAFE-JSON met
 | Expectation | Summary | Status |
 | *base-simple-url* | *The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/`* | *not claimed* |
 | *base-web-scheme* | *The `@base`, if any, uses the `https` or `http` scheme* | *not claimed* |
+| *context-aliases-absent* | *No term definition aliases a property; a term definition holds only a `@type` naming a datatype* | *not claimed* |
+| *context-local* | *The `@context` is inline: no string names a remote context* | *not claimed* |
 | *disallowed-context-keywords-absent* | *No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context`* | *not claimed* |
 | *disallowed-node-keywords-absent* | *No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type`* | *not claimed* |
 | *prefix-namespaces-terminated* | *Every prefix maps to an absolute IRI ending in `#` or `/`* | *not claimed* |
 | *root-context-and-graph-only* | *A JSON object with an `@context`, an `@graph`, and nothing else* | *not claimed* |
+| *types-prefixed-or-absolute* | *Every `@type` value is a prefixed or absolute IRI, never a bare name* | *not claimed* |
 | *Tier 4 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
@@ -185,10 +191,13 @@ wrote tmp/instance-bare-word.md; 1 SAFE-JSON unmet
 | Expectation | Summary | Status |
 | *base-simple-url* | *The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/`* | *not claimed* |
 | *base-web-scheme* | *The `@base`, if any, uses the `https` or `http` scheme* | *not claimed* |
+| *context-aliases-absent* | *No term definition aliases a property; a term definition holds only a `@type` naming a datatype* | *not claimed* |
+| *context-local* | *The `@context` is inline: no string names a remote context* | *not claimed* |
 | *disallowed-context-keywords-absent* | *No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context`* | *not claimed* |
 | *disallowed-node-keywords-absent* | *No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type`* | *not claimed* |
 | *prefix-namespaces-terminated* | *Every prefix maps to an absolute IRI ending in `#` or `/`* | *not claimed* |
 | *root-context-and-graph-only* | *A JSON object with an `@context`, an `@graph`, and nothing else* | *not claimed* |
+| *types-prefixed-or-absolute* | *Every `@type` value is a prefixed or absolute IRI, never a bare name* | *not claimed* |
 | *Tier 4 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
@@ -260,10 +269,13 @@ wrote tmp/instance-trailing-comma.md; 1 SAFE-JSON unmet
 | Expectation | Summary | Status |
 | *base-simple-url* | *The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/`* | *not claimed* |
 | *base-web-scheme* | *The `@base`, if any, uses the `https` or `http` scheme* | *not claimed* |
+| *context-aliases-absent* | *No term definition aliases a property; a term definition holds only a `@type` naming a datatype* | *not claimed* |
+| *context-local* | *The `@context` is inline: no string names a remote context* | *not claimed* |
 | *disallowed-context-keywords-absent* | *No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context`* | *not claimed* |
 | *disallowed-node-keywords-absent* | *No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type`* | *not claimed* |
 | *prefix-namespaces-terminated* | *Every prefix maps to an absolute IRI ending in `#` or `/`* | *not claimed* |
 | *root-context-and-graph-only* | *A JSON object with an `@context`, an `@graph`, and nothing else* | *not claimed* |
+| *types-prefixed-or-absolute* | *Every `@type` value is a prefixed or absolute IRI, never a bare name* | *not claimed* |
 | *Tier 4 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
@@ -330,10 +342,13 @@ wrote tmp/instance-bare-word-at-trace-json-ld.md; 1 SAFE-JSON unmet, 2 SAFE-JSON
 | Expectation | Summary | Status |
 | base-simple-url | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | not assessed |
 | base-web-scheme | The `@base`, if any, uses the `https` or `http` scheme | not assessed |
+| context-aliases-absent | No term definition aliases a property; a term definition holds only a `@type` naming a datatype | not assessed |
+| context-local | The `@context` is inline: no string names a remote context | not assessed |
 | disallowed-context-keywords-absent | No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context` | not assessed |
 | disallowed-node-keywords-absent | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | not assessed |
 | prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | not assessed |
 | root-context-and-graph-only | A JSON object with an `@context`, an `@graph`, and nothing else | not assessed |
+| types-prefixed-or-absolute | Every `@type` value is a prefixed or absolute IRI, never a bare name | not assessed |
 | *Tier 4 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *composition-fingerprinted* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |

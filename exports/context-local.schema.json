@@ -1,0 +1,29 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/context-local.schema.json",
+    "title": "Context local",
+    "description": "Every @context is written into the declaration: no @context is a string naming a remote context, and no member of an @context array is one, so reading the declaration never needs the network.",
+    "summary": "The `@context` is inline: no string names a remote context",
+    "$defs": {
+        "context": {
+            "not": { "type": "string" },
+            "errorMessage": {
+                "not": "an @context is written inline, not named by a string that would have to be fetched"
+            },
+            "if": { "type": "array" },
+            "then": { "items": { "$ref": "#/$defs/context" } }
+        },
+        "node": {
+            "if": { "type": "object" },
+            "then": {
+                "properties": { "@context": { "$ref": "#/$defs/context" } },
+                "additionalProperties": { "$ref": "#/$defs/node" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/node" } }
+            }
+        }
+    },
+    "$ref": "#/$defs/node"
+}

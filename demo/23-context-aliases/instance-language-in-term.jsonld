@@ -1,0 +1,15 @@
+{
+    "@context": {
+        "ex": "https://example.org/terms#",
+        "ex:title": {
+            "@language": "en"
+        }
+    },
+    "@graph": [
+        {
+            "@id": "https://example.org/thing/1",
+            "@type": "ex:Thing",
+            "ex:title": "A thing"
+        }
+    ]
+}
