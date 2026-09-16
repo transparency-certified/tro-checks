@@ -149,16 +149,14 @@ const pipeDialect = {
             return emphasized && text ? `*${text}*` : text
         }
 
-        const lines = [
-            `| ${headings.join(' | ')} |`,
-            `| ${headings.map(() => '---').join(' | ')} |`,
-        ]
+        const headingRow = `| ${headings.join(' | ')} |`
+        const lines = [headingRow, `| ${headings.map(() => '---').join(' | ')} |`]
         for (const row of rows) {
             if (isBand(row)) {
                 const label = row.emphasized ? `*${cellText(row.label)}*` : `**${cellText(row.label)}**`
                 const status = row.emphasized ? `*${cellText(row.status)}*` : cellText(row.status)
                 const padding = new Array(Math.max(0, headings.length - 2)).fill('')
-                lines.push(`| ${[label, ...padding, status].join(' | ')} |`)
+                lines.push(`| ${[label, ...padding, status].join(' | ')} |`, headingRow)
             } else {
                 lines.push(`| ${row.cells.map((cell) => setCell(cell, row.emphasized)).join(' | ')} |`)
             }
@@ -227,24 +225,27 @@ const htmlDialect = {
             return `<td>${emphasized && html ? `<em>${html}</em>` : html}</td>`
         }
 
+        const titled = headings.some((heading) => heading !== '')
+        const headingRow = `<tr>${headings.map((heading) => `<th align="left">${inlineHtml(heading)}</th>`).join('')}</tr>`
+
         const lines = ['<table>']
-        if (headings.some((heading) => heading !== '')) {
-            lines.push(
-                '<thead>',
-                `<tr>${headings.map((heading) => `<th align="left">${inlineHtml(heading)}</th>`).join('')}</tr>`,
-                '</thead>',
-            )
-        }
+        // A banded table names its columns under each band rather than once at the top,
+        // so each group reads as its own table while sharing the one set of column widths.
+        const banded = rows.some(isBand)
+        if (titled && !banded) lines.push('<thead>', headingRow, '</thead>')
         lines.push('<tbody>')
         for (const row of rows) {
             if (isBand(row)) {
                 const label = row.emphasized ? `<em>${inlineHtml(row.label)}</em>` : inlineHtml(row.label)
                 const shown = unbroken(escapeHtml(oneLine(row.status)))
                 const status = row.emphasized ? `<em>${shown}</em>` : shown
+                // The leading break is the band's air: a table cannot be given space above
+                // its text without a stylesheet, and GitHub strips one.
                 lines.push(
-                    `<tr><th colspan="${headings.length - 1}" align="left">${label}</th>` +
-                    `<th align="left">${status}</th></tr>`,
+                    `<tr><th colspan="${headings.length - 1}" align="left"><br>${label}</th>` +
+                    `<th align="left"><br>${status}</th></tr>`,
                 )
+                if (titled) lines.push(headingRow)
             } else {
                 lines.push(`<tr>${row.cells.map((cell) => setCell(cell, row.emphasized)).join('')}</tr>`)
             }
