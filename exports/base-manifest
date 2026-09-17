@@ -2,6 +2,7 @@ base-setup
 check-tro check-tro.js
 check-tros check-tros.js
 render-report.js
+render-readme.js
 types.js
 tiers.json
 utf8-encoded.parse.json

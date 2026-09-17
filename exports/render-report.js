@@ -23,7 +23,7 @@
 /**
  * @typedef {object} Band  a row naming the group the rows below it belong to
  * @property {string}  label
- * @property {string}  status       shown in the table's last column, beneath the rows' own statuses
+ * @property {string}  [status]     what the group came to, where the group is one that comes to something
  * @property {boolean} [emphasized]
  */
 /**
@@ -33,6 +33,7 @@
 
 module.exports = {
     renderReportAsMarkdown,
+    htmlTableLines,
 }
 
 const TARGET_SOURCE_LABELS = {
@@ -182,7 +183,7 @@ const pipeDialect = {
         ]
         for (const row of rows) {
             if (isBand(row)) {
-                const named = cellText(`${row.label}  ${row.status}`)
+                const named = cellText(row.status ? `${row.label}  ${row.status}` : row.label)
                 const band = row.emphasized ? `*${named}*` : `**${named}**`
                 const padding = new Array(Math.max(0, headings.length - 1)).fill('')
                 lines.push(`| ${[band, ...padding].join(' | ')} |`, headingRow)
@@ -274,7 +275,8 @@ const htmlDialect = {
         for (const row of rows) {
             if (isBand(row)) {
                 // The whole band is one title, and a title is not shown broken.
-                const named = unbroken(escapeHtml(writable(`${row.label}  ${row.status}`)))
+                const titleText = row.status ? `${row.label}  ${row.status}` : row.label
+                const named = unbroken(escapeHtml(writable(titleText)))
                 const band = row.emphasized ? `<em>${named}</em>` : named
                 // The leading break is the band's air: a table cannot be given space above
                 // its text without a stylesheet, and GitHub strips one.
@@ -289,6 +291,17 @@ const htmlDialect = {
         lines.push('</tbody>', '</table>')
         return lines
     },
+}
+
+/**
+ * The report's HTML tables, for the other documents this repository generates from the
+ * same expectations, so that a table reads the same wherever it appears.
+ * @param {string[]}     headings
+ * @param {(Row|Band)[]} rows
+ * @returns {string[]}
+ */
+function htmlTableLines(headings, rows) {
+    return htmlDialect.table(headings, rows)
 }
 
 /**

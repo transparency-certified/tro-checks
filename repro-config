@@ -24,3 +24,8 @@ start:                  start-repro   ##
 ## update-reviews:    Update REVIEWS.md without running the other reports.
 update-reviews: session
 	$(RUN_IN_REPRO) 'make -C ${REPRO_MNT}/.review-ledger -f report-makefile review'
+
+.PHONY: update-readme
+## update-readme:    Regenerate the README's account of what is checked.
+update-readme: session
+	$(RUN_IN_REPRO) 'node ${REPRO_MNT}/exports/render-readme.js ${REPRO_MNT}'

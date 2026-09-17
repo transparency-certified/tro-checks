@@ -17,13 +17,22 @@ candidate **targets** one tier, named by its ID, and meeting it means meeting
 every expectation in that tier and in the tiers below. Expectations in tiers
 above the target are reported as *not claimed*.
 
-| Tier | ID | What meeting it means |
-| --- | --- | --- |
-| 1 | `SAFE-JSON` | JSON that every supported parser reads the same way |
-| 2 | `SAFE-JSON-LD` | JSON-LD that every supported processor reads the same way |
-| 3 | `TRACE-JSON-LD` | JSON-LD in the restricted form the TRACE Specification<br>defines for TRO declarations |
-| 4 | `STANDALONE-TRO` | A TRO declaration with the structure the TRACE Specification<br>requires, whose references resolve within it |
-| 5 | `LINKABLE-TRO` | A TRO declaration whose element identifiers<br>cannot collide with another TRO's |
+<!-- generated: tier-summary -->
+
+<table>
+<thead>
+<tr><th align="left">Tier</th><th align="left">ID</th><th align="left">What meeting it means</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>SAFE&#8209;JSON</td><td>JSON that every supported parser reads the same way</td></tr>
+<tr><td>2</td><td>SAFE&#8209;JSON&#8209;LD</td><td>JSON-LD that every supported processor reads the same way</td></tr>
+<tr><td>3</td><td>TRACE&#8209;JSON&#8209;LD</td><td>JSON-LD in the restricted form the TRACE Specification defines for TRO declarations</td></tr>
+<tr><td>4</td><td>STANDALONE&#8209;TRO</td><td>A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it</td></tr>
+<tr><td>5</td><td>LINKABLE&#8209;TRO</td><td>A TRO declaration whose element identifiers cannot collide with another TRO's</td></tr>
+</tbody>
+</table>
+
+<!-- end: tier-summary -->
 
 Each expectation is defined by a file in [`exports/`](exports) named for the
 expectation, whose suffix says what checks it. A `<name>.parse.json` expectation
@@ -49,75 +58,62 @@ every *supported* implementation which includes the following:
 | JSON-LD processor | [PyLD](https://github.com/digitalbazaar/pyld) | 3.3.0 |
 | JSON-LD processor | [rdflib](https://github.com/RDFLib/rdflib) | 7.6.0 |
 
-### Tier 1 — SAFE-JSON
+### The expectations in each tier
 
-JSON that every supported parser reads the same way.
+Every tier and its expectations, in the order they are checked. This table is generated
+from [`exports/tiers.json`](exports/tiers.json) and the expectation files themselves by
+`make update-readme`; edit those rather than the rows below.
 
-| Expectation | What it checks |
-| --- | --- |
-| `utf8-encoded` | The candidate is UTF-8 |
-| `json-parses` | The candidate parses as JSON without errors |
-| `duplicate-member-names-absent` | No object repeats a member name |
-| `lone-surrogates-absent` | No string or member name has an unpaired surrogate |
-| `numbers-within-range` | Every number fits a double; every integer is exact |
+<!-- generated: tier-expectations -->
 
-### Tier 2 — SAFE-JSON-LD
+<table>
+<tbody>
+<tr><th colspan="2" align="left"><br>Tier&nbsp;1&nbsp;—&nbsp;SAFE&#8209;JSON</th></tr>
+<tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
+<tr><td><code>utf8-encoded</code></td><td>The candidate is UTF-8</td></tr>
+<tr><td><code>json-parses</code></td><td>The candidate parses as JSON without errors</td></tr>
+<tr><td><code>duplicate-member-names-absent</code></td><td>No object repeats a member name</td></tr>
+<tr><td><code>lone-surrogates-absent</code></td><td>No string or member name has an unpaired surrogate</td></tr>
+<tr><td><code>numbers-within-range</code></td><td>Every number fits a double; every integer is exact</td></tr>
+<tr><th colspan="2" align="left"><br>Tier&nbsp;2&nbsp;—&nbsp;SAFE&#8209;JSON&#8209;LD</th></tr>
+<tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
+<tr><td><code>context-well-formed</code></td><td>The root <code>@context</code>, if any, has a form JSON-LD allows</td></tr>
+<tr><td><code>graph-well-formed</code></td><td>The root <code>@graph</code>, if any, holds objects, not bare values</td></tr>
+<tr><td><code>ids-and-types-strings</code></td><td>Every <code>@id</code> is a string; every <code>@type</code> a string or an array of strings</td></tr>
+<tr><td><code>context-at-root-only</code></td><td>The document's only <code>@context</code> is the one at its root: no node below it and no term definition within it carries another</td></tr>
+<tr><td><code>containers-absent</code></td><td>No <code>@container</code> in a term definition</td></tr>
+<tr><td><code>vocab-absent</code></td><td>No <code>@vocab</code> in a context</td></tr>
+<tr><td><code>context-protection-absent</code></td><td>No <code>@protected</code>, <code>@propagate</code> or <code>@import</code> in a context</td></tr>
+<tr><td><code>id-coercion-absent</code></td><td>No <code>"@type": "@id"</code> in a term definition</td></tr>
+<tr><td><code>graph-at-root-only</code></td><td><code>@graph</code> appears only at the root</td></tr>
+<tr><td><code>relative-ids-plain</code></td><td>Every relative <code>@id</code> is a plain path, with no leading <code>/</code> or <code>@</code>, no <code>.</code> or <code>..</code> segments, and no <code>?</code> or <code>#</code></td></tr>
+<tr><th colspan="2" align="left"><br>Tier&nbsp;3&nbsp;—&nbsp;TRACE&#8209;JSON&#8209;LD</th></tr>
+<tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
+<tr><td><code>root-context-and-graph-only</code></td><td>A JSON object with an <code>@context</code>, an <code>@graph</code>, and nothing else</td></tr>
+<tr><td><code>disallowed-node-keywords-absent</code></td><td>No keyword outside the <code>@context</code> other than <code>@context</code>, <code>@graph</code>, <code>@id</code> and <code>@type</code></td></tr>
+<tr><td><code>disallowed-context-keywords-absent</code></td><td>No member of an <code>@context</code> is a keyword other than <code>@base</code>; what a term definition holds is not a member of the <code>@context</code></td></tr>
+<tr><td><code>base-web-scheme</code></td><td>The <code>@base</code>, if any, uses the <code>https</code> or <code>http</code> scheme</td></tr>
+<tr><td><code>base-simple-url</code></td><td>The <code>@base</code>, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final <code>/</code></td></tr>
+<tr><td><code>prefix-namespaces-terminated</code></td><td>Every prefix maps to an absolute IRI ending in <code>#</code> or <code>/</code></td></tr>
+<tr><td><code>context-local</code></td><td>The <code>@context</code> is inline: no string names a remote context</td></tr>
+<tr><td><code>context-aliases-absent</code></td><td>No term definition aliases a property; a term definition holds only a <code>@type</code> naming a datatype</td></tr>
+<tr><td><code>types-prefixed-or-absolute</code></td><td>Every <code>@type</code> value is a prefixed or absolute IRI, never a bare name</td></tr>
+<tr><th colspan="2" align="left"><br>Tier&nbsp;4&nbsp;—&nbsp;STANDALONE&#8209;TRO</th></tr>
+<tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
+<tr><td><code>core-prefixes-pinned</code></td><td><code>trov</code> is declared and is the only prefix for a TROV namespace; <code>rdf</code>, <code>rdfs</code> and <code>schema</code> prefixes, if declared, are the standard ones</td></tr>
+<tr><td><code>trov-terms-known</code></td><td>Every <code>trov:</code> name is one TROV defines</td></tr>
+<tr><td><code>tro-top-level-in-graph</code></td><td>The TRO is a top-level member of the <code>@graph</code></td></tr>
+<tr><td><code>tro-assembled-by-trs</code></td><td>The TRO names its assembling system, typed as a TRS</td></tr>
+<tr><td><code>composition-fingerprinted</code></td><td>The TRO's composition, if any, carries a fingerprint</td></tr>
+<tr><td><code>hashes-well-formed</code></td><td>The TRO's artifact and fingerprint hashes are well-formed sha256</td></tr>
+<tr><th colspan="2" align="left"><br>Tier&nbsp;5&nbsp;—&nbsp;LINKABLE&#8209;TRO</th></tr>
+<tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
+<tr><td><code>base-declared</code></td><td>The <code>@context</code> includes an <code>@base</code></td></tr>
+<tr><td><code>node-ids-present</code></td><td>Every node carries an explicit <code>@id</code></td></tr>
+</tbody>
+</table>
 
-JSON-LD that every supported processor reads the same way. The constructs excluded here are
-ones common JSON-LD processors do not support consistently: a document using them
-is read one way by one processor and another way by the next, usually without an
-error. The list grows as such constructs are found.
-
-| Expectation | What it checks |
-| --- | --- |
-| `context-well-formed` | The root `@context`, if any, has a form JSON-LD allows |
-| `graph-well-formed` | The root `@graph`, if any, holds objects, not bare values |
-| `ids-and-types-strings` | Every `@id` is a string; every `@type`<br>a string or an array of strings |
-| `context-at-root-only` | The document's only `@context` is the one at its root:<br>no node below it and no term definition<br>within it carries another |
-| `containers-absent` | No `@container` in a term definition |
-| `vocab-absent` | No `@vocab` in a context |
-| `context-protection-absent` | No `@protected`, `@propagate` or `@import`<br>in a context |
-| `id-coercion-absent` | No `"@type": "@id"` in a term definition |
-| `graph-at-root-only` | `@graph` appears only at the root |
-| `relative-ids-plain` | Every relative `@id` is a plain path, with no leading<br>`/` or `@`, no `.` or `..` segments, and no `?` or `#` |
-
-### Tier 3 — TRACE-JSON-LD
-
-JSON-LD in the restricted form the TRACE Specification defines for TRO declarations.
-
-| Expectation | What it checks |
-| --- | --- |
-| `root-context-and-graph-only` | A JSON object with an `@context`, an `@graph`,<br>and nothing else |
-| `disallowed-node-keywords-absent` | No keyword outside the `@context` other than<br>`@context`, `@graph`, `@id` and `@type` |
-| `disallowed-context-keywords-absent` | No member of an `@context` is a keyword other than<br>`@base`; what a term definition holds is not a member<br>of the `@context` |
-| `base-web-scheme` | The `@base`, if any, uses the `https` or `http` scheme |
-| `base-simple-url` | The `@base`, if any, is a simple URL: a host,<br>no user info, dot segments, query or fragment,<br>only URL characters, and a final `/` |
-| `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` |
-| `context-local` | The `@context` is inline: no string names a remote context |
-| `context-aliases-absent` | No term definition aliases a property; a term definition<br>holds only a `@type` naming a datatype |
-| `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI,<br>never a bare name |
-
-### Tier 4 — STANDALONE-TRO
-
-A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it.
-
-| Expectation | What it checks |
-| --- | --- |
-| `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace;<br>`rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones |
-| `trov-terms-known` | Every `trov:` name is one TROV defines |
-| `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` |
-| `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS |
-| `composition-fingerprinted` | The TRO's composition, if any, carries a fingerprint |
-| `hashes-well-formed` | The TRO's artifact and fingerprint hashes<br>are well-formed sha256 |
-
-### Tier 5 — LINKABLE-TRO
-
-A TRO declaration whose element identifiers cannot collide with another TRO's.
-
-| Expectation | What it checks |
-| --- | --- |
-| `base-declared` | The `@context` includes an `@base` |
-| `node-ids-present` | Every node carries an explicit `@id` |
+<!-- end: tier-expectations -->
 
 ## Reports
 
@@ -186,6 +182,7 @@ manifest, the `--target` option, or the default.
 | [`exports/tiers.json`](exports/tiers.json) | The tiers in order, each with its ID, description, and the expectations that belong to it. An expectation file that no tier lists, a listed expectation with no file, or a tier with no expectations stops every run. |
 | [`exports/check-tro.js`](exports/check-tro.js) | The checker. Applies the expectations in a candidate's target and writes the report. Installed as `check-tro`. |
 | [`exports/check-tros.js`](exports/check-tros.js) | Runs the checker over the candidates the manifest names, each at its own target, writing `reports/<name>.md` for each. Installed as `check-tros`. |
+| [`exports/render-readme.js`](exports/render-readme.js) | Writes this README's account of what is checked from the tiers and the expectations themselves. Run by `make update-readme`. |
 | [`pseudocode/`](pseudocode) | What the checker does, in outline. |
 | [`GLOSSARY.md`](GLOSSARY.md) | The key entities the tools in this repository concern. |
 | [`models/`](models/README.md) | How the key entities fit together, each subject modeled in more than one paradigm. |
@@ -212,6 +209,10 @@ Put a `<name>.schema.json` with a `summary` and a `description` in
 [`exports/`](exports), and a `requires` listing any expectations in its tier
 that must be met before it is checked. List it in
 [`exports/base-manifest`](exports/base-manifest), and assign it to a tier in
-[`exports/tiers.json`](exports/tiers.json). Add its row to its tier's table under *What is checked*
-above and to [`CAPABILITIES.md`](CAPABILITIES.md), and include a demo in
-[`demo/`](demo).
+[`exports/tiers.json`](exports/tiers.json). Then run `make update-readme`, which
+writes its row into the table under *What is checked* above from the `summary`
+you gave it. Add it to [`CAPABILITIES.md`](CAPABILITIES.md), and include a demo
+in [`demo/`](demo).
+
+The `summary` is the row. Write it as plain prose with no line breaks of your
+own: the table is HTML, and the reader's browser breaks it to the width it has.
