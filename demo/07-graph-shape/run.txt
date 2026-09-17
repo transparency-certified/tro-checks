@@ -26,7 +26,7 @@ wrote tmp/instance-graph-node-object.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met
 | --- | --- | --- | --- |
 | 1 | SAFE-JSON | JSON that every supported parser reads the same way | ✅ met |
 | 2 | SAFE-JSON-LD | JSON-LD that every supported processor reads the same way | ✅ met |
-| *3* | *TRACE-JSON-LD* | *JSON-LD in the restricted form the TRACE Specification defines for TRO declarations* | *not claimed* |
+| *3* | *TRACE-JSON-LD* | *JSON-LD in the restricted form the TRACE Specification requires for TRO declarations* | *not claimed* |
 | *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
 | *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
 ## Expectation Findings by Tier
@@ -101,7 +101,7 @@ wrote tmp/instance-graph-string.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | --- | --- | --- | --- |
 | 1 | SAFE-JSON | JSON that every supported parser reads the same way | ✅ met |
 | 2 | SAFE-JSON-LD | JSON-LD that every supported processor reads the same way | ❌ not met |
-| *3* | *TRACE-JSON-LD* | *JSON-LD in the restricted form the TRACE Specification defines for TRO declarations* | *not claimed* |
+| *3* | *TRACE-JSON-LD* | *JSON-LD in the restricted form the TRACE Specification requires for TRO declarations* | *not claimed* |
 | *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
 | *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
 ## Expectation Findings by Tier
@@ -185,7 +185,7 @@ wrote tmp/instance-graph-array.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met
 | --- | --- | --- | --- |
 | 1 | SAFE-JSON | JSON that every supported parser reads the same way | ✅ met |
 | 2 | SAFE-JSON-LD | JSON-LD that every supported processor reads the same way | ✅ met |
-| *3* | *TRACE-JSON-LD* | *JSON-LD in the restricted form the TRACE Specification defines for TRO declarations* | *not claimed* |
+| *3* | *TRACE-JSON-LD* | *JSON-LD in the restricted form the TRACE Specification requires for TRO declarations* | *not claimed* |
 | *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
 | *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
 ## Expectation Findings by Tier
@@ -263,7 +263,7 @@ wrote tmp/instance-graph-array-with-scalar.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD u
 | --- | --- | --- | --- |
 | 1 | SAFE-JSON | JSON that every supported parser reads the same way | ✅ met |
 | 2 | SAFE-JSON-LD | JSON-LD that every supported processor reads the same way | ❌ not met |
-| *3* | *TRACE-JSON-LD* | *JSON-LD in the restricted form the TRACE Specification defines for TRO declarations* | *not claimed* |
+| *3* | *TRACE-JSON-LD* | *JSON-LD in the restricted form the TRACE Specification requires for TRO declarations* | *not claimed* |
 | *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
 | *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
 ## Expectation Findings by Tier

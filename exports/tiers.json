@@ -28,7 +28,7 @@
     },
     {
         "id": "TRACE-JSON-LD",
-        "description": "JSON-LD in the restricted form the TRACE Specification defines for TRO declarations",
+        "description": "JSON-LD in the restricted form the TRACE Specification requires for TRO declarations",
         "expectations": [
             "root-context-and-graph-only",
             "disallowed-node-keywords-absent",
