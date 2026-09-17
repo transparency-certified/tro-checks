@@ -271,24 +271,36 @@ const htmlDialect = {
         // so each group reads as its own table while sharing the one set of column widths.
         const banded = rows.some(isBand)
         if (titled && !banded) lines.push('<thead>', headingRow(), '</thead>')
-        lines.push('<tbody>')
+
+        // Each band opens a body of its own. A renderer that shades alternate rows counts
+        // them within their body -- GitHub does -- so every band falls at the same place in
+        // the alternation however many rows the band before it held.
+        let within = false
+        const open = () => {
+            if (!within) lines.push('<tbody>')
+            within = true
+        }
         for (const row of rows) {
+            const receded = row.emphasized ? RECEDED : ''
             if (isBand(row)) {
+                if (within) lines.push('</tbody>')
+                within = false
+                open()
                 // The whole band is one title, and a title is not shown broken.
                 const titleText = row.status ? `${row.label}  ${row.status}` : row.label
                 const named = unbroken(escapeHtml(writable(titleText)))
                 const band = row.emphasized ? `<em>${named}</em>` : named
                 // The leading break is the band's air: a table cannot be given space above
                 // its text without a stylesheet, and GitHub strips one.
-                const receded = row.emphasized ? RECEDED : ''
                 lines.push(`<tr${receded}><th colspan="${headings.length}" align="left"><br>${band}</th></tr>`)
                 if (titled) lines.push(headingRow(receded))
             } else {
-                const receded = row.emphasized ? RECEDED : ''
+                open()
                 lines.push(`<tr${receded}>${row.cells.map((cell) => setCell(cell, row.emphasized)).join('')}</tr>`)
             }
         }
-        lines.push('</tbody>', '</table>')
+        if (within) lines.push('</tbody>')
+        lines.push('</table>')
         return lines
     },
 }

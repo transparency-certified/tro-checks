@@ -75,6 +75,8 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <tr><td><code>duplicate-member-names-absent</code></td><td>No object repeats a member name</td></tr>
 <tr><td><code>lone-surrogates-absent</code></td><td>No string or member name has an unpaired surrogate</td></tr>
 <tr><td><code>numbers-within-range</code></td><td>Every number fits a double; every integer is exact</td></tr>
+</tbody>
+<tbody>
 <tr><th colspan="2" align="left"><br>Tier&nbsp;2&nbsp;—&nbsp;SAFE&#8209;JSON&#8209;LD</th></tr>
 <tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
 <tr><td><code>context-well-formed</code></td><td>The root <code>@context</code>, if any, has a form JSON-LD allows</td></tr>
@@ -87,6 +89,8 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <tr><td><code>id-coercion-absent</code></td><td>No <code>"@type": "@id"</code> in a term definition</td></tr>
 <tr><td><code>graph-at-root-only</code></td><td><code>@graph</code> appears only at the root</td></tr>
 <tr><td><code>relative-ids-plain</code></td><td>Every relative <code>@id</code> is a plain path, with no leading <code>/</code> or <code>@</code>, no <code>.</code> or <code>..</code> segments, and no <code>?</code> or <code>#</code></td></tr>
+</tbody>
+<tbody>
 <tr><th colspan="2" align="left"><br>Tier&nbsp;3&nbsp;—&nbsp;TRACE&#8209;JSON&#8209;LD</th></tr>
 <tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
 <tr><td><code>root-context-and-graph-only</code></td><td>A JSON object with an <code>@context</code>, an <code>@graph</code>, and nothing else</td></tr>
@@ -98,6 +102,8 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <tr><td><code>context-local</code></td><td>The <code>@context</code> is inline: no string names a remote context</td></tr>
 <tr><td><code>context-aliases-absent</code></td><td>No term definition aliases a property; a term definition holds only a <code>@type</code> naming a datatype</td></tr>
 <tr><td><code>types-prefixed-or-absolute</code></td><td>Every <code>@type</code> value is a prefixed or absolute IRI, never a bare name</td></tr>
+</tbody>
+<tbody>
 <tr><th colspan="2" align="left"><br>Tier&nbsp;4&nbsp;—&nbsp;STANDALONE&#8209;TRO</th></tr>
 <tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
 <tr><td><code>core-prefixes-pinned</code></td><td><code>trov</code> is declared and is the only prefix for a TROV namespace; <code>rdf</code>, <code>rdfs</code> and <code>schema</code> prefixes, if declared, are the standard ones</td></tr>
@@ -106,6 +112,8 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <tr><td><code>tro-assembled-by-trs</code></td><td>The TRO names its assembling system, typed as a TRS</td></tr>
 <tr><td><code>composition-fingerprinted</code></td><td>The TRO's composition, if any, carries a fingerprint</td></tr>
 <tr><td><code>hashes-well-formed</code></td><td>The TRO's artifact and fingerprint hashes are well-formed sha256</td></tr>
+</tbody>
+<tbody>
 <tr><th colspan="2" align="left"><br>Tier&nbsp;5&nbsp;—&nbsp;LINKABLE&#8209;TRO</th></tr>
 <tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
 <tr><td><code>base-declared</code></td><td>The <code>@context</code> includes an <code>@base</code></td></tr>
