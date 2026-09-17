@@ -40,50 +40,50 @@ wrote tmp/instance-tro-in-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | --- | --- | --- |
 | **Tier 1 — SAFE-JSON  ✅ met** |  |  |
 | Expectation | Summary | Status |
-| duplicate-member-names-absent | No object repeats a member name | ✅ met |
-| json-parses | The candidate parses as JSON without errors | ✅ met |
-| lone-surrogates-absent | No string or member name has an unpaired surrogate | ✅ met |
-| numbers-within-range | Every number fits a double; every integer is exact | ✅ met |
-| utf8-encoded | The candidate is UTF-8 | ✅ met |
+| `duplicate-member-names-absent` | No object repeats a member name | ✅ met |
+| `json-parses` | The candidate parses as JSON without errors | ✅ met |
+| `lone-surrogates-absent` | No string or member name has an unpaired surrogate | ✅ met |
+| `numbers-within-range` | Every number fits a double; every integer is exact | ✅ met |
+| `utf8-encoded` | The candidate is UTF-8 | ✅ met |
 | **Tier 2 — SAFE-JSON-LD  ✅ met** |  |  |
 | Expectation | Summary | Status |
-| containers-absent | No `@container` in a term definition | ✅ met |
-| context-at-root-only | The document's only `@context` is the one at its root: no node below it and no term definition within it carries another | ✅ met |
-| context-protection-absent | No `@protected`, `@propagate` or `@import` in a context | ✅ met |
-| context-well-formed | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
-| graph-at-root-only | `@graph` appears only at the root | ✅ met |
-| graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
-| id-coercion-absent | No `"@type": "@id"` in a term definition | ✅ met |
-| id-segments-portable | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
-| ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
-| vocab-absent | No `@vocab` in a context | ✅ met |
+| `containers-absent` | No `@container` in a term definition | ✅ met |
+| `context-at-root-only` | The document's only `@context` is the one at its root: no node below it and no term definition within it carries another | ✅ met |
+| `context-protection-absent` | No `@protected`, `@propagate` or `@import` in a context | ✅ met |
+| `context-well-formed` | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
+| `graph-at-root-only` | `@graph` appears only at the root | ✅ met |
+| `graph-well-formed` | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| `id-coercion-absent` | No `"@type": "@id"` in a term definition | ✅ met |
+| `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
+| `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
+| `vocab-absent` | No `@vocab` in a context | ✅ met |
 | **Tier 3 — TRACE-JSON-LD  ✅ met** |  |  |
 | Expectation | Summary | Status |
-| base-simple-url | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
-| base-web-scheme | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
-| context-aliases-absent | No term definition aliases a property; a term definition holds only a `@type` naming a datatype | ✅ met |
-| context-local | The `@context` is inline: no string names a remote context | ✅ met |
-| disallowed-context-keywords-absent | No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context` | ✅ met |
-| disallowed-node-keywords-absent | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
-| prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
-| root-context-and-graph-only | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
-| types-prefixed-or-absolute | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
+| `base-simple-url` | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
+| `base-web-scheme` | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
+| `context-aliases-absent` | No term definition aliases a property; a term definition holds only a `@type` naming a datatype | ✅ met |
+| `context-local` | The `@context` is inline: no string names a remote context | ✅ met |
+| `disallowed-context-keywords-absent` | No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context` | ✅ met |
+| `disallowed-node-keywords-absent` | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
+| `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
+| `root-context-and-graph-only` | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
+| `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
 | **Tier 4 — STANDALONE-TRO  ✅ met** |  |  |
 | Expectation | Summary | Status |
-| composition-fingerprinted | The TRO's composition, if any, carries a fingerprint | ✅ met |
-| core-prefixes-pinned | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
-| hashes-well-formed | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
-| tro-assembled-by-trs | The TRO names its assembling system, typed as a TRS | ✅ met |
-| tro-top-level-in-graph | The TRO is a top-level member of the `@graph` | ✅ met |
-| trov-terms-known | Every `trov:` name is one TROV defines | ✅ met |
+| `composition-fingerprinted` | The TRO's composition, if any, carries a fingerprint | ✅ met |
+| `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
+| `hashes-well-formed` | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
+| `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS | ✅ met |
+| `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
+| `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
 | *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
-| *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
-| *base-has-path* | *The `@base` names something below the host, not the host alone* | *not claimed* |
-| *base-host-lowercase* | *The `@base` host is lowercase* | *not claimed* |
-| *base-host-ownable* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
-| *blank-node-ids-absent* | *No `@id` is a blank node identifier* | *not claimed* |
-| *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
+| *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
+| *`base-has-path`* | *The `@base` names something below the host, not the host alone* | *not claimed* |
+| *`base-host-lowercase`* | *The `@base` host is lowercase* | *not claimed* |
+| *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
+| *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
+| *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 
 ----- [2] expectation unmet: the @graph holds no TRO, so the expectations requiring one are not assessed -----
 
@@ -120,50 +120,50 @@ wrote tmp/instance-no-tro-in-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TR
 | --- | --- | --- |
 | **Tier 1 — SAFE-JSON  ✅ met** |  |  |
 | Expectation | Summary | Status |
-| duplicate-member-names-absent | No object repeats a member name | ✅ met |
-| json-parses | The candidate parses as JSON without errors | ✅ met |
-| lone-surrogates-absent | No string or member name has an unpaired surrogate | ✅ met |
-| numbers-within-range | Every number fits a double; every integer is exact | ✅ met |
-| utf8-encoded | The candidate is UTF-8 | ✅ met |
+| `duplicate-member-names-absent` | No object repeats a member name | ✅ met |
+| `json-parses` | The candidate parses as JSON without errors | ✅ met |
+| `lone-surrogates-absent` | No string or member name has an unpaired surrogate | ✅ met |
+| `numbers-within-range` | Every number fits a double; every integer is exact | ✅ met |
+| `utf8-encoded` | The candidate is UTF-8 | ✅ met |
 | **Tier 2 — SAFE-JSON-LD  ✅ met** |  |  |
 | Expectation | Summary | Status |
-| containers-absent | No `@container` in a term definition | ✅ met |
-| context-at-root-only | The document's only `@context` is the one at its root: no node below it and no term definition within it carries another | ✅ met |
-| context-protection-absent | No `@protected`, `@propagate` or `@import` in a context | ✅ met |
-| context-well-formed | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
-| graph-at-root-only | `@graph` appears only at the root | ✅ met |
-| graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
-| id-coercion-absent | No `"@type": "@id"` in a term definition | ✅ met |
-| id-segments-portable | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
-| ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
-| vocab-absent | No `@vocab` in a context | ✅ met |
+| `containers-absent` | No `@container` in a term definition | ✅ met |
+| `context-at-root-only` | The document's only `@context` is the one at its root: no node below it and no term definition within it carries another | ✅ met |
+| `context-protection-absent` | No `@protected`, `@propagate` or `@import` in a context | ✅ met |
+| `context-well-formed` | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
+| `graph-at-root-only` | `@graph` appears only at the root | ✅ met |
+| `graph-well-formed` | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| `id-coercion-absent` | No `"@type": "@id"` in a term definition | ✅ met |
+| `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
+| `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
+| `vocab-absent` | No `@vocab` in a context | ✅ met |
 | **Tier 3 — TRACE-JSON-LD  ✅ met** |  |  |
 | Expectation | Summary | Status |
-| base-simple-url | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
-| base-web-scheme | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
-| context-aliases-absent | No term definition aliases a property; a term definition holds only a `@type` naming a datatype | ✅ met |
-| context-local | The `@context` is inline: no string names a remote context | ✅ met |
-| disallowed-context-keywords-absent | No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context` | ✅ met |
-| disallowed-node-keywords-absent | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
-| prefix-namespaces-terminated | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
-| root-context-and-graph-only | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
-| types-prefixed-or-absolute | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
+| `base-simple-url` | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
+| `base-web-scheme` | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
+| `context-aliases-absent` | No term definition aliases a property; a term definition holds only a `@type` naming a datatype | ✅ met |
+| `context-local` | The `@context` is inline: no string names a remote context | ✅ met |
+| `disallowed-context-keywords-absent` | No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context` | ✅ met |
+| `disallowed-node-keywords-absent` | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
+| `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
+| `root-context-and-graph-only` | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
+| `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
 | **Tier 4 — STANDALONE-TRO  ❌ not met** |  |  |
 | Expectation | Summary | Status |
-| composition-fingerprinted | The TRO's composition, if any, carries a fingerprint | not assessed |
-| core-prefixes-pinned | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
-| hashes-well-formed | The TRO's artifact and fingerprint hashes are well-formed sha256 | not assessed |
-| tro-assembled-by-trs | The TRO names its assembling system, typed as a TRS | not assessed |
-| tro-top-level-in-graph | The TRO is a top-level member of the `@graph` | ❌ not met |
-| trov-terms-known | Every `trov:` name is one TROV defines | ✅ met |
+| `composition-fingerprinted` | The TRO's composition, if any, carries a fingerprint | not assessed |
+| `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
+| `hashes-well-formed` | The TRO's artifact and fingerprint hashes are well-formed sha256 | not assessed |
+| `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS | not assessed |
+| `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ❌ not met |
+| `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
 | *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
-| *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
-| *base-has-path* | *The `@base` names something below the host, not the host alone* | *not claimed* |
-| *base-host-lowercase* | *The `@base` host is lowercase* | *not claimed* |
-| *base-host-ownable* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
-| *blank-node-ids-absent* | *No `@id` is a blank node identifier* | *not claimed* |
-| *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
+| *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
+| *`base-has-path`* | *The `@base` names something below the host, not the host alone* | *not claimed* |
+| *`base-host-lowercase`* | *The `@base` host is lowercase* | *not claimed* |
+| *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
+| *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
+| *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 ## Details
 ### Unmet expectation: tro-top-level-in-graph
 Expectation details: Where a declaration carries an @graph, it is an array and a top-level member of it is the TRO: a node typed trov:TransparentResearchObject.

@@ -104,10 +104,7 @@ const isHighSurrogate = (code) => code >= HIGH_SURROGATE_FIRST && code <= HIGH_S
 const isLowSurrogate = (code) => code >= LOW_SURROGATE_FIRST && code <= LOW_SURROGATE_LAST
 
 /**
- * Text as the report can write it: the newlines an authored sentence may carry collapsed,
- * no cell holding one, and every unpaired surrogate written as its escape. UTF-8 cannot
- * encode a lone surrogate, so a report carrying one is written with U+FFFD in its place,
- * and a pointer that named the offending member would name one the candidate does not have.
+ * Text as the report can write it: newlines collapsed and every unpaired surrogate written as its escape.
  * @param {string} text
  * @returns {string}
  */
@@ -174,8 +171,6 @@ const pipeDialect = {
         }
 
         const headingRow = `| ${headings.join(' | ')} |`
-        // Markdown demands a header row. A banded table names its columns under each band
-        // instead, so the row it demands is left empty rather than said twice over.
         const banded = rows.some(isBand)
         const lines = [
             banded ? `| ${headings.map(() => '').join(' | ')} |` : headingRow,
@@ -209,8 +204,7 @@ function escapeHtml(text) {
 }
 
 /**
- * Sets an atom as HTML: the spaces and hyphens within it are the ones a browser would
- * break at, so each is written as the character that does not break.
+ * Sets an atom as HTML, each space and hyphen written as the character that does not break.
  * @param {string} text  already escaped
  * @returns {string}
  */
@@ -238,10 +232,7 @@ function inlineHtml(text) {
         .join('')
 }
 
-/**
- * Sets a row back from the ones it sits among, for what the candidate does not claim.
- * Readers whose renderer drops the attribute -- GitHub strips it -- still have the italics.
- */
+/** Sets a row back from the ones it sits among, for what the candidate does not claim. */
 const RECEDED = ' style="color: var(--vscode-descriptionForeground, #767676)"'
 
 /** @type {Dialect} */
@@ -258,7 +249,9 @@ const htmlDialect = {
                 : 'code' in cell
                     ? `<code>${escapeHtml(writable(cell.code))}</code>`
                     : unbroken(escapeHtml(writable(cell.atom)))
-            return `<td>${emphasized && html ? `<em>${html}</em>` : html}</td>`
+            const oneToken = typeof cell !== 'string' && 'code' in cell && !/\s/.test(cell.code)
+            const attributes = oneToken ? ' nowrap' : ''
+            return `<td${attributes}>${emphasized && html ? `<em>${html}</em>` : html}</td>`
         }
 
         const titled = headings.some((heading) => heading !== '')
@@ -267,14 +260,9 @@ const htmlDialect = {
         const headingRow = (receded = '') => `<tr${receded}>${headingCells}</tr>`
 
         const lines = ['<table>']
-        // A banded table names its columns under each band rather than once at the top,
-        // so each group reads as its own table while sharing the one set of column widths.
         const banded = rows.some(isBand)
         if (titled && !banded) lines.push('<thead>', headingRow(), '</thead>')
 
-        // Each band opens a body of its own. A renderer that shades alternate rows counts
-        // them within their body -- GitHub does -- so every band falls at the same place in
-        // the alternation however many rows the band before it held.
         let within = false
         const open = () => {
             if (!within) lines.push('<tbody>')
@@ -286,12 +274,9 @@ const htmlDialect = {
                 if (within) lines.push('</tbody>')
                 within = false
                 open()
-                // The whole band is one title, and a title is not shown broken.
                 const titleText = row.status ? `${row.label}  ${row.status}` : row.label
                 const named = unbroken(escapeHtml(writable(titleText)))
                 const band = row.emphasized ? `<em>${named}</em>` : named
-                // The leading break is the band's air: a table cannot be given space above
-                // its text without a stylesheet, and GitHub strips one.
                 lines.push(`<tr${receded}><th colspan="${headings.length}" align="left"><br>${band}</th></tr>`)
                 if (titled) lines.push(headingRow(receded))
             } else {
@@ -306,8 +291,7 @@ const htmlDialect = {
 }
 
 /**
- * The report's HTML tables, for the other documents this repository generates from the
- * same expectations, so that a table reads the same wherever it appears.
+ * The report's HTML tables, for the other documents this repository generates from the same expectations.
  * @param {string[]}     headings
  * @param {(Row|Band)[]} rows
  * @returns {string[]}
@@ -379,8 +363,7 @@ function tierTableLines(tiers, assessments, dialect) {
 }
 
 /**
- * Every tier's expectations in one table, each tier introduced by a band carrying the
- * tier's name and its assessment status.
+ * Every tier's expectations in one table, each tier introduced by a band carrying its name and status.
  * @param {Tier[]}       tiers
  * @param {Finding[]}    findings
  * @param {Assessment[]} assessments
@@ -396,7 +379,7 @@ function tierFindingsLines(tiers, findings, assessments, dialect) {
         for (const finding of findings.filter((each) => each.expectation.tier.number === tier.number)) {
             const { expectation } = finding
             rows.push({
-                cells: [expectation.name, expectation.summary, { atom: statusLabel(finding.outcome) }],
+                cells: [{ code: expectation.name }, expectation.summary, { atom: statusLabel(finding.outcome) }],
                 emphasized: finding.outcome === 'not claimed',
             })
         }

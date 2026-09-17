@@ -70,58 +70,58 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <tbody>
 <tr><th colspan="2" align="left"><br>Tier&nbsp;1&nbsp;—&nbsp;SAFE&#8209;JSON</th></tr>
 <tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
-<tr><td><code>utf8-encoded</code></td><td>The candidate is UTF-8</td></tr>
-<tr><td><code>json-parses</code></td><td>The candidate parses as JSON without errors</td></tr>
-<tr><td><code>duplicate-member-names-absent</code></td><td>No object repeats a member name</td></tr>
-<tr><td><code>lone-surrogates-absent</code></td><td>No string or member name has an unpaired surrogate</td></tr>
-<tr><td><code>numbers-within-range</code></td><td>Every number fits a double; every integer is exact</td></tr>
+<tr><td nowrap><code>utf8-encoded</code></td><td>The candidate is UTF-8</td></tr>
+<tr><td nowrap><code>json-parses</code></td><td>The candidate parses as JSON without errors</td></tr>
+<tr><td nowrap><code>duplicate-member-names-absent</code></td><td>No object repeats a member name</td></tr>
+<tr><td nowrap><code>lone-surrogates-absent</code></td><td>No string or member name has an unpaired surrogate</td></tr>
+<tr><td nowrap><code>numbers-within-range</code></td><td>Every number fits a double; every integer is exact</td></tr>
 </tbody>
 <tbody>
 <tr><th colspan="2" align="left"><br>Tier&nbsp;2&nbsp;—&nbsp;SAFE&#8209;JSON&#8209;LD</th></tr>
 <tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
-<tr><td><code>context-well-formed</code></td><td>The root <code>@context</code>, if any, has a form JSON-LD allows</td></tr>
-<tr><td><code>graph-well-formed</code></td><td>The root <code>@graph</code>, if any, holds objects, not bare values</td></tr>
-<tr><td><code>ids-and-types-strings</code></td><td>Every <code>@id</code> is a string; every <code>@type</code> a string or an array of strings</td></tr>
-<tr><td><code>context-at-root-only</code></td><td>The document's only <code>@context</code> is the one at its root: no node below it and no term definition within it carries another</td></tr>
-<tr><td><code>containers-absent</code></td><td>No <code>@container</code> in a term definition</td></tr>
-<tr><td><code>vocab-absent</code></td><td>No <code>@vocab</code> in a context</td></tr>
-<tr><td><code>context-protection-absent</code></td><td>No <code>@protected</code>, <code>@propagate</code> or <code>@import</code> in a context</td></tr>
-<tr><td><code>id-coercion-absent</code></td><td>No <code>"@type": "@id"</code> in a term definition</td></tr>
-<tr><td><code>graph-at-root-only</code></td><td><code>@graph</code> appears only at the root</td></tr>
-<tr><td><code>id-segments-portable</code></td><td>Every segment of a relative <code>@id</code> is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit</td></tr>
+<tr><td nowrap><code>context-well-formed</code></td><td>The root <code>@context</code>, if any, has a form JSON-LD allows</td></tr>
+<tr><td nowrap><code>graph-well-formed</code></td><td>The root <code>@graph</code>, if any, holds objects, not bare values</td></tr>
+<tr><td nowrap><code>ids-and-types-strings</code></td><td>Every <code>@id</code> is a string; every <code>@type</code> a string or an array of strings</td></tr>
+<tr><td nowrap><code>context-at-root-only</code></td><td>The document's only <code>@context</code> is the one at its root: no node below it and no term definition within it carries another</td></tr>
+<tr><td nowrap><code>containers-absent</code></td><td>No <code>@container</code> in a term definition</td></tr>
+<tr><td nowrap><code>vocab-absent</code></td><td>No <code>@vocab</code> in a context</td></tr>
+<tr><td nowrap><code>context-protection-absent</code></td><td>No <code>@protected</code>, <code>@propagate</code> or <code>@import</code> in a context</td></tr>
+<tr><td nowrap><code>id-coercion-absent</code></td><td>No <code>"@type": "@id"</code> in a term definition</td></tr>
+<tr><td nowrap><code>graph-at-root-only</code></td><td><code>@graph</code> appears only at the root</td></tr>
+<tr><td nowrap><code>id-segments-portable</code></td><td>Every segment of a relative <code>@id</code> is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit</td></tr>
 </tbody>
 <tbody>
 <tr><th colspan="2" align="left"><br>Tier&nbsp;3&nbsp;—&nbsp;TRACE&#8209;JSON&#8209;LD</th></tr>
 <tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
-<tr><td><code>root-context-and-graph-only</code></td><td>A JSON object with an <code>@context</code>, an <code>@graph</code>, and nothing else</td></tr>
-<tr><td><code>disallowed-node-keywords-absent</code></td><td>No keyword outside the <code>@context</code> other than <code>@context</code>, <code>@graph</code>, <code>@id</code> and <code>@type</code></td></tr>
-<tr><td><code>disallowed-context-keywords-absent</code></td><td>No member of an <code>@context</code> is a keyword other than <code>@base</code>; what a term definition holds is not a member of the <code>@context</code></td></tr>
-<tr><td><code>base-web-scheme</code></td><td>The <code>@base</code>, if any, uses the <code>https</code> or <code>http</code> scheme</td></tr>
-<tr><td><code>base-simple-url</code></td><td>The <code>@base</code>, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final <code>/</code></td></tr>
-<tr><td><code>prefix-namespaces-terminated</code></td><td>Every prefix maps to an absolute IRI ending in <code>#</code> or <code>/</code></td></tr>
-<tr><td><code>context-local</code></td><td>The <code>@context</code> is inline: no string names a remote context</td></tr>
-<tr><td><code>context-aliases-absent</code></td><td>No term definition aliases a property; a term definition holds only a <code>@type</code> naming a datatype</td></tr>
-<tr><td><code>types-prefixed-or-absolute</code></td><td>Every <code>@type</code> value is a prefixed or absolute IRI, never a bare name</td></tr>
+<tr><td nowrap><code>root-context-and-graph-only</code></td><td>A JSON object with an <code>@context</code>, an <code>@graph</code>, and nothing else</td></tr>
+<tr><td nowrap><code>disallowed-node-keywords-absent</code></td><td>No keyword outside the <code>@context</code> other than <code>@context</code>, <code>@graph</code>, <code>@id</code> and <code>@type</code></td></tr>
+<tr><td nowrap><code>disallowed-context-keywords-absent</code></td><td>No member of an <code>@context</code> is a keyword other than <code>@base</code>; what a term definition holds is not a member of the <code>@context</code></td></tr>
+<tr><td nowrap><code>base-web-scheme</code></td><td>The <code>@base</code>, if any, uses the <code>https</code> or <code>http</code> scheme</td></tr>
+<tr><td nowrap><code>base-simple-url</code></td><td>The <code>@base</code>, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final <code>/</code></td></tr>
+<tr><td nowrap><code>prefix-namespaces-terminated</code></td><td>Every prefix maps to an absolute IRI ending in <code>#</code> or <code>/</code></td></tr>
+<tr><td nowrap><code>context-local</code></td><td>The <code>@context</code> is inline: no string names a remote context</td></tr>
+<tr><td nowrap><code>context-aliases-absent</code></td><td>No term definition aliases a property; a term definition holds only a <code>@type</code> naming a datatype</td></tr>
+<tr><td nowrap><code>types-prefixed-or-absolute</code></td><td>Every <code>@type</code> value is a prefixed or absolute IRI, never a bare name</td></tr>
 </tbody>
 <tbody>
 <tr><th colspan="2" align="left"><br>Tier&nbsp;4&nbsp;—&nbsp;STANDALONE&#8209;TRO</th></tr>
 <tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
-<tr><td><code>core-prefixes-pinned</code></td><td><code>trov</code> is declared and is the only prefix for a TROV namespace; <code>rdf</code>, <code>rdfs</code> and <code>schema</code> prefixes, if declared, are the standard ones</td></tr>
-<tr><td><code>trov-terms-known</code></td><td>Every <code>trov:</code> name is one TROV defines</td></tr>
-<tr><td><code>tro-top-level-in-graph</code></td><td>The TRO is a top-level member of the <code>@graph</code></td></tr>
-<tr><td><code>tro-assembled-by-trs</code></td><td>The TRO names its assembling system, typed as a TRS</td></tr>
-<tr><td><code>composition-fingerprinted</code></td><td>The TRO's composition, if any, carries a fingerprint</td></tr>
-<tr><td><code>hashes-well-formed</code></td><td>The TRO's artifact and fingerprint hashes are well-formed sha256</td></tr>
+<tr><td nowrap><code>core-prefixes-pinned</code></td><td><code>trov</code> is declared and is the only prefix for a TROV namespace; <code>rdf</code>, <code>rdfs</code> and <code>schema</code> prefixes, if declared, are the standard ones</td></tr>
+<tr><td nowrap><code>trov-terms-known</code></td><td>Every <code>trov:</code> name is one TROV defines</td></tr>
+<tr><td nowrap><code>tro-top-level-in-graph</code></td><td>The TRO is a top-level member of the <code>@graph</code></td></tr>
+<tr><td nowrap><code>tro-assembled-by-trs</code></td><td>The TRO names its assembling system, typed as a TRS</td></tr>
+<tr><td nowrap><code>composition-fingerprinted</code></td><td>The TRO's composition, if any, carries a fingerprint</td></tr>
+<tr><td nowrap><code>hashes-well-formed</code></td><td>The TRO's artifact and fingerprint hashes are well-formed sha256</td></tr>
 </tbody>
 <tbody>
 <tr><th colspan="2" align="left"><br>Tier&nbsp;5&nbsp;—&nbsp;LINKABLE&#8209;TRO</th></tr>
 <tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
-<tr><td><code>base-declared</code></td><td>The <code>@context</code> includes an <code>@base</code></td></tr>
-<tr><td><code>base-has-path</code></td><td>The <code>@base</code> names something below the host, not the host alone</td></tr>
-<tr><td><code>base-host-lowercase</code></td><td>The <code>@base</code> host is lowercase</td></tr>
-<tr><td><code>base-host-ownable</code></td><td>The <code>@base</code> host is a domain name the minter could hold, not a reserved or documentation name</td></tr>
-<tr><td><code>node-ids-present</code></td><td>Every node carries an explicit <code>@id</code></td></tr>
-<tr><td><code>blank-node-ids-absent</code></td><td>No <code>@id</code> is a blank node identifier</td></tr>
+<tr><td nowrap><code>base-declared</code></td><td>The <code>@context</code> includes an <code>@base</code></td></tr>
+<tr><td nowrap><code>base-has-path</code></td><td>The <code>@base</code> names something below the host, not the host alone</td></tr>
+<tr><td nowrap><code>base-host-lowercase</code></td><td>The <code>@base</code> host is lowercase</td></tr>
+<tr><td nowrap><code>base-host-ownable</code></td><td>The <code>@base</code> host is a domain name the minter could hold, not a reserved or documentation name</td></tr>
+<tr><td nowrap><code>node-ids-present</code></td><td>Every node carries an explicit <code>@id</code></td></tr>
+<tr><td nowrap><code>blank-node-ids-absent</code></td><td>No <code>@id</code> is a blank node identifier</td></tr>
 </tbody>
 </table>
 
