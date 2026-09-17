@@ -88,7 +88,7 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <tr><td><code>context-protection-absent</code></td><td>No <code>@protected</code>, <code>@propagate</code> or <code>@import</code> in a context</td></tr>
 <tr><td><code>id-coercion-absent</code></td><td>No <code>"@type": "@id"</code> in a term definition</td></tr>
 <tr><td><code>graph-at-root-only</code></td><td><code>@graph</code> appears only at the root</td></tr>
-<tr><td><code>relative-ids-plain</code></td><td>Every relative <code>@id</code> is a plain path, with no leading <code>/</code> or <code>@</code>, no <code>.</code> or <code>..</code> segments, and no <code>?</code> or <code>#</code></td></tr>
+<tr><td><code>id-segments-portable</code></td><td>Every segment of a relative <code>@id</code> is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit</td></tr>
 </tbody>
 <tbody>
 <tr><th colspan="2" align="left"><br>Tier&nbsp;3&nbsp;—&nbsp;TRACE&#8209;JSON&#8209;LD</th></tr>
@@ -117,7 +117,11 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <tr><th colspan="2" align="left"><br>Tier&nbsp;5&nbsp;—&nbsp;LINKABLE&#8209;TRO</th></tr>
 <tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
 <tr><td><code>base-declared</code></td><td>The <code>@context</code> includes an <code>@base</code></td></tr>
+<tr><td><code>base-has-path</code></td><td>The <code>@base</code> names something below the host, not the host alone</td></tr>
+<tr><td><code>base-host-lowercase</code></td><td>The <code>@base</code> host is lowercase</td></tr>
+<tr><td><code>base-host-ownable</code></td><td>The <code>@base</code> host is a domain name the minter could hold, not a reserved or documentation name</td></tr>
 <tr><td><code>node-ids-present</code></td><td>Every node carries an explicit <code>@id</code></td></tr>
+<tr><td><code>blank-node-ids-absent</code></td><td>No <code>@id</code> is a blank node identifier</td></tr>
 </tbody>
 </table>
 

@@ -1,9 +1,9 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://w3id.org/trace/tro/0.1/relative-ids-plain.schema.json",
-    "title": "Relative ids plain",
-    "description": "Outside the @context, every @id with no colon before its first /, ? or # is a plain relative path: it does not begin with / or @, has no . or .. segments, and contains no ? or #.",
-    "summary": "Every relative `@id` is a plain path, with no leading `/` or `@`, no `.` or `..` segments, and no `?` or `#`",
+    "$id": "https://w3id.org/trace/tro/0.1/id-segments-portable.schema.json",
+    "title": "Id segments portable",
+    "description": "Outside the @context, every @id with no colon before its first /, ? or # is a path of portable segments: each segment holds only letters, digits, dots, hyphens and underscores -- the POSIX portable filename character set -- and begins and ends with a letter or digit. The named denials below say the same thing of the mistakes a producer is likeliest to make, so that the message names the mistake rather than the pattern.",
+    "summary": "Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit",
     "$defs": {
         "id": {
             "if": { "type": "string", "not": { "pattern": "^[^/?#]*:" } },
@@ -31,6 +31,18 @@
                         "not": { "pattern": "[?#]" },
                         "errorMessage": {
                             "not": "a relative @id contains no ? or #"
+                        }
+                    },
+                    {
+                        "not": { "pattern": "//" },
+                        "errorMessage": {
+                            "not": "a relative @id has no empty segment"
+                        }
+                    },
+                    {
+                        "pattern": "^[A-Za-z0-9]([A-Za-z0-9._-]*[A-Za-z0-9])?(/[A-Za-z0-9]([A-Za-z0-9._-]*[A-Za-z0-9])?)*$",
+                        "errorMessage": {
+                            "pattern": "a segment of a relative @id holds only letters, digits, dots, hyphens and underscores, and begins and ends with a letter or digit"
                         }
                     }
                 ]

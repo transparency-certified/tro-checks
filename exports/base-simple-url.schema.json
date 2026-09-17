@@ -2,7 +2,7 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://w3id.org/trace/tro/0.1/base-simple-url.schema.json",
     "title": "Base simple URL",
-    "description": "Where an @context declares an @base as a string, it names a host, carries no user name or password, has no . or .. segments, contains no ? or #, ends in /, and contains only characters allowed in a URL.",
+    "description": "Where an @context declares an @base as a string, it names a host, carries no user name or password, has no . or .. segments, contains no ? or #, ends in /, contains only characters allowed in a URL, and has a path of portable segments -- letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit.",
     "summary": "The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/`",
     "$defs": {
         "base": {
@@ -43,6 +43,12 @@
                         "pattern": "^([A-Za-z0-9._~:/?#\\[\\]@!$&'()*+,;=-]|%[0-9A-Fa-f]{2})*$",
                         "errorMessage": {
                             "pattern": "an @base contains only characters allowed in a URL"
+                        }
+                    },
+                    {
+                        "pattern": "^[^:/?#]+://[^/?#]+(/[A-Za-z0-9]([A-Za-z0-9._-]*[A-Za-z0-9])?)*/$",
+                        "errorMessage": {
+                            "pattern": "a segment of an @base path holds only letters, digits, dots, hyphens and underscores, and begins and ends with a letter or digit"
                         }
                     }
                 ]

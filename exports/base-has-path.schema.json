@@ -1,0 +1,38 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/base-has-path.schema.json",
+    "title": "Base has path",
+    "description": "Where an @context declares a non-null @base, it names something below the host: at least one path segment follows the authority. A base that is only a host is shared by every TRO its system mints, so all their element identifiers collide.",
+    "summary": "The `@base` names something below the host, not the host alone",
+    "requires": ["base-declared"],
+    "$defs": {
+        "base": {
+            "type": ["string", "null"],
+            "pattern": "^[^:/?#]+://[^/?#]+/[^/?#]",
+            "errorMessage": {
+                "type": "an @base is a string",
+                "pattern": "an @base names something below the host, so that it is this TRO's and not its system's"
+            }
+        },
+        "context": {
+            "if": { "type": "object" },
+            "then": { "properties": { "@base": { "$ref": "#/$defs/base" } } },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/context" } }
+            }
+        },
+        "node": {
+            "if": { "type": "object" },
+            "then": {
+                "properties": { "@context": { "$ref": "#/$defs/context" } },
+                "additionalProperties": { "$ref": "#/$defs/node" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/node" } }
+            }
+        }
+    },
+    "$ref": "#/$defs/node"
+}

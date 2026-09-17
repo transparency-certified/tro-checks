@@ -58,8 +58,8 @@ wrote tmp/instance-typed-values.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met
 | graph-at-root-only | `@graph` appears only at the root | ✅ met |
 | graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
 | id-coercion-absent | No `"@type": "@id"` in a term definition | ✅ met |
+| id-segments-portable | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
 | ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
-| relative-ids-plain | Every relative `@id` is a plain path, with no leading `/` or `@`, no `.` or `..` segments, and no `?` or `#` | ✅ met |
 | vocab-absent | No `@vocab` in a context | ✅ met |
 | *Tier 3 — TRACE-JSON-LD  not claimed* |  |  |
 | Expectation | Summary | Status |
@@ -83,6 +83,10 @@ wrote tmp/instance-typed-values.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met
 | *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
+| *base-has-path* | *The `@base` names something below the host, not the host alone* | *not claimed* |
+| *base-host-lowercase* | *The `@base` host is lowercase* | *not claimed* |
+| *base-host-ownable* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
+| *blank-node-ids-absent* | *No `@id` is a blank node identifier* | *not claimed* |
 | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
 
 ----- [2] expectation unmet: a term definition coerces its values to identifiers -----
@@ -139,8 +143,8 @@ wrote tmp/instance-id-coercion.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | graph-at-root-only | `@graph` appears only at the root | ✅ met |
 | graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
 | id-coercion-absent | No `"@type": "@id"` in a term definition | ❌ not met |
+| id-segments-portable | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
 | ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
-| relative-ids-plain | Every relative `@id` is a plain path, with no leading `/` or `@`, no `.` or `..` segments, and no `?` or `#` | ✅ met |
 | vocab-absent | No `@vocab` in a context | ✅ met |
 | *Tier 3 — TRACE-JSON-LD  not claimed* |  |  |
 | Expectation | Summary | Status |
@@ -164,6 +168,10 @@ wrote tmp/instance-id-coercion.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
+| *base-has-path* | *The `@base` names something below the host, not the host alone* | *not claimed* |
+| *base-host-lowercase* | *The `@base` host is lowercase* | *not claimed* |
+| *base-host-ownable* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
+| *blank-node-ids-absent* | *No `@id` is a blank node identifier* | *not claimed* |
 | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
 ## Details
 ### Unmet expectation: id-coercion-absent

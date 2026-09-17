@@ -1,0 +1,38 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/base-host-lowercase.schema.json",
+    "title": "Base host lowercase",
+    "description": "Where an @context declares a non-null @base, its host carries no uppercase letter. DNS ignores case and RDF does not: two spellings of one host are two namespaces, and nothing written under the one joins what was written under the other.",
+    "summary": "The `@base` host is lowercase",
+    "requires": ["base-declared"],
+    "$defs": {
+        "base": {
+            "type": ["string", "null"],
+            "not": { "pattern": "^[^:/?#]+://[^/?#]*[A-Z]" },
+            "errorMessage": {
+                "type": "an @base is a string",
+                "not": "an @base host is lowercase: DNS ignores case where RDF compares strings, so two spellings are two namespaces"
+            }
+        },
+        "context": {
+            "if": { "type": "object" },
+            "then": { "properties": { "@base": { "$ref": "#/$defs/base" } } },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/context" } }
+            }
+        },
+        "node": {
+            "if": { "type": "object" },
+            "then": {
+                "properties": { "@context": { "$ref": "#/$defs/context" } },
+                "additionalProperties": { "$ref": "#/$defs/node" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/node" } }
+            }
+        }
+    },
+    "$ref": "#/$defs/node"
+}

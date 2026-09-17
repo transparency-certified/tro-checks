@@ -52,8 +52,8 @@ wrote tmp/instance-https-base.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-J
 | graph-at-root-only | `@graph` appears only at the root | ✅ met |
 | graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
 | id-coercion-absent | No `"@type": "@id"` in a term definition | ✅ met |
+| id-segments-portable | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
 | ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
-| relative-ids-plain | Every relative `@id` is a plain path, with no leading `/` or `@`, no `.` or `..` segments, and no `?` or `#` | ✅ met |
 | vocab-absent | No `@vocab` in a context | ✅ met |
 | **Tier 3 — TRACE-JSON-LD  ✅ met** |  |  |
 | Expectation | Summary | Status |
@@ -77,6 +77,10 @@ wrote tmp/instance-https-base.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-J
 | *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
+| *base-has-path* | *The `@base` names something below the host, not the host alone* | *not claimed* |
+| *base-host-lowercase* | *The `@base` host is lowercase* | *not claimed* |
+| *base-host-ownable* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
+| *blank-node-ids-absent* | *No `@id` is a blank node identifier* | *not claimed* |
 | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
 
 ----- [2] expectation unmet: the @base is a urn:uuid URI ---------------------
@@ -127,8 +131,8 @@ wrote tmp/instance-urn-base.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSO
 | graph-at-root-only | `@graph` appears only at the root | ✅ met |
 | graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
 | id-coercion-absent | No `"@type": "@id"` in a term definition | ✅ met |
+| id-segments-portable | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
 | ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
-| relative-ids-plain | Every relative `@id` is a plain path, with no leading `/` or `@`, no `.` or `..` segments, and no `?` or `#` | ✅ met |
 | vocab-absent | No `@vocab` in a context | ✅ met |
 | **Tier 3 — TRACE-JSON-LD  ❌ not met** |  |  |
 | Expectation | Summary | Status |
@@ -152,14 +156,19 @@ wrote tmp/instance-urn-base.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSO
 | *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
+| *base-has-path* | *The `@base` names something below the host, not the host alone* | *not claimed* |
+| *base-host-lowercase* | *The `@base` host is lowercase* | *not claimed* |
+| *base-host-ownable* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
+| *blank-node-ids-absent* | *No `@id` is a blank node identifier* | *not claimed* |
 | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
 ## Details
 ### Unmet expectation: base-simple-url
-Expectation details: Where an @context declares an @base as a string, it names a host, carries no user name or password, has no . or .. segments, contains no ? or #, ends in /, and contains only characters allowed in a URL.
+Expectation details: Where an @context declares an @base as a string, it names a host, carries no user name or password, has no . or .. segments, contains no ? or #, ends in /, contains only characters allowed in a URL, and has a path of portable segments -- letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"urn:uuid:2f8a1c94-7b3e-4d21-9f6a-0c5e83b7d410"` | `/@context/@base` | an @base names a host |
 | `"urn:uuid:2f8a1c94-7b3e-4d21-9f6a-0c5e83b7d410"` | `/@context/@base` | an @base ends in / |
+| `"urn:uuid:2f8a1c94-7b3e-4d21-9f6a-0c5e83b7d410"` | `/@context/@base` | a segment of an @base path holds only letters, digits, dots, hyphens and underscores, and begins and ends with a letter or digit |
 ### Unmet expectation: base-web-scheme
 Expectation details: Where an @context declares a non-null @base, it is a string using the https or http scheme.
 | Found | Where | Expectation not met because |
@@ -214,8 +223,8 @@ wrote tmp/instance-number-base.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-
 | graph-at-root-only | `@graph` appears only at the root | ✅ met |
 | graph-well-formed | The root `@graph`, if any, holds objects, not bare values | ✅ met |
 | id-coercion-absent | No `"@type": "@id"` in a term definition | ✅ met |
+| id-segments-portable | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
 | ids-and-types-strings | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
-| relative-ids-plain | Every relative `@id` is a plain path, with no leading `/` or `@`, no `.` or `..` segments, and no `?` or `#` | ✅ met |
 | vocab-absent | No `@vocab` in a context | ✅ met |
 | **Tier 3 — TRACE-JSON-LD  ❌ not met** |  |  |
 | Expectation | Summary | Status |
@@ -239,6 +248,10 @@ wrote tmp/instance-number-base.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-
 | *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *base-declared* | *The `@context` includes an `@base`* | *not claimed* |
+| *base-has-path* | *The `@base` names something below the host, not the host alone* | *not claimed* |
+| *base-host-lowercase* | *The `@base` host is lowercase* | *not claimed* |
+| *base-host-ownable* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
+| *blank-node-ids-absent* | *No `@id` is a blank node identifier* | *not claimed* |
 | *node-ids-present* | *Every node carries an explicit `@id`* | *not claimed* |
 ## Details
 ### Unmet expectation: base-web-scheme

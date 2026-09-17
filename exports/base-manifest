@@ -23,7 +23,7 @@ id-coercion-absent.schema.json
 graph-at-root-only.schema.json
 base-web-scheme.schema.json
 base-simple-url.schema.json
-relative-ids-plain.schema.json
+id-segments-portable.schema.json
 prefix-namespaces-terminated.schema.json
 context-local.schema.json
 context-aliases-absent.schema.json
@@ -33,6 +33,10 @@ trov-terms-known.schema.json
 root-context-and-graph-only.schema.json
 tro-top-level-in-graph.schema.json
 base-declared.schema.json
+base-has-path.schema.json
+base-host-lowercase.schema.json
+base-host-ownable.schema.json
+blank-node-ids-absent.schema.json
 node-ids-present.schema.json
 hashes-well-formed.schema.json
 composition-fingerprinted.schema.json

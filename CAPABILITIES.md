@@ -16,7 +16,7 @@ Every expectation listed uses `dialect-declaration` (`22`), `id-and-anchor` (`13
 | 2 | `context-protection-absent` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `required` (`04`), `not` (`08`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `allOf` (`12`) |
 | 2 | `id-coercion-absent` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `not` (`08`), `const` (`10`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 2 | `graph-at-root-only` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `required` (`04`), `not` (`08`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `boolean-schema` (`01`) |
-| 2 | `relative-ids-plain` | `properties` (`02`), `items` (`03`), `boolean-schema` (`01`), `additional-properties` (`09`), `pattern` (`07`), `not` (`08`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
+| 2 | `id-segments-portable` | `properties` (`02`), `items` (`03`), `boolean-schema` (`01`), `additional-properties` (`09`), `pattern` (`07`), `not` (`08`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 3 | `root-context-and-graph-only` | `properties` (`02`), `required` (`04`), `boolean-schema` (`01`), `additional-properties` (`09`) |
 | 3 | `disallowed-node-keywords-absent` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `boolean-schema` (`01`), `additional-properties` (`09`), `pattern` (`07`), `enum` (`05`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `property-names` (*no demo* \*) |
 | 3 | `disallowed-context-keywords-absent` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `pattern` (`07`), `const` (`10`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `property-names` (*no demo* \*) |
@@ -33,6 +33,10 @@ Every expectation listed uses `dialect-declaration` (`22`), `id-and-anchor` (`13
 | 4 | `composition-fingerprinted` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`) |
 | 4 | `hashes-well-formed` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `const` (`10`), `pattern` (`07`), `defs-and-ref` (`12`) |
 | 5 | `base-declared` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `contains` (`18`), `if-then-else` (`11`) |
+| 5 | `base-has-path` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `pattern` (`07`) |
+| 5 | `base-host-lowercase` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `pattern` (`07`), `not` (`08`) |
+| 5 | `base-host-ownable` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `pattern` (`07`), `not` (`08`), `allOf` (`12`) |
 | 5 | `node-ids-present` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `additional-properties` (`09`), `boolean-schema` (`01`), `not` (`08`), `anyOf` (`08`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
+| 5 | `blank-node-ids-absent` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `pattern` (`07`), `not` (`08`), `boolean-schema` (`01`) |
 
 \* The gallery has no demo for `property-names` or `pattern-properties`.

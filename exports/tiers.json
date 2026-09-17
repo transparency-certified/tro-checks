@@ -23,7 +23,7 @@
             "context-protection-absent",
             "id-coercion-absent",
             "graph-at-root-only",
-            "relative-ids-plain"
+            "id-segments-portable"
         ]
     },
     {
@@ -58,7 +58,11 @@
         "description": "A TRO declaration whose element identifiers cannot collide with another TRO's",
         "expectations": [
             "base-declared",
-            "node-ids-present"
+            "base-has-path",
+            "base-host-lowercase",
+            "base-host-ownable",
+            "node-ids-present",
+            "blank-node-ids-absent"
         ]
     }
 ]
