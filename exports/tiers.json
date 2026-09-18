@@ -2,6 +2,7 @@
     {
         "id": "SAFE-JSON",
         "description": "JSON that every supported parser reads the same way",
+        "blocksHigherTiers": true,
         "expectations": [
             "utf8-encoded",
             "json-parses",
@@ -13,6 +14,7 @@
     {
         "id": "SAFE-JSON-LD",
         "description": "JSON-LD that every supported processor reads the same way",
+        "blocksHigherTiers": true,
         "expectations": [
             "context-well-formed",
             "graph-well-formed",
@@ -29,6 +31,7 @@
     {
         "id": "TRACE-JSON-LD",
         "description": "JSON-LD in the restricted form the TRACE Specification requires for TRO declarations",
+        "blocksHigherTiers": true,
         "expectations": [
             "root-context-and-graph-only",
             "disallowed-node-keywords-absent",

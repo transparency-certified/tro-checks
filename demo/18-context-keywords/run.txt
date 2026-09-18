@@ -112,7 +112,7 @@ $ report_on instance-vocab-in-context.jsonld
     ]
 }
 
-wrote tmp/instance-vocab-in-context.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet, 3 TRACE-JSON-LD not assessed
+wrote tmp/instance-vocab-in-context.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet, 3 TRACE-JSON-LD unmet
 
 # Report
 ## Candidate Information
@@ -126,7 +126,7 @@ wrote tmp/instance-vocab-in-context.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet, 3
 | --- | --- | --- | --- |
 | 1 | SAFE-JSON | JSON that every supported parser reads the same way | ✅ met |
 | 2 | SAFE-JSON-LD | JSON-LD that every supported processor reads the same way | ❌ not met |
-| 3 | TRACE-JSON-LD | JSON-LD in the restricted form the TRACE Specification requires for TRO declarations | not assessed |
+| 3 | TRACE-JSON-LD | JSON-LD in the restricted form the TRACE Specification requires for TRO declarations | ❌ not met |
 | *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
 | *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
 ## Expectation Findings by Tier
@@ -151,7 +151,7 @@ wrote tmp/instance-vocab-in-context.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet, 3
 | `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
 | `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
 | `vocab-absent` | No `@vocab` in a context | ❌ not met |
-| **Tier 3 — TRACE-JSON-LD  not assessed** |  |  |
+| **Tier 3 — TRACE-JSON-LD  ❌ not met** |  |  |
 | Expectation | Summary | Status |
 | `base-simple-url` | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | not assessed |
 | `base-web-scheme` | The `@base`, if any, uses the `https` or `http` scheme | not assessed |

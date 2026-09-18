@@ -53,7 +53,8 @@ const expectationsDirectory = __dirname
 
 /**
  * @returns {Tier[]}  in order, each numbered by its place from 1
- * @throws {Error} if the tier definitions cannot be read or parsed, or a tier has no id, no description, or no expectations.
+ * @throws {Error} if the tier definitions cannot be read or parsed, or a tier has no id, no description, or no
+ *   expectations, or says whether it blocks higher tiers other than by true or false.
  */
 function readTierDefinitions() {
     /** @type {Omit<Tier, 'number'>[]} */ const definitions = JSON.parse(
@@ -66,6 +67,9 @@ function readTierDefinitions() {
         if (typeof tier.description !== 'string') throw new Error(`${tier.id} has no description`)
         if (!Array.isArray(tier.expectations) || tier.expectations.length === 0) {
             throw new Error(`${tier.id} lists no expectations`)
+        }
+        if (tier.blocksHigherTiers !== undefined && typeof tier.blocksHigherTiers !== 'boolean') {
+            throw new Error(`${tier.id} says whether it blocks higher tiers other than by true or false`)
         }
     }
 
@@ -576,8 +580,8 @@ function byTierThenName(one, other) {
 }
 
 /**
- * Checks the tiers in order. Above the target, expectations are not claimed. Above a tier that is not met, they are
- * not assessed. Within a tier, an expectation whose required expectation is not met is not assessed.
+ * Checks the tiers in order. Above the target, expectations are not claimed. Above a tier that blocks higher tiers and
+ * is not met, they are not assessed. Within a tier, an expectation whose required expectation is not met is not assessed.
  * @param {Candidate} candidate
  * @returns {Finding[]}  in tier order, and by name within a tier
  * @throws {Error} if the expectations cannot be listed, one belongs to no tier, their requirements cannot be ordered,
@@ -590,7 +594,7 @@ function checkCandidateAgainstExpectations(candidate) {
     const expectations = expectationPaths.map((expectationPath) => readExpectation(tiers, expectationPath))
 
     /** @type {Finding[]} */ const findings = []
-    let lowerTierNotMet = false
+    let blockedByLowerTier = false
     for (const tier of tiers) {
         const tierExpectations = inRequiredOrder(
             expectations.filter((expectation) => expectation.tier.number === tier.number), expectations)
@@ -602,15 +606,16 @@ function checkCandidateAgainstExpectations(candidate) {
 
             if (tier.number > candidate.targetTier.number) {
                 tierFindings.push({ expectation, outcome: EXPECTATION.NOT_CLAIMED, errors: [] })
-            } else if (lowerTierNotMet || requiredNotMet) {
+            } else if (blockedByLowerTier || requiredNotMet) {
                 tierFindings.push({ expectation, outcome: EXPECTATION.NOT_ASSESSED, errors: [] })
             } else {
                 tierFindings.push(checkExpectation(candidate, expectation))
             }
         }
 
-        if (tierFindings.some((finding) => finding.outcome === EXPECTATION.UNMET || finding.outcome === EXPECTATION.NOT_ASSESSED)) {
-            lowerTierNotMet = true
+        if (tier.blocksHigherTiers &&
+            tierFindings.some((finding) => finding.outcome === EXPECTATION.UNMET || finding.outcome === EXPECTATION.NOT_ASSESSED)) {
+            blockedByLowerTier = true
         }
         findings.push(...tierFindings)
     }
@@ -619,8 +624,7 @@ function checkCandidateAgainstExpectations(candidate) {
 }
 
 /**
- * A tier is met when every expectation in it is met, not met when any is not met, and not assessed when a lower tier
- * is not met.
+ * A tier is met when every expectation in it and in every lower tier is met, and not met otherwise.
  * @param {Candidate} candidate
  * @param {Finding[]} findings
  * @returns {Assessment[]}  one per tier at or below the target
@@ -631,9 +635,7 @@ function assessTiers(candidate, findings) {
     for (const tier of readTierDefinitions().filter((each) => each.number <= candidate.targetTier.number)) {
         const tierFindings = findings.filter((finding) => finding.expectation.tier.number === tier.number)
 
-        if (lowerTierNotMet) {
-            assessments.push({ tier, outcome: EXPECTATION.NOT_ASSESSED })
-        } else if (tierFindings.every((finding) => finding.outcome === EXPECTATION.MET)) {
+        if (!lowerTierNotMet && tierFindings.every((finding) => finding.outcome === EXPECTATION.MET)) {
             assessments.push({ tier, outcome: EXPECTATION.MET })
         } else {
             assessments.push({ tier, outcome: EXPECTATION.UNMET })

@@ -139,14 +139,19 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 ## Reports
 
 One report is written per candidate. It gives the candidate and its target,
-then the status of each tier and of each expectation — met, not met, not
-assessed, or not claimed — and, for each expectation not met, every error found:
-what was found, where in the candidate, and why it does not meet the
-expectation. Each error is listed once, whichever validator reported it.
+then the status of each tier and of each expectation, and, for each
+expectation not met, every error found: what was found, where in the
+candidate, and why it does not meet the expectation. Each error is listed
+once, whichever validator reported it.
 
-Checking stops at the first tier not met: the tiers above it, up to the target,
-and their expectations are not assessed. Within a tier, an expectation whose
-`requires` names an expectation not met is not assessed.
+A tier up to the target is met when every expectation in it and in every tier
+below it is met, and not met otherwise; a tier above the target is not claimed.
+
+An expectation in a claimed tier is met, not met, or not assessed. It is not
+assessed when `SAFE-JSON`, `SAFE-JSON-LD` or `TRACE-JSON-LD` below it is not
+met, or when an expectation its `requires` names is not met. Above those three
+tiers, every claimed tier's expectations are checked whatever the tiers below
+them came to.
 
 [`spec-tro-checks`](https://github.com/transparency-certified/spec-tro-checks/tree/main/reports)
 has example reports, including one with an expectation not met.
@@ -200,7 +205,7 @@ manifest, the `--target` option, or the default.
 | --- | --- |
 | [`exports/*.parse.json`](exports) | The expectations `check-tro` checks as it parses a candidate, each giving its summary and description. |
 | [`exports/*.schema.json`](exports) | The expectations checked by JSON Schema, one schema each. |
-| [`exports/tiers.json`](exports/tiers.json) | The tiers in order, each with its ID, description, and the expectations that belong to it. An expectation file that no tier lists, a listed expectation with no file, or a tier with no expectations stops every run. |
+| [`exports/tiers.json`](exports/tiers.json) | The tiers in order, each with its ID, description, the expectations that belong to it, and `blocksHigherTiers` where no tier above it is assessed until it is met. An expectation file that no tier lists, a listed expectation with no file, or a tier with no expectations stops every run. |
 | [`exports/check-tro.js`](exports/check-tro.js) | The checker. Applies the expectations in a candidate's target and writes the report. Installed as `check-tro`. |
 | [`exports/check-tros.js`](exports/check-tros.js) | Runs the checker over the candidates the manifest names, each at its own target, writing `reports/<name>.md` for each. Installed as `check-tros`. |
 | [`exports/render-readme.js`](exports/render-readme.js) | Writes this README's account of what is checked from the tiers and the expectations themselves. Run by `make update-readme`. |

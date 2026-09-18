@@ -15,6 +15,7 @@
 - It settles which tier was meant — the one asked for, or `STANDALONE-TRO`.
   - It reads the tier definitions the module ships, numbering the tiers in their order.
   - It stops if a tier has no ID, no description, or no expectations.
+  - It stops if a tier says whether it blocks higher tiers other than by true or false.
   - It stops if no tier answers to that ID.
 - It notes the name of the file the candidate sits in.
 - It records where the tier came from — the `--target` option, or the default.
@@ -26,7 +27,7 @@
 - It stops if an expectation requires one outside its tier, or the requirements within a tier form a cycle.
 - It goes through the tiers in order, and through each tier's expectations with each after those it requires.
 - It reports an expectation above the candidate's tier as not claimed.
-- It reports an expectation as not assessed when a lower tier is not met, or an expectation it requires is not met.
+- It reports an expectation as not assessed when a lower tier that blocks higher tiers is not met, or an expectation it requires is not met.
 - It checks a parse expectation at or below the candidate's tier itself, reading and parsing the candidate once for all of them: that its bytes are UTF-8, that its text is JSON, that no string or member name has an unpaired surrogate, and that every number is within range.
 - It has every validator make its determination of the candidate against a JSON Schema expectation at or below the candidate's tier, as in [making a determination](#making-a-determination).
 - If every validator determines the candidate valid, it reports the expectation met.
@@ -35,7 +36,7 @@
 - It takes every error any validator reported, once, as in [reconciling the diagnostics](#reconciling-the-diagnostics).
 
 **The program assesses each tier at or below the candidate's.**
-- It reports the tier met when every finding in it was met, unmet when any was not, and not assessed when a lower tier is not met.
+- It reports the tier met when every finding in it and in every lower tier was met, and unmet otherwise.
 
 **The program writes the report, as in [what the report says](#what-the-report-says).**
 
@@ -82,7 +83,7 @@
 
 **The report names the candidate, describes it, and states the tier aimed at and where that tier came from.**
 
-**The report lists every tier, giving its number and ID, the commitment it describes, and its status — met, not met, or not assessed for each tier at or below the one aimed at, and not claimed for each above it.**
+**The report lists every tier, giving its number and ID, the commitment it describes, and its status — met or not met for each tier at or below the one aimed at, and not claimed for each above it.**
 
 **The report lists every expectation under its tier, alphabetically within the tier, giving what it checks in a few words and its status, and closes each tier's list with the tier's status.**
 

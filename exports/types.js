@@ -14,6 +14,7 @@ module.exports = {}
  * @property {string}   id            names the tier wherever one is chosen: a target, a manifest entry
  * @property {number}   number        its place in the order, from 1, for display
  * @property {string}   description   the commitment a candidate claiming the tier makes
+ * @property {boolean}  [blocksHigherTiers]  whether no tier above it is assessed while it is not met
  * @property {string[]} expectations  the names of the expectations it holds
  */
 /**
@@ -39,12 +40,12 @@ module.exports = {}
 /**
  * @typedef {object} Assessment  whether a candidate meets the expectations in a tier
  * @property {Tier}          tier     the tier assessed
- * @property {'met'|'unmet'|'not assessed'} outcome  not assessed when a lower tier is not met
+ * @property {'met'|'unmet'} outcome  met only when every expectation in it and in every lower tier is met
  */
 /**
  * @typedef {object} Finding  what checking one expectation against a candidate established
  * @property {Expectation}                                 expectation
- * @property {'met'|'unmet'|'not assessed'|'not claimed'}  outcome  not assessed when a lower tier or a required expectation is not met
+ * @property {'met'|'unmet'|'not assessed'|'not claimed'}  outcome  not assessed when a lower tier that blocks higher tiers, or a required expectation, is not met
  * @property {Diagnostic[]}                                errors   empty unless unmet
  */
 /**
