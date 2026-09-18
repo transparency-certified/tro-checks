@@ -84,8 +84,7 @@ wrote tmp/instance-plain-relative-ids.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
 | *`creators-person-or-organization`* | *The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string* | *not claimed* |
 | *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
-| *`hash-values-correct-length`* | *Every hash value has the length its algorithm produces* | *not claimed* |
-| *`hash-values-lowercase-hex`* | *Every hash carries its value as a string of lowercase hexadecimal digits* | *not claimed* |
+| *`hash-values-correct-form`* | *Every hash value is lowercase hexadecimal of the length its algorithm produces* | *not claimed* |
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
 | *`times-iso-8601`* | *Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time* | *not claimed* |
 | *`times-zoned`* | *Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone* | *not claimed* |
@@ -173,8 +172,7 @@ wrote tmp/instance-leading-slash.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
 | *`creators-person-or-organization`* | *The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string* | *not claimed* |
 | *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
-| *`hash-values-correct-length`* | *Every hash value has the length its algorithm produces* | *not claimed* |
-| *`hash-values-lowercase-hex`* | *Every hash carries its value as a string of lowercase hexadecimal digits* | *not claimed* |
+| *`hash-values-correct-form`* | *Every hash value is lowercase hexadecimal of the length its algorithm produces* | *not claimed* |
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
 | *`times-iso-8601`* | *Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time* | *not claimed* |
 | *`times-zoned`* | *Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone* | *not claimed* |
@@ -191,7 +189,7 @@ wrote tmp/instance-leading-slash.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
-## Details
+## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: id-segments-portable
 Expectation details: Outside the @context, every @id with no colon before its first /, ? or # is a path of portable segments: each segment holds only letters, digits, dots, hyphens and underscores -- the POSIX portable filename character set -- and begins and ends with a letter or digit. The named denials below say the same thing of the mistakes a producer is likeliest to make, so that the message names the mistake rather than the pattern.
 | Found | Where | Expectation not met because |
@@ -276,8 +274,7 @@ wrote tmp/instance-dot-segments.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
 | *`creators-person-or-organization`* | *The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string* | *not claimed* |
 | *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
-| *`hash-values-correct-length`* | *Every hash value has the length its algorithm produces* | *not claimed* |
-| *`hash-values-lowercase-hex`* | *Every hash carries its value as a string of lowercase hexadecimal digits* | *not claimed* |
+| *`hash-values-correct-form`* | *Every hash value is lowercase hexadecimal of the length its algorithm produces* | *not claimed* |
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
 | *`times-iso-8601`* | *Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time* | *not claimed* |
 | *`times-zoned`* | *Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone* | *not claimed* |
@@ -294,7 +291,7 @@ wrote tmp/instance-dot-segments.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
-## Details
+## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: id-segments-portable
 Expectation details: Outside the @context, every @id with no colon before its first /, ? or # is a path of portable segments: each segment holds only letters, digits, dots, hyphens and underscores -- the POSIX portable filename character set -- and begins and ends with a letter or digit. The named denials below say the same thing of the mistakes a producer is likeliest to make, so that the message names the mistake rather than the pattern.
 | Found | Where | Expectation not met because |
@@ -381,8 +378,7 @@ wrote tmp/instance-query-and-fragment.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
 | *`creators-person-or-organization`* | *The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string* | *not claimed* |
 | *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
-| *`hash-values-correct-length`* | *Every hash value has the length its algorithm produces* | *not claimed* |
-| *`hash-values-lowercase-hex`* | *Every hash carries its value as a string of lowercase hexadecimal digits* | *not claimed* |
+| *`hash-values-correct-form`* | *Every hash value is lowercase hexadecimal of the length its algorithm produces* | *not claimed* |
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
 | *`times-iso-8601`* | *Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time* | *not claimed* |
 | *`times-zoned`* | *Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone* | *not claimed* |
@@ -399,7 +395,7 @@ wrote tmp/instance-query-and-fragment.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
-## Details
+## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: id-segments-portable
 Expectation details: Outside the @context, every @id with no colon before its first /, ? or # is a path of portable segments: each segment holds only letters, digits, dots, hyphens and underscores -- the POSIX portable filename character set -- and begins and ends with a letter or digit. The named denials below say the same thing of the mistakes a producer is likeliest to make, so that the message names the mistake rather than the pattern.
 | Found | Where | Expectation not met because |
@@ -483,8 +479,7 @@ wrote tmp/instance-keyword-like-id.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
 | *`creators-person-or-organization`* | *The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string* | *not claimed* |
 | *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
-| *`hash-values-correct-length`* | *Every hash value has the length its algorithm produces* | *not claimed* |
-| *`hash-values-lowercase-hex`* | *Every hash carries its value as a string of lowercase hexadecimal digits* | *not claimed* |
+| *`hash-values-correct-form`* | *Every hash value is lowercase hexadecimal of the length its algorithm produces* | *not claimed* |
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
 | *`times-iso-8601`* | *Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time* | *not claimed* |
 | *`times-zoned`* | *Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone* | *not claimed* |
@@ -501,7 +496,7 @@ wrote tmp/instance-keyword-like-id.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
-## Details
+## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: id-segments-portable
 Expectation details: Outside the @context, every @id with no colon before its first /, ? or # is a path of portable segments: each segment holds only letters, digits, dots, hyphens and underscores -- the POSIX portable filename character set -- and begins and ends with a letter or digit. The named denials below say the same thing of the mistakes a producer is likeliest to make, so that the message names the mistake rather than the pattern.
 | Found | Where | Expectation not met because |

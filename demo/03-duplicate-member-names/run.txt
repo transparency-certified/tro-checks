@@ -72,8 +72,7 @@ wrote tmp/instance-names-unique.md; 1 SAFE-JSON met
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
 | *`creators-person-or-organization`* | *The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string* | *not claimed* |
 | *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
-| *`hash-values-correct-length`* | *Every hash value has the length its algorithm produces* | *not claimed* |
-| *`hash-values-lowercase-hex`* | *Every hash carries its value as a string of lowercase hexadecimal digits* | *not claimed* |
+| *`hash-values-correct-form`* | *Every hash value is lowercase hexadecimal of the length its algorithm produces* | *not claimed* |
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
 | *`times-iso-8601`* | *Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time* | *not claimed* |
 | *`times-zoned`* | *Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone* | *not claimed* |
@@ -159,8 +158,7 @@ wrote tmp/instance-nested-duplicate.md; 1 SAFE-JSON unmet
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
 | *`creators-person-or-organization`* | *The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string* | *not claimed* |
 | *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
-| *`hash-values-correct-length`* | *Every hash value has the length its algorithm produces* | *not claimed* |
-| *`hash-values-lowercase-hex`* | *Every hash carries its value as a string of lowercase hexadecimal digits* | *not claimed* |
+| *`hash-values-correct-form`* | *Every hash value is lowercase hexadecimal of the length its algorithm produces* | *not claimed* |
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
 | *`times-iso-8601`* | *Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time* | *not claimed* |
 | *`times-zoned`* | *Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone* | *not claimed* |
@@ -177,7 +175,7 @@ wrote tmp/instance-nested-duplicate.md; 1 SAFE-JSON unmet
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
-## Details
+## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: duplicate-member-names-absent
 Expectation details: No object in the candidate repeats a member name. The validators check this as they parse the candidate, so the schema itself asserts nothing.
 | Found | Where | Expectation not met because |
@@ -253,8 +251,7 @@ wrote tmp/instance-duplicate-context.md; 1 SAFE-JSON unmet
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
 | *`creators-person-or-organization`* | *The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string* | *not claimed* |
 | *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
-| *`hash-values-correct-length`* | *Every hash value has the length its algorithm produces* | *not claimed* |
-| *`hash-values-lowercase-hex`* | *Every hash carries its value as a string of lowercase hexadecimal digits* | *not claimed* |
+| *`hash-values-correct-form`* | *Every hash value is lowercase hexadecimal of the length its algorithm produces* | *not claimed* |
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
 | *`times-iso-8601`* | *Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time* | *not claimed* |
 | *`times-zoned`* | *Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone* | *not claimed* |
@@ -271,7 +268,7 @@ wrote tmp/instance-duplicate-context.md; 1 SAFE-JSON unmet
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
-## Details
+## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: duplicate-member-names-absent
 Expectation details: No object in the candidate repeats a member name. The validators check this as they parse the candidate, so the schema itself asserts nothing.
 | Found | Where | Expectation not met because |

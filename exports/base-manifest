@@ -42,8 +42,7 @@ composition-has-fingerprint.schema.json
 composition-identifies-artifacts.schema.json
 artifact-hashes-present.schema.json
 hash-algorithms-permitted.schema.json
-hash-values-lowercase-hex.schema.json
-hash-values-correct-length.schema.json
+hash-values-correct-form.schema.json
 mime-types-two-part.schema.json
 times-iso-8601.schema.json
 times-zoned.schema.json

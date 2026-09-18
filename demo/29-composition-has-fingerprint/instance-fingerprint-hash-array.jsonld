@@ -6,6 +6,7 @@
         {
             "@id": "tro",
             "@type": "trov:TransparentResearchObject",
+            "trov:vocabularyVersion": "0.1",
             "trov:wasAssembledBy": {
                 "@id": "trs",
                 "@type": "trov:TrustedResearchSystem"

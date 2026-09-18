@@ -15,6 +15,7 @@ $ report_on instance-fingerprint-present.jsonld
         {
             "@id": "tro",
             "@type": "trov:TransparentResearchObject",
+            "trov:vocabularyVersion": "0.1",
             "trov:wasAssembledBy": {
                 "@id": "trs",
                 "@type": "trov:TrustedResearchSystem"
@@ -45,7 +46,7 @@ $ report_on instance-fingerprint-present.jsonld
     ]
 }
 
-wrote tmp/instance-fingerprint-present.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSON-LD met, 4 STANDALONE-TRO unmet
+wrote tmp/instance-fingerprint-present.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSON-LD met, 4 STANDALONE-TRO met
 
 # Report
 ## Candidate Information
@@ -60,7 +61,7 @@ wrote tmp/instance-fingerprint-present.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 
 | 1 | SAFE-JSON | JSON that every supported parser reads the same way | ✅ met |
 | 2 | SAFE-JSON-LD | JSON-LD that every supported processor reads the same way | ✅ met |
 | 3 | TRACE-JSON-LD | JSON-LD in the restricted form the TRACE Specification requires for TRO declarations | ✅ met |
-| 4 | STANDALONE-TRO | A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it | ❌ not met |
+| 4 | STANDALONE-TRO | A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it | ✅ met |
 | *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
 ## Expectation Findings by Tier
 |  |  |  |
@@ -95,7 +96,7 @@ wrote tmp/instance-fingerprint-present.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 
 | `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
 | `root-context-and-graph-only` | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
 | `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
-| **Tier 4 — STANDALONE-TRO  ❌ not met** |  |  |
+| **Tier 4 — STANDALONE-TRO  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `artifact-hashes-present` | Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one | ✅ met |
 | `composition-has-fingerprint` | The TRO's composition, if any, carries one fingerprint, which carries one hash | ✅ met |
@@ -103,8 +104,7 @@ wrote tmp/instance-fingerprint-present.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
-| `hash-values-correct-length` | Every hash value has the length its algorithm produces | ✅ met |
-| `hash-values-lowercase-hex` | Every hash carries its value as a string of lowercase hexadecimal digits | ✅ met |
+| `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time | ✅ met |
 | `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | ✅ met |
@@ -112,7 +112,7 @@ wrote tmp/instance-fingerprint-present.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ❌ not met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
 | *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
@@ -121,12 +121,6 @@ wrote tmp/instance-fingerprint-present.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
-## Details
-### Unmet expectation: trov-version-known
-Expectation details: The TRO carries trov:vocabularyVersion, a string naming a TROV version this checker knows: 0.1.
-| Found | Where | Expectation not met because |
-| --- | --- | --- |
-| `{"@id":"tro","@type":"trov:TransparentResearchObject","trov:wasAssembledBy":{"@id":"trs","@type":"trov:TrustedResearchSystem"},"trov:hasComposition":{"@id":"composition","@type":"trov:ArtifactComposition","trov:hasFingerprint":{"@id":"fingerprint","@type":"trov:CompositionFingerprint","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"44863b03e9909b7100e05b02526909a346fd7455183f6619e0fe6198c89981e0"}},"trov:hasArtifact":[{"@id":"composition/artifact/0","@type":"trov:ResearchArtifact","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"208fadf260c2cb9b1c747f03326626e66ddbb3cc6eee10b6e111ff0b803686fe"}}]}}` | `/@graph/0` | the TRO declares no trov:vocabularyVersion |
 
 ----- [2] expectation unmet: the composition carries no fingerprint ----------
 
@@ -139,6 +133,7 @@ $ report_on instance-no-fingerprint.jsonld
         {
             "@id": "tro",
             "@type": "trov:TransparentResearchObject",
+            "trov:vocabularyVersion": "0.1",
             "trov:wasAssembledBy": {
                 "@id": "trs",
                 "@type": "trov:TrustedResearchSystem"
@@ -219,8 +214,7 @@ wrote tmp/instance-no-fingerprint.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRA
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
-| `hash-values-correct-length` | Every hash value has the length its algorithm produces | ✅ met |
-| `hash-values-lowercase-hex` | Every hash carries its value as a string of lowercase hexadecimal digits | ✅ met |
+| `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time | ✅ met |
 | `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | ✅ met |
@@ -228,7 +222,7 @@ wrote tmp/instance-no-fingerprint.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRA
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ❌ not met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
 | *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
@@ -237,17 +231,12 @@ wrote tmp/instance-no-fingerprint.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRA
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
-## Details
+## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: composition-has-fingerprint
 Expectation details: Where the TRO carries a trov:hasComposition, the composition carries one trov:hasFingerprint, an object, and the fingerprint carries one trov:hash, an object.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@id":"composition","@type":"trov:ArtifactComposition","trov:hasArtifact":[{"@id":"composition/artifact/0","@type":"trov:ResearchArtifact","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"208fadf260c2cb9b1c747f03326626e66ddbb3cc6eee10b6e111ff0b803686fe"}}]}` | `/@graph/0/trov:hasComposition` | the composition carries no trov:hasFingerprint |
-### Unmet expectation: trov-version-known
-Expectation details: The TRO carries trov:vocabularyVersion, a string naming a TROV version this checker knows: 0.1.
-| Found | Where | Expectation not met because |
-| --- | --- | --- |
-| `{"@id":"tro","@type":"trov:TransparentResearchObject","trov:wasAssembledBy":{"@id":"trs","@type":"trov:TrustedResearchSystem"},"trov:hasComposition":{"@id":"composition","@type":"trov:ArtifactComposition","trov:hasArtifact":[{"@id":"composition/artifact/0","@type":"trov:ResearchArtifact","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"208fadf260c2cb9b1c747f03326626e66ddbb3cc6eee10b6e111ff0b803686fe"}}]}}` | `/@graph/0` | the TRO declares no trov:vocabularyVersion |
 
 ----- [3] expectation unmet: trov:hasFingerprint is an array -----------------
 
@@ -260,6 +249,7 @@ $ report_on instance-fingerprint-array.jsonld
         {
             "@id": "tro",
             "@type": "trov:TransparentResearchObject",
+            "trov:vocabularyVersion": "0.1",
             "trov:wasAssembledBy": {
                 "@id": "trs",
                 "@type": "trov:TrustedResearchSystem"
@@ -350,8 +340,7 @@ wrote tmp/instance-fingerprint-array.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
-| `hash-values-correct-length` | Every hash value has the length its algorithm produces | ✅ met |
-| `hash-values-lowercase-hex` | Every hash carries its value as a string of lowercase hexadecimal digits | ✅ met |
+| `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time | ✅ met |
 | `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | ✅ met |
@@ -359,7 +348,7 @@ wrote tmp/instance-fingerprint-array.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ❌ not met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
 | *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
@@ -368,17 +357,12 @@ wrote tmp/instance-fingerprint-array.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
-## Details
+## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: composition-has-fingerprint
 Expectation details: Where the TRO carries a trov:hasComposition, the composition carries one trov:hasFingerprint, an object, and the fingerprint carries one trov:hash, an object.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `[{"@id":"fingerprint","@type":"trov:CompositionFingerprint","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"44863b03e9909b7100e05b02526909a346fd7455183f6619e0fe6198c89981e0"}}]` | `/@graph/0/trov:hasComposition/trov:hasFingerprint` | a composition carries one fingerprint, an object, not an array of them |
-### Unmet expectation: trov-version-known
-Expectation details: The TRO carries trov:vocabularyVersion, a string naming a TROV version this checker knows: 0.1.
-| Found | Where | Expectation not met because |
-| --- | --- | --- |
-| `{"@id":"tro","@type":"trov:TransparentResearchObject","trov:wasAssembledBy":{"@id":"trs","@type":"trov:TrustedResearchSystem"},"trov:hasComposition":{"@id":"composition","@type":"trov:ArtifactComposition","trov:hasFingerprint":[{"@id":"fingerprint","@type":"trov:CompositionFingerprint","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"44863b03e9909b7100e05b02526909a346fd7455183f6619e0fe6198c89981e0"}}],"trov:hasArtifact":[{"@id":"composition/artifact/0","@type":"trov:ResearchArtifact","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"208fadf260c2cb9b1c747f03326626e66ddbb3cc6eee10b6e111ff0b803686fe"}}]}}` | `/@graph/0` | the TRO declares no trov:vocabularyVersion |
 
 ----- [4] expectation unmet: the fingerprint's trov:hash is an array ---------
 
@@ -391,6 +375,7 @@ $ report_on instance-fingerprint-hash-array.jsonld
         {
             "@id": "tro",
             "@type": "trov:TransparentResearchObject",
+            "trov:vocabularyVersion": "0.1",
             "trov:wasAssembledBy": {
                 "@id": "trs",
                 "@type": "trov:TrustedResearchSystem"
@@ -481,8 +466,7 @@ wrote tmp/instance-fingerprint-hash-array.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD me
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
-| `hash-values-correct-length` | Every hash value has the length its algorithm produces | ✅ met |
-| `hash-values-lowercase-hex` | Every hash carries its value as a string of lowercase hexadecimal digits | ✅ met |
+| `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time | ✅ met |
 | `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | ✅ met |
@@ -490,7 +474,7 @@ wrote tmp/instance-fingerprint-hash-array.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD me
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ❌ not met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
 | *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
@@ -499,14 +483,9 @@ wrote tmp/instance-fingerprint-hash-array.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD me
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
-## Details
+## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: composition-has-fingerprint
 Expectation details: Where the TRO carries a trov:hasComposition, the composition carries one trov:hasFingerprint, an object, and the fingerprint carries one trov:hash, an object.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `[{"trov:hashAlgorithm":"sha256","trov:hashValue":"44863b03e9909b7100e05b02526909a346fd7455183f6619e0fe6198c89981e0"}]` | `/@graph/0/trov:hasComposition/trov:hasFingerprint/trov:hash` | a fingerprint carries one hash, an object, not an array of them |
-### Unmet expectation: trov-version-known
-Expectation details: The TRO carries trov:vocabularyVersion, a string naming a TROV version this checker knows: 0.1.
-| Found | Where | Expectation not met because |
-| --- | --- | --- |
-| `{"@id":"tro","@type":"trov:TransparentResearchObject","trov:wasAssembledBy":{"@id":"trs","@type":"trov:TrustedResearchSystem"},"trov:hasComposition":{"@id":"composition","@type":"trov:ArtifactComposition","trov:hasFingerprint":{"@id":"fingerprint","@type":"trov:CompositionFingerprint","trov:hash":[{"trov:hashAlgorithm":"sha256","trov:hashValue":"44863b03e9909b7100e05b02526909a346fd7455183f6619e0fe6198c89981e0"}]},"trov:hasArtifact":[{"@id":"composition/artifact/0","@type":"trov:ResearchArtifact","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"208fadf260c2cb9b1c747f03326626e66ddbb3cc6eee10b6e111ff0b803686fe"}}]}}` | `/@graph/0` | the TRO declares no trov:vocabularyVersion |

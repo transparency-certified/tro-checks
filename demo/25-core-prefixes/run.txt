@@ -18,6 +18,7 @@ $ report_on instance-core-prefixes.jsonld
         {
             "@id": "https://example.org/tro/1",
             "@type": "trov:TransparentResearchObject",
+            "trov:vocabularyVersion": "0.1",
             "trov:wasAssembledBy": {
                 "@id": "https://example.org/trs",
                 "@type": "trov:TrustedResearchSystem"
@@ -26,7 +27,7 @@ $ report_on instance-core-prefixes.jsonld
     ]
 }
 
-wrote tmp/instance-core-prefixes.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSON-LD met, 4 STANDALONE-TRO unmet
+wrote tmp/instance-core-prefixes.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSON-LD met, 4 STANDALONE-TRO met
 
 # Report
 ## Candidate Information
@@ -41,7 +42,7 @@ wrote tmp/instance-core-prefixes.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRAC
 | 1 | SAFE-JSON | JSON that every supported parser reads the same way | ✅ met |
 | 2 | SAFE-JSON-LD | JSON-LD that every supported processor reads the same way | ✅ met |
 | 3 | TRACE-JSON-LD | JSON-LD in the restricted form the TRACE Specification requires for TRO declarations | ✅ met |
-| 4 | STANDALONE-TRO | A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it | ❌ not met |
+| 4 | STANDALONE-TRO | A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it | ✅ met |
 | *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
 ## Expectation Findings by Tier
 |  |  |  |
@@ -76,7 +77,7 @@ wrote tmp/instance-core-prefixes.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRAC
 | `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
 | `root-context-and-graph-only` | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
 | `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
-| **Tier 4 — STANDALONE-TRO  ❌ not met** |  |  |
+| **Tier 4 — STANDALONE-TRO  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `artifact-hashes-present` | Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one | ✅ met |
 | `composition-has-fingerprint` | The TRO's composition, if any, carries one fingerprint, which carries one hash | ✅ met |
@@ -84,8 +85,7 @@ wrote tmp/instance-core-prefixes.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRAC
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
-| `hash-values-correct-length` | Every hash value has the length its algorithm produces | ✅ met |
-| `hash-values-lowercase-hex` | Every hash carries its value as a string of lowercase hexadecimal digits | ✅ met |
+| `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time | ✅ met |
 | `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | ✅ met |
@@ -93,7 +93,7 @@ wrote tmp/instance-core-prefixes.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRAC
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ❌ not met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
 | *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
@@ -102,12 +102,6 @@ wrote tmp/instance-core-prefixes.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRAC
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
-## Details
-### Unmet expectation: trov-version-known
-Expectation details: The TRO carries trov:vocabularyVersion, a string naming a TROV version this checker knows: 0.1.
-| Found | Where | Expectation not met because |
-| --- | --- | --- |
-| `{"@id":"https://example.org/tro/1","@type":"trov:TransparentResearchObject","trov:wasAssembledBy":{"@id":"https://example.org/trs","@type":"trov:TrustedResearchSystem"}}` | `/@graph/0` | the TRO declares no trov:vocabularyVersion |
 
 ----- [2] expectation unmet: trov maps to another version's namespace, so every trov: check below is not assessed -----
 
@@ -123,6 +117,7 @@ $ report_on instance-trov-other-version.jsonld
         {
             "@id": "https://example.org/tro/1",
             "@type": "trov:TransparentResearchObject",
+            "trov:vocabularyVersion": "0.1",
             "trov:wasAssembledBy": {
                 "@id": "https://example.org/trs",
                 "@type": "trov:TrustedResearchSystem"
@@ -189,8 +184,7 @@ wrote tmp/instance-trov-other-version.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ❌ not met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | not assessed |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | not assessed |
-| `hash-values-correct-length` | Every hash value has the length its algorithm produces | not assessed |
-| `hash-values-lowercase-hex` | Every hash carries its value as a string of lowercase hexadecimal digits | not assessed |
+| `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | not assessed |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | not assessed |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time | not assessed |
 | `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | not assessed |
@@ -207,7 +201,7 @@ wrote tmp/instance-trov-other-version.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
-## Details
+## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: core-prefixes-pinned
 Expectation details: The root @context declares the trov prefix, mapping it to one of the TROV namespaces this checker knows (https://w3id.org/trace/trov/0.1#), and where it declares rdf, rdfs or schema, each maps to exactly the namespace the Declaration Format's @context block gives it: rdf to http://www.w3.org/1999/02/22-rdf-syntax-ns#, rdfs to http://www.w3.org/2000/01/rdf-schema#, and schema to https://schema.org/. Every check that reads a trov: name out of the JSON relies on this pin to mean the TROV term of that name; a term under any other prefix is not read as TROV, whatever namespace that prefix maps to. Only the root @context is examined: by TRACE-JSON-LD there is no other.
 | Found | Where | Expectation not met because |
@@ -228,6 +222,7 @@ $ report_on instance-schema-http.jsonld
         {
             "@id": "https://example.org/tro/1",
             "@type": "trov:TransparentResearchObject",
+            "trov:vocabularyVersion": "0.1",
             "trov:wasAssembledBy": {
                 "@id": "https://example.org/trs",
                 "@type": "trov:TrustedResearchSystem"
@@ -294,8 +289,7 @@ wrote tmp/instance-schema-http.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ❌ not met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | not assessed |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | not assessed |
-| `hash-values-correct-length` | Every hash value has the length its algorithm produces | not assessed |
-| `hash-values-lowercase-hex` | Every hash carries its value as a string of lowercase hexadecimal digits | not assessed |
+| `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | not assessed |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | not assessed |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time | not assessed |
 | `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | not assessed |
@@ -312,7 +306,7 @@ wrote tmp/instance-schema-http.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
-## Details
+## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: core-prefixes-pinned
 Expectation details: The root @context declares the trov prefix, mapping it to one of the TROV namespaces this checker knows (https://w3id.org/trace/trov/0.1#), and where it declares rdf, rdfs or schema, each maps to exactly the namespace the Declaration Format's @context block gives it: rdf to http://www.w3.org/1999/02/22-rdf-syntax-ns#, rdfs to http://www.w3.org/2000/01/rdf-schema#, and schema to https://schema.org/. Every check that reads a trov: name out of the JSON relies on this pin to mean the TROV term of that name; a term under any other prefix is not read as TROV, whatever namespace that prefix maps to. Only the root @context is examined: by TRACE-JSON-LD there is no other.
 | Found | Where | Expectation not met because |
@@ -394,8 +388,7 @@ wrote tmp/instance-trov-undeclared.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TR
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ❌ not met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | not assessed |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | not assessed |
-| `hash-values-correct-length` | Every hash value has the length its algorithm produces | not assessed |
-| `hash-values-lowercase-hex` | Every hash carries its value as a string of lowercase hexadecimal digits | not assessed |
+| `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | not assessed |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | not assessed |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time | not assessed |
 | `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | not assessed |
@@ -412,7 +405,7 @@ wrote tmp/instance-trov-undeclared.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TR
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
-## Details
+## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: core-prefixes-pinned
 Expectation details: The root @context declares the trov prefix, mapping it to one of the TROV namespaces this checker knows (https://w3id.org/trace/trov/0.1#), and where it declares rdf, rdfs or schema, each maps to exactly the namespace the Declaration Format's @context block gives it: rdf to http://www.w3.org/1999/02/22-rdf-syntax-ns#, rdfs to http://www.w3.org/2000/01/rdf-schema#, and schema to https://schema.org/. Every check that reads a trov: name out of the JSON relies on this pin to mean the TROV term of that name; a term under any other prefix is not read as TROV, whatever namespace that prefix maps to. Only the root @context is examined: by TRACE-JSON-LD there is no other.
 | Found | Where | Expectation not met because |
@@ -434,6 +427,7 @@ $ report_on instance-second-trov-prefix.jsonld
         {
             "@id": "https://example.org/tro/1",
             "@type": "trov:TransparentResearchObject",
+            "trov:vocabularyVersion": "0.1",
             "tv:wasAssembledBy": {
                 "@id": "https://example.org/trs",
                 "@type": "tv:TrustedResearchSystem"
@@ -500,8 +494,7 @@ wrote tmp/instance-second-trov-prefix.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ❌ not met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | not assessed |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | not assessed |
-| `hash-values-correct-length` | Every hash value has the length its algorithm produces | not assessed |
-| `hash-values-lowercase-hex` | Every hash carries its value as a string of lowercase hexadecimal digits | not assessed |
+| `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | not assessed |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | not assessed |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time | not assessed |
 | `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | not assessed |
@@ -518,7 +511,7 @@ wrote tmp/instance-second-trov-prefix.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
-## Details
+## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: core-prefixes-pinned
 Expectation details: The root @context declares the trov prefix, mapping it to one of the TROV namespaces this checker knows (https://w3id.org/trace/trov/0.1#), and where it declares rdf, rdfs or schema, each maps to exactly the namespace the Declaration Format's @context block gives it: rdf to http://www.w3.org/1999/02/22-rdf-syntax-ns#, rdfs to http://www.w3.org/2000/01/rdf-schema#, and schema to https://schema.org/. Every check that reads a trov: name out of the JSON relies on this pin to mean the TROV term of that name; a term under any other prefix is not read as TROV, whatever namespace that prefix maps to. Only the root @context is examined: by TRACE-JSON-LD there is no other.
 | Found | Where | Expectation not met because |

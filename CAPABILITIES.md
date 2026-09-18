@@ -35,8 +35,7 @@ Every expectation listed uses `dialect-declaration` (`22`), `id-and-anchor` (`13
 | 4 | `composition-identifies-artifacts` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `min-items` (`03`) |
 | 4 | `artifact-hashes-present` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `min-items` (`03`), `if-then-else` (`11`) |
 | 4 | `hash-algorithms-permitted` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `enum` (`05`), `if-then-else` (`11`), `defs-and-ref` (`12`) |
-| 4 | `hash-values-lowercase-hex` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `pattern` (`07`), `if-then-else` (`11`), `defs-and-ref` (`12`) |
-| 4 | `hash-values-correct-length` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `const` (`10`), `value-bounds` (`05`), `max-length` (*no demo* \*), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`) |
+| 4 | `hash-values-correct-form` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `const` (`10`), `pattern` (`07`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`) |
 | 4 | `mime-types-two-part` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `pattern` (`07`), `if-then-else` (`11`) |
 | 4 | `times-iso-8601` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `pattern` (`07`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 4 | `times-zoned` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `pattern` (`07`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |

@@ -439,7 +439,7 @@ function renderReportAsMarkdown(candidate, findings, assessments, compactly) {
 
     const unmetFindings = findings.filter((finding) => finding.outcome === 'unmet')
     if (unmetFindings.length > 0) {
-        reportLines.push('', '## Details')
+        reportLines.push('', '## Diagnostics for Each Unmet Expectation')
         for (const finding of unmetFindings) {
             reportLines.push('', ...unmetExpectationLines(finding, dialect))
         }

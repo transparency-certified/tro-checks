@@ -1,0 +1,374 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/hash-values-correct-form.schema.json",
+    "title": "Hash values correct form",
+    "description": "Every trov:hash on the TRO's artifacts and composition fingerprint carries its value in trov:hashValue as its algorithm writes one: lowercase hexadecimal digits, 64 of them for sha256, sha3-256, blake2s and blake3; 96 for sha384 and sha3-384; 128 for sha512, sha3-512 and blake2b.",
+    "summary": "Every hash value is lowercase hexadecimal of the length its algorithm produces",
+    "requires": [
+        "hash-algorithms-permitted"
+    ],
+    "type": "object",
+    "properties": {
+        "@graph": {
+            "if": {
+                "type": "array"
+            },
+            "then": {
+                "items": {
+                    "if": {
+                        "type": "object"
+                    },
+                    "then": {
+                        "properties": {
+                            "trov:hasComposition": {
+                                "if": {
+                                    "type": "object"
+                                },
+                                "then": {
+                                    "properties": {
+                                        "trov:hasArtifact": {
+                                            "if": {
+                                                "type": "array"
+                                            },
+                                            "then": {
+                                                "items": {
+                                                    "if": {
+                                                        "type": "object"
+                                                    },
+                                                    "then": {
+                                                        "properties": {
+                                                            "trov:hash": {
+                                                                "if": {
+                                                                    "type": "array"
+                                                                },
+                                                                "then": {
+                                                                    "items": {
+                                                                        "$ref": "#/$defs/hash"
+                                                                    }
+                                                                },
+                                                                "else": {
+                                                                    "$ref": "#/$defs/hash"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "trov:hasFingerprint": {
+                                            "if": {
+                                                "type": "object"
+                                            },
+                                            "then": {
+                                                "properties": {
+                                                    "trov:hash": {
+                                                        "$ref": "#/$defs/hash"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "$defs": {
+        "hash": {
+            "if": {
+                "type": "object"
+            },
+            "then": {
+                "required": [
+                    "trov:hashValue"
+                ],
+                "properties": {
+                    "trov:hashValue": {
+                        "type": "string",
+                        "errorMessage": {
+                            "type": "a hash carries its value as a string"
+                        }
+                    }
+                },
+                "allOf": [
+                    {
+                        "$ref": "#/$defs/sha256"
+                    },
+                    {
+                        "$ref": "#/$defs/sha384"
+                    },
+                    {
+                        "$ref": "#/$defs/sha512"
+                    },
+                    {
+                        "$ref": "#/$defs/sha3-256"
+                    },
+                    {
+                        "$ref": "#/$defs/sha3-384"
+                    },
+                    {
+                        "$ref": "#/$defs/sha3-512"
+                    },
+                    {
+                        "$ref": "#/$defs/blake2b"
+                    },
+                    {
+                        "$ref": "#/$defs/blake2s"
+                    },
+                    {
+                        "$ref": "#/$defs/blake3"
+                    }
+                ],
+                "errorMessage": {
+                    "required": "the hash carries no value (trov:hashValue)"
+                }
+            }
+        },
+        "sha256": {
+            "if": {
+                "required": [
+                    "trov:hashAlgorithm"
+                ],
+                "properties": {
+                    "trov:hashAlgorithm": {
+                        "const": "sha256"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "trov:hashValue": {
+                        "if": {
+                            "type": "string"
+                        },
+                        "then": {
+                            "pattern": "^[0-9a-f]{64}$(?!\\n)",
+                            "errorMessage": {
+                                "pattern": "a sha256 value is 64 lowercase hexadecimal digits"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "sha384": {
+            "if": {
+                "required": [
+                    "trov:hashAlgorithm"
+                ],
+                "properties": {
+                    "trov:hashAlgorithm": {
+                        "const": "sha384"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "trov:hashValue": {
+                        "if": {
+                            "type": "string"
+                        },
+                        "then": {
+                            "pattern": "^[0-9a-f]{96}$(?!\\n)",
+                            "errorMessage": {
+                                "pattern": "a sha384 value is 96 lowercase hexadecimal digits"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "sha512": {
+            "if": {
+                "required": [
+                    "trov:hashAlgorithm"
+                ],
+                "properties": {
+                    "trov:hashAlgorithm": {
+                        "const": "sha512"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "trov:hashValue": {
+                        "if": {
+                            "type": "string"
+                        },
+                        "then": {
+                            "pattern": "^[0-9a-f]{128}$(?!\\n)",
+                            "errorMessage": {
+                                "pattern": "a sha512 value is 128 lowercase hexadecimal digits"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "sha3-256": {
+            "if": {
+                "required": [
+                    "trov:hashAlgorithm"
+                ],
+                "properties": {
+                    "trov:hashAlgorithm": {
+                        "const": "sha3-256"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "trov:hashValue": {
+                        "if": {
+                            "type": "string"
+                        },
+                        "then": {
+                            "pattern": "^[0-9a-f]{64}$(?!\\n)",
+                            "errorMessage": {
+                                "pattern": "a sha3-256 value is 64 lowercase hexadecimal digits"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "sha3-384": {
+            "if": {
+                "required": [
+                    "trov:hashAlgorithm"
+                ],
+                "properties": {
+                    "trov:hashAlgorithm": {
+                        "const": "sha3-384"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "trov:hashValue": {
+                        "if": {
+                            "type": "string"
+                        },
+                        "then": {
+                            "pattern": "^[0-9a-f]{96}$(?!\\n)",
+                            "errorMessage": {
+                                "pattern": "a sha3-384 value is 96 lowercase hexadecimal digits"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "sha3-512": {
+            "if": {
+                "required": [
+                    "trov:hashAlgorithm"
+                ],
+                "properties": {
+                    "trov:hashAlgorithm": {
+                        "const": "sha3-512"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "trov:hashValue": {
+                        "if": {
+                            "type": "string"
+                        },
+                        "then": {
+                            "pattern": "^[0-9a-f]{128}$(?!\\n)",
+                            "errorMessage": {
+                                "pattern": "a sha3-512 value is 128 lowercase hexadecimal digits"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "blake2b": {
+            "if": {
+                "required": [
+                    "trov:hashAlgorithm"
+                ],
+                "properties": {
+                    "trov:hashAlgorithm": {
+                        "const": "blake2b"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "trov:hashValue": {
+                        "if": {
+                            "type": "string"
+                        },
+                        "then": {
+                            "pattern": "^[0-9a-f]{128}$(?!\\n)",
+                            "errorMessage": {
+                                "pattern": "a blake2b value is 128 lowercase hexadecimal digits"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "blake2s": {
+            "if": {
+                "required": [
+                    "trov:hashAlgorithm"
+                ],
+                "properties": {
+                    "trov:hashAlgorithm": {
+                        "const": "blake2s"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "trov:hashValue": {
+                        "if": {
+                            "type": "string"
+                        },
+                        "then": {
+                            "pattern": "^[0-9a-f]{64}$(?!\\n)",
+                            "errorMessage": {
+                                "pattern": "a blake2s value is 64 lowercase hexadecimal digits"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "blake3": {
+            "if": {
+                "required": [
+                    "trov:hashAlgorithm"
+                ],
+                "properties": {
+                    "trov:hashAlgorithm": {
+                        "const": "blake3"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "trov:hashValue": {
+                        "if": {
+                            "type": "string"
+                        },
+                        "then": {
+                            "pattern": "^[0-9a-f]{64}$(?!\\n)",
+                            "errorMessage": {
+                                "pattern": "a blake3 value is 64 lowercase hexadecimal digits"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

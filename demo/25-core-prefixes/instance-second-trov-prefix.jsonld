@@ -10,6 +10,7 @@
         {
             "@id": "https://example.org/tro/1",
             "@type": "trov:TransparentResearchObject",
+            "trov:vocabularyVersion": "0.1",
             "tv:wasAssembledBy": {
                 "@id": "https://example.org/trs",
                 "@type": "tv:TrustedResearchSystem"

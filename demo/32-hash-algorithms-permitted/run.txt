@@ -15,6 +15,7 @@ $ report_on instance-permitted-algorithms.jsonld
         {
             "@id": "tro",
             "@type": "trov:TransparentResearchObject",
+            "trov:vocabularyVersion": "0.1",
             "trov:wasAssembledBy": {
                 "@id": "trs",
                 "@type": "trov:TrustedResearchSystem"
@@ -59,7 +60,7 @@ $ report_on instance-permitted-algorithms.jsonld
     ]
 }
 
-wrote tmp/instance-permitted-algorithms.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSON-LD met, 4 STANDALONE-TRO unmet
+wrote tmp/instance-permitted-algorithms.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSON-LD met, 4 STANDALONE-TRO met
 
 # Report
 ## Candidate Information
@@ -74,7 +75,7 @@ wrote tmp/instance-permitted-algorithms.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met,
 | 1 | SAFE-JSON | JSON that every supported parser reads the same way | ✅ met |
 | 2 | SAFE-JSON-LD | JSON-LD that every supported processor reads the same way | ✅ met |
 | 3 | TRACE-JSON-LD | JSON-LD in the restricted form the TRACE Specification requires for TRO declarations | ✅ met |
-| 4 | STANDALONE-TRO | A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it | ❌ not met |
+| 4 | STANDALONE-TRO | A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it | ✅ met |
 | *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
 ## Expectation Findings by Tier
 |  |  |  |
@@ -109,7 +110,7 @@ wrote tmp/instance-permitted-algorithms.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met,
 | `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
 | `root-context-and-graph-only` | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
 | `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
-| **Tier 4 — STANDALONE-TRO  ❌ not met** |  |  |
+| **Tier 4 — STANDALONE-TRO  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `artifact-hashes-present` | Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one | ✅ met |
 | `composition-has-fingerprint` | The TRO's composition, if any, carries one fingerprint, which carries one hash | ✅ met |
@@ -117,8 +118,7 @@ wrote tmp/instance-permitted-algorithms.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met,
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
-| `hash-values-correct-length` | Every hash value has the length its algorithm produces | ✅ met |
-| `hash-values-lowercase-hex` | Every hash carries its value as a string of lowercase hexadecimal digits | ✅ met |
+| `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time | ✅ met |
 | `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | ✅ met |
@@ -126,7 +126,7 @@ wrote tmp/instance-permitted-algorithms.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met,
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ❌ not met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
 | *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
@@ -135,12 +135,6 @@ wrote tmp/instance-permitted-algorithms.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met,
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
-## Details
-### Unmet expectation: trov-version-known
-Expectation details: The TRO carries trov:vocabularyVersion, a string naming a TROV version this checker knows: 0.1.
-| Found | Where | Expectation not met because |
-| --- | --- | --- |
-| `{"@id":"tro","@type":"trov:TransparentResearchObject","trov:wasAssembledBy":{"@id":"trs","@type":"trov:TrustedResearchSystem"},"trov:hasComposition":{"@id":"composition","@type":"trov:ArtifactComposition","trov:hasFingerprint":{"@id":"fingerprint","@type":"trov:CompositionFingerprint","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"44863b03e9909b7100e05b02526909a346fd7455183f6619e0fe6198c89981e0"}},"trov:hasArtifact":[{"@id":"composition/artifact/0","@type":"trov:ResearchArtifact","trov:hash":[{"trov:hashAlgorithm":"sha256","trov:hashValue":"208fadf260c2cb9b1c747f03326626e66ddbb3cc6eee10b6e111ff0b803686fe"},{"trov:hashAlgorithm":"sha512","trov:hashValue":"d11233fb6329ff8c7c8820752feb2e71da84a9cb3f661dc05941f461c30a2cb69dfe04a9ac0ed7a7f83259ec83cd0bf43a1242dbcf9125888a84bcb4614bb0d9"}]},{"@id":"composition/artifact/1","@type":"trov:ResearchArtifact","trov:hash":{"trov:hashAlgorithm":"sha3-256","trov:hashValue":"1d84996b70271593631d1e4819e23c5d2b414b7d7c6ed9ef28b58e2b52afd71b"}}]}}` | `/@graph/0` | the TRO declares no trov:vocabularyVersion |
 
 ----- [2] expectation unmet: an artifact carries an md5 hash, which TRACE does not permit, beside its sha256 -----
 
@@ -153,6 +147,7 @@ $ report_on instance-md5-beside-sha256.jsonld
         {
             "@id": "tro",
             "@type": "trov:TransparentResearchObject",
+            "trov:vocabularyVersion": "0.1",
             "trov:wasAssembledBy": {
                 "@id": "trs",
                 "@type": "trov:TrustedResearchSystem"
@@ -247,8 +242,7 @@ wrote tmp/instance-md5-beside-sha256.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ❌ not met |
-| `hash-values-correct-length` | Every hash value has the length its algorithm produces | not assessed |
-| `hash-values-lowercase-hex` | Every hash carries its value as a string of lowercase hexadecimal digits | ✅ met |
+| `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | not assessed |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time | ✅ met |
 | `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | ✅ met |
@@ -256,7 +250,7 @@ wrote tmp/instance-md5-beside-sha256.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ❌ not met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
 | *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
@@ -265,17 +259,12 @@ wrote tmp/instance-md5-beside-sha256.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
-## Details
+## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: hash-algorithms-permitted
 Expectation details: Every trov:hash on the TRO's artifacts and composition fingerprint names its algorithm in trov:hashAlgorithm, and the algorithm is one TRACE permits: sha256, sha384, sha512, sha3-256, sha3-384, sha3-512, blake2b, blake2s or blake3, spelled so.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"md5"` | `/@graph/0/trov:hasComposition/trov:hasArtifact/0/trov:hash/1/trov:hashAlgorithm` | "md5" is not an algorithm TRACE permits; the permitted ones are sha256, sha384, sha512, sha3-256, sha3-384, sha3-512, blake2b, blake2s and blake3, spelled so |
-### Unmet expectation: trov-version-known
-Expectation details: The TRO carries trov:vocabularyVersion, a string naming a TROV version this checker knows: 0.1.
-| Found | Where | Expectation not met because |
-| --- | --- | --- |
-| `{"@id":"tro","@type":"trov:TransparentResearchObject","trov:wasAssembledBy":{"@id":"trs","@type":"trov:TrustedResearchSystem"},"trov:hasComposition":{"@id":"composition","@type":"trov:ArtifactComposition","trov:hasFingerprint":{"@id":"fingerprint","@type":"trov:CompositionFingerprint","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"44863b03e9909b7100e05b02526909a346fd7455183f6619e0fe6198c89981e0"}},"trov:hasArtifact":[{"@id":"composition/artifact/0","@type":"trov:ResearchArtifact","trov:hash":[{"trov:hashAlgorithm":"sha256","trov:hashValue":"208fadf260c2cb9b1c747f03326626e66ddbb3cc6eee10b6e111ff0b803686fe"},{"trov:hashAlgorithm":"md5","trov:hashValue":"f0b5d0c88a3e571c5546782c54fbfa1b"}]}]}}` | `/@graph/0` | the TRO declares no trov:vocabularyVersion |
 
 ----- [3] expectation unmet: the algorithm is spelled SHA-256, which is not the permitted spelling -----
 
@@ -288,6 +277,7 @@ $ report_on instance-algorithm-misspelled.jsonld
         {
             "@id": "tro",
             "@type": "trov:TransparentResearchObject",
+            "trov:vocabularyVersion": "0.1",
             "trov:wasAssembledBy": {
                 "@id": "trs",
                 "@type": "trov:TrustedResearchSystem"
@@ -376,8 +366,7 @@ wrote tmp/instance-algorithm-misspelled.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met,
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ❌ not met |
-| `hash-values-correct-length` | Every hash value has the length its algorithm produces | not assessed |
-| `hash-values-lowercase-hex` | Every hash carries its value as a string of lowercase hexadecimal digits | ✅ met |
+| `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | not assessed |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time | ✅ met |
 | `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | ✅ met |
@@ -385,7 +374,7 @@ wrote tmp/instance-algorithm-misspelled.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met,
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ❌ not met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
 | *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
@@ -394,17 +383,12 @@ wrote tmp/instance-algorithm-misspelled.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met,
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
-## Details
+## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: hash-algorithms-permitted
 Expectation details: Every trov:hash on the TRO's artifacts and composition fingerprint names its algorithm in trov:hashAlgorithm, and the algorithm is one TRACE permits: sha256, sha384, sha512, sha3-256, sha3-384, sha3-512, blake2b, blake2s or blake3, spelled so.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"SHA-256"` | `/@graph/0/trov:hasComposition/trov:hasArtifact/0/trov:hash/trov:hashAlgorithm` | "SHA-256" is not an algorithm TRACE permits; the permitted ones are sha256, sha384, sha512, sha3-256, sha3-384, sha3-512, blake2b, blake2s and blake3, spelled so |
-### Unmet expectation: trov-version-known
-Expectation details: The TRO carries trov:vocabularyVersion, a string naming a TROV version this checker knows: 0.1.
-| Found | Where | Expectation not met because |
-| --- | --- | --- |
-| `{"@id":"tro","@type":"trov:TransparentResearchObject","trov:wasAssembledBy":{"@id":"trs","@type":"trov:TrustedResearchSystem"},"trov:hasComposition":{"@id":"composition","@type":"trov:ArtifactComposition","trov:hasFingerprint":{"@id":"fingerprint","@type":"trov:CompositionFingerprint","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"44863b03e9909b7100e05b02526909a346fd7455183f6619e0fe6198c89981e0"}},"trov:hasArtifact":[{"@id":"composition/artifact/0","@type":"trov:ResearchArtifact","trov:hash":{"trov:hashAlgorithm":"SHA-256","trov:hashValue":"208fadf260c2cb9b1c747f03326626e66ddbb3cc6eee10b6e111ff0b803686fe"}}]}}` | `/@graph/0` | the TRO declares no trov:vocabularyVersion |
 
 ----- [4] expectation unmet: a hash names no algorithm -----------------------
 
@@ -417,6 +401,7 @@ $ report_on instance-hash-without-algorithm.jsonld
         {
             "@id": "tro",
             "@type": "trov:TransparentResearchObject",
+            "trov:vocabularyVersion": "0.1",
             "trov:wasAssembledBy": {
                 "@id": "trs",
                 "@type": "trov:TrustedResearchSystem"
@@ -504,8 +489,7 @@ wrote tmp/instance-hash-without-algorithm.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD me
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ❌ not met |
-| `hash-values-correct-length` | Every hash value has the length its algorithm produces | not assessed |
-| `hash-values-lowercase-hex` | Every hash carries its value as a string of lowercase hexadecimal digits | ✅ met |
+| `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | not assessed |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time | ✅ met |
 | `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | ✅ met |
@@ -513,7 +497,7 @@ wrote tmp/instance-hash-without-algorithm.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD me
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ❌ not met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
 | *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
@@ -522,14 +506,9 @@ wrote tmp/instance-hash-without-algorithm.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD me
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
-## Details
+## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: hash-algorithms-permitted
 Expectation details: Every trov:hash on the TRO's artifacts and composition fingerprint names its algorithm in trov:hashAlgorithm, and the algorithm is one TRACE permits: sha256, sha384, sha512, sha3-256, sha3-384, sha3-512, blake2b, blake2s or blake3, spelled so.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"trov:hashValue":"208fadf260c2cb9b1c747f03326626e66ddbb3cc6eee10b6e111ff0b803686fe"}` | `/@graph/0/trov:hasComposition/trov:hasArtifact/0/trov:hash` | the hash names no algorithm (trov:hashAlgorithm) |
-### Unmet expectation: trov-version-known
-Expectation details: The TRO carries trov:vocabularyVersion, a string naming a TROV version this checker knows: 0.1.
-| Found | Where | Expectation not met because |
-| --- | --- | --- |
-| `{"@id":"tro","@type":"trov:TransparentResearchObject","trov:wasAssembledBy":{"@id":"trs","@type":"trov:TrustedResearchSystem"},"trov:hasComposition":{"@id":"composition","@type":"trov:ArtifactComposition","trov:hasFingerprint":{"@id":"fingerprint","@type":"trov:CompositionFingerprint","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"44863b03e9909b7100e05b02526909a346fd7455183f6619e0fe6198c89981e0"}},"trov:hasArtifact":[{"@id":"composition/artifact/0","@type":"trov:ResearchArtifact","trov:hash":{"trov:hashValue":"208fadf260c2cb9b1c747f03326626e66ddbb3cc6eee10b6e111ff0b803686fe"}}]}}` | `/@graph/0` | the TRO declares no trov:vocabularyVersion |
