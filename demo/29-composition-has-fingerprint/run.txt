@@ -103,6 +103,9 @@ wrote tmp/instance-fingerprint-present.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 
 | `composition-identifies-artifacts` | The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
+| `custom-term-superclasses-extensible` | Every custom term extends `trov:TRSCapabilityType` or `trov:TRPAttributeType` | ✅ met |
+| `custom-terms-not-trov` | Every `trov:customTerm` entry declares a term outside the TROV namespace | ✅ met |
+| `gpg-signing-key-present` | A TRO signed with `trov:GPGSigning` gives its TRS a `trov:publicKey` | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -111,7 +114,11 @@ wrote tmp/instance-fingerprint-present.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 
 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
+| `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
+| `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
+| `trov-signing-mechanisms-predefined` | A signing mechanism is identified by reference, and a `trov:` one is one TROV predefines | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
+| `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
 | *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
@@ -213,6 +220,9 @@ wrote tmp/instance-no-fingerprint.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRA
 | `composition-identifies-artifacts` | The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
+| `custom-term-superclasses-extensible` | Every custom term extends `trov:TRSCapabilityType` or `trov:TRPAttributeType` | ✅ met |
+| `custom-terms-not-trov` | Every `trov:customTerm` entry declares a term outside the TROV namespace | ✅ met |
+| `gpg-signing-key-present` | A TRO signed with `trov:GPGSigning` gives its TRS a `trov:publicKey` | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -221,7 +231,11 @@ wrote tmp/instance-no-fingerprint.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRA
 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
+| `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
+| `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
+| `trov-signing-mechanisms-predefined` | A signing mechanism is identified by reference, and a `trov:` one is one TROV predefines | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
+| `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
 | *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
@@ -339,6 +353,9 @@ wrote tmp/instance-fingerprint-array.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 | `composition-identifies-artifacts` | The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
+| `custom-term-superclasses-extensible` | Every custom term extends `trov:TRSCapabilityType` or `trov:TRPAttributeType` | ✅ met |
+| `custom-terms-not-trov` | Every `trov:customTerm` entry declares a term outside the TROV namespace | ✅ met |
+| `gpg-signing-key-present` | A TRO signed with `trov:GPGSigning` gives its TRS a `trov:publicKey` | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -347,7 +364,11 @@ wrote tmp/instance-fingerprint-array.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
+| `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
+| `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
+| `trov-signing-mechanisms-predefined` | A signing mechanism is identified by reference, and a `trov:` one is one TROV predefines | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
+| `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
 | *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
@@ -465,6 +486,9 @@ wrote tmp/instance-fingerprint-hash-array.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD me
 | `composition-identifies-artifacts` | The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
+| `custom-term-superclasses-extensible` | Every custom term extends `trov:TRSCapabilityType` or `trov:TRPAttributeType` | ✅ met |
+| `custom-terms-not-trov` | Every `trov:customTerm` entry declares a term outside the TROV namespace | ✅ met |
+| `gpg-signing-key-present` | A TRO signed with `trov:GPGSigning` gives its TRS a `trov:publicKey` | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -473,7 +497,11 @@ wrote tmp/instance-fingerprint-hash-array.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD me
 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
+| `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
+| `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
+| `trov-signing-mechanisms-predefined` | A signing mechanism is identified by reference, and a `trov:` one is one TROV predefines | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
+| `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
 | *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |

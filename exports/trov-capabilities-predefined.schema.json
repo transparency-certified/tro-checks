@@ -1,0 +1,140 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/trov-capabilities-predefined.schema.json",
+    "title": "TROV capabilities predefined",
+    "description": "Every trov: type on a value of trov:hasCapability is one of the capabilities TROV predefines. A type in any other namespace is a custom capability and is not judged here.",
+    "summary": "A capability's `trov:` type is one TROV predefines",
+    "requires": [
+        "core-prefixes-pinned"
+    ],
+    "type": "object",
+    "properties": {
+        "@graph": {
+            "$ref": "#/$defs/sweep"
+        }
+    },
+    "$defs": {
+        "sweep": {
+            "allOf": [
+                {
+                    "if": {
+                        "type": "object"
+                    },
+                    "then": {
+                        "properties": {
+                            "trov:hasCapability": {
+                                "allOf": [
+                                    {
+                                        "if": {
+                                            "type": "array"
+                                        },
+                                        "then": {
+                                            "items": {
+                                                "$ref": "#/$defs/value"
+                                            }
+                                        },
+                                        "else": {
+                                            "$ref": "#/$defs/value"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "#/$defs/sweep"
+                                    }
+                                ]
+                            }
+                        },
+                        "additionalProperties": {
+                            "$ref": "#/$defs/sweep"
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "type": "array"
+                    },
+                    "then": {
+                        "items": {
+                            "$ref": "#/$defs/sweep"
+                        }
+                    }
+                }
+            ]
+        },
+        "value": {
+            "if": {
+                "type": "object"
+            },
+            "then": {
+                "properties": {
+                    "@type": {
+                        "if": {
+                            "type": "array"
+                        },
+                        "then": {
+                            "items": {
+                                "if": {
+                                    "type": "string",
+                                    "pattern": "^trov:"
+                                },
+                                "then": {
+                                    "enum": [
+                                        "trov:CanProvideInternetIsolation",
+                                        "trov:CanRecordInternetAccess",
+                                        "trov:CanIsolateEnvironment",
+                                        "trov:CanPreventAuthorIntervention",
+                                        "trov:CanExcludeInputs",
+                                        "trov:CanExcludeOutputs",
+                                        "trov:CanEnsureInputDataIncludedInTROPackage",
+                                        "trov:CanRequireInputDataExistsBeforeRun",
+                                        "trov:CanRequireInputDataLocalBeforeRun",
+                                        "trov:CanEnsureInputDataPersistsAfterRun",
+                                        "trov:CanEnsureOutputDataIncludedInTROPackage",
+                                        "trov:CanEnsureCodeIncludedInTROPackage",
+                                        "trov:CanRecordSoftwareEnvironment",
+                                        "trov:CanDetectInternetAccess",
+                                        "trov:CanEnforceInternetIsolation",
+                                        "trov:CanPreventUserInteractionDuringRun",
+                                        "trov:CanEnforceCapabilitiesTechnically"
+                                    ],
+                                    "errorMessage": {
+                                        "enum": "${0} is not a capability TROV predefines"
+                                    }
+                                }
+                            }
+                        },
+                        "else": {
+                            "if": {
+                                "type": "string",
+                                "pattern": "^trov:"
+                            },
+                            "then": {
+                                "enum": [
+                                    "trov:CanProvideInternetIsolation",
+                                    "trov:CanRecordInternetAccess",
+                                    "trov:CanIsolateEnvironment",
+                                    "trov:CanPreventAuthorIntervention",
+                                    "trov:CanExcludeInputs",
+                                    "trov:CanExcludeOutputs",
+                                    "trov:CanEnsureInputDataIncludedInTROPackage",
+                                    "trov:CanRequireInputDataExistsBeforeRun",
+                                    "trov:CanRequireInputDataLocalBeforeRun",
+                                    "trov:CanEnsureInputDataPersistsAfterRun",
+                                    "trov:CanEnsureOutputDataIncludedInTROPackage",
+                                    "trov:CanEnsureCodeIncludedInTROPackage",
+                                    "trov:CanRecordSoftwareEnvironment",
+                                    "trov:CanDetectInternetAccess",
+                                    "trov:CanEnforceInternetIsolation",
+                                    "trov:CanPreventUserInteractionDuringRun",
+                                    "trov:CanEnforceCapabilitiesTechnically"
+                                ],
+                                "errorMessage": {
+                                    "enum": "${0} is not a capability TROV predefines"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

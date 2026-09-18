@@ -1,0 +1,98 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/gpg-signing-key-present.schema.json",
+    "title": "GPG signing key present",
+    "description": "Where the TRO names trov:GPGSigning as its signing mechanism, the TRS that assembled it carries a trov:publicKey.",
+    "summary": "A TRO signed with `trov:GPGSigning` gives its TRS a `trov:publicKey`",
+    "requires": [
+        "tro-top-level-in-graph"
+    ],
+    "type": "object",
+    "properties": {
+        "@graph": {
+            "if": {
+                "type": "array"
+            },
+            "then": {
+                "items": {
+                    "if": {
+                        "type": "object",
+                        "required": [
+                            "@type"
+                        ],
+                        "properties": {
+                            "@type": {
+                                "anyOf": [
+                                    {
+                                        "const": "trov:TransparentResearchObject"
+                                    },
+                                    {
+                                        "type": "array",
+                                        "contains": {
+                                            "const": "trov:TransparentResearchObject"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "then": {
+                        "if": {
+                            "required": [
+                                "trov:signingMechanism"
+                            ],
+                            "properties": {
+                                "trov:signingMechanism": {
+                                    "anyOf": [
+                                        {
+                                            "type": "object",
+                                            "required": [
+                                                "@id"
+                                            ],
+                                            "properties": {
+                                                "@id": {
+                                                    "const": "trov:GPGSigning"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "array",
+                                            "contains": {
+                                                "type": "object",
+                                                "required": [
+                                                    "@id"
+                                                ],
+                                                "properties": {
+                                                    "@id": {
+                                                        "const": "trov:GPGSigning"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "then": {
+                            "properties": {
+                                "trov:wasAssembledBy": {
+                                    "if": {
+                                        "type": "object"
+                                    },
+                                    "then": {
+                                        "required": [
+                                            "trov:publicKey"
+                                        ],
+                                        "errorMessage": {
+                                            "required": "a TRO signed with trov:GPGSigning gives its TRS a trov:publicKey"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

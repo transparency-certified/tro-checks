@@ -121,6 +121,13 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <tr><td nowrap><code>times-zoned</code></td><td>Every <code>trov:startedAtTime</code> and <code>trov:endedAtTime</code> carries its time zone</td></tr>
 <tr><td nowrap><code>tro-name-description-text</code></td><td>The TRO's <code>schema:name</code> and <code>schema:description</code>, if present, are Text: a string or an array of strings</td></tr>
 <tr><td nowrap><code>creators-person-or-organization</code></td><td>The TRO's <code>schema:creator</code>, if present, is a node typed <code>schema:Person</code> or <code>schema:Organization</code>, never a string</td></tr>
+<tr><td nowrap><code>trov-capabilities-predefined</code></td><td>A capability's <code>trov:</code> type is one TROV predefines</td></tr>
+<tr><td nowrap><code>trov-performance-attributes-predefined</code></td><td>A performance attribute's <code>trov:</code> type is one TROV predefines</td></tr>
+<tr><td nowrap><code>trov-tro-attributes-predefined</code></td><td>A TRO attribute's <code>trov:</code> type is one TROV predefines</td></tr>
+<tr><td nowrap><code>custom-terms-not-trov</code></td><td>Every <code>trov:customTerm</code> entry declares a term outside the TROV namespace</td></tr>
+<tr><td nowrap><code>custom-term-superclasses-extensible</code></td><td>Every custom term extends <code>trov:TRSCapabilityType</code> or <code>trov:TRPAttributeType</code></td></tr>
+<tr><td nowrap><code>trov-signing-mechanisms-predefined</code></td><td>A signing mechanism is identified by reference, and a <code>trov:</code> one is one TROV predefines</td></tr>
+<tr><td nowrap><code>gpg-signing-key-present</code></td><td>A TRO signed with <code>trov:GPGSigning</code> gives its TRS a <code>trov:publicKey</code></td></tr>
 </tbody>
 <tbody>
 <tr><th colspan="2" align="left"><br>Tier&nbsp;5&nbsp;—&nbsp;LINKABLE&#8209;TRO</th></tr>

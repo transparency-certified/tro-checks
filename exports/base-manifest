@@ -48,5 +48,12 @@ times-iso-8601.schema.json
 times-zoned.schema.json
 tro-name-description-text.schema.json
 creators-person-or-organization.schema.json
+trov-capabilities-predefined.schema.json
+trov-performance-attributes-predefined.schema.json
+trov-tro-attributes-predefined.schema.json
+custom-terms-not-trov.schema.json
+custom-term-superclasses-extensible.schema.json
+trov-signing-mechanisms-predefined.schema.json
+gpg-signing-key-present.schema.json
 tro-assembled-by-trs.schema.json
 trov-version-known.schema.json

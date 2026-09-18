@@ -1,0 +1,86 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/custom-terms-not-trov.schema.json",
+    "title": "Custom terms not TROV",
+    "description": "Every trov:customTerm entry declares a term outside the TROV namespace, whether written with the trov: prefix or as an absolute IRI.",
+    "summary": "Every `trov:customTerm` entry declares a term outside the TROV namespace",
+    "requires": [
+        "core-prefixes-pinned"
+    ],
+    "type": "object",
+    "properties": {
+        "@graph": {
+            "$ref": "#/$defs/sweep"
+        }
+    },
+    "$defs": {
+        "sweep": {
+            "allOf": [
+                {
+                    "if": {
+                        "type": "object"
+                    },
+                    "then": {
+                        "properties": {
+                            "trov:customTerm": {
+                                "allOf": [
+                                    {
+                                        "if": {
+                                            "type": "array"
+                                        },
+                                        "then": {
+                                            "items": {
+                                                "$ref": "#/$defs/value"
+                                            }
+                                        },
+                                        "else": {
+                                            "$ref": "#/$defs/value"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "#/$defs/sweep"
+                                    }
+                                ]
+                            }
+                        },
+                        "additionalProperties": {
+                            "$ref": "#/$defs/sweep"
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "type": "array"
+                    },
+                    "then": {
+                        "items": {
+                            "$ref": "#/$defs/sweep"
+                        }
+                    }
+                }
+            ]
+        },
+        "value": {
+            "if": {
+                "type": "object"
+            },
+            "then": {
+                "properties": {
+                    "@id": {
+                        "if": {
+                            "type": "string"
+                        },
+                        "then": {
+                            "not": {
+                                "pattern": "^(trov:|https://w3id\\.org/trace/trov/)"
+                            },
+                            "errorMessage": {
+                                "not": "${0} is a TROV term; a custom term is declared outside the TROV namespace"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

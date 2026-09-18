@@ -62,7 +62,14 @@
             "times-iso-8601",
             "times-zoned",
             "tro-name-description-text",
-            "creators-person-or-organization"
+            "creators-person-or-organization",
+            "trov-capabilities-predefined",
+            "trov-performance-attributes-predefined",
+            "trov-tro-attributes-predefined",
+            "custom-terms-not-trov",
+            "custom-term-superclasses-extensible",
+            "trov-signing-mechanisms-predefined",
+            "gpg-signing-key-present"
         ]
     },
     {

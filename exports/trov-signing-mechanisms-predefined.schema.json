@@ -1,0 +1,87 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/trov-signing-mechanisms-predefined.schema.json",
+    "title": "TROV signing mechanisms predefined",
+    "description": "Every value of trov:signingMechanism identifies its mechanism by reference, {\"@id\": \u2026}, and a trov: one is a mechanism TROV predefines: trov:X509CMSSigning or trov:GPGSigning. A mechanism in any other namespace is a custom one and is not judged here.",
+    "summary": "A signing mechanism is identified by reference, and a `trov:` one is one TROV predefines",
+    "requires": [
+        "core-prefixes-pinned"
+    ],
+    "type": "object",
+    "properties": {
+        "@graph": {
+            "$ref": "#/$defs/sweep"
+        }
+    },
+    "$defs": {
+        "sweep": {
+            "allOf": [
+                {
+                    "if": {
+                        "type": "object"
+                    },
+                    "then": {
+                        "properties": {
+                            "trov:signingMechanism": {
+                                "allOf": [
+                                    {
+                                        "if": {
+                                            "type": "array"
+                                        },
+                                        "then": {
+                                            "items": {
+                                                "$ref": "#/$defs/value"
+                                            }
+                                        },
+                                        "else": {
+                                            "$ref": "#/$defs/value"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "#/$defs/sweep"
+                                    }
+                                ]
+                            }
+                        },
+                        "additionalProperties": {
+                            "$ref": "#/$defs/sweep"
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "type": "array"
+                    },
+                    "then": {
+                        "items": {
+                            "$ref": "#/$defs/sweep"
+                        }
+                    }
+                }
+            ]
+        },
+        "value": {
+            "type": "object",
+            "errorMessage": {
+                "type": "a signing mechanism is identified by reference, {\"@id\": \u2026}, not by a string"
+            },
+            "properties": {
+                "@id": {
+                    "if": {
+                        "type": "string",
+                        "pattern": "^trov:"
+                    },
+                    "then": {
+                        "enum": [
+                            "trov:X509CMSSigning",
+                            "trov:GPGSigning"
+                        ],
+                        "errorMessage": {
+                            "enum": "${0} is not a signing mechanism TROV predefines; those are trov:X509CMSSigning and trov:GPGSigning"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

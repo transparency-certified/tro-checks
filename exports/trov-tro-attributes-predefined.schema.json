@@ -1,0 +1,108 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/trov-tro-attributes-predefined.schema.json",
+    "title": "TROV TRO attributes predefined",
+    "description": "Every trov: type on a value of trov:hasAttribute is a TRO attribute TROV predefines: trov:IncludesAllInputData. A type in any other namespace is a custom attribute and is not judged here.",
+    "summary": "A TRO attribute's `trov:` type is one TROV predefines",
+    "requires": [
+        "core-prefixes-pinned"
+    ],
+    "type": "object",
+    "properties": {
+        "@graph": {
+            "$ref": "#/$defs/sweep"
+        }
+    },
+    "$defs": {
+        "sweep": {
+            "allOf": [
+                {
+                    "if": {
+                        "type": "object"
+                    },
+                    "then": {
+                        "properties": {
+                            "trov:hasAttribute": {
+                                "allOf": [
+                                    {
+                                        "if": {
+                                            "type": "array"
+                                        },
+                                        "then": {
+                                            "items": {
+                                                "$ref": "#/$defs/value"
+                                            }
+                                        },
+                                        "else": {
+                                            "$ref": "#/$defs/value"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "#/$defs/sweep"
+                                    }
+                                ]
+                            }
+                        },
+                        "additionalProperties": {
+                            "$ref": "#/$defs/sweep"
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "type": "array"
+                    },
+                    "then": {
+                        "items": {
+                            "$ref": "#/$defs/sweep"
+                        }
+                    }
+                }
+            ]
+        },
+        "value": {
+            "if": {
+                "type": "object"
+            },
+            "then": {
+                "properties": {
+                    "@type": {
+                        "if": {
+                            "type": "array"
+                        },
+                        "then": {
+                            "items": {
+                                "if": {
+                                    "type": "string",
+                                    "pattern": "^trov:"
+                                },
+                                "then": {
+                                    "enum": [
+                                        "trov:IncludesAllInputData"
+                                    ],
+                                    "errorMessage": {
+                                        "enum": "${0} is not a TRO attribute TROV predefines; that is trov:IncludesAllInputData"
+                                    }
+                                }
+                            }
+                        },
+                        "else": {
+                            "if": {
+                                "type": "string",
+                                "pattern": "^trov:"
+                            },
+                            "then": {
+                                "enum": [
+                                    "trov:IncludesAllInputData"
+                                ],
+                                "errorMessage": {
+                                    "enum": "${0} is not a TRO attribute TROV predefines; that is trov:IncludesAllInputData"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

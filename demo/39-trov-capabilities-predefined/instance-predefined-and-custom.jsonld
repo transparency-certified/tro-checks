@@ -1,0 +1,79 @@
+{
+    "@context": {
+        "trov": "https://w3id.org/trace/trov/0.1#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "ex": "https://example.org/terms#"
+    },
+    "@graph": [
+        {
+            "@id": "tro",
+            "@type": "trov:TransparentResearchObject",
+            "trov:vocabularyVersion": "0.1",
+            "trov:signingMechanism": {
+                "@id": "trov:X509CMSSigning"
+            },
+            "trov:wasAssembledBy": {
+                "@id": "trs",
+                "@type": "trov:TrustedResearchSystem",
+                "trov:hasCapability": [
+                    {
+                        "@id": "trs/capability/0",
+                        "@type": "trov:CanProvideInternetIsolation"
+                    },
+                    {
+                        "@id": "trs/capability/1",
+                        "@type": "ex:CanLogAudits"
+                    }
+                ],
+                "trov:customTerm": [
+                    {
+                        "@id": "ex:CanLogAudits",
+                        "rdfs:subClassOf": {
+                            "@id": "trov:TRSCapabilityType"
+                        }
+                    },
+                    {
+                        "@id": "ex:AuditLogged",
+                        "rdfs:subClassOf": {
+                            "@id": "trov:TRPAttributeType"
+                        }
+                    }
+                ]
+            },
+            "trov:hasPerformance": [
+                {
+                    "@id": "trp/0",
+                    "@type": "trov:TrustedResearchPerformance",
+                    "trov:wasConductedBy": {
+                        "@id": "trs"
+                    },
+                    "trov:hasPerformanceAttribute": [
+                        {
+                            "@id": "trp/0/attribute/0",
+                            "@type": "trov:InternetIsolation",
+                            "trov:warrantedBy": {
+                                "@id": "trs/capability/0"
+                            }
+                        },
+                        {
+                            "@id": "trp/0/attribute/1",
+                            "@type": "ex:AuditLogged",
+                            "trov:warrantedBy": {
+                                "@id": "trs/capability/1"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "trov:hasAttribute": [
+                {
+                    "@id": "tro/attribute/0",
+                    "@type": "trov:IncludesAllInputData",
+                    "trov:warrantedBy": {
+                        "@id": "trp/0/attribute/0"
+                    }
+                }
+            ]
+        }
+    ]
+}
