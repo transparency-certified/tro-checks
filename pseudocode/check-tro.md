@@ -17,6 +17,7 @@
   - It stops if a tier has no ID, no description, or no expectations.
   - It stops if a tier says whether it blocks higher tiers other than by true or false.
   - It stops if no tier answers to that ID.
+- It stops if the candidate is not a file it can read.
 - It notes the name of the file the candidate sits in.
 - It records where the tier came from — the `--target` option, or the default.
 

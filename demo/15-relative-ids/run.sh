@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 15: relative-ids-plain (TIER 2 - SAFE-JSON-LD)"
+title "tro-checks  ·  demo 15: id-segments-portable (TIER 2 - SAFE-JSON-LD)"
 
 show "expectation met: relative ids are plain paths; absolute, compact and blank node ids are not relative" \
     report_on instance-plain-relative-ids.jsonld

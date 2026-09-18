@@ -17,8 +17,8 @@ title "tro-checks  ·  demo 19: base-web-scheme (TIER 3 - TRACE-JSON-LD)"
 show "expectation met: the @base uses the https scheme" \
     report_on instance-https-base.jsonld
 
-show "expectation unmet: the @base is a urn:uuid URI" \
-    report_on instance-urn-base.jsonld
+show "expectation unmet: the @base uses the ftp scheme" \
+    report_on instance-ftp-base.jsonld
 
 show "expectation unmet: the @base is a number" \
     report_on instance-number-base.jsonld

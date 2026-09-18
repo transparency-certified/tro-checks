@@ -424,8 +424,9 @@ const UNPAIRED_SURROGATE = /[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBF
  */
 const PARSE_CHECKS = {
     'utf8-encoded': (candidate) => {
+        const bytes = fs.readFileSync(candidate.path)
         try {
-            new TextDecoder('utf-8', { fatal: true }).decode(fs.readFileSync(candidate.path))
+            new TextDecoder('utf-8', { fatal: true }).decode(bytes)
         } catch {
             return [{ keyword: 'encoding', clause: [], message: 'the candidate is not valid UTF-8' }]
         }
@@ -692,6 +693,19 @@ const EXIT = {
     COULD_NOT_CHECK: 2,
 }
 
+/**
+ * @param {string} candidatePath
+ * @returns {boolean}  whether the path names a file this process can read
+ */
+function isReadableFile(candidatePath) {
+    try {
+        fs.accessSync(candidatePath, fs.constants.R_OK)
+        return fs.statSync(candidatePath).isFile()
+    } catch {
+        return false
+    }
+}
+
 /** @returns {number}  the exit status */
 function runAsCommand() {
     try {
@@ -710,6 +724,7 @@ function runAsCommand() {
         const candidatePath = optionValues.candidate
         const reportPath = optionValues.report
         if (!candidatePath || !reportPath) throw new Error(USAGE)
+        if (!isReadableFile(candidatePath)) throw new Error(`cannot read the candidate ${candidatePath}`)
 
         const targetSource = optionValues.target !== undefined ? 'option' : 'default'
         const targetTier = lookUpTier(optionValues.target ?? ASSUMED_TIER)

@@ -1,6 +1,6 @@
 ##############################################################################
 #
-#   tro-checks  ·  demo 15: relative-ids-plain (TIER 2 - SAFE-JSON-LD)
+#   tro-checks  ·  demo 15: id-segments-portable (TIER 2 - SAFE-JSON-LD)
 #
 ##############################################################################
 

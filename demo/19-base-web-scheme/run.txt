@@ -92,25 +92,25 @@ wrote tmp/instance-https-base.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-J
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 
------ [2] expectation unmet: the @base is a urn:uuid URI ---------------------
+----- [2] expectation unmet: the @base uses the ftp scheme -------------------
 
-$ report_on instance-urn-base.jsonld
+$ report_on instance-ftp-base.jsonld
 {
     "@context": {
-        "@base": "urn:uuid:2f8a1c94-7b3e-4d21-9f6a-0c5e83b7d410"
+        "@base": "ftp://example.org/tro/2f8a1c94/"
     },
     "@graph": [
         { "@id": "tro" }
     ]
 }
 
-wrote tmp/instance-urn-base.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSON-LD unmet
+wrote tmp/instance-ftp-base.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSON-LD unmet
 
 # Report
 ## Candidate Information
 |  |  |
 | --- | --- |
-| Candidate | `instance-urn-base.jsonld` |
+| Candidate | `instance-ftp-base.jsonld` |
 | Target | 3 TRACE-JSON-LD |
 | Target declared by | the `--target` option |
 ## Tier Assessments
@@ -145,7 +145,7 @@ wrote tmp/instance-urn-base.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSO
 | `vocab-absent` | No `@vocab` in a context | ✅ met |
 | **Tier 3 — TRACE-JSON-LD  ❌ not met** |  |  |
 | Expectation | Summary | Status |
-| `base-simple-url` | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ❌ not met |
+| `base-simple-url` | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
 | `base-web-scheme` | The `@base`, if any, uses the `https` or `http` scheme | ❌ not met |
 | `context-aliases-absent` | No term definition aliases a property; a term definition holds only a `@type` naming a datatype | ✅ met |
 | `context-local` | The `@context` is inline: no string names a remote context | ✅ met |
@@ -180,18 +180,11 @@ wrote tmp/instance-urn-base.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSO
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
-### Unmet expectation: base-simple-url
-Expectation details: Where an @context declares an @base as a string, it names a host, carries no user name or password, has no . or .. segments, contains no ? or #, ends in /, contains only characters allowed in a URL, and has a path of portable segments -- letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit.
-| Found | Where | Expectation not met because |
-| --- | --- | --- |
-| `"urn:uuid:2f8a1c94-7b3e-4d21-9f6a-0c5e83b7d410"` | `/@context/@base` | an @base names a host |
-| `"urn:uuid:2f8a1c94-7b3e-4d21-9f6a-0c5e83b7d410"` | `/@context/@base` | an @base ends in / |
-| `"urn:uuid:2f8a1c94-7b3e-4d21-9f6a-0c5e83b7d410"` | `/@context/@base` | a segment of an @base path holds only letters, digits, dots, hyphens and underscores, and begins and ends with a letter or digit |
 ### Unmet expectation: base-web-scheme
 Expectation details: Where an @context declares a non-null @base, it is a string using the https or http scheme.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `"urn:uuid:2f8a1c94-7b3e-4d21-9f6a-0c5e83b7d410"` | `/@context/@base` | an @base uses the https or http scheme |
+| `"ftp://example.org/tro/2f8a1c94/"` | `/@context/@base` | an @base uses the https or http scheme |
 
 ----- [3] expectation unmet: the @base is a number ---------------------------
 
