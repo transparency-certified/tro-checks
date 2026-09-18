@@ -110,8 +110,12 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <tr><td nowrap><code>trov-terms-known</code></td><td>Every <code>trov:</code> name is one TROV defines</td></tr>
 <tr><td nowrap><code>tro-top-level-in-graph</code></td><td>The TRO is a top-level member of the <code>@graph</code></td></tr>
 <tr><td nowrap><code>tro-assembled-by-trs</code></td><td>The TRO names its assembling system, typed as a TRS</td></tr>
-<tr><td nowrap><code>composition-fingerprinted</code></td><td>The TRO's composition, if any, carries a fingerprint</td></tr>
-<tr><td nowrap><code>hashes-well-formed</code></td><td>The TRO's artifact and fingerprint hashes are well-formed sha256</td></tr>
+<tr><td nowrap><code>composition-has-fingerprint</code></td><td>The TRO's composition, if any, carries one fingerprint, which carries one hash</td></tr>
+<tr><td nowrap><code>composition-identifies-artifacts</code></td><td>The TRO's composition, if any, names at least one artifact in a <code>trov:hasArtifact</code> array</td></tr>
+<tr><td nowrap><code>artifact-hashes-present</code></td><td>Every artifact in the composition carries a <code>trov:hash</code>, one hash or an array of at least one</td></tr>
+<tr><td nowrap><code>hash-algorithms-permitted</code></td><td>Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families</td></tr>
+<tr><td nowrap><code>hash-values-lowercase-hex</code></td><td>Every hash carries its value as a string of lowercase hexadecimal digits</td></tr>
+<tr><td nowrap><code>hash-values-correct-length</code></td><td>Every hash value has the length its algorithm produces</td></tr>
 </tbody>
 <tbody>
 <tr><th colspan="2" align="left"><br>Tier&nbsp;5&nbsp;—&nbsp;LINKABLE&#8209;TRO</th></tr>

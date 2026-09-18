@@ -1,0 +1,77 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/artifact-hashes-present.schema.json",
+    "title": "Artifact hashes present",
+    "description": "Every artifact in the TRO's composition carries a trov:hash: one hash object, or an array holding at least one.",
+    "summary": "Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one",
+    "requires": [
+        "tro-top-level-in-graph"
+    ],
+    "type": "object",
+    "properties": {
+        "@graph": {
+            "type": "array",
+            "items": {
+                "if": {
+                    "type": "object"
+                },
+                "then": {
+                    "properties": {
+                        "trov:hasComposition": {
+                            "if": {
+                                "type": "object"
+                            },
+                            "then": {
+                                "properties": {
+                                    "trov:hasArtifact": {
+                                        "if": {
+                                            "type": "array"
+                                        },
+                                        "then": {
+                                            "items": {
+                                                "if": {
+                                                    "type": "object"
+                                                },
+                                                "then": {
+                                                    "required": [
+                                                        "trov:hash"
+                                                    ],
+                                                    "properties": {
+                                                        "trov:hash": {
+                                                            "if": {
+                                                                "type": "array"
+                                                            },
+                                                            "then": {
+                                                                "minItems": 1,
+                                                                "items": {
+                                                                    "type": "object"
+                                                                },
+                                                                "errorMessage": {
+                                                                    "minItems": "an artifact's array of hashes holds at least one",
+                                                                    "items": "each entry in an artifact's array of hashes is a hash object"
+                                                                }
+                                                            },
+                                                            "else": {
+                                                                "type": "object",
+                                                                "errorMessage": {
+                                                                    "type": "an artifact's trov:hash is a hash object or an array of them"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "errorMessage": {
+                                                        "required": "the artifact carries no trov:hash"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -38,6 +38,10 @@ base-host-lowercase.schema.json
 base-host-ownable.schema.json
 blank-node-ids-absent.schema.json
 node-ids-present.schema.json
-hashes-well-formed.schema.json
-composition-fingerprinted.schema.json
+composition-has-fingerprint.schema.json
+composition-identifies-artifacts.schema.json
+artifact-hashes-present.schema.json
+hash-algorithms-permitted.schema.json
+hash-values-lowercase-hex.schema.json
+hash-values-correct-length.schema.json
 tro-assembled-by-trs.schema.json

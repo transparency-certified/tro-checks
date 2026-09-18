@@ -1,0 +1,51 @@
+{
+    "@context": {
+        "trov": "https://w3id.org/trace/trov/0.1#"
+    },
+    "@graph": [
+        {
+            "@id": "tro",
+            "@type": "trov:TransparentResearchObject",
+            "trov:wasAssembledBy": {
+                "@id": "trs",
+                "@type": "trov:TrustedResearchSystem"
+            },
+            "trov:hasComposition": {
+                "@id": "composition",
+                "@type": "trov:ArtifactComposition",
+                "trov:hasFingerprint": {
+                    "@id": "fingerprint",
+                    "@type": "trov:CompositionFingerprint",
+                    "trov:hash": {
+                        "trov:hashAlgorithm": "sha256",
+                        "trov:hashValue": "44863b03e9909b7100e05b02526909a346fd7455183f6619e0fe6198c89981e0"
+                    }
+                },
+                "trov:hasArtifact": [
+                    {
+                        "@id": "composition/artifact/0",
+                        "@type": "trov:ResearchArtifact",
+                        "trov:hash": [
+                            {
+                                "trov:hashAlgorithm": "sha256",
+                                "trov:hashValue": "208fadf260c2cb9b1c747f03326626e66ddbb3cc6eee10b6e111ff0b803686fe"
+                            },
+                            {
+                                "trov:hashAlgorithm": "sha512",
+                                "trov:hashValue": "d11233fb6329ff8c7c8820752feb2e71da84a9cb3f661dc05941f461c30a2cb69dfe04a9ac0ed7a7f83259ec83cd0bf43a1242dbcf9125888a84bcb4614bb0d9"
+                            }
+                        ]
+                    },
+                    {
+                        "@id": "composition/artifact/1",
+                        "@type": "trov:ResearchArtifact",
+                        "trov:hash": {
+                            "trov:hashAlgorithm": "blake2b",
+                            "trov:hashValue": "5b6e783aec381b6eb19fabc6b60ff3e5095417d91b6390eae2cad34992011c0a44657925858b885dce269d09a4827a0449972da82952ed500d4db0d164482b13"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

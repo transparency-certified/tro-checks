@@ -71,9 +71,13 @@ wrote tmp/instance-property-name-known.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 
 | `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
 | **Tier 4 — STANDALONE-TRO  ✅ met** |  |  |
 | Expectation | Summary | Status |
-| `composition-fingerprinted` | The TRO's composition, if any, carries a fingerprint | ✅ met |
+| `artifact-hashes-present` | Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one | ✅ met |
+| `composition-has-fingerprint` | The TRO's composition, if any, carries one fingerprint, which carries one hash | ✅ met |
+| `composition-identifies-artifacts` | The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
-| `hashes-well-formed` | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
+| `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
+| `hash-values-correct-length` | Every hash value has the length its algorithm produces | ✅ met |
+| `hash-values-lowercase-hex` | Every hash carries its value as a string of lowercase hexadecimal digits | ✅ met |
 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS | ✅ met |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
@@ -153,9 +157,13 @@ wrote tmp/instance-property-name-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met
 | `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
 | **Tier 4 — STANDALONE-TRO  ❌ not met** |  |  |
 | Expectation | Summary | Status |
-| `composition-fingerprinted` | The TRO's composition, if any, carries a fingerprint | ✅ met |
+| `artifact-hashes-present` | Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one | ✅ met |
+| `composition-has-fingerprint` | The TRO's composition, if any, carries one fingerprint, which carries one hash | ✅ met |
+| `composition-identifies-artifacts` | The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
-| `hashes-well-formed` | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
+| `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
+| `hash-values-correct-length` | Every hash value has the length its algorithm produces | ✅ met |
+| `hash-values-lowercase-hex` | Every hash carries its value as a string of lowercase hexadecimal digits | ✅ met |
 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS | ✅ met |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ❌ not met |
@@ -241,9 +249,13 @@ wrote tmp/instance-id-known.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSO
 | `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
 | **Tier 4 — STANDALONE-TRO  ✅ met** |  |  |
 | Expectation | Summary | Status |
-| `composition-fingerprinted` | The TRO's composition, if any, carries a fingerprint | ✅ met |
+| `artifact-hashes-present` | Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one | ✅ met |
+| `composition-has-fingerprint` | The TRO's composition, if any, carries one fingerprint, which carries one hash | ✅ met |
+| `composition-identifies-artifacts` | The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
-| `hashes-well-formed` | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
+| `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
+| `hash-values-correct-length` | Every hash value has the length its algorithm produces | ✅ met |
+| `hash-values-lowercase-hex` | Every hash carries its value as a string of lowercase hexadecimal digits | ✅ met |
 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS | ✅ met |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
@@ -323,9 +335,13 @@ wrote tmp/instance-id-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-J
 | `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
 | **Tier 4 — STANDALONE-TRO  ❌ not met** |  |  |
 | Expectation | Summary | Status |
-| `composition-fingerprinted` | The TRO's composition, if any, carries a fingerprint | ✅ met |
+| `artifact-hashes-present` | Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one | ✅ met |
+| `composition-has-fingerprint` | The TRO's composition, if any, carries one fingerprint, which carries one hash | ✅ met |
+| `composition-identifies-artifacts` | The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
-| `hashes-well-formed` | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
+| `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
+| `hash-values-correct-length` | Every hash value has the length its algorithm produces | ✅ met |
+| `hash-values-lowercase-hex` | Every hash carries its value as a string of lowercase hexadecimal digits | ✅ met |
 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS | ✅ met |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ❌ not met |
@@ -411,9 +427,13 @@ wrote tmp/instance-type-known.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-J
 | `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
 | **Tier 4 — STANDALONE-TRO  ✅ met** |  |  |
 | Expectation | Summary | Status |
-| `composition-fingerprinted` | The TRO's composition, if any, carries a fingerprint | ✅ met |
+| `artifact-hashes-present` | Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one | ✅ met |
+| `composition-has-fingerprint` | The TRO's composition, if any, carries one fingerprint, which carries one hash | ✅ met |
+| `composition-identifies-artifacts` | The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
-| `hashes-well-formed` | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
+| `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
+| `hash-values-correct-length` | Every hash value has the length its algorithm produces | ✅ met |
+| `hash-values-lowercase-hex` | Every hash carries its value as a string of lowercase hexadecimal digits | ✅ met |
 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS | ✅ met |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
@@ -493,9 +513,13 @@ wrote tmp/instance-type-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
 | **Tier 4 — STANDALONE-TRO  ❌ not met** |  |  |
 | Expectation | Summary | Status |
-| `composition-fingerprinted` | The TRO's composition, if any, carries a fingerprint | ✅ met |
+| `artifact-hashes-present` | Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one | ✅ met |
+| `composition-has-fingerprint` | The TRO's composition, if any, carries one fingerprint, which carries one hash | ✅ met |
+| `composition-identifies-artifacts` | The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
-| `hashes-well-formed` | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
+| `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
+| `hash-values-correct-length` | Every hash value has the length its algorithm produces | ✅ met |
+| `hash-values-lowercase-hex` | Every hash carries its value as a string of lowercase hexadecimal digits | ✅ met |
 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS | ✅ met |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ❌ not met |
@@ -581,9 +605,13 @@ wrote tmp/instance-value-known.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-
 | `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
 | **Tier 4 — STANDALONE-TRO  ✅ met** |  |  |
 | Expectation | Summary | Status |
-| `composition-fingerprinted` | The TRO's composition, if any, carries a fingerprint | ✅ met |
+| `artifact-hashes-present` | Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one | ✅ met |
+| `composition-has-fingerprint` | The TRO's composition, if any, carries one fingerprint, which carries one hash | ✅ met |
+| `composition-identifies-artifacts` | The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
-| `hashes-well-formed` | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
+| `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
+| `hash-values-correct-length` | Every hash value has the length its algorithm produces | ✅ met |
+| `hash-values-lowercase-hex` | Every hash carries its value as a string of lowercase hexadecimal digits | ✅ met |
 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS | ✅ met |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
@@ -663,9 +691,13 @@ wrote tmp/instance-value-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRAC
 | `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
 | **Tier 4 — STANDALONE-TRO  ❌ not met** |  |  |
 | Expectation | Summary | Status |
-| `composition-fingerprinted` | The TRO's composition, if any, carries a fingerprint | ✅ met |
+| `artifact-hashes-present` | Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one | ✅ met |
+| `composition-has-fingerprint` | The TRO's composition, if any, carries one fingerprint, which carries one hash | ✅ met |
+| `composition-identifies-artifacts` | The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
-| `hashes-well-formed` | The TRO's artifact and fingerprint hashes are well-formed sha256 | ✅ met |
+| `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
+| `hash-values-correct-length` | Every hash value has the length its algorithm produces | ✅ met |
+| `hash-values-lowercase-hex` | Every hash carries its value as a string of lowercase hexadecimal digits | ✅ met |
 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS | ✅ met |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ❌ not met |

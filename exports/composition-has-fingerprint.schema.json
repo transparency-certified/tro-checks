@@ -1,0 +1,42 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/composition-has-fingerprint.schema.json",
+    "title": "Composition has fingerprint",
+    "description": "Where the TRO carries a trov:hasComposition, the composition carries one trov:hasFingerprint, an object, and the fingerprint carries one trov:hash, an object.",
+    "summary": "The TRO's composition, if any, carries one fingerprint, which carries one hash",
+    "requires": ["tro-top-level-in-graph"],
+    "type": "object",
+    "properties": {
+        "@graph": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "trov:hasComposition": {
+                        "type": "object",
+                        "required": ["trov:hasFingerprint"],
+                        "properties": {
+                            "trov:hasFingerprint": {
+                                "type": "object",
+                                "required": ["trov:hash"],
+                                "properties": {
+                                    "trov:hash": {
+                                        "type": "object",
+                                        "errorMessage": { "type": "a fingerprint carries one hash, an object, not an array of them" }
+                                    }
+                                },
+                                "errorMessage": {
+                                    "type": "a composition carries one fingerprint, an object, not an array of them",
+                                    "required": "the fingerprint carries no trov:hash"
+                                }
+                            }
+                        },
+                        "errorMessage": {
+                            "required": "the composition carries no trov:hasFingerprint"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

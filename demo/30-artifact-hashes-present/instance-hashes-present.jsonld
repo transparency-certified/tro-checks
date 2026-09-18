@@ -1,0 +1,51 @@
+{
+    "@context": {
+        "trov": "https://w3id.org/trace/trov/0.1#"
+    },
+    "@graph": [
+        {
+            "@id": "tro",
+            "@type": "trov:TransparentResearchObject",
+            "trov:wasAssembledBy": {
+                "@id": "trs",
+                "@type": "trov:TrustedResearchSystem"
+            },
+            "trov:hasComposition": {
+                "@id": "composition",
+                "@type": "trov:ArtifactComposition",
+                "trov:hasFingerprint": {
+                    "@id": "fingerprint",
+                    "@type": "trov:CompositionFingerprint",
+                    "trov:hash": {
+                        "trov:hashAlgorithm": "sha256",
+                        "trov:hashValue": "44863b03e9909b7100e05b02526909a346fd7455183f6619e0fe6198c89981e0"
+                    }
+                },
+                "trov:hasArtifact": [
+                    {
+                        "@id": "composition/artifact/0",
+                        "@type": "trov:ResearchArtifact",
+                        "trov:hash": [
+                            {
+                                "trov:hashAlgorithm": "sha256",
+                                "trov:hashValue": "208fadf260c2cb9b1c747f03326626e66ddbb3cc6eee10b6e111ff0b803686fe"
+                            },
+                            {
+                                "trov:hashAlgorithm": "sha512",
+                                "trov:hashValue": "d11233fb6329ff8c7c8820752feb2e71da84a9cb3f661dc05941f461c30a2cb69dfe04a9ac0ed7a7f83259ec83cd0bf43a1242dbcf9125888a84bcb4614bb0d9"
+                            }
+                        ]
+                    },
+                    {
+                        "@id": "composition/artifact/1",
+                        "@type": "trov:ResearchArtifact",
+                        "trov:hash": {
+                            "trov:hashAlgorithm": "sha3-256",
+                            "trov:hashValue": "1d84996b70271593631d1e4819e23c5d2b414b7d7c6ed9ef28b58e2b52afd71b"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

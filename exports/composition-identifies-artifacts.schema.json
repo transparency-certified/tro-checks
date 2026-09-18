@@ -1,0 +1,36 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/composition-identifies-artifacts.schema.json",
+    "title": "Composition identifies artifacts",
+    "description": "Where the TRO carries a trov:hasComposition, the composition carries trov:hasArtifact, an array holding at least one artifact.",
+    "summary": "The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array",
+    "requires": ["tro-top-level-in-graph"],
+    "type": "object",
+    "properties": {
+        "@graph": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "trov:hasComposition": {
+                        "type": "object",
+                        "required": ["trov:hasArtifact"],
+                        "properties": {
+                            "trov:hasArtifact": {
+                                "type": "array",
+                                "minItems": 1,
+                                "errorMessage": {
+                                    "type": "a composition names its artifacts in an array",
+                                    "minItems": "a composition names at least one artifact"
+                                }
+                            }
+                        },
+                        "errorMessage": {
+                            "required": "the composition carries no trov:hasArtifact"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -49,8 +49,12 @@
             "trov-terms-known",
             "tro-top-level-in-graph",
             "tro-assembled-by-trs",
-            "composition-fingerprinted",
-            "hashes-well-formed"
+            "composition-has-fingerprint",
+            "composition-identifies-artifacts",
+            "artifact-hashes-present",
+            "hash-algorithms-permitted",
+            "hash-values-lowercase-hex",
+            "hash-values-correct-length"
         ]
     },
     {

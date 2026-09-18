@@ -71,9 +71,13 @@ wrote tmp/instance-no-vocab.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met
 | *`types-prefixed-or-absolute`* | *Every `@type` value is a prefixed or absolute IRI, never a bare name* | *not claimed* |
 | *Tier 4 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
-| *`composition-fingerprinted`* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
+| *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
+| *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
+| *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
-| *`hashes-well-formed`* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
+| *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
+| *`hash-values-correct-length`* | *Every hash value has the length its algorithm produces* | *not claimed* |
+| *`hash-values-lowercase-hex`* | *Every hash carries its value as a string of lowercase hexadecimal digits* | *not claimed* |
 | *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
 | *`trov-terms-known`* | *Every `trov:` name is one TROV defines* | *not claimed* |
@@ -153,9 +157,13 @@ wrote tmp/instance-vocab.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *`types-prefixed-or-absolute`* | *Every `@type` value is a prefixed or absolute IRI, never a bare name* | *not claimed* |
 | *Tier 4 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
-| *`composition-fingerprinted`* | *The TRO's composition, if any, carries a fingerprint* | *not claimed* |
+| *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
+| *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
+| *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
-| *`hashes-well-formed`* | *The TRO's artifact and fingerprint hashes are well-formed sha256* | *not claimed* |
+| *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
+| *`hash-values-correct-length`* | *Every hash value has the length its algorithm produces* | *not claimed* |
+| *`hash-values-lowercase-hex`* | *Every hash carries its value as a string of lowercase hexadecimal digits* | *not claimed* |
 | *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
 | *`trov-terms-known`* | *Every `trov:` name is one TROV defines* | *not claimed* |

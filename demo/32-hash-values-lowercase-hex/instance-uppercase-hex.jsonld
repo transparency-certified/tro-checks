@@ -1,0 +1,37 @@
+{
+    "@context": {
+        "trov": "https://w3id.org/trace/trov/0.1#"
+    },
+    "@graph": [
+        {
+            "@id": "tro",
+            "@type": "trov:TransparentResearchObject",
+            "trov:wasAssembledBy": {
+                "@id": "trs",
+                "@type": "trov:TrustedResearchSystem"
+            },
+            "trov:hasComposition": {
+                "@id": "composition",
+                "@type": "trov:ArtifactComposition",
+                "trov:hasFingerprint": {
+                    "@id": "fingerprint",
+                    "@type": "trov:CompositionFingerprint",
+                    "trov:hash": {
+                        "trov:hashAlgorithm": "sha256",
+                        "trov:hashValue": "44863b03e9909b7100e05b02526909a346fd7455183f6619e0fe6198c89981e0"
+                    }
+                },
+                "trov:hasArtifact": [
+                    {
+                        "@id": "composition/artifact/0",
+                        "@type": "trov:ResearchArtifact",
+                        "trov:hash": {
+                            "trov:hashAlgorithm": "sha256",
+                            "trov:hashValue": "208FADF260C2CB9B1C747F03326626E66DDBB3CC6EEE10B6E111FF0B803686FE"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
