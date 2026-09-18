@@ -1,0 +1,62 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/mime-types-two-part.schema.json",
+    "title": "MIME types two-part",
+    "description": "Every trov:mimeType on an artifact is a string of the form type/subtype, each part beginning with a letter or digit and made of the characters a media type name allows, with no parameters.",
+    "summary": "Every artifact's `trov:mimeType` is a string of the form `type/subtype`",
+    "requires": [
+        "tro-top-level-in-graph"
+    ],
+    "type": "object",
+    "properties": {
+        "@graph": {
+            "if": {
+                "type": "array"
+            },
+            "then": {
+                "items": {
+                    "if": {
+                        "type": "object"
+                    },
+                    "then": {
+                        "properties": {
+                            "trov:hasComposition": {
+                                "if": {
+                                    "type": "object"
+                                },
+                                "then": {
+                                    "properties": {
+                                        "trov:hasArtifact": {
+                                            "if": {
+                                                "type": "array"
+                                            },
+                                            "then": {
+                                                "items": {
+                                                    "if": {
+                                                        "type": "object"
+                                                    },
+                                                    "then": {
+                                                        "properties": {
+                                                            "trov:mimeType": {
+                                                                "type": "string",
+                                                                "pattern": "^[A-Za-z0-9][A-Za-z0-9!#$&^_.+-]*/[A-Za-z0-9][A-Za-z0-9!#$&^_.+-]*$",
+                                                                "errorMessage": {
+                                                                    "type": "a MIME type is a string",
+                                                                    "pattern": "a MIME type is type/subtype: two names separated by one slash, with no parameters"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

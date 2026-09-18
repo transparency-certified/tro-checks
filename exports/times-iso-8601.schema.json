@@ -1,0 +1,66 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/times-iso-8601.schema.json",
+    "title": "Times ISO 8601",
+    "description": "Every trov:startedAtTime and trov:endedAtTime is an ISO 8601 date-time, YYYY-MM-DDThh:mm:ss with an optional fraction of a second and an optional zone; every schema:dateCreated is an ISO 8601 date or date-time, as schema.org defines it.",
+    "summary": "Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time",
+    "requires": [
+        "tro-top-level-in-graph"
+    ],
+    "type": "object",
+    "properties": {
+        "@graph": {
+            "$ref": "#/$defs/sweep"
+        }
+    },
+    "$defs": {
+        "sweep": {
+            "allOf": [
+                {
+                    "if": {
+                        "type": "object"
+                    },
+                    "then": {
+                        "properties": {
+                            "trov:startedAtTime": {
+                                "$ref": "#/$defs/dateTime"
+                            },
+                            "trov:endedAtTime": {
+                                "$ref": "#/$defs/dateTime"
+                            },
+                            "schema:dateCreated": {
+                                "type": "string",
+                                "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?)?$",
+                                "errorMessage": {
+                                    "type": "schema:dateCreated is a string",
+                                    "pattern": "schema:dateCreated is an ISO 8601 date (YYYY-MM-DD) or date-time (YYYY-MM-DDThh:mm:ss, optional fraction, optional zone)"
+                                }
+                            }
+                        },
+                        "additionalProperties": {
+                            "$ref": "#/$defs/sweep"
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "type": "array"
+                    },
+                    "then": {
+                        "items": {
+                            "$ref": "#/$defs/sweep"
+                        }
+                    }
+                }
+            ]
+        },
+        "dateTime": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$",
+            "errorMessage": {
+                "type": "a time is a string",
+                "pattern": "a time is an ISO 8601 date-time: YYYY-MM-DDThh:mm:ss, optional fraction of a second, optional zone"
+            }
+        }
+    }
+}

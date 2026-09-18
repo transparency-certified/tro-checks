@@ -49,12 +49,18 @@
             "trov-terms-known",
             "tro-top-level-in-graph",
             "tro-assembled-by-trs",
+            "trov-version-known",
             "composition-has-fingerprint",
             "composition-identifies-artifacts",
             "artifact-hashes-present",
             "hash-algorithms-permitted",
             "hash-values-lowercase-hex",
-            "hash-values-correct-length"
+            "hash-values-correct-length",
+            "mime-types-two-part",
+            "times-iso-8601",
+            "times-zoned",
+            "tro-name-description-text",
+            "creators-person-or-organization"
         ]
     },
     {

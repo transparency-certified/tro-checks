@@ -1,0 +1,85 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/tro-name-description-text.schema.json",
+    "title": "TRO name and description text",
+    "description": "Where the TRO carries schema:name or schema:description, each is Text as schema.org defines it: a string, or an array of strings.",
+    "summary": "The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings",
+    "requires": [
+        "tro-top-level-in-graph"
+    ],
+    "type": "object",
+    "properties": {
+        "@graph": {
+            "if": {
+                "type": "array"
+            },
+            "then": {
+                "items": {
+                    "if": {
+                        "type": "object",
+                        "required": [
+                            "@type"
+                        ],
+                        "properties": {
+                            "@type": {
+                                "anyOf": [
+                                    {
+                                        "const": "trov:TransparentResearchObject"
+                                    },
+                                    {
+                                        "type": "array",
+                                        "contains": {
+                                            "const": "trov:TransparentResearchObject"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "schema:name": {
+                                "if": {
+                                    "type": "array"
+                                },
+                                "then": {
+                                    "items": {
+                                        "type": "string",
+                                        "errorMessage": {
+                                            "type": "schema:name is Text: a string, or an array of strings"
+                                        }
+                                    }
+                                },
+                                "else": {
+                                    "type": "string",
+                                    "errorMessage": {
+                                        "type": "schema:name is Text: a string, or an array of strings"
+                                    }
+                                }
+                            },
+                            "schema:description": {
+                                "if": {
+                                    "type": "array"
+                                },
+                                "then": {
+                                    "items": {
+                                        "type": "string",
+                                        "errorMessage": {
+                                            "type": "schema:description is Text: a string, or an array of strings"
+                                        }
+                                    }
+                                },
+                                "else": {
+                                    "type": "string",
+                                    "errorMessage": {
+                                        "type": "schema:description is Text: a string, or an array of strings"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,102 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/creators-person-or-organization.schema.json",
+    "title": "Creators Person or Organization",
+    "description": "Where the TRO carries schema:creator, each value is a node -- an object, not a string -- and where the node carries a @type, it is schema:Person or schema:Organization, the types schema.org expects of a creator. A bare reference, an object holding only an @id, passes.",
+    "summary": "The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string",
+    "requires": [
+        "tro-top-level-in-graph"
+    ],
+    "type": "object",
+    "properties": {
+        "@graph": {
+            "if": {
+                "type": "array"
+            },
+            "then": {
+                "items": {
+                    "if": {
+                        "type": "object",
+                        "required": [
+                            "@type"
+                        ],
+                        "properties": {
+                            "@type": {
+                                "anyOf": [
+                                    {
+                                        "const": "trov:TransparentResearchObject"
+                                    },
+                                    {
+                                        "type": "array",
+                                        "contains": {
+                                            "const": "trov:TransparentResearchObject"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "schema:creator": {
+                                "if": {
+                                    "type": "array"
+                                },
+                                "then": {
+                                    "items": {
+                                        "$ref": "#/$defs/creator"
+                                    }
+                                },
+                                "else": {
+                                    "$ref": "#/$defs/creator"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "$defs": {
+        "creator": {
+            "type": "object",
+            "errorMessage": {
+                "type": "schema:creator is a Person or an Organization, given as a node, not as a string"
+            },
+            "if": {
+                "required": [
+                    "@type"
+                ]
+            },
+            "then": {
+                "properties": {
+                    "@type": {
+                        "if": {
+                            "type": "array"
+                        },
+                        "then": {
+                            "contains": {
+                                "enum": [
+                                    "schema:Person",
+                                    "schema:Organization"
+                                ]
+                            },
+                            "errorMessage": {
+                                "contains": "a schema:creator node is typed schema:Person or schema:Organization"
+                            }
+                        },
+                        "else": {
+                            "enum": [
+                                "schema:Person",
+                                "schema:Organization"
+                            ],
+                            "errorMessage": {
+                                "enum": "a schema:creator node is typed schema:Person or schema:Organization"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

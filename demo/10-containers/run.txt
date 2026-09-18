@@ -78,12 +78,18 @@ wrote tmp/instance-no-containers.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met
 | *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
 | *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
+| *`creators-person-or-organization`* | *The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string* | *not claimed* |
 | *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
 | *`hash-values-correct-length`* | *Every hash value has the length its algorithm produces* | *not claimed* |
 | *`hash-values-lowercase-hex`* | *Every hash carries its value as a string of lowercase hexadecimal digits* | *not claimed* |
+| *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
+| *`times-iso-8601`* | *Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time* | *not claimed* |
+| *`times-zoned`* | *Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone* | *not claimed* |
 | *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *`tro-name-description-text`* | *The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings* | *not claimed* |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
 | *`trov-terms-known`* | *Every `trov:` name is one TROV defines* | *not claimed* |
+| *`trov-version-known`* | *The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1`* | *not claimed* |
 | *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
@@ -169,12 +175,18 @@ wrote tmp/instance-set-container.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
 | *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
+| *`creators-person-or-organization`* | *The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string* | *not claimed* |
 | *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
 | *`hash-values-correct-length`* | *Every hash value has the length its algorithm produces* | *not claimed* |
 | *`hash-values-lowercase-hex`* | *Every hash carries its value as a string of lowercase hexadecimal digits* | *not claimed* |
+| *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
+| *`times-iso-8601`* | *Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time* | *not claimed* |
+| *`times-zoned`* | *Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone* | *not claimed* |
 | *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *`tro-name-description-text`* | *The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings* | *not claimed* |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
 | *`trov-terms-known`* | *Every `trov:` name is one TROV defines* | *not claimed* |
+| *`trov-version-known`* | *The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1`* | *not claimed* |
 | *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
@@ -266,12 +278,18 @@ wrote tmp/instance-graph-container.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
 | *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
+| *`creators-person-or-organization`* | *The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string* | *not claimed* |
 | *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
 | *`hash-values-correct-length`* | *Every hash value has the length its algorithm produces* | *not claimed* |
 | *`hash-values-lowercase-hex`* | *Every hash carries its value as a string of lowercase hexadecimal digits* | *not claimed* |
+| *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
+| *`times-iso-8601`* | *Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time* | *not claimed* |
+| *`times-zoned`* | *Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone* | *not claimed* |
 | *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *`tro-name-description-text`* | *The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings* | *not claimed* |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
 | *`trov-terms-known`* | *Every `trov:` name is one TROV defines* | *not claimed* |
+| *`trov-version-known`* | *The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1`* | *not claimed* |
 | *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
