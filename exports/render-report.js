@@ -322,14 +322,19 @@ const htmlDialect = {
         return lines
     },
     diagnostics(diagnoses) {
-        const lines = ['<table>', '<thead>',
-            '<tr><th align="left">Found</th><th align="left">Expectation not met because</th></tr>', '</thead>']
-        for (const diagnosis of diagnoses) {
-            lines.push('<tbody>',
-                `<tr>${setCell(diagnosis.found)}${setCell(diagnosis.why)}</tr>`,
-                `<tr><td colspan="2">Where: ${cellHtml(diagnosis.where)}</td></tr>`,
-                '</tbody>')
-        }
+        if (diagnoses.length === 0) return ['No location was reported.']
+        const lead = diagnoses.length === 1
+            ? 'Found in 1 place, breaking the rule shown.'
+            : `Found in ${diagnoses.length} places, each breaking the rule shown.`
+        const lines = [lead, '', '<table>']
+        /** A label cell and its value, as one row. @param {string} label @param {Cell} cell */
+        const labeled = (label, cell) => `<tr><th align="left">${label}</th>${setCell(cell)}</tr>`
+        diagnoses.forEach((diagnosis, index) => {
+            if (index > 0) lines.push('<tbody><tr><td colspan="2">&nbsp;</td></tr></tbody>')
+            lines.push('<tbody>', labeled('Rule', diagnosis.why))
+            if (diagnosis.found !== '') lines.push(labeled('Found', diagnosis.found))
+            lines.push(labeled('Where', diagnosis.where), '</tbody>')
+        })
         lines.push('</table>')
         return lines
     },
