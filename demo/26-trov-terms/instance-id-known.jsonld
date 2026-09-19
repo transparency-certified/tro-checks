@@ -5,7 +5,7 @@
             "@id": "tro",
             "@type": "trov:TransparentResearchObject",
             "trov:vocabularyVersion": "0.1",
-            "trov:wasAssembledBy": { "@id": "trs", "@type": "trov:TrustedResearchSystem" },
+            "trov:wasAssembledBy": { "@id": "https://trs.example.org/demo/", "@type": "trov:TrustedResearchSystem" },
             "trov:hasAttribute": { "@id": "trov:IncludesAllInputData" }
         }
     ]

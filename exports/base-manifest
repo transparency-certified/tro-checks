@@ -55,5 +55,9 @@ custom-terms-not-trov.schema.json
 custom-term-superclasses-extensible.schema.json
 trov-signing-mechanisms-predefined.schema.json
 gpg-signing-key-present.schema.json
+trs-defined.schema.json
+trs-id-absolute.schema.json
+capability-ids-absolute.schema.json
+capability-warrants-absolute.schema.json
 tro-assembled-by-trs.schema.json
 trov-version-known.schema.json

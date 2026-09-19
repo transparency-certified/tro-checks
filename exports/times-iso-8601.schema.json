@@ -5,7 +5,7 @@
     "description": "Every trov:startedAtTime and trov:endedAtTime is an ISO 8601 date-time, YYYY-MM-DDThh:mm:ss with an optional fraction of a second and an optional zone; every schema:dateCreated is an ISO 8601 date or date-time, as schema.org defines it.",
     "summary": "Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time",
     "requires": [
-        "tro-top-level-in-graph"
+        "core-prefixes-pinned"
     ],
     "type": "object",
     "properties": {

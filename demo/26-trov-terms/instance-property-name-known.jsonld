@@ -4,7 +4,7 @@
         {
             "@id": "tro",
             "@type": "trov:TransparentResearchObject",
-            "trov:wasAssembledBy": { "@id": "trs", "@type": "trov:TrustedResearchSystem" },
+            "trov:wasAssembledBy": { "@id": "https://trs.example.org/demo/", "@type": "trov:TrustedResearchSystem" },
             "trov:vocabularyVersion": "0.1"
         }
     ]

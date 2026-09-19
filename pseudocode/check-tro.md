@@ -25,7 +25,7 @@
 - It finds the expectation files the module ships.
 - It stops if a tier lists an expectation that has no file.
 - It settles which tier each expectation belongs to.
-- It stops if an expectation requires one outside its tier, or the requirements within a tier form a cycle.
+- It stops if an expectation requires one in a higher tier, or the requirements within a tier form a cycle.
 - It goes through the tiers in order, and through each tier's expectations with each after those it requires.
 - It reports an expectation above the candidate's tier as not claimed.
 - It reports an expectation as not assessed when a lower tier that blocks higher tiers is not met, or an expectation it requires is not met.

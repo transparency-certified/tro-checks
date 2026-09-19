@@ -1,0 +1,60 @@
+{
+    "@context": {
+        "trov": "https://w3id.org/trace/trov/0.1#",
+        "schema": "https://schema.org/"
+    },
+    "@graph": [
+        {
+            "@id": "tro",
+            "@type": "trov:TransparentResearchObject",
+            "trov:vocabularyVersion": "0.1",
+            "schema:name": "Example TRO",
+            "schema:description": "A declaration for the demos",
+            "schema:dateCreated": "2026-09-17",
+            "trov:wasAssembledBy": {
+                "@id": "https://trs.example.org/demo/",
+                "@type": "trov:TrustedResearchSystem"
+            },
+            "trov:hasComposition": {
+                "@id": "composition",
+                "@type": "trov:ArtifactComposition",
+                "trov:hasFingerprint": {
+                    "@id": "fingerprint",
+                    "@type": "trov:CompositionFingerprint",
+                    "trov:hash": {
+                        "trov:hashAlgorithm": "sha256",
+                        "trov:hashValue": "44863b03e9909b7100e05b02526909a346fd7455183f6619e0fe6198c89981e0"
+                    }
+                },
+                "trov:hasArtifact": [
+                    {
+                        "@id": "composition/artifact/0",
+                        "@type": "trov:ResearchArtifact",
+                        "trov:mimeType": "text/plain",
+                        "trov:hash": {
+                            "trov:hashAlgorithm": "sha256",
+                            "trov:hashValue": "208fadf260c2cb9b1c747f03326626e66ddbb3cc6eee10b6e111ff0b803686fe"
+                        }
+                    },
+                    {
+                        "@id": "composition/artifact/1",
+                        "@type": "trov:ResearchArtifact",
+                        "trov:mimeType": "application/x-python",
+                        "trov:hash": {
+                            "trov:hashAlgorithm": "sha256",
+                            "trov:hashValue": "7409dfd1bf7d574571821f33c99d1ea8ac5a3e59a645a6c7d91e248745457ef3"
+                        }
+                    }
+                ]
+            },
+            "trov:hasPerformance": [
+                {
+                    "@id": "trp/0",
+                    "@type": "trov:TrustedResearchPerformance",
+                    "trov:startedAtTime": "2026-09-17T17:00:00Z",
+                    "trov:endedAtTime": "2026-09-17T17:25:00.250Z"
+                }
+            ]
+        }
+    ]
+}

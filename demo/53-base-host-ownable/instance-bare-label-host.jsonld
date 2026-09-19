@@ -1,0 +1,17 @@
+{
+    "@context": {
+        "trov": "https://w3id.org/trace/trov/0.1#",
+        "@base": "https://trs/tro/1/"
+    },
+    "@graph": [
+        {
+            "@id": "tro",
+            "@type": "trov:TransparentResearchObject",
+            "trov:vocabularyVersion": "0.1",
+            "trov:wasAssembledBy": {
+                "@id": "https://trs.example.org/demo/",
+                "@type": "trov:TrustedResearchSystem"
+            }
+        }
+    ]
+}

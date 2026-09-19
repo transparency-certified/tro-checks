@@ -5,7 +5,7 @@
     "description": "Every trov:mimeType on an artifact is a string of the form type/subtype, each part beginning with a letter or digit and made of the characters a media type name allows, with no parameters.",
     "summary": "Every artifact's `trov:mimeType` is a string of the form `type/subtype`",
     "requires": [
-        "tro-top-level-in-graph"
+        "core-prefixes-pinned"
     ],
     "type": "object",
     "properties": {

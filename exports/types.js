@@ -25,7 +25,7 @@ module.exports = {}
  * @property {Tier}   tier         the tier it belongs to
  * @property {string} summary      what it checks, in a few words
  * @property {string} description  what it checks, in one sentence
- * @property {string[]} requires   the expectations in its tier that must be met before it is checked
+ * @property {string[]} requires   the expectations in its tier or a lower one that must be met before it is checked
  * @property {string[]} validatorFlags  options passed to each validator with its schema, such as --reject-duplicate-members
  */
 /**

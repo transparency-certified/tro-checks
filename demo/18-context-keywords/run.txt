@@ -36,8 +36,10 @@ wrote tmp/instance-allowed-context-keywords.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD 
 | 1 | SAFE-JSON | JSON that every supported parser reads the same way | ✅ met |
 | 2 | SAFE-JSON-LD | JSON-LD that every supported processor reads the same way | ✅ met |
 | 3 | TRACE-JSON-LD | JSON-LD in the restricted form the TRACE Specification requires for TRO declarations | ✅ met |
-| *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
-| *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
+| *4* | *USES-TROV-CORRECTLY* | *JSON-LD whose TROV terms, and the schema.org terms TROV specifies, are used as they are defined* | *not claimed* |
+| *5* | *DEFINES-TRS* | *JSON-LD that defines a Trusted Research System, identified by an absolute IRI* | *not claimed* |
+| *6* | *STANDALONE-TRO* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
+| *7* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
 ## Expectation Findings by Tier
 |  |  |  |
 | --- | --- | --- |
@@ -71,31 +73,39 @@ wrote tmp/instance-allowed-context-keywords.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD 
 | `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
 | `root-context-and-graph-only` | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
 | `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
-| *Tier 4 — STANDALONE-TRO  not claimed* |  |  |
+| *Tier 4 — USES-TROV-CORRECTLY  not claimed* |  |  |
 | Expectation | Summary | Status |
-| *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
-| *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
-| *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
 | *`creators-person-or-organization`* | *The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string* | *not claimed* |
 | *`custom-term-superclasses-extensible`* | *Every custom term extends `trov:TRSCapabilityType` or `trov:TRPAttributeType`* | *not claimed* |
 | *`custom-terms-not-trov`* | *Every `trov:customTerm` entry declares a term outside the TROV namespace* | *not claimed* |
-| *`gpg-signing-key-present`* | *A TRO signed with `trov:GPGSigning` gives its TRS a `trov:publicKey`* | *not claimed* |
 | *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
 | *`hash-values-correct-form`* | *Every hash value is lowercase hexadecimal of the length its algorithm produces* | *not claimed* |
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
 | *`times-iso-8601`* | *Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time* | *not claimed* |
 | *`times-zoned`* | *Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone* | *not claimed* |
-| *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
 | *`tro-name-description-text`* | *The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings* | *not claimed* |
-| *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
 | *`trov-capabilities-predefined`* | *A capability's `trov:` type is one TROV predefines* | *not claimed* |
 | *`trov-performance-attributes-predefined`* | *A performance attribute's `trov:` type is one TROV predefines* | *not claimed* |
 | *`trov-signing-mechanisms-predefined`* | *A signing mechanism is identified by reference, and a `trov:` one is one TROV predefines* | *not claimed* |
 | *`trov-terms-known`* | *Every `trov:` name is one TROV defines* | *not claimed* |
 | *`trov-tro-attributes-predefined`* | *A TRO attribute's `trov:` type is one TROV predefines* | *not claimed* |
 | *`trov-version-known`* | *The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1`* | *not claimed* |
-| *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
+| *Tier 5 — DEFINES-TRS  not claimed* |  |  |
+| Expectation | Summary | Status |
+| *`capability-ids-absolute`* | *Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
+| *`capability-warrants-absolute`* | *Every performance attribute refers to the capability warranting it by absolute IRI* | *not claimed* |
+| *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
+| *`trs-id-absolute`* | *The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
+| *Tier 6 — STANDALONE-TRO  not claimed* |  |  |
+| Expectation | Summary | Status |
+| *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
+| *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
+| *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
+| *`gpg-signing-key-present`* | *A TRO signed with `trov:GPGSigning` gives its TRS a `trov:publicKey`* | *not claimed* |
+| *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *Tier 7 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
 | *`base-has-path`* | *The `@base` names something below the host, not the host alone* | *not claimed* |
@@ -131,8 +141,10 @@ wrote tmp/instance-version-in-context.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | 1 | SAFE-JSON | JSON that every supported parser reads the same way | ✅ met |
 | 2 | SAFE-JSON-LD | JSON-LD that every supported processor reads the same way | ✅ met |
 | 3 | TRACE-JSON-LD | JSON-LD in the restricted form the TRACE Specification requires for TRO declarations | ❌ not met |
-| *4* | *STANDALONE-TRO* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
-| *5* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
+| *4* | *USES-TROV-CORRECTLY* | *JSON-LD whose TROV terms, and the schema.org terms TROV specifies, are used as they are defined* | *not claimed* |
+| *5* | *DEFINES-TRS* | *JSON-LD that defines a Trusted Research System, identified by an absolute IRI* | *not claimed* |
+| *6* | *STANDALONE-TRO* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
+| *7* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
 ## Expectation Findings by Tier
 |  |  |  |
 | --- | --- | --- |
@@ -166,31 +178,39 @@ wrote tmp/instance-version-in-context.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
 | `root-context-and-graph-only` | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
 | `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
-| *Tier 4 — STANDALONE-TRO  not claimed* |  |  |
+| *Tier 4 — USES-TROV-CORRECTLY  not claimed* |  |  |
 | Expectation | Summary | Status |
-| *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
-| *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
-| *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
 | *`creators-person-or-organization`* | *The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string* | *not claimed* |
 | *`custom-term-superclasses-extensible`* | *Every custom term extends `trov:TRSCapabilityType` or `trov:TRPAttributeType`* | *not claimed* |
 | *`custom-terms-not-trov`* | *Every `trov:customTerm` entry declares a term outside the TROV namespace* | *not claimed* |
-| *`gpg-signing-key-present`* | *A TRO signed with `trov:GPGSigning` gives its TRS a `trov:publicKey`* | *not claimed* |
 | *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
 | *`hash-values-correct-form`* | *Every hash value is lowercase hexadecimal of the length its algorithm produces* | *not claimed* |
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
 | *`times-iso-8601`* | *Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time* | *not claimed* |
 | *`times-zoned`* | *Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone* | *not claimed* |
-| *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
 | *`tro-name-description-text`* | *The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings* | *not claimed* |
-| *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
 | *`trov-capabilities-predefined`* | *A capability's `trov:` type is one TROV predefines* | *not claimed* |
 | *`trov-performance-attributes-predefined`* | *A performance attribute's `trov:` type is one TROV predefines* | *not claimed* |
 | *`trov-signing-mechanisms-predefined`* | *A signing mechanism is identified by reference, and a `trov:` one is one TROV predefines* | *not claimed* |
 | *`trov-terms-known`* | *Every `trov:` name is one TROV defines* | *not claimed* |
 | *`trov-tro-attributes-predefined`* | *A TRO attribute's `trov:` type is one TROV predefines* | *not claimed* |
 | *`trov-version-known`* | *The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1`* | *not claimed* |
-| *Tier 5 — LINKABLE-TRO  not claimed* |  |  |
+| *Tier 5 — DEFINES-TRS  not claimed* |  |  |
+| Expectation | Summary | Status |
+| *`capability-ids-absolute`* | *Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
+| *`capability-warrants-absolute`* | *Every performance attribute refers to the capability warranting it by absolute IRI* | *not claimed* |
+| *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
+| *`trs-id-absolute`* | *The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
+| *Tier 6 — STANDALONE-TRO  not claimed* |  |  |
+| Expectation | Summary | Status |
+| *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
+| *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
+| *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
+| *`gpg-signing-key-present`* | *A TRO signed with `trov:GPGSigning` gives its TRS a `trov:publicKey`* | *not claimed* |
+| *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *Tier 7 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
 | *`base-has-path`* | *The `@base` names something below the host, not the host alone* | *not claimed* |

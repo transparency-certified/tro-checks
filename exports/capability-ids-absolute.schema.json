@@ -1,0 +1,84 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/capability-ids-absolute.schema.json",
+    "title": "Capability ids absolute",
+    "description": "Every value of trov:hasCapability that carries an @id carries an absolute IRI, or a compact IRI whose prefix is not trov.",
+    "summary": "Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace",
+    "requires": [
+        "trs-defined"
+    ],
+    "type": "object",
+    "properties": {
+        "@graph": {
+            "$ref": "#/$defs/sweep"
+        }
+    },
+    "$defs": {
+        "sweep": {
+            "allOf": [
+                {
+                    "if": {
+                        "type": "object"
+                    },
+                    "then": {
+                        "properties": {
+                            "trov:hasCapability": {
+                                "allOf": [
+                                    {
+                                        "if": {
+                                            "type": "array"
+                                        },
+                                        "then": {
+                                            "items": {
+                                                "$ref": "#/$defs/value"
+                                            }
+                                        },
+                                        "else": {
+                                            "$ref": "#/$defs/value"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "#/$defs/sweep"
+                                    }
+                                ]
+                            }
+                        },
+                        "additionalProperties": {
+                            "$ref": "#/$defs/sweep"
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "type": "array"
+                    },
+                    "then": {
+                        "items": {
+                            "$ref": "#/$defs/sweep"
+                        }
+                    }
+                }
+            ]
+        },
+        "value": {
+            "if": {
+                "type": "object"
+            },
+            "then": {
+                "properties": {
+                    "@id": {
+                        "if": {
+                            "type": "string"
+                        },
+                        "then": {
+                            "pattern": "^(?!trov:)(?!_:)[A-Za-z][A-Za-z0-9+.-]*:",
+                            "errorMessage": {
+                                "pattern": "${0} is not an absolute IRI; a capability is identified by an absolute IRI, or by a compact IRI outside the trov namespace"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

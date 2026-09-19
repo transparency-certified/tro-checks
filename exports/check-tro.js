@@ -196,7 +196,7 @@ function requiresItself(start, among) {
  * @param {Expectation[]} tierExpectations
  * @param {Expectation[]} expectations  every expectation, for naming what a requires gets wrong
  * @returns {Expectation[]}
- * @throws {Error} if an expectation requires one that does not exist or is in another tier, or the requirements
+ * @throws {Error} if an expectation requires one that does not exist or is in a higher tier, or the requirements
  *   form a cycle.
  */
 function inRequiredOrder(tierExpectations, expectations) {
@@ -204,8 +204,8 @@ function inRequiredOrder(tierExpectations, expectations) {
         for (const name of expectation.requires) {
             const required = expectations.find((each) => each.name === name)
             if (!required) throw new Error(`${expectation.name} requires ${name}, which is no expectation`)
-            if (required.tier.number !== expectation.tier.number) {
-                throw new Error(`${expectation.name} requires ${name}, which is in ${required.tier.id}, not ${expectation.tier.id}`)
+            if (required.tier.number > expectation.tier.number) {
+                throw new Error(`${expectation.name} requires ${name}, which is in ${required.tier.id}, above ${expectation.tier.id}`)
             }
         }
     }
@@ -214,7 +214,8 @@ function inRequiredOrder(tierExpectations, expectations) {
     let remaining = [...tierExpectations].sort((one, other) => one.name.localeCompare(other.name))
     while (remaining.length > 0) {
         const ready = remaining.filter((expectation) =>
-            expectation.requires.every((name) => ordered.some((done) => done.name === name)))
+            expectation.requires.every((name) => ordered.some((done) => done.name === name)
+                || expectations.some((each) => each.name === name && each.tier.number < expectation.tier.number)))
         if (ready.length === 0) {
             const inCycle = remaining.filter((expectation) => requiresItself(expectation, remaining))
             throw new Error(`the requirements among ${inCycle.map((each) => each.name).join(', ')} form a cycle`)
@@ -603,7 +604,7 @@ function checkCandidateAgainstExpectations(candidate) {
         /** @type {Finding[]} */ const tierFindings = []
         for (const expectation of tierExpectations) {
             const requiredNotMet = expectation.requires.some((name) =>
-                tierFindings.some((finding) => finding.expectation.name === name && finding.outcome !== EXPECTATION.MET))
+                [...findings, ...tierFindings].some((finding) => finding.expectation.name === name && finding.outcome !== EXPECTATION.MET))
 
             if (tier.number > candidate.targetTier.number) {
                 tierFindings.push({ expectation, outcome: EXPECTATION.NOT_CLAIMED, errors: [] })

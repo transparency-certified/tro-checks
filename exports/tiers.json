@@ -45,17 +45,12 @@
         ]
     },
     {
-        "id": "STANDALONE-TRO",
-        "description": "A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it",
+        "id": "USES-TROV-CORRECTLY",
+        "description": "JSON-LD whose TROV terms, and the schema.org terms TROV specifies, are used as they are defined",
         "expectations": [
             "core-prefixes-pinned",
             "trov-terms-known",
-            "tro-top-level-in-graph",
-            "tro-assembled-by-trs",
             "trov-version-known",
-            "composition-has-fingerprint",
-            "composition-identifies-artifacts",
-            "artifact-hashes-present",
             "hash-algorithms-permitted",
             "hash-values-correct-form",
             "mime-types-two-part",
@@ -68,7 +63,28 @@
             "trov-tro-attributes-predefined",
             "custom-terms-not-trov",
             "custom-term-superclasses-extensible",
-            "trov-signing-mechanisms-predefined",
+            "trov-signing-mechanisms-predefined"
+        ]
+    },
+    {
+        "id": "DEFINES-TRS",
+        "description": "JSON-LD that defines a Trusted Research System, identified by an absolute IRI",
+        "expectations": [
+            "trs-defined",
+            "trs-id-absolute",
+            "capability-ids-absolute",
+            "capability-warrants-absolute"
+        ]
+    },
+    {
+        "id": "STANDALONE-TRO",
+        "description": "A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it",
+        "expectations": [
+            "tro-top-level-in-graph",
+            "tro-assembled-by-trs",
+            "composition-has-fingerprint",
+            "composition-identifies-artifacts",
+            "artifact-hashes-present",
             "gpg-signing-key-present"
         ]
     },

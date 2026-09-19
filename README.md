@@ -27,8 +27,10 @@ above the target are reported as *not claimed*.
 <tr><td>1</td><td>SAFE&#8209;JSON</td><td>JSON that every supported parser reads the same way</td></tr>
 <tr><td>2</td><td>SAFE&#8209;JSON&#8209;LD</td><td>JSON-LD that every supported processor reads the same way</td></tr>
 <tr><td>3</td><td>TRACE&#8209;JSON&#8209;LD</td><td>JSON-LD in the restricted form the TRACE Specification requires for TRO declarations</td></tr>
-<tr><td>4</td><td>STANDALONE&#8209;TRO</td><td>A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it</td></tr>
-<tr><td>5</td><td>LINKABLE&#8209;TRO</td><td>A TRO declaration whose element identifiers cannot collide with another TRO's</td></tr>
+<tr><td>4</td><td>USES&#8209;TROV&#8209;CORRECTLY</td><td>JSON-LD whose TROV terms, and the schema.org terms TROV specifies, are used as they are defined</td></tr>
+<tr><td>5</td><td>DEFINES&#8209;TRS</td><td>JSON-LD that defines a Trusted Research System, identified by an absolute IRI</td></tr>
+<tr><td>6</td><td>STANDALONE&#8209;TRO</td><td>A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it</td></tr>
+<tr><td>7</td><td>LINKABLE&#8209;TRO</td><td>A TRO declaration whose element identifiers cannot collide with another TRO's</td></tr>
 </tbody>
 </table>
 
@@ -104,16 +106,11 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <tr><td nowrap><code>types-prefixed-or-absolute</code></td><td>Every <code>@type</code> value is a prefixed or absolute IRI, never a bare name</td></tr>
 </tbody>
 <tbody>
-<tr><th colspan="2" align="left"><br>Tier&nbsp;4&nbsp;—&nbsp;STANDALONE&#8209;TRO</th></tr>
+<tr><th colspan="2" align="left"><br>Tier&nbsp;4&nbsp;—&nbsp;USES&#8209;TROV&#8209;CORRECTLY</th></tr>
 <tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
 <tr><td nowrap><code>core-prefixes-pinned</code></td><td><code>trov</code> is declared and is the only prefix for a TROV namespace; <code>rdf</code>, <code>rdfs</code> and <code>schema</code> prefixes, if declared, are the standard ones</td></tr>
 <tr><td nowrap><code>trov-terms-known</code></td><td>Every <code>trov:</code> name is one TROV defines</td></tr>
-<tr><td nowrap><code>tro-top-level-in-graph</code></td><td>The TRO is a top-level member of the <code>@graph</code></td></tr>
-<tr><td nowrap><code>tro-assembled-by-trs</code></td><td>The TRO names its assembling system, typed as a TRS</td></tr>
 <tr><td nowrap><code>trov-version-known</code></td><td>The TRO declares, in <code>trov:vocabularyVersion</code>, a TROV version this checker knows: <code>0.1</code></td></tr>
-<tr><td nowrap><code>composition-has-fingerprint</code></td><td>The TRO's composition, if any, carries one fingerprint, which carries one hash</td></tr>
-<tr><td nowrap><code>composition-identifies-artifacts</code></td><td>The TRO's composition, if any, names at least one artifact in a <code>trov:hasArtifact</code> array</td></tr>
-<tr><td nowrap><code>artifact-hashes-present</code></td><td>Every artifact in the composition carries a <code>trov:hash</code>, one hash or an array of at least one</td></tr>
 <tr><td nowrap><code>hash-algorithms-permitted</code></td><td>Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families</td></tr>
 <tr><td nowrap><code>hash-values-correct-form</code></td><td>Every hash value is lowercase hexadecimal of the length its algorithm produces</td></tr>
 <tr><td nowrap><code>mime-types-two-part</code></td><td>Every artifact's <code>trov:mimeType</code> is a string of the form <code>type/subtype</code></td></tr>
@@ -127,10 +124,27 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <tr><td nowrap><code>custom-terms-not-trov</code></td><td>Every <code>trov:customTerm</code> entry declares a term outside the TROV namespace</td></tr>
 <tr><td nowrap><code>custom-term-superclasses-extensible</code></td><td>Every custom term extends <code>trov:TRSCapabilityType</code> or <code>trov:TRPAttributeType</code></td></tr>
 <tr><td nowrap><code>trov-signing-mechanisms-predefined</code></td><td>A signing mechanism is identified by reference, and a <code>trov:</code> one is one TROV predefines</td></tr>
+</tbody>
+<tbody>
+<tr><th colspan="2" align="left"><br>Tier&nbsp;5&nbsp;—&nbsp;DEFINES&#8209;TRS</th></tr>
+<tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
+<tr><td nowrap><code>trs-defined</code></td><td>A TRS is defined, with an <code>@id</code>, at the top of the <code>@graph</code> or as the object of <code>trov:wasAssembledBy</code>, and nowhere else</td></tr>
+<tr><td nowrap><code>trs-id-absolute</code></td><td>The TRS is identified by an absolute IRI, or a compact IRI outside the <code>trov</code> namespace</td></tr>
+<tr><td nowrap><code>capability-ids-absolute</code></td><td>Every capability is identified by an absolute IRI, or a compact IRI outside the <code>trov</code> namespace</td></tr>
+<tr><td nowrap><code>capability-warrants-absolute</code></td><td>Every performance attribute refers to the capability warranting it by absolute IRI</td></tr>
+</tbody>
+<tbody>
+<tr><th colspan="2" align="left"><br>Tier&nbsp;6&nbsp;—&nbsp;STANDALONE&#8209;TRO</th></tr>
+<tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
+<tr><td nowrap><code>tro-top-level-in-graph</code></td><td>The TRO is a top-level member of the <code>@graph</code></td></tr>
+<tr><td nowrap><code>tro-assembled-by-trs</code></td><td>The TRO names its assembling system, typed as a TRS</td></tr>
+<tr><td nowrap><code>composition-has-fingerprint</code></td><td>The TRO's composition, if any, carries one fingerprint, which carries one hash</td></tr>
+<tr><td nowrap><code>composition-identifies-artifacts</code></td><td>The TRO's composition, if any, names at least one artifact in a <code>trov:hasArtifact</code> array</td></tr>
+<tr><td nowrap><code>artifact-hashes-present</code></td><td>Every artifact in the composition carries a <code>trov:hash</code>, one hash or an array of at least one</td></tr>
 <tr><td nowrap><code>gpg-signing-key-present</code></td><td>A TRO signed with <code>trov:GPGSigning</code> gives its TRS a <code>trov:publicKey</code></td></tr>
 </tbody>
 <tbody>
-<tr><th colspan="2" align="left"><br>Tier&nbsp;5&nbsp;—&nbsp;LINKABLE&#8209;TRO</th></tr>
+<tr><th colspan="2" align="left"><br>Tier&nbsp;7&nbsp;—&nbsp;LINKABLE&#8209;TRO</th></tr>
 <tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
 <tr><td nowrap><code>base-declared</code></td><td>The <code>@context</code> includes an <code>@base</code></td></tr>
 <tr><td nowrap><code>base-has-path</code></td><td>The <code>@base</code> names something below the host, not the host alone</td></tr>
@@ -239,7 +253,7 @@ reads. A field renamed in one file and not in another fails there.
 ## Adding an expectation
 
 Put a `<name>.schema.json` with a `summary` and a `description` in
-[`exports/`](exports), and a `requires` listing any expectations in its tier
+[`exports/`](exports), and a `requires` listing any expectations in its tier or a lower one
 that must be met before it is checked. List it in
 [`exports/base-manifest`](exports/base-manifest), and assign it to a tier in
 [`exports/tiers.json`](exports/tiers.json). Then run `make update-readme`, which

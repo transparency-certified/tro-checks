@@ -1,0 +1,181 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/trs-defined.schema.json",
+    "title": "TRS defined",
+    "description": "The document defines a TRS: a node typed trov:TrustedResearchSystem, carrying an @id, that is a top-level member of the @graph or the object of trov:wasAssembledBy on one. A node so typed anywhere else is refused.",
+    "summary": "A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else",
+    "requires": [
+        "core-prefixes-pinned"
+    ],
+    "type": "object",
+    "properties": {
+        "@graph": {
+            "if": {
+                "type": "array"
+            },
+            "then": {
+                "contains": {
+                    "anyOf": [
+                        {
+                            "allOf": [
+                                {
+                                    "type": "object",
+                                    "required": [
+                                        "@type"
+                                    ],
+                                    "properties": {
+                                        "@type": {
+                                            "anyOf": [
+                                                {
+                                                    "const": "trov:TrustedResearchSystem"
+                                                },
+                                                {
+                                                    "type": "array",
+                                                    "contains": {
+                                                        "const": "trov:TrustedResearchSystem"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                {
+                                    "required": [
+                                        "@id"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "object",
+                            "required": [
+                                "trov:wasAssembledBy"
+                            ],
+                            "properties": {
+                                "trov:wasAssembledBy": {
+                                    "allOf": [
+                                        {
+                                            "type": "object",
+                                            "required": [
+                                                "@type"
+                                            ],
+                                            "properties": {
+                                                "@type": {
+                                                    "anyOf": [
+                                                        {
+                                                            "const": "trov:TrustedResearchSystem"
+                                                        },
+                                                        {
+                                                            "type": "array",
+                                                            "contains": {
+                                                                "const": "trov:TrustedResearchSystem"
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "required": [
+                                                "@id"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                },
+                "items": {
+                    "$ref": "#/$defs/topLevel"
+                },
+                "errorMessage": {
+                    "contains": "the document defines no TRS: no node typed trov:TrustedResearchSystem, carrying an @id, at the top of the @graph or as the object of trov:wasAssembledBy"
+                }
+            }
+        }
+    },
+    "$defs": {
+        "topLevel": {
+            "if": {
+                "type": "object"
+            },
+            "then": {
+                "properties": {
+                    "trov:wasAssembledBy": {
+                        "$ref": "#/$defs/inPlace"
+                    }
+                },
+                "additionalProperties": {
+                    "$ref": "#/$defs/elsewhere"
+                }
+            }
+        },
+        "inPlace": {
+            "if": {
+                "type": "object"
+            },
+            "then": {
+                "additionalProperties": {
+                    "$ref": "#/$defs/elsewhere"
+                }
+            },
+            "else": {
+                "$ref": "#/$defs/elsewhere"
+            }
+        },
+        "elsewhere": {
+            "allOf": [
+                {
+                    "if": {
+                        "type": "object",
+                        "required": [
+                            "@type"
+                        ],
+                        "properties": {
+                            "@type": {
+                                "anyOf": [
+                                    {
+                                        "const": "trov:TrustedResearchSystem"
+                                    },
+                                    {
+                                        "type": "array",
+                                        "contains": {
+                                            "const": "trov:TrustedResearchSystem"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "then": {
+                        "not": {},
+                        "errorMessage": {
+                            "not": "a TRS is defined at the top of the @graph or as the object of trov:wasAssembledBy, not here"
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "type": "object"
+                    },
+                    "then": {
+                        "additionalProperties": {
+                            "$ref": "#/$defs/elsewhere"
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "type": "array"
+                    },
+                    "then": {
+                        "items": {
+                            "$ref": "#/$defs/elsewhere"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

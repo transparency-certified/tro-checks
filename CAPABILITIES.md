@@ -28,12 +28,7 @@ Every expectation listed uses `dialect-declaration` (`22`), `id-and-anchor` (`13
 | 3 | `types-prefixed-or-absolute` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `pattern` (`07`), `boolean-schema` (`01`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 4 | `core-prefixes-pinned` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `additional-properties` (`09`), `const` (`10`), `enum` (`05`), `not` (`08`), `contains` (`18`), `if-then-else` (`11`), `defs-and-ref` (`12`) |
 | 4 | `trov-terms-known` | `properties` (`02`), `items` (`03`), `boolean-schema` (`01`), `additional-properties` (`09`), `pattern` (`07`), `enum` (`05`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `property-names` (*no demo* \*) |
-| 4 | `tro-top-level-in-graph` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `const` (`10`), `contains` (`18`), `if-then-else` (`11`) |
-| 4 | `tro-assembled-by-trs` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `const` (`10`), `contains` (`18`), `anyOf` (`08`), `if-then-else` (`11`) |
 | 4 | `trov-version-known` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `const` (`10`), `contains` (`18`), `anyOf` (`08`), `enum` (`05`), `if-then-else` (`11`) |
-| 4 | `composition-has-fingerprint` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`) |
-| 4 | `composition-identifies-artifacts` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `min-items` (`03`) |
-| 4 | `artifact-hashes-present` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `min-items` (`03`), `if-then-else` (`11`) |
 | 4 | `hash-algorithms-permitted` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `enum` (`05`), `if-then-else` (`11`), `defs-and-ref` (`12`) |
 | 4 | `hash-values-correct-form` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `const` (`10`), `pattern` (`07`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`) |
 | 4 | `mime-types-two-part` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `pattern` (`07`), `if-then-else` (`11`) |
@@ -47,12 +42,21 @@ Every expectation listed uses `dialect-declaration` (`22`), `id-and-anchor` (`13
 | 4 | `custom-terms-not-trov` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `pattern` (`07`), `not` (`08`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 4 | `custom-term-superclasses-extensible` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `enum` (`05`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 4 | `trov-signing-mechanisms-predefined` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `pattern` (`07`), `enum` (`05`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
-| 4 | `gpg-signing-key-present` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `const` (`10`), `contains` (`18`), `anyOf` (`08`), `if-then-else` (`11`) |
-| 5 | `base-declared` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `contains` (`18`), `if-then-else` (`11`) |
-| 5 | `base-has-path` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `pattern` (`07`) |
-| 5 | `base-host-lowercase` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `pattern` (`07`), `not` (`08`) |
-| 5 | `base-host-ownable` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `pattern` (`07`), `not` (`08`), `allOf` (`12`) |
-| 5 | `node-ids-present` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `additional-properties` (`09`), `boolean-schema` (`01`), `not` (`08`), `anyOf` (`08`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
-| 5 | `blank-node-ids-absent` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `pattern` (`07`), `not` (`08`), `boolean-schema` (`01`) |
+| 5 | `trs-defined` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `additional-properties` (`09`), `const` (`10`), `contains` (`18`), `anyOf` (`08`), `allOf` (`12`), `not` (`08`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
+| 5 | `trs-id-absolute` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `const` (`10`), `contains` (`18`), `anyOf` (`08`), `allOf` (`12`), `pattern` (`07`), `if-then-else` (`11`), `defs-and-ref` (`12`) |
+| 5 | `capability-ids-absolute` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `pattern` (`07`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
+| 5 | `capability-warrants-absolute` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `pattern` (`07`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
+| 6 | `tro-top-level-in-graph` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `const` (`10`), `contains` (`18`), `if-then-else` (`11`) |
+| 6 | `tro-assembled-by-trs` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `const` (`10`), `contains` (`18`), `anyOf` (`08`), `if-then-else` (`11`) |
+| 6 | `composition-has-fingerprint` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`) |
+| 6 | `composition-identifies-artifacts` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `min-items` (`03`) |
+| 6 | `artifact-hashes-present` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `min-items` (`03`), `if-then-else` (`11`) |
+| 6 | `gpg-signing-key-present` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `const` (`10`), `contains` (`18`), `anyOf` (`08`), `if-then-else` (`11`) |
+| 7 | `base-declared` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `contains` (`18`), `if-then-else` (`11`) |
+| 7 | `base-has-path` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `pattern` (`07`) |
+| 7 | `base-host-lowercase` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `pattern` (`07`), `not` (`08`) |
+| 7 | `base-host-ownable` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `pattern` (`07`), `not` (`08`), `allOf` (`12`) |
+| 7 | `node-ids-present` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `additional-properties` (`09`), `boolean-schema` (`01`), `not` (`08`), `anyOf` (`08`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
+| 7 | `blank-node-ids-absent` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `pattern` (`07`), `not` (`08`), `boolean-schema` (`01`) |
 
 \* The gallery has no demo for `property-names`, `pattern-properties` or `maxLength` (`value-bounds` demonstrates the floors only).

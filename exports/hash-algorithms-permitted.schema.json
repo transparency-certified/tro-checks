@@ -5,7 +5,7 @@
     "description": "Every trov:hash on the TRO's artifacts and composition fingerprint names its algorithm in trov:hashAlgorithm, and the algorithm is one TRACE permits: sha256, sha384, sha512, sha3-256, sha3-384, sha3-512, blake2b, blake2s or blake3, spelled so.",
     "summary": "Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families",
     "requires": [
-        "tro-top-level-in-graph"
+        "core-prefixes-pinned"
     ],
     "type": "object",
     "properties": {

@@ -5,7 +5,7 @@
     "description": "Where the TRO carries schema:creator, each value is a node -- an object, not a string -- and where the node carries a @type, it is schema:Person or schema:Organization, the types schema.org expects of a creator. A bare reference, an object holding only an @id, passes.",
     "summary": "The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string",
     "requires": [
-        "tro-top-level-in-graph"
+        "core-prefixes-pinned"
     ],
     "type": "object",
     "properties": {

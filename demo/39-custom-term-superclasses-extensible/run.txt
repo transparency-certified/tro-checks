@@ -1,0 +1,543 @@
+##############################################################################
+#
+#   tro-checks  ·  demo 39: custom-term-superclasses-extensible (TIER 4 - USES-TROV-CORRECTLY)
+#
+##############################################################################
+
+----- [1] expectation met: the custom terms extend trov:TRSCapabilityType and trov:TRPAttributeType -----
+
+$ report_on instance-extensible-superclasses.jsonld
+{
+    "@context": {
+        "trov": "https://w3id.org/trace/trov/0.1#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "ex": "https://example.org/terms#"
+    },
+    "@graph": [
+        {
+            "@id": "tro",
+            "@type": "trov:TransparentResearchObject",
+            "trov:vocabularyVersion": "0.1",
+            "trov:signingMechanism": {
+                "@id": "trov:X509CMSSigning"
+            },
+            "trov:wasAssembledBy": {
+                "@id": "https://trs.example.org/demo/",
+                "@type": "trov:TrustedResearchSystem",
+                "trov:hasCapability": [
+                    {
+                        "@id": "https://trs.example.org/demo/capability/0",
+                        "@type": "trov:CanProvideInternetIsolation"
+                    },
+                    {
+                        "@id": "https://trs.example.org/demo/capability/1",
+                        "@type": "ex:CanLogAudits"
+                    }
+                ],
+                "trov:customTerm": [
+                    {
+                        "@id": "ex:CanLogAudits",
+                        "rdfs:subClassOf": {
+                            "@id": "trov:TRSCapabilityType"
+                        }
+                    },
+                    {
+                        "@id": "ex:AuditLogged",
+                        "rdfs:subClassOf": {
+                            "@id": "trov:TRPAttributeType"
+                        }
+                    }
+                ]
+            },
+            "trov:hasPerformance": [
+                {
+                    "@id": "trp/0",
+                    "@type": "trov:TrustedResearchPerformance",
+                    "trov:wasConductedBy": {
+                        "@id": "https://trs.example.org/demo/"
+                    },
+                    "trov:hasPerformanceAttribute": [
+                        {
+                            "@id": "trp/0/attribute/0",
+                            "@type": "trov:InternetIsolation",
+                            "trov:warrantedBy": {
+                                "@id": "https://trs.example.org/demo/capability/0"
+                            }
+                        },
+                        {
+                            "@id": "trp/0/attribute/1",
+                            "@type": "ex:AuditLogged",
+                            "trov:warrantedBy": {
+                                "@id": "https://trs.example.org/demo/capability/1"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "trov:hasAttribute": [
+                {
+                    "@id": "tro/attribute/0",
+                    "@type": "trov:IncludesAllInputData",
+                    "trov:warrantedBy": {
+                        "@id": "trp/0/attribute/0"
+                    }
+                }
+            ]
+        }
+    ]
+}
+
+wrote tmp/instance-extensible-superclasses.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSON-LD met, 4 USES-TROV-CORRECTLY met
+
+# Report
+## Candidate Information
+|  |  |
+| --- | --- |
+| Candidate | `instance-extensible-superclasses.jsonld` |
+| Target | 4 USES-TROV-CORRECTLY |
+| Target declared by | the `--target` option |
+## Tier Assessments
+| Tier | ID | Description | Status |
+| --- | --- | --- | --- |
+| 1 | SAFE-JSON | JSON that every supported parser reads the same way | ✅ met |
+| 2 | SAFE-JSON-LD | JSON-LD that every supported processor reads the same way | ✅ met |
+| 3 | TRACE-JSON-LD | JSON-LD in the restricted form the TRACE Specification requires for TRO declarations | ✅ met |
+| 4 | USES-TROV-CORRECTLY | JSON-LD whose TROV terms, and the schema.org terms TROV specifies, are used as they are defined | ✅ met |
+| *5* | *DEFINES-TRS* | *JSON-LD that defines a Trusted Research System, identified by an absolute IRI* | *not claimed* |
+| *6* | *STANDALONE-TRO* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
+| *7* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
+## Expectation Findings by Tier
+|  |  |  |
+| --- | --- | --- |
+| **Tier 1 — SAFE-JSON  ✅ met** |  |  |
+| Expectation | Summary | Status |
+| `duplicate-member-names-absent` | No object repeats a member name | ✅ met |
+| `json-parses` | The candidate parses as JSON without errors | ✅ met |
+| `lone-surrogates-absent` | No string or member name has an unpaired surrogate | ✅ met |
+| `numbers-within-range` | Every number fits a double; every integer is exact | ✅ met |
+| `utf8-encoded` | The candidate is UTF-8 | ✅ met |
+| **Tier 2 — SAFE-JSON-LD  ✅ met** |  |  |
+| Expectation | Summary | Status |
+| `containers-absent` | No `@container` in a term definition | ✅ met |
+| `context-at-root-only` | The document's only `@context` is the one at its root: no node below it and no term definition within it carries another | ✅ met |
+| `context-protection-absent` | No `@protected`, `@propagate` or `@import` in a context | ✅ met |
+| `context-well-formed` | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
+| `graph-at-root-only` | `@graph` appears only at the root | ✅ met |
+| `graph-well-formed` | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| `id-coercion-absent` | No `"@type": "@id"` in a term definition | ✅ met |
+| `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
+| `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
+| `vocab-absent` | No `@vocab` in a context | ✅ met |
+| **Tier 3 — TRACE-JSON-LD  ✅ met** |  |  |
+| Expectation | Summary | Status |
+| `base-simple-url` | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
+| `base-web-scheme` | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
+| `context-aliases-absent` | No term definition aliases a property; a term definition holds only a `@type` naming a datatype | ✅ met |
+| `context-local` | The `@context` is inline: no string names a remote context | ✅ met |
+| `disallowed-context-keywords-absent` | No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context` | ✅ met |
+| `disallowed-node-keywords-absent` | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
+| `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
+| `root-context-and-graph-only` | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
+| `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
+| **Tier 4 — USES-TROV-CORRECTLY  ✅ met** |  |  |
+| Expectation | Summary | Status |
+| `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
+| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
+| `custom-term-superclasses-extensible` | Every custom term extends `trov:TRSCapabilityType` or `trov:TRPAttributeType` | ✅ met |
+| `custom-terms-not-trov` | Every `trov:customTerm` entry declares a term outside the TROV namespace | ✅ met |
+| `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
+| `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
+| `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
+| `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time | ✅ met |
+| `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | ✅ met |
+| `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
+| `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
+| `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
+| `trov-signing-mechanisms-predefined` | A signing mechanism is identified by reference, and a `trov:` one is one TROV predefines | ✅ met |
+| `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
+| `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| *Tier 5 — DEFINES-TRS  not claimed* |  |  |
+| Expectation | Summary | Status |
+| *`capability-ids-absolute`* | *Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
+| *`capability-warrants-absolute`* | *Every performance attribute refers to the capability warranting it by absolute IRI* | *not claimed* |
+| *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
+| *`trs-id-absolute`* | *The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
+| *Tier 6 — STANDALONE-TRO  not claimed* |  |  |
+| Expectation | Summary | Status |
+| *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
+| *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
+| *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
+| *`gpg-signing-key-present`* | *A TRO signed with `trov:GPGSigning` gives its TRS a `trov:publicKey`* | *not claimed* |
+| *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *Tier 7 — LINKABLE-TRO  not claimed* |  |  |
+| Expectation | Summary | Status |
+| *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
+| *`base-has-path`* | *The `@base` names something below the host, not the host alone* | *not claimed* |
+| *`base-host-lowercase`* | *The `@base` host is lowercase* | *not claimed* |
+| *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
+| *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
+| *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
+
+----- [2] expectation unmet: a custom term extends trov:TRSCapability --------
+
+$ report_on instance-superclass-not-extensible.jsonld
+{
+    "@context": {
+        "trov": "https://w3id.org/trace/trov/0.1#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "ex": "https://example.org/terms#"
+    },
+    "@graph": [
+        {
+            "@id": "tro",
+            "@type": "trov:TransparentResearchObject",
+            "trov:vocabularyVersion": "0.1",
+            "trov:signingMechanism": {
+                "@id": "trov:X509CMSSigning"
+            },
+            "trov:wasAssembledBy": {
+                "@id": "https://trs.example.org/demo/",
+                "@type": "trov:TrustedResearchSystem",
+                "trov:hasCapability": [
+                    {
+                        "@id": "https://trs.example.org/demo/capability/0",
+                        "@type": "trov:CanProvideInternetIsolation"
+                    },
+                    {
+                        "@id": "https://trs.example.org/demo/capability/1",
+                        "@type": "ex:CanLogAudits"
+                    }
+                ],
+                "trov:customTerm": [
+                    {
+                        "@id": "ex:CanLogAudits",
+                        "rdfs:subClassOf": {
+                            "@id": "trov:TRSCapability"
+                        }
+                    },
+                    {
+                        "@id": "ex:AuditLogged",
+                        "rdfs:subClassOf": {
+                            "@id": "trov:TRPAttributeType"
+                        }
+                    }
+                ]
+            },
+            "trov:hasPerformance": [
+                {
+                    "@id": "trp/0",
+                    "@type": "trov:TrustedResearchPerformance",
+                    "trov:wasConductedBy": {
+                        "@id": "https://trs.example.org/demo/"
+                    },
+                    "trov:hasPerformanceAttribute": [
+                        {
+                            "@id": "trp/0/attribute/0",
+                            "@type": "trov:InternetIsolation",
+                            "trov:warrantedBy": {
+                                "@id": "https://trs.example.org/demo/capability/0"
+                            }
+                        },
+                        {
+                            "@id": "trp/0/attribute/1",
+                            "@type": "ex:AuditLogged",
+                            "trov:warrantedBy": {
+                                "@id": "https://trs.example.org/demo/capability/1"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "trov:hasAttribute": [
+                {
+                    "@id": "tro/attribute/0",
+                    "@type": "trov:IncludesAllInputData",
+                    "trov:warrantedBy": {
+                        "@id": "trp/0/attribute/0"
+                    }
+                }
+            ]
+        }
+    ]
+}
+
+wrote tmp/instance-superclass-not-extensible.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSON-LD met, 4 USES-TROV-CORRECTLY unmet
+
+# Report
+## Candidate Information
+|  |  |
+| --- | --- |
+| Candidate | `instance-superclass-not-extensible.jsonld` |
+| Target | 4 USES-TROV-CORRECTLY |
+| Target declared by | the `--target` option |
+## Tier Assessments
+| Tier | ID | Description | Status |
+| --- | --- | --- | --- |
+| 1 | SAFE-JSON | JSON that every supported parser reads the same way | ✅ met |
+| 2 | SAFE-JSON-LD | JSON-LD that every supported processor reads the same way | ✅ met |
+| 3 | TRACE-JSON-LD | JSON-LD in the restricted form the TRACE Specification requires for TRO declarations | ✅ met |
+| 4 | USES-TROV-CORRECTLY | JSON-LD whose TROV terms, and the schema.org terms TROV specifies, are used as they are defined | ❌ not met |
+| *5* | *DEFINES-TRS* | *JSON-LD that defines a Trusted Research System, identified by an absolute IRI* | *not claimed* |
+| *6* | *STANDALONE-TRO* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
+| *7* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
+## Expectation Findings by Tier
+|  |  |  |
+| --- | --- | --- |
+| **Tier 1 — SAFE-JSON  ✅ met** |  |  |
+| Expectation | Summary | Status |
+| `duplicate-member-names-absent` | No object repeats a member name | ✅ met |
+| `json-parses` | The candidate parses as JSON without errors | ✅ met |
+| `lone-surrogates-absent` | No string or member name has an unpaired surrogate | ✅ met |
+| `numbers-within-range` | Every number fits a double; every integer is exact | ✅ met |
+| `utf8-encoded` | The candidate is UTF-8 | ✅ met |
+| **Tier 2 — SAFE-JSON-LD  ✅ met** |  |  |
+| Expectation | Summary | Status |
+| `containers-absent` | No `@container` in a term definition | ✅ met |
+| `context-at-root-only` | The document's only `@context` is the one at its root: no node below it and no term definition within it carries another | ✅ met |
+| `context-protection-absent` | No `@protected`, `@propagate` or `@import` in a context | ✅ met |
+| `context-well-formed` | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
+| `graph-at-root-only` | `@graph` appears only at the root | ✅ met |
+| `graph-well-formed` | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| `id-coercion-absent` | No `"@type": "@id"` in a term definition | ✅ met |
+| `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
+| `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
+| `vocab-absent` | No `@vocab` in a context | ✅ met |
+| **Tier 3 — TRACE-JSON-LD  ✅ met** |  |  |
+| Expectation | Summary | Status |
+| `base-simple-url` | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
+| `base-web-scheme` | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
+| `context-aliases-absent` | No term definition aliases a property; a term definition holds only a `@type` naming a datatype | ✅ met |
+| `context-local` | The `@context` is inline: no string names a remote context | ✅ met |
+| `disallowed-context-keywords-absent` | No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context` | ✅ met |
+| `disallowed-node-keywords-absent` | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
+| `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
+| `root-context-and-graph-only` | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
+| `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
+| **Tier 4 — USES-TROV-CORRECTLY  ❌ not met** |  |  |
+| Expectation | Summary | Status |
+| `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
+| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
+| `custom-term-superclasses-extensible` | Every custom term extends `trov:TRSCapabilityType` or `trov:TRPAttributeType` | ❌ not met |
+| `custom-terms-not-trov` | Every `trov:customTerm` entry declares a term outside the TROV namespace | ✅ met |
+| `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
+| `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
+| `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
+| `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time | ✅ met |
+| `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | ✅ met |
+| `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
+| `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
+| `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
+| `trov-signing-mechanisms-predefined` | A signing mechanism is identified by reference, and a `trov:` one is one TROV predefines | ✅ met |
+| `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
+| `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| *Tier 5 — DEFINES-TRS  not claimed* |  |  |
+| Expectation | Summary | Status |
+| *`capability-ids-absolute`* | *Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
+| *`capability-warrants-absolute`* | *Every performance attribute refers to the capability warranting it by absolute IRI* | *not claimed* |
+| *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
+| *`trs-id-absolute`* | *The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
+| *Tier 6 — STANDALONE-TRO  not claimed* |  |  |
+| Expectation | Summary | Status |
+| *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
+| *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
+| *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
+| *`gpg-signing-key-present`* | *A TRO signed with `trov:GPGSigning` gives its TRS a `trov:publicKey`* | *not claimed* |
+| *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *Tier 7 — LINKABLE-TRO  not claimed* |  |  |
+| Expectation | Summary | Status |
+| *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
+| *`base-has-path`* | *The `@base` names something below the host, not the host alone* | *not claimed* |
+| *`base-host-lowercase`* | *The `@base` host is lowercase* | *not claimed* |
+| *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
+| *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
+| *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
+## Diagnostics for Each Unmet Expectation
+### Unmet expectation: custom-term-superclasses-extensible
+Expectation details: Every rdfs:subClassOf in a trov:customTerm entry refers, by reference, to a TROV class open to extension: trov:TRSCapabilityType or trov:TRPAttributeType.
+| Found | Where | Expectation not met because |
+| --- | --- | --- |
+| `"trov:TRSCapability"` | `/@graph/0/trov:wasAssembledBy/trov:customTerm/0/rdfs:subClassOf/@id` | "trov:TRSCapability" is not a class a custom term may extend; those are trov:TRSCapabilityType and trov:TRPAttributeType |
+
+----- [3] expectation unmet: a custom term names its superclass as a string -----
+
+$ report_on instance-superclass-as-string.jsonld
+{
+    "@context": {
+        "trov": "https://w3id.org/trace/trov/0.1#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "ex": "https://example.org/terms#"
+    },
+    "@graph": [
+        {
+            "@id": "tro",
+            "@type": "trov:TransparentResearchObject",
+            "trov:vocabularyVersion": "0.1",
+            "trov:signingMechanism": {
+                "@id": "trov:X509CMSSigning"
+            },
+            "trov:wasAssembledBy": {
+                "@id": "https://trs.example.org/demo/",
+                "@type": "trov:TrustedResearchSystem",
+                "trov:hasCapability": [
+                    {
+                        "@id": "https://trs.example.org/demo/capability/0",
+                        "@type": "trov:CanProvideInternetIsolation"
+                    },
+                    {
+                        "@id": "https://trs.example.org/demo/capability/1",
+                        "@type": "ex:CanLogAudits"
+                    }
+                ],
+                "trov:customTerm": [
+                    {
+                        "@id": "ex:CanLogAudits",
+                        "rdfs:subClassOf": "trov:TRSCapabilityType"
+                    },
+                    {
+                        "@id": "ex:AuditLogged",
+                        "rdfs:subClassOf": {
+                            "@id": "trov:TRPAttributeType"
+                        }
+                    }
+                ]
+            },
+            "trov:hasPerformance": [
+                {
+                    "@id": "trp/0",
+                    "@type": "trov:TrustedResearchPerformance",
+                    "trov:wasConductedBy": {
+                        "@id": "https://trs.example.org/demo/"
+                    },
+                    "trov:hasPerformanceAttribute": [
+                        {
+                            "@id": "trp/0/attribute/0",
+                            "@type": "trov:InternetIsolation",
+                            "trov:warrantedBy": {
+                                "@id": "https://trs.example.org/demo/capability/0"
+                            }
+                        },
+                        {
+                            "@id": "trp/0/attribute/1",
+                            "@type": "ex:AuditLogged",
+                            "trov:warrantedBy": {
+                                "@id": "https://trs.example.org/demo/capability/1"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "trov:hasAttribute": [
+                {
+                    "@id": "tro/attribute/0",
+                    "@type": "trov:IncludesAllInputData",
+                    "trov:warrantedBy": {
+                        "@id": "trp/0/attribute/0"
+                    }
+                }
+            ]
+        }
+    ]
+}
+
+wrote tmp/instance-superclass-as-string.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSON-LD met, 4 USES-TROV-CORRECTLY unmet
+
+# Report
+## Candidate Information
+|  |  |
+| --- | --- |
+| Candidate | `instance-superclass-as-string.jsonld` |
+| Target | 4 USES-TROV-CORRECTLY |
+| Target declared by | the `--target` option |
+## Tier Assessments
+| Tier | ID | Description | Status |
+| --- | --- | --- | --- |
+| 1 | SAFE-JSON | JSON that every supported parser reads the same way | ✅ met |
+| 2 | SAFE-JSON-LD | JSON-LD that every supported processor reads the same way | ✅ met |
+| 3 | TRACE-JSON-LD | JSON-LD in the restricted form the TRACE Specification requires for TRO declarations | ✅ met |
+| 4 | USES-TROV-CORRECTLY | JSON-LD whose TROV terms, and the schema.org terms TROV specifies, are used as they are defined | ❌ not met |
+| *5* | *DEFINES-TRS* | *JSON-LD that defines a Trusted Research System, identified by an absolute IRI* | *not claimed* |
+| *6* | *STANDALONE-TRO* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
+| *7* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
+## Expectation Findings by Tier
+|  |  |  |
+| --- | --- | --- |
+| **Tier 1 — SAFE-JSON  ✅ met** |  |  |
+| Expectation | Summary | Status |
+| `duplicate-member-names-absent` | No object repeats a member name | ✅ met |
+| `json-parses` | The candidate parses as JSON without errors | ✅ met |
+| `lone-surrogates-absent` | No string or member name has an unpaired surrogate | ✅ met |
+| `numbers-within-range` | Every number fits a double; every integer is exact | ✅ met |
+| `utf8-encoded` | The candidate is UTF-8 | ✅ met |
+| **Tier 2 — SAFE-JSON-LD  ✅ met** |  |  |
+| Expectation | Summary | Status |
+| `containers-absent` | No `@container` in a term definition | ✅ met |
+| `context-at-root-only` | The document's only `@context` is the one at its root: no node below it and no term definition within it carries another | ✅ met |
+| `context-protection-absent` | No `@protected`, `@propagate` or `@import` in a context | ✅ met |
+| `context-well-formed` | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
+| `graph-at-root-only` | `@graph` appears only at the root | ✅ met |
+| `graph-well-formed` | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| `id-coercion-absent` | No `"@type": "@id"` in a term definition | ✅ met |
+| `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
+| `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
+| `vocab-absent` | No `@vocab` in a context | ✅ met |
+| **Tier 3 — TRACE-JSON-LD  ✅ met** |  |  |
+| Expectation | Summary | Status |
+| `base-simple-url` | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
+| `base-web-scheme` | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
+| `context-aliases-absent` | No term definition aliases a property; a term definition holds only a `@type` naming a datatype | ✅ met |
+| `context-local` | The `@context` is inline: no string names a remote context | ✅ met |
+| `disallowed-context-keywords-absent` | No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context` | ✅ met |
+| `disallowed-node-keywords-absent` | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
+| `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
+| `root-context-and-graph-only` | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
+| `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
+| **Tier 4 — USES-TROV-CORRECTLY  ❌ not met** |  |  |
+| Expectation | Summary | Status |
+| `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
+| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
+| `custom-term-superclasses-extensible` | Every custom term extends `trov:TRSCapabilityType` or `trov:TRPAttributeType` | ❌ not met |
+| `custom-terms-not-trov` | Every `trov:customTerm` entry declares a term outside the TROV namespace | ✅ met |
+| `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
+| `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
+| `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
+| `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time | ✅ met |
+| `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | ✅ met |
+| `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
+| `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
+| `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
+| `trov-signing-mechanisms-predefined` | A signing mechanism is identified by reference, and a `trov:` one is one TROV predefines | ✅ met |
+| `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
+| `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| *Tier 5 — DEFINES-TRS  not claimed* |  |  |
+| Expectation | Summary | Status |
+| *`capability-ids-absolute`* | *Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
+| *`capability-warrants-absolute`* | *Every performance attribute refers to the capability warranting it by absolute IRI* | *not claimed* |
+| *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
+| *`trs-id-absolute`* | *The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
+| *Tier 6 — STANDALONE-TRO  not claimed* |  |  |
+| Expectation | Summary | Status |
+| *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
+| *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
+| *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
+| *`gpg-signing-key-present`* | *A TRO signed with `trov:GPGSigning` gives its TRS a `trov:publicKey`* | *not claimed* |
+| *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *Tier 7 — LINKABLE-TRO  not claimed* |  |  |
+| Expectation | Summary | Status |
+| *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
+| *`base-has-path`* | *The `@base` names something below the host, not the host alone* | *not claimed* |
+| *`base-host-lowercase`* | *The `@base` host is lowercase* | *not claimed* |
+| *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
+| *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
+| *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
+## Diagnostics for Each Unmet Expectation
+### Unmet expectation: custom-term-superclasses-extensible
+Expectation details: Every rdfs:subClassOf in a trov:customTerm entry refers, by reference, to a TROV class open to extension: trov:TRSCapabilityType or trov:TRPAttributeType.
+| Found | Where | Expectation not met because |
+| --- | --- | --- |
+| `"trov:TRSCapabilityType"` | `/@graph/0/trov:wasAssembledBy/trov:customTerm/0/rdfs:subClassOf` | a custom term names its superclass by reference, {"@id": …}, not as a string |

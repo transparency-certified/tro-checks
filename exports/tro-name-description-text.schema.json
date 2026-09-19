@@ -5,7 +5,7 @@
     "description": "Where the TRO carries schema:name or schema:description, each is Text as schema.org defines it: a string, or an array of strings.",
     "summary": "The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings",
     "requires": [
-        "tro-top-level-in-graph"
+        "core-prefixes-pinned"
     ],
     "type": "object",
     "properties": {

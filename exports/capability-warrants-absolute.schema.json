@@ -1,0 +1,120 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/capability-warrants-absolute.schema.json",
+    "title": "Capability warrants absolute",
+    "description": "Every trov:warrantedBy on a value of trov:hasPerformanceAttribute refers to its capability by an absolute IRI, or a compact IRI whose prefix is not trov.",
+    "summary": "Every performance attribute refers to the capability warranting it by absolute IRI",
+    "requires": [
+        "trs-defined"
+    ],
+    "type": "object",
+    "properties": {
+        "@graph": {
+            "$ref": "#/$defs/sweep"
+        }
+    },
+    "$defs": {
+        "sweep": {
+            "allOf": [
+                {
+                    "if": {
+                        "type": "object"
+                    },
+                    "then": {
+                        "properties": {
+                            "trov:hasPerformanceAttribute": {
+                                "allOf": [
+                                    {
+                                        "if": {
+                                            "type": "array"
+                                        },
+                                        "then": {
+                                            "items": {
+                                                "$ref": "#/$defs/value"
+                                            }
+                                        },
+                                        "else": {
+                                            "$ref": "#/$defs/value"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "#/$defs/sweep"
+                                    }
+                                ]
+                            }
+                        },
+                        "additionalProperties": {
+                            "$ref": "#/$defs/sweep"
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "type": "array"
+                    },
+                    "then": {
+                        "items": {
+                            "$ref": "#/$defs/sweep"
+                        }
+                    }
+                }
+            ]
+        },
+        "value": {
+            "if": {
+                "type": "object"
+            },
+            "then": {
+                "properties": {
+                    "trov:warrantedBy": {
+                        "if": {
+                            "type": "array"
+                        },
+                        "then": {
+                            "items": {
+                                "if": {
+                                    "type": "object"
+                                },
+                                "then": {
+                                    "properties": {
+                                        "@id": {
+                                            "if": {
+                                                "type": "string"
+                                            },
+                                            "then": {
+                                                "pattern": "^(?!trov:)(?!_:)[A-Za-z][A-Za-z0-9+.-]*:",
+                                                "errorMessage": {
+                                                    "pattern": "${0} is not an absolute IRI; a performance attribute's warrant refers to its capability by the capability's absolute IRI"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "else": {
+                            "if": {
+                                "type": "object"
+                            },
+                            "then": {
+                                "properties": {
+                                    "@id": {
+                                        "if": {
+                                            "type": "string"
+                                        },
+                                        "then": {
+                                            "pattern": "^(?!trov:)(?!_:)[A-Za-z][A-Za-z0-9+.-]*:",
+                                            "errorMessage": {
+                                                "pattern": "${0} is not an absolute IRI; a performance attribute's warrant refers to its capability by the capability's absolute IRI"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

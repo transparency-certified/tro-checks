@@ -1,0 +1,102 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/trs-id-absolute.schema.json",
+    "title": "TRS id absolute",
+    "description": "The @id of the TRS the document defines is an absolute IRI, or a compact IRI whose prefix is not trov, so that it is the same wherever the TRS is defined.",
+    "summary": "The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace",
+    "requires": [
+        "trs-defined"
+    ],
+    "type": "object",
+    "properties": {
+        "@graph": {
+            "if": {
+                "type": "array"
+            },
+            "then": {
+                "items": {
+                    "allOf": [
+                        {
+                            "if": {
+                                "type": "object",
+                                "required": [
+                                    "@type"
+                                ],
+                                "properties": {
+                                    "@type": {
+                                        "anyOf": [
+                                            {
+                                                "const": "trov:TrustedResearchSystem"
+                                            },
+                                            {
+                                                "type": "array",
+                                                "contains": {
+                                                    "const": "trov:TrustedResearchSystem"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "#/$defs/trsId"
+                            }
+                        },
+                        {
+                            "if": {
+                                "type": "object"
+                            },
+                            "then": {
+                                "properties": {
+                                    "trov:wasAssembledBy": {
+                                        "if": {
+                                            "type": "object",
+                                            "required": [
+                                                "@type"
+                                            ],
+                                            "properties": {
+                                                "@type": {
+                                                    "anyOf": [
+                                                        {
+                                                            "const": "trov:TrustedResearchSystem"
+                                                        },
+                                                        {
+                                                            "type": "array",
+                                                            "contains": {
+                                                                "const": "trov:TrustedResearchSystem"
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        },
+                                        "then": {
+                                            "$ref": "#/$defs/trsId"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "$defs": {
+        "trsId": {
+            "properties": {
+                "@id": {
+                    "if": {
+                        "type": "string"
+                    },
+                    "then": {
+                        "pattern": "^(?!trov:)(?!_:)[A-Za-z][A-Za-z0-9+.-]*:",
+                        "errorMessage": {
+                            "pattern": "${0} is not an absolute IRI; a TRS is identified by an absolute IRI, or by a compact IRI outside the trov namespace"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
