@@ -244,12 +244,14 @@ const htmlDialect = {
          * @returns {string}
          */
         const setCell = (cell, emphasized) => {
+            const oneToken = typeof cell !== 'string' && 'code' in cell && !/\s/.test(cell.code)
             const html = typeof cell === 'string'
                 ? inlineHtml(cell)
                 : 'code' in cell
-                    ? `<code>${escapeHtml(writable(cell.code))}</code>`
+                    ? oneToken
+                        ? `<samp>${escapeHtml(writable(cell.code))}</samp>`
+                        : `<code>${escapeHtml(writable(cell.code))}</code>`
                     : unbroken(escapeHtml(writable(cell.atom)))
-            const oneToken = typeof cell !== 'string' && 'code' in cell && !/\s/.test(cell.code)
             const attributes = oneToken ? ' nowrap' : ''
             return `<td${attributes}>${emphasized && html ? `<em>${html}</em>` : html}</td>`
         }
