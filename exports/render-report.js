@@ -12,8 +12,9 @@
 /** @typedef {import('./types.js').Diagnostic} Diagnostic */
 
 /**
- * @typedef {string | {code: string} | {atom: string}} Cell  prose in the report's own Markdown, a value
- *   set as code, or an atom -- a label or identifier the reader must not meet broken across two lines
+ * @typedef {string | {code: string} | {pointer: string} | {atom: string}} Cell  prose in the report's own Markdown,
+ *   a value set as code, a JSON Pointer that may break only after a slash, or an atom -- a label or identifier the
+ *   reader must not meet broken across two lines
  */
 /**
  * @typedef {object} Row
@@ -166,7 +167,8 @@ const pipeDialect = {
         const setCell = (cell, emphasized) => {
             const text = typeof cell === 'string'
                 ? cellText(cell)
-                : 'code' in cell ? cellText(codeSpan(cell.code)) : cellText(cell.atom)
+                : 'code' in cell ? cellText(codeSpan(cell.code))
+                    : 'pointer' in cell ? cellText(codeSpan(cell.pointer)) : cellText(cell.atom)
             return emphasized && text ? `*${text}*` : text
         }
 
@@ -251,7 +253,9 @@ const htmlDialect = {
                     ? oneToken
                         ? `<samp>${escapeHtml(writable(cell.code))}</samp>`
                         : `<code>${escapeHtml(writable(cell.code))}</code>`
-                    : unbroken(escapeHtml(writable(cell.atom)))
+                    : 'pointer' in cell
+                        ? `<samp>${escapeHtml(writable(cell.pointer)).replace(/\//g, '/<wbr>')}</samp>`
+                        : unbroken(escapeHtml(writable(cell.atom)))
             const attributes = oneToken ? ' nowrap' : ''
             return `<td${attributes}>${emphasized && html ? `<em>${html}</em>` : html}</td>`
         }
@@ -401,7 +405,7 @@ function unmetExpectationLines(finding, dialect) {
     const rows = finding.errors.map((error) => ({
         cells: [
             'found' in error ? { code: JSON.stringify(error.found) } : '',
-            error.site && error.site.length > 0 ? { code: pointerOf(error.site) } : 'the document',
+            error.site && error.site.length > 0 ? { pointer: pointerOf(error.site) } : 'the document',
             error.message ?? stateConstraint(error),
         ],
     }))
