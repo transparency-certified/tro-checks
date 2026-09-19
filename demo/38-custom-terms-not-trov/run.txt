@@ -111,74 +111,74 @@ wrote tmp/instance-producer-namespace.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | --- | --- | --- |
 | **Tier 1 — SAFE-JSON  ✅ met** |  |  |
 | Expectation | Summary | Status |
-| `duplicate-member-names-absent` | No object repeats a member name | ✅ met |
+| `utf8-encoded` | The candidate is UTF-8 | ✅ met |
 | `json-parses` | The candidate parses as JSON without errors | ✅ met |
+| `duplicate-member-names-absent` | No object repeats a member name | ✅ met |
 | `lone-surrogates-absent` | No string or member name has an unpaired surrogate | ✅ met |
 | `numbers-within-range` | Every number fits a double; every integer is exact | ✅ met |
-| `utf8-encoded` | The candidate is UTF-8 | ✅ met |
 | **Tier 2 — SAFE-JSON-LD  ✅ met** |  |  |
 | Expectation | Summary | Status |
-| `containers-absent` | No `@container` in a term definition | ✅ met |
-| `context-at-root-only` | The document's only `@context` is the one at its root: no node below it and no term definition within it carries another | ✅ met |
-| `context-protection-absent` | No `@protected`, `@propagate` or `@import` in a context | ✅ met |
 | `context-well-formed` | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
-| `graph-at-root-only` | `@graph` appears only at the root | ✅ met |
 | `graph-well-formed` | The root `@graph`, if any, holds objects, not bare values | ✅ met |
-| `id-coercion-absent` | No `"@type": "@id"` in a term definition | ✅ met |
-| `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
 | `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
+| `context-at-root-only` | The document's only `@context` is the one at its root: no node below it and no term definition within it carries another | ✅ met |
+| `containers-absent` | No `@container` in a term definition | ✅ met |
 | `vocab-absent` | No `@vocab` in a context | ✅ met |
+| `context-protection-absent` | No `@protected`, `@propagate` or `@import` in a context | ✅ met |
+| `id-coercion-absent` | No `"@type": "@id"` in a term definition | ✅ met |
+| `graph-at-root-only` | `@graph` appears only at the root | ✅ met |
+| `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
 | **Tier 3 — TRACE-JSON-LD  ✅ met** |  |  |
 | Expectation | Summary | Status |
-| `base-simple-url` | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
-| `base-web-scheme` | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
-| `context-aliases-absent` | No term definition aliases a property; a term definition holds only a `@type` naming a datatype | ✅ met |
-| `context-local` | The `@context` is inline: no string names a remote context | ✅ met |
-| `disallowed-context-keywords-absent` | No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context` | ✅ met |
-| `disallowed-node-keywords-absent` | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
-| `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
 | `root-context-and-graph-only` | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
+| `disallowed-node-keywords-absent` | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
+| `disallowed-context-keywords-absent` | No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context` | ✅ met |
+| `base-web-scheme` | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
+| `base-simple-url` | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
+| `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
+| `context-local` | The `@context` is inline: no string names a remote context | ✅ met |
+| `context-aliases-absent` | No term definition aliases a property; a term definition holds only a `@type` naming a datatype | ✅ met |
 | `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
 | **Tier 4 — USES-TROV-CORRECTLY  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
-| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
-| `custom-term-superclasses-extensible` | Every custom term extends `trov:TRSCapabilityType` or `trov:TRPAttributeType` | ✅ met |
-| `custom-terms-not-trov` | Every `trov:customTerm` entry declares a term outside the TROV namespace | ✅ met |
+| `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time | ✅ met |
 | `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
+| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
 | `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
-| `trov-signing-mechanisms-predefined` | A signing mechanism is identified by reference, and a `trov:` one is one TROV predefines | ✅ met |
-| `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
 | `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `custom-terms-not-trov` | Every `trov:customTerm` entry declares a term outside the TROV namespace | ✅ met |
+| `custom-term-superclasses-extensible` | Every custom term extends `trov:TRSCapabilityType` or `trov:TRPAttributeType` | ✅ met |
+| `trov-signing-mechanisms-predefined` | A signing mechanism is identified by reference, and a `trov:` one is one TROV predefines | ✅ met |
 | *Tier 5 — DEFINES-TRS  not claimed* |  |  |
 | Expectation | Summary | Status |
-| *`capability-ids-absolute`* | *Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
-| *`capability-warrants-absolute`* | *Every performance attribute refers to the capability warranting it by absolute IRI* | *not claimed* |
 | *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
 | *`trs-id-absolute`* | *The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
+| *`capability-ids-absolute`* | *Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
+| *`capability-warrants-absolute`* | *Every performance attribute refers to the capability warranting it by absolute IRI* | *not claimed* |
 | *Tier 6 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
-| *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
+| *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
 | *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
 | *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
+| *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
 | *`gpg-signing-key-present`* | *A TRO signed with `trov:GPGSigning` gives its TRS a `trov:publicKey`* | *not claimed* |
-| *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
-| *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
 | *Tier 7 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
 | *`base-has-path`* | *The `@base` names something below the host, not the host alone* | *not claimed* |
 | *`base-host-lowercase`* | *The `@base` host is lowercase* | *not claimed* |
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
-| *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
+| *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 
 ----- [2] expectation unmet: a custom term redeclares trov:CanProvideInternetIsolation -----
 
@@ -287,74 +287,74 @@ wrote tmp/instance-trov-prefixed-term.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | --- | --- | --- |
 | **Tier 1 — SAFE-JSON  ✅ met** |  |  |
 | Expectation | Summary | Status |
-| `duplicate-member-names-absent` | No object repeats a member name | ✅ met |
+| `utf8-encoded` | The candidate is UTF-8 | ✅ met |
 | `json-parses` | The candidate parses as JSON without errors | ✅ met |
+| `duplicate-member-names-absent` | No object repeats a member name | ✅ met |
 | `lone-surrogates-absent` | No string or member name has an unpaired surrogate | ✅ met |
 | `numbers-within-range` | Every number fits a double; every integer is exact | ✅ met |
-| `utf8-encoded` | The candidate is UTF-8 | ✅ met |
 | **Tier 2 — SAFE-JSON-LD  ✅ met** |  |  |
 | Expectation | Summary | Status |
-| `containers-absent` | No `@container` in a term definition | ✅ met |
-| `context-at-root-only` | The document's only `@context` is the one at its root: no node below it and no term definition within it carries another | ✅ met |
-| `context-protection-absent` | No `@protected`, `@propagate` or `@import` in a context | ✅ met |
 | `context-well-formed` | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
-| `graph-at-root-only` | `@graph` appears only at the root | ✅ met |
 | `graph-well-formed` | The root `@graph`, if any, holds objects, not bare values | ✅ met |
-| `id-coercion-absent` | No `"@type": "@id"` in a term definition | ✅ met |
-| `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
 | `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
+| `context-at-root-only` | The document's only `@context` is the one at its root: no node below it and no term definition within it carries another | ✅ met |
+| `containers-absent` | No `@container` in a term definition | ✅ met |
 | `vocab-absent` | No `@vocab` in a context | ✅ met |
+| `context-protection-absent` | No `@protected`, `@propagate` or `@import` in a context | ✅ met |
+| `id-coercion-absent` | No `"@type": "@id"` in a term definition | ✅ met |
+| `graph-at-root-only` | `@graph` appears only at the root | ✅ met |
+| `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
 | **Tier 3 — TRACE-JSON-LD  ✅ met** |  |  |
 | Expectation | Summary | Status |
-| `base-simple-url` | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
-| `base-web-scheme` | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
-| `context-aliases-absent` | No term definition aliases a property; a term definition holds only a `@type` naming a datatype | ✅ met |
-| `context-local` | The `@context` is inline: no string names a remote context | ✅ met |
-| `disallowed-context-keywords-absent` | No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context` | ✅ met |
-| `disallowed-node-keywords-absent` | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
-| `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
 | `root-context-and-graph-only` | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
+| `disallowed-node-keywords-absent` | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
+| `disallowed-context-keywords-absent` | No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context` | ✅ met |
+| `base-web-scheme` | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
+| `base-simple-url` | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
+| `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
+| `context-local` | The `@context` is inline: no string names a remote context | ✅ met |
+| `context-aliases-absent` | No term definition aliases a property; a term definition holds only a `@type` naming a datatype | ✅ met |
 | `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
 | **Tier 4 — USES-TROV-CORRECTLY  ❌ not met** |  |  |
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
-| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
-| `custom-term-superclasses-extensible` | Every custom term extends `trov:TRSCapabilityType` or `trov:TRPAttributeType` | ✅ met |
-| `custom-terms-not-trov` | Every `trov:customTerm` entry declares a term outside the TROV namespace | ❌ not met |
+| `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time | ✅ met |
 | `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
+| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
 | `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
-| `trov-signing-mechanisms-predefined` | A signing mechanism is identified by reference, and a `trov:` one is one TROV predefines | ✅ met |
-| `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
 | `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `custom-terms-not-trov` | Every `trov:customTerm` entry declares a term outside the TROV namespace | ❌ not met |
+| `custom-term-superclasses-extensible` | Every custom term extends `trov:TRSCapabilityType` or `trov:TRPAttributeType` | ✅ met |
+| `trov-signing-mechanisms-predefined` | A signing mechanism is identified by reference, and a `trov:` one is one TROV predefines | ✅ met |
 | *Tier 5 — DEFINES-TRS  not claimed* |  |  |
 | Expectation | Summary | Status |
-| *`capability-ids-absolute`* | *Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
-| *`capability-warrants-absolute`* | *Every performance attribute refers to the capability warranting it by absolute IRI* | *not claimed* |
 | *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
 | *`trs-id-absolute`* | *The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
+| *`capability-ids-absolute`* | *Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
+| *`capability-warrants-absolute`* | *Every performance attribute refers to the capability warranting it by absolute IRI* | *not claimed* |
 | *Tier 6 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
-| *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
+| *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
 | *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
 | *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
+| *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
 | *`gpg-signing-key-present`* | *A TRO signed with `trov:GPGSigning` gives its TRS a `trov:publicKey`* | *not claimed* |
-| *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
-| *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
 | *Tier 7 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
 | *`base-has-path`* | *The `@base` names something below the host, not the host alone* | *not claimed* |
 | *`base-host-lowercase`* | *The `@base` host is lowercase* | *not claimed* |
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
-| *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
+| *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: custom-terms-not-trov
 Expectation details: Every trov:customTerm entry declares a term outside the TROV namespace, whether written with the trov: prefix or as an absolute IRI.
@@ -469,74 +469,74 @@ wrote tmp/instance-trov-absolute-term.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | --- | --- | --- |
 | **Tier 1 — SAFE-JSON  ✅ met** |  |  |
 | Expectation | Summary | Status |
-| `duplicate-member-names-absent` | No object repeats a member name | ✅ met |
+| `utf8-encoded` | The candidate is UTF-8 | ✅ met |
 | `json-parses` | The candidate parses as JSON without errors | ✅ met |
+| `duplicate-member-names-absent` | No object repeats a member name | ✅ met |
 | `lone-surrogates-absent` | No string or member name has an unpaired surrogate | ✅ met |
 | `numbers-within-range` | Every number fits a double; every integer is exact | ✅ met |
-| `utf8-encoded` | The candidate is UTF-8 | ✅ met |
 | **Tier 2 — SAFE-JSON-LD  ✅ met** |  |  |
 | Expectation | Summary | Status |
-| `containers-absent` | No `@container` in a term definition | ✅ met |
-| `context-at-root-only` | The document's only `@context` is the one at its root: no node below it and no term definition within it carries another | ✅ met |
-| `context-protection-absent` | No `@protected`, `@propagate` or `@import` in a context | ✅ met |
 | `context-well-formed` | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
-| `graph-at-root-only` | `@graph` appears only at the root | ✅ met |
 | `graph-well-formed` | The root `@graph`, if any, holds objects, not bare values | ✅ met |
-| `id-coercion-absent` | No `"@type": "@id"` in a term definition | ✅ met |
-| `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
 | `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
+| `context-at-root-only` | The document's only `@context` is the one at its root: no node below it and no term definition within it carries another | ✅ met |
+| `containers-absent` | No `@container` in a term definition | ✅ met |
 | `vocab-absent` | No `@vocab` in a context | ✅ met |
+| `context-protection-absent` | No `@protected`, `@propagate` or `@import` in a context | ✅ met |
+| `id-coercion-absent` | No `"@type": "@id"` in a term definition | ✅ met |
+| `graph-at-root-only` | `@graph` appears only at the root | ✅ met |
+| `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
 | **Tier 3 — TRACE-JSON-LD  ✅ met** |  |  |
 | Expectation | Summary | Status |
-| `base-simple-url` | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
-| `base-web-scheme` | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
-| `context-aliases-absent` | No term definition aliases a property; a term definition holds only a `@type` naming a datatype | ✅ met |
-| `context-local` | The `@context` is inline: no string names a remote context | ✅ met |
-| `disallowed-context-keywords-absent` | No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context` | ✅ met |
-| `disallowed-node-keywords-absent` | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
-| `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
 | `root-context-and-graph-only` | A JSON object with an `@context`, an `@graph`, and nothing else | ✅ met |
+| `disallowed-node-keywords-absent` | No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type` | ✅ met |
+| `disallowed-context-keywords-absent` | No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context` | ✅ met |
+| `base-web-scheme` | The `@base`, if any, uses the `https` or `http` scheme | ✅ met |
+| `base-simple-url` | The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/` | ✅ met |
+| `prefix-namespaces-terminated` | Every prefix maps to an absolute IRI ending in `#` or `/` | ✅ met |
+| `context-local` | The `@context` is inline: no string names a remote context | ✅ met |
+| `context-aliases-absent` | No term definition aliases a property; a term definition holds only a `@type` naming a datatype | ✅ met |
 | `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI, never a bare name | ✅ met |
 | **Tier 4 — USES-TROV-CORRECTLY  ❌ not met** |  |  |
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
-| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
-| `custom-term-superclasses-extensible` | Every custom term extends `trov:TRSCapabilityType` or `trov:TRPAttributeType` | ✅ met |
-| `custom-terms-not-trov` | Every `trov:customTerm` entry declares a term outside the TROV namespace | ❌ not met |
+| `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time | ✅ met |
 | `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
+| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
 | `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
-| `trov-signing-mechanisms-predefined` | A signing mechanism is identified by reference, and a `trov:` one is one TROV predefines | ✅ met |
-| `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
 | `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `custom-terms-not-trov` | Every `trov:customTerm` entry declares a term outside the TROV namespace | ❌ not met |
+| `custom-term-superclasses-extensible` | Every custom term extends `trov:TRSCapabilityType` or `trov:TRPAttributeType` | ✅ met |
+| `trov-signing-mechanisms-predefined` | A signing mechanism is identified by reference, and a `trov:` one is one TROV predefines | ✅ met |
 | *Tier 5 — DEFINES-TRS  not claimed* |  |  |
 | Expectation | Summary | Status |
-| *`capability-ids-absolute`* | *Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
-| *`capability-warrants-absolute`* | *Every performance attribute refers to the capability warranting it by absolute IRI* | *not claimed* |
 | *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
 | *`trs-id-absolute`* | *The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
+| *`capability-ids-absolute`* | *Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
+| *`capability-warrants-absolute`* | *Every performance attribute refers to the capability warranting it by absolute IRI* | *not claimed* |
 | *Tier 6 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
-| *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
+| *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
 | *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
 | *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
+| *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
 | *`gpg-signing-key-present`* | *A TRO signed with `trov:GPGSigning` gives its TRS a `trov:publicKey`* | *not claimed* |
-| *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
-| *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
 | *Tier 7 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
 | *`base-has-path`* | *The `@base` names something below the host, not the host alone* | *not claimed* |
 | *`base-host-lowercase`* | *The `@base` host is lowercase* | *not claimed* |
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
-| *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
+| *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: custom-terms-not-trov
 Expectation details: Every trov:customTerm entry declares a term outside the TROV namespace, whether written with the trov: prefix or as an absolute IRI.

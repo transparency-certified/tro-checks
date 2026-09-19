@@ -253,10 +253,11 @@ reads. A field renamed in one file and not in another fails there.
 ## Adding an expectation
 
 Put a `<name>.schema.json` with a `summary` and a `description` in
-[`exports/`](exports), and a `requires` listing any expectations in its tier or a lower one
-that must be met before it is checked. List it in
-[`exports/base-manifest`](exports/base-manifest), and assign it to a tier in
-[`exports/tiers.json`](exports/tiers.json). Then run `make update-readme`, which
+[`exports/`](exports), and a `requires` listing any expectations that must be
+met before it is checked. List it in
+[`exports/base-manifest`](exports/base-manifest), and add it to a tier in
+[`exports/tiers.json`](exports/tiers.json), after every expectation it requires:
+expectations are checked and reported in the order the tiers list them. Then run `make update-readme`, which
 writes its row into the table under *What is checked* above from the `summary`
 you gave it. Add it to [`CAPABILITIES.md`](CAPABILITIES.md), and include a demo
 in [`demo/`](demo).

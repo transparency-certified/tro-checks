@@ -25,8 +25,8 @@
 - It finds the expectation files the module ships.
 - It stops if a tier lists an expectation that has no file.
 - It settles which tier each expectation belongs to.
-- It stops if an expectation requires one in a higher tier, or the requirements within a tier form a cycle.
-- It goes through the tiers in order, and through each tier's expectations with each after those it requires.
+- It stops if an expectation requires one listed after it — later in its own tier, or in a higher tier.
+- It goes through the tiers in order, and through each tier's expectations in the order the tier lists them.
 - It reports an expectation above the candidate's tier as not claimed.
 - It reports an expectation as not assessed when a lower tier that blocks higher tiers is not met, or an expectation it requires is not met.
 - It checks a parse expectation at or below the candidate's tier itself, reading and parsing the candidate once for all of them: that its bytes are UTF-8, that its text is JSON, that no string or member name has an unpaired surrogate, and that every number is within range.
@@ -86,7 +86,7 @@
 
 **The report lists every tier, giving its number and ID, the commitment it describes, and its status — met or not met for each tier at or below the one aimed at, and not claimed for each above it.**
 
-**The report lists every expectation under its tier, alphabetically within the tier, giving what it checks in a few words and its status, and closes each tier's list with the tier's status.**
+**The report lists every expectation under its tier, in the order the tier lists them, giving what it checks in a few words and its status, and closes each tier's list with the tier's status.**
 
 **The report details each expectation not met, giving what it checks in a sentence and each error it found...**
 - What was found there, if anything.

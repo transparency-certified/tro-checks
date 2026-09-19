@@ -172,59 +172,23 @@ function readExpectation(tiers, expectationPath) {
 }
 
 /**
- * Whether following what an expectation requires, among the given expectations, leads back to it.
- * @param {Expectation}   start
- * @param {Expectation[]} among
- * @returns {boolean}
- */
-function requiresItself(start, among) {
-    const visited = new Set()
-    const toVisit = [...start.requires]
-    while (toVisit.length > 0) {
-        const name = /** @type {string} */ (toVisit.pop())
-        if (name === start.name) return true
-        if (!visited.has(name)) {
-            visited.add(name)
-            toVisit.push(...(among.find((each) => each.name === name)?.requires ?? []))
-        }
-    }
-    return false
-}
-
-/**
- * Orders one tier's expectations so that each comes after every expectation it requires, and by name otherwise.
- * @param {Expectation[]} tierExpectations
+ * Confirms that every expectation a tier lists requires only expectations listed before it, in its own tier or a lower one.
+ * @param {Expectation[]} tierExpectations  in the order the tier lists them
  * @param {Expectation[]} expectations  every expectation, for naming what a requires gets wrong
- * @returns {Expectation[]}
- * @throws {Error} if an expectation requires one that does not exist or is in a higher tier, or the requirements
- *   form a cycle.
+ * @returns {Expectation[]}  the tier's expectations, in the order it lists them
+ * @throws {Error} if an expectation requires one that does not exist or is listed after it.
  */
-function inRequiredOrder(tierExpectations, expectations) {
-    for (const expectation of tierExpectations) {
+function inListedOrder(tierExpectations, expectations) {
+    tierExpectations.forEach((expectation, index) => {
         for (const name of expectation.requires) {
             const required = expectations.find((each) => each.name === name)
             if (!required) throw new Error(`${expectation.name} requires ${name}, which is no expectation`)
-            if (required.tier.number > expectation.tier.number) {
-                throw new Error(`${expectation.name} requires ${name}, which is in ${required.tier.id}, above ${expectation.tier.id}`)
-            }
+            const listedAfter = required.tier.number > expectation.tier.number
+                || (required.tier.number === expectation.tier.number && tierExpectations.indexOf(required) > index)
+            if (listedAfter) throw new Error(`${expectation.name} requires ${name}, which is listed after it`)
         }
-    }
-
-    /** @type {Expectation[]} */ const ordered = []
-    let remaining = [...tierExpectations].sort((one, other) => one.name.localeCompare(other.name))
-    while (remaining.length > 0) {
-        const ready = remaining.filter((expectation) =>
-            expectation.requires.every((name) => ordered.some((done) => done.name === name)
-                || expectations.some((each) => each.name === name && each.tier.number < expectation.tier.number)))
-        if (ready.length === 0) {
-            const inCycle = remaining.filter((expectation) => requiresItself(expectation, remaining))
-            throw new Error(`the requirements among ${inCycle.map((each) => each.name).join(', ')} form a cycle`)
-        }
-        ordered.push(...ready)
-        remaining = remaining.filter((expectation) => !ready.includes(expectation))
-    }
-
-    return ordered
+    })
+    return tierExpectations
 }
 
 /**
@@ -570,24 +534,12 @@ function checkAgainstSchema(candidate, expectation) {
 }
 
 /**
- * Orders findings by tier, and by name within a tier.
- * @param {Finding} one
- * @param {Finding} other
- * @returns {number}
- */
-function byTierThenName(one, other) {
-    let order = one.expectation.tier.number - other.expectation.tier.number
-    if (order === 0) order = one.expectation.name.localeCompare(other.expectation.name)
-    return order
-}
-
-/**
  * Checks the tiers in order. Above the target, expectations are not claimed. Above a tier that blocks higher tiers and
  * is not met, they are not assessed. Within a tier, an expectation whose required expectation is not met is not assessed.
  * @param {Candidate} candidate
- * @returns {Finding[]}  in tier order, and by name within a tier
- * @throws {Error} if the expectations cannot be listed, one belongs to no tier, their requirements cannot be ordered,
- *   or a validator makes no determination.
+ * @returns {Finding[]}  in tier order, and within a tier in the order it lists its expectations
+ * @throws {Error} if the expectations cannot be listed, one belongs to no tier, one requires an expectation listed
+ *   after it, or a validator makes no determination.
  */
 function checkCandidateAgainstExpectations(candidate) {
     const tiers = readTierDefinitions()
@@ -598,8 +550,9 @@ function checkCandidateAgainstExpectations(candidate) {
     /** @type {Finding[]} */ const findings = []
     let blockedByLowerTier = false
     for (const tier of tiers) {
-        const tierExpectations = inRequiredOrder(
-            expectations.filter((expectation) => expectation.tier.number === tier.number), expectations)
+        const tierExpectations = inListedOrder(
+            tier.expectations.map((name) => /** @type {Expectation} */ (expectations.find((each) => each.name === name))),
+            expectations)
 
         /** @type {Finding[]} */ const tierFindings = []
         for (const expectation of tierExpectations) {
@@ -622,7 +575,7 @@ function checkCandidateAgainstExpectations(candidate) {
         findings.push(...tierFindings)
     }
 
-    return findings.sort(byTierThenName)
+    return findings
 }
 
 /**
