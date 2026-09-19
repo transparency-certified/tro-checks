@@ -28,8 +28,15 @@
  * @property {boolean} [emphasized]
  */
 /**
+ * @typedef {object} Diagnosis  one error an unmet expectation found
+ * @property {Cell}   found  the value found there, if any
+ * @property {Cell}   where  the site in the candidate
+ * @property {string} why    why the expectation is not met
+ */
+/**
  * @typedef {object} Dialect  how one rendering of the report sets its tables
  * @property {(headings: string[], rows: (Row|Band)[]) => string[]} table
+ * @property {(diagnoses: Diagnosis[]) => string[]} diagnostics  an unmet expectation's errors
  */
 
 module.exports = {
@@ -190,6 +197,10 @@ const pipeDialect = {
         }
         return lines
     },
+    diagnostics(diagnoses) {
+        return pipeDialect.table(['Found', 'Where', 'Expectation not met because'],
+            diagnoses.map((diagnosis) => ({ cells: [diagnosis.found, diagnosis.where, diagnosis.why] })))
+    },
 }
 
 //
@@ -237,28 +248,44 @@ function inlineHtml(text) {
 /** Sets a row back from the ones it sits among, for what the candidate does not claim. */
 const RECEDED = ' style="color: var(--vscode-descriptionForeground, #767676)"'
 
+/**
+ * @param {Cell} cell
+ * @returns {boolean}  whether the cell is a value with no space in it, which is kept on one line
+ */
+function isOneToken(cell) {
+    return typeof cell !== 'string' && 'code' in cell && !/\s/.test(cell.code)
+}
+
+/**
+ * Sets a cell's content as HTML.
+ * @param {Cell} cell
+ * @returns {string}
+ */
+function cellHtml(cell) {
+    if (typeof cell === 'string') return inlineHtml(cell)
+    if ('code' in cell) {
+        const code = escapeHtml(writable(cell.code))
+        return isOneToken(cell) ? `<samp>${code}</samp>` : `<code>${code}</code>`
+    }
+    if ('pointer' in cell) return `<samp>${escapeHtml(writable(cell.pointer)).replace(/\//g, '/<wbr>')}</samp>`
+    return unbroken(escapeHtml(writable(cell.atom)))
+}
+
+/**
+ * Sets a cell as an HTML table cell.
+ * @param {Cell} cell
+ * @param {boolean} [emphasized]
+ * @returns {string}
+ */
+function setCell(cell, emphasized) {
+    const html = cellHtml(cell)
+    const attributes = isOneToken(cell) ? ' nowrap' : ''
+    return `<td${attributes}>${emphasized && html ? `<em>${html}</em>` : html}</td>`
+}
+
 /** @type {Dialect} */
 const htmlDialect = {
     table(headings, rows) {
-        /**
-         * @param {Cell} cell
-         * @param {boolean} [emphasized]
-         * @returns {string}
-         */
-        const setCell = (cell, emphasized) => {
-            const oneToken = typeof cell !== 'string' && 'code' in cell && !/\s/.test(cell.code)
-            const html = typeof cell === 'string'
-                ? inlineHtml(cell)
-                : 'code' in cell
-                    ? oneToken
-                        ? `<samp>${escapeHtml(writable(cell.code))}</samp>`
-                        : `<code>${escapeHtml(writable(cell.code))}</code>`
-                    : 'pointer' in cell
-                        ? `<samp>${escapeHtml(writable(cell.pointer)).replace(/\//g, '/<wbr>')}</samp>`
-                        : unbroken(escapeHtml(writable(cell.atom)))
-            const attributes = oneToken ? ' nowrap' : ''
-            return `<td${attributes}>${emphasized && html ? `<em>${html}</em>` : html}</td>`
-        }
 
         const titled = headings.some((heading) => heading !== '')
         const headingCells = headings.map((heading) => `<th align="left">${inlineHtml(heading)}</th>`).join('')
@@ -291,6 +318,18 @@ const htmlDialect = {
             }
         }
         if (within) lines.push('</tbody>')
+        lines.push('</table>')
+        return lines
+    },
+    diagnostics(diagnoses) {
+        const lines = ['<table>', '<thead>',
+            '<tr><th align="left">Found</th><th align="left">Expectation not met because</th></tr>', '</thead>']
+        for (const diagnosis of diagnoses) {
+            lines.push('<tbody>',
+                `<tr>${setCell(diagnosis.found)}${setCell(diagnosis.why)}</tr>`,
+                `<tr><td colspan="2">Where: ${cellHtml(diagnosis.where)}</td></tr>`,
+                '</tbody>')
+        }
         lines.push('</table>')
         return lines
     },
@@ -401,13 +440,11 @@ function tierFindingsLines(tiers, findings, assessments, dialect) {
  * @returns {string[]}
  */
 function unmetExpectationLines(finding, dialect) {
-    /** @type {Row[]} */
-    const rows = finding.errors.map((error) => ({
-        cells: [
-            'found' in error ? { code: JSON.stringify(error.found) } : '',
-            error.site && error.site.length > 0 ? { pointer: pointerOf(error.site) } : 'the document',
-            error.message ?? stateConstraint(error),
-        ],
+    /** @type {Diagnosis[]} */
+    const diagnoses = finding.errors.map((error) => ({
+        found: 'found' in error ? { code: JSON.stringify(error.found) } : '',
+        where: error.site && error.site.length > 0 ? { pointer: pointerOf(error.site) } : 'the document',
+        why: error.message ?? stateConstraint(error),
     }))
 
     return [
@@ -415,7 +452,7 @@ function unmetExpectationLines(finding, dialect) {
         '',
         `Expectation details: ${writable(finding.expectation.description)}`,
         '',
-        ...dialect.table(['Found', 'Where', 'Expectation not met because'], rows),
+        ...dialect.diagnostics(diagnoses),
     ]
 }
 
