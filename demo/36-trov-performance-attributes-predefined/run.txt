@@ -357,7 +357,7 @@ wrote tmp/instance-capability-as-attribute.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD m
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: trov-performance-attributes-predefined
-Expectation details: Every trov: type on a value of trov:hasPerformanceAttribute is a performance attribute TROV predefines: trov:InternetIsolation or trov:InternetAccessRecording. A type in any other namespace is a custom attribute and is not judged here.
+Detailed expectation: Every trov: type on a value of trov:hasPerformanceAttribute is a performance attribute TROV predefines: trov:InternetIsolation or trov:InternetAccessRecording. A type in any other namespace is a custom attribute and is not judged here.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"trov:CanProvideInternetIsolation"` | `/@graph/0/trov:hasPerformance/0/trov:hasPerformanceAttribute/0/@type` | a performance attribute's trov: type is one TROV predefines |

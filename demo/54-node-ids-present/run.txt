@@ -241,7 +241,7 @@ wrote tmp/instance-node-without-id.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TR
 | `blank-node-ids-absent` | No `@id` is a blank node identifier | ✅ met |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: node-ids-present
-Expectation details: Every node object carries an explicit @id.
+Detailed expectation: Every node object carries an explicit @id.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@type":"trov:TrustedResearchPerformance","trov:wasConductedBy":{"@id":"https://trs.example.org/demo/"}}` | `/@graph/0/trov:hasPerformance/0` | a node object carries an @id |

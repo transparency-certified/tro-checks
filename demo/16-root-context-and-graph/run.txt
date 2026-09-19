@@ -208,7 +208,7 @@ wrote tmp/instance-context-only.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: root-context-and-graph-only
-Expectation details: A TRO declaration is a JSON object whose only members are an @context and an @graph carrying its nodes.
+Detailed expectation: A TRO declaration is a JSON object whose only members are an @context and an @graph carrying its nodes.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@context":{"ex":"https://example.org/terms#"}}` | the document | a TRO declaration carries its nodes in an @graph |
@@ -316,7 +316,7 @@ wrote tmp/instance-node-at-root.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: root-context-and-graph-only
-Expectation details: A TRO declaration is a JSON object whose only members are an @context and an @graph carrying its nodes.
+Detailed expectation: A TRO declaration is a JSON object whose only members are an @context and an @graph carrying its nodes.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@context":{"ex":"https://example.org/terms#"},"@id":"https://example.org/thing/1","@type":"ex:Thing"}` | the document | a TRO declaration carries its nodes in an @graph |
@@ -428,7 +428,7 @@ wrote tmp/instance-extra-root-member.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: root-context-and-graph-only
-Expectation details: A TRO declaration is a JSON object whose only members are an @context and an @graph carrying its nodes.
+Detailed expectation: A TRO declaration is a JSON object whose only members are an @context and an @graph carrying its nodes.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"a member beside @graph makes the root a node"` | `/ex:note` | a TRO declaration's root has no members other than @context and @graph |

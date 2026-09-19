@@ -325,8 +325,8 @@ const htmlDialect = {
     diagnostics(diagnoses) {
         if (diagnoses.length === 0) return ['No location was reported.']
         const lead = diagnoses.length === 1
-            ? 'Found in 1 place, breaking the rule shown.'
-            : `Found in ${diagnoses.length} places, each breaking the rule shown.`
+            ? 'Expectation unmet in 1 place:'
+            : `Expectation unmet in ${diagnoses.length} places:`
         const lines = [lead, '', '<table>']
         /** A label cell and its value, as one row. @param {string} label @param {Cell} cell */
         const labeled = (label, cell) => `<tr><th align="left">${label}</th>${setCell(cell)}</tr>`
@@ -458,7 +458,7 @@ function unmetExpectationLines(finding, dialect) {
     return [
         `### Unmet expectation: ${finding.expectation.name}`,
         '',
-        `Expectation details: ${writable(finding.expectation.description)}`,
+        `Detailed expectation: ${writable(finding.expectation.description)}`,
         '',
         ...dialect.diagnostics(diagnoses),
     ]

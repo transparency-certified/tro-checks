@@ -222,7 +222,7 @@ wrote tmp/instance-number-id.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: ids-and-types-strings
-Expectation details: Outside the @context, every @id is a string, and every @type is a string or an array of strings.
+Detailed expectation: Outside the @context, every @id is a string, and every @type is a string or an array of strings.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `2` | `/@graph/0/ex:part/@id` | an @id is a string |
@@ -336,7 +336,7 @@ wrote tmp/instance-type-array-with-object.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD un
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: ids-and-types-strings
-Expectation details: Outside the @context, every @id is a string, and every @type is a string or an array of strings.
+Detailed expectation: Outside the @context, every @id is a string, and every @type is a string or an array of strings.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@id":"ex:Whole"}` | `/@graph/0/@type/1` | an @type is a string or an array of strings |

@@ -283,7 +283,7 @@ wrote tmp/instance-warrant-relative.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 T
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: capability-warrants-absolute
-Expectation details: Every trov:warrantedBy on a value of trov:hasPerformanceAttribute refers to its capability by an absolute IRI, or a compact IRI whose prefix is not trov.
+Detailed expectation: Every trov:warrantedBy on a value of trov:hasPerformanceAttribute refers to its capability by an absolute IRI, or a compact IRI whose prefix is not trov.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"trs/capability/0"` | `/@graph/0/trov:hasPerformance/0/trov:hasPerformanceAttribute/0/trov:warrantedBy/@id` | a performance attribute's warrant refers to its capability by absolute IRI, or by a compact IRI outside the trov namespace |

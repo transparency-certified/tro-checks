@@ -221,7 +221,7 @@ wrote tmp/instance-vocab.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: vocab-absent
-Expectation details: No @context declares a default vocabulary: @vocab appears nowhere within a context.
+Detailed expectation: No @context declares a default vocabulary: @vocab appears nowhere within a context.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@vocab":"https://example.org/terms#"}` | `/@context` | a context has no @vocab |

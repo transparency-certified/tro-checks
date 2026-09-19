@@ -295,7 +295,7 @@ wrote tmp/instance-md5-beside-sha256.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: hash-algorithms-permitted
-Expectation details: Every trov:hash on the TRO's artifacts and composition fingerprint names its algorithm in trov:hashAlgorithm, and the algorithm is one TRACE permits: sha256, sha384, sha512, sha3-256, sha3-384, sha3-512, blake2b, blake2s or blake3, spelled so.
+Detailed expectation: Every trov:hash on the TRO's artifacts and composition fingerprint names its algorithm in trov:hashAlgorithm, and the algorithm is one TRACE permits: sha256, sha384, sha512, sha3-256, sha3-384, sha3-512, blake2b, blake2s or blake3, spelled so.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"md5"` | `/@graph/0/trov:hasComposition/trov:hasArtifact/0/trov:hash/1/trov:hashAlgorithm` | a hash names an algorithm TRACE permits |
@@ -436,7 +436,7 @@ wrote tmp/instance-algorithm-misspelled.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met,
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: hash-algorithms-permitted
-Expectation details: Every trov:hash on the TRO's artifacts and composition fingerprint names its algorithm in trov:hashAlgorithm, and the algorithm is one TRACE permits: sha256, sha384, sha512, sha3-256, sha3-384, sha3-512, blake2b, blake2s or blake3, spelled so.
+Detailed expectation: Every trov:hash on the TRO's artifacts and composition fingerprint names its algorithm in trov:hashAlgorithm, and the algorithm is one TRACE permits: sha256, sha384, sha512, sha3-256, sha3-384, sha3-512, blake2b, blake2s or blake3, spelled so.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"SHA-256"` | `/@graph/0/trov:hasComposition/trov:hasArtifact/0/trov:hash/trov:hashAlgorithm` | a hash names an algorithm TRACE permits |
@@ -576,7 +576,7 @@ wrote tmp/instance-hash-without-algorithm.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD me
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: hash-algorithms-permitted
-Expectation details: Every trov:hash on the TRO's artifacts and composition fingerprint names its algorithm in trov:hashAlgorithm, and the algorithm is one TRACE permits: sha256, sha384, sha512, sha3-256, sha3-384, sha3-512, blake2b, blake2s or blake3, spelled so.
+Detailed expectation: Every trov:hash on the TRO's artifacts and composition fingerprint names its algorithm in trov:hashAlgorithm, and the algorithm is one TRACE permits: sha256, sha384, sha512, sha3-256, sha3-384, sha3-512, blake2b, blake2s or blake3, spelled so.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"trov:hashValue":"208fadf260c2cb9b1c747f03326626e66ddbb3cc6eee10b6e111ff0b803686fe"}` | `/@graph/0/trov:hasComposition/trov:hasArtifact/0/trov:hash` | a hash names its algorithm in trov:hashAlgorithm |

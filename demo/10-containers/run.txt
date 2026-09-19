@@ -229,7 +229,7 @@ wrote tmp/instance-set-container.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: containers-absent
-Expectation details: No @context declares a container: @container appears nowhere within a context, in any of its forms.
+Detailed expectation: No @context declares a container: @container appears nowhere within a context, in any of its forms.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@container":"@set"}` | `/@context/ex:part` | a term definition has no @container |
@@ -348,7 +348,7 @@ wrote tmp/instance-graph-container.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: containers-absent
-Expectation details: No @context declares a container: @container appears nowhere within a context, in any of its forms.
+Detailed expectation: No @context declares a container: @container appears nowhere within a context, in any of its forms.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@container":"@graph"}` | `/@context/ex:part` | a term definition has no @container |

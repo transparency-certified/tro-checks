@@ -216,7 +216,7 @@ wrote tmp/instance-inexact-integer.md; 1 SAFE-JSON unmet
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: numbers-within-range
-Expectation details: Every number in the candidate is within the range of an IEEE 754 double, and every integer is between -(2^53 - 1) and 2^53 - 1, so no parser rounds it.
+Detailed expectation: Every number in the candidate is within the range of an IEEE 754 double, and every integer is between -(2^53 - 1) and 2^53 - 1, so no parser rounds it.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 |  | `/@graph/0/ex:count` | an integer is between -(2^53 - 1) and 2^53 - 1 |
@@ -325,7 +325,7 @@ wrote tmp/instance-overflowing-number.md; 1 SAFE-JSON unmet
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: numbers-within-range
-Expectation details: Every number in the candidate is within the range of an IEEE 754 double, and every integer is between -(2^53 - 1) and 2^53 - 1, so no parser rounds it.
+Detailed expectation: Every number in the candidate is within the range of an IEEE 754 double, and every integer is between -(2^53 - 1) and 2^53 - 1, so no parser rounds it.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 |  | `/@graph/0/ex:size` | a number is within the range of an IEEE 754 double |

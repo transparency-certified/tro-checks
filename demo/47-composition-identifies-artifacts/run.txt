@@ -279,7 +279,7 @@ wrote tmp/instance-no-artifacts.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: composition-identifies-artifacts
-Expectation details: Where the TRO carries a trov:hasComposition, the composition carries trov:hasArtifact, an array holding at least one artifact.
+Detailed expectation: Where the TRO carries a trov:hasComposition, the composition carries trov:hasArtifact, an array holding at least one artifact.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@id":"composition","@type":"trov:ArtifactComposition","trov:hasFingerprint":{"@id":"fingerprint","@type":"trov:CompositionFingerprint","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"44863b03e9909b7100e05b02526909a346fd7455183f6619e0fe6198c89981e0"}}}` | `/@graph/0/trov:hasComposition` | a composition carries a trov:hasArtifact |
@@ -411,7 +411,7 @@ wrote tmp/instance-empty-artifacts.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TR
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: composition-identifies-artifacts
-Expectation details: Where the TRO carries a trov:hasComposition, the composition carries trov:hasArtifact, an array holding at least one artifact.
+Detailed expectation: Where the TRO carries a trov:hasComposition, the composition carries trov:hasArtifact, an array holding at least one artifact.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `[]` | `/@graph/0/trov:hasComposition/trov:hasArtifact` | a composition names at least one artifact |

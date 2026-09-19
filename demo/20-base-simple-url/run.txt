@@ -215,7 +215,7 @@ wrote tmp/instance-base-without-host.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: base-simple-url
-Expectation details: Where an @context declares an @base as a string, it names a host, carries no user name or password, has no . or .. segments, contains no ? or #, ends in /, contains only characters allowed in a URL, and has a path of portable segments -- letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit.
+Detailed expectation: Where an @context declares an @base as a string, it names a host, carries no user name or password, has no . or .. segments, contains no ? or #, ends in /, contains only characters allowed in a URL, and has a path of portable segments -- letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"https:///tro/2f8a1c94/"` | `/@context/@base` | an @base names a host |
@@ -327,7 +327,7 @@ wrote tmp/instance-base-with-userinfo.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: base-simple-url
-Expectation details: Where an @context declares an @base as a string, it names a host, carries no user name or password, has no . or .. segments, contains no ? or #, ends in /, contains only characters allowed in a URL, and has a path of portable segments -- letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit.
+Detailed expectation: Where an @context declares an @base as a string, it names a host, carries no user name or password, has no . or .. segments, contains no ? or #, ends in /, contains only characters allowed in a URL, and has a path of portable segments -- letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"https://producer:secret@example.org/tro/2f8a1c94/"` | `/@context/@base` | an @base carries no user name or password |
@@ -438,7 +438,7 @@ wrote tmp/instance-base-with-dot-segments.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD me
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: base-simple-url
-Expectation details: Where an @context declares an @base as a string, it names a host, carries no user name or password, has no . or .. segments, contains no ? or #, ends in /, contains only characters allowed in a URL, and has a path of portable segments -- letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit.
+Detailed expectation: Where an @context declares an @base as a string, it names a host, carries no user name or password, has no . or .. segments, contains no ? or #, ends in /, contains only characters allowed in a URL, and has a path of portable segments -- letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"https://example.org/tro/../2f8a1c94/"` | `/@context/@base` | an @base has no . or .. segments |
@@ -550,7 +550,7 @@ wrote tmp/instance-base-with-query.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TR
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: base-simple-url
-Expectation details: Where an @context declares an @base as a string, it names a host, carries no user name or password, has no . or .. segments, contains no ? or #, ends in /, contains only characters allowed in a URL, and has a path of portable segments -- letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit.
+Detailed expectation: Where an @context declares an @base as a string, it names a host, carries no user name or password, has no . or .. segments, contains no ? or #, ends in /, contains only characters allowed in a URL, and has a path of portable segments -- letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"https://example.org/tro/?id=2f8a1c94/"` | `/@context/@base` | an @base contains no ? or # |
@@ -662,7 +662,7 @@ wrote tmp/instance-base-without-slash.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: base-simple-url
-Expectation details: Where an @context declares an @base as a string, it names a host, carries no user name or password, has no . or .. segments, contains no ? or #, ends in /, contains only characters allowed in a URL, and has a path of portable segments -- letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit.
+Detailed expectation: Where an @context declares an @base as a string, it names a host, carries no user name or password, has no . or .. segments, contains no ? or #, ends in /, contains only characters allowed in a URL, and has a path of portable segments -- letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"https://example.org/tro/2f8a1c94"` | `/@context/@base` | an @base ends in / |
@@ -774,7 +774,7 @@ wrote tmp/instance-base-with-illegal-characters.md; 1 SAFE-JSON met, 2 SAFE-JSON
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: base-simple-url
-Expectation details: Where an @context declares an @base as a string, it names a host, carries no user name or password, has no . or .. segments, contains no ? or #, ends in /, contains only characters allowed in a URL, and has a path of portable segments -- letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit.
+Detailed expectation: Where an @context declares an @base as a string, it names a host, carries no user name or password, has no . or .. segments, contains no ? or #, ends in /, contains only characters allowed in a URL, and has a path of portable segments -- letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"https://example.org/my tro/%zz/"` | `/@context/@base` | an @base contains only characters allowed in a URL |

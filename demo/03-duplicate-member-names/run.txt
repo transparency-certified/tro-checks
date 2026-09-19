@@ -211,7 +211,7 @@ wrote tmp/instance-nested-duplicate.md; 1 SAFE-JSON unmet
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: duplicate-member-names-absent
-Expectation details: No object in the candidate repeats a member name. The validators check this as they parse the candidate, so the schema itself asserts nothing.
+Detailed expectation: No object in the candidate repeats a member name. The validators check this as they parse the candidate, so the schema itself asserts nothing.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 |  | the document | instance contains duplicate member name "ex:name" |
@@ -321,7 +321,7 @@ wrote tmp/instance-duplicate-context.md; 1 SAFE-JSON unmet
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: duplicate-member-names-absent
-Expectation details: No object in the candidate repeats a member name. The validators check this as they parse the candidate, so the schema itself asserts nothing.
+Detailed expectation: No object in the candidate repeats a member name. The validators check this as they parse the candidate, so the schema itself asserts nothing.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 |  | the document | instance contains duplicate member name "@context" |

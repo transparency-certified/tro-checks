@@ -222,7 +222,7 @@ wrote tmp/instance-protected.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: context-protection-absent
-Expectation details: No @context protects its terms, controls their propagation, or imports another context: @protected, @propagate and @import appear nowhere within a context.
+Detailed expectation: No @context protects its terms, controls their propagation, or imports another context: @protected, @propagate and @import appear nowhere within a context.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@protected":true,"ex":"https://example.org/terms#"}` | `/@context` | a context has no @protected |
@@ -336,7 +336,7 @@ wrote tmp/instance-import.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: context-protection-absent
-Expectation details: No @context protects its terms, controls their propagation, or imports another context: @protected, @propagate and @import appear nowhere within a context.
+Detailed expectation: No @context protects its terms, controls their propagation, or imports another context: @protected, @propagate and @import appear nowhere within a context.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@import":"https://example.org/base-context.jsonld","ex":"https://example.org/terms#"}` | `/@context` | a context has no @import |

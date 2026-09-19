@@ -541,7 +541,7 @@ wrote tmp/instance-trs-nested.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-J
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: trs-defined
-Expectation details: The document defines a TRS: a node typed trov:TrustedResearchSystem, carrying an @id, that is a top-level member of the @graph or the object of trov:wasAssembledBy on one. A node so typed anywhere else is refused.
+Detailed expectation: The document defines a TRS: a node typed trov:TrustedResearchSystem, carrying an @id, that is a top-level member of the @graph or the object of trov:wasAssembledBy on one. A node so typed anywhere else is refused.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `[{"@id":"tro","@type":"trov:TransparentResearchObject","trov:vocabularyVersion":"0.1","trov:wasAssembledBy":{"@id":"https://trs.example.org/demo/"},"trov:hasPerformance":[{"@id":"trp/0","@type":"trov:TrustedResearchPerformance","trov:wasConductedBy":{"@id":"https://trs.example.org/demo/","@type":"trov:TrustedResearchSystem","trov:hasCapability":[{"@id":"https://trs.example.org/demo/capability/0","@type":"trov:CanProvideInternetIsolation"}]},"trov:hasPerformanceAttribute":[{"@id":"trp/0/attribute/0","@type":"trov:InternetIsolation","trov:warrantedBy":{"@id":"https://trs.example.org/demo/capability/0"}}]}]}]` | `/@graph` | the document defines a TRS: a node typed trov:TrustedResearchSystem, carrying an @id, at the top of the @graph or as the object of trov:wasAssembledBy |
@@ -680,7 +680,7 @@ wrote tmp/instance-trs-absent.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-J
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: trs-defined
-Expectation details: The document defines a TRS: a node typed trov:TrustedResearchSystem, carrying an @id, that is a top-level member of the @graph or the object of trov:wasAssembledBy on one. A node so typed anywhere else is refused.
+Detailed expectation: The document defines a TRS: a node typed trov:TrustedResearchSystem, carrying an @id, that is a top-level member of the @graph or the object of trov:wasAssembledBy on one. A node so typed anywhere else is refused.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `[{"@id":"tro","@type":"trov:TransparentResearchObject","trov:vocabularyVersion":"0.1","trov:wasAssembledBy":{"@id":"https://trs.example.org/demo/"},"trov:hasPerformance":[{"@id":"trp/0","@type":"trov:TrustedResearchPerformance","trov:wasConductedBy":{"@id":"https://trs.example.org/demo/"},"trov:hasPerformanceAttribute":[{"@id":"trp/0/attribute/0","@type":"trov:InternetIsolation","trov:warrantedBy":{"@id":"https://trs.example.org/demo/capability/0"}}]}]}]` | `/@graph` | the document defines a TRS: a node typed trov:TrustedResearchSystem, carrying an @id, at the top of the @graph or as the object of trov:wasAssembledBy |

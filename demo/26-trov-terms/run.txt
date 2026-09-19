@@ -222,7 +222,7 @@ wrote tmp/instance-property-name-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: trov-terms-known
-Expectation details: Where a property name or a string value carries the trov: prefix, it is a term TROV defines.
+Detailed expectation: Where a property name or a string value carries the trov: prefix, it is a term TROV defines.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@id":"tro","@type":"trov:TransparentResearchObject","trov:vocabularyVersion":"0.1","trov:wasAssembledBy":{"@id":"https://trs.example.org/demo/","@type":"trov:TrustedResearchSystem"},"trov:vocabularyRelease":"0.1"}` | `/@graph/0` | a trov: name is a term TROV defines |
@@ -446,7 +446,7 @@ wrote tmp/instance-id-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-J
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: trov-terms-known
-Expectation details: Where a property name or a string value carries the trov: prefix, it is a term TROV defines.
+Detailed expectation: Where a property name or a string value carries the trov: prefix, it is a term TROV defines.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"trov:IncludesAllOutputData"` | `/@graph/0/trov:hasAttribute/@id` | a trov: name is a term TROV defines |
@@ -670,7 +670,7 @@ wrote tmp/instance-type-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: trov-terms-known
-Expectation details: Where a property name or a string value carries the trov: prefix, it is a term TROV defines.
+Detailed expectation: Where a property name or a string value carries the trov: prefix, it is a term TROV defines.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"trov:TrustedResearchPerformace"` | `/@graph/0/trov:hasPerformance/@type` | a trov: name is a term TROV defines |
@@ -894,7 +894,7 @@ wrote tmp/instance-value-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRAC
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: trov-terms-known
-Expectation details: Where a property name or a string value carries the trov: prefix, it is a term TROV defines.
+Detailed expectation: Where a property name or a string value carries the trov: prefix, it is a term TROV defines.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"trov:CanIsolateNetwork"` | `/@graph/0/trov:hasCapability` | a trov: name is a term TROV defines |

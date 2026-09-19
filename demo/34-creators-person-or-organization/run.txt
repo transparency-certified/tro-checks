@@ -485,7 +485,7 @@ wrote tmp/instance-creator-string.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRA
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: creators-person-or-organization
-Expectation details: Where the TRO carries schema:creator, each value is a node -- an object, not a string -- and where the node carries a @type, it is schema:Person or schema:Organization, the types schema.org expects of a creator. A bare reference, an object holding only an @id, passes.
+Detailed expectation: Where the TRO carries schema:creator, each value is a node -- an object, not a string -- and where the node carries a @type, it is schema:Person or schema:Organization, the types schema.org expects of a creator. A bare reference, an object holding only an @id, passes.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"Example Bank"` | `/@graph/0/schema:creator` | schema:creator is a Person or an Organization, given as a node, not as a string |
@@ -652,7 +652,7 @@ wrote tmp/instance-creator-thing.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRAC
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: creators-person-or-organization
-Expectation details: Where the TRO carries schema:creator, each value is a node -- an object, not a string -- and where the node carries a @type, it is schema:Person or schema:Organization, the types schema.org expects of a creator. A bare reference, an object holding only an @id, passes.
+Detailed expectation: Where the TRO carries schema:creator, each value is a node -- an object, not a string -- and where the node carries a @type, it is schema:Person or schema:Organization, the types schema.org expects of a creator. A bare reference, an object holding only an @id, passes.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"schema:Thing"` | `/@graph/0/schema:creator/@type` | a schema:creator node is typed schema:Person or schema:Organization |

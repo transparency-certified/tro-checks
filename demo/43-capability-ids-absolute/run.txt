@@ -283,7 +283,7 @@ wrote tmp/instance-capability-relative.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: capability-ids-absolute
-Expectation details: Every value of trov:hasCapability that carries an @id carries an absolute IRI, or a compact IRI whose prefix is not trov.
+Detailed expectation: Every value of trov:hasCapability that carries an @id carries an absolute IRI, or a compact IRI whose prefix is not trov.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"trs/capability/0"` | `/@graph/0/trov:wasAssembledBy/trov:hasCapability/0/@id` | a capability is identified by an absolute IRI, or by a compact IRI outside the trov namespace |

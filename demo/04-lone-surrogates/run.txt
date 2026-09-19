@@ -211,7 +211,7 @@ wrote tmp/instance-lone-surrogate-in-string.md; 1 SAFE-JSON unmet
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: lone-surrogates-absent
-Expectation details: No string or member name in the candidate contains a UTF-16 surrogate escape without its pair.
+Detailed expectation: No string or member name in the candidate contains a UTF-16 surrogate escape without its pair.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"half a smile \ud83d"` | `/@graph/0/ex:name` | a string contains no unpaired surrogate |
@@ -320,7 +320,7 @@ wrote tmp/instance-lone-surrogate-in-member-name.md; 1 SAFE-JSON unmet
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: lone-surrogates-absent
-Expectation details: No string or member name in the candidate contains a UTF-16 surrogate escape without its pair.
+Detailed expectation: No string or member name in the candidate contains a UTF-16 surrogate escape without its pair.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"ex:\ude00name"` | `/@graph/0/ex:\ude00name` | a member name contains no unpaired surrogate |

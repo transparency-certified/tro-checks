@@ -232,7 +232,7 @@ wrote tmp/instance-no-base.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSON
 | `blank-node-ids-absent` | No `@id` is a blank node identifier | ✅ met |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: base-declared
-Expectation details: The @context declares an @base.
+Detailed expectation: The @context declares an @base.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"trov":"https://w3id.org/trace/trov/0.1#"}` | `/@context` | an @context declares an @base |

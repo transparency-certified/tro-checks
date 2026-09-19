@@ -481,7 +481,7 @@ wrote tmp/instance-name-object.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: tro-name-description-text
-Expectation details: Where the TRO carries schema:name or schema:description, each is Text as schema.org defines it: a string, or an array of strings.
+Detailed expectation: Where the TRO carries schema:name or schema:description, each is Text as schema.org defines it: a string, or an array of strings.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"text":"Example TRO"}` | `/@graph/0/schema:name` | schema:name is Text: a string, or an array of strings |
@@ -644,7 +644,7 @@ wrote tmp/instance-description-number.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: tro-name-description-text
-Expectation details: Where the TRO carries schema:name or schema:description, each is Text as schema.org defines it: a string, or an array of strings.
+Detailed expectation: Where the TRO carries schema:name or schema:description, each is Text as schema.org defines it: a string, or an array of strings.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `42` | `/@graph/0/schema:description` | schema:description is Text: a string, or an array of strings |

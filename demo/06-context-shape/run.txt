@@ -207,7 +207,7 @@ wrote tmp/instance-context-number.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: context-well-formed
-Expectation details: Where the document carries an @context at its root, the value is null, a string naming an external context, a context object, or an array of those.
+Detailed expectation: Where the document carries an @context at its root, the value is null, a string naming an external context, a context object, or an array of those.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `5` | `/@context` | an @context is null, a string, a context object, or an array of those |
@@ -421,7 +421,7 @@ wrote tmp/instance-context-array-with-number.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: context-well-formed
-Expectation details: Where the document carries an @context at its root, the value is null, a string naming an external context, a context object, or an array of those.
+Detailed expectation: Where the document carries an @context at its root, the value is null, a string naming an external context, a context object, or an array of those.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `5` | `/@context/1` | every member of an @context array is null, a string, or a context object |

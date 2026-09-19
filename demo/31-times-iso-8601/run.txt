@@ -476,7 +476,7 @@ wrote tmp/instance-time-with-space.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TR
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: times-iso-8601
-Expectation details: Every trov:startedAtTime and trov:endedAtTime is an ISO 8601 date-time, YYYY-MM-DDThh:mm:ss with an optional fraction of a second and an optional zone; every schema:dateCreated is an ISO 8601 date or date-time, as schema.org defines it.
+Detailed expectation: Every trov:startedAtTime and trov:endedAtTime is an ISO 8601 date-time, YYYY-MM-DDThh:mm:ss with an optional fraction of a second and an optional zone; every schema:dateCreated is an ISO 8601 date or date-time, as schema.org defines it.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"2026-09-17 17:00:00Z"` | `/@graph/0/trov:hasPerformance/0/trov:startedAtTime` | a time is an ISO 8601 date-time: YYYY-MM-DDThh:mm:ss, optional fraction of a second, optional zone |
@@ -639,7 +639,7 @@ wrote tmp/instance-date-created-prose.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: times-iso-8601
-Expectation details: Every trov:startedAtTime and trov:endedAtTime is an ISO 8601 date-time, YYYY-MM-DDThh:mm:ss with an optional fraction of a second and an optional zone; every schema:dateCreated is an ISO 8601 date or date-time, as schema.org defines it.
+Detailed expectation: Every trov:startedAtTime and trov:endedAtTime is an ISO 8601 date-time, YYYY-MM-DDThh:mm:ss with an optional fraction of a second and an optional zone; every schema:dateCreated is an ISO 8601 date or date-time, as schema.org defines it.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"September 17, 2026"` | `/@graph/0/schema:dateCreated` | schema:dateCreated is an ISO 8601 date (YYYY-MM-DD) or date-time (YYYY-MM-DDThh:mm:ss, optional fraction, optional zone) |

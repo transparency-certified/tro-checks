@@ -357,7 +357,7 @@ wrote tmp/instance-trov-prefixed-term.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: custom-terms-not-trov
-Expectation details: Every trov:customTerm entry declares a term outside the TROV namespace, whether written with the trov: prefix or as an absolute IRI.
+Detailed expectation: Every trov:customTerm entry declares a term outside the TROV namespace, whether written with the trov: prefix or as an absolute IRI.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"trov:CanProvideInternetIsolation"` | `/@graph/0/trov:wasAssembledBy/trov:customTerm/0/@id` | a custom term is declared outside the TROV namespace |
@@ -539,7 +539,7 @@ wrote tmp/instance-trov-absolute-term.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: custom-terms-not-trov
-Expectation details: Every trov:customTerm entry declares a term outside the TROV namespace, whether written with the trov: prefix or as an absolute IRI.
+Detailed expectation: Every trov:customTerm entry declares a term outside the TROV namespace, whether written with the trov: prefix or as an absolute IRI.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"https://w3id.org/trace/trov/0.1#CanLogAudits"` | `/@graph/0/trov:wasAssembledBy/trov:customTerm/0/@id` | a custom term is declared outside the TROV namespace |

@@ -357,7 +357,7 @@ wrote tmp/instance-attribute-as-capability.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD m
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: trov-capabilities-predefined
-Expectation details: Every trov: type on a value of trov:hasCapability is one of the capabilities TROV predefines. A type in any other namespace is a custom capability and is not judged here.
+Detailed expectation: Every trov: type on a value of trov:hasCapability is one of the capabilities TROV predefines. A type in any other namespace is a custom capability and is not judged here.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"trov:InternetIsolation"` | `/@graph/0/trov:wasAssembledBy/trov:hasCapability/0/@type` | a capability's trov: type is one TROV predefines |

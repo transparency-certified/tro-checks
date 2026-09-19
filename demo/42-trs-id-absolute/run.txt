@@ -422,7 +422,7 @@ wrote tmp/instance-trs-relative.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: trs-id-absolute
-Expectation details: The @id of the TRS the document defines is an absolute IRI, or a compact IRI whose prefix is not trov, so that it is the same wherever the TRS is defined.
+Detailed expectation: The @id of the TRS the document defines is an absolute IRI, or a compact IRI whose prefix is not trov, so that it is the same wherever the TRS is defined.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"trs"` | `/@graph/0/trov:wasAssembledBy/@id` | a TRS is identified by an absolute IRI, or by a compact IRI outside the trov namespace |
@@ -567,7 +567,7 @@ wrote tmp/instance-trs-trov.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSO
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: trs-id-absolute
-Expectation details: The @id of the TRS the document defines is an absolute IRI, or a compact IRI whose prefix is not trov, so that it is the same wherever the TRS is defined.
+Detailed expectation: The @id of the TRS the document defines is an absolute IRI, or a compact IRI whose prefix is not trov, so that it is the same wherever the TRS is defined.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"trov:TrustedResearchSystem"` | `/@graph/0/trov:wasAssembledBy/@id` | a TRS is identified by an absolute IRI, or by a compact IRI outside the trov namespace |

@@ -226,7 +226,7 @@ wrote tmp/instance-context-in-node.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: context-at-root-only
-Expectation details: The only @context is the one at the document's root: no node below it carries an @context, and no term definition within it carries one either.
+Detailed expectation: The only @context is the one at the document's root: no node below it carries an @context, and no term definition within it carries one either.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@id":"https://example.org/thing/1","@context":{"part":"https://example.org/terms#part"},"part":"x"}` | `/@graph/0` | the only @context is the document root's |
@@ -344,7 +344,7 @@ wrote tmp/instance-scoped-context.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: context-at-root-only
-Expectation details: The only @context is the one at the document's root: no node below it carries an @context, and no term definition within it carries one either.
+Detailed expectation: The only @context is the one at the document's root: no node below it carries an @context, and no term definition within it carries one either.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@context":{"part":"https://example.org/terms#part"}}` | `/@context/ex:Thing` | the only @context is the document root's |

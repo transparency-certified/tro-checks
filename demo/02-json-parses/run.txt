@@ -304,7 +304,7 @@ wrote tmp/instance-bare-word.md; 1 SAFE-JSON unmet
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: json-parses
-Expectation details: The candidate's text parses as a single JSON value, with nothing before or after it, without errors.
+Detailed expectation: The candidate's text parses as a single JSON value, with nothing before or after it, without errors.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 |  | the document | the candidate is not JSON |
@@ -413,7 +413,7 @@ wrote tmp/instance-trailing-comma.md; 1 SAFE-JSON unmet
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: json-parses
-Expectation details: The candidate's text parses as a single JSON value, with nothing before or after it, without errors.
+Detailed expectation: The candidate's text parses as a single JSON value, with nothing before or after it, without errors.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 |  | the document | the candidate is not JSON |
@@ -517,7 +517,7 @@ wrote tmp/instance-bare-word-at-trace-json-ld.md; 1 SAFE-JSON unmet, 2 SAFE-JSON
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: json-parses
-Expectation details: The candidate's text parses as a single JSON value, with nothing before or after it, without errors.
+Detailed expectation: The candidate's text parses as a single JSON value, with nothing before or after it, without errors.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 |  | the document | the candidate is not JSON |

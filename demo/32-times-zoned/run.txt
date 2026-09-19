@@ -633,7 +633,7 @@ wrote tmp/instance-time-unzoned.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: times-zoned
-Expectation details: Every trov:startedAtTime and trov:endedAtTime carries its time zone: Z, or an offset of the form +hh:mm or -hh:mm.
+Detailed expectation: Every trov:startedAtTime and trov:endedAtTime carries its time zone: Z, or an offset of the form +hh:mm or -hh:mm.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"2026-09-17T17:00:00"` | `/@graph/0/trov:hasPerformance/0/trov:startedAtTime` | a time carries its zone: Z, or an offset +hh:mm or -hh:mm |

@@ -219,7 +219,7 @@ wrote tmp/instance-remote-context.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRA
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: context-local
-Expectation details: Every @context is written into the declaration: no @context is a string naming a remote context, and no member of an @context array is one, so reading the declaration never needs the network.
+Detailed expectation: Every @context is written into the declaration: no @context is a string naming a remote context, and no member of an @context array is one, so reading the declaration never needs the network.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"https://example.org/context.jsonld"` | `/@context` | an @context is written inline, not named by a string |
@@ -336,7 +336,7 @@ wrote tmp/instance-remote-in-array.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TR
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: context-local
-Expectation details: Every @context is written into the declaration: no @context is a string naming a remote context, and no member of an @context array is one, so reading the declaration never needs the network.
+Detailed expectation: Every @context is written into the declaration: no @context is a string naming a remote context, and no member of an @context array is one, so reading the declaration never needs the network.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"https://example.org/context.jsonld"` | `/@context/1` | an @context is written inline, not named by a string |

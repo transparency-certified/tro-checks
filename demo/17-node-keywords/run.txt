@@ -225,7 +225,7 @@ wrote tmp/instance-reverse-in-body.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TR
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: disallowed-node-keywords-absent
-Expectation details: Outside the @context, every member name beginning with @ is @context, @graph, @id or @type.
+Detailed expectation: Outside the @context, every member name beginning with @ is @context, @graph, @id or @type.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@id":"https://example.org/thing/2","@reverse":{"ex:part":{"@id":"https://example.org/thing/1"}}}` | `/@graph/0` | a keyword outside the @context is @context, @graph, @id or @type |
