@@ -29,9 +29,10 @@
  */
 /**
  * @typedef {object} Diagnosis  one error an unmet expectation found
- * @property {Cell}   found  the value found there, if any
- * @property {Cell}   where  the site in the candidate
- * @property {string} why    why the expectation is not met
+ * @property {Cell}   found    the value found there, if any
+ * @property {Cell}   where    the site in the candidate
+ * @property {string} why      why the expectation is not met
+ * @property {string} problem  what the check demanded of this value, in the checking keyword's own terms
  */
 /**
  * @typedef {object} Dialect  how one rendering of the report sets its tables
@@ -332,6 +333,7 @@ const htmlDialect = {
         diagnoses.forEach((diagnosis, index) => {
             if (index > 0) lines.push('<tbody><tr><td colspan="2">&nbsp;</td></tr></tbody>')
             lines.push('<tbody>', labeled('Rule', diagnosis.why))
+            if (diagnosis.problem !== diagnosis.why) lines.push(labeled('Problem', diagnosis.problem))
             if (diagnosis.found !== '') lines.push(labeled('Found', diagnosis.found))
             lines.push(labeled('Where', diagnosis.where), '</tbody>')
         })
@@ -450,6 +452,7 @@ function unmetExpectationLines(finding, dialect) {
         found: 'found' in error ? { code: JSON.stringify(error.found) } : '',
         where: error.site && error.site.length > 0 ? { pointer: pointerOf(error.site) } : 'the document',
         why: error.message ?? stateConstraint(error),
+        problem: stateConstraint(error),
     }))
 
     return [
