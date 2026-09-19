@@ -73,7 +73,7 @@
                         "then": {
                             "pattern": "^(?!trov:)(?!_:)[A-Za-z][A-Za-z0-9+.-]*:",
                             "errorMessage": {
-                                "pattern": "${0} is not an absolute IRI; a capability is identified by an absolute IRI, or by a compact IRI outside the trov namespace"
+                                "pattern": "a capability is identified by an absolute IRI, or by a compact IRI outside the trov namespace"
                             }
                         }
                     }

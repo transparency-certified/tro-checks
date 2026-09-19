@@ -4,10 +4,15 @@
     "title": "Base host ownable",
     "description": "Where an @context declares a non-null @base, its host is a domain name the minter could hold: a dotted name whose labels a registrar would accept, and not one of the names reserved so that nobody can ever hold them. A base under a reserved name cannot be under the control of the TRO's minter, which is a fact the RFCs record rather than a rule TRACE makes. The reserved list is RFC 2606 and 6761's .test, .example, .invalid and .localhost with example.com, example.net and example.org, RFC 6762's .local, RFC 8375's home.arpa, RFC 9476's .alt, and .internal, which ICANN reserved by board resolution rather than by RFC. The patterns read lowercase names; an uppercase spelling is refused by base-host-lowercase.",
     "summary": "The `@base` host is a domain name the minter could hold, not a reserved or documentation name",
-    "requires": ["base-declared"],
+    "requires": [
+        "base-declared"
+    ],
     "$defs": {
         "base": {
-            "type": ["string", "null"],
+            "type": [
+                "string",
+                "null"
+            ],
             "allOf": [
                 {
                     "pattern": "^[^:/?#]+://([A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?\\.)+[A-Za-z]{2,63}(:[0-9]+)?/",
@@ -16,21 +21,27 @@
                     }
                 },
                 {
-                    "not": { "pattern": "^[^:/?#]+://([^/?#]*\\.)?(test|example|invalid|localhost|local|alt|internal)(:[0-9]+)?/" },
+                    "not": {
+                        "pattern": "^[^:/?#]+://([^/?#]*\\.)?(test|example|invalid|localhost|local|alt|internal)(:[0-9]+)?/"
+                    },
                     "errorMessage": {
-                        "not": "an @base host is not under a reserved name: .test, .example, .invalid, .localhost, .local, .alt and .internal can never be held by anyone"
+                        "not": "an @base host is not under a reserved name: .test, .example, .invalid, .localhost, .local, .alt or .internal"
                     }
                 },
                 {
-                    "not": { "pattern": "^[^:/?#]+://([^/?#]*\\.)?example\\.(com|net|org)(:[0-9]+)?/" },
+                    "not": {
+                        "pattern": "^[^:/?#]+://([^/?#]*\\.)?example\\.(com|net|org)(:[0-9]+)?/"
+                    },
                     "errorMessage": {
-                        "not": "an @base host is not under example.com, example.net or example.org, which are reserved for documentation"
+                        "not": "an @base host is not under example.com, example.net or example.org"
                     }
                 },
                 {
-                    "not": { "pattern": "^[^:/?#]+://([^/?#]*\\.)?home\\.arpa(:[0-9]+)?/" },
+                    "not": {
+                        "pattern": "^[^:/?#]+://([^/?#]*\\.)?home\\.arpa(:[0-9]+)?/"
+                    },
                     "errorMessage": {
-                        "not": "an @base host is not under home.arpa, which names a home network and not a holding of anyone's"
+                        "not": "an @base host is not under home.arpa"
                     }
                 }
             ],
@@ -39,22 +50,50 @@
             }
         },
         "context": {
-            "if": { "type": "object" },
-            "then": { "properties": { "@base": { "$ref": "#/$defs/base" } } },
+            "if": {
+                "type": "object"
+            },
+            "then": {
+                "properties": {
+                    "@base": {
+                        "$ref": "#/$defs/base"
+                    }
+                }
+            },
             "else": {
-                "if": { "type": "array" },
-                "then": { "items": { "$ref": "#/$defs/context" } }
+                "if": {
+                    "type": "array"
+                },
+                "then": {
+                    "items": {
+                        "$ref": "#/$defs/context"
+                    }
+                }
             }
         },
         "node": {
-            "if": { "type": "object" },
+            "if": {
+                "type": "object"
+            },
             "then": {
-                "properties": { "@context": { "$ref": "#/$defs/context" } },
-                "additionalProperties": { "$ref": "#/$defs/node" }
+                "properties": {
+                    "@context": {
+                        "$ref": "#/$defs/context"
+                    }
+                },
+                "additionalProperties": {
+                    "$ref": "#/$defs/node"
+                }
             },
             "else": {
-                "if": { "type": "array" },
-                "then": { "items": { "$ref": "#/$defs/node" } }
+                "if": {
+                    "type": "array"
+                },
+                "then": {
+                    "items": {
+                        "$ref": "#/$defs/node"
+                    }
+                }
             }
         }
     },

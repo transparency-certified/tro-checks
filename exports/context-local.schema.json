@@ -6,22 +6,44 @@
     "summary": "The `@context` is inline: no string names a remote context",
     "$defs": {
         "context": {
-            "not": { "type": "string" },
-            "errorMessage": {
-                "not": "an @context is written inline, not named by a string that would have to be fetched"
+            "not": {
+                "type": "string"
             },
-            "if": { "type": "array" },
-            "then": { "items": { "$ref": "#/$defs/context" } }
+            "errorMessage": {
+                "not": "an @context is written inline, not named by a string"
+            },
+            "if": {
+                "type": "array"
+            },
+            "then": {
+                "items": {
+                    "$ref": "#/$defs/context"
+                }
+            }
         },
         "node": {
-            "if": { "type": "object" },
+            "if": {
+                "type": "object"
+            },
             "then": {
-                "properties": { "@context": { "$ref": "#/$defs/context" } },
-                "additionalProperties": { "$ref": "#/$defs/node" }
+                "properties": {
+                    "@context": {
+                        "$ref": "#/$defs/context"
+                    }
+                },
+                "additionalProperties": {
+                    "$ref": "#/$defs/node"
+                }
             },
             "else": {
-                "if": { "type": "array" },
-                "then": { "items": { "$ref": "#/$defs/node" } }
+                "if": {
+                    "type": "array"
+                },
+                "then": {
+                    "items": {
+                        "$ref": "#/$defs/node"
+                    }
+                }
             }
         }
     },

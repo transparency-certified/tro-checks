@@ -75,7 +75,7 @@ wrote tmp/instance-property-name-known.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -184,7 +184,7 @@ wrote tmp/instance-property-name-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ❌ not met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -225,7 +225,7 @@ wrote tmp/instance-property-name-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met
 Expectation details: Where a property name or a string value carries the trov: prefix, it is a term TROV defines.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `{"@id":"tro","@type":"trov:TransparentResearchObject","trov:vocabularyVersion":"0.1","trov:wasAssembledBy":{"@id":"https://trs.example.org/demo/","@type":"trov:TrustedResearchSystem"},"trov:vocabularyRelease":"0.1"}` | `/@graph/0` | not a term TROV defines |
+| `{"@id":"tro","@type":"trov:TransparentResearchObject","trov:vocabularyVersion":"0.1","trov:wasAssembledBy":{"@id":"https://trs.example.org/demo/","@type":"trov:TrustedResearchSystem"},"trov:vocabularyRelease":"0.1"}` | `/@graph/0` | a trov: name is a term TROV defines |
 
 ----- [3] expectation met: the @id trov:IncludesAllInputData is defined by TROV -----
 
@@ -299,7 +299,7 @@ wrote tmp/instance-id-known.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSO
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -408,7 +408,7 @@ wrote tmp/instance-id-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-J
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ❌ not met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -449,7 +449,7 @@ wrote tmp/instance-id-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-J
 Expectation details: Where a property name or a string value carries the trov: prefix, it is a term TROV defines.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `"trov:IncludesAllOutputData"` | `/@graph/0/trov:hasAttribute/@id` | not a term TROV defines |
+| `"trov:IncludesAllOutputData"` | `/@graph/0/trov:hasAttribute/@id` | a trov: name is a term TROV defines |
 
 ----- [5] expectation met: the @type trov:TrustedResearchPerformance is defined by TROV -----
 
@@ -523,7 +523,7 @@ wrote tmp/instance-type-known.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-J
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -632,7 +632,7 @@ wrote tmp/instance-type-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ❌ not met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -673,7 +673,7 @@ wrote tmp/instance-type-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 Expectation details: Where a property name or a string value carries the trov: prefix, it is a term TROV defines.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `"trov:TrustedResearchPerformace"` | `/@graph/0/trov:hasPerformance/@type` | not a term TROV defines |
+| `"trov:TrustedResearchPerformace"` | `/@graph/0/trov:hasPerformance/@type` | a trov: name is a term TROV defines |
 
 ----- [7] expectation met: the bare value trov:CanIsolateEnvironment is defined by TROV -----
 
@@ -747,7 +747,7 @@ wrote tmp/instance-value-known.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -856,7 +856,7 @@ wrote tmp/instance-value-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRAC
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ❌ not met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -897,4 +897,4 @@ wrote tmp/instance-value-unknown.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRAC
 Expectation details: Where a property name or a string value carries the trov: prefix, it is a term TROV defines.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `"trov:CanIsolateNetwork"` | `/@graph/0/trov:hasCapability` | not a term TROV defines |
+| `"trov:CanIsolateNetwork"` | `/@graph/0/trov:hasCapability` | a trov: name is a term TROV defines |

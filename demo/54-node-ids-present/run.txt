@@ -81,7 +81,7 @@ wrote tmp/instance-node-ids-present.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 T
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -203,7 +203,7 @@ wrote tmp/instance-node-without-id.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TR
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -244,4 +244,4 @@ wrote tmp/instance-node-without-id.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TR
 Expectation details: Every node object carries an explicit @id.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `{"@type":"trov:TrustedResearchPerformance","trov:wasConductedBy":{"@id":"https://trs.example.org/demo/"}}` | `/@graph/0/trov:hasPerformance/0` | node object with no @id -- it becomes a blank node, which nothing outside this document can reference |
+| `{"@type":"trov:TrustedResearchPerformance","trov:wasConductedBy":{"@id":"https://trs.example.org/demo/"}}` | `/@graph/0/trov:hasPerformance/0` | a node object carries an @id |

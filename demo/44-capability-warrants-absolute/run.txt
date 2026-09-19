@@ -106,7 +106,7 @@ wrote tmp/instance-warrant-absolute.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 T
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -245,7 +245,7 @@ wrote tmp/instance-warrant-relative.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 T
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -286,4 +286,4 @@ wrote tmp/instance-warrant-relative.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 T
 Expectation details: Every trov:warrantedBy on a value of trov:hasPerformanceAttribute refers to its capability by an absolute IRI, or a compact IRI whose prefix is not trov.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `"trs/capability/0"` | `/@graph/0/trov:hasPerformance/0/trov:hasPerformanceAttribute/0/trov:warrantedBy/@id` | "trs/capability/0" is not an absolute IRI; a performance attribute's warrant refers to its capability by the capability's absolute IRI |
+| `"trs/capability/0"` | `/@graph/0/trov:hasPerformance/0/trov:hasPerformanceAttribute/0/trov:warrantedBy/@id` | a performance attribute's warrant refers to its capability by absolute IRI, or by a compact IRI outside the trov namespace |

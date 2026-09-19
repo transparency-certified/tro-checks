@@ -116,7 +116,7 @@ wrote tmp/instance-permitted-algorithms.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met,
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -257,7 +257,7 @@ wrote tmp/instance-md5-beside-sha256.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ❌ not met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | not assessed |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -298,7 +298,7 @@ wrote tmp/instance-md5-beside-sha256.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 Expectation details: Every trov:hash on the TRO's artifacts and composition fingerprint names its algorithm in trov:hashAlgorithm, and the algorithm is one TRACE permits: sha256, sha384, sha512, sha3-256, sha3-384, sha3-512, blake2b, blake2s or blake3, spelled so.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `"md5"` | `/@graph/0/trov:hasComposition/trov:hasArtifact/0/trov:hash/1/trov:hashAlgorithm` | "md5" is not an algorithm TRACE permits; the permitted ones are sha256, sha384, sha512, sha3-256, sha3-384, sha3-512, blake2b, blake2s and blake3, spelled so |
+| `"md5"` | `/@graph/0/trov:hasComposition/trov:hasArtifact/0/trov:hash/1/trov:hashAlgorithm` | a hash names an algorithm TRACE permits |
 
 ----- [3] expectation unmet: the algorithm is spelled SHA-256, which is not the permitted spelling -----
 
@@ -398,7 +398,7 @@ wrote tmp/instance-algorithm-misspelled.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met,
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ❌ not met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | not assessed |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -439,7 +439,7 @@ wrote tmp/instance-algorithm-misspelled.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met,
 Expectation details: Every trov:hash on the TRO's artifacts and composition fingerprint names its algorithm in trov:hashAlgorithm, and the algorithm is one TRACE permits: sha256, sha384, sha512, sha3-256, sha3-384, sha3-512, blake2b, blake2s or blake3, spelled so.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `"SHA-256"` | `/@graph/0/trov:hasComposition/trov:hasArtifact/0/trov:hash/trov:hashAlgorithm` | "SHA-256" is not an algorithm TRACE permits; the permitted ones are sha256, sha384, sha512, sha3-256, sha3-384, sha3-512, blake2b, blake2s and blake3, spelled so |
+| `"SHA-256"` | `/@graph/0/trov:hasComposition/trov:hasArtifact/0/trov:hash/trov:hashAlgorithm` | a hash names an algorithm TRACE permits |
 
 ----- [4] expectation unmet: a hash names no algorithm -----------------------
 
@@ -538,7 +538,7 @@ wrote tmp/instance-hash-without-algorithm.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD me
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ❌ not met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | not assessed |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -579,4 +579,4 @@ wrote tmp/instance-hash-without-algorithm.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD me
 Expectation details: Every trov:hash on the TRO's artifacts and composition fingerprint names its algorithm in trov:hashAlgorithm, and the algorithm is one TRACE permits: sha256, sha384, sha512, sha3-256, sha3-384, sha3-512, blake2b, blake2s or blake3, spelled so.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `{"trov:hashValue":"208fadf260c2cb9b1c747f03326626e66ddbb3cc6eee10b6e111ff0b803686fe"}` | `/@graph/0/trov:hasComposition/trov:hasArtifact/0/trov:hash` | the hash names no algorithm (trov:hashAlgorithm) |
+| `{"trov:hashValue":"208fadf260c2cb9b1c747f03326626e66ddbb3cc6eee10b6e111ff0b803686fe"}` | `/@graph/0/trov:hasComposition/trov:hasArtifact/0/trov:hash` | a hash names its algorithm in trov:hashAlgorithm |

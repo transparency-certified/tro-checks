@@ -79,7 +79,7 @@ wrote tmp/instance-typed-term.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-J
 | Expectation | Summary | Status |
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
 | *`trov-terms-known`* | *Every `trov:` name is one TROV defines* | *not claimed* |
-| *`trov-version-known`* | *The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1`* | *not claimed* |
+| *`trov-version-known`* | *The TRO declares, in `trov:vocabularyVersion`, a released version of TROV* | *not claimed* |
 | *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
 | *`hash-values-correct-form`* | *Every hash value is lowercase hexadecimal of the length its algorithm produces* | *not claimed* |
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
@@ -191,7 +191,7 @@ wrote tmp/instance-alias.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSON-L
 | Expectation | Summary | Status |
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
 | *`trov-terms-known`* | *Every `trov:` name is one TROV defines* | *not claimed* |
-| *`trov-version-known`* | *The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1`* | *not claimed* |
+| *`trov-version-known`* | *The TRO declares, in `trov:vocabularyVersion`, a released version of TROV* | *not claimed* |
 | *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
 | *`hash-values-correct-form`* | *Every hash value is lowercase hexadecimal of the length its algorithm produces* | *not claimed* |
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
@@ -232,7 +232,7 @@ wrote tmp/instance-alias.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSON-L
 Expectation details: No term definition in an @context renames a property: a term definition has no @id, and its only member is a @type naming a datatype by an absolute or prefixed IRI. A declaration's property names are therefore spelled the same in the JSON as in the vocabulary, so a reader of the plain JSON and a reader of the RDF see the same keys.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `{"@id":"https://example.org/terms#createdAt"}` | `/@context/created` | a term definition has no @id, so no term renames a property |
+| `{"@id":"https://example.org/terms#createdAt"}` | `/@context/created` | a term definition has no @id |
 
 ----- [3] expectation unmet: a term definition holds more than a @type -------
 
@@ -309,7 +309,7 @@ wrote tmp/instance-language-in-term.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 T
 | Expectation | Summary | Status |
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
 | *`trov-terms-known`* | *Every `trov:` name is one TROV defines* | *not claimed* |
-| *`trov-version-known`* | *The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1`* | *not claimed* |
+| *`trov-version-known`* | *The TRO declares, in `trov:vocabularyVersion`, a released version of TROV* | *not claimed* |
 | *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
 | *`hash-values-correct-form`* | *Every hash value is lowercase hexadecimal of the length its algorithm produces* | *not claimed* |
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |

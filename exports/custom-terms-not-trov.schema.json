@@ -75,7 +75,7 @@
                                 "pattern": "^(trov:|https://w3id\\.org/trace/trov/)"
                             },
                             "errorMessage": {
-                                "not": "${0} is a TROV term; a custom term is declared outside the TROV namespace"
+                                "not": "a custom term is declared outside the TROV namespace"
                             }
                         }
                     }

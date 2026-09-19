@@ -81,7 +81,7 @@
                                         "trov:IncludesAllInputData"
                                     ],
                                     "errorMessage": {
-                                        "enum": "${0} is not a TRO attribute TROV predefines; that is trov:IncludesAllInputData"
+                                        "enum": "a TRO attribute's trov: type is one TROV predefines"
                                     }
                                 }
                             }
@@ -96,7 +96,7 @@
                                     "trov:IncludesAllInputData"
                                 ],
                                 "errorMessage": {
-                                    "enum": "${0} is not a TRO attribute TROV predefines; that is trov:IncludesAllInputData"
+                                    "enum": "a TRO attribute's trov: type is one TROV predefines"
                                 }
                             }
                         }

@@ -143,7 +143,7 @@ wrote tmp/instance-producer-namespace.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -319,7 +319,7 @@ wrote tmp/instance-trov-prefixed-term.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -360,7 +360,7 @@ wrote tmp/instance-trov-prefixed-term.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 Expectation details: Every trov:customTerm entry declares a term outside the TROV namespace, whether written with the trov: prefix or as an absolute IRI.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `"trov:CanProvideInternetIsolation"` | `/@graph/0/trov:wasAssembledBy/trov:customTerm/0/@id` | "trov:CanProvideInternetIsolation" is a TROV term; a custom term is declared outside the TROV namespace |
+| `"trov:CanProvideInternetIsolation"` | `/@graph/0/trov:wasAssembledBy/trov:customTerm/0/@id` | a custom term is declared outside the TROV namespace |
 
 ----- [3] expectation unmet: a custom term is declared in the TROV namespace by absolute IRI -----
 
@@ -501,7 +501,7 @@ wrote tmp/instance-trov-absolute-term.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -542,4 +542,4 @@ wrote tmp/instance-trov-absolute-term.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 Expectation details: Every trov:customTerm entry declares a term outside the TROV namespace, whether written with the trov: prefix or as an absolute IRI.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `"https://w3id.org/trace/trov/0.1#CanLogAudits"` | `/@graph/0/trov:wasAssembledBy/trov:customTerm/0/@id` | "https://w3id.org/trace/trov/0.1#CanLogAudits" is a TROV term; a custom term is declared outside the TROV namespace |
+| `"https://w3id.org/trace/trov/0.1#CanLogAudits"` | `/@graph/0/trov:wasAssembledBy/trov:customTerm/0/@id` | a custom term is declared outside the TROV namespace |

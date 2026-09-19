@@ -2,52 +2,96 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://w3id.org/trace/tro/0.1/core-prefixes-pinned.schema.json",
     "title": "Core prefixes pinned",
-    "description": "The root @context declares the trov prefix, mapping it to one of the TROV namespaces this checker knows (https://w3id.org/trace/trov/0.1#), and where it declares rdf, rdfs or schema, each maps to exactly the namespace the Declaration Format's @context block gives it: rdf to http://www.w3.org/1999/02/22-rdf-syntax-ns#, rdfs to http://www.w3.org/2000/01/rdf-schema#, and schema to https://schema.org/. Every check that reads a trov: name out of the JSON relies on this pin to mean the TROV term of that name; a term under any other prefix is not read as TROV, whatever namespace that prefix maps to. Only the root @context is examined: by TRACE-JSON-LD there is no other.",
+    "description": "The root @context declares the trov prefix, mapping it to the namespace of a released version of TROV (https://w3id.org/trace/trov/0.1#), and where it declares rdf, rdfs or schema, each maps to exactly the namespace the Declaration Format's @context block gives it: rdf to http://www.w3.org/1999/02/22-rdf-syntax-ns#, rdfs to http://www.w3.org/2000/01/rdf-schema#, and schema to https://schema.org/. Every check that reads a trov: name out of the JSON relies on this pin to mean the TROV term of that name; a term under any other prefix is not read as TROV, whatever namespace that prefix maps to. Only the root @context is examined: by TRACE-JSON-LD there is no other.",
     "summary": "`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones",
     "$defs": {
         "pins": {
             "properties": {
                 "trov": {
-                    "enum": ["https://w3id.org/trace/trov/0.1#"],
-                    "errorMessage": { "enum": "the trov prefix maps to a TROV namespace: https://w3id.org/trace/trov/0.1#" }
+                    "enum": [
+                        "https://w3id.org/trace/trov/0.1#"
+                    ],
+                    "errorMessage": {
+                        "enum": "the trov prefix maps to the namespace of a released version of TROV"
+                    }
                 },
                 "rdf": {
                     "const": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-                    "errorMessage": { "const": "the rdf prefix maps to http://www.w3.org/1999/02/22-rdf-syntax-ns#" }
+                    "errorMessage": {
+                        "const": "the rdf prefix maps to http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                    }
                 },
                 "rdfs": {
                     "const": "http://www.w3.org/2000/01/rdf-schema#",
-                    "errorMessage": { "const": "the rdfs prefix maps to http://www.w3.org/2000/01/rdf-schema#" }
+                    "errorMessage": {
+                        "const": "the rdfs prefix maps to http://www.w3.org/2000/01/rdf-schema#"
+                    }
                 },
                 "schema": {
                     "const": "https://schema.org/",
-                    "errorMessage": { "const": "the schema prefix maps to https://schema.org/" }
+                    "errorMessage": {
+                        "const": "the schema prefix maps to https://schema.org/"
+                    }
                 }
             },
             "additionalProperties": {
-                "not": { "enum": ["https://w3id.org/trace/trov/0.1#"] },
-                "errorMessage": { "not": "no prefix other than trov maps to a TROV namespace" }
+                "not": {
+                    "enum": [
+                        "https://w3id.org/trace/trov/0.1#"
+                    ]
+                },
+                "errorMessage": {
+                    "not": "no prefix other than trov maps to a TROV namespace"
+                }
             }
         },
         "rootContext": {
-            "if": { "type": "array" },
+            "if": {
+                "type": "array"
+            },
             "then": {
-                "items": { "if": { "type": "object" }, "then": { "$ref": "#/$defs/pins" } },
-                "contains": { "type": "object", "required": ["trov"] },
-                "errorMessage": { "contains": "the @context declares the trov prefix" }
+                "items": {
+                    "if": {
+                        "type": "object"
+                    },
+                    "then": {
+                        "$ref": "#/$defs/pins"
+                    }
+                },
+                "contains": {
+                    "type": "object",
+                    "required": [
+                        "trov"
+                    ]
+                },
+                "errorMessage": {
+                    "contains": "the @context declares the trov prefix"
+                }
             },
             "else": {
-                "if": { "type": "object" },
+                "if": {
+                    "type": "object"
+                },
                 "then": {
                     "$ref": "#/$defs/pins",
-                    "required": ["trov"],
-                    "errorMessage": { "required": "the @context declares the trov prefix" }
+                    "required": [
+                        "trov"
+                    ],
+                    "errorMessage": {
+                        "required": "the @context declares the trov prefix"
+                    }
                 }
             }
         }
     },
-    "if": { "type": "object" },
+    "if": {
+        "type": "object"
+    },
     "then": {
-        "properties": { "@context": { "$ref": "#/$defs/rootContext" } }
+        "properties": {
+            "@context": {
+                "$ref": "#/$defs/rootContext"
+            }
+        }
     }
 }

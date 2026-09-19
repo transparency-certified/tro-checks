@@ -5,7 +5,9 @@
     "description": "The @context declares an @base.",
     "summary": "The `@context` includes an `@base`",
     "type": "object",
-    "required": ["@context"],
+    "required": [
+        "@context"
+    ],
     "properties": {
         "@context": {
             "if": {
@@ -14,22 +16,26 @@
             "then": {
                 "contains": {
                     "type": "object",
-                    "required": ["@base"]
+                    "required": [
+                        "@base"
+                    ]
                 },
                 "errorMessage": {
-                    "contains": "no entry in the @context array declares an @base"
+                    "contains": "an @context declares an @base"
                 }
             },
             "else": {
                 "type": "object",
-                "required": ["@base"],
+                "required": [
+                    "@base"
+                ],
                 "errorMessage": {
-                    "required": "the @context declares no @base"
+                    "required": "an @context declares an @base"
                 }
             }
         }
     },
     "errorMessage": {
-        "required": "the declaration has no @context, so it can declare no @base"
+        "required": "an @context declares an @base"
     }
 }

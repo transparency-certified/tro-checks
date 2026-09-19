@@ -6,26 +6,42 @@
     "summary": "No `@id` is a blank node identifier",
     "$defs": {
         "id": {
-            "if": { "type": "string" },
+            "if": {
+                "type": "string"
+            },
             "then": {
-                "not": { "pattern": "^_:" },
+                "not": {
+                    "pattern": "^_:"
+                },
                 "errorMessage": {
-                    "not": "an @id is not a blank node identifier: a _: label is scoped to this document and any processor may rename it"
+                    "not": "an @id is not a blank node identifier"
                 }
             }
         },
         "node": {
-            "if": { "type": "object" },
+            "if": {
+                "type": "object"
+            },
             "then": {
                 "properties": {
                     "@context": true,
-                    "@id": { "$ref": "#/$defs/id" }
+                    "@id": {
+                        "$ref": "#/$defs/id"
+                    }
                 },
-                "additionalProperties": { "$ref": "#/$defs/node" }
+                "additionalProperties": {
+                    "$ref": "#/$defs/node"
+                }
             },
             "else": {
-                "if": { "type": "array" },
-                "then": { "items": { "$ref": "#/$defs/node" } }
+                "if": {
+                    "type": "array"
+                },
+                "then": {
+                    "items": {
+                        "$ref": "#/$defs/node"
+                    }
+                }
             }
         }
     },

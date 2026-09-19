@@ -82,7 +82,7 @@
                                         "trov:InternetAccessRecording"
                                     ],
                                     "errorMessage": {
-                                        "enum": "${0} is not a performance attribute TROV predefines; those are trov:InternetIsolation and trov:InternetAccessRecording"
+                                        "enum": "a performance attribute's trov: type is one TROV predefines"
                                     }
                                 }
                             }
@@ -98,7 +98,7 @@
                                     "trov:InternetAccessRecording"
                                 ],
                                 "errorMessage": {
-                                    "enum": "${0} is not a performance attribute TROV predefines; those are trov:InternetIsolation and trov:InternetAccessRecording"
+                                    "enum": "a performance attribute's trov: type is one TROV predefines"
                                 }
                             }
                         }

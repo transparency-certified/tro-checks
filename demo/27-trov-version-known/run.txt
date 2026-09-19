@@ -124,7 +124,7 @@ wrote tmp/instance-version-0-1.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -280,7 +280,7 @@ wrote tmp/instance-no-version.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-J
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ❌ not met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ❌ not met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -318,10 +318,10 @@ wrote tmp/instance-no-version.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-J
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: trov-version-known
-Expectation details: The TRO carries trov:vocabularyVersion, a string naming a TROV version this checker knows: 0.1.
+Expectation details: The TRO carries trov:vocabularyVersion, a string naming a released version of TROV: 0.1.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `{"@id":"tro","@type":"trov:TransparentResearchObject","schema:name":"Example TRO","schema:description":"A declaration for the demos","schema:dateCreated":"2026-09-17T18:00:00Z","trov:wasAssembledBy":{"@id":"https://trs.example.org/demo/","@type":"trov:TrustedResearchSystem"},"trov:hasComposition":{"@id":"composition","@type":"trov:ArtifactComposition","trov:hasFingerprint":{"@id":"fingerprint","@type":"trov:CompositionFingerprint","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"44863b03e9909b7100e05b02526909a346fd7455183f6619e0fe6198c89981e0"}},"trov:hasArtifact":[{"@id":"composition/artifact/0","@type":"trov:ResearchArtifact","trov:mimeType":"text/plain","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"208fadf260c2cb9b1c747f03326626e66ddbb3cc6eee10b6e111ff0b803686fe"}},{"@id":"composition/artifact/1","@type":"trov:ResearchArtifact","trov:mimeType":"application/x-python","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"7409dfd1bf7d574571821f33c99d1ea8ac5a3e59a645a6c7d91e248745457ef3"}}]},"trov:hasPerformance":[{"@id":"trp/0","@type":"trov:TrustedResearchPerformance","trov:startedAtTime":"2026-09-17T17:00:00Z","trov:endedAtTime":"2026-09-17T17:25:00.250Z"}]}` | `/@graph/0` | the TRO declares no trov:vocabularyVersion |
+| `{"@id":"tro","@type":"trov:TransparentResearchObject","schema:name":"Example TRO","schema:description":"A declaration for the demos","schema:dateCreated":"2026-09-17T18:00:00Z","trov:wasAssembledBy":{"@id":"https://trs.example.org/demo/","@type":"trov:TrustedResearchSystem"},"trov:hasComposition":{"@id":"composition","@type":"trov:ArtifactComposition","trov:hasFingerprint":{"@id":"fingerprint","@type":"trov:CompositionFingerprint","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"44863b03e9909b7100e05b02526909a346fd7455183f6619e0fe6198c89981e0"}},"trov:hasArtifact":[{"@id":"composition/artifact/0","@type":"trov:ResearchArtifact","trov:mimeType":"text/plain","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"208fadf260c2cb9b1c747f03326626e66ddbb3cc6eee10b6e111ff0b803686fe"}},{"@id":"composition/artifact/1","@type":"trov:ResearchArtifact","trov:mimeType":"application/x-python","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"7409dfd1bf7d574571821f33c99d1ea8ac5a3e59a645a6c7d91e248745457ef3"}}]},"trov:hasPerformance":[{"@id":"trp/0","@type":"trov:TrustedResearchPerformance","trov:startedAtTime":"2026-09-17T17:00:00Z","trov:endedAtTime":"2026-09-17T17:25:00.250Z"}]}` | `/@graph/0` | a TRO declares its TROV version in trov:vocabularyVersion |
 
 ----- [3] expectation unmet: the version is the number 0.1, not a string -----
 
@@ -443,7 +443,7 @@ wrote tmp/instance-version-number.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRA
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ❌ not met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ❌ not met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -481,7 +481,7 @@ wrote tmp/instance-version-number.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRA
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: trov-version-known
-Expectation details: The TRO carries trov:vocabularyVersion, a string naming a TROV version this checker knows: 0.1.
+Expectation details: The TRO carries trov:vocabularyVersion, a string naming a released version of TROV: 0.1.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `0.1` | `/@graph/0/trov:vocabularyVersion` | a TRO declares its vocabulary version as a string |
@@ -606,7 +606,7 @@ wrote tmp/instance-version-0-2.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ❌ not met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ❌ not met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -644,7 +644,7 @@ wrote tmp/instance-version-0-2.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: trov-version-known
-Expectation details: The TRO carries trov:vocabularyVersion, a string naming a TROV version this checker knows: 0.1.
+Expectation details: The TRO carries trov:vocabularyVersion, a string naming a released version of TROV: 0.1.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `"0.2"` | `/@graph/0/trov:vocabularyVersion` | "0.2" is not a TROV version this checker knows; it knows 0.1 |
+| `"0.2"` | `/@graph/0/trov:vocabularyVersion` | a TRO declares a released version of TROV |

@@ -97,12 +97,12 @@
                         ],
                         "errorMessage": {
                             "type": "a hash names its algorithm by a string",
-                            "enum": "${0} is not an algorithm TRACE permits; the permitted ones are sha256, sha384, sha512, sha3-256, sha3-384, sha3-512, blake2b, blake2s and blake3, spelled so"
+                            "enum": "a hash names an algorithm TRACE permits"
                         }
                     }
                 },
                 "errorMessage": {
-                    "required": "the hash names no algorithm (trov:hashAlgorithm)"
+                    "required": "a hash names its algorithm in trov:hashAlgorithm"
                 }
             }
         }

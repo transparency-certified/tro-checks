@@ -60,7 +60,7 @@
                                                         }
                                                     },
                                                     "errorMessage": {
-                                                        "required": "the artifact carries no trov:hash"
+                                                        "required": "an artifact carries a trov:hash"
                                                     }
                                                 }
                                             }

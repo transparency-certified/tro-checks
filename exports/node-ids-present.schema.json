@@ -9,35 +9,72 @@
             "type": "object",
             "not": {
                 "anyOf": [
-                    { "required": ["@value"] },
-                    { "required": ["@list"] },
-                    { "required": ["@set"] }
+                    {
+                        "required": [
+                            "@value"
+                        ]
+                    },
+                    {
+                        "required": [
+                            "@list"
+                        ]
+                    },
+                    {
+                        "required": [
+                            "@set"
+                        ]
+                    }
                 ]
             }
         },
         "node": {
-            "if": { "$ref": "#/$defs/isNodeObject" },
+            "if": {
+                "$ref": "#/$defs/isNodeObject"
+            },
             "then": {
-                "required": ["@id"],
-                "errorMessage": "node object with no @id -- it becomes a blank node, which nothing outside this document can reference",
-                "properties": { "@context": true },
-                "additionalProperties": { "$ref": "#/$defs/node" }
+                "required": [
+                    "@id"
+                ],
+                "errorMessage": "a node object carries an @id",
+                "properties": {
+                    "@context": true
+                },
+                "additionalProperties": {
+                    "$ref": "#/$defs/node"
+                }
             },
             "else": {
-                "if": { "type": "array" },
-                "then": { "items": { "$ref": "#/$defs/node" } }
+                "if": {
+                    "type": "array"
+                },
+                "then": {
+                    "items": {
+                        "$ref": "#/$defs/node"
+                    }
+                }
             }
         },
         "documentRoot": {
-            "if": { "type": "object", "required": ["@graph"] },
+            "if": {
+                "type": "object",
+                "required": [
+                    "@graph"
+                ]
+            },
             "then": {
                 "properties": {
                     "@context": true,
-                    "@graph": { "$ref": "#/$defs/node" }
+                    "@graph": {
+                        "$ref": "#/$defs/node"
+                    }
                 },
-                "additionalProperties": { "$ref": "#/$defs/node" }
+                "additionalProperties": {
+                    "$ref": "#/$defs/node"
+                }
             },
-            "else": { "$ref": "#/$defs/node" }
+            "else": {
+                "$ref": "#/$defs/node"
+            }
         }
     },
     "$ref": "#/$defs/documentRoot"

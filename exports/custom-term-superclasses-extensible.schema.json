@@ -94,7 +94,7 @@
                         "trov:TRPAttributeType"
                     ],
                     "errorMessage": {
-                        "enum": "${0} is not a class a custom term may extend; those are trov:TRSCapabilityType and trov:TRPAttributeType"
+                        "enum": "a custom term extends a TROV class open to extension"
                     }
                 }
             }

@@ -77,7 +77,7 @@
                             "trov:GPGSigning"
                         ],
                         "errorMessage": {
-                            "enum": "${0} is not a signing mechanism TROV predefines; those are trov:X509CMSSigning and trov:GPGSigning"
+                            "enum": "a trov: signing mechanism is one TROV predefines"
                         }
                     }
                 }

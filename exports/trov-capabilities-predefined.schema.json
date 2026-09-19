@@ -97,7 +97,7 @@
                                         "trov:CanEnforceCapabilitiesTechnically"
                                     ],
                                     "errorMessage": {
-                                        "enum": "${0} is not a capability TROV predefines"
+                                        "enum": "a capability's trov: type is one TROV predefines"
                                     }
                                 }
                             }
@@ -128,7 +128,7 @@
                                     "trov:CanEnforceCapabilitiesTechnically"
                                 ],
                                 "errorMessage": {
-                                    "enum": "${0} is not a capability TROV predefines"
+                                    "enum": "a capability's trov: type is one TROV predefines"
                                 }
                             }
                         }

@@ -4,7 +4,9 @@
     "title": "TRO assembled by TRS",
     "description": "The TRO names the system that assembled it, and that system is typed trov:TrustedResearchSystem.",
     "summary": "The TRO names its assembling system, typed as a TRS",
-    "requires": ["tro-top-level-in-graph"],
+    "requires": [
+        "tro-top-level-in-graph"
+    ],
     "type": "object",
     "properties": {
         "@graph": {
@@ -12,46 +14,63 @@
             "items": {
                 "if": {
                     "type": "object",
-                    "required": ["@type"],
+                    "required": [
+                        "@type"
+                    ],
                     "properties": {
                         "@type": {
                             "anyOf": [
-                                { "const": "trov:TransparentResearchObject" },
-                                { "type": "array", "contains": { "const": "trov:TransparentResearchObject" } }
+                                {
+                                    "const": "trov:TransparentResearchObject"
+                                },
+                                {
+                                    "type": "array",
+                                    "contains": {
+                                        "const": "trov:TransparentResearchObject"
+                                    }
+                                }
                             ]
                         }
                     }
                 },
                 "then": {
-                    "required": ["trov:wasAssembledBy"],
+                    "required": [
+                        "trov:wasAssembledBy"
+                    ],
                     "properties": {
                         "trov:wasAssembledBy": {
                             "type": "object",
-                            "required": ["@type"],
+                            "required": [
+                                "@type"
+                            ],
                             "properties": {
                                 "@type": {
-                                    "if": { "type": "array" },
+                                    "if": {
+                                        "type": "array"
+                                    },
                                     "then": {
-                                        "contains": { "const": "trov:TrustedResearchSystem" },
+                                        "contains": {
+                                            "const": "trov:TrustedResearchSystem"
+                                        },
                                         "errorMessage": {
-                                            "contains": "the assembling system's @type array does not include trov:TrustedResearchSystem"
+                                            "contains": "the assembling system is typed trov:TrustedResearchSystem"
                                         }
                                     },
                                     "else": {
                                         "const": "trov:TrustedResearchSystem",
                                         "errorMessage": {
-                                            "const": "the assembling system is not typed trov:TrustedResearchSystem"
+                                            "const": "the assembling system is typed trov:TrustedResearchSystem"
                                         }
                                     }
                                 }
                             },
                             "errorMessage": {
-                                "required": "the assembling system carries no @type"
+                                "required": "the assembling system carries an @type"
                             }
                         }
                     },
                     "errorMessage": {
-                        "required": "the TRO names no system that assembled it (trov:wasAssembledBy)"
+                        "required": "a TRO names the system that assembled it, in trov:wasAssembledBy"
                     }
                 }
             }

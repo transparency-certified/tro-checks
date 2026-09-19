@@ -106,7 +106,7 @@ wrote tmp/instance-trs-absolute-iri.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 T
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -245,7 +245,7 @@ wrote tmp/instance-trs-compact-iri.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TR
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -384,7 +384,7 @@ wrote tmp/instance-trs-relative.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -425,7 +425,7 @@ wrote tmp/instance-trs-relative.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 Expectation details: The @id of the TRS the document defines is an absolute IRI, or a compact IRI whose prefix is not trov, so that it is the same wherever the TRS is defined.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `"trs"` | `/@graph/0/trov:wasAssembledBy/@id` | "trs" is not an absolute IRI; a TRS is identified by an absolute IRI, or by a compact IRI outside the trov namespace |
+| `"trs"` | `/@graph/0/trov:wasAssembledBy/@id` | a TRS is identified by an absolute IRI, or by a compact IRI outside the trov namespace |
 
 ----- [4] expectation unmet: the TRS is identified by trov:TrustedResearchSystem, a TROV term -----
 
@@ -529,7 +529,7 @@ wrote tmp/instance-trs-trov.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSO
 | Expectation | Summary | Status |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a TROV version this checker knows: `0.1` | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -570,4 +570,4 @@ wrote tmp/instance-trs-trov.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSO
 Expectation details: The @id of the TRS the document defines is an absolute IRI, or a compact IRI whose prefix is not trov, so that it is the same wherever the TRS is defined.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `"trov:TrustedResearchSystem"` | `/@graph/0/trov:wasAssembledBy/@id` | "trov:TrustedResearchSystem" is not an absolute IRI; a TRS is identified by an absolute IRI, or by a compact IRI outside the trov namespace |
+| `"trov:TrustedResearchSystem"` | `/@graph/0/trov:wasAssembledBy/@id` | a TRS is identified by an absolute IRI, or by a compact IRI outside the trov namespace |

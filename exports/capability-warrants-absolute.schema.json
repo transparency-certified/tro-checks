@@ -84,7 +84,7 @@
                                             "then": {
                                                 "pattern": "^(?!trov:)(?!_:)[A-Za-z][A-Za-z0-9+.-]*:",
                                                 "errorMessage": {
-                                                    "pattern": "${0} is not an absolute IRI; a performance attribute's warrant refers to its capability by the capability's absolute IRI"
+                                                    "pattern": "a performance attribute's warrant refers to its capability by absolute IRI, or by a compact IRI outside the trov namespace"
                                                 }
                                             }
                                         }
@@ -105,7 +105,7 @@
                                         "then": {
                                             "pattern": "^(?!trov:)(?!_:)[A-Za-z][A-Za-z0-9+.-]*:",
                                             "errorMessage": {
-                                                "pattern": "${0} is not an absolute IRI; a performance attribute's warrant refers to its capability by the capability's absolute IRI"
+                                                "pattern": "a performance attribute's warrant refers to its capability by absolute IRI, or by a compact IRI outside the trov namespace"
                                             }
                                         }
                                     }

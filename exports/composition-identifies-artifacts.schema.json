@@ -4,7 +4,9 @@
     "title": "Composition identifies artifacts",
     "description": "Where the TRO carries a trov:hasComposition, the composition carries trov:hasArtifact, an array holding at least one artifact.",
     "summary": "The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array",
-    "requires": ["tro-top-level-in-graph"],
+    "requires": [
+        "tro-top-level-in-graph"
+    ],
     "type": "object",
     "properties": {
         "@graph": {
@@ -14,7 +16,9 @@
                 "properties": {
                     "trov:hasComposition": {
                         "type": "object",
-                        "required": ["trov:hasArtifact"],
+                        "required": [
+                            "trov:hasArtifact"
+                        ],
                         "properties": {
                             "trov:hasArtifact": {
                                 "type": "array",
@@ -26,7 +30,7 @@
                             }
                         },
                         "errorMessage": {
-                            "required": "the composition carries no trov:hasArtifact"
+                            "required": "a composition carries a trov:hasArtifact"
                         }
                     }
                 }

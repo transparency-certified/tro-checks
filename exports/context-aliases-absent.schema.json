@@ -6,9 +6,15 @@
     "summary": "No term definition aliases a property; a term definition holds only a `@type` naming a datatype",
     "$defs": {
         "termDefinition": {
-            "if": { "type": "object" },
+            "if": {
+                "type": "object"
+            },
             "then": {
-                "not": { "required": ["@id"] },
+                "not": {
+                    "required": [
+                        "@id"
+                    ]
+                },
                 "properties": {
                     "@id": true,
                     "@type": {
@@ -22,31 +28,57 @@
                 },
                 "additionalProperties": false,
                 "errorMessage": {
-                    "not": "a term definition has no @id, so no term renames a property",
+                    "not": "a term definition has no @id",
                     "additionalProperties": "a term definition holds nothing but a @type"
                 }
             }
         },
         "context": {
-            "if": { "type": "object" },
+            "if": {
+                "type": "object"
+            },
             "then": {
-                "properties": { "@base": true },
-                "additionalProperties": { "$ref": "#/$defs/termDefinition" }
+                "properties": {
+                    "@base": true
+                },
+                "additionalProperties": {
+                    "$ref": "#/$defs/termDefinition"
+                }
             },
             "else": {
-                "if": { "type": "array" },
-                "then": { "items": { "$ref": "#/$defs/context" } }
+                "if": {
+                    "type": "array"
+                },
+                "then": {
+                    "items": {
+                        "$ref": "#/$defs/context"
+                    }
+                }
             }
         },
         "node": {
-            "if": { "type": "object" },
+            "if": {
+                "type": "object"
+            },
             "then": {
-                "properties": { "@context": { "$ref": "#/$defs/context" } },
-                "additionalProperties": { "$ref": "#/$defs/node" }
+                "properties": {
+                    "@context": {
+                        "$ref": "#/$defs/context"
+                    }
+                },
+                "additionalProperties": {
+                    "$ref": "#/$defs/node"
+                }
             },
             "else": {
-                "if": { "type": "array" },
-                "then": { "items": { "$ref": "#/$defs/node" } }
+                "if": {
+                    "type": "array"
+                },
+                "then": {
+                    "items": {
+                        "$ref": "#/$defs/node"
+                    }
+                }
             }
         }
     },

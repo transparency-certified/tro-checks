@@ -90,7 +90,7 @@
                     "$ref": "#/$defs/topLevel"
                 },
                 "errorMessage": {
-                    "contains": "the document defines no TRS: no node typed trov:TrustedResearchSystem, carrying an @id, at the top of the @graph or as the object of trov:wasAssembledBy"
+                    "contains": "the document defines a TRS: a node typed trov:TrustedResearchSystem, carrying an @id, at the top of the @graph or as the object of trov:wasAssembledBy"
                 }
             }
         }
@@ -151,7 +151,7 @@
                     "then": {
                         "not": {},
                         "errorMessage": {
-                            "not": "a TRS is defined at the top of the @graph or as the object of trov:wasAssembledBy, not here"
+                            "not": "a TRS is defined only at the top of the @graph or as the object of trov:wasAssembledBy"
                         }
                     }
                 },
