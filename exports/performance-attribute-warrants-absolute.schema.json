@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://w3id.org/trace/tro/0.1/capability-warrants-absolute.schema.json",
-    "title": "Capability warrants absolute",
+    "$id": "https://w3id.org/trace/tro/0.1/performance-attribute-warrants-absolute.schema.json",
+    "title": "Performance attribute warrants absolute",
     "description": "Every trov:warrantedBy on a value of trov:hasPerformanceAttribute refers to its capability by an absolute IRI, or a compact IRI whose prefix is not trov.",
     "summary": "Every performance attribute refers to the capability warranting it by absolute IRI",
     "requires": [

@@ -125,11 +125,11 @@ wrote tmp/instance-trs-absolute-iri.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 T
 | `trs-defined` | A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else | ✅ met |
 | `trs-id-absolute` | The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ✅ met |
 | `capability-ids-absolute` | Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ✅ met |
-| `capability-warrants-absolute` | Every performance attribute refers to the capability warranting it by absolute IRI | ✅ met |
 | *Tier 6 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
 | *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *`performance-attribute-warrants-absolute`* | *Every performance attribute refers to the capability warranting it by absolute IRI* | *not claimed* |
 | *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
 | *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
 | *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
@@ -264,11 +264,11 @@ wrote tmp/instance-trs-compact-iri.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TR
 | `trs-defined` | A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else | ✅ met |
 | `trs-id-absolute` | The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ✅ met |
 | `capability-ids-absolute` | Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ✅ met |
-| `capability-warrants-absolute` | Every performance attribute refers to the capability warranting it by absolute IRI | ✅ met |
 | *Tier 6 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
 | *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *`performance-attribute-warrants-absolute`* | *Every performance attribute refers to the capability warranting it by absolute IRI* | *not claimed* |
 | *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
 | *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
 | *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
@@ -403,11 +403,11 @@ wrote tmp/instance-trs-relative.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | `trs-defined` | A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else | ✅ met |
 | `trs-id-absolute` | The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ❌ not met |
 | `capability-ids-absolute` | Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ✅ met |
-| `capability-warrants-absolute` | Every performance attribute refers to the capability warranting it by absolute IRI | ✅ met |
 | *Tier 6 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
 | *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *`performance-attribute-warrants-absolute`* | *Every performance attribute refers to the capability warranting it by absolute IRI* | *not claimed* |
 | *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
 | *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
 | *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
@@ -548,11 +548,11 @@ wrote tmp/instance-trs-trov.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSO
 | `trs-defined` | A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else | ✅ met |
 | `trs-id-absolute` | The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ❌ not met |
 | `capability-ids-absolute` | Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ✅ met |
-| `capability-warrants-absolute` | Every performance attribute refers to the capability warranting it by absolute IRI | ✅ met |
 | *Tier 6 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
 | *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *`performance-attribute-warrants-absolute`* | *Every performance attribute refers to the capability warranting it by absolute IRI* | *not claimed* |
 | *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
 | *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
 | *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |

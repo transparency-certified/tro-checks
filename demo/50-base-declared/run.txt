@@ -100,11 +100,11 @@ wrote tmp/instance-base-declared.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRAC
 | `trs-defined` | A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else | ✅ met |
 | `trs-id-absolute` | The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ✅ met |
 | `capability-ids-absolute` | Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ✅ met |
-| `capability-warrants-absolute` | Every performance attribute refers to the capability warranting it by absolute IRI | ✅ met |
 | **Tier 6 — STANDALONE-TRO  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS | ✅ met |
+| `performance-attribute-warrants-absolute` | Every performance attribute refers to the capability warranting it by absolute IRI | ✅ met |
 | `composition-has-fingerprint` | The TRO's composition, if any, carries one fingerprint, which carries one hash | ✅ met |
 | `composition-identifies-artifacts` | The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array | ✅ met |
 | `artifact-hashes-present` | Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one | ✅ met |
@@ -213,11 +213,11 @@ wrote tmp/instance-no-base.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-JSON
 | `trs-defined` | A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else | ✅ met |
 | `trs-id-absolute` | The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ✅ met |
 | `capability-ids-absolute` | Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ✅ met |
-| `capability-warrants-absolute` | Every performance attribute refers to the capability warranting it by absolute IRI | ✅ met |
 | **Tier 6 — STANDALONE-TRO  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS | ✅ met |
+| `performance-attribute-warrants-absolute` | Every performance attribute refers to the capability warranting it by absolute IRI | ✅ met |
 | `composition-has-fingerprint` | The TRO's composition, if any, carries one fingerprint, which carries one hash | ✅ met |
 | `composition-identifies-artifacts` | The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array | ✅ met |
 | `artifact-hashes-present` | Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one | ✅ met |

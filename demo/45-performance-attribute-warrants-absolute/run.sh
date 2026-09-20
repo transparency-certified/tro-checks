@@ -7,12 +7,12 @@ mkdir -p tmp
 report_on() {
     cat "$1"
     echo
-    check-tro --target DEFINES-TRS --compact --candidate "$1" --report "tmp/${1%.jsonld}.md"
+    check-tro --target STANDALONE-TRO --compact --candidate "$1" --report "tmp/${1%.jsonld}.md"
     echo
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 44: capability-warrants-absolute (TIER 5 - DEFINES-TRS)"
+title "tro-checks  ·  demo 45: performance-attribute-warrants-absolute (TIER 6 - STANDALONE-TRO)"
 
 show "expectation met: the performance attribute's warrant refers to the capability by absolute IRI" \
     report_on instance-warrant-absolute.jsonld

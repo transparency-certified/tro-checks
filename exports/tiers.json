@@ -72,8 +72,7 @@
         "expectations": [
             "trs-defined",
             "trs-id-absolute",
-            "capability-ids-absolute",
-            "capability-warrants-absolute"
+            "capability-ids-absolute"
         ]
     },
     {
@@ -82,6 +81,7 @@
         "expectations": [
             "tro-top-level-in-graph",
             "tro-assembled-by-trs",
+            "performance-attribute-warrants-absolute",
             "composition-has-fingerprint",
             "composition-identifies-artifacts",
             "artifact-hashes-present",

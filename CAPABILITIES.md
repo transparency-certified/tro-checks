@@ -45,9 +45,9 @@ Every expectation listed uses `dialect-declaration` (`22`), `id-and-anchor` (`13
 | 5 | `trs-defined` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `additional-properties` (`09`), `const` (`10`), `contains` (`18`), `anyOf` (`08`), `allOf` (`12`), `not` (`08`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 5 | `trs-id-absolute` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `const` (`10`), `contains` (`18`), `anyOf` (`08`), `allOf` (`12`), `pattern` (`07`), `if-then-else` (`11`), `defs-and-ref` (`12`) |
 | 5 | `capability-ids-absolute` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `pattern` (`07`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
-| 5 | `capability-warrants-absolute` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `pattern` (`07`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 6 | `tro-top-level-in-graph` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `const` (`10`), `contains` (`18`), `if-then-else` (`11`) |
 | 6 | `tro-assembled-by-trs` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `const` (`10`), `contains` (`18`), `anyOf` (`08`), `if-then-else` (`11`) |
+| 6 | `performance-attribute-warrants-absolute` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `pattern` (`07`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 6 | `composition-has-fingerprint` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`) |
 | 6 | `composition-identifies-artifacts` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `min-items` (`03`) |
 | 6 | `artifact-hashes-present` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `min-items` (`03`), `if-then-else` (`11`) |
