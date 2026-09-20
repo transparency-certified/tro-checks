@@ -67,25 +67,46 @@ function pointerOf(segments) {
 }
 
 /**
- * @param {Diagnostic} diagnostic
- * @returns {string}  what the keyword demanded, in its own terms
+ * Names what a diagnostic is about, from the site it was found at: the member the site ends at, qualified by its
+ * parent where the last segment -- an index, or a keyword such as `@id` -- names nothing on its own.
+ * @param {(string|number)[]} [site]
+ * @returns {string}  in the report's own Markdown
  */
-function stateConstraint({ keyword, constraint = {}, particulars = {} }) {
+function subjectOf(site) {
+    if (site === undefined || site.length === 0) return 'the document'
+
+    const last = site[site.length - 1]
+    const parent = site[site.length - 2]
+    if (typeof last === 'number') return parent === undefined ? `item ${last}` : `\`${parent}\` ${last}`
+    if (!last.startsWith('@')) return `\`${last}\``
+    if (parent === undefined) return `the \`${last}\``
+    return typeof parent === 'number'
+        ? `the \`${last}\` of \`${site[site.length - 3]}\` ${parent}`
+        : `the \`${last}\` of \`${parent}\``
+}
+
+/**
+ * @param {Diagnostic} diagnostic
+ * @returns {string}  what the keyword demanded of the thing it was checking, in the keyword's own terms
+ */
+function stateConstraint({ keyword, constraint = {}, particulars = {}, site }) {
+    const subject = subjectOf(site)
     switch (keyword) {
-        case 'required': return `missing required member \`${particulars.missingProperty}\``
+        case 'required': return `${subject} is missing the required member \`${particulars.missingProperty}\``
         case 'additionalProperties':
         case 'unevaluatedProperties':
-            return `member \`${particulars.additionalProperty ?? particulars.unevaluatedProperty}\` is not allowed here`
-        case 'type': return `expected type ${[].concat(constraint.type).join(' or ')}`
-        case 'enum': return `expected one of ${JSON.stringify(constraint.allowedValues)}`
-        case 'const': return `expected ${JSON.stringify(constraint.allowedValue)}`
-        case 'pattern': return `expected to match pattern \`${constraint.pattern}\``
+            return `${subject} has a member \`${particulars.additionalProperty ?? particulars.unevaluatedProperty}\`,`
+                + ' which is not allowed here'
+        case 'type': return `${subject} was expected to be of type ${[].concat(constraint.type).join(' or ')}`
+        case 'enum': return `${subject} was expected to be one of ${JSON.stringify(constraint.allowedValues)}`
+        case 'const': return `${subject} was expected to be ${JSON.stringify(constraint.allowedValue)}`
+        case 'pattern': return `${subject} was expected to match pattern \`${constraint.pattern}\``
         case 'maximum': case 'minimum': case 'exclusiveMaximum': case 'exclusiveMinimum':
-            return `expected a value ${constraint.comparison} ${constraint.limit}`
-        case undefined: return 'the schema here admits nothing'
+            return `${subject} was expected to be ${constraint.comparison} ${constraint.limit}`
+        case undefined: return `nothing is allowed where ${subject} is`
         default: {
             const stated = { ...constraint, ...particulars }
-            return Object.keys(stated).length > 0 ? `${keyword} ${JSON.stringify(stated)}` : keyword
+            return Object.keys(stated).length > 0 ? `${subject}: ${keyword} ${JSON.stringify(stated)}` : `${subject}: ${keyword}`
         }
     }
 }
