@@ -97,11 +97,14 @@ wrote tmp/instance-tro-in-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | **Tier 6 — STANDALONE-TRO  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
+| `trov-objects-identified` | Every object typed with a TROV class carries an `@id` | ✅ met |
 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS | ✅ met |
 | `performance-attribute-warrants-absolute` | Every performance attribute refers to the capability warranting it by absolute IRI | ✅ met |
+| `tro-composition-single` | A `trov:hasComposition` is one object, not an array | ✅ met |
 | `composition-has-fingerprint` | The TRO's composition, if any, carries one fingerprint, which carries one hash | ✅ met |
 | `composition-identifies-artifacts` | The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array | ✅ met |
 | `artifact-hashes-present` | Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one | ✅ met |
+| `created-with-single-tool` | A `trov:createdWith` names one software tool, given as a node | ✅ met |
 | `gpg-signing-key-present` | A TRO signed with `trov:GPGSigning` gives its TRS a `trov:publicKey` | ✅ met |
 | *Tier 7 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
@@ -203,11 +206,14 @@ wrote tmp/instance-no-tro-in-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TR
 | **Tier 6 — STANDALONE-TRO  ❌ not met** |  |  |
 | Expectation | Summary | Status |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ❌ not met |
+| `trov-objects-identified` | Every object typed with a TROV class carries an `@id` | ✅ met |
 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS | not assessed |
 | `performance-attribute-warrants-absolute` | Every performance attribute refers to the capability warranting it by absolute IRI | ✅ met |
+| `tro-composition-single` | A `trov:hasComposition` is one object, not an array | ✅ met |
 | `composition-has-fingerprint` | The TRO's composition, if any, carries one fingerprint, which carries one hash | not assessed |
 | `composition-identifies-artifacts` | The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array | not assessed |
 | `artifact-hashes-present` | Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one | not assessed |
+| `created-with-single-tool` | A `trov:createdWith` names one software tool, given as a node | ✅ met |
 | `gpg-signing-key-present` | A TRO signed with `trov:GPGSigning` gives its TRS a `trov:publicKey` | not assessed |
 | *Tier 7 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |

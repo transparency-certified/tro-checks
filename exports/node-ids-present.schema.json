@@ -4,6 +4,9 @@
     "title": "Node ids present",
     "description": "Every node object carries an explicit @id.",
     "summary": "Every node carries an explicit `@id`",
+    "requires": [
+        "trov-objects-identified"
+    ],
     "$defs": {
         "isNodeObject": {
             "type": "object",

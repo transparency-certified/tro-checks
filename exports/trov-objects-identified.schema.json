@@ -1,0 +1,79 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/trov-objects-identified.schema.json",
+    "title": "TROV objects identified",
+    "description": "Every object typed with a TROV class carries an @id, so that anything the declaration describes can be referred to.",
+    "summary": "Every object typed with a TROV class carries an `@id`",
+    "requires": [
+        "core-prefixes-pinned"
+    ],
+    "properties": {
+        "@graph": {
+            "$ref": "#/$defs/sweep"
+        }
+    },
+    "$defs": {
+        "sweep": {
+            "allOf": [
+                {
+                    "if": {
+                        "type": "object"
+                    },
+                    "then": {
+                        "allOf": [
+                            {
+                                "$ref": "#/$defs/node"
+                            }
+                        ],
+                        "additionalProperties": {
+                            "$ref": "#/$defs/sweep"
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "type": "array"
+                    },
+                    "then": {
+                        "items": {
+                            "$ref": "#/$defs/sweep"
+                        }
+                    }
+                }
+            ]
+        },
+        "node": {
+            "if": {
+                "type": "object",
+                "required": [
+                    "@type"
+                ],
+                "properties": {
+                    "@type": {
+                        "if": {
+                            "type": "array"
+                        },
+                        "then": {
+                            "contains": {
+                                "type": "string",
+                                "pattern": "^trov:"
+                            }
+                        },
+                        "else": {
+                            "type": "string",
+                            "pattern": "^trov:"
+                        }
+                    }
+                }
+            },
+            "then": {
+                "required": [
+                    "@id"
+                ],
+                "errorMessage": {
+                    "required": "an object typed with a TROV class carries an @id"
+                }
+            }
+        }
+    }
+}

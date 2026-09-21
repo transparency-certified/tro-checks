@@ -100,11 +100,14 @@ wrote tmp/instance-typed-values.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met
 | *Tier 6 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *`trov-objects-identified`* | *Every object typed with a TROV class carries an `@id`* | *not claimed* |
 | *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
 | *`performance-attribute-warrants-absolute`* | *Every performance attribute refers to the capability warranting it by absolute IRI* | *not claimed* |
+| *`tro-composition-single`* | *A `trov:hasComposition` is one object, not an array* | *not claimed* |
 | *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
 | *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
 | *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
+| *`created-with-single-tool`* | *A `trov:createdWith` names one software tool, given as a node* | *not claimed* |
 | *`gpg-signing-key-present`* | *A TRO signed with `trov:GPGSigning` gives its TRS a `trov:publicKey`* | *not claimed* |
 | *Tier 7 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
@@ -211,11 +214,14 @@ wrote tmp/instance-id-coercion.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *Tier 6 — STANDALONE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
+| *`trov-objects-identified`* | *Every object typed with a TROV class carries an `@id`* | *not claimed* |
 | *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
 | *`performance-attribute-warrants-absolute`* | *Every performance attribute refers to the capability warranting it by absolute IRI* | *not claimed* |
+| *`tro-composition-single`* | *A `trov:hasComposition` is one object, not an array* | *not claimed* |
 | *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
 | *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
 | *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
+| *`created-with-single-tool`* | *A `trov:createdWith` names one software tool, given as a node* | *not claimed* |
 | *`gpg-signing-key-present`* | *A TRO signed with `trov:GPGSigning` gives its TRS a `trov:publicKey`* | *not claimed* |
 | *Tier 7 — LINKABLE-TRO  not claimed* |  |  |
 | Expectation | Summary | Status |

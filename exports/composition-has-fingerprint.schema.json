@@ -15,32 +15,36 @@
                 "type": "object",
                 "properties": {
                     "trov:hasComposition": {
-                        "type": "object",
-                        "required": [
-                            "trov:hasFingerprint"
-                        ],
-                        "properties": {
-                            "trov:hasFingerprint": {
-                                "type": "object",
-                                "required": [
-                                    "trov:hash"
-                                ],
-                                "properties": {
-                                    "trov:hash": {
-                                        "type": "object",
-                                        "errorMessage": {
-                                            "type": "a fingerprint carries one hash, an object, not an array of them"
-                                        }
-                                    }
-                                },
-                                "errorMessage": {
-                                    "type": "a composition carries one fingerprint, an object, not an array of them",
-                                    "required": "a fingerprint carries a trov:hash"
-                                }
-                            }
+                        "if": {
+                            "type": "object"
                         },
-                        "errorMessage": {
-                            "required": "a composition carries a trov:hasFingerprint"
+                        "then": {
+                            "required": [
+                                "trov:hasFingerprint"
+                            ],
+                            "properties": {
+                                "trov:hasFingerprint": {
+                                    "type": "object",
+                                    "required": [
+                                        "trov:hash"
+                                    ],
+                                    "properties": {
+                                        "trov:hash": {
+                                            "type": "object",
+                                            "errorMessage": {
+                                                "type": "a fingerprint carries one hash, an object, not an array of them"
+                                            }
+                                        }
+                                    },
+                                    "errorMessage": {
+                                        "type": "a composition carries one fingerprint, an object, not an array of them",
+                                        "required": "a fingerprint carries a trov:hash"
+                                    }
+                                }
+                            },
+                            "errorMessage": {
+                                "required": "a composition carries a trov:hasFingerprint"
+                            }
                         }
                     }
                 }

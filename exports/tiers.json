@@ -80,11 +80,14 @@
         "description": "A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it",
         "expectations": [
             "tro-top-level-in-graph",
+            "trov-objects-identified",
             "tro-assembled-by-trs",
             "performance-attribute-warrants-absolute",
+            "tro-composition-single",
             "composition-has-fingerprint",
             "composition-identifies-artifacts",
             "artifact-hashes-present",
+            "created-with-single-tool",
             "gpg-signing-key-present"
         ]
     },

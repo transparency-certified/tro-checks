@@ -1,0 +1,21 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/0.1/tro-composition-single.schema.json",
+    "title": "TRO composition single",
+    "description": "A trov:hasComposition, where one is present, is a single object: one TRO describes one composition.",
+    "summary": "A `trov:hasComposition` is one object, not an array",
+    "properties": {
+        "@graph": {
+            "items": {
+                "properties": {
+                    "trov:hasComposition": {
+                        "type": "object",
+                        "errorMessage": {
+                            "type": "a TRO carries one composition, an object, not an array of them"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
