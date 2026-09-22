@@ -74,8 +74,8 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
 <tr><td nowrap><samp>utf8-encoded</samp></td><td>The candidate is UTF-8</td></tr>
 <tr><td nowrap><samp>json-parses</samp></td><td>The candidate parses as JSON without errors</td></tr>
+<tr><td nowrap><samp>unicode-escapes-spell-whole-characters</samp></td><td>Every <code>\u</code> escape spells a whole Unicode character</td></tr>
 <tr><td nowrap><samp>duplicate-member-names-absent</samp></td><td>No object repeats a member name</td></tr>
-<tr><td nowrap><samp>lone-surrogates-absent</samp></td><td>No string or member name has an unpaired surrogate</td></tr>
 <tr><td nowrap><samp>numbers-within-range</samp></td><td>Every number fits a double; every integer is exact</td></tr>
 </tbody>
 <tbody>

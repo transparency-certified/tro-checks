@@ -6,8 +6,8 @@
         "expectations": [
             "utf8-encoded",
             "json-parses",
+            "unicode-escapes-spell-whole-characters",
             "duplicate-member-names-absent",
-            "lone-surrogates-absent",
             "numbers-within-range"
         ]
     },

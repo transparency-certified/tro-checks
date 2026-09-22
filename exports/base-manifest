@@ -8,7 +8,7 @@ tiers.json
 utf8-encoded.parse.json
 json-parses.parse.json
 duplicate-member-names-absent.schema.json
-lone-surrogates-absent.parse.json
+unicode-escapes-spell-whole-characters.parse.json
 numbers-within-range.parse.json
 context-well-formed.schema.json
 graph-well-formed.schema.json

@@ -1,0 +1,6 @@
+{
+    "title": "Unicode escapes spell whole characters",
+    "description": "No string or member name holds a \\u escape in the range \\uD800 to \\uDFFF without its pair. Such an escape spells half a Unicode character, so the text is not valid Unicode and cannot be written as UTF-8. Escapes are how such a character reaches a candidate that utf8-encoded accepts, since no valid UTF-8 byte sequence can carry one. Only escapes are judged here: bytes that are not valid UTF-8 are utf8-encoded's, and the noncharacters are valid text and are not refused. RFC 8259 admits an unpaired surrogate in its own grammar, so a conformant parser accepts one and implementations then differ over what they do with a string they cannot encode; I-JSON (RFC 7493) is the profile that forbids it.",
+    "summary": "Every `\\u` escape spells a whole Unicode character",
+    "requires": ["json-parses"]
+}

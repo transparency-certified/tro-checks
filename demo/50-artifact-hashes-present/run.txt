@@ -86,8 +86,8 @@ wrote tmp/instance-hashes-present.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRA
 | Expectation | Summary | Status |
 | `utf8-encoded` | The candidate is UTF-8 | ✅ met |
 | `json-parses` | The candidate parses as JSON without errors | ✅ met |
+| `unicode-escapes-spell-whole-characters` | Every `\u` escape spells a whole Unicode character | ✅ met |
 | `duplicate-member-names-absent` | No object repeats a member name | ✅ met |
-| `lone-surrogates-absent` | No string or member name has an unpaired surrogate | ✅ met |
 | `numbers-within-range` | Every number fits a double; every integer is exact | ✅ met |
 | **Tier 2 — SAFE-JSON-LD  ✅ met** |  |  |
 | Expectation | Summary | Status |
@@ -228,8 +228,8 @@ wrote tmp/instance-artifact-without-hash.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met
 | Expectation | Summary | Status |
 | `utf8-encoded` | The candidate is UTF-8 | ✅ met |
 | `json-parses` | The candidate parses as JSON without errors | ✅ met |
+| `unicode-escapes-spell-whole-characters` | Every `\u` escape spells a whole Unicode character | ✅ met |
 | `duplicate-member-names-absent` | No object repeats a member name | ✅ met |
-| `lone-surrogates-absent` | No string or member name has an unpaired surrogate | ✅ met |
 | `numbers-within-range` | Every number fits a double; every integer is exact | ✅ met |
 | **Tier 2 — SAFE-JSON-LD  ✅ met** |  |  |
 | Expectation | Summary | Status |
@@ -369,8 +369,8 @@ wrote tmp/instance-empty-hash-array.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 T
 | Expectation | Summary | Status |
 | `utf8-encoded` | The candidate is UTF-8 | ✅ met |
 | `json-parses` | The candidate parses as JSON without errors | ✅ met |
+| `unicode-escapes-spell-whole-characters` | Every `\u` escape spells a whole Unicode character | ✅ met |
 | `duplicate-member-names-absent` | No object repeats a member name | ✅ met |
-| `lone-surrogates-absent` | No string or member name has an unpaired surrogate | ✅ met |
 | `numbers-within-range` | Every number fits a double; every integer is exact | ✅ met |
 | **Tier 2 — SAFE-JSON-LD  ✅ met** |  |  |
 | Expectation | Summary | Status |

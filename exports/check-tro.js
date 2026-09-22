@@ -405,13 +405,15 @@ const PARSE_CHECKS = {
         }
         return []
     },
-    'lone-surrogates-absent': (candidate) => {
+    'unicode-escapes-spell-whole-characters': (candidate) => {
         /** @type {Diagnostic[]} */ const diagnostics = []
         visitParsed(parsedCandidate(candidate), [], (value, site, isMemberName) => {
             if (typeof value === 'string' && UNPAIRED_SURROGATE.test(value)) {
                 diagnostics.push({
                     site, keyword: 'surrogate', clause: [], found: value,
-                    message: isMemberName ? 'a member name contains no unpaired surrogate' : 'a string contains no unpaired surrogate',
+                    message: isMemberName
+                        ? 'every \\u escape in a member name spells a whole Unicode character'
+                        : 'every \\u escape in a string spells a whole Unicode character',
                 })
             }
         })

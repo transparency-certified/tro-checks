@@ -47,8 +47,8 @@ wrote tmp/instance-context-at-root.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met
 | Expectation | Summary | Status |
 | `utf8-encoded` | The candidate is UTF-8 | ✅ met |
 | `json-parses` | The candidate parses as JSON without errors | ✅ met |
+| `unicode-escapes-spell-whole-characters` | Every `\u` escape spells a whole Unicode character | ✅ met |
 | `duplicate-member-names-absent` | No object repeats a member name | ✅ met |
-| `lone-surrogates-absent` | No string or member name has an unpaired surrogate | ✅ met |
 | `numbers-within-range` | Every number fits a double; every integer is exact | ✅ met |
 | **Tier 2 — SAFE-JSON-LD  ✅ met** |  |  |
 | Expectation | Summary | Status |
@@ -161,8 +161,8 @@ wrote tmp/instance-context-in-node.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | Expectation | Summary | Status |
 | `utf8-encoded` | The candidate is UTF-8 | ✅ met |
 | `json-parses` | The candidate parses as JSON without errors | ✅ met |
+| `unicode-escapes-spell-whole-characters` | Every `\u` escape spells a whole Unicode character | ✅ met |
 | `duplicate-member-names-absent` | No object repeats a member name | ✅ met |
-| `lone-surrogates-absent` | No string or member name has an unpaired surrogate | ✅ met |
 | `numbers-within-range` | Every number fits a double; every integer is exact | ✅ met |
 | **Tier 2 — SAFE-JSON-LD  ❌ not met** |  |  |
 | Expectation | Summary | Status |
@@ -282,8 +282,8 @@ wrote tmp/instance-scoped-context.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | Expectation | Summary | Status |
 | `utf8-encoded` | The candidate is UTF-8 | ✅ met |
 | `json-parses` | The candidate parses as JSON without errors | ✅ met |
+| `unicode-escapes-spell-whole-characters` | Every `\u` escape spells a whole Unicode character | ✅ met |
 | `duplicate-member-names-absent` | No object repeats a member name | ✅ met |
-| `lone-surrogates-absent` | No string or member name has an unpaired surrogate | ✅ met |
 | `numbers-within-range` | Every number fits a double; every integer is exact | ✅ met |
 | **Tier 2 — SAFE-JSON-LD  ❌ not met** |  |  |
 | Expectation | Summary | Status |

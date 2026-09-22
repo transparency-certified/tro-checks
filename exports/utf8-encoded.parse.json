@@ -1,5 +1,5 @@
 {
     "title": "UTF-8 encoded",
-    "description": "The candidate's bytes are valid UTF-8.",
+    "description": "The candidate's bytes are valid UTF-8. This rule judges bytes. Whether a \\u escape spells a whole character is checked by unicode-escapes-spell-whole-characters, since an escape is ASCII and is decoded after these bytes are read.",
     "summary": "The candidate is UTF-8"
 }

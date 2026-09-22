@@ -1,6 +1,6 @@
 {
     "title": "JSON parses",
-    "description": "The candidate's text parses as a single JSON value, with nothing before or after it, without errors.",
+    "description": "The candidate's text parses as a single JSON value, with nothing before or after it, without errors. Parsing checks syntax only: a candidate that parses can still hold a \\u escape spelling half a Unicode character, which unicode-escapes-spell-whole-characters is the rule for.",
     "summary": "The candidate parses as JSON without errors",
     "requires": ["utf8-encoded"]
 }

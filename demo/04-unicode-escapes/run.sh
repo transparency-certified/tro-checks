@@ -12,15 +12,15 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 04: lone-surrogates-absent (TIER 1 - SAFE-JSON)"
+title "tro-checks  ·  demo 04: unicode-escapes-spell-whole-characters (TIER 1 - SAFE-JSON)"
 
-show "expectation met: an emoji escaped as a surrogate pair" \
+show "expectation met: an emoji written as the two escapes that spell it" \
     report_on instance-paired-surrogates.jsonld
 
-show "expectation unmet: a string ends with the first half of a surrogate pair" \
+show "expectation unmet: a string ends with an escape spelling half a character" \
     report_on instance-lone-surrogate-in-string.jsonld
 
-show "expectation unmet: a member name contains the second half of a surrogate pair" \
+show "expectation unmet: a member name holds an escape spelling half a character" \
     report_on instance-lone-surrogate-in-member-name.jsonld
 
 exit 0
