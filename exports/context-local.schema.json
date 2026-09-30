@@ -3,7 +3,7 @@
     "$id": "https://w3id.org/trace/tro/0.1/context-local.schema.json",
     "title": "Context local",
     "description": "Every @context is written into the declaration: no @context is a string naming a remote context, and no member of an @context array is one, so reading the declaration never needs the network.",
-    "summary": "The `@context` is inline: no string names a remote context",
+    "summary": "The entire `@context` is included in the file, never by reference to a web address",
     "$defs": {
         "context": {
             "not": {

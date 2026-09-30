@@ -2,8 +2,8 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://w3id.org/trace/tro/0.1/base-simple-url.schema.json",
     "title": "Base simple URL",
-    "description": "Where an @context declares an @base as a string, it names a host, carries no user name or password, has no . or .. segments, contains no ? or #, ends in /, contains only characters allowed in a URL, and has a path of portable segments -- letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit.",
-    "summary": "The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/`",
+    "description": "Where an @context declares an @base as a string, the @base is a simple URL. It names a host, uses only characters allowed in a URL, ends in /, and has a path whose segments are portable names: letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit. It carries no user name or password, no . or .. segments, and no ? or #.",
+    "summary": "The `@base`, if any, is a simple URL. It names a host, has a path of portable names, uses only URL characters, and ends in `/`. It has no user info, dot segments, query or fragment",
     "$defs": {
         "base": {
             "if": { "type": "string" },

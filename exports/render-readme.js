@@ -83,7 +83,7 @@ function tierExpectationLines(tiers, exportsDirectory) {
             rows.push({ cells: [{ code: name }, summaryOf(exportsDirectory, name)] })
         }
     }
-    return htmlTableLines(['Expectation', 'What it checks'], rows)
+    return htmlTableLines(['Expectation', 'What it requires'], rows)
 }
 
 /**

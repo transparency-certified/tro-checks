@@ -1,0 +1,15 @@
+{
+    "@context": {
+        "ex": "https://example.org/terms#",
+        "ex:kind": {
+            "@type": "@vocab"
+        }
+    },
+    "@graph": [
+        {
+            "@id": "https://example.org/thing/1",
+            "@type": "ex:Thing",
+            "ex:kind": "ex:Special"
+        }
+    ]
+}

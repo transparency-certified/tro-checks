@@ -13,18 +13,20 @@
     },
     {
         "id": "SAFE-JSON-LD",
-        "description": "JSON-LD that every supported processor reads the same way",
+        "description": "JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently",
         "blocksHigherTiers": true,
         "expectations": [
-            "context-well-formed",
-            "graph-well-formed",
-            "ids-and-types-strings",
+            "non-null-context-is-object-string-or-array",
             "context-at-root-only",
-            "containers-absent",
-            "vocab-absent",
-            "context-protection-absent",
-            "id-coercion-absent",
+            "context-containers-absent",
+            "context-vocab-absent",
+            "context-protected-absent",
+            "context-propagate-absent",
+            "context-import-absent",
+            "context-id-coercion-absent",
             "graph-at-root-only",
+            "graph-array-of-objects",
+            "ids-and-types-strings",
             "id-segments-portable"
         ]
     },
@@ -41,6 +43,8 @@
             "prefix-namespaces-terminated",
             "context-local",
             "context-aliases-absent",
+            "context-assigns-only-datatypes-to-properties",
+            "context-datatypes-named-by-iri",
             "types-prefixed-or-absolute"
         ]
     },
@@ -93,7 +97,7 @@
     },
     {
         "id": "LINKABLE-TRO",
-        "description": "A TRO declaration whose element identifiers cannot collide with another TRO's",
+        "description": "A TRO declaration whose element identifiers cannot collide with those in another TRO",
         "expectations": [
             "base-declared",
             "base-has-path",

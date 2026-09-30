@@ -1,6 +1,6 @@
 ##############################################################################
 #
-#   tro-checks  ·  demo 13: id-coercion-absent (TIER 2 - SAFE-JSON-LD)
+#   tro-checks  ·  demo 13: context-id-coercion-absent (TIER 2 - SAFE-JSON-LD)
 #
 ##############################################################################
 
@@ -35,12 +35,12 @@ wrote tmp/instance-typed-values.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
 | 1 | SAFE-JSON | JSON that every supported parser reads the same way | ✅ met |
-| 2 | SAFE-JSON-LD | JSON-LD that every supported processor reads the same way | ✅ met |
+| 2 | SAFE-JSON-LD | JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently | ✅ met |
 | *3* | *TRACE-JSON-LD* | *JSON-LD in the restricted form the TRACE Specification requires for TRO declarations* | *not claimed* |
 | *4* | *USES-TROV-CORRECTLY* | *JSON-LD whose TROV terms, and the schema.org terms TROV specifies, are used as they are defined* | *not claimed* |
 | *5* | *DEFINES-TRS* | *JSON-LD that defines a Trusted Research System, identified by an absolute IRI* | *not claimed* |
 | *6* | *STANDALONE-TRO* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
-| *7* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
+| *7* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with those in another TRO* | *not claimed* |
 ## Expectation Findings by Tier
 |  |  |  |
 | --- | --- | --- |
@@ -53,27 +53,31 @@ wrote tmp/instance-typed-values.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met
 | `numbers-within-range` | Every number fits a double; every integer is exact | ✅ met |
 | **Tier 2 — SAFE-JSON-LD  ✅ met** |  |  |
 | Expectation | Summary | Status |
-| `context-well-formed` | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
-| `graph-well-formed` | The root `@graph`, if any, holds objects, not bare values | ✅ met |
-| `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
-| `context-at-root-only` | The document's only `@context` is the one at its root: no node below it and no term definition within it carries another | ✅ met |
-| `containers-absent` | No `@container` in a term definition | ✅ met |
-| `vocab-absent` | No `@vocab` in a context | ✅ met |
-| `context-protection-absent` | No `@protected`, `@propagate` or `@import` in a context | ✅ met |
-| `id-coercion-absent` | No `"@type": "@id"` in a term definition | ✅ met |
+| `non-null-context-is-object-string-or-array` | A non-null `@context` is an object, a string, or an array of objects and strings | ✅ met |
+| `context-at-root-only` | The file's only `@context` is at its top | ✅ met |
+| `context-containers-absent` | The `@context` never uses `@container` to tell a reader to interpret a property's array values as something other than individual values | ✅ met |
+| `context-vocab-absent` | The `@context` never uses `@vocab` to tell a reader to interpret a name written without a prefix as a term of some vocabulary | ✅ met |
+| `context-protected-absent` | The `@context` never uses `@protected` to lock its entries against redefinition by a later context | ✅ met |
+| `context-propagate-absent` | The `@context` never uses `@propagate` to limit which objects it applies to | ✅ met |
+| `context-import-absent` | The `@context` never uses `@import` to pull in entries from another context at a web address | ✅ met |
+| `context-id-coercion-absent` | The `@context` never uses `"@type": "@id"` to tell a reader to interpret a property's bare-string `<value>` as `{ "@id": <value> }` | ✅ met |
 | `graph-at-root-only` | `@graph` appears only at the root | ✅ met |
+| `graph-array-of-objects` | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
 | `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
 | *Tier 3 — TRACE-JSON-LD  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`root-context-and-graph-only`* | *A JSON object with an `@context`, an `@graph`, and nothing else* | *not claimed* |
-| *`disallowed-node-keywords-absent`* | *No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type`* | *not claimed* |
-| *`disallowed-context-keywords-absent`* | *No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context`* | *not claimed* |
+| *`disallowed-node-keywords-absent`* | *Apart from the `@context` and its contents, the only keywords in the file are `@graph`, `@id` and `@type`* | *not claimed* |
+| *`disallowed-context-keywords-absent`* | *`@base` is the only keyword at the top level of the `@context`* | *not claimed* |
 | *`base-web-scheme`* | *The `@base`, if any, uses the `https` or `http` scheme* | *not claimed* |
-| *`base-simple-url`* | *The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/`* | *not claimed* |
+| *`base-simple-url`* | *The `@base`, if any, is a simple URL. It names a host, has a path of portable names, uses only URL characters, and ends in `/`. It has no user info, dot segments, query or fragment* | *not claimed* |
 | *`prefix-namespaces-terminated`* | *Every prefix maps to an absolute IRI ending in `#` or `/`* | *not claimed* |
-| *`context-local`* | *The `@context` is inline: no string names a remote context* | *not claimed* |
-| *`context-aliases-absent`* | *No term definition aliases a property; a term definition holds only a `@type` naming a datatype* | *not claimed* |
-| *`types-prefixed-or-absolute`* | *Every `@type` value is a prefixed or absolute IRI, never a bare name* | *not claimed* |
+| *`context-local`* | *The entire `@context` is included in the file, never by reference to a web address* | *not claimed* |
+| *`context-aliases-absent`* | *The `@context` never defines aliases for property names* | *not claimed* |
+| *`context-assigns-only-datatypes-to-properties`* | *The only thing the `@context` assigns to a property is the datatype of its values* | *not claimed* |
+| *`context-datatypes-named-by-iri`* | *Every datatype the `@context` gives a property is named by a prefixed or absolute IRI* | *not claimed* |
+| *`types-prefixed-or-absolute`* | *Every `@type` value is a prefixed or absolute IRI* | *not claimed* |
 | *Tier 4 — USES-TROV-CORRECTLY  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
@@ -149,12 +153,12 @@ wrote tmp/instance-id-coercion.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
 | 1 | SAFE-JSON | JSON that every supported parser reads the same way | ✅ met |
-| 2 | SAFE-JSON-LD | JSON-LD that every supported processor reads the same way | ❌ not met |
+| 2 | SAFE-JSON-LD | JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently | ❌ not met |
 | *3* | *TRACE-JSON-LD* | *JSON-LD in the restricted form the TRACE Specification requires for TRO declarations* | *not claimed* |
 | *4* | *USES-TROV-CORRECTLY* | *JSON-LD whose TROV terms, and the schema.org terms TROV specifies, are used as they are defined* | *not claimed* |
 | *5* | *DEFINES-TRS* | *JSON-LD that defines a Trusted Research System, identified by an absolute IRI* | *not claimed* |
 | *6* | *STANDALONE-TRO* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
-| *7* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with another TRO's* | *not claimed* |
+| *7* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with those in another TRO* | *not claimed* |
 ## Expectation Findings by Tier
 |  |  |  |
 | --- | --- | --- |
@@ -167,27 +171,31 @@ wrote tmp/instance-id-coercion.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | `numbers-within-range` | Every number fits a double; every integer is exact | ✅ met |
 | **Tier 2 — SAFE-JSON-LD  ❌ not met** |  |  |
 | Expectation | Summary | Status |
-| `context-well-formed` | The root `@context`, if any, has a form JSON-LD allows | ✅ met |
-| `graph-well-formed` | The root `@graph`, if any, holds objects, not bare values | ✅ met |
-| `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
-| `context-at-root-only` | The document's only `@context` is the one at its root: no node below it and no term definition within it carries another | ✅ met |
-| `containers-absent` | No `@container` in a term definition | ✅ met |
-| `vocab-absent` | No `@vocab` in a context | ✅ met |
-| `context-protection-absent` | No `@protected`, `@propagate` or `@import` in a context | ✅ met |
-| `id-coercion-absent` | No `"@type": "@id"` in a term definition | ❌ not met |
+| `non-null-context-is-object-string-or-array` | A non-null `@context` is an object, a string, or an array of objects and strings | ✅ met |
+| `context-at-root-only` | The file's only `@context` is at its top | ✅ met |
+| `context-containers-absent` | The `@context` never uses `@container` to tell a reader to interpret a property's array values as something other than individual values | ✅ met |
+| `context-vocab-absent` | The `@context` never uses `@vocab` to tell a reader to interpret a name written without a prefix as a term of some vocabulary | ✅ met |
+| `context-protected-absent` | The `@context` never uses `@protected` to lock its entries against redefinition by a later context | ✅ met |
+| `context-propagate-absent` | The `@context` never uses `@propagate` to limit which objects it applies to | ✅ met |
+| `context-import-absent` | The `@context` never uses `@import` to pull in entries from another context at a web address | ✅ met |
+| `context-id-coercion-absent` | The `@context` never uses `"@type": "@id"` to tell a reader to interpret a property's bare-string `<value>` as `{ "@id": <value> }` | ❌ not met |
 | `graph-at-root-only` | `@graph` appears only at the root | ✅ met |
+| `graph-array-of-objects` | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
 | `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
 | *Tier 3 — TRACE-JSON-LD  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`root-context-and-graph-only`* | *A JSON object with an `@context`, an `@graph`, and nothing else* | *not claimed* |
-| *`disallowed-node-keywords-absent`* | *No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type`* | *not claimed* |
-| *`disallowed-context-keywords-absent`* | *No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context`* | *not claimed* |
+| *`disallowed-node-keywords-absent`* | *Apart from the `@context` and its contents, the only keywords in the file are `@graph`, `@id` and `@type`* | *not claimed* |
+| *`disallowed-context-keywords-absent`* | *`@base` is the only keyword at the top level of the `@context`* | *not claimed* |
 | *`base-web-scheme`* | *The `@base`, if any, uses the `https` or `http` scheme* | *not claimed* |
-| *`base-simple-url`* | *The `@base`, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final `/`* | *not claimed* |
+| *`base-simple-url`* | *The `@base`, if any, is a simple URL. It names a host, has a path of portable names, uses only URL characters, and ends in `/`. It has no user info, dot segments, query or fragment* | *not claimed* |
 | *`prefix-namespaces-terminated`* | *Every prefix maps to an absolute IRI ending in `#` or `/`* | *not claimed* |
-| *`context-local`* | *The `@context` is inline: no string names a remote context* | *not claimed* |
-| *`context-aliases-absent`* | *No term definition aliases a property; a term definition holds only a `@type` naming a datatype* | *not claimed* |
-| *`types-prefixed-or-absolute`* | *Every `@type` value is a prefixed or absolute IRI, never a bare name* | *not claimed* |
+| *`context-local`* | *The entire `@context` is included in the file, never by reference to a web address* | *not claimed* |
+| *`context-aliases-absent`* | *The `@context` never defines aliases for property names* | *not claimed* |
+| *`context-assigns-only-datatypes-to-properties`* | *The only thing the `@context` assigns to a property is the datatype of its values* | *not claimed* |
+| *`context-datatypes-named-by-iri`* | *Every datatype the `@context` gives a property is named by a prefixed or absolute IRI* | *not claimed* |
+| *`types-prefixed-or-absolute`* | *Every `@type` value is a prefixed or absolute IRI* | *not claimed* |
 | *Tier 4 — USES-TROV-CORRECTLY  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
@@ -232,7 +240,7 @@ wrote tmp/instance-id-coercion.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
-### Unmet expectation: id-coercion-absent
+### Unmet expectation: context-id-coercion-absent
 Detailed expectation: No term definition coerces its values to identifiers: no @type within a context is @id. A term definition typing its values with an absolute IRI is allowed.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |

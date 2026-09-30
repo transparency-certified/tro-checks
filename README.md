@@ -1,10 +1,10 @@
 # tro-checks
 
-Checks a TRO declaration against the requirements of the
+The `tro-checks` toolkit checks a TRO declaration against the requirements of the
 [TRACE Specification](https://transparency-certified.github.io/trace-specification/)
-and reports which it meets. It serves a **producer** checking what its Trusted
-Research System emits, and a **consumer** deciding whether to rely on a TRO
-someone else produced.
+and reports which it meets. The toolkit is meant for two kinds of user: a **producer**
+checking what its Trusted Research System emits, and a **consumer** deciding whether to
+rely on a TRO someone else produced.
 
 The TRO under examination is the **candidate**. Each requirement it is checked
 against is an **expectation**, and the expectations are grouped into **tiers**.
@@ -25,44 +25,20 @@ above the target are reported as *not claimed*.
 </thead>
 <tbody>
 <tr><td>1</td><td>SAFE&#8209;JSON</td><td>JSON that every supported parser reads the same way</td></tr>
-<tr><td>2</td><td>SAFE&#8209;JSON&#8209;LD</td><td>JSON-LD that every supported processor reads the same way</td></tr>
+<tr><td>2</td><td>SAFE&#8209;JSON&#8209;LD</td><td>JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently</td></tr>
 <tr><td>3</td><td>TRACE&#8209;JSON&#8209;LD</td><td>JSON-LD in the restricted form the TRACE Specification requires for TRO declarations</td></tr>
 <tr><td>4</td><td>USES&#8209;TROV&#8209;CORRECTLY</td><td>JSON-LD whose TROV terms, and the schema.org terms TROV specifies, are used as they are defined</td></tr>
 <tr><td>5</td><td>DEFINES&#8209;TRS</td><td>JSON-LD that defines a Trusted Research System, identified by an absolute IRI</td></tr>
 <tr><td>6</td><td>STANDALONE&#8209;TRO</td><td>A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it</td></tr>
-<tr><td>7</td><td>LINKABLE&#8209;TRO</td><td>A TRO declaration whose element identifiers cannot collide with another TRO's</td></tr>
+<tr><td>7</td><td>LINKABLE&#8209;TRO</td><td>A TRO declaration whose element identifiers cannot collide with those in another TRO</td></tr>
 </tbody>
 </table>
 
 <!-- end: tier-summary -->
 
-Each expectation is defined by a file in [`exports/`](exports) named for the
-expectation, whose suffix says what checks it. A `<name>.parse.json` expectation
-is checked by `check-tro` itself as it parses the candidate. A
-`<name>.schema.json` expectation is a JSON Schema, put to two widely used JSON
-Schema validators, [python-jsonschema](https://github.com/python-jsonschema/jsonschema)
-and [Ajv](https://ajv.js.org/), through the wrappers in
-[`json-schema-dev`](https://github.com/CIRSS/json-schema-dev); it is not met if
-either rejects the candidate. A schema's `validatorFlags` are passed to both
-validators with it, as `duplicate-member-names-absent` passes
-`--reject-duplicate-members`.
-
-### Supported parsers and processors
-
-`SAFE-JSON` and `SAFE-JSON-LD` promise that a candidate reads the same way in
-every *supported* implementation which includes the following:
-
-| | Implementation | Version |
-| --- | --- | --- |
-| JSON parser | Python `json` (via `jsonschema-validate`) | 3.10 |
-| JSON parser | Node.js `JSON.parse` (via `ajv-validate` and `check-tro`) | 22 |
-| JSON-LD processor | [jsonld.js](https://github.com/digitalbazaar/jsonld.js) | 8.3.3 |
-| JSON-LD processor | [PyLD](https://github.com/digitalbazaar/pyld) | 3.3.0 |
-| JSON-LD processor | [rdflib](https://github.com/RDFLib/rdflib) | 7.6.0 |
-
 ### The expectations in each tier
 
-Every tier and its expectations, in the order they are checked. This table is generated
+The table below lists every tier and its expectations, in the order they are checked. This table is generated
 from [`exports/tiers.json`](exports/tiers.json) and the expectation files themselves by
 `make update-readme`; edit those rather than the rows below.
 
@@ -71,7 +47,7 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <table>
 <tbody>
 <tr><th colspan="2" align="left"><br>Tier&nbsp;1&nbsp;—&nbsp;SAFE&#8209;JSON</th></tr>
-<tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
+<tr><th align="left">Expectation</th><th align="left">What it requires</th></tr>
 <tr><td nowrap><samp>utf8-encoded</samp></td><td>The candidate is UTF-8</td></tr>
 <tr><td nowrap><samp>json-parses</samp></td><td>The candidate parses as JSON without errors</td></tr>
 <tr><td nowrap><samp>unicode-escapes-spell-whole-characters</samp></td><td>Every <code>\u</code> escape spells a whole Unicode character</td></tr>
@@ -80,34 +56,38 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 </tbody>
 <tbody>
 <tr><th colspan="2" align="left"><br>Tier&nbsp;2&nbsp;—&nbsp;SAFE&#8209;JSON&#8209;LD</th></tr>
-<tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
-<tr><td nowrap><samp>context-well-formed</samp></td><td>The root <code>@context</code>, if any, has a form JSON-LD allows</td></tr>
-<tr><td nowrap><samp>graph-well-formed</samp></td><td>The root <code>@graph</code>, if any, holds objects, not bare values</td></tr>
-<tr><td nowrap><samp>ids-and-types-strings</samp></td><td>Every <code>@id</code> is a string; every <code>@type</code> a string or an array of strings</td></tr>
-<tr><td nowrap><samp>context-at-root-only</samp></td><td>The document's only <code>@context</code> is the one at its root: no node below it and no term definition within it carries another</td></tr>
-<tr><td nowrap><samp>containers-absent</samp></td><td>No <code>@container</code> in a term definition</td></tr>
-<tr><td nowrap><samp>vocab-absent</samp></td><td>No <code>@vocab</code> in a context</td></tr>
-<tr><td nowrap><samp>context-protection-absent</samp></td><td>No <code>@protected</code>, <code>@propagate</code> or <code>@import</code> in a context</td></tr>
-<tr><td nowrap><samp>id-coercion-absent</samp></td><td>No <code>"@type": "@id"</code> in a term definition</td></tr>
+<tr><th align="left">Expectation</th><th align="left">What it requires</th></tr>
+<tr><td nowrap><samp>non-null-context-is-object-string-or-array</samp></td><td>A non-null <code>@context</code> is an object, a string, or an array of objects and strings</td></tr>
+<tr><td nowrap><samp>context-at-root-only</samp></td><td>The file's only <code>@context</code> is at its top</td></tr>
+<tr><td nowrap><samp>context-containers-absent</samp></td><td>The <code>@context</code> never uses <code>@container</code> to tell a reader to interpret a property's array values as something other than individual values</td></tr>
+<tr><td nowrap><samp>context-vocab-absent</samp></td><td>The <code>@context</code> never uses <code>@vocab</code> to tell a reader to interpret a name written without a prefix as a term of some vocabulary</td></tr>
+<tr><td nowrap><samp>context-protected-absent</samp></td><td>The <code>@context</code> never uses <code>@protected</code> to lock its entries against redefinition by a later context</td></tr>
+<tr><td nowrap><samp>context-propagate-absent</samp></td><td>The <code>@context</code> never uses <code>@propagate</code> to limit which objects it applies to</td></tr>
+<tr><td nowrap><samp>context-import-absent</samp></td><td>The <code>@context</code> never uses <code>@import</code> to pull in entries from another context at a web address</td></tr>
+<tr><td nowrap><samp>context-id-coercion-absent</samp></td><td>The <code>@context</code> never uses <code>"@type": "@id"</code> to tell a reader to interpret a property's bare-string <code>&lt;value&gt;</code> as <code>{ "@id": &lt;value&gt; }</code></td></tr>
 <tr><td nowrap><samp>graph-at-root-only</samp></td><td><code>@graph</code> appears only at the root</td></tr>
+<tr><td nowrap><samp>graph-array-of-objects</samp></td><td>The root <code>@graph</code>, if any, holds objects, not bare values</td></tr>
+<tr><td nowrap><samp>ids-and-types-strings</samp></td><td>Every <code>@id</code> is a string; every <code>@type</code> a string or an array of strings</td></tr>
 <tr><td nowrap><samp>id-segments-portable</samp></td><td>Every segment of a relative <code>@id</code> is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit</td></tr>
 </tbody>
 <tbody>
 <tr><th colspan="2" align="left"><br>Tier&nbsp;3&nbsp;—&nbsp;TRACE&#8209;JSON&#8209;LD</th></tr>
-<tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
+<tr><th align="left">Expectation</th><th align="left">What it requires</th></tr>
 <tr><td nowrap><samp>root-context-and-graph-only</samp></td><td>A JSON object with an <code>@context</code>, an <code>@graph</code>, and nothing else</td></tr>
-<tr><td nowrap><samp>disallowed-node-keywords-absent</samp></td><td>No keyword outside the <code>@context</code> other than <code>@context</code>, <code>@graph</code>, <code>@id</code> and <code>@type</code></td></tr>
-<tr><td nowrap><samp>disallowed-context-keywords-absent</samp></td><td>No member of an <code>@context</code> is a keyword other than <code>@base</code>; what a term definition holds is not a member of the <code>@context</code></td></tr>
+<tr><td nowrap><samp>disallowed-node-keywords-absent</samp></td><td>Apart from the <code>@context</code> and its contents, the only keywords in the file are <code>@graph</code>, <code>@id</code> and <code>@type</code></td></tr>
+<tr><td nowrap><samp>disallowed-context-keywords-absent</samp></td><td><code>@base</code> is the only keyword at the top level of the <code>@context</code></td></tr>
 <tr><td nowrap><samp>base-web-scheme</samp></td><td>The <code>@base</code>, if any, uses the <code>https</code> or <code>http</code> scheme</td></tr>
-<tr><td nowrap><samp>base-simple-url</samp></td><td>The <code>@base</code>, if any, is a simple URL: a host, no user info, dot segments, query or fragment, only URL characters, and a final <code>/</code></td></tr>
+<tr><td nowrap><samp>base-simple-url</samp></td><td>The <code>@base</code>, if any, is a simple URL. It names a host, has a path of portable names, uses only URL characters, and ends in <code>/</code>. It has no user info, dot segments, query or fragment</td></tr>
 <tr><td nowrap><samp>prefix-namespaces-terminated</samp></td><td>Every prefix maps to an absolute IRI ending in <code>#</code> or <code>/</code></td></tr>
-<tr><td nowrap><samp>context-local</samp></td><td>The <code>@context</code> is inline: no string names a remote context</td></tr>
-<tr><td nowrap><samp>context-aliases-absent</samp></td><td>No term definition aliases a property; a term definition holds only a <code>@type</code> naming a datatype</td></tr>
-<tr><td nowrap><samp>types-prefixed-or-absolute</samp></td><td>Every <code>@type</code> value is a prefixed or absolute IRI, never a bare name</td></tr>
+<tr><td nowrap><samp>context-local</samp></td><td>The entire <code>@context</code> is included in the file, never by reference to a web address</td></tr>
+<tr><td nowrap><samp>context-aliases-absent</samp></td><td>The <code>@context</code> never defines aliases for property names</td></tr>
+<tr><td nowrap><samp>context-assigns-only-datatypes-to-properties</samp></td><td>The only thing the <code>@context</code> assigns to a property is the datatype of its values</td></tr>
+<tr><td nowrap><samp>context-datatypes-named-by-iri</samp></td><td>Every datatype the <code>@context</code> gives a property is named by a prefixed or absolute IRI</td></tr>
+<tr><td nowrap><samp>types-prefixed-or-absolute</samp></td><td>Every <code>@type</code> value is a prefixed or absolute IRI</td></tr>
 </tbody>
 <tbody>
 <tr><th colspan="2" align="left"><br>Tier&nbsp;4&nbsp;—&nbsp;USES&#8209;TROV&#8209;CORRECTLY</th></tr>
-<tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
+<tr><th align="left">Expectation</th><th align="left">What it requires</th></tr>
 <tr><td nowrap><samp>core-prefixes-pinned</samp></td><td><code>trov</code> is declared and is the only prefix for a TROV namespace; <code>rdf</code>, <code>rdfs</code> and <code>schema</code> prefixes, if declared, are the standard ones</td></tr>
 <tr><td nowrap><samp>trov-terms-known</samp></td><td>Every <code>trov:</code> name is one TROV defines</td></tr>
 <tr><td nowrap><samp>trov-version-known</samp></td><td>The TRO declares, in <code>trov:vocabularyVersion</code>, a released version of TROV</td></tr>
@@ -127,14 +107,14 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 </tbody>
 <tbody>
 <tr><th colspan="2" align="left"><br>Tier&nbsp;5&nbsp;—&nbsp;DEFINES&#8209;TRS</th></tr>
-<tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
+<tr><th align="left">Expectation</th><th align="left">What it requires</th></tr>
 <tr><td nowrap><samp>trs-defined</samp></td><td>A TRS is defined, with an <code>@id</code>, at the top of the <code>@graph</code> or as the object of <code>trov:wasAssembledBy</code>, and nowhere else</td></tr>
 <tr><td nowrap><samp>trs-id-absolute</samp></td><td>The TRS is identified by an absolute IRI, or a compact IRI outside the <code>trov</code> namespace</td></tr>
 <tr><td nowrap><samp>capability-ids-absolute</samp></td><td>Every capability is identified by an absolute IRI, or a compact IRI outside the <code>trov</code> namespace</td></tr>
 </tbody>
 <tbody>
 <tr><th colspan="2" align="left"><br>Tier&nbsp;6&nbsp;—&nbsp;STANDALONE&#8209;TRO</th></tr>
-<tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
+<tr><th align="left">Expectation</th><th align="left">What it requires</th></tr>
 <tr><td nowrap><samp>tro-top-level-in-graph</samp></td><td>The TRO is a top-level member of the <code>@graph</code></td></tr>
 <tr><td nowrap><samp>trov-objects-identified</samp></td><td>Every object typed with a TROV class carries an <code>@id</code></td></tr>
 <tr><td nowrap><samp>tro-assembled-by-trs</samp></td><td>The TRO names its assembling system, typed as a TRS</td></tr>
@@ -148,7 +128,7 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 </tbody>
 <tbody>
 <tr><th colspan="2" align="left"><br>Tier&nbsp;7&nbsp;—&nbsp;LINKABLE&#8209;TRO</th></tr>
-<tr><th align="left">Expectation</th><th align="left">What it checks</th></tr>
+<tr><th align="left">Expectation</th><th align="left">What it requires</th></tr>
 <tr><td nowrap><samp>base-declared</samp></td><td>The <code>@context</code> includes an <code>@base</code></td></tr>
 <tr><td nowrap><samp>base-has-path</samp></td><td>The <code>@base</code> names something below the host, not the host alone</td></tr>
 <tr><td nowrap><samp>base-host-lowercase</samp></td><td>The <code>@base</code> host is lowercase</td></tr>
@@ -159,6 +139,34 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 </table>
 
 <!-- end: tier-expectations -->
+
+## How expectations are checked
+
+Each expectation is defined by a file in [`exports/`](exports). Most are JSON Schemas, in
+files ending `.schema.json`. Two widely used JSON Schema validators,
+[python-jsonschema](https://github.com/python-jsonschema/jsonschema) and
+[Ajv](https://ajv.js.org/), check each one through the wrappers in
+[`json-schema-dev`](https://github.com/CIRSS/json-schema-dev), and the expectation is not
+met if either validator rejects the candidate. A schema can name options to pass to both
+validators, as `duplicate-member-names-absent` passes `--reject-duplicate-members`. The
+rest, in files ending `.parse.json`, are checked by `check-tro` itself as it reads the
+candidate, such as whether the candidate is UTF-8 and parses as JSON.
+
+### Supported parsers and processors
+
+`SAFE-JSON` and `SAFE-JSON-LD` promise that a candidate reads the same way in
+every *supported* implementation. The supported implementations are these:
+
+| | Implementation | Version |
+| --- | --- | --- |
+| JSON parser | Python `json` (via `jsonschema-validate`) | 3.10 |
+| JSON parser | Node.js `JSON.parse` (via `ajv-validate` and `check-tro`) | 22 |
+| JSON-LD processor | [jsonld.js](https://github.com/digitalbazaar/jsonld.js) | 8.3.3 |
+| JSON-LD processor | [PyLD](https://github.com/digitalbazaar/pyld) | 3.3.0 |
+| JSON-LD processor | [rdflib](https://github.com/RDFLib/rdflib) | 7.6.0 |
+
+[`docs/safe-json-ld-constructs.md`](docs/safe-json-ld-constructs.md) lists, for each construct `SAFE-JSON-LD`
+excludes, the W3C tests the supported JSON-LD processors do not all pass.
 
 ## Reports
 
@@ -236,13 +244,14 @@ manifest, the `--target` option, or the default.
 | [`pseudocode/`](pseudocode) | What the checker does, in outline. |
 | [`GLOSSARY.md`](GLOSSARY.md) | The key entities the tools in this repository concern. |
 | [`models/`](models/README.md) | How the key entities fit together, each subject modeled in more than one paradigm. |
-| [`CAPABILITIES.md`](CAPABILITIES.md) | The JSON Schema capabilities the expectations use, each with its demo in [`json-schema-demos`](https://github.com/CIRSS/json-schema-demos). |
+| [`docs/json-schema-capabilities.md`](docs/json-schema-capabilities.md) | The JSON Schema capabilities the expectations use, each with its demo in [`json-schema-demos`](https://github.com/CIRSS/json-schema-demos). |
+| [`docs/safe-json-ld-constructs.md`](docs/safe-json-ld-constructs.md) | For each construct `SAFE-JSON-LD` excludes, the W3C tests the supported JSON-LD processors do not all pass. |
 | [`REVIEWS.md`](REVIEWS.md) | Who has reviewed each file, at what level of detail. |
 | [`demo/`](demo) | Demos of checking particular expectations. |
 
 ## Building the Docker image
 
-In the top-level directory of a clone of this repository:
+To build the image, run these commands in the top-level directory of a clone of this repository:
 
 ```
 make build-parent      # once, on a fresh clone
@@ -262,7 +271,7 @@ met before it is checked. List it in
 [`exports/tiers.json`](exports/tiers.json), after every expectation it requires:
 expectations are checked and reported in the order the tiers list them. Then run `make update-readme`, which
 writes its row into the table under *What is checked* above from the `summary`
-you gave it. Add it to [`CAPABILITIES.md`](CAPABILITIES.md), and include a demo
+you gave it. Add it to [`docs/json-schema-capabilities.md`](docs/json-schema-capabilities.md), and include a demo
 in [`demo/`](demo).
 
 The `summary` is the row. Write it as plain prose with no line breaks of your

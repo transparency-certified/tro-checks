@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 13: id-coercion-absent (TIER 2 - SAFE-JSON-LD)"
+title "tro-checks  ·  demo 13: context-id-coercion-absent (TIER 2 - SAFE-JSON-LD)"
 
 show "expectation met: a term definition types its values with an absolute IRI" \
     report_on instance-typed-values.jsonld

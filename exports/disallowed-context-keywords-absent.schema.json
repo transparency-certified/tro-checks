@@ -2,8 +2,8 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://w3id.org/trace/tro/0.1/disallowed-context-keywords-absent.schema.json",
     "title": "Disallowed context keywords absent",
-    "description": "Within every @context, the only member name beginning with @ is @base.",
-    "summary": "No member of an `@context` is a keyword other than `@base`; what a term definition holds is not a member of the `@context`",
+    "description": "At the top level of every @context, the only member name beginning with @ is @base.",
+    "summary": "`@base` is the only keyword at the top level of the `@context`",
     "$defs": {
         "contextKeyword": {
             "if": { "type": "string", "pattern": "^@" },

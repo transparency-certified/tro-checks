@@ -2,8 +2,8 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://w3id.org/trace/tro/0.1/disallowed-node-keywords-absent.schema.json",
     "title": "Disallowed node keywords absent",
-    "description": "Outside the @context, every member name beginning with @ is @context, @graph, @id or @type.",
-    "summary": "No keyword outside the `@context` other than `@context`, `@graph`, `@id` and `@type`",
+    "description": "Apart from the @context and its contents, every member name beginning with @ is @graph, @id or @type.",
+    "summary": "Apart from the `@context` and its contents, the only keywords in the file are `@graph`, `@id` and `@type`",
     "$defs": {
         "nodeKeyword": {
             "if": { "type": "string", "pattern": "^@" },
