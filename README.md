@@ -25,9 +25,9 @@ above the target are reported as *not claimed*.
 </thead>
 <tbody>
 <tr><td>1</td><td>SAFE&#8209;JSON</td><td>JSON that every supported parser reads the same way</td></tr>
-<tr><td>2</td><td>SAFE&#8209;JSON&#8209;LD</td><td>JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently</td></tr>
-<tr><td>3</td><td>TRACE&#8209;JSON&#8209;LD</td><td>JSON-LD in the restricted form the TRACE Specification requires for TRO declarations</td></tr>
-<tr><td>4</td><td>USES&#8209;TROV&#8209;CORRECTLY</td><td>JSON-LD whose TROV terms, and the schema.org terms TROV specifies, are used as they are defined</td></tr>
+<tr><td>2</td><td>SAFE&#8209;JSON&#8209;LD</td><td>JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file</td></tr>
+<tr><td>3</td><td>TRACE&#8209;PERMISSIBLE&#8209;JSON&#8209;LD</td><td>JSON-LD that avoids constructs and practices TRACE disallows</td></tr>
+<tr><td>4</td><td>USES&#8209;TROV&#8209;CORRECTLY</td><td>JSON-LD that uses TROV terms only in ways TRACE allows</td></tr>
 <tr><td>5</td><td>DEFINES&#8209;TRS</td><td>JSON-LD that defines a Trusted Research System, identified by an absolute IRI</td></tr>
 <tr><td>6</td><td>STANDALONE&#8209;TRO</td><td>A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it</td></tr>
 <tr><td>7</td><td>LINKABLE&#8209;TRO</td><td>A TRO declaration whose element identifiers cannot collide with those in another TRO</td></tr>
@@ -57,8 +57,9 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <tbody>
 <tr><th colspan="2" align="left"><br>Tier&nbsp;2&nbsp;—&nbsp;SAFE&#8209;JSON&#8209;LD</th></tr>
 <tr><th align="left">Expectation</th><th align="left">What it requires</th></tr>
-<tr><td nowrap><samp>non-null-context-is-object-string-or-array</samp></td><td>A non-null <code>@context</code> is an object, a string, or an array of objects and strings</td></tr>
 <tr><td nowrap><samp>context-at-root-only</samp></td><td>The file's only <code>@context</code> is at its top</td></tr>
+<tr><td nowrap><samp>remote-contexts-absent</samp></td><td>The <code>@context</code> never refers by web address to a context kept elsewhere</td></tr>
+<tr><td nowrap><samp>context-object-array-or-null</samp></td><td>The <code>@context</code>, if present, is an object, an array of objects, or <code>null</code></td></tr>
 <tr><td nowrap><samp>context-containers-absent</samp></td><td>The <code>@context</code> never uses <code>@container</code> to tell a reader to interpret a property's array values as something other than individual values</td></tr>
 <tr><td nowrap><samp>context-vocab-absent</samp></td><td>The <code>@context</code> never uses <code>@vocab</code> to tell a reader to interpret a name written without a prefix as a term of some vocabulary</td></tr>
 <tr><td nowrap><samp>context-protected-absent</samp></td><td>The <code>@context</code> never uses <code>@protected</code> to lock its entries against redefinition by a later context</td></tr>
@@ -71,15 +72,15 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <tr><td nowrap><samp>id-segments-portable</samp></td><td>Every segment of a relative <code>@id</code> is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit</td></tr>
 </tbody>
 <tbody>
-<tr><th colspan="2" align="left"><br>Tier&nbsp;3&nbsp;—&nbsp;TRACE&#8209;JSON&#8209;LD</th></tr>
+<tr><th colspan="2" align="left"><br>Tier&nbsp;3&nbsp;—&nbsp;TRACE&#8209;PERMISSIBLE&#8209;JSON&#8209;LD</th></tr>
 <tr><th align="left">Expectation</th><th align="left">What it requires</th></tr>
-<tr><td nowrap><samp>root-context-and-graph-only</samp></td><td>A JSON object with an <code>@context</code>, an <code>@graph</code>, and nothing else</td></tr>
+<tr><td nowrap><samp>root-context-and-graph-only</samp></td><td>The file is a JSON object whose top level holds no member other than <code>@context</code> and <code>@graph</code></td></tr>
+<tr><td nowrap><samp>composite-contexts-absent</samp></td><td>The <code>@context</code> is never composed from several parts</td></tr>
 <tr><td nowrap><samp>disallowed-node-keywords-absent</samp></td><td>Apart from the <code>@context</code> and its contents, the only keywords in the file are <code>@graph</code>, <code>@id</code> and <code>@type</code></td></tr>
 <tr><td nowrap><samp>disallowed-context-keywords-absent</samp></td><td><code>@base</code> is the only keyword at the top level of the <code>@context</code></td></tr>
 <tr><td nowrap><samp>base-web-scheme</samp></td><td>The <code>@base</code>, if any, uses the <code>https</code> or <code>http</code> scheme</td></tr>
 <tr><td nowrap><samp>base-simple-url</samp></td><td>The <code>@base</code>, if any, is a simple URL. It names a host, has a path of portable names, uses only URL characters, and ends in <code>/</code>. It has no user info, dot segments, query or fragment</td></tr>
 <tr><td nowrap><samp>prefix-namespaces-terminated</samp></td><td>Every prefix maps to an absolute IRI ending in <code>#</code> or <code>/</code></td></tr>
-<tr><td nowrap><samp>context-local</samp></td><td>The entire <code>@context</code> is included in the file, never by reference to a web address</td></tr>
 <tr><td nowrap><samp>context-aliases-absent</samp></td><td>The <code>@context</code> never defines aliases for property names</td></tr>
 <tr><td nowrap><samp>context-assigns-only-datatypes-to-properties</samp></td><td>The only thing the <code>@context</code> assigns to a property is the datatype of its values</td></tr>
 <tr><td nowrap><samp>context-datatypes-named-by-iri</samp></td><td>Every datatype the <code>@context</code> gives a property is named by a prefixed or absolute IRI</td></tr>
@@ -88,13 +89,14 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <tbody>
 <tr><th colspan="2" align="left"><br>Tier&nbsp;4&nbsp;—&nbsp;USES&#8209;TROV&#8209;CORRECTLY</th></tr>
 <tr><th align="left">Expectation</th><th align="left">What it requires</th></tr>
+<tr><td nowrap><samp>context-and-nonempty-graph-present</samp></td><td>The file has a non-null <code>@context</code> and an <code>@graph</code> holding at least one node</td></tr>
 <tr><td nowrap><samp>core-prefixes-pinned</samp></td><td><code>trov</code> is declared and is the only prefix for a TROV namespace; <code>rdf</code>, <code>rdfs</code> and <code>schema</code> prefixes, if declared, are the standard ones</td></tr>
 <tr><td nowrap><samp>trov-terms-known</samp></td><td>Every <code>trov:</code> name is one TROV defines</td></tr>
 <tr><td nowrap><samp>trov-version-known</samp></td><td>The TRO declares, in <code>trov:vocabularyVersion</code>, a released version of TROV</td></tr>
 <tr><td nowrap><samp>hash-algorithms-permitted</samp></td><td>Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families</td></tr>
 <tr><td nowrap><samp>hash-values-correct-form</samp></td><td>Every hash value is lowercase hexadecimal of the length its algorithm produces</td></tr>
 <tr><td nowrap><samp>mime-types-two-part</samp></td><td>Every artifact's <code>trov:mimeType</code> is a string of the form <code>type/subtype</code></td></tr>
-<tr><td nowrap><samp>times-iso-8601</samp></td><td>Every <code>trov:startedAtTime</code> and <code>trov:endedAtTime</code> is an ISO 8601 date-time; every <code>schema:dateCreated</code> an ISO 8601 date or date-time</td></tr>
+<tr><td nowrap><samp>times-iso-8601</samp></td><td>Every <code>trov:startedAtTime</code> and <code>trov:endedAtTime</code> is an ISO 8601 date-time; the TRO's <code>schema:dateCreated</code>, if present, an ISO 8601 date or date-time</td></tr>
 <tr><td nowrap><samp>times-zoned</samp></td><td>Every <code>trov:startedAtTime</code> and <code>trov:endedAtTime</code> carries its time zone</td></tr>
 <tr><td nowrap><samp>tro-name-description-text</samp></td><td>The TRO's <code>schema:name</code> and <code>schema:description</code>, if present, are Text: a string or an array of strings</td></tr>
 <tr><td nowrap><samp>creators-person-or-organization</samp></td><td>The TRO's <code>schema:creator</code>, if present, is a node typed <code>schema:Person</code> or <code>schema:Organization</code>, never a string</td></tr>
@@ -180,7 +182,7 @@ A tier up to the target is met when every expectation in it and in every tier
 below it is met, and not met otherwise; a tier above the target is not claimed.
 
 An expectation in a claimed tier is met, not met, or not assessed. It is not
-assessed when `SAFE-JSON`, `SAFE-JSON-LD` or `TRACE-JSON-LD` below it is not
+assessed when `SAFE-JSON`, `SAFE-JSON-LD` or `TRACE-PERMISSIBLE-JSON-LD` below it is not
 met, or when an expectation its `requires` names is not met. Above those three
 tiers, every claimed tier's expectations are checked whatever the tiers below
 them came to.

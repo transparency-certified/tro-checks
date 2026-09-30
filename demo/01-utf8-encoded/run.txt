@@ -27,9 +27,9 @@ wrote tmp/instance-utf8.md; 1 SAFE-JSON met
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
 | 1 | SAFE-JSON | JSON that every supported parser reads the same way | ✅ met |
-| *2* | *SAFE-JSON-LD* | *JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently* | *not claimed* |
-| *3* | *TRACE-JSON-LD* | *JSON-LD in the restricted form the TRACE Specification requires for TRO declarations* | *not claimed* |
-| *4* | *USES-TROV-CORRECTLY* | *JSON-LD whose TROV terms, and the schema.org terms TROV specifies, are used as they are defined* | *not claimed* |
+| *2* | *SAFE-JSON-LD* | *JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file* | *not claimed* |
+| *3* | *TRACE-PERMISSIBLE-JSON-LD* | *JSON-LD that avoids constructs and practices TRACE disallows* | *not claimed* |
+| *4* | *USES-TROV-CORRECTLY* | *JSON-LD that uses TROV terms only in ways TRACE allows* | *not claimed* |
 | *5* | *DEFINES-TRS* | *JSON-LD that defines a Trusted Research System, identified by an absolute IRI* | *not claimed* |
 | *6* | *STANDALONE-TRO* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
 | *7* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with those in another TRO* | *not claimed* |
@@ -45,8 +45,9 @@ wrote tmp/instance-utf8.md; 1 SAFE-JSON met
 | `numbers-within-range` | Every number fits a double; every integer is exact | ✅ met |
 | *Tier 2 — SAFE-JSON-LD  not claimed* |  |  |
 | Expectation | Summary | Status |
-| *`non-null-context-is-object-string-or-array`* | *A non-null `@context` is an object, a string, or an array of objects and strings* | *not claimed* |
 | *`context-at-root-only`* | *The file's only `@context` is at its top* | *not claimed* |
+| *`remote-contexts-absent`* | *The `@context` never refers by web address to a context kept elsewhere* | *not claimed* |
+| *`context-object-array-or-null`* | *The `@context`, if present, is an object, an array of objects, or `null`* | *not claimed* |
 | *`context-containers-absent`* | *The `@context` never uses `@container` to tell a reader to interpret a property's array values as something other than individual values* | *not claimed* |
 | *`context-vocab-absent`* | *The `@context` never uses `@vocab` to tell a reader to interpret a name written without a prefix as a term of some vocabulary* | *not claimed* |
 | *`context-protected-absent`* | *The `@context` never uses `@protected` to lock its entries against redefinition by a later context* | *not claimed* |
@@ -57,28 +58,29 @@ wrote tmp/instance-utf8.md; 1 SAFE-JSON met
 | *`graph-array-of-objects`* | *The root `@graph`, if any, holds objects, not bare values* | *not claimed* |
 | *`ids-and-types-strings`* | *Every `@id` is a string; every `@type` a string or an array of strings* | *not claimed* |
 | *`id-segments-portable`* | *Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit* | *not claimed* |
-| *Tier 3 — TRACE-JSON-LD  not claimed* |  |  |
+| *Tier 3 — TRACE-PERMISSIBLE-JSON-LD  not claimed* |  |  |
 | Expectation | Summary | Status |
-| *`root-context-and-graph-only`* | *A JSON object with an `@context`, an `@graph`, and nothing else* | *not claimed* |
+| *`root-context-and-graph-only`* | *The file is a JSON object whose top level holds no member other than `@context` and `@graph`* | *not claimed* |
+| *`composite-contexts-absent`* | *The `@context` is never composed from several parts* | *not claimed* |
 | *`disallowed-node-keywords-absent`* | *Apart from the `@context` and its contents, the only keywords in the file are `@graph`, `@id` and `@type`* | *not claimed* |
 | *`disallowed-context-keywords-absent`* | *`@base` is the only keyword at the top level of the `@context`* | *not claimed* |
 | *`base-web-scheme`* | *The `@base`, if any, uses the `https` or `http` scheme* | *not claimed* |
 | *`base-simple-url`* | *The `@base`, if any, is a simple URL. It names a host, has a path of portable names, uses only URL characters, and ends in `/`. It has no user info, dot segments, query or fragment* | *not claimed* |
 | *`prefix-namespaces-terminated`* | *Every prefix maps to an absolute IRI ending in `#` or `/`* | *not claimed* |
-| *`context-local`* | *The entire `@context` is included in the file, never by reference to a web address* | *not claimed* |
 | *`context-aliases-absent`* | *The `@context` never defines aliases for property names* | *not claimed* |
 | *`context-assigns-only-datatypes-to-properties`* | *The only thing the `@context` assigns to a property is the datatype of its values* | *not claimed* |
 | *`context-datatypes-named-by-iri`* | *Every datatype the `@context` gives a property is named by a prefixed or absolute IRI* | *not claimed* |
 | *`types-prefixed-or-absolute`* | *Every `@type` value is a prefixed or absolute IRI* | *not claimed* |
 | *Tier 4 — USES-TROV-CORRECTLY  not claimed* |  |  |
 | Expectation | Summary | Status |
+| *`context-and-nonempty-graph-present`* | *The file has a non-null `@context` and an `@graph` holding at least one node* | *not claimed* |
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
 | *`trov-terms-known`* | *Every `trov:` name is one TROV defines* | *not claimed* |
 | *`trov-version-known`* | *The TRO declares, in `trov:vocabularyVersion`, a released version of TROV* | *not claimed* |
 | *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
 | *`hash-values-correct-form`* | *Every hash value is lowercase hexadecimal of the length its algorithm produces* | *not claimed* |
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
-| *`times-iso-8601`* | *Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time* | *not claimed* |
+| *`times-iso-8601`* | *Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time* | *not claimed* |
 | *`times-zoned`* | *Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone* | *not claimed* |
 | *`tro-name-description-text`* | *The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings* | *not claimed* |
 | *`creators-person-or-organization`* | *The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string* | *not claimed* |
@@ -137,9 +139,9 @@ wrote tmp/instance-latin1.md; 1 SAFE-JSON unmet
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
 | 1 | SAFE-JSON | JSON that every supported parser reads the same way | ❌ not met |
-| *2* | *SAFE-JSON-LD* | *JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently* | *not claimed* |
-| *3* | *TRACE-JSON-LD* | *JSON-LD in the restricted form the TRACE Specification requires for TRO declarations* | *not claimed* |
-| *4* | *USES-TROV-CORRECTLY* | *JSON-LD whose TROV terms, and the schema.org terms TROV specifies, are used as they are defined* | *not claimed* |
+| *2* | *SAFE-JSON-LD* | *JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file* | *not claimed* |
+| *3* | *TRACE-PERMISSIBLE-JSON-LD* | *JSON-LD that avoids constructs and practices TRACE disallows* | *not claimed* |
+| *4* | *USES-TROV-CORRECTLY* | *JSON-LD that uses TROV terms only in ways TRACE allows* | *not claimed* |
 | *5* | *DEFINES-TRS* | *JSON-LD that defines a Trusted Research System, identified by an absolute IRI* | *not claimed* |
 | *6* | *STANDALONE-TRO* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
 | *7* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with those in another TRO* | *not claimed* |
@@ -155,8 +157,9 @@ wrote tmp/instance-latin1.md; 1 SAFE-JSON unmet
 | `numbers-within-range` | Every number fits a double; every integer is exact | not assessed |
 | *Tier 2 — SAFE-JSON-LD  not claimed* |  |  |
 | Expectation | Summary | Status |
-| *`non-null-context-is-object-string-or-array`* | *A non-null `@context` is an object, a string, or an array of objects and strings* | *not claimed* |
 | *`context-at-root-only`* | *The file's only `@context` is at its top* | *not claimed* |
+| *`remote-contexts-absent`* | *The `@context` never refers by web address to a context kept elsewhere* | *not claimed* |
+| *`context-object-array-or-null`* | *The `@context`, if present, is an object, an array of objects, or `null`* | *not claimed* |
 | *`context-containers-absent`* | *The `@context` never uses `@container` to tell a reader to interpret a property's array values as something other than individual values* | *not claimed* |
 | *`context-vocab-absent`* | *The `@context` never uses `@vocab` to tell a reader to interpret a name written without a prefix as a term of some vocabulary* | *not claimed* |
 | *`context-protected-absent`* | *The `@context` never uses `@protected` to lock its entries against redefinition by a later context* | *not claimed* |
@@ -167,28 +170,29 @@ wrote tmp/instance-latin1.md; 1 SAFE-JSON unmet
 | *`graph-array-of-objects`* | *The root `@graph`, if any, holds objects, not bare values* | *not claimed* |
 | *`ids-and-types-strings`* | *Every `@id` is a string; every `@type` a string or an array of strings* | *not claimed* |
 | *`id-segments-portable`* | *Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit* | *not claimed* |
-| *Tier 3 — TRACE-JSON-LD  not claimed* |  |  |
+| *Tier 3 — TRACE-PERMISSIBLE-JSON-LD  not claimed* |  |  |
 | Expectation | Summary | Status |
-| *`root-context-and-graph-only`* | *A JSON object with an `@context`, an `@graph`, and nothing else* | *not claimed* |
+| *`root-context-and-graph-only`* | *The file is a JSON object whose top level holds no member other than `@context` and `@graph`* | *not claimed* |
+| *`composite-contexts-absent`* | *The `@context` is never composed from several parts* | *not claimed* |
 | *`disallowed-node-keywords-absent`* | *Apart from the `@context` and its contents, the only keywords in the file are `@graph`, `@id` and `@type`* | *not claimed* |
 | *`disallowed-context-keywords-absent`* | *`@base` is the only keyword at the top level of the `@context`* | *not claimed* |
 | *`base-web-scheme`* | *The `@base`, if any, uses the `https` or `http` scheme* | *not claimed* |
 | *`base-simple-url`* | *The `@base`, if any, is a simple URL. It names a host, has a path of portable names, uses only URL characters, and ends in `/`. It has no user info, dot segments, query or fragment* | *not claimed* |
 | *`prefix-namespaces-terminated`* | *Every prefix maps to an absolute IRI ending in `#` or `/`* | *not claimed* |
-| *`context-local`* | *The entire `@context` is included in the file, never by reference to a web address* | *not claimed* |
 | *`context-aliases-absent`* | *The `@context` never defines aliases for property names* | *not claimed* |
 | *`context-assigns-only-datatypes-to-properties`* | *The only thing the `@context` assigns to a property is the datatype of its values* | *not claimed* |
 | *`context-datatypes-named-by-iri`* | *Every datatype the `@context` gives a property is named by a prefixed or absolute IRI* | *not claimed* |
 | *`types-prefixed-or-absolute`* | *Every `@type` value is a prefixed or absolute IRI* | *not claimed* |
 | *Tier 4 — USES-TROV-CORRECTLY  not claimed* |  |  |
 | Expectation | Summary | Status |
+| *`context-and-nonempty-graph-present`* | *The file has a non-null `@context` and an `@graph` holding at least one node* | *not claimed* |
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
 | *`trov-terms-known`* | *Every `trov:` name is one TROV defines* | *not claimed* |
 | *`trov-version-known`* | *The TRO declares, in `trov:vocabularyVersion`, a released version of TROV* | *not claimed* |
 | *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
 | *`hash-values-correct-form`* | *Every hash value is lowercase hexadecimal of the length its algorithm produces* | *not claimed* |
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
-| *`times-iso-8601`* | *Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; every `schema:dateCreated` an ISO 8601 date or date-time* | *not claimed* |
+| *`times-iso-8601`* | *Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time* | *not claimed* |
 | *`times-zoned`* | *Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone* | *not claimed* |
 | *`tro-name-description-text`* | *The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings* | *not claimed* |
 | *`creators-person-or-organization`* | *The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string* | *not claimed* |

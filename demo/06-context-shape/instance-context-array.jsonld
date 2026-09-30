@@ -1,7 +1,0 @@
-{
-    "@context": [
-        "https://w3id.org/trace/tro/0.1/context.jsonld",
-        { "ex": "https://example.org/" }
-    ],
-    "@graph": []
-}

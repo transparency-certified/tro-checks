@@ -15,7 +15,7 @@ report_on() {
 report_at_trace_json_ld_on() {
     cat "$1"
     echo
-    check-tro --target TRACE-JSON-LD --compact --candidate "$1" --report "tmp/${1%.jsonld}-at-trace-json-ld.md"
+    check-tro --target TRACE-PERMISSIBLE-JSON-LD --compact --candidate "$1" --report "tmp/${1%.jsonld}-at-trace-json-ld.md"
     echo
     cat "tmp/${1%.jsonld}-at-trace-json-ld.md"
 }
@@ -34,7 +34,7 @@ show "expectation unmet: the candidate is a bare word" \
 show "expectation unmet: an array ends with a trailing comma" \
     report_on instance-trailing-comma.jsonld
 
-show "expectation unmet, targeting TRACE-JSON-LD: the tiers above SAFE-JSON are not assessed" \
+show "expectation unmet, targeting TRACE-PERMISSIBLE-JSON-LD: the tiers above SAFE-JSON are not assessed" \
     report_at_trace_json_ld_on instance-bare-word.jsonld
 
 exit 0

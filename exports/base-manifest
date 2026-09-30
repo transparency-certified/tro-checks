@@ -10,7 +10,7 @@ json-parses.parse.json
 duplicate-member-names-absent.schema.json
 unicode-escapes-spell-whole-characters.parse.json
 numbers-within-range.parse.json
-non-null-context-is-object-string-or-array.schema.json
+context-object-array-or-null.schema.json
 graph-array-of-objects.schema.json
 disallowed-node-keywords-absent.schema.json
 disallowed-context-keywords-absent.schema.json
@@ -27,14 +27,16 @@ base-web-scheme.schema.json
 base-simple-url.schema.json
 id-segments-portable.schema.json
 prefix-namespaces-terminated.schema.json
-context-local.schema.json
+remote-contexts-absent.schema.json
 context-aliases-absent.schema.json
 context-assigns-only-datatypes-to-properties.schema.json
 context-datatypes-named-by-iri.schema.json
 types-prefixed-or-absolute.schema.json
+context-and-nonempty-graph-present.schema.json
 core-prefixes-pinned.schema.json
 trov-terms-known.schema.json
 root-context-and-graph-only.schema.json
+composite-contexts-absent.schema.json
 tro-top-level-in-graph.schema.json
 base-declared.schema.json
 base-has-path.schema.json

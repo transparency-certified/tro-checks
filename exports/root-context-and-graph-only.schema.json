@@ -2,21 +2,16 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://w3id.org/trace/tro/0.1/root-context-and-graph-only.schema.json",
     "title": "Root context and graph only",
-    "description": "A TRO declaration is a JSON object whose only members are an @context and an @graph carrying its nodes.",
-    "summary": "A JSON object with an `@context`, an `@graph`, and nothing else",
+    "description": "The file is a JSON object whose top level holds no member other than @context and @graph. Neither is required here: a file with no context, or no graph, passes, and USES-TROV-CORRECTLY is where both are required. A top level that is an array of nodes, or a node written at the top level with its own @id and properties, is refused.",
+    "summary": "The file is a JSON object whose top level holds no member other than `@context` and `@graph`",
     "type": "object",
-    "required": ["@context", "@graph"],
     "properties": {
         "@context": true,
         "@graph": true
     },
     "additionalProperties": false,
     "errorMessage": {
-        "type": "a TRO declaration is a JSON object",
-        "required": {
-            "@context": "a TRO declaration declares an @context",
-            "@graph": "a TRO declaration carries its nodes in an @graph"
-        },
-        "additionalProperties": "a TRO declaration's root has no members other than @context and @graph"
+        "type": "the file is a JSON object",
+        "additionalProperties": "the file's top level holds no member other than @context and @graph"
     }
 }

@@ -7,8 +7,9 @@ Every expectation listed uses `dialect-declaration` (`22`), `id-and-anchor` (`13
 | Tier | Expectation | Capabilities used |
 | --- | --- | --- |
 | 1 | `duplicate-member-names-absent` | no schema capabilities; the validator-contract capability `duplicate-member-detection` (`21`) |
-| 2 | `non-null-context-is-object-string-or-array` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`) |
 | 2 | `context-at-root-only` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `required` (`04`), `not` (`08`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `boolean-schema` (`01`) |
+| 2 | `remote-contexts-absent` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `not` (`08`), `if-then-else` (`11`), `defs-and-ref` (`12`) |
+| 2 | `context-object-array-or-null` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`) |
 | 2 | `context-containers-absent` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `required` (`04`), `not` (`08`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 2 | `context-vocab-absent` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `required` (`04`), `not` (`08`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 2 | `context-protected-absent` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `required` (`04`), `not` (`08`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
@@ -19,24 +20,25 @@ Every expectation listed uses `dialect-declaration` (`22`), `id-and-anchor` (`13
 | 2 | `graph-array-of-objects` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`) |
 | 2 | `ids-and-types-strings` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `boolean-schema` (`01`), `additional-properties` (`09`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 2 | `id-segments-portable` | `properties` (`02`), `items` (`03`), `boolean-schema` (`01`), `additional-properties` (`09`), `pattern` (`07`), `not` (`08`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
-| 3 | `root-context-and-graph-only` | `properties` (`02`), `required` (`04`), `boolean-schema` (`01`), `additional-properties` (`09`) |
+| 3 | `root-context-and-graph-only` | `properties` (`02`), `boolean-schema` (`01`), `additional-properties` (`09`) |
+| 3 | `composite-contexts-absent` | `type-applicability` (`05`), `properties` (`02`), `if-then-else` (`11`), `max-items` (*no demo* \*) |
 | 3 | `disallowed-node-keywords-absent` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `boolean-schema` (`01`), `additional-properties` (`09`), `pattern` (`07`), `enum` (`05`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `property-names` (*no demo* \*) |
 | 3 | `disallowed-context-keywords-absent` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `pattern` (`07`), `const` (`10`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `property-names` (*no demo* \*) |
 | 3 | `base-web-scheme` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `pattern` (`07`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 3 | `base-simple-url` | `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `pattern` (`07`), `not` (`08`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 3 | `prefix-namespaces-terminated` | `properties` (`02`), `items` (`03`), `boolean-schema` (`01`), `additional-properties` (`09`), `pattern` (`07`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `pattern-properties` (*no demo* \*) |
-| 3 | `context-local` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `not` (`08`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 3 | `context-aliases-absent` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `required` (`04`), `not` (`08`), `boolean-schema` (`01`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 3 | `context-assigns-only-datatypes-to-properties` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `boolean-schema` (`01`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 3 | `context-datatypes-named-by-iri` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `pattern` (`07`), `boolean-schema` (`01`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 3 | `types-prefixed-or-absolute` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `pattern` (`07`), `boolean-schema` (`01`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
+| 4 | `context-and-nonempty-graph-present` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `not` (`08`), `anyOf` (`08`), `const` (`10`), `if-then-else` (`11`), `min-items` (`03`) |
 | 4 | `core-prefixes-pinned` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `additional-properties` (`09`), `const` (`10`), `enum` (`05`), `not` (`08`), `contains` (`18`), `if-then-else` (`11`), `defs-and-ref` (`12`) |
 | 4 | `trov-terms-known` | `properties` (`02`), `items` (`03`), `boolean-schema` (`01`), `additional-properties` (`09`), `pattern` (`07`), `enum` (`05`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `property-names` (*no demo* \*) |
 | 4 | `trov-version-known` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `const` (`10`), `contains` (`18`), `anyOf` (`08`), `enum` (`05`), `if-then-else` (`11`) |
 | 4 | `hash-algorithms-permitted` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `enum` (`05`), `if-then-else` (`11`), `defs-and-ref` (`12`) |
 | 4 | `hash-values-correct-form` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `const` (`10`), `pattern` (`07`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`) |
 | 4 | `mime-types-two-part` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `pattern` (`07`), `if-then-else` (`11`) |
-| 4 | `times-iso-8601` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `pattern` (`07`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
+| 4 | `times-iso-8601` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `pattern` (`07`), `required` (`04`), `anyOf` (`08`), `const` (`10`), `contains` (`18`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 4 | `times-zoned` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `pattern` (`07`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 4 | `tro-name-description-text` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `const` (`10`), `contains` (`18`), `anyOf` (`08`), `if-then-else` (`11`) |
 | 4 | `creators-person-or-organization` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `const` (`10`), `contains` (`18`), `anyOf` (`08`), `enum` (`05`), `if-then-else` (`11`), `defs-and-ref` (`12`) |
@@ -66,4 +68,4 @@ Every expectation listed uses `dialect-declaration` (`22`), `id-and-anchor` (`13
 | 7 | `node-ids-present` | `type-applicability` (`05`), `properties` (`02`), `required` (`04`), `items` (`03`), `additional-properties` (`09`), `boolean-schema` (`01`), `not` (`08`), `anyOf` (`08`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 7 | `blank-node-ids-absent` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `pattern` (`07`), `not` (`08`), `boolean-schema` (`01`) |
 
-\* The gallery has no demo for `property-names`, `pattern-properties` or `maxLength` (`value-bounds` demonstrates the floors only).
+\* The gallery has no demo for `property-names`, `pattern-properties`, `maxLength` or `maxItems` (`value-bounds` and `min-items` demonstrate the floors only).

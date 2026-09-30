@@ -13,11 +13,12 @@
     },
     {
         "id": "SAFE-JSON-LD",
-        "description": "JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently",
+        "description": "JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file",
         "blocksHigherTiers": true,
         "expectations": [
-            "non-null-context-is-object-string-or-array",
             "context-at-root-only",
+            "remote-contexts-absent",
+            "context-object-array-or-null",
             "context-containers-absent",
             "context-vocab-absent",
             "context-protected-absent",
@@ -31,17 +32,17 @@
         ]
     },
     {
-        "id": "TRACE-JSON-LD",
-        "description": "JSON-LD in the restricted form the TRACE Specification requires for TRO declarations",
+        "id": "TRACE-PERMISSIBLE-JSON-LD",
+        "description": "JSON-LD that avoids constructs and practices TRACE disallows",
         "blocksHigherTiers": true,
         "expectations": [
             "root-context-and-graph-only",
+            "composite-contexts-absent",
             "disallowed-node-keywords-absent",
             "disallowed-context-keywords-absent",
             "base-web-scheme",
             "base-simple-url",
             "prefix-namespaces-terminated",
-            "context-local",
             "context-aliases-absent",
             "context-assigns-only-datatypes-to-properties",
             "context-datatypes-named-by-iri",
@@ -50,8 +51,9 @@
     },
     {
         "id": "USES-TROV-CORRECTLY",
-        "description": "JSON-LD whose TROV terms, and the schema.org terms TROV specifies, are used as they are defined",
+        "description": "JSON-LD that uses TROV terms only in ways TRACE allows",
         "expectations": [
+            "context-and-nonempty-graph-present",
             "core-prefixes-pinned",
             "trov-terms-known",
             "trov-version-known",

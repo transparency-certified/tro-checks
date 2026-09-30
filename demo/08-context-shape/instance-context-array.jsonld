@@ -1,0 +1,7 @@
+{
+    "@context": [
+        { "ex": "https://example.org/" },
+        { "ex2": "https://example.org/two/" }
+    ],
+    "@graph": []
+}
