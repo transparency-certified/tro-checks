@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 53: tro-composition-single (TIER 6 - STANDALONE-TRO)"
+title "tro-checks  ·  demo 53: tro-composition-single (Tier 6 - STANDALONE-TRO)"
 
 show "expectation met: the TRO carries one composition, an object" \
     report_on instance-composition-single.jsonld

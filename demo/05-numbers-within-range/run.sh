@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 05: numbers-within-range (TIER 1 - SAFE-JSON)"
+title "tro-checks  ·  demo 05: numbers-within-range (Tier 1 - SAFE-JSON)"
 
 show "expectation met: every number fits a double, and the largest integer is exact" \
     report_on instance-numbers-in-range.jsonld

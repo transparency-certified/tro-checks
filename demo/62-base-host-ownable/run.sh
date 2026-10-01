@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 62: base-host-ownable (TIER 7 - LINKABLE-TRO)"
+title "tro-checks  ·  demo 62: base-host-ownable (Tier 7 - LINKABLE-TRO)"
 
 show "expectation met: the host is a name its minter could hold" \
     report_on instance-ownable-host.jsonld

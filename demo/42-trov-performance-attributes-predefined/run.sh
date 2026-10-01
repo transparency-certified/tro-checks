@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 42: trov-performance-attributes-predefined (TIER 4 - USES-TROV-CORRECTLY)"
+title "tro-checks  ·  demo 42: trov-performance-attributes-predefined (Tier 4 - USES-TROV-CORRECTLY)"
 
 show "expectation met: one performance attribute is TROV's trov:InternetIsolation, the other the producer's ex:AuditLogged" \
     report_on instance-predefined-and-custom.jsonld

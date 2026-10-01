@@ -2,7 +2,7 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://w3id.org/trace/tro/0.1/context-and-nonempty-graph-present.schema.json",
     "title": "Context and non-empty graph present",
-    "description": "The file has an @context that is not null and not [null], and an @graph holding at least one node. A document that uses TROV needs a context to say what trov: stands for, and in a TRACE-PERMISSIBLE-JSON-LD document its nodes can only be in an @graph. A document with no context, or no nodes, uses no TROV and so does not use it correctly.",
+    "description": "The file has an @context that is not null and not [null], and an @graph holding at least one node. A document that uses TROV needs a context to say what trov: stands for, and in a `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` document its nodes can only be in an @graph. A document with no context, or no nodes, uses no TROV and so does not use it correctly.",
     "summary": "The file has a non-null `@context` and an `@graph` holding at least one node",
     "type": "object",
     "required": ["@context", "@graph"],

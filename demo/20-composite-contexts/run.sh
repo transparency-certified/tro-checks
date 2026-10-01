@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 20: composite-contexts-absent (TIER 3 - TRACE-PERMISSIBLE-JSON-LD)"
+title "tro-checks  ·  demo 20: composite-contexts-absent (Tier 3 - TRACE-PERMISSIBLE-JSON-LD)"
 
 show "expectation met: the @context is one object" \
     report_on instance-single-object.jsonld

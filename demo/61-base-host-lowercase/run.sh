@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 61: base-host-lowercase (TIER 7 - LINKABLE-TRO)"
+title "tro-checks  ·  demo 61: base-host-lowercase (Tier 7 - LINKABLE-TRO)"
 
 show "expectation met: the @base host is lowercase" \
     report_on instance-lowercase-host.jsonld

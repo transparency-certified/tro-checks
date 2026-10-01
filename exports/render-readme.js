@@ -11,7 +11,7 @@
 const fs = require('fs')
 const path = require('path')
 
-const { htmlTableLines } = require('./render-report.js')
+const { htmlTableLines, tierLabel } = require('./render-report.js')
 
 /** @typedef {import('./render-report.js').Row} Row */
 /** @typedef {import('./render-report.js').Band} Band */
@@ -82,10 +82,8 @@ function versionRangeOf({ fromVersion, untilVersion }) {
  */
 function tierSummaryLines(tiers) {
     /** @type {Row[]} */
-    const rows = tiers.map((tier) => ({
-        cells: [String(tier.number), { atom: tier.id }, tier.description],
-    }))
-    return htmlTableLines(['Tier', 'ID', 'What meeting it means'], rows)
+    const rows = tiers.map((tier) => ({ cells: [{ id: tierLabel(tier) }, tier.description] }))
+    return htmlTableLines(['Tier', 'What meeting it means'], rows)
 }
 
 /**
@@ -95,7 +93,7 @@ function tierSummaryLines(tiers) {
  */
 function versionSummaryLines(versions) {
     /** @type {Row[]} */
-    const rows = versions.map((version) => ({ cells: [{ atom: version.id }, version.description] }))
+    const rows = versions.map((version) => ({ cells: [{ id: version.id }, version.description] }))
     return htmlTableLines(['Version', 'What it is'], rows)
 }
 
@@ -110,7 +108,7 @@ function tierExpectationLines(tiers, exportsDirectory) {
     /** @type {(Row|Band)[]} */
     const rows = []
     for (const tier of tiers) {
-        rows.push({ label: `Tier ${tier.number} — ${tier.id}`, status: '' })
+        rows.push({ label: tierLabel(tier), status: '' })
         for (const name of tier.expectations) {
             const definition = definitionOf(exportsDirectory, name)
             rows.push({ cells: [{ code: name }, definition.summary, versionRangeOf(definition)] })

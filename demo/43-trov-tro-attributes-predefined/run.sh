@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 43: trov-tro-attributes-predefined (TIER 4 - USES-TROV-CORRECTLY)"
+title "tro-checks  ·  demo 43: trov-tro-attributes-predefined (Tier 4 - USES-TROV-CORRECTLY)"
 
 show "expectation met: the TRO attribute is trov:IncludesAllInputData" \
     report_on instance-predefined.jsonld

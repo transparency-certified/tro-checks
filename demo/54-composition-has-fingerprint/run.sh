@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 54: composition-has-fingerprint (TIER 6 - STANDALONE-TRO)"
+title "tro-checks  ·  demo 54: composition-has-fingerprint (Tier 6 - STANDALONE-TRO)"
 
 show "expectation met: the composition carries one fingerprint with one hash" \
     report_on instance-fingerprint-present.jsonld

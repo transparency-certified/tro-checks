@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 49: capability-ids-absolute (TIER 5 - DEFINES-TRS)"
+title "tro-checks  ·  demo 49: capability-ids-absolute (Tier 5 - DEFINES-TRS)"
 
 show "expectation met: the capability is identified by an absolute IRI" \
     report_on instance-capability-absolute.jsonld

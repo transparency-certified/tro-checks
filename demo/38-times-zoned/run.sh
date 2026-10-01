@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 38: times-zoned (TIER 4 - USES-TROV-CORRECTLY)"
+title "tro-checks  ·  demo 38: times-zoned (Tier 4 - USES-TROV-CORRECTLY)"
 
 show "expectation met: both times carry Z" \
     report_on instance-times-zoned.jsonld

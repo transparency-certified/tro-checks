@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 17: ids-and-types-strings (TIER 2 - SAFE-JSON-LD)"
+title "tro-checks  ·  demo 17: ids-and-types-strings (Tier 2 - SAFE-JSON-LD)"
 
 show "expectation met: every @id is a string, and every @type a string or an array of strings" \
     report_on instance-string-ids-and-types.jsonld

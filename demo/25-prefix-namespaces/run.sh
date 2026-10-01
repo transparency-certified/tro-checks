@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 25: prefix-namespaces-terminated (TIER 3 - TRACE-PERMISSIBLE-JSON-LD)"
+title "tro-checks  ·  demo 25: prefix-namespaces-terminated (Tier 3 - TRACE-PERMISSIBLE-JSON-LD)"
 
 show "expectation met: every prefix maps to an absolute IRI ending in # or /" \
     report_on instance-terminated-namespaces.jsonld

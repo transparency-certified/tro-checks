@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 37: times-iso-8601 (TIER 4 - USES-TROV-CORRECTLY)"
+title "tro-checks  ·  demo 37: times-iso-8601 (Tier 4 - USES-TROV-CORRECTLY)"
 
 show "expectation met: the times are ISO 8601 date-times, one with a fraction of a second" \
     report_on instance-times-iso-8601.jsonld

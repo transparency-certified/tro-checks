@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 23: base-web-scheme (TIER 3 - TRACE-PERMISSIBLE-JSON-LD)"
+title "tro-checks  ·  demo 23: base-web-scheme (Tier 3 - TRACE-PERMISSIBLE-JSON-LD)"
 
 show "expectation met: the @base uses the https scheme" \
     report_on instance-https-base.jsonld

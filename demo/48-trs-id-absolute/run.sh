@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 48: trs-id-absolute (TIER 5 - DEFINES-TRS)"
+title "tro-checks  ·  demo 48: trs-id-absolute (Tier 5 - DEFINES-TRS)"
 
 show "expectation met: the TRS is identified by an absolute IRI" \
     report_on instance-trs-absolute-iri.jsonld

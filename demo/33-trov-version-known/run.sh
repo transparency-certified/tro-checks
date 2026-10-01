@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 33: trov-version-known (TIER 4 - USES-TROV-CORRECTLY)"
+title "tro-checks  ·  demo 33: trov-version-known (Tier 4 - USES-TROV-CORRECTLY)"
 
 show "expectation met: the TRO declares trov:vocabularyVersion "0.1"" \
     report_on instance-version-0-1.jsonld

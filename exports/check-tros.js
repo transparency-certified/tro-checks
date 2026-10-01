@@ -14,7 +14,7 @@ const { parseArgs } = require('node:util')
 const path = require('node:path')
 
 const checkTro = require('./check-tro.js')
-const { renderSummaryAsMarkdown } = require('./render-report.js')
+const { renderSummaryAsMarkdown, tierLabel } = require('./render-report.js')
 
 /** @typedef {import('./types.js').Tier} Tier */
 /** @typedef {import('./types.js').Version} Version */
@@ -214,7 +214,7 @@ function checkEach(candidates, reportsDirectory) {
             written.push(reportOn(candidate, reportsDirectory))
         } catch (error) {
             const reason = error instanceof Error ? error.message : String(error)
-            const target = `${candidate.targetTier.id} under ${candidate.targetVersion.id}`
+            const target = `${tierLabel(candidate.targetTier)} at version ${candidate.targetVersion.id}`
             process.stderr.write(`${candidate.name}, ${target}: could not be checked -- ${reason}\n`)
             unreportedCount += 1
         }

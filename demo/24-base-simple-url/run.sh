@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 24: base-simple-url (TIER 3 - TRACE-PERMISSIBLE-JSON-LD)"
+title "tro-checks  ·  demo 24: base-simple-url (Tier 3 - TRACE-PERMISSIBLE-JSON-LD)"
 
 show "expectation met: the @base is a simple URL" \
     report_on instance-https-base.jsonld

@@ -13,7 +13,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 01: utf8-encoded (TIER 1 - SAFE-JSON)"
+title "tro-checks  ·  demo 01: utf8-encoded (Tier 1 - SAFE-JSON)"
 
 show "expectation met: Zürich is written in UTF-8" \
     report_on instance-utf8.jsonld

@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 52: performance-attribute-warrants-absolute (TIER 6 - STANDALONE-TRO)"
+title "tro-checks  ·  demo 52: performance-attribute-warrants-absolute (Tier 6 - STANDALONE-TRO)"
 
 show "expectation met: the performance attribute's warrant refers to the capability by absolute IRI" \
     report_on instance-warrant-absolute.jsonld

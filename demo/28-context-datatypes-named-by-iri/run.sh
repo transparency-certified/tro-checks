@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 28: context-datatypes-named-by-iri (TIER 3 - TRACE-PERMISSIBLE-JSON-LD)"
+title "tro-checks  ·  demo 28: context-datatypes-named-by-iri (Tier 3 - TRACE-PERMISSIBLE-JSON-LD)"
 
 show "expectation met: the datatype is named by a full IRI" \
     report_on instance-datatype-iri.jsonld

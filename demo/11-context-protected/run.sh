@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 11: context-protected-absent (TIER 2 - SAFE-JSON-LD)"
+title "tro-checks  ·  demo 11: context-protected-absent (Tier 2 - SAFE-JSON-LD)"
 
 show "expectation met: the @context does not protect its terms" \
     report_on instance-no-protection.jsonld

@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 40: creators-person-or-organization (TIER 4 - USES-TROV-CORRECTLY)"
+title "tro-checks  ·  demo 40: creators-person-or-organization (Tier 4 - USES-TROV-CORRECTLY)"
 
 show "expectation met: schema:creator is an Organization node" \
     report_on instance-creator-organization.jsonld

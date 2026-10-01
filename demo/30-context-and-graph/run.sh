@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 30: context-and-nonempty-graph-present (TIER 4 - USES-TROV-CORRECTLY)"
+title "tro-checks  ·  demo 30: context-and-nonempty-graph-present (Tier 4 - USES-TROV-CORRECTLY)"
 
 show "expectation met: a context and a graph holding the TRO" \
     report_on instance-context-and-graph.jsonld

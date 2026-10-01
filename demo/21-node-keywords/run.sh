@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 21: disallowed-node-keywords-absent (TIER 3 - TRACE-PERMISSIBLE-JSON-LD)"
+title "tro-checks  ·  demo 21: disallowed-node-keywords-absent (Tier 3 - TRACE-PERMISSIBLE-JSON-LD)"
 
 show "expectation met: the nodes use only @graph, @id and @type" \
     report_on instance-allowed-node-keywords.jsonld

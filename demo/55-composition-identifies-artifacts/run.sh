@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 55: composition-identifies-artifacts (TIER 6 - STANDALONE-TRO)"
+title "tro-checks  ·  demo 55: composition-identifies-artifacts (Tier 6 - STANDALONE-TRO)"
 
 show "expectation met: the composition names two artifacts" \
     report_on instance-artifacts-named.jsonld

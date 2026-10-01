@@ -1,6 +1,6 @@
 ##############################################################################
 #
-#   tro-checks  ·  demo 30: context-and-nonempty-graph-present (TIER 4 - USES-TROV-CORRECTLY)
+#   tro-checks  ·  demo 30: context-and-nonempty-graph-present (Tier 4 - USES-TROV-CORRECTLY)
 #
 ##############################################################################
 
@@ -27,36 +27,39 @@ $ report_on instance-context-and-graph.jsonld
     ]
 }
 
-wrote tmp/instance-context-and-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-PERMISSIBLE-JSON-LD met, 4 USES-TROV-CORRECTLY met
+wrote tmp/instance-context-and-graph.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
 
-# Report
+# Report on `instance-context-and-graph.jsonld`
+This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the three tiers below it.
+The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-context-and-graph.jsonld` |  |
-| Target version | trace-spec-2026-04-19 | the default |
-| Target tier | 4 USES-TROV-CORRECTLY | the `--target-tier` option |
+| Target version | `trace-spec-2026-04-19` | the default |
+| Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
-| Tier | ID | Description | Status |
-| --- | --- | --- | --- |
-| 1 | SAFE-JSON | JSON that every supported parser reads the same way | ✅ met |
-| 2 | SAFE-JSON-LD | JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file | ✅ met |
-| 3 | TRACE-PERMISSIBLE-JSON-LD | JSON-LD that avoids constructs and practices TRACE disallows | ✅ met |
-| 4 | USES-TROV-CORRECTLY | JSON-LD that uses TROV terms only in ways TRACE allows | ✅ met |
-| *5* | *DEFINES-TRS* | *JSON-LD that defines a Trusted Research System* | *not claimed* |
-| *6* | *STANDALONE-TRO* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
-| *7* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with those in another TRO* | *not claimed* |
+| Tier | Description | Status |
+| --- | --- | --- |
+| `Tier 1 - SAFE-JSON` | JSON that every supported parser reads the same way | ✅ met |
+| `Tier 2 - SAFE-JSON-LD` | JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file | ✅ met |
+| `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | JSON-LD that avoids constructs and practices TRACE disallows | ✅ met |
+| `Tier 4 - USES-TROV-CORRECTLY` | JSON-LD that uses TROV terms only in ways TRACE allows | ✅ met |
+| *`Tier 5 - DEFINES-TRS`* | *JSON-LD that defines a Trusted Research System* | *not claimed* |
+| *`Tier 6 - STANDALONE-TRO`* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
+| *`Tier 7 - LINKABLE-TRO`* | *A TRO declaration whose element identifiers cannot collide with those in another TRO* | *not claimed* |
 ## Expectation Findings by Tier
 |  |  |  |
 | --- | --- | --- |
-| **Tier 1 — SAFE-JSON  ✅ met** |  |  |
+| **`Tier 1 - SAFE-JSON`  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `utf8-encoded` | The candidate is UTF-8 | ✅ met |
 | `json-parses` | The candidate parses as JSON without errors | ✅ met |
 | `unicode-escapes-spell-whole-characters` | Every `\u` escape spells a whole Unicode character | ✅ met |
 | `duplicate-member-names-absent` | No object repeats a member name | ✅ met |
 | `numbers-within-range` | Every number fits a double; every integer is exact | ✅ met |
-| **Tier 2 — SAFE-JSON-LD  ✅ met** |  |  |
+| **`Tier 2 - SAFE-JSON-LD`  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `context-at-root-only` | The file's only `@context` is at its top | ✅ met |
 | `remote-contexts-absent` | The `@context` never refers by web address to a context kept elsewhere | ✅ met |
@@ -71,7 +74,7 @@ wrote tmp/instance-context-and-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 | `graph-object-or-array` | The `@graph`, if present, is an object or an array of objects | ✅ met |
 | `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
 | `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
-| **Tier 3 — TRACE-PERMISSIBLE-JSON-LD  ✅ met** |  |  |
+| **`Tier 3 - TRACE-PERMISSIBLE-JSON-LD`  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `root-context-and-graph-only` | The file is a JSON object whose top level holds no member other than `@context` and `@graph` | ✅ met |
 | `composite-contexts-absent` | The `@context` is never composed from several parts | ✅ met |
@@ -84,7 +87,7 @@ wrote tmp/instance-context-and-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 | `context-assigns-only-datatypes-to-properties` | The only thing the `@context` assigns to a property is the datatype of its values | ✅ met |
 | `context-datatypes-named-by-iri` | Every datatype the `@context` gives a property is named by a prefixed or absolute IRI | ✅ met |
 | `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI | ✅ met |
-| **Tier 4 — USES-TROV-CORRECTLY  ✅ met** |  |  |
+| **`Tier 4 - USES-TROV-CORRECTLY`  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `context-and-nonempty-graph-present` | The file has a non-null `@context` and an `@graph` holding at least one node | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
@@ -102,10 +105,10 @@ wrote tmp/instance-context-and-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 | `custom-terms-not-trov` | Every `trov:customTerm` entry declares a term outside the TROV namespace | ✅ met |
 | `custom-term-superclasses-extensible` | Every custom term extends `trov:TRSCapabilityType` or `trov:TRPAttributeType` | ✅ met |
 | `trov-signing-mechanisms-predefined` | A signing mechanism is identified by reference, and a `trov:` one is one TROV predefines | ✅ met |
-| *Tier 5 — DEFINES-TRS  not claimed* |  |  |
+| *`Tier 5 - DEFINES-TRS`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
-| *Tier 6 — STANDALONE-TRO  not claimed* |  |  |
+| *`Tier 6 - STANDALONE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
 | *`trov-objects-identified`* | *Every object typed with a TROV class carries an `@id`* | *not claimed* |
@@ -116,7 +119,7 @@ wrote tmp/instance-context-and-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 | *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
 | *`created-with-single-tool`* | *A `trov:createdWith` names one software tool, given as a node* | *not claimed* |
 | *`gpg-signing-key-present`* | *A TRO signed with `trov:GPGSigning` gives its TRS a `trov:publicKey`* | *not claimed* |
-| *Tier 7 — LINKABLE-TRO  not claimed* |  |  |
+| *`Tier 7 - LINKABLE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
 | *`base-has-path`* | *The `@base` names something below the host, not the host alone* | *not claimed* |
@@ -143,36 +146,39 @@ $ report_on instance-null-context.jsonld
     ]
 }
 
-wrote tmp/instance-null-context.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-PERMISSIBLE-JSON-LD met, 4 USES-TROV-CORRECTLY unmet
+wrote tmp/instance-null-context.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report
+# Report on `instance-null-context.jsonld`
+This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
+The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-null-context.jsonld` |  |
-| Target version | trace-spec-2026-04-19 | the default |
-| Target tier | 4 USES-TROV-CORRECTLY | the `--target-tier` option |
+| Target version | `trace-spec-2026-04-19` | the default |
+| Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
-| Tier | ID | Description | Status |
-| --- | --- | --- | --- |
-| 1 | SAFE-JSON | JSON that every supported parser reads the same way | ✅ met |
-| 2 | SAFE-JSON-LD | JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file | ✅ met |
-| 3 | TRACE-PERMISSIBLE-JSON-LD | JSON-LD that avoids constructs and practices TRACE disallows | ✅ met |
-| 4 | USES-TROV-CORRECTLY | JSON-LD that uses TROV terms only in ways TRACE allows | ❌ not met |
-| *5* | *DEFINES-TRS* | *JSON-LD that defines a Trusted Research System* | *not claimed* |
-| *6* | *STANDALONE-TRO* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
-| *7* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with those in another TRO* | *not claimed* |
+| Tier | Description | Status |
+| --- | --- | --- |
+| `Tier 1 - SAFE-JSON` | JSON that every supported parser reads the same way | ✅ met |
+| `Tier 2 - SAFE-JSON-LD` | JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file | ✅ met |
+| `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | JSON-LD that avoids constructs and practices TRACE disallows | ✅ met |
+| `Tier 4 - USES-TROV-CORRECTLY` | JSON-LD that uses TROV terms only in ways TRACE allows | ❌ not met |
+| *`Tier 5 - DEFINES-TRS`* | *JSON-LD that defines a Trusted Research System* | *not claimed* |
+| *`Tier 6 - STANDALONE-TRO`* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
+| *`Tier 7 - LINKABLE-TRO`* | *A TRO declaration whose element identifiers cannot collide with those in another TRO* | *not claimed* |
 ## Expectation Findings by Tier
 |  |  |  |
 | --- | --- | --- |
-| **Tier 1 — SAFE-JSON  ✅ met** |  |  |
+| **`Tier 1 - SAFE-JSON`  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `utf8-encoded` | The candidate is UTF-8 | ✅ met |
 | `json-parses` | The candidate parses as JSON without errors | ✅ met |
 | `unicode-escapes-spell-whole-characters` | Every `\u` escape spells a whole Unicode character | ✅ met |
 | `duplicate-member-names-absent` | No object repeats a member name | ✅ met |
 | `numbers-within-range` | Every number fits a double; every integer is exact | ✅ met |
-| **Tier 2 — SAFE-JSON-LD  ✅ met** |  |  |
+| **`Tier 2 - SAFE-JSON-LD`  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `context-at-root-only` | The file's only `@context` is at its top | ✅ met |
 | `remote-contexts-absent` | The `@context` never refers by web address to a context kept elsewhere | ✅ met |
@@ -187,7 +193,7 @@ wrote tmp/instance-null-context.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | `graph-object-or-array` | The `@graph`, if present, is an object or an array of objects | ✅ met |
 | `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
 | `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
-| **Tier 3 — TRACE-PERMISSIBLE-JSON-LD  ✅ met** |  |  |
+| **`Tier 3 - TRACE-PERMISSIBLE-JSON-LD`  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `root-context-and-graph-only` | The file is a JSON object whose top level holds no member other than `@context` and `@graph` | ✅ met |
 | `composite-contexts-absent` | The `@context` is never composed from several parts | ✅ met |
@@ -200,7 +206,7 @@ wrote tmp/instance-null-context.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | `context-assigns-only-datatypes-to-properties` | The only thing the `@context` assigns to a property is the datatype of its values | ✅ met |
 | `context-datatypes-named-by-iri` | Every datatype the `@context` gives a property is named by a prefixed or absolute IRI | ✅ met |
 | `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI | ✅ met |
-| **Tier 4 — USES-TROV-CORRECTLY  ❌ not met** |  |  |
+| **`Tier 4 - USES-TROV-CORRECTLY`  ❌ not met** |  |  |
 | Expectation | Summary | Status |
 | `context-and-nonempty-graph-present` | The file has a non-null `@context` and an `@graph` holding at least one node | ❌ not met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
@@ -218,10 +224,10 @@ wrote tmp/instance-null-context.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | `custom-terms-not-trov` | Every `trov:customTerm` entry declares a term outside the TROV namespace | ✅ met |
 | `custom-term-superclasses-extensible` | Every custom term extends `trov:TRSCapabilityType` or `trov:TRPAttributeType` | ✅ met |
 | `trov-signing-mechanisms-predefined` | A signing mechanism is identified by reference, and a `trov:` one is one TROV predefines | ✅ met |
-| *Tier 5 — DEFINES-TRS  not claimed* |  |  |
+| *`Tier 5 - DEFINES-TRS`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
-| *Tier 6 — STANDALONE-TRO  not claimed* |  |  |
+| *`Tier 6 - STANDALONE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
 | *`trov-objects-identified`* | *Every object typed with a TROV class carries an `@id`* | *not claimed* |
@@ -232,7 +238,7 @@ wrote tmp/instance-null-context.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
 | *`created-with-single-tool`* | *A `trov:createdWith` names one software tool, given as a node* | *not claimed* |
 | *`gpg-signing-key-present`* | *A TRO signed with `trov:GPGSigning` gives its TRS a `trov:publicKey`* | *not claimed* |
-| *Tier 7 — LINKABLE-TRO  not claimed* |  |  |
+| *`Tier 7 - LINKABLE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
 | *`base-has-path`* | *The `@base` names something below the host, not the host alone* | *not claimed* |
@@ -242,7 +248,7 @@ wrote tmp/instance-null-context.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: context-and-nonempty-graph-present
-Detailed expectation: The file has an @context that is not null and not [null], and an @graph holding at least one node. A document that uses TROV needs a context to say what trov: stands for, and in a TRACE-PERMISSIBLE-JSON-LD document its nodes can only be in an @graph. A document with no context, or no nodes, uses no TROV and so does not use it correctly.
+Detailed expectation: The file has an @context that is not null and not [null], and an @graph holding at least one node. A document that uses TROV needs a context to say what trov: stands for, and in a `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` document its nodes can only be in an @graph. A document with no context, or no nodes, uses no TROV and so does not use it correctly.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `null` | `/@context` | the @context is not null |
@@ -259,36 +265,39 @@ $ report_on instance-no-graph.jsonld
     }
 }
 
-wrote tmp/instance-no-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-PERMISSIBLE-JSON-LD met, 4 USES-TROV-CORRECTLY unmet
+wrote tmp/instance-no-graph.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report
+# Report on `instance-no-graph.jsonld`
+This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
+The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-no-graph.jsonld` |  |
-| Target version | trace-spec-2026-04-19 | the default |
-| Target tier | 4 USES-TROV-CORRECTLY | the `--target-tier` option |
+| Target version | `trace-spec-2026-04-19` | the default |
+| Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
-| Tier | ID | Description | Status |
-| --- | --- | --- | --- |
-| 1 | SAFE-JSON | JSON that every supported parser reads the same way | ✅ met |
-| 2 | SAFE-JSON-LD | JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file | ✅ met |
-| 3 | TRACE-PERMISSIBLE-JSON-LD | JSON-LD that avoids constructs and practices TRACE disallows | ✅ met |
-| 4 | USES-TROV-CORRECTLY | JSON-LD that uses TROV terms only in ways TRACE allows | ❌ not met |
-| *5* | *DEFINES-TRS* | *JSON-LD that defines a Trusted Research System* | *not claimed* |
-| *6* | *STANDALONE-TRO* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
-| *7* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with those in another TRO* | *not claimed* |
+| Tier | Description | Status |
+| --- | --- | --- |
+| `Tier 1 - SAFE-JSON` | JSON that every supported parser reads the same way | ✅ met |
+| `Tier 2 - SAFE-JSON-LD` | JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file | ✅ met |
+| `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | JSON-LD that avoids constructs and practices TRACE disallows | ✅ met |
+| `Tier 4 - USES-TROV-CORRECTLY` | JSON-LD that uses TROV terms only in ways TRACE allows | ❌ not met |
+| *`Tier 5 - DEFINES-TRS`* | *JSON-LD that defines a Trusted Research System* | *not claimed* |
+| *`Tier 6 - STANDALONE-TRO`* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
+| *`Tier 7 - LINKABLE-TRO`* | *A TRO declaration whose element identifiers cannot collide with those in another TRO* | *not claimed* |
 ## Expectation Findings by Tier
 |  |  |  |
 | --- | --- | --- |
-| **Tier 1 — SAFE-JSON  ✅ met** |  |  |
+| **`Tier 1 - SAFE-JSON`  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `utf8-encoded` | The candidate is UTF-8 | ✅ met |
 | `json-parses` | The candidate parses as JSON without errors | ✅ met |
 | `unicode-escapes-spell-whole-characters` | Every `\u` escape spells a whole Unicode character | ✅ met |
 | `duplicate-member-names-absent` | No object repeats a member name | ✅ met |
 | `numbers-within-range` | Every number fits a double; every integer is exact | ✅ met |
-| **Tier 2 — SAFE-JSON-LD  ✅ met** |  |  |
+| **`Tier 2 - SAFE-JSON-LD`  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `context-at-root-only` | The file's only `@context` is at its top | ✅ met |
 | `remote-contexts-absent` | The `@context` never refers by web address to a context kept elsewhere | ✅ met |
@@ -303,7 +312,7 @@ wrote tmp/instance-no-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-PER
 | `graph-object-or-array` | The `@graph`, if present, is an object or an array of objects | ✅ met |
 | `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
 | `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
-| **Tier 3 — TRACE-PERMISSIBLE-JSON-LD  ✅ met** |  |  |
+| **`Tier 3 - TRACE-PERMISSIBLE-JSON-LD`  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `root-context-and-graph-only` | The file is a JSON object whose top level holds no member other than `@context` and `@graph` | ✅ met |
 | `composite-contexts-absent` | The `@context` is never composed from several parts | ✅ met |
@@ -316,7 +325,7 @@ wrote tmp/instance-no-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-PER
 | `context-assigns-only-datatypes-to-properties` | The only thing the `@context` assigns to a property is the datatype of its values | ✅ met |
 | `context-datatypes-named-by-iri` | Every datatype the `@context` gives a property is named by a prefixed or absolute IRI | ✅ met |
 | `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI | ✅ met |
-| **Tier 4 — USES-TROV-CORRECTLY  ❌ not met** |  |  |
+| **`Tier 4 - USES-TROV-CORRECTLY`  ❌ not met** |  |  |
 | Expectation | Summary | Status |
 | `context-and-nonempty-graph-present` | The file has a non-null `@context` and an `@graph` holding at least one node | ❌ not met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
@@ -334,10 +343,10 @@ wrote tmp/instance-no-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-PER
 | `custom-terms-not-trov` | Every `trov:customTerm` entry declares a term outside the TROV namespace | ✅ met |
 | `custom-term-superclasses-extensible` | Every custom term extends `trov:TRSCapabilityType` or `trov:TRPAttributeType` | ✅ met |
 | `trov-signing-mechanisms-predefined` | A signing mechanism is identified by reference, and a `trov:` one is one TROV predefines | ✅ met |
-| *Tier 5 — DEFINES-TRS  not claimed* |  |  |
+| *`Tier 5 - DEFINES-TRS`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
-| *Tier 6 — STANDALONE-TRO  not claimed* |  |  |
+| *`Tier 6 - STANDALONE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
 | *`trov-objects-identified`* | *Every object typed with a TROV class carries an `@id`* | *not claimed* |
@@ -348,7 +357,7 @@ wrote tmp/instance-no-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-PER
 | *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
 | *`created-with-single-tool`* | *A `trov:createdWith` names one software tool, given as a node* | *not claimed* |
 | *`gpg-signing-key-present`* | *A TRO signed with `trov:GPGSigning` gives its TRS a `trov:publicKey`* | *not claimed* |
-| *Tier 7 — LINKABLE-TRO  not claimed* |  |  |
+| *`Tier 7 - LINKABLE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
 | *`base-has-path`* | *The `@base` names something below the host, not the host alone* | *not claimed* |
@@ -358,7 +367,7 @@ wrote tmp/instance-no-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-PER
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: context-and-nonempty-graph-present
-Detailed expectation: The file has an @context that is not null and not [null], and an @graph holding at least one node. A document that uses TROV needs a context to say what trov: stands for, and in a TRACE-PERMISSIBLE-JSON-LD document its nodes can only be in an @graph. A document with no context, or no nodes, uses no TROV and so does not use it correctly.
+Detailed expectation: The file has an @context that is not null and not [null], and an @graph holding at least one node. A document that uses TROV needs a context to say what trov: stands for, and in a `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` document its nodes can only be in an @graph. A document with no context, or no nodes, uses no TROV and so does not use it correctly.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@context":{"rdf":"http://www.w3.org/1999/02/22-rdf-syntax-ns#","rdfs":"http://www.w3.org/2000/01/rdf-schema#","trov":"https://w3id.org/trace/trov/0.1#","schema":"https://schema.org/"}}` | the document | the file has an @graph |
@@ -376,36 +385,39 @@ $ report_on instance-empty-graph.jsonld
     "@graph": []
 }
 
-wrote tmp/instance-empty-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-PERMISSIBLE-JSON-LD met, 4 USES-TROV-CORRECTLY unmet
+wrote tmp/instance-empty-graph.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report
+# Report on `instance-empty-graph.jsonld`
+This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
+The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-empty-graph.jsonld` |  |
-| Target version | trace-spec-2026-04-19 | the default |
-| Target tier | 4 USES-TROV-CORRECTLY | the `--target-tier` option |
+| Target version | `trace-spec-2026-04-19` | the default |
+| Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
-| Tier | ID | Description | Status |
-| --- | --- | --- | --- |
-| 1 | SAFE-JSON | JSON that every supported parser reads the same way | ✅ met |
-| 2 | SAFE-JSON-LD | JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file | ✅ met |
-| 3 | TRACE-PERMISSIBLE-JSON-LD | JSON-LD that avoids constructs and practices TRACE disallows | ✅ met |
-| 4 | USES-TROV-CORRECTLY | JSON-LD that uses TROV terms only in ways TRACE allows | ❌ not met |
-| *5* | *DEFINES-TRS* | *JSON-LD that defines a Trusted Research System* | *not claimed* |
-| *6* | *STANDALONE-TRO* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
-| *7* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with those in another TRO* | *not claimed* |
+| Tier | Description | Status |
+| --- | --- | --- |
+| `Tier 1 - SAFE-JSON` | JSON that every supported parser reads the same way | ✅ met |
+| `Tier 2 - SAFE-JSON-LD` | JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file | ✅ met |
+| `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | JSON-LD that avoids constructs and practices TRACE disallows | ✅ met |
+| `Tier 4 - USES-TROV-CORRECTLY` | JSON-LD that uses TROV terms only in ways TRACE allows | ❌ not met |
+| *`Tier 5 - DEFINES-TRS`* | *JSON-LD that defines a Trusted Research System* | *not claimed* |
+| *`Tier 6 - STANDALONE-TRO`* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
+| *`Tier 7 - LINKABLE-TRO`* | *A TRO declaration whose element identifiers cannot collide with those in another TRO* | *not claimed* |
 ## Expectation Findings by Tier
 |  |  |  |
 | --- | --- | --- |
-| **Tier 1 — SAFE-JSON  ✅ met** |  |  |
+| **`Tier 1 - SAFE-JSON`  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `utf8-encoded` | The candidate is UTF-8 | ✅ met |
 | `json-parses` | The candidate parses as JSON without errors | ✅ met |
 | `unicode-escapes-spell-whole-characters` | Every `\u` escape spells a whole Unicode character | ✅ met |
 | `duplicate-member-names-absent` | No object repeats a member name | ✅ met |
 | `numbers-within-range` | Every number fits a double; every integer is exact | ✅ met |
-| **Tier 2 — SAFE-JSON-LD  ✅ met** |  |  |
+| **`Tier 2 - SAFE-JSON-LD`  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `context-at-root-only` | The file's only `@context` is at its top | ✅ met |
 | `remote-contexts-absent` | The `@context` never refers by web address to a context kept elsewhere | ✅ met |
@@ -420,7 +432,7 @@ wrote tmp/instance-empty-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-
 | `graph-object-or-array` | The `@graph`, if present, is an object or an array of objects | ✅ met |
 | `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
 | `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
-| **Tier 3 — TRACE-PERMISSIBLE-JSON-LD  ✅ met** |  |  |
+| **`Tier 3 - TRACE-PERMISSIBLE-JSON-LD`  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `root-context-and-graph-only` | The file is a JSON object whose top level holds no member other than `@context` and `@graph` | ✅ met |
 | `composite-contexts-absent` | The `@context` is never composed from several parts | ✅ met |
@@ -433,7 +445,7 @@ wrote tmp/instance-empty-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-
 | `context-assigns-only-datatypes-to-properties` | The only thing the `@context` assigns to a property is the datatype of its values | ✅ met |
 | `context-datatypes-named-by-iri` | Every datatype the `@context` gives a property is named by a prefixed or absolute IRI | ✅ met |
 | `types-prefixed-or-absolute` | Every `@type` value is a prefixed or absolute IRI | ✅ met |
-| **Tier 4 — USES-TROV-CORRECTLY  ❌ not met** |  |  |
+| **`Tier 4 - USES-TROV-CORRECTLY`  ❌ not met** |  |  |
 | Expectation | Summary | Status |
 | `context-and-nonempty-graph-present` | The file has a non-null `@context` and an `@graph` holding at least one node | ❌ not met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
@@ -451,10 +463,10 @@ wrote tmp/instance-empty-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-
 | `custom-terms-not-trov` | Every `trov:customTerm` entry declares a term outside the TROV namespace | ✅ met |
 | `custom-term-superclasses-extensible` | Every custom term extends `trov:TRSCapabilityType` or `trov:TRPAttributeType` | ✅ met |
 | `trov-signing-mechanisms-predefined` | A signing mechanism is identified by reference, and a `trov:` one is one TROV predefines | ✅ met |
-| *Tier 5 — DEFINES-TRS  not claimed* |  |  |
+| *`Tier 5 - DEFINES-TRS`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
-| *Tier 6 — STANDALONE-TRO  not claimed* |  |  |
+| *`Tier 6 - STANDALONE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
 | *`trov-objects-identified`* | *Every object typed with a TROV class carries an `@id`* | *not claimed* |
@@ -465,7 +477,7 @@ wrote tmp/instance-empty-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-
 | *`artifact-hashes-present`* | *Every artifact in the composition carries a `trov:hash`, one hash or an array of at least one* | *not claimed* |
 | *`created-with-single-tool`* | *A `trov:createdWith` names one software tool, given as a node* | *not claimed* |
 | *`gpg-signing-key-present`* | *A TRO signed with `trov:GPGSigning` gives its TRS a `trov:publicKey`* | *not claimed* |
-| *Tier 7 — LINKABLE-TRO  not claimed* |  |  |
+| *`Tier 7 - LINKABLE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`base-declared`* | *The `@context` includes an `@base`* | *not claimed* |
 | *`base-has-path`* | *The `@base` names something below the host, not the host alone* | *not claimed* |
@@ -475,7 +487,7 @@ wrote tmp/instance-empty-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: context-and-nonempty-graph-present
-Detailed expectation: The file has an @context that is not null and not [null], and an @graph holding at least one node. A document that uses TROV needs a context to say what trov: stands for, and in a TRACE-PERMISSIBLE-JSON-LD document its nodes can only be in an @graph. A document with no context, or no nodes, uses no TROV and so does not use it correctly.
+Detailed expectation: The file has an @context that is not null and not [null], and an @graph holding at least one node. A document that uses TROV needs a context to say what trov: stands for, and in a `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` document its nodes can only be in an @graph. A document with no context, or no nodes, uses no TROV and so does not use it correctly.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `[]` | `/@graph` | the @graph holds at least one node |

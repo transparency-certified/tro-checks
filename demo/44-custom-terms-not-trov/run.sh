@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 44: custom-terms-not-trov (TIER 4 - USES-TROV-CORRECTLY)"
+title "tro-checks  ·  demo 44: custom-terms-not-trov (Tier 4 - USES-TROV-CORRECTLY)"
 
 show "expectation met: both custom terms are in the ex: namespace, outside TROV's" \
     report_on instance-producer-namespace.jsonld

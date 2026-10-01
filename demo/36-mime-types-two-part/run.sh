@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 36: mime-types-two-part (TIER 4 - USES-TROV-CORRECTLY)"
+title "tro-checks  ·  demo 36: mime-types-two-part (Tier 4 - USES-TROV-CORRECTLY)"
 
 show "expectation met: the artifacts carry text/plain and application/x-python" \
     report_on instance-mime-types-two-part.jsonld

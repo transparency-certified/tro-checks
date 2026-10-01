@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 60: base-has-path (TIER 7 - LINKABLE-TRO)"
+title "tro-checks  ·  demo 60: base-has-path (Tier 7 - LINKABLE-TRO)"
 
 show "expectation met: the @base names something below the host" \
     report_on instance-base-with-path.jsonld

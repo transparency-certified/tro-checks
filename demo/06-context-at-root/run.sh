@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 06: context-at-root-only (TIER 2 - SAFE-JSON-LD)"
+title "tro-checks  ·  demo 06: context-at-root-only (Tier 2 - SAFE-JSON-LD)"
 
 show "expectation met: the only @context is the root's" \
     report_on instance-context-at-root.jsonld

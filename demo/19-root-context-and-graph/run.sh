@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 19: root-context-and-graph-only (TIER 3 - TRACE-PERMISSIBLE-JSON-LD)"
+title "tro-checks  ·  demo 19: root-context-and-graph-only (Tier 3 - TRACE-PERMISSIBLE-JSON-LD)"
 
 show "expectation met: the top level holds an @context and an @graph" \
     report_on instance-context-and-graph.jsonld

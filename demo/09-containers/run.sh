@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 09: context-containers-absent (TIER 2 - SAFE-JSON-LD)"
+title "tro-checks  ·  demo 09: context-containers-absent (Tier 2 - SAFE-JSON-LD)"
 
 show "expectation met: no term definition declares a container" \
     report_on instance-no-containers.jsonld

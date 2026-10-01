@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 56: artifact-hashes-present (TIER 6 - STANDALONE-TRO)"
+title "tro-checks  ·  demo 56: artifact-hashes-present (Tier 6 - STANDALONE-TRO)"
 
 show "expectation met: one artifact carries a hash object, another an array of two" \
     report_on instance-hashes-present.jsonld

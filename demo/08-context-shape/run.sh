@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 08: context-object-array-or-null (TIER 2 - SAFE-JSON-LD)"
+title "tro-checks  ·  demo 08: context-object-array-or-null (Tier 2 - SAFE-JSON-LD)"
 
 show "expectation met: the @context value is an object" \
     report_on instance-context-object.jsonld

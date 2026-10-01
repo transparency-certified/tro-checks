@@ -1,6 +1,6 @@
 # Ensuring safe usage of JSON-LD constructs
 
-The expectations in Tier 2, `SAFE-JSON-LD`, aim to ensure that TROs employ only those
+The expectations in `Tier 2 - SAFE-JSON-LD` aim to ensure that TROs employ only those
 JSON-LD constructs that work consistently in all of the JSON-LD processors we support,
 and whose interpretation depends on nothing outside the file.
 Three of them, `context-object-array-or-null`, `graph-object-or-array` and

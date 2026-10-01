@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 59: base-declared (TIER 7 - LINKABLE-TRO)"
+title "tro-checks  ·  demo 59: base-declared (Tier 7 - LINKABLE-TRO)"
 
 show "expectation met: the @context declares an @base" \
     report_on instance-base-declared.jsonld

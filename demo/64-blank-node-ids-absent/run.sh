@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 64: blank-node-ids-absent (TIER 7 - LINKABLE-TRO)"
+title "tro-checks  ·  demo 64: blank-node-ids-absent (Tier 7 - LINKABLE-TRO)"
 
 show "expectation met: no @id is a blank node identifier" \
     report_on instance-named-ids.jsonld

@@ -39,6 +39,7 @@
 
 **The program writes a summary of the reports into the reports directory.**
 - It lists the reports under each candidate, with the candidate's description.
+- It says in one sentence every target the candidate is expected to satisfy, version by version, and under each version from the lowest tier up.
 - It heads a candidate with the title its entry gives and names its file beneath, or heads it with its name where the entry gives no title.
 - It gives each report's target, whether the target's tier was met, and a link to the report.
 - It says which reports in the directory this run did not write.

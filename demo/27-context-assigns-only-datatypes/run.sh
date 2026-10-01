@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 27: context-assigns-only-datatypes-to-properties (TIER 3 - TRACE-PERMISSIBLE-JSON-LD)"
+title "tro-checks  ·  demo 27: context-assigns-only-datatypes-to-properties (Tier 3 - TRACE-PERMISSIBLE-JSON-LD)"
 
 show "expectation met: the @context assigns a property only a datatype" \
     report_on instance-datatype-only.jsonld

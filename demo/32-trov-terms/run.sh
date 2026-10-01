@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 32: trov-terms-known (TIER 4 - USES-TROV-CORRECTLY)"
+title "tro-checks  ·  demo 32: trov-terms-known (Tier 4 - USES-TROV-CORRECTLY)"
 
 show "expectation met: the property name trov:vocabularyVersion is defined by TROV" \
     report_on instance-property-name-known.jsonld

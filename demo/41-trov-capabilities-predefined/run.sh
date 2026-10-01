@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 41: trov-capabilities-predefined (TIER 4 - USES-TROV-CORRECTLY)"
+title "tro-checks  ·  demo 41: trov-capabilities-predefined (Tier 4 - USES-TROV-CORRECTLY)"
 
 show "expectation met: one capability is TROV's trov:CanProvideInternetIsolation, the other the producer's ex:CanLogAudits" \
     report_on instance-predefined-and-custom.jsonld

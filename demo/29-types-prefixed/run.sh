@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 29: types-prefixed-or-absolute (TIER 3 - TRACE-PERMISSIBLE-JSON-LD)"
+title "tro-checks  ·  demo 29: types-prefixed-or-absolute (Tier 3 - TRACE-PERMISSIBLE-JSON-LD)"
 
 show "expectation met: every @type is prefixed or absolute" \
     report_on instance-prefixed-types.jsonld

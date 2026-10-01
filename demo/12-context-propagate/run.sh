@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 12: context-propagate-absent (TIER 2 - SAFE-JSON-LD)"
+title "tro-checks  ·  demo 12: context-propagate-absent (Tier 2 - SAFE-JSON-LD)"
 
 show "expectation met: the @context does not limit which objects it applies to" \
     report_on instance-no-propagate.jsonld

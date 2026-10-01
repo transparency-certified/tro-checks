@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 39: tro-name-description-text (TIER 4 - USES-TROV-CORRECTLY)"
+title "tro-checks  ·  demo 39: tro-name-description-text (Tier 4 - USES-TROV-CORRECTLY)"
 
 show "expectation met: schema:name and schema:description are strings" \
     report_on instance-name-description-strings.jsonld

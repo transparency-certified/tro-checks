@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 13: context-import-absent (TIER 2 - SAFE-JSON-LD)"
+title "tro-checks  ·  demo 13: context-import-absent (Tier 2 - SAFE-JSON-LD)"
 
 show "expectation met: the @context pulls in no other context" \
     report_on instance-no-import.jsonld

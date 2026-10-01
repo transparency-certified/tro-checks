@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 26: context-aliases-absent (TIER 3 - TRACE-PERMISSIBLE-JSON-LD)"
+title "tro-checks  ·  demo 26: context-aliases-absent (Tier 3 - TRACE-PERMISSIBLE-JSON-LD)"
 
 show "expectation met: the @context gives a property a datatype and renames nothing" \
     report_on instance-typed-term.jsonld

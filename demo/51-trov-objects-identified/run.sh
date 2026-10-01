@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 51: trov-objects-identified (TIER 6 - STANDALONE-TRO)"
+title "tro-checks  ·  demo 51: trov-objects-identified (Tier 6 - STANDALONE-TRO)"
 
 show "expectation met: every object typed with a TROV class carries an @id" \
     report_on instance-objects-identified.jsonld

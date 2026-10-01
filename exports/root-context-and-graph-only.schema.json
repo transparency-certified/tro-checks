@@ -2,7 +2,7 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://w3id.org/trace/tro/0.1/root-context-and-graph-only.schema.json",
     "title": "Root context and graph only",
-    "description": "The file is a JSON object whose top level holds no member other than @context and @graph. Neither is required here: a file with no context, or no graph, passes, and USES-TROV-CORRECTLY is where both are required. A top level that is an array of nodes, or a node written at the top level with its own @id and properties, is refused.",
+    "description": "The file is a JSON object whose top level holds no member other than @context and @graph. Neither is required here: a file with no context, or no graph, passes, and `Tier 4 - USES-TROV-CORRECTLY` is where both are required. A top level that is an array of nodes, or a node written at the top level with its own @id and properties, is refused.",
     "summary": "The file is a JSON object whose top level holds no member other than `@context` and `@graph`",
     "type": "object",
     "properties": {

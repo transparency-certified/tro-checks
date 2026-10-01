@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 45: custom-term-superclasses-extensible (TIER 4 - USES-TROV-CORRECTLY)"
+title "tro-checks  ·  demo 45: custom-term-superclasses-extensible (Tier 4 - USES-TROV-CORRECTLY)"
 
 show "expectation met: the custom terms extend trov:TRSCapabilityType and trov:TRPAttributeType" \
     report_on instance-extensible-superclasses.jsonld

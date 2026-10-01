@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 57: created-with-single-tool (TIER 6 - STANDALONE-TRO)"
+title "tro-checks  ·  demo 57: created-with-single-tool (Tier 6 - STANDALONE-TRO)"
 
 show "expectation met: the software tool that generated the declaration is named by reference" \
     report_on instance-created-with-single.jsonld

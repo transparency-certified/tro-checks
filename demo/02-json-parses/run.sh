@@ -20,7 +20,7 @@ report_at_trace_json_ld_on() {
     cat "tmp/${1%.jsonld}-at-trace-json-ld.md"
 }
 
-title "tro-checks  ·  demo 02: json-parses (TIER 1 - SAFE-JSON)"
+title "tro-checks  ·  demo 02: json-parses (Tier 1 - SAFE-JSON)"
 
 show "expectation met: the candidate is a JSON object" \
     report_on instance-object.jsonld

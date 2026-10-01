@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 04: unicode-escapes-spell-whole-characters (TIER 1 - SAFE-JSON)"
+title "tro-checks  ·  demo 04: unicode-escapes-spell-whole-characters (Tier 1 - SAFE-JSON)"
 
 show "expectation met: an emoji written as the two escapes that spell it" \
     report_on instance-paired-surrogates.jsonld

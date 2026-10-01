@@ -21,16 +21,16 @@ above the target tier are reported as *not claimed*.
 
 <table>
 <thead>
-<tr><th align="left">Tier</th><th align="left">ID</th><th align="left">What meeting it means</th></tr>
+<tr><th align="left">Tier</th><th align="left">What meeting it means</th></tr>
 </thead>
 <tbody>
-<tr><td>1</td><td>SAFE&#8209;JSON</td><td>JSON that every supported parser reads the same way</td></tr>
-<tr><td>2</td><td>SAFE&#8209;JSON&#8209;LD</td><td>JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file</td></tr>
-<tr><td>3</td><td>TRACE&#8209;PERMISSIBLE&#8209;JSON&#8209;LD</td><td>JSON-LD that avoids constructs and practices TRACE disallows</td></tr>
-<tr><td>4</td><td>USES&#8209;TROV&#8209;CORRECTLY</td><td>JSON-LD that uses TROV terms only in ways TRACE allows</td></tr>
-<tr><td>5</td><td>DEFINES&#8209;TRS</td><td>JSON-LD that defines a Trusted Research System</td></tr>
-<tr><td>6</td><td>STANDALONE&#8209;TRO</td><td>A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it</td></tr>
-<tr><td>7</td><td>LINKABLE&#8209;TRO</td><td>A TRO declaration whose element identifiers cannot collide with those in another TRO</td></tr>
+<tr><td><samp>Tier&nbsp;1&nbsp;&#8209;&nbsp;SAFE&#8209;JSON</samp></td><td>JSON that every supported parser reads the same way</td></tr>
+<tr><td><samp>Tier&nbsp;2&nbsp;&#8209;&nbsp;SAFE&#8209;JSON&#8209;LD</samp></td><td>JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file</td></tr>
+<tr><td><samp>Tier&nbsp;3&nbsp;&#8209;&nbsp;TRACE&#8209;PERMISSIBLE&#8209;JSON&#8209;LD</samp></td><td>JSON-LD that avoids constructs and practices TRACE disallows</td></tr>
+<tr><td><samp>Tier&nbsp;4&nbsp;&#8209;&nbsp;USES&#8209;TROV&#8209;CORRECTLY</samp></td><td>JSON-LD that uses TROV terms only in ways TRACE allows</td></tr>
+<tr><td><samp>Tier&nbsp;5&nbsp;&#8209;&nbsp;DEFINES&#8209;TRS</samp></td><td>JSON-LD that defines a Trusted Research System</td></tr>
+<tr><td><samp>Tier&nbsp;6&nbsp;&#8209;&nbsp;STANDALONE&#8209;TRO</samp></td><td>A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it</td></tr>
+<tr><td><samp>Tier&nbsp;7&nbsp;&#8209;&nbsp;LINKABLE&#8209;TRO</samp></td><td>A TRO declaration whose element identifiers cannot collide with those in another TRO</td></tr>
 </tbody>
 </table>
 
@@ -52,8 +52,8 @@ released.
 <tr><th align="left">Version</th><th align="left">What it is</th></tr>
 </thead>
 <tbody>
-<tr><td>trace&#8209;spec&#8209;2026&#8209;04&#8209;19</td><td>The first release of the TRACE Specification</td></tr>
-<tr><td>0.1</td><td>TRACE Specification 0.1, not yet released</td></tr>
+<tr><td><samp>trace&#8209;spec&#8209;2026&#8209;04&#8209;19</samp></td><td>The first release of the TRACE Specification</td></tr>
+<tr><td><samp>0.1</samp></td><td>TRACE Specification 0.1, not yet released</td></tr>
 </tbody>
 </table>
 
@@ -70,7 +70,7 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 
 <table>
 <tbody>
-<tr><th colspan="3" align="left"><br>Tier&nbsp;1&nbsp;—&nbsp;SAFE&#8209;JSON</th></tr>
+<tr><th colspan="3" align="left"><br><samp>Tier&nbsp;1&nbsp;&#8209;&nbsp;SAFE&#8209;JSON</samp></th></tr>
 <tr><th align="left">Expectation</th><th align="left">What it requires</th><th align="left">Versions</th></tr>
 <tr><td nowrap><samp>utf8-encoded</samp></td><td>The candidate is UTF-8</td><td>all</td></tr>
 <tr><td nowrap><samp>json-parses</samp></td><td>The candidate parses as JSON without errors</td><td>all</td></tr>
@@ -79,7 +79,7 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <tr><td nowrap><samp>numbers-within-range</samp></td><td>Every number fits a double; every integer is exact</td><td>all</td></tr>
 </tbody>
 <tbody>
-<tr><th colspan="3" align="left"><br>Tier&nbsp;2&nbsp;—&nbsp;SAFE&#8209;JSON&#8209;LD</th></tr>
+<tr><th colspan="3" align="left"><br><samp>Tier&nbsp;2&nbsp;&#8209;&nbsp;SAFE&#8209;JSON&#8209;LD</samp></th></tr>
 <tr><th align="left">Expectation</th><th align="left">What it requires</th><th align="left">Versions</th></tr>
 <tr><td nowrap><samp>context-at-root-only</samp></td><td>The file's only <code>@context</code> is at its top</td><td>all</td></tr>
 <tr><td nowrap><samp>remote-contexts-absent</samp></td><td>The <code>@context</code> never refers by web address to a context kept elsewhere</td><td>all</td></tr>
@@ -96,7 +96,7 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <tr><td nowrap><samp>id-segments-portable</samp></td><td>Every segment of a relative <code>@id</code> is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit</td><td>all</td></tr>
 </tbody>
 <tbody>
-<tr><th colspan="3" align="left"><br>Tier&nbsp;3&nbsp;—&nbsp;TRACE&#8209;PERMISSIBLE&#8209;JSON&#8209;LD</th></tr>
+<tr><th colspan="3" align="left"><br><samp>Tier&nbsp;3&nbsp;&#8209;&nbsp;TRACE&#8209;PERMISSIBLE&#8209;JSON&#8209;LD</samp></th></tr>
 <tr><th align="left">Expectation</th><th align="left">What it requires</th><th align="left">Versions</th></tr>
 <tr><td nowrap><samp>root-context-and-graph-only</samp></td><td>The file is a JSON object whose top level holds no member other than <code>@context</code> and <code>@graph</code></td><td>all</td></tr>
 <tr><td nowrap><samp>composite-contexts-absent</samp></td><td>The <code>@context</code> is never composed from several parts</td><td>all</td></tr>
@@ -111,7 +111,7 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <tr><td nowrap><samp>types-prefixed-or-absolute</samp></td><td>Every <code>@type</code> value is a prefixed or absolute IRI</td><td>all</td></tr>
 </tbody>
 <tbody>
-<tr><th colspan="3" align="left"><br>Tier&nbsp;4&nbsp;—&nbsp;USES&#8209;TROV&#8209;CORRECTLY</th></tr>
+<tr><th colspan="3" align="left"><br><samp>Tier&nbsp;4&nbsp;&#8209;&nbsp;USES&#8209;TROV&#8209;CORRECTLY</samp></th></tr>
 <tr><th align="left">Expectation</th><th align="left">What it requires</th><th align="left">Versions</th></tr>
 <tr><td nowrap><samp>context-and-nonempty-graph-present</samp></td><td>The file has a non-null <code>@context</code> and an <code>@graph</code> holding at least one node</td><td>all</td></tr>
 <tr><td nowrap><samp>core-prefixes-pinned</samp></td><td><code>trov</code> is declared and is the only prefix for a TROV namespace; <code>rdf</code>, <code>rdfs</code> and <code>schema</code> prefixes, if declared, are the standard ones</td><td>all</td></tr>
@@ -132,14 +132,14 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <tr><td nowrap><samp>trov-signing-mechanisms-predefined</samp></td><td>A signing mechanism is identified by reference, and a <code>trov:</code> one is one TROV predefines</td><td>all</td></tr>
 </tbody>
 <tbody>
-<tr><th colspan="3" align="left"><br>Tier&nbsp;5&nbsp;—&nbsp;DEFINES&#8209;TRS</th></tr>
+<tr><th colspan="3" align="left"><br><samp>Tier&nbsp;5&nbsp;&#8209;&nbsp;DEFINES&#8209;TRS</samp></th></tr>
 <tr><th align="left">Expectation</th><th align="left">What it requires</th><th align="left">Versions</th></tr>
 <tr><td nowrap><samp>trs-defined</samp></td><td>A TRS is defined, with an <code>@id</code>, at the top of the <code>@graph</code> or as the object of <code>trov:wasAssembledBy</code>, and nowhere else</td><td>all</td></tr>
 <tr><td nowrap><samp>trs-id-absolute</samp></td><td>The TRS is identified by an absolute IRI, or a compact IRI outside the <code>trov</code> namespace</td><td>from <code>0.1</code></td></tr>
 <tr><td nowrap><samp>capability-ids-absolute</samp></td><td>Every capability is identified by an absolute IRI, or a compact IRI outside the <code>trov</code> namespace</td><td>from <code>0.1</code></td></tr>
 </tbody>
 <tbody>
-<tr><th colspan="3" align="left"><br>Tier&nbsp;6&nbsp;—&nbsp;STANDALONE&#8209;TRO</th></tr>
+<tr><th colspan="3" align="left"><br><samp>Tier&nbsp;6&nbsp;&#8209;&nbsp;STANDALONE&#8209;TRO</samp></th></tr>
 <tr><th align="left">Expectation</th><th align="left">What it requires</th><th align="left">Versions</th></tr>
 <tr><td nowrap><samp>tro-top-level-in-graph</samp></td><td>The TRO is a top-level member of the <code>@graph</code></td><td>all</td></tr>
 <tr><td nowrap><samp>trov-objects-identified</samp></td><td>Every object typed with a TROV class carries an <code>@id</code></td><td>all</td></tr>
@@ -153,7 +153,7 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <tr><td nowrap><samp>gpg-signing-key-present</samp></td><td>A TRO signed with <code>trov:GPGSigning</code> gives its TRS a <code>trov:publicKey</code></td><td>all</td></tr>
 </tbody>
 <tbody>
-<tr><th colspan="3" align="left"><br>Tier&nbsp;7&nbsp;—&nbsp;LINKABLE&#8209;TRO</th></tr>
+<tr><th colspan="3" align="left"><br><samp>Tier&nbsp;7&nbsp;&#8209;&nbsp;LINKABLE&#8209;TRO</samp></th></tr>
 <tr><th align="left">Expectation</th><th align="left">What it requires</th><th align="left">Versions</th></tr>
 <tr><td nowrap><samp>base-declared</samp></td><td>The <code>@context</code> includes an <code>@base</code></td><td>all</td></tr>
 <tr><td nowrap><samp>base-has-path</samp></td><td>The <code>@base</code> names something below the host, not the host alone</td><td>all</td></tr>
@@ -180,7 +180,7 @@ candidate, such as whether the candidate is UTF-8 and parses as JSON.
 
 ### Supported parsers and processors
 
-`SAFE-JSON` and `SAFE-JSON-LD` promise that a candidate reads the same way in
+`Tier 1 - SAFE-JSON` and `Tier 2 - SAFE-JSON-LD` promise that a candidate reads the same way in
 every *supported* implementation. The supported implementations are these:
 
 | | Implementation | Version |
@@ -191,22 +191,25 @@ every *supported* implementation. The supported implementations are these:
 | JSON-LD processor | [PyLD](https://github.com/digitalbazaar/pyld) | 3.3.0 |
 | JSON-LD processor | [rdflib](https://github.com/RDFLib/rdflib) | 7.6.0 |
 
-[`docs/safe-json-ld-constructs.md`](docs/safe-json-ld-constructs.md) lists, for each construct `SAFE-JSON-LD`
-excludes, the W3C tests the supported JSON-LD processors do not all pass.
+[`docs/safe-json-ld-constructs.md`](docs/safe-json-ld-constructs.md) lists, for each construct
+`Tier 2 - SAFE-JSON-LD` excludes, the W3C tests the supported JSON-LD processors do not all pass.
 
 ## Reports
 
-One report is written for each target of each candidate. It gives the candidate and the target,
-a tier under a version, then the status of each tier and of each expectation, and, for each
-expectation not met, every error found: what was found, where in the
-candidate, and why it does not meet the expectation. Each error is listed
-once, whichever validator reported it.
+One report is written for each target of each candidate. It opens by saying what the
+candidate is, which tier it is expected to satisfy at which version, and how it came out.
+Tables follow with the status of each tier and of each expectation. For each expectation
+not met, the report then lists every error found: what was found, where in the candidate,
+and why it does not meet the expectation. Each error is listed once, whichever validator
+reported it. A tier named in the opening or in the table of tiers links to that tier's
+expectations, and an expectation that is not met links to its errors.
 
 A tier up to the target is met when every expectation in it and in every tier
 below it is met, and not met otherwise; a tier above the target is not claimed.
 
 An expectation in a claimed tier is met, not met, or not assessed. It is not
-assessed when `SAFE-JSON`, `SAFE-JSON-LD` or `TRACE-PERMISSIBLE-JSON-LD` below it is not
+assessed when `Tier 1 - SAFE-JSON`, `Tier 2 - SAFE-JSON-LD` or
+`Tier 3 - TRACE-PERMISSIBLE-JSON-LD` below it is not
 met, or when an expectation its `requires` names is not met. Above those three
 tiers, every claimed tier's expectations are checked whatever the tiers below
 them came to.
@@ -292,7 +295,7 @@ from: the manifest, the option, or the default.
 | [`GLOSSARY.md`](GLOSSARY.md) | The key entities the tools in this repository concern. |
 | [`models/`](models/README.md) | How the key entities fit together, each subject modeled in more than one paradigm. |
 | [`docs/json-schema-capabilities.md`](docs/json-schema-capabilities.md) | The JSON Schema capabilities the expectations use, each with its demo in [`json-schema-demos`](https://github.com/CIRSS/json-schema-demos). |
-| [`docs/safe-json-ld-constructs.md`](docs/safe-json-ld-constructs.md) | For each construct `SAFE-JSON-LD` excludes, the W3C tests the supported JSON-LD processors do not all pass. |
+| [`docs/safe-json-ld-constructs.md`](docs/safe-json-ld-constructs.md) | For each construct `Tier 2 - SAFE-JSON-LD` excludes, the W3C tests the supported JSON-LD processors do not all pass. |
 | [`REVIEWS.md`](REVIEWS.md) | Who has reviewed each file, at what level of detail. |
 | [`demo/`](demo) | Demos of checking particular expectations. |
 

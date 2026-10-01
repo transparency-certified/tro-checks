@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 07: remote-contexts-absent (TIER 2 - SAFE-JSON-LD)"
+title "tro-checks  ·  demo 07: remote-contexts-absent (Tier 2 - SAFE-JSON-LD)"
 
 show "expectation met: the @context is included in the file" \
     report_on instance-inline-context.jsonld

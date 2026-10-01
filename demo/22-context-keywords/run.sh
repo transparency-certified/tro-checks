@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 22: disallowed-context-keywords-absent (TIER 3 - TRACE-PERMISSIBLE-JSON-LD)"
+title "tro-checks  ·  demo 22: disallowed-context-keywords-absent (Tier 3 - TRACE-PERMISSIBLE-JSON-LD)"
 
 show "expectation met: the @context uses only @base" \
     report_on instance-allowed-context-keywords.jsonld

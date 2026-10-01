@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 34: hash-algorithms-permitted (TIER 4 - USES-TROV-CORRECTLY)"
+title "tro-checks  ·  demo 34: hash-algorithms-permitted (Tier 4 - USES-TROV-CORRECTLY)"
 
 show "expectation met: the hashes name sha256, sha512 and sha3-256" \
     report_on instance-permitted-algorithms.jsonld

@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 63: node-ids-present (TIER 7 - LINKABLE-TRO)"
+title "tro-checks  ·  demo 63: node-ids-present (Tier 7 - LINKABLE-TRO)"
 
 show "expectation met: every node carries an @id" \
     report_on instance-node-ids-present.jsonld

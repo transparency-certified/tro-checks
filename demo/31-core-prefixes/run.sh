@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 31: core-prefixes-pinned (TIER 4 - USES-TROV-CORRECTLY)"
+title "tro-checks  ·  demo 31: core-prefixes-pinned (Tier 4 - USES-TROV-CORRECTLY)"
 
 show "expectation met: the core prefixes map to their Declaration Format namespaces" \
     report_on instance-core-prefixes.jsonld

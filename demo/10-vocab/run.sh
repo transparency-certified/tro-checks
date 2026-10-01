@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 10: context-vocab-absent (TIER 2 - SAFE-JSON-LD)"
+title "tro-checks  ·  demo 10: context-vocab-absent (Tier 2 - SAFE-JSON-LD)"
 
 show "expectation met: every term is declared, with no default vocabulary" \
     report_on instance-no-vocab.jsonld

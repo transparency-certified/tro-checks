@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 58: gpg-signing-key-present (TIER 6 - STANDALONE-TRO)"
+title "tro-checks  ·  demo 58: gpg-signing-key-present (Tier 6 - STANDALONE-TRO)"
 
 show "expectation met: the TRO is signed with trov:GPGSigning and its TRS carries a public key" \
     report_on instance-gpg-with-key.jsonld

@@ -11,7 +11,7 @@ const childProcess = require('node:child_process')
 const { parseArgs } = require('node:util')
 const fs = require('node:fs')
 const path = require('node:path')
-const { renderReportAsMarkdown } = require('./render-report.js')
+const { renderReportAsMarkdown, tierLabel } = require('./render-report.js')
 
 /** @typedef {import('./types.js').Tier} Tier */
 /** @typedef {import('./types.js').Version} Version */
@@ -728,8 +728,7 @@ function writeReport(reportPath, candidate, findings, assessments, compactly) {
  * @returns {string}
  */
 function summarizeInOneLine(reportPath, assessments) {
-    const verdicts = assessments.map(
-        (assessment) => `${assessment.tier.number} ${assessment.tier.id} ${assessment.outcome}`)
+    const verdicts = assessments.map((assessment) => `${tierLabel(assessment.tier)} ${assessment.outcome}`)
 
     return `wrote ${reportPath}; ${verdicts.join(', ')}`
 }

@@ -94,9 +94,24 @@
 
 ## What the report says
 
+**The report opens in prose.**
+- It names the candidate in its title.
+- It says what the report is and what wrote it.
+- It gives the candidate's description.
+- It says which tier the candidate is expected to satisfy, at which version.
+- It says that the candidate meets every expectation in that tier and the tiers below, or how many expectations it does not meet and in which tiers, and how many were not assessed.
+- It says what the sections below contain.
+
+**The report writes a tier the same way everywhere, as its number and its ID, and sets every tier and version as an identifier.**
+
+**The report links an identifier to the first place below that details it.**
+- It links each tier named in the opening, and in the list of tiers, to that tier's list of expectations.
+- It links each expectation not met, in its tier's list, to the details of that expectation.
+- It leaves the links out when asked for compactly.
+
 **The report names the candidate, describes it, and states the version aimed at and the tier aimed at under it, saying beside the description, the version and the tier where each came from.**
 
-**The report lists every tier, giving its number and ID, the commitment it describes, and its status — met or not met for each tier at or below the one aimed at, and not claimed for each above it.**
+**The report lists every tier, giving the tier, the commitment it describes, and its status — met or not met for each tier at or below the one aimed at, and not claimed for each above it.**
 
 **The report lists every expectation that applies under the version, under its tier, in the order the tier lists them, giving what it checks in a few words and its status, and closes each tier's list with the tier's status.**
 

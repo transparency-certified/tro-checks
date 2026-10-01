@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 46: trov-signing-mechanisms-predefined (TIER 4 - USES-TROV-CORRECTLY)"
+title "tro-checks  ·  demo 46: trov-signing-mechanisms-predefined (Tier 4 - USES-TROV-CORRECTLY)"
 
 show "expectation met: the TRO is signed with trov:X509CMSSigning" \
     report_on instance-predefined-mechanism.jsonld

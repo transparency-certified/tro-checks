@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 47: trs-defined (TIER 5 - DEFINES-TRS)"
+title "tro-checks  ·  demo 47: trs-defined (Tier 5 - DEFINES-TRS)"
 
 show "expectation met: the TRS is defined in place, as the object of trov:wasAssembledBy" \
     report_on instance-trs-in-place.jsonld

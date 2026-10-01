@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 35: hash-values-correct-form (TIER 4 - USES-TROV-CORRECTLY)"
+title "tro-checks  ·  demo 35: hash-values-correct-form (Tier 4 - USES-TROV-CORRECTLY)"
 
 show "expectation met: sha256, sha512 and blake2b values, lowercase hexadecimal of 64, 128 and 128 digits" \
     report_on instance-correct-forms.jsonld

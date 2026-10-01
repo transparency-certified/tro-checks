@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 15: graph-at-root-only (TIER 2 - SAFE-JSON-LD)"
+title "tro-checks  ·  demo 15: graph-at-root-only (Tier 2 - SAFE-JSON-LD)"
 
 show "expectation met: the only @graph is the root's" \
     report_on instance-graph-at-root.jsonld

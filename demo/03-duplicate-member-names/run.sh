@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 03: duplicate-member-names-absent (TIER 1 - SAFE-JSON)"
+title "tro-checks  ·  demo 03: duplicate-member-names-absent (Tier 1 - SAFE-JSON)"
 
 show "expectation met: no object repeats a member name" \
     report_on instance-names-unique.jsonld

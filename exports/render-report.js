@@ -7,15 +7,18 @@
 // @ts-check
 
 /** @typedef {import('./types.js').Tier} Tier */
+/** @typedef {import('./types.js').Version} Version */
 /** @typedef {import('./types.js').Candidate} Candidate */
 /** @typedef {import('./types.js').Assessment} Assessment */
 /** @typedef {import('./types.js').Finding} Finding */
 /** @typedef {import('./types.js').Diagnostic} Diagnostic */
 
 /**
- * @typedef {string | {code: string} | {pointer: string} | {atom: string}} Cell  prose in the report's own Markdown,
- *   a value set as code, a JSON Pointer that may break only after a slash, or an atom -- a label or identifier the
- *   reader must not meet broken across two lines
+ * @typedef {string | {code: string, anchor?: string} | {pointer: string} | {atom: string} | {id: string, anchor?: string}} Cell
+ *   prose in the report's own Markdown, a value set as code, a JSON Pointer that may break only after a slash, an
+ *   atom -- a label the reader must not meet broken across two lines -- or an identifier: a tier or a version, set
+ *   as code and kept on one line. A value or an identifier may carry the anchor of the place later in the report
+ *   that gives its detail, which the HTML rendering links it to.
  */
 /**
  * @typedef {object} Row
@@ -24,8 +27,9 @@
  */
 /**
  * @typedef {object} Band  a row naming the group the rows below it belong to
- * @property {string}  label
+ * @property {string}  label         the identifier of the group: a tier
  * @property {string}  [status]     what the group came to, where the group is one that comes to something
+ * @property {string}  [anchor]     what a link elsewhere in the report names to reach the band
  * @property {boolean} [emphasized]
  */
 /**
@@ -51,6 +55,31 @@ module.exports = {
     renderReportAsMarkdown,
     renderSummaryAsMarkdown,
     htmlTableLines,
+    tierLabel,
+}
+
+/**
+ * @param {Tier} tier
+ * @returns {string}  the tier as it is written wherever a reader meets one: its number and its ID
+ */
+function tierLabel(tier) {
+    return `Tier ${tier.number} - ${tier.id}`
+}
+
+/**
+ * @param {Tier} tier
+ * @returns {string}  the anchor of the band that introduces the tier's expectations in a report
+ */
+function tierAnchor(tier) {
+    return `tier-${tier.number}-${tier.id.toLowerCase()}`
+}
+
+/**
+ * @param {string} expectationName
+ * @returns {string}  the anchor a Markdown renderer gives the heading of an unmet expectation's diagnostics
+ */
+function diagnosticsAnchor(expectationName) {
+    return `unmet-expectation-${expectationName}`
 }
 
 const SOURCE_LABELS = {
@@ -201,10 +230,12 @@ const pipeDialect = {
          * @returns {string}
          */
         const setCell = (cell, emphasized) => {
-            const text = typeof cell === 'string'
-                ? cellText(cell)
-                : 'code' in cell ? cellText(codeSpan(cell.code))
-                    : 'pointer' in cell ? cellText(codeSpan(cell.pointer)) : cellText(cell.atom)
+            /** @type {string} */ let text
+            if (typeof cell === 'string') text = cellText(cell)
+            else if ('code' in cell) text = cellText(codeSpan(cell.code))
+            else if ('pointer' in cell) text = cellText(codeSpan(cell.pointer))
+            else if ('id' in cell) text = cellText(codeSpan(cell.id))
+            else text = cellText(cell.atom)
             return emphasized && text ? `*${text}*` : text
         }
 
@@ -216,7 +247,8 @@ const pipeDialect = {
         ]
         for (const row of rows) {
             if (isBand(row)) {
-                const named = cellText(row.status ? `${row.label}  ${row.status}` : row.label)
+                const label = codeSpan(row.label)
+                const named = cellText(row.status ? `${label}  ${row.status}` : label)
                 const band = row.emphasized ? `*${named}*` : `**${named}**`
                 const padding = new Array(Math.max(0, headings.length - 1)).fill('')
                 lines.push(`| ${[band, ...padding].join(' | ')} |`, headingRow)
@@ -294,10 +326,29 @@ function cellHtml(cell) {
     if (typeof cell === 'string') return inlineHtml(cell)
     if ('code' in cell) {
         const code = escapeHtml(writable(cell.code))
-        return isOneToken(cell) ? `<samp>${code}</samp>` : `<code>${code}</code>`
+        return linkedHtml(isOneToken(cell) ? `<samp>${code}</samp>` : `<code>${code}</code>`, cell.anchor)
     }
     if ('pointer' in cell) return `<samp>${escapeHtml(writable(cell.pointer)).replace(/\//g, '/<wbr>')}</samp>`
+    if ('id' in cell) return linkedHtml(identifierHtml(cell.id), cell.anchor)
     return unbroken(escapeHtml(writable(cell.atom)))
+}
+
+/**
+ * @param {string} html
+ * @param {string} [anchor]  the anchor of the place in the report that gives the detail, where there is one
+ * @returns {string}  the HTML, as a link to that place where an anchor is given
+ */
+function linkedHtml(html, anchor) {
+    return anchor === undefined ? html : `<a href="#${escapeHtml(anchor)}">${html}</a>`
+}
+
+/**
+ * Sets an identifier as HTML: as code, and kept on one line.
+ * @param {string} id
+ * @returns {string}
+ */
+function identifierHtml(id) {
+    return `<samp>${unbroken(escapeHtml(writable(id)))}</samp>`
 }
 
 /**
@@ -336,10 +387,11 @@ const htmlDialect = {
                 if (within) lines.push('</tbody>')
                 within = false
                 open()
-                const titleText = row.status ? `${row.label}  ${row.status}` : row.label
-                const named = unbroken(escapeHtml(writable(titleText)))
+                const status = row.status ? unbroken(escapeHtml(writable(`  ${row.status}`))) : ''
+                const named = `${identifierHtml(row.label)}${status}`
                 const band = row.emphasized ? `<em>${named}</em>` : named
-                lines.push(`<tr${receded}><th colspan="${headings.length}" align="left"><br>${band}</th></tr>`)
+                const target = row.anchor === undefined ? '' : `<a id="${escapeHtml(row.anchor)}"></a>`
+                lines.push(`<tr${receded}><th colspan="${headings.length}" align="left"><br>${target}${band}</th></tr>`)
                 if (titled) lines.push(headingRow(receded))
             } else {
                 open()
@@ -410,10 +462,9 @@ function candidateLines(candidate, dialect) {
             { atom: 'Description' }, candidate.description, declaredBy(candidate.descriptionSource, '--description')] })
     }
     rows.push({ cells: [
-        { atom: 'Target version' }, { atom: targetVersion.id }, declaredBy(candidate.targetVersionSource, '--target-version')] })
+        { atom: 'Target version' }, { id: targetVersion.id }, declaredBy(candidate.targetVersionSource, '--target-version')] })
     rows.push({ cells: [
-        { atom: 'Target tier' }, { atom: `${targetTier.number} ${targetTier.id}` },
-        declaredBy(candidate.targetTierSource, '--target-tier')] })
+        { atom: 'Target tier' }, { id: tierLabel(targetTier) }, declaredBy(candidate.targetTierSource, '--target-tier')] })
 
     return ['## Candidate Information', '', ...dialect.table(['', '', 'Declared by'], rows)]
 }
@@ -454,12 +505,12 @@ function tierTableLines(tiers, assessments, dialect) {
     const rows = tiers.map((tier) => {
         const status = tierStatus(tier, assessments)
         return {
-            cells: [String(tier.number), { atom: tier.id }, tier.description, { atom: status.label }],
+            cells: [{ id: tierLabel(tier), anchor: tierAnchor(tier) }, tier.description, { atom: status.label }],
             emphasized: status.emphasized,
         }
     })
 
-    return dialect.table(['Tier', 'ID', 'Description', 'Status'], rows)
+    return dialect.table(['Tier', 'Description', 'Status'], rows)
 }
 
 /**
@@ -475,11 +526,13 @@ function tierFindingsLines(tiers, findings, assessments, dialect) {
     const rows = []
     for (const tier of tiers) {
         const status = tierStatus(tier, assessments)
-        rows.push({ label: `Tier ${tier.number} — ${tier.id}`, status: status.label, emphasized: status.emphasized })
+        rows.push({
+            label: tierLabel(tier), status: status.label, anchor: tierAnchor(tier), emphasized: status.emphasized })
         for (const finding of findings.filter((each) => each.expectation.tier.number === tier.number)) {
             const { expectation } = finding
+            const anchor = finding.outcome === 'unmet' ? diagnosticsAnchor(expectation.name) : undefined
             rows.push({
-                cells: [{ code: expectation.name }, expectation.summary, { atom: statusLabel(finding.outcome) }],
+                cells: [{ code: expectation.name, anchor }, expectation.summary, { atom: statusLabel(finding.outcome) }],
                 emphasized: finding.outcome === 'not claimed',
             })
         }
@@ -512,6 +565,134 @@ function unmetExpectationLines(finding, dialect) {
     ]
 }
 
+const NUMBER_WORDS = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve']
+
+/**
+ * @param {number} count
+ * @returns {string}  the count in words up to twelve, and in figures above
+ */
+function inWords(count) {
+    return NUMBER_WORDS[count] ?? String(count)
+}
+
+/**
+ * @param {string[]} items
+ * @returns {string}  the items as a sentence lists them: "a", "a and b", "a, b and c"
+ */
+function listed(items) {
+    if (items.length <= 1) return items.join('')
+    return `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`
+}
+
+/**
+ * @param {Tier}    tier
+ * @param {boolean} [linked]  whether to link the tier to the band that introduces its expectations
+ * @returns {string}  the tier as a sentence names it, in the report's own Markdown
+ */
+function tierInProse(tier, linked) {
+    const label = codeSpan(tierLabel(tier))
+    return linked ? `[${label}](#${tierAnchor(tier)})` : label
+}
+
+/**
+ * Says what a candidate is expected to satisfy: each version in order, with its tiers from the lowest up.
+ * @param {{tier: Tier, version: Version}[]} targets
+ * @param {boolean} [linked]  whether to link each tier to the band that introduces its expectations
+ * @returns {string}  one sentence, in the report's own Markdown
+ */
+function expectationSentence(targets, linked) {
+    /** @type {Version[]} */ const versions = []
+    for (const { version } of targets) {
+        if (!versions.some((each) => each.number === version.number)) versions.push(version)
+    }
+    versions.sort((one, other) => one.number - other.number)
+
+    const clauses = versions.map((version) => {
+        const tiers = targets
+            .filter((target) => target.version.number === version.number)
+            .map((target) => target.tier)
+            .sort((one, other) => one.number - other.number)
+        return `${listed(tiers.map((tier) => tierInProse(tier, linked)))} at version ${codeSpan(version.id)}`
+    })
+
+    return `This candidate is expected to satisfy ${clauses.join(', and ')}.`
+}
+
+/**
+ * Says how the candidate came out against its target: that it meets every expectation, or how many it does not
+ * meet and in which tiers, and how many were not assessed.
+ * @param {Candidate} candidate
+ * @param {Finding[]} findings
+ * @param {boolean}   [linked]  whether to link each tier to the band that introduces its expectations
+ * @returns {string[]}  one sentence or two, in the report's own Markdown
+ */
+function resultSentences(candidate, findings, linked) {
+    const unmet = findings.filter((finding) => finding.outcome === 'unmet')
+    const notAssessed = findings.filter((finding) => finding.outcome === 'not assessed')
+
+    if (unmet.length === 0 && notAssessed.length === 0) {
+        const tiersBelow = candidate.targetTier.number - 1
+        if (tiersBelow === 0) return ['The candidate meets every expectation in that tier.']
+        if (tiersBelow === 1) return ['The candidate meets every expectation in that tier and in the tier below it.']
+        return [`The candidate meets every expectation in that tier and in the ${inWords(tiersBelow)} tiers below it.`]
+    }
+
+    /** @type {string[]} */ const sentences = []
+
+    const unmetTiers = tiersOf(unmet)
+    if (unmetTiers.length === 1) {
+        sentences.push(
+            `The candidate does not meet ${inWords(unmet.length)} of the expectations in ${tierInProse(unmetTiers[0], linked)}.`)
+    } else if (unmetTiers.length > 1) {
+        const counts = unmetTiers.map((tier) => {
+            const count = unmet.filter((finding) => finding.expectation.tier.number === tier.number).length
+            return `${inWords(count)} in ${tierInProse(tier, linked)}`
+        })
+        sentences.push(`The candidate does not meet ${inWords(unmet.length)} of the expectations: ${listed(counts)}.`)
+    }
+
+    if (notAssessed.length === 1) {
+        sentences.push(
+            'One other expectation was not assessed, because a tier below it, or an expectation it requires, was not met.')
+    } else if (notAssessed.length > 1) {
+        sentences.push(
+            `A further ${inWords(notAssessed.length)} expectations were not assessed, `
+            + 'because a tier below them, or an expectation they require, was not met.')
+    }
+
+    return sentences
+}
+
+/**
+ * The report's opening: what the document is, what the candidate is, what it is expected to satisfy and how it
+ * came out, and what the sections below contain.
+ * @param {Candidate} candidate
+ * @param {Finding[]} findings
+ * @param {boolean}   [linked]  whether to link each tier it names to the band that introduces its expectations
+ * @returns {string[]}
+ */
+function openingLines(candidate, findings, linked) {
+    const lines = [
+        `# Report on ${codeSpan(candidate.fileName)}`,
+        '',
+        'This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the '
+        + 'TRACE Specification.',
+    ]
+
+    if (candidate.description) lines.push('', writable(candidate.description))
+
+    const expectation = expectationSentence([{ tier: candidate.targetTier, version: candidate.targetVersion }], linked)
+    lines.push('', [expectation, ...resultSentences(candidate, findings, linked)].join(' '))
+
+    const someUnmet = findings.some((finding) => finding.outcome === 'unmet')
+    lines.push('', someUnmet
+        ? 'The sections below give the status of each tier, then the status of each expectation, then, for each '
+            + 'expectation not met, what was found, where in the candidate, and why it does not meet the expectation.'
+        : 'The sections below give the status of each tier, then the status of each expectation.')
+
+    return lines
+}
+
 /**
  * @param {Candidate}    candidate
  * @param {Finding[]}    findings
@@ -523,7 +704,7 @@ function renderReportAsMarkdown(candidate, findings, assessments, compactly) {
     const dialect = compactly ? pipeDialect : htmlDialect
     const tiers = tiersOf(findings)
     const reportLines = [
-        '# Report',
+        ...openingLines(candidate, findings, !compactly),
         '',
         ...candidateLines(candidate, dialect),
         '',
@@ -552,18 +733,22 @@ function renderReportAsMarkdown(candidate, findings, assessments, compactly) {
 /**
  * One candidate's reports as a row each: the target, whether the target tier was met, and a link to the report.
  * @param {WrittenReport[]} candidateReports  the reports on one candidate
- * @returns {Row[]}
+ * @returns {Row[]}  by target version, and by target tier within a version
  * @throws {Error} if a report carries no assessment of its target tier.
  */
 function summaryRows(candidateReports) {
-    return candidateReports.map(({ candidate, fileName, assessments }) => {
+    const inTargetOrder = [...candidateReports].sort((one, other) =>
+        one.candidate.targetVersion.number - other.candidate.targetVersion.number
+        || one.candidate.targetTier.number - other.candidate.targetTier.number)
+
+    return inTargetOrder.map(({ candidate, fileName, assessments }) => {
         const { targetTier, targetVersion } = candidate
         const assessment = assessments.find((each) => each.tier.number === targetTier.number)
         if (assessment === undefined) throw new Error(`${fileName} carries no assessment of ${targetTier.id}`)
 
         return { cells: [
-            { atom: targetVersion.id },
-            { atom: `${targetTier.number} ${targetTier.id}` },
+            { id: targetVersion.id },
+            { id: tierLabel(targetTier) },
             { atom: statusLabel(assessment.outcome) },
             `[${fileName}](${encodeURI(fileName)})`,
         ] }
@@ -591,6 +776,8 @@ function renderSummaryAsMarkdown(writtenReports) {
             summaryLines.push('', `## ${codeSpan(name ?? candidateFileName)}`)
         }
         if (description) summaryLines.push('', writable(description))
+        summaryLines.push('', expectationSentence(candidateReports.map((report) => (
+            { tier: report.candidate.targetTier, version: report.candidate.targetVersion }))))
         summaryLines.push(
             '', ...htmlDialect.table(['Target version', 'Target tier', 'Status', 'Report'], summaryRows(candidateReports)))
     }
