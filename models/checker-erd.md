@@ -5,22 +5,32 @@ The entities the checker works with, drawn as an entity-relationship diagram: ho
 ```mermaid
 erDiagram
     Specification {
-        string release
         string url
     }
-    Report }o--|| Specification : cites
+    Version {
+        int number
+        string id
+        string description
+    }
+    Specification ||--|{ Version : has
+    Version |o--o| Version : "is succeeded by"
+    Report }o--|| Version : cites
     Expectation }o--|| Specification : "is derived from"
-    Specification |o--o| Specification : "is succeeded by"
+    Expectation }o--o| Version : "applies from"
+    Expectation }o--o| Version : "applies until"
+    Candidate }o--|| Version : "targets its Tier under"
 
     Candidate {
         string fileName
         string description
-        string targetSource
+        string targetTier
+        string targetVersion
     }
     Tier {
         int number
         string id
         string description
+        list expectations
     }
     Expectation {
         string name
@@ -29,6 +39,8 @@ erDiagram
         string summary
         string description
         list validatorFlags
+        string fromVersion
+        string untilVersion
     }
     Validator {
         string command

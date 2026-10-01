@@ -74,7 +74,7 @@
     },
     {
         "id": "DEFINES-TRS",
-        "description": "JSON-LD that defines a Trusted Research System, identified by an absolute IRI",
+        "description": "JSON-LD that defines a Trusted Research System",
         "expectations": [
             "trs-defined",
             "trs-id-absolute",

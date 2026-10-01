@@ -231,7 +231,7 @@ function checkEach(candidates, reportsDirectory) {
 function summarize(written, reportsDirectory) {
     const summaryPath = path.join(reportsDirectory, SUMMARY_NAME)
     fs.writeFileSync(summaryPath, renderSummaryAsMarkdown(written))
-    process.stdout.write(`wrote ${summaryPath}; ${written.length} reports\n`)
+    process.stdout.write(`wrote ${summaryPath}; ${written.length} ${written.length === 1 ? 'report' : 'reports'}\n`)
 
     const writtenNames = written.map((report) => report.fileName)
     const leftOver = fs

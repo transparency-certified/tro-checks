@@ -4,6 +4,7 @@
     "title": "Performance attribute warrants absolute",
     "description": "Every trov:warrantedBy on a value of trov:hasPerformanceAttribute refers to its capability by an absolute IRI, or a compact IRI whose prefix is not trov.",
     "summary": "Every performance attribute refers to the capability warranting it by absolute IRI",
+    "fromVersion": "0.1",
     "requires": [
         "trs-defined"
     ],

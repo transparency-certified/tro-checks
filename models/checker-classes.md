@@ -7,21 +7,32 @@ classDiagram
     direction TB
 
     class Specification {
-        release
         url
     }
-    Report "1" --> "1" Specification : cites
+    class Version {
+        number
+        id
+        description
+    }
+    Specification "1" *-- "1..n" Version : has
+    Version "1" --> "0..1" Version : succeeded by
+    Report "1" --> "1" Version : cites
     Expectation "1" --> "1" Specification : derived from
+    Expectation "1" --> "0..1" Version : applies from
+    Expectation "1" --> "0..1" Version : applies until
+    Candidate "1" --> "1" Version : targets its Tier under
 
     class Candidate {
         fileName
         description
-        targetSource
+        targetTier
+        targetVersion
     }
     class Tier {
         number
         id
         description
+        expectations
     }
     class Expectation {
         name
@@ -30,6 +41,8 @@ classDiagram
         summary
         description
         validatorFlags
+        fromVersion
+        untilVersion
     }
     class Validator {
         command
@@ -88,5 +101,4 @@ classDiagram
     Report "1" --> "1..n" Tier : lists every
     Report "1" *-- "1 per targeted Tier" Assessment
     Report "1" *-- "1 per Expectation" Finding
-    Specification "1" --> "0..1" Specification : succeeded by
 ```

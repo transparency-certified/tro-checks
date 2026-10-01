@@ -4,6 +4,7 @@
     "title": "Times zoned",
     "description": "Every trov:startedAtTime and trov:endedAtTime carries its time zone: Z, or an offset of the form +hh:mm or -hh:mm.",
     "summary": "Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone",
+    "fromVersion": "0.1",
     "requires": [
         "times-iso-8601"
     ],

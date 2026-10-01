@@ -57,7 +57,7 @@ wrote tmp/instance-warrant-absolute.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 T
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-warrant-absolute.jsonld` |  |
-| Target version | trace-spec-2026-04-19 | the default |
+| Target version | 0.1 | the `--target-version` option |
 | Target tier | 6 STANDALONE-TRO | the `--target-tier` option |
 ## Tier Assessments
 | Tier | ID | Description | Status |
@@ -66,7 +66,7 @@ wrote tmp/instance-warrant-absolute.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 T
 | 2 | SAFE-JSON-LD | JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file | ✅ met |
 | 3 | TRACE-PERMISSIBLE-JSON-LD | JSON-LD that avoids constructs and practices TRACE disallows | ✅ met |
 | 4 | USES-TROV-CORRECTLY | JSON-LD that uses TROV terms only in ways TRACE allows | ✅ met |
-| 5 | DEFINES-TRS | JSON-LD that defines a Trusted Research System, identified by an absolute IRI | ✅ met |
+| 5 | DEFINES-TRS | JSON-LD that defines a Trusted Research System | ✅ met |
 | 6 | STANDALONE-TRO | A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it | ✅ met |
 | *7* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with those in another TRO* | *not claimed* |
 ## Expectation Findings by Tier
@@ -205,7 +205,7 @@ wrote tmp/instance-warrant-relative.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 T
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-warrant-relative.jsonld` |  |
-| Target version | trace-spec-2026-04-19 | the default |
+| Target version | 0.1 | the `--target-version` option |
 | Target tier | 6 STANDALONE-TRO | the `--target-tier` option |
 ## Tier Assessments
 | Tier | ID | Description | Status |
@@ -214,7 +214,7 @@ wrote tmp/instance-warrant-relative.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 T
 | 2 | SAFE-JSON-LD | JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file | ✅ met |
 | 3 | TRACE-PERMISSIBLE-JSON-LD | JSON-LD that avoids constructs and practices TRACE disallows | ✅ met |
 | 4 | USES-TROV-CORRECTLY | JSON-LD that uses TROV terms only in ways TRACE allows | ✅ met |
-| 5 | DEFINES-TRS | JSON-LD that defines a Trusted Research System, identified by an absolute IRI | ✅ met |
+| 5 | DEFINES-TRS | JSON-LD that defines a Trusted Research System | ✅ met |
 | 6 | STANDALONE-TRO | A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it | ❌ not met |
 | *7* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with those in another TRO* | *not claimed* |
 ## Expectation Findings by Tier

@@ -4,6 +4,7 @@
     "title": "Capability ids absolute",
     "description": "Every value of trov:hasCapability that carries an @id carries an absolute IRI, or a compact IRI whose prefix is not trov.",
     "summary": "Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace",
+    "fromVersion": "0.1",
     "requires": [
         "trs-defined"
     ],

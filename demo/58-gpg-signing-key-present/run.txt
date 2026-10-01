@@ -104,7 +104,7 @@ wrote tmp/instance-gpg-with-key.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | 2 | SAFE-JSON-LD | JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file | ✅ met |
 | 3 | TRACE-PERMISSIBLE-JSON-LD | JSON-LD that avoids constructs and practices TRACE disallows | ✅ met |
 | 4 | USES-TROV-CORRECTLY | JSON-LD that uses TROV terms only in ways TRACE allows | ✅ met |
-| 5 | DEFINES-TRS | JSON-LD that defines a Trusted Research System, identified by an absolute IRI | ✅ met |
+| 5 | DEFINES-TRS | JSON-LD that defines a Trusted Research System | ✅ met |
 | 6 | STANDALONE-TRO | A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it | ✅ met |
 | *7* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with those in another TRO* | *not claimed* |
 ## Expectation Findings by Tier
@@ -155,7 +155,6 @@ wrote tmp/instance-gpg-with-key.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
-| `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
@@ -167,14 +166,11 @@ wrote tmp/instance-gpg-with-key.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | **Tier 5 — DEFINES-TRS  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `trs-defined` | A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else | ✅ met |
-| `trs-id-absolute` | The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ✅ met |
-| `capability-ids-absolute` | Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ✅ met |
 | **Tier 6 — STANDALONE-TRO  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `trov-objects-identified` | Every object typed with a TROV class carries an `@id` | ✅ met |
 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS | ✅ met |
-| `performance-attribute-warrants-absolute` | Every performance attribute refers to the capability warranting it by absolute IRI | ✅ met |
 | `tro-composition-single` | A `trov:hasComposition` is one object, not an array | ✅ met |
 | `composition-has-fingerprint` | The TRO's composition, if any, carries one fingerprint, which carries one hash | ✅ met |
 | `composition-identifies-artifacts` | The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array | ✅ met |
@@ -289,7 +285,7 @@ wrote tmp/instance-x509-without-key.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 T
 | 2 | SAFE-JSON-LD | JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file | ✅ met |
 | 3 | TRACE-PERMISSIBLE-JSON-LD | JSON-LD that avoids constructs and practices TRACE disallows | ✅ met |
 | 4 | USES-TROV-CORRECTLY | JSON-LD that uses TROV terms only in ways TRACE allows | ✅ met |
-| 5 | DEFINES-TRS | JSON-LD that defines a Trusted Research System, identified by an absolute IRI | ✅ met |
+| 5 | DEFINES-TRS | JSON-LD that defines a Trusted Research System | ✅ met |
 | 6 | STANDALONE-TRO | A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it | ✅ met |
 | *7* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with those in another TRO* | *not claimed* |
 ## Expectation Findings by Tier
@@ -340,7 +336,6 @@ wrote tmp/instance-x509-without-key.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 T
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
-| `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
@@ -352,14 +347,11 @@ wrote tmp/instance-x509-without-key.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 T
 | **Tier 5 — DEFINES-TRS  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `trs-defined` | A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else | ✅ met |
-| `trs-id-absolute` | The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ✅ met |
-| `capability-ids-absolute` | Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ✅ met |
 | **Tier 6 — STANDALONE-TRO  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `trov-objects-identified` | Every object typed with a TROV class carries an `@id` | ✅ met |
 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS | ✅ met |
-| `performance-attribute-warrants-absolute` | Every performance attribute refers to the capability warranting it by absolute IRI | ✅ met |
 | `tro-composition-single` | A `trov:hasComposition` is one object, not an array | ✅ met |
 | `composition-has-fingerprint` | The TRO's composition, if any, carries one fingerprint, which carries one hash | ✅ met |
 | `composition-identifies-artifacts` | The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array | ✅ met |
@@ -474,7 +466,7 @@ wrote tmp/instance-gpg-without-key.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TR
 | 2 | SAFE-JSON-LD | JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file | ✅ met |
 | 3 | TRACE-PERMISSIBLE-JSON-LD | JSON-LD that avoids constructs and practices TRACE disallows | ✅ met |
 | 4 | USES-TROV-CORRECTLY | JSON-LD that uses TROV terms only in ways TRACE allows | ✅ met |
-| 5 | DEFINES-TRS | JSON-LD that defines a Trusted Research System, identified by an absolute IRI | ✅ met |
+| 5 | DEFINES-TRS | JSON-LD that defines a Trusted Research System | ✅ met |
 | 6 | STANDALONE-TRO | A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it | ❌ not met |
 | *7* | *LINKABLE-TRO* | *A TRO declaration whose element identifiers cannot collide with those in another TRO* | *not claimed* |
 ## Expectation Findings by Tier
@@ -525,7 +517,6 @@ wrote tmp/instance-gpg-without-key.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TR
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
-| `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
@@ -537,14 +528,11 @@ wrote tmp/instance-gpg-without-key.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TR
 | **Tier 5 — DEFINES-TRS  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `trs-defined` | A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else | ✅ met |
-| `trs-id-absolute` | The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ✅ met |
-| `capability-ids-absolute` | Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ✅ met |
 | **Tier 6 — STANDALONE-TRO  ❌ not met** |  |  |
 | Expectation | Summary | Status |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `trov-objects-identified` | Every object typed with a TROV class carries an `@id` | ✅ met |
 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS | ✅ met |
-| `performance-attribute-warrants-absolute` | Every performance attribute refers to the capability warranting it by absolute IRI | ✅ met |
 | `tro-composition-single` | A `trov:hasComposition` is one object, not an array | ✅ met |
 | `composition-has-fingerprint` | The TRO's composition, if any, carries one fingerprint, which carries one hash | ✅ met |
 | `composition-identifies-artifacts` | The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array | ✅ met |
