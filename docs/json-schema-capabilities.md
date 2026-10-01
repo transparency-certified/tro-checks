@@ -2,7 +2,7 @@
 
 What each JSON Schema expectation in [`exports/`](../exports) depends on, named without its `.schema.json` suffix. A capability is a JSON Schema construct; the number beside it is the demo in [`CIRSS/json-schema-demos`](https://github.com/CIRSS/json-schema-demos) that demonstrates it. Capability names and demo numbers are that gallery's, from its [`CAPABILITIES.md`](https://github.com/CIRSS/json-schema-demos/blob/main/CAPABILITIES.md). Expectations checked by `check-tro` as it parses a candidate, such as `json-parses`, use no JSON Schema capabilities and are not listed.
 
-Every expectation listed uses `dialect-declaration` (`22`), `id-and-anchor` (`13`), and `annotations` (`06`), and all but `duplicate-member-names-absent` use `error-message` (`19`) and `type` (`02`). The table below lists what each uses beyond those. `summary`, `requires` and `validatorFlags` are this repository's own keywords, which `check-tro` reads and the validators ignore.
+Every expectation listed uses `dialect-declaration` (`22`), `id-and-anchor` (`13`), and `annotations` (`06`), and all but `duplicate-member-names-absent` use `error-message` (`19`) and `type` (`02`). The table below lists what each uses beyond those. `summary`, `requires`, `validatorFlags`, `fromVersion` and `untilVersion` are this repository's own keywords, which `check-tro` reads and the validators ignore.
 
 | Tier | Expectation | Capabilities used |
 | --- | --- | --- |

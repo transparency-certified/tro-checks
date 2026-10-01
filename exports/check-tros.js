@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 //
 // Check every candidate and write one report each. A candidate is checked
-// against the target given here, or the one its entry in
-// candidates/manifest.json declares, or the assumed tier.
+// against the target tier and version given here, or those its entry in
+// candidates/manifest.json declares, or the assumed ones.
 //
-//   check-tros --candidates DIR --reports DIR [--target TIER]
+//   check-tros --candidates DIR --reports DIR [--target-tier TIER] [--target-version VERSION]
 
 // @ts-check
 
@@ -15,10 +15,11 @@ const path = require('node:path')
 const checkTro = require('./check-tro.js')
 
 /** @typedef {import('./types.js').Tier} Tier */
+/** @typedef {import('./types.js').Version} Version */
 /** @typedef {import('./types.js').Candidate} Candidate */
 /**
  * @typedef {object} ManifestEntry  what candidates/manifest.json says about one candidate
- * @property {string} [target]       the id of the tier it aims at
+ * @property {{tier?: string, version?: string}} [target]  the ids of the tier it aims at and the version it aims at it under
  * @property {string} [description]  copied into its report
  */
 
@@ -70,28 +71,58 @@ function vetCandidateNames(candidatesManifest, candidatesDirectory) {
 /**
  * @param {string}        name
  * @param {ManifestEntry} entry
- * @param {string}        candidatesDirectory
- * @param {Tier}          [overrideTier]  the tier given on the command line, where one was
- * @returns {Candidate}
- * @throws {Error} if the entry names a tier that does not exist.
+ * @returns {{tier?: string, version?: string}}  the target the entry declares, with neither half where it declares none
+ * @throws {Error} if the entry's target is not an object, or has a member other than `tier` and `version`.
  */
-function buildCandidate(name, entry, candidatesDirectory, overrideTier) {
-    /** @type {Tier|undefined} */ let declaredTier
-    if (entry.target !== undefined) {
-        declaredTier = checkTro.lookUpTier(entry.target)
+function declaredTargetOf(name, entry) {
+    const target = entry.target
+    if (target === undefined) return {}
+
+    const isObject = target !== null && typeof target === 'object' && !Array.isArray(target)
+    if (!isObject || Object.keys(target).some((key) => key !== 'tier' && key !== 'version')) {
+        throw new Error(`${name}: a target is an object giving a tier, a version, or both`)
     }
 
-    /** @type {Candidate['targetSource']} */ let targetSource = 'default'
-    if (declaredTier !== undefined) targetSource = 'manifest'
-    if (overrideTier !== undefined) targetSource = 'option'
+    return target
+}
+
+/**
+ * @param {string}        name
+ * @param {ManifestEntry} entry
+ * @param {string}        candidatesDirectory
+ * @param {Tier}          [overrideTier]     the tier given on the command line, where one was
+ * @param {Version}       [overrideVersion]  the version given on the command line, where one was
+ * @returns {Candidate}
+ * @throws {Error} if the entry's target is not an object giving a tier, a version, or both, or names a tier or a
+ *   version that does not exist.
+ */
+function buildCandidate(name, entry, candidatesDirectory, overrideTier, overrideVersion) {
+    const declared = declaredTargetOf(name, entry)
+
+    /** @type {Tier|undefined} */ let declaredTier
+    if (declared.tier !== undefined) declaredTier = checkTro.lookUpTier(declared.tier)
+
+    /** @type {Version|undefined} */ let declaredVersion
+    if (declared.version !== undefined) declaredVersion = checkTro.lookUpVersion(declared.version)
+
+    /** @type {Candidate['targetTierSource']} */ let targetTierSource = 'default'
+    if (declaredTier !== undefined) targetTierSource = 'manifest'
+    if (overrideTier !== undefined) targetTierSource = 'option'
+
+    /** @type {Candidate['targetVersionSource']} */ let targetVersionSource = 'default'
+    if (declaredVersion !== undefined) targetVersionSource = 'manifest'
+    if (overrideVersion !== undefined) targetVersionSource = 'option'
 
     return {
         name,
         fileName: `${name}${CANDIDATE_SUFFIX}`,
         path: path.join(candidatesDirectory, `${name}${CANDIDATE_SUFFIX}`),
         description: entry.description,
-        targetTier: overrideTier ?? declaredTier ?? checkTro.lookUpTier(ASSUMED_TIER),
-        targetSource,
+        descriptionSource: entry.description !== undefined ? 'manifest' : undefined,
+        targetTier: overrideTier ?? declaredTier ?? checkTro.lookUpTier(checkTro.ASSUMED_TIER),
+        targetVersion: overrideVersion ?? declaredVersion ?? checkTro.lookUpVersion(checkTro.ASSUMED_VERSION),
+        targetTierSource,
+        targetVersionSource,
     }
 }
 
@@ -145,8 +176,7 @@ function checkEach(candidates, reportsDirectory) {
     return unreportedCount
 }
 
-const USAGE = 'usage: check-tros --candidates DIR --reports DIR [--target TIER]'
-const ASSUMED_TIER = 'STANDALONE-TRO'
+const USAGE = 'usage: check-tros --candidates DIR --reports DIR [--target-tier TIER] [--target-version VERSION]'
 
 /** @returns {number}  the exit status */
 function runAsCommand() {
@@ -156,7 +186,8 @@ function runAsCommand() {
             options: {
                 candidates: { type: 'string' },
                 reports: { type: 'string' },
-                target: { type: 'string' },
+                'target-tier': { type: 'string' },
+                'target-version': { type: 'string' },
             },
             allowPositionals: false,
         }).values
@@ -166,8 +197,13 @@ function runAsCommand() {
         if (!candidatesDirectory || !reportsDirectory) throw new Error(USAGE)
 
         /** @type {Tier|undefined} */ let overrideTier
-        if (optionValues.target !== undefined) {
-            overrideTier = checkTro.lookUpTier(optionValues.target)
+        if (optionValues['target-tier'] !== undefined) {
+            overrideTier = checkTro.lookUpTier(optionValues['target-tier'])
+        }
+
+        /** @type {Version|undefined} */ let overrideVersion
+        if (optionValues['target-version'] !== undefined) {
+            overrideVersion = checkTro.lookUpVersion(optionValues['target-version'])
         }
 
         const manifest = readCandidatesManifest(candidatesDirectory)
@@ -176,7 +212,7 @@ function runAsCommand() {
         sayWhatWasSkipped(manifest, candidatesDirectory)
 
         const candidates = names.map((name) =>
-            buildCandidate(name, manifest[name], candidatesDirectory, overrideTier))
+            buildCandidate(name, manifest[name], candidatesDirectory, overrideTier, overrideVersion))
 
         fs.mkdirSync(reportsDirectory, { recursive: true })
 

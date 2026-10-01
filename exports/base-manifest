@@ -5,6 +5,7 @@ render-report.js
 render-readme.js
 types.js
 tiers.json
+versions.json
 utf8-encoded.parse.json
 json-parses.parse.json
 duplicate-member-names-absent.schema.json

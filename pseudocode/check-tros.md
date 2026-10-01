@@ -4,6 +4,7 @@
 - The directory of candidates.
 - The directory to write reports into.
 - The tier to check every candidate against.
+- The version of the Specification to check every candidate under.
 
 **The program describes its own usage and stops if...**
 - The directory of candidates was not given.
@@ -19,8 +20,11 @@
 - It says which `.jsonld` files in the directory the manifest does not name.
 
 **The program builds a candidate from each entry.**
+- It stops if the entry's target is not an object giving a tier, a version, or both.
 - It settles the candidate's tier — the one given on the command line, the one its entry names, or `STANDALONE-TRO`.
-- It records where the tier came from — the command line, the manifest, or the default.
+- It settles the candidate's version — the one given on the command line, the one its entry names, or `trace-spec-2026-04-19`.
+- It records where the tier and the version each came from — the command line, the manifest, or the default.
+- It records that the description, where the entry gives one, came from the manifest.
 - It names the candidate's report after the candidate.
 
 **The program makes the reports directory, if it is not already there.**

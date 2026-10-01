@@ -45,10 +45,9 @@ module.exports = {
     htmlTableLines,
 }
 
-const TARGET_SOURCE_LABELS = {
+const SOURCE_LABELS = {
     default: 'the default',
     manifest: 'the candidate manifest',
-    option: 'the `--target` option',
 }
 
 const STATUS_LABELS = {
@@ -374,21 +373,41 @@ function htmlTableLines(headings, rows) {
 }
 
 /**
+ * @param {string|undefined} source  where something about the candidate came from
+ * @param {string}           option  the command-line option that gives it
+ * @returns {string}  what declared it, in the report's own Markdown
+ * @throws {Error} if the source has no label.
+ */
+function declaredBy(source, option) {
+    if (source === 'option') return `the \`${option}\` option`
+
+    const label = SOURCE_LABELS[/** @type {keyof SOURCE_LABELS} */ (source)]
+    if (label === undefined) throw new Error(`no such source: ${source}`)
+    return label
+}
+
+/**
  * @param {Candidate} candidate
  * @param {Dialect}   dialect
  * @returns {string[]}  the Candidate Information section's lines
+ * @throws {Error} if the description, the target version or the target tier came from a source that has no label.
  */
 function candidateLines(candidate, dialect) {
-    const targetSourceLabel = TARGET_SOURCE_LABELS[candidate.targetSource]
-    if (targetSourceLabel === undefined) throw new Error(`no such target source: ${candidate.targetSource}`)
+    const { targetTier, targetVersion } = candidate
 
     /** @type {Row[]} */
-    const rows = [{ cells: [{ atom: 'Candidate' }, { code: candidate.fileName }] }]
-    if (candidate.description) rows.push({ cells: [{ atom: 'Description' }, candidate.description] })
-    rows.push({ cells: [{ atom: 'Target' }, { atom: `${candidate.targetTier.number} ${candidate.targetTier.id}` }] })
-    rows.push({ cells: [{ atom: 'Target declared by' }, targetSourceLabel] })
+    const rows = [{ cells: [{ atom: 'Candidate' }, { code: candidate.fileName }, ''] }]
+    if (candidate.description) {
+        rows.push({ cells: [
+            { atom: 'Description' }, candidate.description, declaredBy(candidate.descriptionSource, '--description')] })
+    }
+    rows.push({ cells: [
+        { atom: 'Target version' }, { atom: targetVersion.id }, declaredBy(candidate.targetVersionSource, '--target-version')] })
+    rows.push({ cells: [
+        { atom: 'Target tier' }, { atom: `${targetTier.number} ${targetTier.id}` },
+        declaredBy(candidate.targetTierSource, '--target-tier')] })
 
-    return ['## Candidate Information', '', ...dialect.table(['', ''], rows)]
+    return ['## Candidate Information', '', ...dialect.table(['', '', 'Declared by'], rows)]
 }
 
 /**

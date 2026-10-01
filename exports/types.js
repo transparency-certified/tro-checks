@@ -1,6 +1,6 @@
 //
 // The entities the checker concerns, as types the editor can check -- GLOSSARY.md's
-// Candidate, Tier, Finding and Assessment -- and the shape of one entry in a
+// Candidate, Tier, Version, Finding and Assessment -- and the shape of one entry in a
 // validator's JSON report, as json-schema-dev's CONTRACT.md states it.
 //
 //   /** @typedef {import('./types.js').Finding} Finding */
@@ -18,6 +18,12 @@ module.exports = {}
  * @property {string[]} expectations  the names of the expectations it holds
  */
 /**
+ * @typedef {object} Version  a release of the TRACE Specification, or a pre-release of one
+ * @property {string} id           names the version wherever one is chosen: a target, a manifest entry, an expectation's range
+ * @property {number} number       its place in the order, from 1
+ * @property {string} description  what the version is
+ */
+/**
  * @typedef {object} Expectation  a condition a candidate is expected to satisfy
  * @property {string} name
  * @property {'json-schema'|'parse'} instrument  what checks it: the JSON Schema validators, or check-tro's own parse
@@ -27,6 +33,8 @@ module.exports = {}
  * @property {string} description  what it checks, in one sentence
  * @property {string[]} requires   the expectations in its tier or a lower one that must be met before it is checked
  * @property {string[]} validatorFlags  options passed to each validator with its schema, such as --reject-duplicate-members
+ * @property {Version} [fromVersion]   the first version it applies under; absent where it applies from the first
+ * @property {Version} [untilVersion]  the first version it no longer applies under; absent where it never stops applying
  */
 /**
  * @typedef {object} Candidate
@@ -34,8 +42,11 @@ module.exports = {}
  * @property {string}                         fileName
  * @property {string}                         path
  * @property {string}                         [description]
+ * @property {'manifest'|'option'}            [descriptionSource]  where the description came from, where there is one
  * @property {Tier}                           targetTier
- * @property {'default'|'manifest'|'option'}  targetSource  where the target came from
+ * @property {Version}                        targetVersion  the version of the Specification the target tier is claimed under
+ * @property {'default'|'manifest'|'option'}  targetTierSource     where the target tier came from
+ * @property {'default'|'manifest'|'option'}  targetVersionSource  where the target version came from
  */
 /**
  * @typedef {object} Assessment  whether a candidate meets the expectations in a tier

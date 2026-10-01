@@ -1,6 +1,7 @@
 //
 // Write the README's account of what is checked from the expectations themselves, so that
-// the tiers, their order and every summary are said once, in the files the checker reads.
+// the tiers, the versions, their order and every summary are said once, in the files the
+// checker reads.
 //
 //   node render-readme.js <repository directory>
 //
@@ -16,6 +17,7 @@ const { htmlTableLines } = require('./render-report.js')
 /** @typedef {import('./render-report.js').Band} Band */
 
 const TIER_SUMMARY = 'tier-summary'
+const VERSION_SUMMARY = 'version-summary'
 const TIER_EXPECTATIONS = 'tier-expectations'
 
 /**
@@ -37,21 +39,40 @@ function tiersOf(exportsDirectory) {
 }
 
 /**
- * An expectation's summary, from the file that defines it.
+ * @param {string} exportsDirectory
+ * @returns {{id: string, description: string}[]}  the versions, in order
+ */
+function versionsOf(exportsDirectory) {
+    return JSON.parse(fs.readFileSync(path.join(exportsDirectory, 'versions.json'), 'utf8'))
+}
+
+/**
+ * An expectation's summary and the versions it applies under, from the file that defines it.
  * @param {string} exportsDirectory
  * @param {string} name
- * @returns {string}
+ * @returns {{summary: string, fromVersion?: string, untilVersion?: string}}
  * @throws {Error} if no file defines the expectation, or the file gives no summary.
  */
-function summaryOf(exportsDirectory, name) {
+function definitionOf(exportsDirectory, name) {
     for (const suffix of ['schema', 'parse']) {
         const definitionPath = path.join(exportsDirectory, `${name}.${suffix}.json`)
         if (!fs.existsSync(definitionPath)) continue
-        const { summary } = JSON.parse(fs.readFileSync(definitionPath, 'utf8'))
+        const { summary, fromVersion, untilVersion } = JSON.parse(fs.readFileSync(definitionPath, 'utf8'))
         if (!summary) throw new Error(`no summary in ${name}.${suffix}.json`)
-        return summary
+        return { summary, fromVersion, untilVersion }
     }
     throw new Error(`no file defines the expectation ${name}`)
+}
+
+/**
+ * @param {{fromVersion?: string, untilVersion?: string}} definition
+ * @returns {string}  the versions the expectation applies under, in the README's own Markdown
+ */
+function versionRangeOf({ fromVersion, untilVersion }) {
+    const bounds = []
+    if (fromVersion !== undefined) bounds.push(`from \`${fromVersion}\``)
+    if (untilVersion !== undefined) bounds.push(`until \`${untilVersion}\``)
+    return bounds.length > 0 ? bounds.join(' ') : 'all'
 }
 
 /**
@@ -68,6 +89,17 @@ function tierSummaryLines(tiers) {
 }
 
 /**
+ * The versions in order, each with what it is.
+ * @param {ReturnType<versionsOf>} versions
+ * @returns {string[]}
+ */
+function versionSummaryLines(versions) {
+    /** @type {Row[]} */
+    const rows = versions.map((version) => ({ cells: [{ atom: version.id }, version.description] }))
+    return htmlTableLines(['Version', 'What it is'], rows)
+}
+
+/**
  * Every tier's expectations in one table, each tier introduced by a band, so that the
  * columns align down the whole of it however long a summary runs.
  * @param {ReturnType<tiersOf>} tiers
@@ -80,10 +112,11 @@ function tierExpectationLines(tiers, exportsDirectory) {
     for (const tier of tiers) {
         rows.push({ label: `Tier ${tier.number} — ${tier.id}`, status: '' })
         for (const name of tier.expectations) {
-            rows.push({ cells: [{ code: name }, summaryOf(exportsDirectory, name)] })
+            const definition = definitionOf(exportsDirectory, name)
+            rows.push({ cells: [{ code: name }, definition.summary, versionRangeOf(definition)] })
         }
     }
-    return htmlTableLines(['Expectation', 'What it requires'], rows)
+    return htmlTableLines(['Expectation', 'What it requires', 'Versions'], rows)
 }
 
 /**
@@ -113,6 +146,7 @@ function writeReadme(repository) {
 
     let readme = fs.readFileSync(readmePath, 'utf8')
     readme = withRegion(readme, TIER_SUMMARY, tierSummaryLines(tiers))
+    readme = withRegion(readme, VERSION_SUMMARY, versionSummaryLines(versionsOf(exportsDirectory)))
     readme = withRegion(readme, TIER_EXPECTATIONS, tierExpectationLines(tiers, exportsDirectory))
     fs.writeFileSync(readmePath, readme)
 

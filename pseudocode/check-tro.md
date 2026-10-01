@@ -4,6 +4,7 @@
 - The location of the candidate.
 - The location to write the report.
 - The tier the candidate is expected to reach.
+- The version of the Specification it is expected to reach that tier under.
 - A description of the candidate.
 - Whether to write the report without its blank lines.
 
@@ -17,16 +18,27 @@
   - It stops if a tier has no ID, no description, or no expectations.
   - It stops if a tier says whether it blocks higher tiers other than by true or false.
   - It stops if no tier answers to that ID.
+- It settles which version was meant — the one asked for, or `trace-spec-2026-04-19`.
+  - It reads the version definitions the module ships, numbering the versions in their order.
+  - It stops if a version has no ID or no description.
+  - It stops if no version answers to that ID.
 - It stops if the candidate is not a file it can read.
 - It notes the name of the file the candidate sits in.
-- It records where the tier came from — the `--target` option, or the default.
+- It records where the tier came from — the `--target-tier` option, or the default.
+- It records where the version came from — the `--target-version` option, or the default.
+- It records that the description, where one was given, came from the `--description` option.
 
 **The program checks the candidate against each expectation in the target.**
 - It finds the expectation files the module ships.
 - It stops if a tier lists an expectation that has no file.
 - It settles which tier each expectation belongs to.
+- It settles which versions each expectation applies under — from the version it names on, before the version it names, or every version.
+- It stops if an expectation names a version that does not exist, or applies under no version.
 - It stops if an expectation requires one listed after it — later in its own tier, or in a higher tier.
+- It stops if an expectation requires one that does not apply under every version it applies under.
 - It goes through the tiers in order, and through each tier's expectations in the order the tier lists them.
+- It leaves out an expectation that does not apply under the candidate's version.
+- It stops if a tier is left with no expectations.
 - It reports an expectation above the candidate's tier as not claimed.
 - It reports an expectation as not assessed when a lower tier that blocks higher tiers is not met, or an expectation it requires is not met.
 - It checks a parse expectation at or below the candidate's tier itself, reading and parsing the candidate once for all of them: that its bytes are UTF-8, that its text is JSON, that no string or member name has an unpaired surrogate, and that every number is within range.
@@ -82,11 +94,11 @@
 
 ## What the report says
 
-**The report names the candidate, describes it, and states the tier aimed at and where that tier came from.**
+**The report names the candidate, describes it, and states the version aimed at and the tier aimed at under it, saying beside the description, the version and the tier where each came from.**
 
 **The report lists every tier, giving its number and ID, the commitment it describes, and its status — met or not met for each tier at or below the one aimed at, and not claimed for each above it.**
 
-**The report lists every expectation under its tier, in the order the tier lists them, giving what it checks in a few words and its status, and closes each tier's list with the tier's status.**
+**The report lists every expectation that applies under the version, under its tier, in the order the tier lists them, giving what it checks in a few words and its status, and closes each tier's list with the tier's status.**
 
 **The report details each expectation not met, giving what it checks in a sentence and each error it found...**
 - What was found there, if anything.

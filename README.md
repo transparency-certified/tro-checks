@@ -15,7 +15,7 @@ See [`GLOSSARY.md`](GLOSSARY.md) for these and the other terms used here.
 The tiers are ordered and cumulative. A
 candidate **targets** one tier, named by its ID, and meeting it means meeting
 every expectation in that tier and in the tiers below. Expectations in tiers
-above the target are reported as *not claimed*.
+above the target tier are reported as *not claimed*.
 
 <!-- generated: tier-summary -->
 
@@ -36,9 +36,33 @@ above the target are reported as *not claimed*.
 
 <!-- end: tier-summary -->
 
+### Specification versions
+
+A candidate targets its tier under one **version** of the TRACE Specification: a release, or
+a pre-release of one. The versions are ordered, and an expectation applies under every
+version unless it names the version it applies from, or the version it applies until. An
+expectation that does not apply under the candidate's version is not checked and is not
+listed in the report. A candidate can be checked under a version that has not yet been
+released.
+
+<!-- generated: version-summary -->
+
+<table>
+<thead>
+<tr><th align="left">Version</th><th align="left">What it is</th></tr>
+</thead>
+<tbody>
+<tr><td>trace&#8209;spec&#8209;2026&#8209;04&#8209;19</td><td>The first release of the TRACE Specification</td></tr>
+<tr><td>0.1</td><td>TRACE Specification 0.1, not yet released</td></tr>
+</tbody>
+</table>
+
+<!-- end: version-summary -->
+
 ### The expectations in each tier
 
-The table below lists every tier and its expectations, in the order they are checked. This table is generated
+The table below lists every tier and its expectations, in the order they are checked, and the
+versions each expectation applies under. This table is generated
 from [`exports/tiers.json`](exports/tiers.json) and the expectation files themselves by
 `make update-readme`; edit those rather than the rows below.
 
@@ -46,97 +70,97 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 
 <table>
 <tbody>
-<tr><th colspan="2" align="left"><br>Tier&nbsp;1&nbsp;—&nbsp;SAFE&#8209;JSON</th></tr>
-<tr><th align="left">Expectation</th><th align="left">What it requires</th></tr>
-<tr><td nowrap><samp>utf8-encoded</samp></td><td>The candidate is UTF-8</td></tr>
-<tr><td nowrap><samp>json-parses</samp></td><td>The candidate parses as JSON without errors</td></tr>
-<tr><td nowrap><samp>unicode-escapes-spell-whole-characters</samp></td><td>Every <code>\u</code> escape spells a whole Unicode character</td></tr>
-<tr><td nowrap><samp>duplicate-member-names-absent</samp></td><td>No object repeats a member name</td></tr>
-<tr><td nowrap><samp>numbers-within-range</samp></td><td>Every number fits a double; every integer is exact</td></tr>
+<tr><th colspan="3" align="left"><br>Tier&nbsp;1&nbsp;—&nbsp;SAFE&#8209;JSON</th></tr>
+<tr><th align="left">Expectation</th><th align="left">What it requires</th><th align="left">Versions</th></tr>
+<tr><td nowrap><samp>utf8-encoded</samp></td><td>The candidate is UTF-8</td><td>all</td></tr>
+<tr><td nowrap><samp>json-parses</samp></td><td>The candidate parses as JSON without errors</td><td>all</td></tr>
+<tr><td nowrap><samp>unicode-escapes-spell-whole-characters</samp></td><td>Every <code>\u</code> escape spells a whole Unicode character</td><td>all</td></tr>
+<tr><td nowrap><samp>duplicate-member-names-absent</samp></td><td>No object repeats a member name</td><td>all</td></tr>
+<tr><td nowrap><samp>numbers-within-range</samp></td><td>Every number fits a double; every integer is exact</td><td>all</td></tr>
 </tbody>
 <tbody>
-<tr><th colspan="2" align="left"><br>Tier&nbsp;2&nbsp;—&nbsp;SAFE&#8209;JSON&#8209;LD</th></tr>
-<tr><th align="left">Expectation</th><th align="left">What it requires</th></tr>
-<tr><td nowrap><samp>context-at-root-only</samp></td><td>The file's only <code>@context</code> is at its top</td></tr>
-<tr><td nowrap><samp>remote-contexts-absent</samp></td><td>The <code>@context</code> never refers by web address to a context kept elsewhere</td></tr>
-<tr><td nowrap><samp>context-object-array-or-null</samp></td><td>The <code>@context</code>, if present, is an object, an array of objects, or <code>null</code></td></tr>
-<tr><td nowrap><samp>context-containers-absent</samp></td><td>The <code>@context</code> never uses <code>@container</code> to tell a reader to interpret a property's array values as something other than individual values</td></tr>
-<tr><td nowrap><samp>context-vocab-absent</samp></td><td>The <code>@context</code> never uses <code>@vocab</code> to tell a reader to interpret a name written without a prefix as a term of some vocabulary</td></tr>
-<tr><td nowrap><samp>context-protected-absent</samp></td><td>The <code>@context</code> never uses <code>@protected</code> to lock its entries against redefinition by a later context</td></tr>
-<tr><td nowrap><samp>context-propagate-absent</samp></td><td>The <code>@context</code> never uses <code>@propagate</code> to limit which objects it applies to</td></tr>
-<tr><td nowrap><samp>context-import-absent</samp></td><td>The <code>@context</code> never uses <code>@import</code> to pull in entries from another context at a web address</td></tr>
-<tr><td nowrap><samp>context-id-coercion-absent</samp></td><td>The <code>@context</code> never uses <code>"@type": "@id"</code> to tell a reader to interpret a property's bare-string <code>&lt;value&gt;</code> as <code>{ "@id": &lt;value&gt; }</code></td></tr>
-<tr><td nowrap><samp>graph-at-root-only</samp></td><td><code>@graph</code> appears only at the root</td></tr>
-<tr><td nowrap><samp>graph-object-or-array</samp></td><td>The <code>@graph</code>, if present, is an object or an array of objects</td></tr>
-<tr><td nowrap><samp>ids-and-types-strings</samp></td><td>Every <code>@id</code> is a string; every <code>@type</code> a string or an array of strings</td></tr>
-<tr><td nowrap><samp>id-segments-portable</samp></td><td>Every segment of a relative <code>@id</code> is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit</td></tr>
+<tr><th colspan="3" align="left"><br>Tier&nbsp;2&nbsp;—&nbsp;SAFE&#8209;JSON&#8209;LD</th></tr>
+<tr><th align="left">Expectation</th><th align="left">What it requires</th><th align="left">Versions</th></tr>
+<tr><td nowrap><samp>context-at-root-only</samp></td><td>The file's only <code>@context</code> is at its top</td><td>all</td></tr>
+<tr><td nowrap><samp>remote-contexts-absent</samp></td><td>The <code>@context</code> never refers by web address to a context kept elsewhere</td><td>all</td></tr>
+<tr><td nowrap><samp>context-object-array-or-null</samp></td><td>The <code>@context</code>, if present, is an object, an array of objects, or <code>null</code></td><td>all</td></tr>
+<tr><td nowrap><samp>context-containers-absent</samp></td><td>The <code>@context</code> never uses <code>@container</code> to tell a reader to interpret a property's array values as something other than individual values</td><td>all</td></tr>
+<tr><td nowrap><samp>context-vocab-absent</samp></td><td>The <code>@context</code> never uses <code>@vocab</code> to tell a reader to interpret a name written without a prefix as a term of some vocabulary</td><td>all</td></tr>
+<tr><td nowrap><samp>context-protected-absent</samp></td><td>The <code>@context</code> never uses <code>@protected</code> to lock its entries against redefinition by a later context</td><td>all</td></tr>
+<tr><td nowrap><samp>context-propagate-absent</samp></td><td>The <code>@context</code> never uses <code>@propagate</code> to limit which objects it applies to</td><td>all</td></tr>
+<tr><td nowrap><samp>context-import-absent</samp></td><td>The <code>@context</code> never uses <code>@import</code> to pull in entries from another context at a web address</td><td>all</td></tr>
+<tr><td nowrap><samp>context-id-coercion-absent</samp></td><td>The <code>@context</code> never uses <code>"@type": "@id"</code> to tell a reader to interpret a property's bare-string <code>&lt;value&gt;</code> as <code>{ "@id": &lt;value&gt; }</code></td><td>all</td></tr>
+<tr><td nowrap><samp>graph-at-root-only</samp></td><td><code>@graph</code> appears only at the root</td><td>all</td></tr>
+<tr><td nowrap><samp>graph-object-or-array</samp></td><td>The <code>@graph</code>, if present, is an object or an array of objects</td><td>all</td></tr>
+<tr><td nowrap><samp>ids-and-types-strings</samp></td><td>Every <code>@id</code> is a string; every <code>@type</code> a string or an array of strings</td><td>all</td></tr>
+<tr><td nowrap><samp>id-segments-portable</samp></td><td>Every segment of a relative <code>@id</code> is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit</td><td>all</td></tr>
 </tbody>
 <tbody>
-<tr><th colspan="2" align="left"><br>Tier&nbsp;3&nbsp;—&nbsp;TRACE&#8209;PERMISSIBLE&#8209;JSON&#8209;LD</th></tr>
-<tr><th align="left">Expectation</th><th align="left">What it requires</th></tr>
-<tr><td nowrap><samp>root-context-and-graph-only</samp></td><td>The file is a JSON object whose top level holds no member other than <code>@context</code> and <code>@graph</code></td></tr>
-<tr><td nowrap><samp>composite-contexts-absent</samp></td><td>The <code>@context</code> is never composed from several parts</td></tr>
-<tr><td nowrap><samp>disallowed-node-keywords-absent</samp></td><td>Apart from the <code>@context</code> and its contents, the only keywords in the file are <code>@graph</code>, <code>@id</code> and <code>@type</code></td></tr>
-<tr><td nowrap><samp>disallowed-context-keywords-absent</samp></td><td><code>@base</code> is the only keyword at the top level of the <code>@context</code></td></tr>
-<tr><td nowrap><samp>base-web-scheme</samp></td><td>The <code>@base</code>, if any, uses the <code>https</code> or <code>http</code> scheme</td></tr>
-<tr><td nowrap><samp>base-simple-url</samp></td><td>The <code>@base</code>, if any, is a simple URL. It names a host, has a path of portable names, uses only URL characters, and ends in <code>/</code>. It has no user info, dot segments, query or fragment</td></tr>
-<tr><td nowrap><samp>prefix-namespaces-terminated</samp></td><td>Every prefix maps to an absolute IRI ending in <code>#</code> or <code>/</code></td></tr>
-<tr><td nowrap><samp>context-aliases-absent</samp></td><td>The <code>@context</code> never defines aliases for property names</td></tr>
-<tr><td nowrap><samp>context-assigns-only-datatypes-to-properties</samp></td><td>The only thing the <code>@context</code> assigns to a property is the datatype of its values</td></tr>
-<tr><td nowrap><samp>context-datatypes-named-by-iri</samp></td><td>Every datatype the <code>@context</code> gives a property is named by a prefixed or absolute IRI</td></tr>
-<tr><td nowrap><samp>types-prefixed-or-absolute</samp></td><td>Every <code>@type</code> value is a prefixed or absolute IRI</td></tr>
+<tr><th colspan="3" align="left"><br>Tier&nbsp;3&nbsp;—&nbsp;TRACE&#8209;PERMISSIBLE&#8209;JSON&#8209;LD</th></tr>
+<tr><th align="left">Expectation</th><th align="left">What it requires</th><th align="left">Versions</th></tr>
+<tr><td nowrap><samp>root-context-and-graph-only</samp></td><td>The file is a JSON object whose top level holds no member other than <code>@context</code> and <code>@graph</code></td><td>all</td></tr>
+<tr><td nowrap><samp>composite-contexts-absent</samp></td><td>The <code>@context</code> is never composed from several parts</td><td>all</td></tr>
+<tr><td nowrap><samp>disallowed-node-keywords-absent</samp></td><td>Apart from the <code>@context</code> and its contents, the only keywords in the file are <code>@graph</code>, <code>@id</code> and <code>@type</code></td><td>all</td></tr>
+<tr><td nowrap><samp>disallowed-context-keywords-absent</samp></td><td><code>@base</code> is the only keyword at the top level of the <code>@context</code></td><td>all</td></tr>
+<tr><td nowrap><samp>base-web-scheme</samp></td><td>The <code>@base</code>, if any, uses the <code>https</code> or <code>http</code> scheme</td><td>all</td></tr>
+<tr><td nowrap><samp>base-simple-url</samp></td><td>The <code>@base</code>, if any, is a simple URL. It names a host, has a path of portable names, uses only URL characters, and ends in <code>/</code>. It has no user info, dot segments, query or fragment</td><td>all</td></tr>
+<tr><td nowrap><samp>prefix-namespaces-terminated</samp></td><td>Every prefix maps to an absolute IRI ending in <code>#</code> or <code>/</code></td><td>all</td></tr>
+<tr><td nowrap><samp>context-aliases-absent</samp></td><td>The <code>@context</code> never defines aliases for property names</td><td>all</td></tr>
+<tr><td nowrap><samp>context-assigns-only-datatypes-to-properties</samp></td><td>The only thing the <code>@context</code> assigns to a property is the datatype of its values</td><td>all</td></tr>
+<tr><td nowrap><samp>context-datatypes-named-by-iri</samp></td><td>Every datatype the <code>@context</code> gives a property is named by a prefixed or absolute IRI</td><td>all</td></tr>
+<tr><td nowrap><samp>types-prefixed-or-absolute</samp></td><td>Every <code>@type</code> value is a prefixed or absolute IRI</td><td>all</td></tr>
 </tbody>
 <tbody>
-<tr><th colspan="2" align="left"><br>Tier&nbsp;4&nbsp;—&nbsp;USES&#8209;TROV&#8209;CORRECTLY</th></tr>
-<tr><th align="left">Expectation</th><th align="left">What it requires</th></tr>
-<tr><td nowrap><samp>context-and-nonempty-graph-present</samp></td><td>The file has a non-null <code>@context</code> and an <code>@graph</code> holding at least one node</td></tr>
-<tr><td nowrap><samp>core-prefixes-pinned</samp></td><td><code>trov</code> is declared and is the only prefix for a TROV namespace; <code>rdf</code>, <code>rdfs</code> and <code>schema</code> prefixes, if declared, are the standard ones</td></tr>
-<tr><td nowrap><samp>trov-terms-known</samp></td><td>Every <code>trov:</code> name is one TROV defines</td></tr>
-<tr><td nowrap><samp>trov-version-known</samp></td><td>The TRO declares, in <code>trov:vocabularyVersion</code>, a released version of TROV</td></tr>
-<tr><td nowrap><samp>hash-algorithms-permitted</samp></td><td>Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families</td></tr>
-<tr><td nowrap><samp>hash-values-correct-form</samp></td><td>Every hash value is lowercase hexadecimal of the length its algorithm produces</td></tr>
-<tr><td nowrap><samp>mime-types-two-part</samp></td><td>Every artifact's <code>trov:mimeType</code> is a string of the form <code>type/subtype</code></td></tr>
-<tr><td nowrap><samp>times-iso-8601</samp></td><td>Every <code>trov:startedAtTime</code> and <code>trov:endedAtTime</code> is an ISO 8601 date-time; the TRO's <code>schema:dateCreated</code>, if present, an ISO 8601 date or date-time</td></tr>
-<tr><td nowrap><samp>times-zoned</samp></td><td>Every <code>trov:startedAtTime</code> and <code>trov:endedAtTime</code> carries its time zone</td></tr>
-<tr><td nowrap><samp>tro-name-description-text</samp></td><td>The TRO's <code>schema:name</code> and <code>schema:description</code>, if present, are Text: a string or an array of strings</td></tr>
-<tr><td nowrap><samp>creators-person-or-organization</samp></td><td>The TRO's <code>schema:creator</code>, if present, is a node typed <code>schema:Person</code> or <code>schema:Organization</code>, never a string</td></tr>
-<tr><td nowrap><samp>trov-capabilities-predefined</samp></td><td>A capability's <code>trov:</code> type is one TROV predefines</td></tr>
-<tr><td nowrap><samp>trov-performance-attributes-predefined</samp></td><td>A performance attribute's <code>trov:</code> type is one TROV predefines</td></tr>
-<tr><td nowrap><samp>trov-tro-attributes-predefined</samp></td><td>A TRO attribute's <code>trov:</code> type is one TROV predefines</td></tr>
-<tr><td nowrap><samp>custom-terms-not-trov</samp></td><td>Every <code>trov:customTerm</code> entry declares a term outside the TROV namespace</td></tr>
-<tr><td nowrap><samp>custom-term-superclasses-extensible</samp></td><td>Every custom term extends <code>trov:TRSCapabilityType</code> or <code>trov:TRPAttributeType</code></td></tr>
-<tr><td nowrap><samp>trov-signing-mechanisms-predefined</samp></td><td>A signing mechanism is identified by reference, and a <code>trov:</code> one is one TROV predefines</td></tr>
+<tr><th colspan="3" align="left"><br>Tier&nbsp;4&nbsp;—&nbsp;USES&#8209;TROV&#8209;CORRECTLY</th></tr>
+<tr><th align="left">Expectation</th><th align="left">What it requires</th><th align="left">Versions</th></tr>
+<tr><td nowrap><samp>context-and-nonempty-graph-present</samp></td><td>The file has a non-null <code>@context</code> and an <code>@graph</code> holding at least one node</td><td>all</td></tr>
+<tr><td nowrap><samp>core-prefixes-pinned</samp></td><td><code>trov</code> is declared and is the only prefix for a TROV namespace; <code>rdf</code>, <code>rdfs</code> and <code>schema</code> prefixes, if declared, are the standard ones</td><td>all</td></tr>
+<tr><td nowrap><samp>trov-terms-known</samp></td><td>Every <code>trov:</code> name is one TROV defines</td><td>all</td></tr>
+<tr><td nowrap><samp>trov-version-known</samp></td><td>The TRO declares, in <code>trov:vocabularyVersion</code>, a known version of TROV</td><td>all</td></tr>
+<tr><td nowrap><samp>hash-algorithms-permitted</samp></td><td>Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families</td><td>all</td></tr>
+<tr><td nowrap><samp>hash-values-correct-form</samp></td><td>Every hash value is lowercase hexadecimal of the length its algorithm produces</td><td>all</td></tr>
+<tr><td nowrap><samp>mime-types-two-part</samp></td><td>Every artifact's <code>trov:mimeType</code> is a string of the form <code>type/subtype</code></td><td>all</td></tr>
+<tr><td nowrap><samp>times-iso-8601</samp></td><td>Every <code>trov:startedAtTime</code> and <code>trov:endedAtTime</code> is an ISO 8601 date-time; the TRO's <code>schema:dateCreated</code>, if present, an ISO 8601 date or date-time</td><td>all</td></tr>
+<tr><td nowrap><samp>times-zoned</samp></td><td>Every <code>trov:startedAtTime</code> and <code>trov:endedAtTime</code> carries its time zone</td><td>all</td></tr>
+<tr><td nowrap><samp>tro-name-description-text</samp></td><td>The TRO's <code>schema:name</code> and <code>schema:description</code>, if present, are Text: a string or an array of strings</td><td>all</td></tr>
+<tr><td nowrap><samp>creators-person-or-organization</samp></td><td>The TRO's <code>schema:creator</code>, if present, is a node typed <code>schema:Person</code> or <code>schema:Organization</code>, never a string</td><td>all</td></tr>
+<tr><td nowrap><samp>trov-capabilities-predefined</samp></td><td>A capability's <code>trov:</code> type is one TROV predefines</td><td>all</td></tr>
+<tr><td nowrap><samp>trov-performance-attributes-predefined</samp></td><td>A performance attribute's <code>trov:</code> type is one TROV predefines</td><td>all</td></tr>
+<tr><td nowrap><samp>trov-tro-attributes-predefined</samp></td><td>A TRO attribute's <code>trov:</code> type is one TROV predefines</td><td>all</td></tr>
+<tr><td nowrap><samp>custom-terms-not-trov</samp></td><td>Every <code>trov:customTerm</code> entry declares a term outside the TROV namespace</td><td>all</td></tr>
+<tr><td nowrap><samp>custom-term-superclasses-extensible</samp></td><td>Every custom term extends <code>trov:TRSCapabilityType</code> or <code>trov:TRPAttributeType</code></td><td>all</td></tr>
+<tr><td nowrap><samp>trov-signing-mechanisms-predefined</samp></td><td>A signing mechanism is identified by reference, and a <code>trov:</code> one is one TROV predefines</td><td>all</td></tr>
 </tbody>
 <tbody>
-<tr><th colspan="2" align="left"><br>Tier&nbsp;5&nbsp;—&nbsp;DEFINES&#8209;TRS</th></tr>
-<tr><th align="left">Expectation</th><th align="left">What it requires</th></tr>
-<tr><td nowrap><samp>trs-defined</samp></td><td>A TRS is defined, with an <code>@id</code>, at the top of the <code>@graph</code> or as the object of <code>trov:wasAssembledBy</code>, and nowhere else</td></tr>
-<tr><td nowrap><samp>trs-id-absolute</samp></td><td>The TRS is identified by an absolute IRI, or a compact IRI outside the <code>trov</code> namespace</td></tr>
-<tr><td nowrap><samp>capability-ids-absolute</samp></td><td>Every capability is identified by an absolute IRI, or a compact IRI outside the <code>trov</code> namespace</td></tr>
+<tr><th colspan="3" align="left"><br>Tier&nbsp;5&nbsp;—&nbsp;DEFINES&#8209;TRS</th></tr>
+<tr><th align="left">Expectation</th><th align="left">What it requires</th><th align="left">Versions</th></tr>
+<tr><td nowrap><samp>trs-defined</samp></td><td>A TRS is defined, with an <code>@id</code>, at the top of the <code>@graph</code> or as the object of <code>trov:wasAssembledBy</code>, and nowhere else</td><td>all</td></tr>
+<tr><td nowrap><samp>trs-id-absolute</samp></td><td>The TRS is identified by an absolute IRI, or a compact IRI outside the <code>trov</code> namespace</td><td>all</td></tr>
+<tr><td nowrap><samp>capability-ids-absolute</samp></td><td>Every capability is identified by an absolute IRI, or a compact IRI outside the <code>trov</code> namespace</td><td>all</td></tr>
 </tbody>
 <tbody>
-<tr><th colspan="2" align="left"><br>Tier&nbsp;6&nbsp;—&nbsp;STANDALONE&#8209;TRO</th></tr>
-<tr><th align="left">Expectation</th><th align="left">What it requires</th></tr>
-<tr><td nowrap><samp>tro-top-level-in-graph</samp></td><td>The TRO is a top-level member of the <code>@graph</code></td></tr>
-<tr><td nowrap><samp>trov-objects-identified</samp></td><td>Every object typed with a TROV class carries an <code>@id</code></td></tr>
-<tr><td nowrap><samp>tro-assembled-by-trs</samp></td><td>The TRO names its assembling system, typed as a TRS</td></tr>
-<tr><td nowrap><samp>performance-attribute-warrants-absolute</samp></td><td>Every performance attribute refers to the capability warranting it by absolute IRI</td></tr>
-<tr><td nowrap><samp>tro-composition-single</samp></td><td>A <code>trov:hasComposition</code> is one object, not an array</td></tr>
-<tr><td nowrap><samp>composition-has-fingerprint</samp></td><td>The TRO's composition, if any, carries one fingerprint, which carries one hash</td></tr>
-<tr><td nowrap><samp>composition-identifies-artifacts</samp></td><td>The TRO's composition, if any, names at least one artifact in a <code>trov:hasArtifact</code> array</td></tr>
-<tr><td nowrap><samp>artifact-hashes-present</samp></td><td>Every artifact in the composition carries a <code>trov:hash</code>, one hash or an array of at least one</td></tr>
-<tr><td nowrap><samp>created-with-single-tool</samp></td><td>A <code>trov:createdWith</code> names one software tool, given as a node</td></tr>
-<tr><td nowrap><samp>gpg-signing-key-present</samp></td><td>A TRO signed with <code>trov:GPGSigning</code> gives its TRS a <code>trov:publicKey</code></td></tr>
+<tr><th colspan="3" align="left"><br>Tier&nbsp;6&nbsp;—&nbsp;STANDALONE&#8209;TRO</th></tr>
+<tr><th align="left">Expectation</th><th align="left">What it requires</th><th align="left">Versions</th></tr>
+<tr><td nowrap><samp>tro-top-level-in-graph</samp></td><td>The TRO is a top-level member of the <code>@graph</code></td><td>all</td></tr>
+<tr><td nowrap><samp>trov-objects-identified</samp></td><td>Every object typed with a TROV class carries an <code>@id</code></td><td>all</td></tr>
+<tr><td nowrap><samp>tro-assembled-by-trs</samp></td><td>The TRO names its assembling system, typed as a TRS</td><td>all</td></tr>
+<tr><td nowrap><samp>performance-attribute-warrants-absolute</samp></td><td>Every performance attribute refers to the capability warranting it by absolute IRI</td><td>all</td></tr>
+<tr><td nowrap><samp>tro-composition-single</samp></td><td>A <code>trov:hasComposition</code> is one object, not an array</td><td>all</td></tr>
+<tr><td nowrap><samp>composition-has-fingerprint</samp></td><td>The TRO's composition, if any, carries one fingerprint, which carries one hash</td><td>all</td></tr>
+<tr><td nowrap><samp>composition-identifies-artifacts</samp></td><td>The TRO's composition, if any, names at least one artifact in a <code>trov:hasArtifact</code> array</td><td>all</td></tr>
+<tr><td nowrap><samp>artifact-hashes-present</samp></td><td>Every artifact in the composition carries a <code>trov:hash</code>, one hash or an array of at least one</td><td>all</td></tr>
+<tr><td nowrap><samp>created-with-single-tool</samp></td><td>A <code>trov:createdWith</code> names one software tool, given as a node</td><td>all</td></tr>
+<tr><td nowrap><samp>gpg-signing-key-present</samp></td><td>A TRO signed with <code>trov:GPGSigning</code> gives its TRS a <code>trov:publicKey</code></td><td>all</td></tr>
 </tbody>
 <tbody>
-<tr><th colspan="2" align="left"><br>Tier&nbsp;7&nbsp;—&nbsp;LINKABLE&#8209;TRO</th></tr>
-<tr><th align="left">Expectation</th><th align="left">What it requires</th></tr>
-<tr><td nowrap><samp>base-declared</samp></td><td>The <code>@context</code> includes an <code>@base</code></td></tr>
-<tr><td nowrap><samp>base-has-path</samp></td><td>The <code>@base</code> names something below the host, not the host alone</td></tr>
-<tr><td nowrap><samp>base-host-lowercase</samp></td><td>The <code>@base</code> host is lowercase</td></tr>
-<tr><td nowrap><samp>base-host-ownable</samp></td><td>The <code>@base</code> host is a domain name the minter could hold, not a reserved or documentation name</td></tr>
-<tr><td nowrap><samp>node-ids-present</samp></td><td>Every node carries an explicit <code>@id</code></td></tr>
-<tr><td nowrap><samp>blank-node-ids-absent</samp></td><td>No <code>@id</code> is a blank node identifier</td></tr>
+<tr><th colspan="3" align="left"><br>Tier&nbsp;7&nbsp;—&nbsp;LINKABLE&#8209;TRO</th></tr>
+<tr><th align="left">Expectation</th><th align="left">What it requires</th><th align="left">Versions</th></tr>
+<tr><td nowrap><samp>base-declared</samp></td><td>The <code>@context</code> includes an <code>@base</code></td><td>all</td></tr>
+<tr><td nowrap><samp>base-has-path</samp></td><td>The <code>@base</code> names something below the host, not the host alone</td><td>all</td></tr>
+<tr><td nowrap><samp>base-host-lowercase</samp></td><td>The <code>@base</code> host is lowercase</td><td>all</td></tr>
+<tr><td nowrap><samp>base-host-ownable</samp></td><td>The <code>@base</code> host is a domain name the minter could hold, not a reserved or documentation name</td><td>all</td></tr>
+<tr><td nowrap><samp>node-ids-present</samp></td><td>Every node carries an explicit <code>@id</code></td><td>all</td></tr>
+<tr><td nowrap><samp>blank-node-ids-absent</samp></td><td>No <code>@id</code> is a blank node identifier</td><td>all</td></tr>
 </tbody>
 </table>
 
@@ -173,7 +197,7 @@ excludes, the W3C tests the supported JSON-LD processors do not all pass.
 ## Reports
 
 One report is written per candidate. It gives the candidate and its target,
-then the status of each tier and of each expectation, and, for each
+a tier under a version, then the status of each tier and of each expectation, and, for each
 expectation not met, every error found: what was found, where in the
 candidate, and why it does not meet the expectation. Each error is listed
 once, whichever validator reported it.
@@ -217,7 +241,10 @@ declared in `candidates/manifest.json` under a key naming its file, so the key
 ```json
 {
     "spec-example-2026-04-08": {
-        "target": "STANDALONE-TRO",
+        "target": {
+            "tier": "STANDALONE-TRO",
+            "version": "trace-spec-2026-04-19"
+        },
         "description": "What this candidate is. Copied into its report."
     }
 }
@@ -228,10 +255,11 @@ does not name is reported as skipped, and an entry naming a file that is not in
 the directory stops the run. `make build-reports` in the REPRO writes one report
 per candidate to `reports/<name>.md`.
 
-`check-tros` takes each candidate's target tier from the manifest, and assumes
-`STANDALONE-TRO` when the manifest names none. `--target` overrides the manifest for
-every candidate in the run. The report says where the target came from: the
-manifest, the `--target` option, or the default.
+`check-tros` takes each candidate's target tier and version from the manifest. It
+assumes `STANDALONE-TRO` when the manifest names no tier, and `trace-spec-2026-04-19`
+when it names no version. `--target-tier` and `--target-version` override the manifest
+for every candidate in the run. The report says where the tier and the version each came
+from: the manifest, the option, or the default.
 
 ## Key files
 
@@ -240,6 +268,7 @@ manifest, the `--target` option, or the default.
 | [`exports/*.parse.json`](exports) | The expectations `check-tro` checks as it parses a candidate, each giving its summary and description. |
 | [`exports/*.schema.json`](exports) | The expectations checked by JSON Schema, one schema each. |
 | [`exports/tiers.json`](exports/tiers.json) | The tiers in order, each with its ID, description, the expectations that belong to it, and `blocksHigherTiers` where no tier above it is assessed until it is met. An expectation file that no tier lists, a listed expectation with no file, or a tier with no expectations stops every run. |
+| [`exports/versions.json`](exports/versions.json) | The versions of the Specification in order, each with its ID and description. An expectation file names one as its `fromVersion` or `untilVersion` where it does not apply under every version. |
 | [`exports/check-tro.js`](exports/check-tro.js) | The checker. Applies the expectations in a candidate's target and writes the report. Installed as `check-tro`. |
 | [`exports/check-tros.js`](exports/check-tros.js) | Runs the checker over the candidates the manifest names, each at its own target, writing `reports/<name>.md` for each. Installed as `check-tros`. |
 | [`exports/render-readme.js`](exports/render-readme.js) | Writes this README's account of what is checked from the tiers and the expectations themselves. Run by `make update-readme`. |
@@ -268,7 +297,8 @@ reads. A field renamed in one file and not in another fails there.
 
 Put a `<name>.schema.json` with a `summary` and a `description` in
 [`exports/`](exports), and a `requires` listing any expectations that must be
-met before it is checked. List it in
+met before it is checked. Give it a `fromVersion` or an `untilVersion` if it does not
+apply under every version. List it in
 [`exports/base-manifest`](exports/base-manifest), and add it to a tier in
 [`exports/tiers.json`](exports/tiers.json), after every expectation it requires:
 expectations are checked and reported in the order the tiers list them. Then run `make update-readme`, which
