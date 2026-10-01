@@ -41,6 +41,7 @@ module.exports = {}
  * @property {string}                         [name]      the manifest's name for it, where it came from one
  * @property {string}                         fileName
  * @property {string}                         path
+ * @property {string}                         [title]     what the summary of reports calls it, where the manifest gives one
  * @property {string}                         [description]
  * @property {'manifest'|'option'}            [descriptionSource]  where the description came from, where there is one
  * @property {Tier}                           targetTier

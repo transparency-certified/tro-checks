@@ -196,7 +196,7 @@ excludes, the W3C tests the supported JSON-LD processors do not all pass.
 
 ## Reports
 
-One report is written per candidate. It gives the candidate and its target,
+One report is written for each target of each candidate. It gives the candidate and the target,
 a tier under a version, then the status of each tier and of each expectation, and, for each
 expectation not met, every error found: what was found, where in the
 candidate, and why it does not meet the expectation. Each error is listed
@@ -245,20 +245,36 @@ declared in `candidates/manifest.json` under a key naming its file, so the key
             "tier": "STANDALONE-TRO",
             "version": "trace-spec-2026-04-19"
         },
-        "description": "What this candidate is. Copied into its report."
+        "title": "A few words naming this candidate. Heads its reports in the summary.",
+        "description": "What this candidate is. Copied into its reports."
     }
 }
+```
+
+A candidate can have several targets. Its `target` is then a list, and the candidate is
+checked against each:
+
+```json
+        "target": [
+            { "tier": "USES-TROV-CORRECTLY", "version": "trace-spec-2026-04-19" },
+            { "tier": "STANDALONE-TRO", "version": "trace-spec-2026-04-19" },
+            { "tier": "USES-TROV-CORRECTLY", "version": "0.1" }
+        ],
 ```
 
 `check-tros` checks what the manifest declares: a `.jsonld` file the manifest
 does not name is reported as skipped, and an entry naming a file that is not in
 the directory stops the run. `make build-reports` in the REPRO writes one report
-per candidate to `reports/<name>.md`.
+per target to `reports/<name>_<version>_tier-<number>.md`, and a summary,
+`reports/README.md`, that lists the reports under each candidate, says whether each
+target was met, and links to each report. A candidate is headed there by its `title`, or
+by its name where the manifest gives it no title.
 
-`check-tros` takes each candidate's target tier and version from the manifest. It
+`check-tros` takes each target's tier and version from the manifest. It
 assumes `STANDALONE-TRO` when the manifest names no tier, and `trace-spec-2026-04-19`
-when it names no version. `--target-tier` and `--target-version` override the manifest
-for every candidate in the run. The report says where the tier and the version each came
+when it names no version. `--target-tier` and `--target-version` each replace that half
+of every target in the run, and a candidate is checked once against targets that are then
+the same. The report says where the tier and the version each came
 from: the manifest, the option, or the default.
 
 ## Key files
@@ -270,7 +286,7 @@ from: the manifest, the option, or the default.
 | [`exports/tiers.json`](exports/tiers.json) | The tiers in order, each with its ID, description, the expectations that belong to it, and `blocksHigherTiers` where no tier above it is assessed until it is met. An expectation file that no tier lists, a listed expectation with no file, or a tier with no expectations stops every run. |
 | [`exports/versions.json`](exports/versions.json) | The versions of the Specification in order, each with its ID and description. An expectation file names one as its `fromVersion` or `untilVersion` where it does not apply under every version. |
 | [`exports/check-tro.js`](exports/check-tro.js) | The checker. Applies the expectations in a candidate's target and writes the report. Installed as `check-tro`. |
-| [`exports/check-tros.js`](exports/check-tros.js) | Runs the checker over the candidates the manifest names, each at its own target, writing `reports/<name>.md` for each. Installed as `check-tros`. |
+| [`exports/check-tros.js`](exports/check-tros.js) | Runs the checker over the candidates the manifest names, each against each of its targets, writing one report per target and `reports/README.md`, the summary that links to them. Installed as `check-tros`. |
 | [`exports/render-readme.js`](exports/render-readme.js) | Writes this README's account of what is checked from the tiers and the expectations themselves. Run by `make update-readme`. |
 | [`pseudocode/`](pseudocode) | What the checker does, in outline. |
 | [`GLOSSARY.md`](GLOSSARY.md) | The key entities the tools in this repository concern. |

@@ -1,7 +1,8 @@
 //
-// Write a candidate's findings and assessments as the Markdown report.
+// Write a candidate's findings and assessments as the Markdown report, and the
+// reports a run wrote as the Markdown summary that links to them.
 //
-//   const { renderReportAsMarkdown } = require('./render-report.js')
+//   const { renderReportAsMarkdown, renderSummaryAsMarkdown } = require('./render-report.js')
 
 // @ts-check
 
@@ -39,9 +40,16 @@
  * @property {(headings: string[], rows: (Row|Band)[]) => string[]} table
  * @property {(diagnoses: Diagnosis[]) => string[]} diagnostics  an unmet expectation's errors
  */
+/**
+ * @typedef {object} WrittenReport  one report a run wrote
+ * @property {Candidate}    candidate    the candidate, with the target it was checked against
+ * @property {string}       fileName     the report's, within the reports directory
+ * @property {Assessment[]} assessments  what the report says of each tier at or below the target
+ */
 
 module.exports = {
     renderReportAsMarkdown,
+    renderSummaryAsMarkdown,
     htmlTableLines,
 }
 
@@ -539,4 +547,53 @@ function renderReportAsMarkdown(candidate, findings, assessments, compactly) {
     if (compactly) return `${reportLines.filter((line) => line !== '').join('\n')}\n`
 
     return `${reportLines.join('\n')}\n`
+}
+
+/**
+ * One candidate's reports as a row each: the target, whether the target tier was met, and a link to the report.
+ * @param {WrittenReport[]} candidateReports  the reports on one candidate
+ * @returns {Row[]}
+ * @throws {Error} if a report carries no assessment of its target tier.
+ */
+function summaryRows(candidateReports) {
+    return candidateReports.map(({ candidate, fileName, assessments }) => {
+        const { targetTier, targetVersion } = candidate
+        const assessment = assessments.find((each) => each.tier.number === targetTier.number)
+        if (assessment === undefined) throw new Error(`${fileName} carries no assessment of ${targetTier.id}`)
+
+        return { cells: [
+            { atom: targetVersion.id },
+            { atom: `${targetTier.number} ${targetTier.id}` },
+            { atom: statusLabel(assessment.outcome) },
+            `[${fileName}](${encodeURI(fileName)})`,
+        ] }
+    })
+}
+
+/**
+ * The summary of the reports a run wrote: under each candidate, what it is and a table of its reports. A candidate
+ * is headed by its title, with its file named beneath, or by its name where it has no title.
+ * @param {WrittenReport[]} writtenReports  in the order the candidates and their targets were checked
+ * @returns {string}
+ * @throws {Error} if a report carries no assessment of its target tier.
+ */
+function renderSummaryAsMarkdown(writtenReports) {
+    const summaryLines = ['# Reports', '', 'One report for each target of each candidate.']
+
+    const fileNames = [...new Set(writtenReports.map((report) => report.candidate.fileName))]
+    for (const candidateFileName of fileNames) {
+        const candidateReports = writtenReports.filter((report) => report.candidate.fileName === candidateFileName)
+        const { name, title, description } = candidateReports[0].candidate
+
+        if (title) {
+            summaryLines.push('', `## ${writable(title)}`, '', `Candidate: ${codeSpan(candidateFileName)}`)
+        } else {
+            summaryLines.push('', `## ${codeSpan(name ?? candidateFileName)}`)
+        }
+        if (description) summaryLines.push('', writable(description))
+        summaryLines.push(
+            '', ...htmlDialect.table(['Target version', 'Target tier', 'Status', 'Report'], summaryRows(candidateReports)))
+    }
+
+    return `${summaryLines.join('\n')}\n`
 }
