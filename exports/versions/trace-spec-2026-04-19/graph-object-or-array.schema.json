@@ -1,0 +1,21 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/trace-spec-2026-04-19/graph-object-or-array.schema.json",
+    "title": "Graph object or array",
+    "description": "Where the document carries an @graph at its root, the value is an object or an array of objects.",
+    "summary": "The `@graph`, if present, is an object or an array of objects",
+    "properties": {
+        "@graph": {
+            "type": ["object", "array"],
+            "items": {
+                "type": "object",
+                "errorMessage": {
+                    "type": "every member of an @graph array is a node object"
+                }
+            },
+            "errorMessage": {
+                "type": "an @graph holds a node object, or an array of node objects"
+            }
+        }
+    }
+}

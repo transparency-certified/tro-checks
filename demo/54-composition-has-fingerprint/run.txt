@@ -117,7 +117,6 @@ The sections below give the status of each tier, then the status of each expecta
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
-| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
 | `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
@@ -252,7 +251,6 @@ The sections below give the status of each tier, then the status of each expecta
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
-| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
 | `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
@@ -284,6 +282,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: composition-has-fingerprint
 Detailed expectation: Where the TRO carries a trov:hasComposition, the composition carries one trov:hasFingerprint, an object, and the fingerprint carries one trov:hash, an object.
+Defined in version: `trace-spec-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@id":"composition","@type":"trov:ArtifactComposition","trov:hasArtifact":[{"@id":"composition/artifact/0","@type":"trov:ResearchArtifact","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"208fadf260c2cb9b1c747f03326626e66ddbb3cc6eee10b6e111ff0b803686fe"}}]}` | `/@graph/0/trov:hasComposition` | a composition carries a trov:hasFingerprint |
@@ -403,7 +402,6 @@ The sections below give the status of each tier, then the status of each expecta
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
-| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
 | `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
@@ -435,6 +433,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: composition-has-fingerprint
 Detailed expectation: Where the TRO carries a trov:hasComposition, the composition carries one trov:hasFingerprint, an object, and the fingerprint carries one trov:hash, an object.
+Defined in version: `trace-spec-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `[{"@id":"fingerprint","@type":"trov:CompositionFingerprint","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"44863b03e9909b7100e05b02526909a346fd7455183f6619e0fe6198c89981e0"}}]` | `/@graph/0/trov:hasComposition/trov:hasFingerprint` | a composition carries one fingerprint, an object, not an array of them |
@@ -554,7 +553,6 @@ The sections below give the status of each tier, then the status of each expecta
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
-| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
 | `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
@@ -586,6 +584,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: composition-has-fingerprint
 Detailed expectation: Where the TRO carries a trov:hasComposition, the composition carries one trov:hasFingerprint, an object, and the fingerprint carries one trov:hash, an object.
+Defined in version: `trace-spec-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `[{"trov:hashAlgorithm":"sha256","trov:hashValue":"44863b03e9909b7100e05b02526909a346fd7455183f6619e0fe6198c89981e0"}]` | `/@graph/0/trov:hasComposition/trov:hasFingerprint/trov:hash` | a fingerprint carries one hash, an object, not an array of them |

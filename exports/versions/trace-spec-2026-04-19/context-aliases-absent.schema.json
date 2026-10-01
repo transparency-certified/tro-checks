@@ -1,0 +1,41 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/trace-spec-2026-04-19/context-aliases-absent.schema.json",
+    "title": "Context aliases absent",
+    "description": "No object the @context gives for a property has an @id, so no name in the file stands in for a property of another name. A declaration's property names are therefore spelled the same in the JSON as in the vocabulary, and a reader of the plain JSON and a reader of the RDF see the same keys.",
+    "summary": "The `@context` never defines aliases for property names",
+    "$defs": {
+        "propertyObject": {
+            "if": { "type": "object" },
+            "then": {
+                "not": { "required": ["@id"] },
+                "errorMessage": {
+                    "not": "the @context defines no alias for a property name"
+                }
+            }
+        },
+        "context": {
+            "if": { "type": "object" },
+            "then": {
+                "properties": { "@base": true },
+                "additionalProperties": { "$ref": "#/$defs/propertyObject" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/context" } }
+            }
+        },
+        "node": {
+            "if": { "type": "object" },
+            "then": {
+                "properties": { "@context": { "$ref": "#/$defs/context" } },
+                "additionalProperties": { "$ref": "#/$defs/node" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/node" } }
+            }
+        }
+    },
+    "$ref": "#/$defs/node"
+}

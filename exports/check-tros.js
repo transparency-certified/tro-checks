@@ -107,26 +107,25 @@ function declaredTargetsOf(name, entry) {
  * @param {string}        name
  * @param {ManifestEntry} entry
  * @param {string}        candidatesDirectory
- * @param {Tier}          [overrideTier]     the tier given on the command line, where one was
+ * @param {string}        [overrideTierId]   the tier given on the command line, where one was
  * @param {Version}       [overrideVersion]  the version given on the command line, where one was
  * @returns {Candidate[]}  one per target, in the order the entry lists them
  * @throws {Error} if the entry's title is not a string, or its target is not an object giving a tier, a version,
- *   or both, or a list of them, names a tier or a version that does not exist, or lists the same target twice.
+ *   or both, or a list of them, names a version that does not exist or a tier its version does not have, or lists the
+ *   same target twice.
  */
-function buildCandidates(name, entry, candidatesDirectory, overrideTier, overrideVersion) {
+function buildCandidates(name, entry, candidatesDirectory, overrideTierId, overrideVersion) {
     if (entry.title !== undefined && typeof entry.title !== 'string') throw new Error(`${name}: a title is a string`)
 
     /** @type {Candidate[]} */ const candidates = []
     for (const declared of declaredTargetsOf(name, entry)) {
-        /** @type {Tier|undefined} */ let declaredTier
-        if (declared.tier !== undefined) declaredTier = checkTro.lookUpTier(declared.tier)
-
         /** @type {Version|undefined} */ let declaredVersion
         if (declared.version !== undefined) declaredVersion = checkTro.lookUpVersion(declared.version)
+        const targetVersion = overrideVersion ?? declaredVersion ?? checkTro.lookUpVersion(checkTro.ASSUMED_VERSION)
 
         /** @type {Candidate['targetTierSource']} */ let targetTierSource = 'default'
-        if (declaredTier !== undefined) targetTierSource = 'manifest'
-        if (overrideTier !== undefined) targetTierSource = 'option'
+        if (declared.tier !== undefined) targetTierSource = 'manifest'
+        if (overrideTierId !== undefined) targetTierSource = 'option'
 
         /** @type {Candidate['targetVersionSource']} */ let targetVersionSource = 'default'
         if (declaredVersion !== undefined) targetVersionSource = 'manifest'
@@ -139,15 +138,15 @@ function buildCandidates(name, entry, candidatesDirectory, overrideTier, overrid
             title: entry.title,
             description: entry.description,
             descriptionSource: entry.description !== undefined ? 'manifest' : undefined,
-            targetTier: overrideTier ?? declaredTier ?? checkTro.lookUpTier(checkTro.ASSUMED_TIER),
-            targetVersion: overrideVersion ?? declaredVersion ?? checkTro.lookUpVersion(checkTro.ASSUMED_VERSION),
+            targetTier: checkTro.lookUpTier(overrideTierId ?? declared.tier ?? checkTro.ASSUMED_TIER, targetVersion),
+            targetVersion,
             targetTierSource,
             targetVersionSource,
         }
 
         const repeated = candidates.some((each) =>
             each.targetTier.id === candidate.targetTier.id && each.targetVersion.id === candidate.targetVersion.id)
-        if (repeated && overrideTier === undefined && overrideVersion === undefined) {
+        if (repeated && overrideTierId === undefined && overrideVersion === undefined) {
             throw new Error(`${name}: lists the target ${candidate.targetTier.id} under ${candidate.targetVersion.id} twice`)
         }
         if (!repeated) candidates.push(candidate)
@@ -264,10 +263,7 @@ function runAsCommand() {
         const reportsDirectory = optionValues.reports
         if (!candidatesDirectory || !reportsDirectory) throw new Error(USAGE)
 
-        /** @type {Tier|undefined} */ let overrideTier
-        if (optionValues['target-tier'] !== undefined) {
-            overrideTier = checkTro.lookUpTier(optionValues['target-tier'])
-        }
+        const overrideTierId = optionValues['target-tier']
 
         /** @type {Version|undefined} */ let overrideVersion
         if (optionValues['target-version'] !== undefined) {
@@ -280,7 +276,7 @@ function runAsCommand() {
         sayWhatWasSkipped(manifest, candidatesDirectory)
 
         const candidates = names.flatMap((name) =>
-            buildCandidates(name, manifest[name], candidatesDirectory, overrideTier, overrideVersion))
+            buildCandidates(name, manifest[name], candidatesDirectory, overrideTierId, overrideVersion))
 
         fs.mkdirSync(reportsDirectory, { recursive: true })
 

@@ -120,7 +120,6 @@ The sections below give the status of each tier, then the status of each expecta
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
-| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
 | `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
@@ -271,7 +270,6 @@ The sections below give the status of each tier, then the status of each expecta
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
-| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
 | `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
@@ -303,6 +301,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: created-with-single-tool
 Detailed expectation: A trov:createdWith, where one is present, names one software tool that generated the declaration, given as a node or a reference to one. It is not the system that assembled the TRO, which trov:wasAssembledBy names.
+Defined in version: `trace-spec-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `[{"@id":"https://sivacor.example.org/"},{"@id":"https://packer.example.org/"}]` | `/@graph/0/trov:createdWith` | a TRO names one software tool in trov:createdWith, not an array of them |
@@ -421,7 +420,6 @@ The sections below give the status of each tier, then the status of each expecta
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
-| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
 | `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
@@ -453,6 +451,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: created-with-single-tool
 Detailed expectation: A trov:createdWith, where one is present, names one software tool that generated the declaration, given as a node or a reference to one. It is not the system that assembled the TRO, which trov:wasAssembledBy names.
+Defined in version: `trace-spec-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"SIVACOR 1.4"` | `/@graph/0/trov:createdWith` | a software tool is given as a node or a reference, {"@id": ...}, not as a string |

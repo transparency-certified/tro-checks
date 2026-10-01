@@ -85,7 +85,6 @@ The sections below give the status of each tier, then the status of each expecta
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
 | *`times-iso-8601`* | *Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time* | *not claimed* |
 | *`tro-name-description-text`* | *The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings* | *not claimed* |
-| *`creators-person-or-organization`* | *The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string* | *not claimed* |
 | *`trov-capabilities-predefined`* | *A capability's `trov:` type is one TROV predefines* | *not claimed* |
 | *`trov-performance-attributes-predefined`* | *A performance attribute's `trov:` type is one TROV predefines* | *not claimed* |
 | *`trov-tro-attributes-predefined`* | *A TRO attribute's `trov:` type is one TROV predefines* | *not claimed* |
@@ -193,7 +192,6 @@ The sections below give the status of each tier, then the status of each expecta
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
 | *`times-iso-8601`* | *Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time* | *not claimed* |
 | *`tro-name-description-text`* | *The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings* | *not claimed* |
-| *`creators-person-or-organization`* | *The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string* | *not claimed* |
 | *`trov-capabilities-predefined`* | *A capability's `trov:` type is one TROV predefines* | *not claimed* |
 | *`trov-performance-attributes-predefined`* | *A performance attribute's `trov:` type is one TROV predefines* | *not claimed* |
 | *`trov-tro-attributes-predefined`* | *A TRO attribute's `trov:` type is one TROV predefines* | *not claimed* |
@@ -303,7 +301,6 @@ The sections below give the status of each tier, then the status of each expecta
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
 | *`times-iso-8601`* | *Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time* | *not claimed* |
 | *`tro-name-description-text`* | *The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings* | *not claimed* |
-| *`creators-person-or-organization`* | *The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string* | *not claimed* |
 | *`trov-capabilities-predefined`* | *A capability's `trov:` type is one TROV predefines* | *not claimed* |
 | *`trov-performance-attributes-predefined`* | *A performance attribute's `trov:` type is one TROV predefines* | *not claimed* |
 | *`trov-tro-attributes-predefined`* | *A TRO attribute's `trov:` type is one TROV predefines* | *not claimed* |
@@ -335,6 +332,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: root-context-and-graph-only
 Detailed expectation: The file is a JSON object whose top level holds no member other than @context and @graph. Neither is required here: a file with no context, or no graph, passes, and `Tier 4 - USES-TROV-CORRECTLY` is where both are required. A top level that is an array of nodes, or a node written at the top level with its own @id and properties, is refused.
+Defined in version: `trace-spec-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"https://example.org/thing/1"` | `/@id` | the file's top level holds no member other than @context and @graph |
@@ -422,7 +420,6 @@ The sections below give the status of each tier, then the status of each expecta
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
 | *`times-iso-8601`* | *Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time* | *not claimed* |
 | *`tro-name-description-text`* | *The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings* | *not claimed* |
-| *`creators-person-or-organization`* | *The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string* | *not claimed* |
 | *`trov-capabilities-predefined`* | *A capability's `trov:` type is one TROV predefines* | *not claimed* |
 | *`trov-performance-attributes-predefined`* | *A performance attribute's `trov:` type is one TROV predefines* | *not claimed* |
 | *`trov-tro-attributes-predefined`* | *A TRO attribute's `trov:` type is one TROV predefines* | *not claimed* |
@@ -454,6 +451,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: root-context-and-graph-only
 Detailed expectation: The file is a JSON object whose top level holds no member other than @context and @graph. Neither is required here: a file with no context, or no graph, passes, and `Tier 4 - USES-TROV-CORRECTLY` is where both are required. A top level that is an array of nodes, or a node written at the top level with its own @id and properties, is refused.
+Defined in version: `trace-spec-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"a member beside @graph makes the root a node"` | `/ex:note` | the file's top level holds no member other than @context and @graph |

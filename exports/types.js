@@ -19,7 +19,7 @@ module.exports = {}
  */
 /**
  * @typedef {object} Version  a release of the TRACE Specification, or a pre-release of one
- * @property {string} id           names the version wherever one is chosen: a target, a manifest entry, an expectation's range
+ * @property {string} id           names the version wherever one is chosen: a target, a manifest entry, a directory of expectations
  * @property {number} number       its place in the order, from 1
  * @property {string} description  what the version is
  */
@@ -33,8 +33,7 @@ module.exports = {}
  * @property {string} description  what it checks, in one sentence
  * @property {string[]} requires   the expectations in its tier or a lower one that must be met before it is checked
  * @property {string[]} validatorFlags  options passed to each validator with its schema, such as --reject-duplicate-members
- * @property {Version} [fromVersion]   the first version it applies under; absent where it applies from the first
- * @property {Version} [untilVersion]  the first version it no longer applies under; absent where it never stops applying
+ * @property {Version} version     the version whose directory holds this implementation of it
  */
 /**
  * @typedef {object} Candidate

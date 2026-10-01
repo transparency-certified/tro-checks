@@ -158,7 +158,6 @@ The sections below give the status of each tier, then the status of each expecta
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
-| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
 | `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
@@ -342,7 +341,6 @@ The sections below give the status of each tier, then the status of each expecta
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
-| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
 | `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
@@ -526,7 +524,6 @@ The sections below give the status of each tier, then the status of each expecta
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
-| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
 | `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
@@ -558,6 +555,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: trov-signing-mechanisms-predefined
 Detailed expectation: Every value of trov:signingMechanism identifies its mechanism by reference, {"@id": …}, and a trov: one is a mechanism TROV predefines: trov:X509CMSSigning or trov:GPGSigning. A mechanism in any other namespace is a custom one and is not judged here.
+Defined in version: `trace-spec-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"trov:CanProvideInternetIsolation"` | `/@graph/0/trov:signingMechanism/@id` | a trov: signing mechanism is one TROV predefines |
@@ -714,7 +712,6 @@ The sections below give the status of each tier, then the status of each expecta
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
-| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
 | `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
@@ -746,6 +743,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: trov-signing-mechanisms-predefined
 Detailed expectation: Every value of trov:signingMechanism identifies its mechanism by reference, {"@id": …}, and a trov: one is a mechanism TROV predefines: trov:X509CMSSigning or trov:GPGSigning. A mechanism in any other namespace is a custom one and is not judged here.
+Defined in version: `trace-spec-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"trov:X509CMSSigning"` | `/@graph/0/trov:signingMechanism` | a signing mechanism is identified by reference, {"@id": …}, not by a string |

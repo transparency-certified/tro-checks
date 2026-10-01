@@ -96,7 +96,6 @@ The sections below give the status of each tier, then the status of each expecta
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
-| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
 | `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
@@ -227,7 +226,6 @@ The sections below give the status of each tier, then the status of each expecta
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
-| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
 | `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
@@ -259,6 +257,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: blank-node-ids-absent
 Detailed expectation: Outside the @context, no @id is a blank node identifier. A blank node label is scoped to the document it appears in and any processor may rename it, so an element carrying one cannot be pointed at from outside -- the opposite of what this tier promises.
+Defined in version: `trace-spec-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"_:p1"` | `/@graph/0/trov:hasPerformance/0/@id` | an @id is not a blank node identifier |

@@ -1,0 +1,79 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/trace-spec-2026-04-19/tro-assembled-by-trs.schema.json",
+    "title": "TRO assembled by TRS",
+    "description": "The TRO names the system that assembled it, and that system is typed trov:TrustedResearchSystem.",
+    "summary": "The TRO names its assembling system, typed as a TRS",
+    "requires": [
+        "tro-top-level-in-graph"
+    ],
+    "type": "object",
+    "properties": {
+        "@graph": {
+            "type": "array",
+            "items": {
+                "if": {
+                    "type": "object",
+                    "required": [
+                        "@type"
+                    ],
+                    "properties": {
+                        "@type": {
+                            "anyOf": [
+                                {
+                                    "const": "trov:TransparentResearchObject"
+                                },
+                                {
+                                    "type": "array",
+                                    "contains": {
+                                        "const": "trov:TransparentResearchObject"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                "then": {
+                    "required": [
+                        "trov:wasAssembledBy"
+                    ],
+                    "properties": {
+                        "trov:wasAssembledBy": {
+                            "type": "object",
+                            "required": [
+                                "@type"
+                            ],
+                            "properties": {
+                                "@type": {
+                                    "if": {
+                                        "type": "array"
+                                    },
+                                    "then": {
+                                        "contains": {
+                                            "const": "trov:TrustedResearchSystem"
+                                        },
+                                        "errorMessage": {
+                                            "contains": "the assembling system is typed trov:TrustedResearchSystem"
+                                        }
+                                    },
+                                    "else": {
+                                        "const": "trov:TrustedResearchSystem",
+                                        "errorMessage": {
+                                            "const": "the assembling system is typed trov:TrustedResearchSystem"
+                                        }
+                                    }
+                                }
+                            },
+                            "errorMessage": {
+                                "required": "the assembling system carries an @type"
+                            }
+                        }
+                    },
+                    "errorMessage": {
+                        "required": "a TRO names the system that assembled it, in trov:wasAssembledBy"
+                    }
+                }
+            }
+        }
+    }
+}

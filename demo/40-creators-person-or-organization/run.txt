@@ -77,13 +77,13 @@ wrote tmp/instance-creator-organization.md; Tier 1 - SAFE-JSON met, Tier 2 - SAF
 
 # Report on `instance-creator-organization.jsonld`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the three tiers below it.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `0.1`. The candidate meets every expectation in that tier and in the three tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-creator-organization.jsonld` |  |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `0.1` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -92,7 +92,7 @@ The sections below give the status of each tier, then the status of each expecta
 | `Tier 2 - SAFE-JSON-LD` | JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file | ✅ met |
 | `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | JSON-LD that avoids constructs and practices TRACE disallows | ✅ met |
 | `Tier 4 - USES-TROV-CORRECTLY` | JSON-LD that uses TROV terms only in ways TRACE allows | ✅ met |
-| *`Tier 5 - DEFINES-TRS`* | *JSON-LD that defines a Trusted Research System* | *not claimed* |
+| *`Tier 5 - DEFINES-TRS`* | *JSON-LD that defines a Trusted Research System, identified by an absolute IRI* | *not claimed* |
 | *`Tier 6 - STANDALONE-TRO`* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
 | *`Tier 7 - LINKABLE-TRO`* | *A TRO declaration whose element identifiers cannot collide with those in another TRO* | *not claimed* |
 ## Expectation Findings by Tier
@@ -143,6 +143,7 @@ The sections below give the status of each tier, then the status of each expecta
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
+| `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
@@ -154,11 +155,14 @@ The sections below give the status of each tier, then the status of each expecta
 | *`Tier 5 - DEFINES-TRS`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
+| *`trs-id-absolute`* | *The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
+| *`capability-ids-absolute`* | *Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
 | *`Tier 6 - STANDALONE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
 | *`trov-objects-identified`* | *Every object typed with a TROV class carries an `@id`* | *not claimed* |
 | *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *`performance-attribute-warrants-absolute`* | *Every performance attribute refers to the capability warranting it by absolute IRI* | *not claimed* |
 | *`tro-composition-single`* | *A `trov:hasComposition` is one object, not an array* | *not claimed* |
 | *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
 | *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
@@ -245,13 +249,13 @@ wrote tmp/instance-creator-reference.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-J
 
 # Report on `instance-creator-reference.jsonld`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the three tiers below it.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `0.1`. The candidate meets every expectation in that tier and in the three tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-creator-reference.jsonld` |  |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `0.1` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -260,7 +264,7 @@ The sections below give the status of each tier, then the status of each expecta
 | `Tier 2 - SAFE-JSON-LD` | JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file | ✅ met |
 | `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | JSON-LD that avoids constructs and practices TRACE disallows | ✅ met |
 | `Tier 4 - USES-TROV-CORRECTLY` | JSON-LD that uses TROV terms only in ways TRACE allows | ✅ met |
-| *`Tier 5 - DEFINES-TRS`* | *JSON-LD that defines a Trusted Research System* | *not claimed* |
+| *`Tier 5 - DEFINES-TRS`* | *JSON-LD that defines a Trusted Research System, identified by an absolute IRI* | *not claimed* |
 | *`Tier 6 - STANDALONE-TRO`* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
 | *`Tier 7 - LINKABLE-TRO`* | *A TRO declaration whose element identifiers cannot collide with those in another TRO* | *not claimed* |
 ## Expectation Findings by Tier
@@ -311,6 +315,7 @@ The sections below give the status of each tier, then the status of each expecta
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
+| `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
@@ -322,11 +327,14 @@ The sections below give the status of each tier, then the status of each expecta
 | *`Tier 5 - DEFINES-TRS`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
+| *`trs-id-absolute`* | *The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
+| *`capability-ids-absolute`* | *Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
 | *`Tier 6 - STANDALONE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
 | *`trov-objects-identified`* | *Every object typed with a TROV class carries an `@id`* | *not claimed* |
 | *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *`performance-attribute-warrants-absolute`* | *Every performance attribute refers to the capability warranting it by absolute IRI* | *not claimed* |
 | *`tro-composition-single`* | *A `trov:hasComposition` is one object, not an array* | *not claimed* |
 | *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
 | *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
@@ -411,13 +419,13 @@ wrote tmp/instance-creator-string.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON
 
 # Report on `instance-creator-string.jsonld`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `0.1`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-creator-string.jsonld` |  |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `0.1` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -426,7 +434,7 @@ The sections below give the status of each tier, then the status of each expecta
 | `Tier 2 - SAFE-JSON-LD` | JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file | ✅ met |
 | `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | JSON-LD that avoids constructs and practices TRACE disallows | ✅ met |
 | `Tier 4 - USES-TROV-CORRECTLY` | JSON-LD that uses TROV terms only in ways TRACE allows | ❌ not met |
-| *`Tier 5 - DEFINES-TRS`* | *JSON-LD that defines a Trusted Research System* | *not claimed* |
+| *`Tier 5 - DEFINES-TRS`* | *JSON-LD that defines a Trusted Research System, identified by an absolute IRI* | *not claimed* |
 | *`Tier 6 - STANDALONE-TRO`* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
 | *`Tier 7 - LINKABLE-TRO`* | *A TRO declaration whose element identifiers cannot collide with those in another TRO* | *not claimed* |
 ## Expectation Findings by Tier
@@ -477,6 +485,7 @@ The sections below give the status of each tier, then the status of each expecta
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
+| `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ❌ not met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
@@ -488,11 +497,14 @@ The sections below give the status of each tier, then the status of each expecta
 | *`Tier 5 - DEFINES-TRS`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
+| *`trs-id-absolute`* | *The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
+| *`capability-ids-absolute`* | *Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
 | *`Tier 6 - STANDALONE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
 | *`trov-objects-identified`* | *Every object typed with a TROV class carries an `@id`* | *not claimed* |
 | *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *`performance-attribute-warrants-absolute`* | *Every performance attribute refers to the capability warranting it by absolute IRI* | *not claimed* |
 | *`tro-composition-single`* | *A `trov:hasComposition` is one object, not an array* | *not claimed* |
 | *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
 | *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
@@ -510,6 +522,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: creators-person-or-organization
 Detailed expectation: Where the TRO carries schema:creator, each value is a node -- an object, not a string -- and where the node carries a @type, it is schema:Person or schema:Organization, the types schema.org expects of a creator. A bare reference, an object holding only an @id, passes.
+Defined in version: `0.1`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"Example Bank"` | `/@graph/0/schema:creator` | schema:creator is a Person or an Organization, given as a node, not as a string |
@@ -586,13 +599,13 @@ wrote tmp/instance-creator-thing.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-
 
 # Report on `instance-creator-thing.jsonld`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `0.1`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-creator-thing.jsonld` |  |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `0.1` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -601,7 +614,7 @@ The sections below give the status of each tier, then the status of each expecta
 | `Tier 2 - SAFE-JSON-LD` | JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file | ✅ met |
 | `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | JSON-LD that avoids constructs and practices TRACE disallows | ✅ met |
 | `Tier 4 - USES-TROV-CORRECTLY` | JSON-LD that uses TROV terms only in ways TRACE allows | ❌ not met |
-| *`Tier 5 - DEFINES-TRS`* | *JSON-LD that defines a Trusted Research System* | *not claimed* |
+| *`Tier 5 - DEFINES-TRS`* | *JSON-LD that defines a Trusted Research System, identified by an absolute IRI* | *not claimed* |
 | *`Tier 6 - STANDALONE-TRO`* | *A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it* | *not claimed* |
 | *`Tier 7 - LINKABLE-TRO`* | *A TRO declaration whose element identifiers cannot collide with those in another TRO* | *not claimed* |
 ## Expectation Findings by Tier
@@ -652,6 +665,7 @@ The sections below give the status of each tier, then the status of each expecta
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
+| `times-zoned` | Every `trov:startedAtTime` and `trov:endedAtTime` carries its time zone | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
 | `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ❌ not met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
@@ -663,11 +677,14 @@ The sections below give the status of each tier, then the status of each expecta
 | *`Tier 5 - DEFINES-TRS`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
+| *`trs-id-absolute`* | *The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
+| *`capability-ids-absolute`* | *Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
 | *`Tier 6 - STANDALONE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
 | *`trov-objects-identified`* | *Every object typed with a TROV class carries an `@id`* | *not claimed* |
 | *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
+| *`performance-attribute-warrants-absolute`* | *Every performance attribute refers to the capability warranting it by absolute IRI* | *not claimed* |
 | *`tro-composition-single`* | *A `trov:hasComposition` is one object, not an array* | *not claimed* |
 | *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
 | *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |
@@ -685,6 +702,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: creators-person-or-organization
 Detailed expectation: Where the TRO carries schema:creator, each value is a node -- an object, not a string -- and where the node carries a @type, it is schema:Person or schema:Organization, the types schema.org expects of a creator. A bare reference, an object holding only an @id, passes.
+Defined in version: `0.1`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"schema:Thing"` | `/@graph/0/schema:creator/@type` | a schema:creator node is typed schema:Person or schema:Organization |

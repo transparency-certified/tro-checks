@@ -561,6 +561,8 @@ function unmetExpectationLines(finding, dialect) {
         '',
         `Detailed expectation: ${writable(finding.expectation.description)}`,
         '',
+        `Defined in version: ${codeSpan(finding.expectation.version.id)}`,
+        '',
         ...dialect.diagnostics(diagnoses),
     ]
 }

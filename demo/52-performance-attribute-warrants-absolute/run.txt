@@ -69,7 +69,7 @@ The sections below give the status of each tier, then the status of each expecta
 | `Tier 2 - SAFE-JSON-LD` | JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file | ✅ met |
 | `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | JSON-LD that avoids constructs and practices TRACE disallows | ✅ met |
 | `Tier 4 - USES-TROV-CORRECTLY` | JSON-LD that uses TROV terms only in ways TRACE allows | ✅ met |
-| `Tier 5 - DEFINES-TRS` | JSON-LD that defines a Trusted Research System | ✅ met |
+| `Tier 5 - DEFINES-TRS` | JSON-LD that defines a Trusted Research System, identified by an absolute IRI | ✅ met |
 | `Tier 6 - STANDALONE-TRO` | A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it | ✅ met |
 | *`Tier 7 - LINKABLE-TRO`* | *A TRO declaration whose element identifiers cannot collide with those in another TRO* | *not claimed* |
 ## Expectation Findings by Tier
@@ -220,7 +220,7 @@ The sections below give the status of each tier, then the status of each expecta
 | `Tier 2 - SAFE-JSON-LD` | JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file | ✅ met |
 | `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | JSON-LD that avoids constructs and practices TRACE disallows | ✅ met |
 | `Tier 4 - USES-TROV-CORRECTLY` | JSON-LD that uses TROV terms only in ways TRACE allows | ✅ met |
-| `Tier 5 - DEFINES-TRS` | JSON-LD that defines a Trusted Research System | ✅ met |
+| `Tier 5 - DEFINES-TRS` | JSON-LD that defines a Trusted Research System, identified by an absolute IRI | ✅ met |
 | `Tier 6 - STANDALONE-TRO` | A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it | ❌ not met |
 | *`Tier 7 - LINKABLE-TRO`* | *A TRO declaration whose element identifiers cannot collide with those in another TRO* | *not claimed* |
 ## Expectation Findings by Tier
@@ -308,6 +308,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: performance-attribute-warrants-absolute
 Detailed expectation: Every trov:warrantedBy on a value of trov:hasPerformanceAttribute refers to its capability by an absolute IRI, or a compact IRI whose prefix is not trov.
+Defined in version: `0.1`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"trs/capability/0"` | `/@graph/0/trov:hasPerformance/0/trov:hasPerformanceAttribute/0/trov:warrantedBy/@id` | a performance attribute's warrant refers to its capability by absolute IRI, or by a compact IRI outside the trov namespace |

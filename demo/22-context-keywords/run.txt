@@ -92,7 +92,6 @@ The sections below give the status of each tier, then the status of each expecta
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
 | *`times-iso-8601`* | *Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time* | *not claimed* |
 | *`tro-name-description-text`* | *The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings* | *not claimed* |
-| *`creators-person-or-organization`* | *The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string* | *not claimed* |
 | *`trov-capabilities-predefined`* | *A capability's `trov:` type is one TROV predefines* | *not claimed* |
 | *`trov-performance-attributes-predefined`* | *A performance attribute's `trov:` type is one TROV predefines* | *not claimed* |
 | *`trov-tro-attributes-predefined`* | *A TRO attribute's `trov:` type is one TROV predefines* | *not claimed* |
@@ -205,7 +204,6 @@ The sections below give the status of each tier, then the status of each expecta
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
 | *`times-iso-8601`* | *Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time* | *not claimed* |
 | *`tro-name-description-text`* | *The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings* | *not claimed* |
-| *`creators-person-or-organization`* | *The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string* | *not claimed* |
 | *`trov-capabilities-predefined`* | *A capability's `trov:` type is one TROV predefines* | *not claimed* |
 | *`trov-performance-attributes-predefined`* | *A performance attribute's `trov:` type is one TROV predefines* | *not claimed* |
 | *`trov-tro-attributes-predefined`* | *A TRO attribute's `trov:` type is one TROV predefines* | *not claimed* |
@@ -237,6 +235,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: disallowed-context-keywords-absent
 Detailed expectation: At the top level of every @context, the only member name beginning with @ is @base.
+Defined in version: `trace-spec-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@version":1.1}` | `/@context` | the only keyword in an @context is @base |

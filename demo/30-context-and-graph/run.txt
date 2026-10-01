@@ -98,7 +98,6 @@ The sections below give the status of each tier, then the status of each expecta
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
-| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
 | `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
@@ -217,7 +216,6 @@ The sections below give the status of each tier, then the status of each expecta
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
-| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
 | `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
@@ -249,6 +247,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: context-and-nonempty-graph-present
 Detailed expectation: The file has an @context that is not null and not [null], and an @graph holding at least one node. A document that uses TROV needs a context to say what trov: stands for, and in a `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` document its nodes can only be in an @graph. A document with no context, or no nodes, uses no TROV and so does not use it correctly.
+Defined in version: `trace-spec-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `null` | `/@context` | the @context is not null |
@@ -336,7 +335,6 @@ The sections below give the status of each tier, then the status of each expecta
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
-| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
 | `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
@@ -368,6 +366,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: context-and-nonempty-graph-present
 Detailed expectation: The file has an @context that is not null and not [null], and an @graph holding at least one node. A document that uses TROV needs a context to say what trov: stands for, and in a `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` document its nodes can only be in an @graph. A document with no context, or no nodes, uses no TROV and so does not use it correctly.
+Defined in version: `trace-spec-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@context":{"rdf":"http://www.w3.org/1999/02/22-rdf-syntax-ns#","rdfs":"http://www.w3.org/2000/01/rdf-schema#","trov":"https://w3id.org/trace/trov/0.1#","schema":"https://schema.org/"}}` | the document | the file has an @graph |
@@ -456,7 +455,6 @@ The sections below give the status of each tier, then the status of each expecta
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
-| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
 | `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
@@ -488,6 +486,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: context-and-nonempty-graph-present
 Detailed expectation: The file has an @context that is not null and not [null], and an @graph holding at least one node. A document that uses TROV needs a context to say what trov: stands for, and in a `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` document its nodes can only be in an @graph. A document with no context, or no nodes, uses no TROV and so does not use it correctly.
+Defined in version: `trace-spec-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `[]` | `/@graph` | the @graph holds at least one node |

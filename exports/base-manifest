@@ -4,70 +4,72 @@ check-tros check-tros.js
 render-report.js
 render-readme.js
 types.js
-tiers.json
 versions.json
-utf8-encoded.parse.json
-json-parses.parse.json
-duplicate-member-names-absent.schema.json
-unicode-escapes-spell-whole-characters.parse.json
-numbers-within-range.parse.json
-context-object-array-or-null.schema.json
-graph-object-or-array.schema.json
-disallowed-node-keywords-absent.schema.json
-disallowed-context-keywords-absent.schema.json
-ids-and-types-strings.schema.json
-context-at-root-only.schema.json
-context-containers-absent.schema.json
-context-vocab-absent.schema.json
-context-protected-absent.schema.json
-context-propagate-absent.schema.json
-context-import-absent.schema.json
-context-id-coercion-absent.schema.json
-graph-at-root-only.schema.json
-base-web-scheme.schema.json
-base-simple-url.schema.json
-id-segments-portable.schema.json
-prefix-namespaces-terminated.schema.json
-remote-contexts-absent.schema.json
-context-aliases-absent.schema.json
-context-assigns-only-datatypes-to-properties.schema.json
-context-datatypes-named-by-iri.schema.json
-types-prefixed-or-absolute.schema.json
-context-and-nonempty-graph-present.schema.json
-core-prefixes-pinned.schema.json
-trov-terms-known.schema.json
-root-context-and-graph-only.schema.json
-composite-contexts-absent.schema.json
-tro-top-level-in-graph.schema.json
-base-declared.schema.json
-base-has-path.schema.json
-base-host-lowercase.schema.json
-base-host-ownable.schema.json
-blank-node-ids-absent.schema.json
-node-ids-present.schema.json
-composition-has-fingerprint.schema.json
-composition-identifies-artifacts.schema.json
-artifact-hashes-present.schema.json
-hash-algorithms-permitted.schema.json
-hash-values-correct-form.schema.json
-mime-types-two-part.schema.json
-times-iso-8601.schema.json
-times-zoned.schema.json
-tro-name-description-text.schema.json
-creators-person-or-organization.schema.json
-trov-capabilities-predefined.schema.json
-trov-performance-attributes-predefined.schema.json
-trov-tro-attributes-predefined.schema.json
-custom-terms-not-trov.schema.json
-custom-term-superclasses-extensible.schema.json
-trov-signing-mechanisms-predefined.schema.json
-gpg-signing-key-present.schema.json
-trs-defined.schema.json
-trs-id-absolute.schema.json
-capability-ids-absolute.schema.json
-performance-attribute-warrants-absolute.schema.json
-tro-assembled-by-trs.schema.json
-trov-objects-identified.schema.json
-tro-composition-single.schema.json
-created-with-single-tool.schema.json
-trov-version-known.schema.json
+versions/trace-spec-2026-04-19/tiers.json versions/trace-spec-2026-04-19/tiers.json versions/trace-spec-2026-04-19/tiers.json
+versions/trace-spec-2026-04-19/artifact-hashes-present.schema.json versions/trace-spec-2026-04-19/artifact-hashes-present.schema.json versions/trace-spec-2026-04-19/artifact-hashes-present.schema.json
+versions/trace-spec-2026-04-19/base-declared.schema.json versions/trace-spec-2026-04-19/base-declared.schema.json versions/trace-spec-2026-04-19/base-declared.schema.json
+versions/trace-spec-2026-04-19/base-has-path.schema.json versions/trace-spec-2026-04-19/base-has-path.schema.json versions/trace-spec-2026-04-19/base-has-path.schema.json
+versions/trace-spec-2026-04-19/base-host-lowercase.schema.json versions/trace-spec-2026-04-19/base-host-lowercase.schema.json versions/trace-spec-2026-04-19/base-host-lowercase.schema.json
+versions/trace-spec-2026-04-19/base-host-ownable.schema.json versions/trace-spec-2026-04-19/base-host-ownable.schema.json versions/trace-spec-2026-04-19/base-host-ownable.schema.json
+versions/trace-spec-2026-04-19/base-simple-url.schema.json versions/trace-spec-2026-04-19/base-simple-url.schema.json versions/trace-spec-2026-04-19/base-simple-url.schema.json
+versions/trace-spec-2026-04-19/base-web-scheme.schema.json versions/trace-spec-2026-04-19/base-web-scheme.schema.json versions/trace-spec-2026-04-19/base-web-scheme.schema.json
+versions/trace-spec-2026-04-19/blank-node-ids-absent.schema.json versions/trace-spec-2026-04-19/blank-node-ids-absent.schema.json versions/trace-spec-2026-04-19/blank-node-ids-absent.schema.json
+versions/trace-spec-2026-04-19/composite-contexts-absent.schema.json versions/trace-spec-2026-04-19/composite-contexts-absent.schema.json versions/trace-spec-2026-04-19/composite-contexts-absent.schema.json
+versions/trace-spec-2026-04-19/composition-has-fingerprint.schema.json versions/trace-spec-2026-04-19/composition-has-fingerprint.schema.json versions/trace-spec-2026-04-19/composition-has-fingerprint.schema.json
+versions/trace-spec-2026-04-19/composition-identifies-artifacts.schema.json versions/trace-spec-2026-04-19/composition-identifies-artifacts.schema.json versions/trace-spec-2026-04-19/composition-identifies-artifacts.schema.json
+versions/trace-spec-2026-04-19/context-aliases-absent.schema.json versions/trace-spec-2026-04-19/context-aliases-absent.schema.json versions/trace-spec-2026-04-19/context-aliases-absent.schema.json
+versions/trace-spec-2026-04-19/context-and-nonempty-graph-present.schema.json versions/trace-spec-2026-04-19/context-and-nonempty-graph-present.schema.json versions/trace-spec-2026-04-19/context-and-nonempty-graph-present.schema.json
+versions/trace-spec-2026-04-19/context-assigns-only-datatypes-to-properties.schema.json versions/trace-spec-2026-04-19/context-assigns-only-datatypes-to-properties.schema.json versions/trace-spec-2026-04-19/context-assigns-only-datatypes-to-properties.schema.json
+versions/trace-spec-2026-04-19/context-at-root-only.schema.json versions/trace-spec-2026-04-19/context-at-root-only.schema.json versions/trace-spec-2026-04-19/context-at-root-only.schema.json
+versions/trace-spec-2026-04-19/context-containers-absent.schema.json versions/trace-spec-2026-04-19/context-containers-absent.schema.json versions/trace-spec-2026-04-19/context-containers-absent.schema.json
+versions/trace-spec-2026-04-19/context-datatypes-named-by-iri.schema.json versions/trace-spec-2026-04-19/context-datatypes-named-by-iri.schema.json versions/trace-spec-2026-04-19/context-datatypes-named-by-iri.schema.json
+versions/trace-spec-2026-04-19/context-id-coercion-absent.schema.json versions/trace-spec-2026-04-19/context-id-coercion-absent.schema.json versions/trace-spec-2026-04-19/context-id-coercion-absent.schema.json
+versions/trace-spec-2026-04-19/context-import-absent.schema.json versions/trace-spec-2026-04-19/context-import-absent.schema.json versions/trace-spec-2026-04-19/context-import-absent.schema.json
+versions/trace-spec-2026-04-19/context-object-array-or-null.schema.json versions/trace-spec-2026-04-19/context-object-array-or-null.schema.json versions/trace-spec-2026-04-19/context-object-array-or-null.schema.json
+versions/trace-spec-2026-04-19/context-propagate-absent.schema.json versions/trace-spec-2026-04-19/context-propagate-absent.schema.json versions/trace-spec-2026-04-19/context-propagate-absent.schema.json
+versions/trace-spec-2026-04-19/context-protected-absent.schema.json versions/trace-spec-2026-04-19/context-protected-absent.schema.json versions/trace-spec-2026-04-19/context-protected-absent.schema.json
+versions/trace-spec-2026-04-19/context-vocab-absent.schema.json versions/trace-spec-2026-04-19/context-vocab-absent.schema.json versions/trace-spec-2026-04-19/context-vocab-absent.schema.json
+versions/trace-spec-2026-04-19/core-prefixes-pinned.schema.json versions/trace-spec-2026-04-19/core-prefixes-pinned.schema.json versions/trace-spec-2026-04-19/core-prefixes-pinned.schema.json
+versions/trace-spec-2026-04-19/created-with-single-tool.schema.json versions/trace-spec-2026-04-19/created-with-single-tool.schema.json versions/trace-spec-2026-04-19/created-with-single-tool.schema.json
+versions/trace-spec-2026-04-19/custom-term-superclasses-extensible.schema.json versions/trace-spec-2026-04-19/custom-term-superclasses-extensible.schema.json versions/trace-spec-2026-04-19/custom-term-superclasses-extensible.schema.json
+versions/trace-spec-2026-04-19/custom-terms-not-trov.schema.json versions/trace-spec-2026-04-19/custom-terms-not-trov.schema.json versions/trace-spec-2026-04-19/custom-terms-not-trov.schema.json
+versions/trace-spec-2026-04-19/disallowed-context-keywords-absent.schema.json versions/trace-spec-2026-04-19/disallowed-context-keywords-absent.schema.json versions/trace-spec-2026-04-19/disallowed-context-keywords-absent.schema.json
+versions/trace-spec-2026-04-19/disallowed-node-keywords-absent.schema.json versions/trace-spec-2026-04-19/disallowed-node-keywords-absent.schema.json versions/trace-spec-2026-04-19/disallowed-node-keywords-absent.schema.json
+versions/trace-spec-2026-04-19/duplicate-member-names-absent.schema.json versions/trace-spec-2026-04-19/duplicate-member-names-absent.schema.json versions/trace-spec-2026-04-19/duplicate-member-names-absent.schema.json
+versions/trace-spec-2026-04-19/gpg-signing-key-present.schema.json versions/trace-spec-2026-04-19/gpg-signing-key-present.schema.json versions/trace-spec-2026-04-19/gpg-signing-key-present.schema.json
+versions/trace-spec-2026-04-19/graph-at-root-only.schema.json versions/trace-spec-2026-04-19/graph-at-root-only.schema.json versions/trace-spec-2026-04-19/graph-at-root-only.schema.json
+versions/trace-spec-2026-04-19/graph-object-or-array.schema.json versions/trace-spec-2026-04-19/graph-object-or-array.schema.json versions/trace-spec-2026-04-19/graph-object-or-array.schema.json
+versions/trace-spec-2026-04-19/hash-algorithms-permitted.schema.json versions/trace-spec-2026-04-19/hash-algorithms-permitted.schema.json versions/trace-spec-2026-04-19/hash-algorithms-permitted.schema.json
+versions/trace-spec-2026-04-19/hash-values-correct-form.schema.json versions/trace-spec-2026-04-19/hash-values-correct-form.schema.json versions/trace-spec-2026-04-19/hash-values-correct-form.schema.json
+versions/trace-spec-2026-04-19/id-segments-portable.schema.json versions/trace-spec-2026-04-19/id-segments-portable.schema.json versions/trace-spec-2026-04-19/id-segments-portable.schema.json
+versions/trace-spec-2026-04-19/ids-and-types-strings.schema.json versions/trace-spec-2026-04-19/ids-and-types-strings.schema.json versions/trace-spec-2026-04-19/ids-and-types-strings.schema.json
+versions/trace-spec-2026-04-19/json-parses.parse.json versions/trace-spec-2026-04-19/json-parses.parse.json versions/trace-spec-2026-04-19/json-parses.parse.json
+versions/trace-spec-2026-04-19/mime-types-two-part.schema.json versions/trace-spec-2026-04-19/mime-types-two-part.schema.json versions/trace-spec-2026-04-19/mime-types-two-part.schema.json
+versions/trace-spec-2026-04-19/node-ids-present.schema.json versions/trace-spec-2026-04-19/node-ids-present.schema.json versions/trace-spec-2026-04-19/node-ids-present.schema.json
+versions/trace-spec-2026-04-19/numbers-within-range.parse.json versions/trace-spec-2026-04-19/numbers-within-range.parse.json versions/trace-spec-2026-04-19/numbers-within-range.parse.json
+versions/trace-spec-2026-04-19/prefix-namespaces-terminated.schema.json versions/trace-spec-2026-04-19/prefix-namespaces-terminated.schema.json versions/trace-spec-2026-04-19/prefix-namespaces-terminated.schema.json
+versions/trace-spec-2026-04-19/remote-contexts-absent.schema.json versions/trace-spec-2026-04-19/remote-contexts-absent.schema.json versions/trace-spec-2026-04-19/remote-contexts-absent.schema.json
+versions/trace-spec-2026-04-19/root-context-and-graph-only.schema.json versions/trace-spec-2026-04-19/root-context-and-graph-only.schema.json versions/trace-spec-2026-04-19/root-context-and-graph-only.schema.json
+versions/trace-spec-2026-04-19/times-iso-8601.schema.json versions/trace-spec-2026-04-19/times-iso-8601.schema.json versions/trace-spec-2026-04-19/times-iso-8601.schema.json
+versions/trace-spec-2026-04-19/tro-assembled-by-trs.schema.json versions/trace-spec-2026-04-19/tro-assembled-by-trs.schema.json versions/trace-spec-2026-04-19/tro-assembled-by-trs.schema.json
+versions/trace-spec-2026-04-19/tro-composition-single.schema.json versions/trace-spec-2026-04-19/tro-composition-single.schema.json versions/trace-spec-2026-04-19/tro-composition-single.schema.json
+versions/trace-spec-2026-04-19/tro-name-description-text.schema.json versions/trace-spec-2026-04-19/tro-name-description-text.schema.json versions/trace-spec-2026-04-19/tro-name-description-text.schema.json
+versions/trace-spec-2026-04-19/tro-top-level-in-graph.schema.json versions/trace-spec-2026-04-19/tro-top-level-in-graph.schema.json versions/trace-spec-2026-04-19/tro-top-level-in-graph.schema.json
+versions/trace-spec-2026-04-19/trov-capabilities-predefined.schema.json versions/trace-spec-2026-04-19/trov-capabilities-predefined.schema.json versions/trace-spec-2026-04-19/trov-capabilities-predefined.schema.json
+versions/trace-spec-2026-04-19/trov-objects-identified.schema.json versions/trace-spec-2026-04-19/trov-objects-identified.schema.json versions/trace-spec-2026-04-19/trov-objects-identified.schema.json
+versions/trace-spec-2026-04-19/trov-performance-attributes-predefined.schema.json versions/trace-spec-2026-04-19/trov-performance-attributes-predefined.schema.json versions/trace-spec-2026-04-19/trov-performance-attributes-predefined.schema.json
+versions/trace-spec-2026-04-19/trov-signing-mechanisms-predefined.schema.json versions/trace-spec-2026-04-19/trov-signing-mechanisms-predefined.schema.json versions/trace-spec-2026-04-19/trov-signing-mechanisms-predefined.schema.json
+versions/trace-spec-2026-04-19/trov-terms-known.schema.json versions/trace-spec-2026-04-19/trov-terms-known.schema.json versions/trace-spec-2026-04-19/trov-terms-known.schema.json
+versions/trace-spec-2026-04-19/trov-tro-attributes-predefined.schema.json versions/trace-spec-2026-04-19/trov-tro-attributes-predefined.schema.json versions/trace-spec-2026-04-19/trov-tro-attributes-predefined.schema.json
+versions/trace-spec-2026-04-19/trov-version-known.schema.json versions/trace-spec-2026-04-19/trov-version-known.schema.json versions/trace-spec-2026-04-19/trov-version-known.schema.json
+versions/trace-spec-2026-04-19/trs-defined.schema.json versions/trace-spec-2026-04-19/trs-defined.schema.json versions/trace-spec-2026-04-19/trs-defined.schema.json
+versions/trace-spec-2026-04-19/types-prefixed-or-absolute.schema.json versions/trace-spec-2026-04-19/types-prefixed-or-absolute.schema.json versions/trace-spec-2026-04-19/types-prefixed-or-absolute.schema.json
+versions/trace-spec-2026-04-19/unicode-escapes-spell-whole-characters.parse.json versions/trace-spec-2026-04-19/unicode-escapes-spell-whole-characters.parse.json versions/trace-spec-2026-04-19/unicode-escapes-spell-whole-characters.parse.json
+versions/trace-spec-2026-04-19/utf8-encoded.parse.json versions/trace-spec-2026-04-19/utf8-encoded.parse.json versions/trace-spec-2026-04-19/utf8-encoded.parse.json
+versions/0.1/tiers.json versions/0.1/tiers.json versions/0.1/tiers.json
+versions/0.1/capability-ids-absolute.schema.json versions/0.1/capability-ids-absolute.schema.json versions/0.1/capability-ids-absolute.schema.json
+versions/0.1/creators-person-or-organization.schema.json versions/0.1/creators-person-or-organization.schema.json versions/0.1/creators-person-or-organization.schema.json
+versions/0.1/performance-attribute-warrants-absolute.schema.json versions/0.1/performance-attribute-warrants-absolute.schema.json versions/0.1/performance-attribute-warrants-absolute.schema.json
+versions/0.1/times-zoned.schema.json versions/0.1/times-zoned.schema.json versions/0.1/times-zoned.schema.json
+versions/0.1/trov-terms-known.schema.json versions/0.1/trov-terms-known.schema.json versions/0.1/trov-terms-known.schema.json
+versions/0.1/trs-id-absolute.schema.json versions/0.1/trs-id-absolute.schema.json versions/0.1/trs-id-absolute.schema.json

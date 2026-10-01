@@ -1,0 +1,84 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/trace-spec-2026-04-19/node-ids-present.schema.json",
+    "title": "Node ids present",
+    "description": "Every node object carries an explicit @id.",
+    "summary": "Every node carries an explicit `@id`",
+    "requires": [
+        "trov-objects-identified"
+    ],
+    "$defs": {
+        "isNodeObject": {
+            "type": "object",
+            "not": {
+                "anyOf": [
+                    {
+                        "required": [
+                            "@value"
+                        ]
+                    },
+                    {
+                        "required": [
+                            "@list"
+                        ]
+                    },
+                    {
+                        "required": [
+                            "@set"
+                        ]
+                    }
+                ]
+            }
+        },
+        "node": {
+            "if": {
+                "$ref": "#/$defs/isNodeObject"
+            },
+            "then": {
+                "required": [
+                    "@id"
+                ],
+                "errorMessage": "a node object carries an @id",
+                "properties": {
+                    "@context": true
+                },
+                "additionalProperties": {
+                    "$ref": "#/$defs/node"
+                }
+            },
+            "else": {
+                "if": {
+                    "type": "array"
+                },
+                "then": {
+                    "items": {
+                        "$ref": "#/$defs/node"
+                    }
+                }
+            }
+        },
+        "documentRoot": {
+            "if": {
+                "type": "object",
+                "required": [
+                    "@graph"
+                ]
+            },
+            "then": {
+                "properties": {
+                    "@context": true,
+                    "@graph": {
+                        "$ref": "#/$defs/node"
+                    }
+                },
+                "additionalProperties": {
+                    "$ref": "#/$defs/node"
+                }
+            },
+            "else": {
+                "$ref": "#/$defs/node"
+            }
+        }
+    },
+    "$ref": "#/$defs/documentRoot"
+}

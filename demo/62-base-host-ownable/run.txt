@@ -96,7 +96,6 @@ The sections below give the status of each tier, then the status of each expecta
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
-| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
 | `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
@@ -218,7 +217,6 @@ The sections below give the status of each tier, then the status of each expecta
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
-| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
 | `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
@@ -250,6 +248,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: base-host-ownable
 Detailed expectation: Where an @context declares a non-null @base, its host is a domain name the minter could hold: a dotted name whose labels a registrar would accept, and not one of the names reserved so that nobody can ever hold them. A base under a reserved name cannot be under the control of the TRO's minter, which is a fact the RFCs record rather than a rule TRACE makes. The reserved list is RFC 2606 and 6761's .test, .example, .invalid and .localhost with example.com, example.net and example.org, RFC 6762's .local, RFC 8375's home.arpa, RFC 9476's .alt, and .internal, which ICANN reserved by board resolution rather than by RFC. The patterns read lowercase names; an uppercase spelling is refused by base-host-lowercase.
+Defined in version: `trace-spec-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"https://tro.example.org/tro/1/"` | `/@context/@base` | an @base host is not under example.com, example.net or example.org |
@@ -346,7 +345,6 @@ The sections below give the status of each tier, then the status of each expecta
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
 | `times-iso-8601` | Every `trov:startedAtTime` and `trov:endedAtTime` is an ISO 8601 date-time; the TRO's `schema:dateCreated`, if present, an ISO 8601 date or date-time | ✅ met |
 | `tro-name-description-text` | The TRO's `schema:name` and `schema:description`, if present, are Text: a string or an array of strings | ✅ met |
-| `creators-person-or-organization` | The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string | ✅ met |
 | `trov-capabilities-predefined` | A capability's `trov:` type is one TROV predefines | ✅ met |
 | `trov-performance-attributes-predefined` | A performance attribute's `trov:` type is one TROV predefines | ✅ met |
 | `trov-tro-attributes-predefined` | A TRO attribute's `trov:` type is one TROV predefines | ✅ met |
@@ -378,6 +376,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: base-host-ownable
 Detailed expectation: Where an @context declares a non-null @base, its host is a domain name the minter could hold: a dotted name whose labels a registrar would accept, and not one of the names reserved so that nobody can ever hold them. A base under a reserved name cannot be under the control of the TRO's minter, which is a fact the RFCs record rather than a rule TRACE makes. The reserved list is RFC 2606 and 6761's .test, .example, .invalid and .localhost with example.com, example.net and example.org, RFC 6762's .local, RFC 8375's home.arpa, RFC 9476's .alt, and .internal, which ICANN reserved by board resolution rather than by RFC. The patterns read lowercase names; an uppercase spelling is refused by base-host-lowercase.
+Defined in version: `trace-spec-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"https://trs/tro/1/"` | `/@context/@base` | an @base host is a dotted domain name whose labels a registrar would accept -- not an address, not a bare label, and no label beginning or ending with a hyphen |

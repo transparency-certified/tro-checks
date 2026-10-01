@@ -13,15 +13,13 @@
 - The location to write the report was not given.
 
 **The program builds a representation of the candidate.**
-- It settles which tier was meant — the one asked for, or `STANDALONE-TRO`.
-  - It reads the tier definitions the module ships, numbering the tiers in their order.
-  - It stops if a tier has no ID, no description, or no expectations.
-  - It stops if a tier says whether it blocks higher tiers other than by true or false.
-  - It stops if no tier answers to that ID.
 - It settles which version was meant — the one asked for, or `trace-spec-2026-04-19`.
   - It reads the version definitions the module ships, numbering the versions in their order.
   - It stops if a version has no ID or no description.
   - It stops if no version answers to that ID.
+- It settles what applies under each version, as in [resolving the versions](#resolving-the-versions).
+- It settles which tier was meant — the one asked for, or `STANDALONE-TRO` — among the tiers of that version.
+  - It stops if no tier of that version answers to that ID.
 - It stops if the candidate is not a file it can read.
 - It notes the name of the file the candidate sits in.
 - It records where the tier came from — the `--target-tier` option, or the default.
@@ -29,16 +27,7 @@
 - It records that the description, where one was given, came from the `--description` option.
 
 **The program checks the candidate against each expectation in the target.**
-- It finds the expectation files the module ships.
-- It stops if a tier lists an expectation that has no file.
-- It settles which tier each expectation belongs to.
-- It settles which versions each expectation applies under — from the version it names on, before the version it names, or every version.
-- It stops if an expectation names a version that does not exist, or applies under no version.
-- It stops if an expectation requires one listed after it — later in its own tier, or in a higher tier.
-- It stops if an expectation requires one that does not apply under every version it applies under.
-- It goes through the tiers in order, and through each tier's expectations in the order the tier lists them.
-- It leaves out an expectation that does not apply under the candidate's version.
-- It stops if a tier is left with no expectations.
+- It goes through the tiers of the candidate's version in order, and through each tier's expectations in the order the tier lists them.
 - It reports an expectation above the candidate's tier as not claimed.
 - It reports an expectation as not assessed when a lower tier that blocks higher tiers is not met, or an expectation it requires is not met.
 - It checks a parse expectation at or below the candidate's tier itself, reading and parsing the candidate once for all of them: that its bytes are UTF-8, that its text is JSON, that no string or member name has an unpaired surrogate, and that every number is within range.
@@ -61,6 +50,20 @@
 - Every claimed tier met.
 - Some claimed tier unmet.
 - Could not check.
+
+## Resolving the versions
+
+**The program goes through the versions in order, each carrying forward what the versions before it defined.**
+- It takes the tiers from the version's own tier definitions, where its directory has them, and otherwise from the latest version before it that has them.
+- It stops if no version so far has tier definitions.
+- It stops if a tier has no ID, no description, or no expectations, says whether it blocks higher tiers other than by true or false, or lists an expectation twice.
+- It takes each expectation the tiers list from the file in the version's own directory, where there is one, and otherwise from the latest version before it that has one.
+- It stops if a listed expectation has no file at or before the version.
+- It stops if the version lists an expectation an earlier version retired, by leaving it out of its tiers, without giving it a file of its own.
+- It stops if the version's directory holds a file for an expectation its tiers do not list.
+- It stops if a file has no summary or no description, carries `fromVersion`, `untilVersion` or `refusedFrom`, or, for a schema, has an `$id` other than its directory gives.
+- It stops if an expectation requires one its version does not list, or lists after it.
+- It stops if two files for one expectation give different summaries.
 
 ## Making a determination
 
@@ -115,7 +118,7 @@
 
 **The report lists every expectation that applies under the version, under its tier, in the order the tier lists them, giving what it checks in a few words and its status, and closes each tier's list with the tier's status.**
 
-**The report details each expectation not met, giving what it checks in a sentence and each error it found...**
+**The report details each expectation not met, giving what it checks in a sentence, the version whose definition of it was used, and each error it found...**
 - What was found there, if anything.
 - Where in the candidate.
 - Why the expectation is not met, in its own words where it has them, and in the terms of the constraint where it does not.

@@ -1,0 +1,70 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/trace-spec-2026-04-19/trov-version-known.schema.json",
+    "title": "TROV version known",
+    "description": "The TRO carries trov:vocabularyVersion, a string naming a known version of TROV: 0.1.",
+    "summary": "The TRO declares, in `trov:vocabularyVersion`, a known version of TROV",
+    "requires": [
+        "core-prefixes-pinned"
+    ],
+    "type": "object",
+    "properties": {
+        "@graph": {
+            "if": {
+                "type": "array"
+            },
+            "then": {
+                "items": {
+                    "if": {
+                        "type": "object",
+                        "required": [
+                            "@type"
+                        ],
+                        "properties": {
+                            "@type": {
+                                "anyOf": [
+                                    {
+                                        "const": "trov:TransparentResearchObject"
+                                    },
+                                    {
+                                        "type": "array",
+                                        "contains": {
+                                            "const": "trov:TransparentResearchObject"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "then": {
+                        "required": [
+                            "trov:vocabularyVersion"
+                        ],
+                        "properties": {
+                            "trov:vocabularyVersion": {
+                                "type": "string",
+                                "errorMessage": {
+                                    "type": "a TRO declares its vocabulary version as a string"
+                                },
+                                "if": {
+                                    "type": "string"
+                                },
+                                "then": {
+                                    "enum": [
+                                        "0.1"
+                                    ],
+                                    "errorMessage": {
+                                        "enum": "a TRO declares a known version of TROV"
+                                    }
+                                }
+                            }
+                        },
+                        "errorMessage": {
+                            "required": "a TRO declares its TROV version in trov:vocabularyVersion"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

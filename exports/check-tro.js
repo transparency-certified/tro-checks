@@ -37,6 +37,8 @@ module.exports = {
     ASSUMED_VERSION,
     lookUpTier,
     lookUpVersion,
+    readVersionDefinitions,
+    resolveVersion,
     checkCandidateAgainstExpectations,
     assessTiers,
     writeReport,
@@ -57,27 +59,42 @@ const VALIDATORS = ['jsonschema-validate', 'ajv-validate']
     '.parse.json': 'parse',
 }
 
-const expectationsDirectory = __dirname
+const versionsFile = path.join(__dirname, 'versions.json')
+const versionsDirectory = path.join(__dirname, 'versions')
+const TIERS_FILE_NAME = 'tiers.json'
+const ID_BASE = 'https://w3id.org/trace/tro'
+
+/** Keywords an expectation's file may not carry: two the version directories replaced, and one reserved. */
+const REFUSED_KEYWORDS = {
+    fromVersion: 'a version applies an expectation by listing it in its tiers.json',
+    untilVersion: 'a version retires an expectation by leaving it out of its tiers.json',
+    refusedFrom: 'it is reserved for deprecations, which are not yet built',
+}
 
 /**
+ * @param {string} tiersPath
  * @returns {Tier[]}  in order, each numbered by its place from 1
  * @throws {Error} if the tier definitions cannot be read or parsed, or a tier has no id, no description, or no
- *   expectations, or says whether it blocks higher tiers other than by true or false.
+ *   expectations, or says whether it blocks higher tiers other than by true or false, or an expectation is listed twice.
  */
-function readTierDefinitions() {
-    /** @type {Omit<Tier, 'number'>[]} */ const definitions = JSON.parse(
-        fs.readFileSync(path.join(expectationsDirectory, 'tiers.json'), 'utf8'))
+function readTierDefinitions(tiersPath) {
+    /** @type {Omit<Tier, 'number'>[]} */ const definitions = JSON.parse(fs.readFileSync(tiersPath, 'utf8'))
 
     const tiers = definitions.map((definition, index) => ({ ...definition, number: index + 1 }))
 
+    /** @type {string[]} */ const listed = []
     for (const tier of tiers) {
-        if (typeof tier.id !== 'string') throw new Error(`tier ${tier.number} has no id`)
-        if (typeof tier.description !== 'string') throw new Error(`${tier.id} has no description`)
+        if (typeof tier.id !== 'string') throw new Error(`${tiersPath}: tier ${tier.number} has no id`)
+        if (typeof tier.description !== 'string') throw new Error(`${tiersPath}: ${tier.id} has no description`)
         if (!Array.isArray(tier.expectations) || tier.expectations.length === 0) {
-            throw new Error(`${tier.id} lists no expectations`)
+            throw new Error(`${tiersPath}: ${tier.id} lists no expectations`)
         }
         if (tier.blocksHigherTiers !== undefined && typeof tier.blocksHigherTiers !== 'boolean') {
-            throw new Error(`${tier.id} says whether it blocks higher tiers other than by true or false`)
+            throw new Error(`${tiersPath}: ${tier.id} says whether it blocks higher tiers other than by true or false`)
+        }
+        for (const name of tier.expectations) {
+            if (listed.includes(name)) throw new Error(`${tiersPath}: ${name} is listed twice`)
+            listed.push(name)
         }
     }
 
@@ -85,16 +102,17 @@ function readTierDefinitions() {
 }
 
 /**
- * @param {string} tierId
+ * @param {string}  tierId
+ * @param {Version} version  the version whose tiers to look in
  * @returns {Tier}
- * @throws {Error} if the tier definitions cannot be read, or name no such tier.
+ * @throws {Error} if the expectations cannot be resolved, or the version has no such tier.
  */
-function lookUpTier(tierId) {
-    const tiers = readTierDefinitions()
+function lookUpTier(tierId, version) {
+    const { tiers } = resolveVersion(version)
     const tier = tiers.find((each) => each.id === tierId)
 
     if (!tier) {
-        throw new Error(`no tier ${tierId}; the tiers are ${tiers.map((each) => each.id).join(', ')}`)
+        throw new Error(`no tier ${tierId} under ${version.id}; the tiers are ${tiers.map((each) => each.id).join(', ')}`)
     }
 
     return tier
@@ -105,8 +123,7 @@ function lookUpTier(tierId) {
  * @throws {Error} if the version definitions cannot be read or parsed, or a version has no id or no description.
  */
 function readVersionDefinitions() {
-    /** @type {Omit<Version, 'number'>[]} */ const definitions = JSON.parse(
-        fs.readFileSync(path.join(expectationsDirectory, 'versions.json'), 'utf8'))
+    /** @type {Omit<Version, 'number'>[]} */ const definitions = JSON.parse(fs.readFileSync(versionsFile, 'utf8'))
 
     const versions = definitions.map((definition, index) => ({ ...definition, number: index + 1 }))
 
@@ -153,143 +170,185 @@ function expectationNameOf(expectationPath) {
 }
 
 /**
- * @returns {string[]}  the paths of the files defining expectations, in name order
- * @throws {Error} if the module's own directory cannot be listed.
+ * @typedef {object} Implementation  the file that implements an expectation under a version
+ * @property {string}  path
+ * @property {Version} version  the version whose directory holds it
  */
-function findExpectationFiles() {
-    return fs
-        .readdirSync(expectationsDirectory)
-        .filter((name) => instrumentSuffixOf(name) !== undefined)
-        .sort()
-        .map((name) => path.join(expectationsDirectory, name))
+/**
+ * @typedef {object} Resolution  what applies under one version
+ * @property {Version}       version
+ * @property {Tier[]}        tiers         those of the latest tiers.json at or before the version
+ * @property {Expectation[]} expectations  those the tiers list, in tier order, each from its latest implementation
+ */
+
+/** @type {Map<string, Resolution>} */ const resolutions = new Map()
+
+/**
+ * What applies under a version: the latest tiers.json at or before it, and for each expectation that tiers.json lists,
+ * the latest implementation at or before it. Every version is resolved and vetted the first time any is asked for.
+ * @param {Version} version
+ * @returns {Resolution}
+ * @throws {Error} if any version's expectations do not resolve; see resolveAllVersions.
+ */
+function resolveVersion(version) {
+    if (resolutions.size === 0) resolveAllVersions()
+    const resolution = resolutions.get(version.id)
+    if (!resolution) throw new Error(`no version ${version.id}`)
+    return resolution
 }
 
 /**
- * @param {Tier[]} tiers
- * @param {string} name
- * @returns {Tier}
- * @throws {Error} if the expectation belongs to no tier.
+ * @param {string} directory
+ * @returns {string[]}  the names of the files in it defining expectations, in name order; none if it does not exist
+ * @throws {Error} if the directory exists and cannot be listed.
  */
-function tierOfExpectation(tiers, name) {
-    const tier = tiers.find((each) => each.expectations.includes(name))
-    if (!tier) throw new Error(`${name} belongs to no tier`)
-    return tier
+function expectationFileNamesIn(directory) {
+    if (!fs.existsSync(directory)) return []
+    return fs.readdirSync(directory).filter((name) => instrumentSuffixOf(name) !== undefined).sort()
 }
 
 /**
- * @param {Version[]} versions
- * @param {string}    name        the expectation's, for saying what is wrong
- * @param {string}    bound       `from` or `until`, for saying what is wrong
- * @param {*}         versionId   what the expectation's file gives for the bound, if anything
- * @returns {Version|undefined}  the version the bound names, where the file gives one
- * @throws {Error} if the file gives something that is not the id of a version.
+ * Resolves every version in order, each from the versions before it, and keeps each resolution.
+ * @throws {Error} if a version has no tiers.json at or before it; a tier lists an expectation with no implementation
+ *   at or before the version; a version lists again an expectation an earlier version retired without giving it an
+ *   implementation of its own; an implementation in a version's directory is listed in no tier under that version;
+ *   an implementation cannot be read or is malformed; or an expectation requires one not listed before it.
  */
-function versionBound(versions, name, bound, versionId) {
-    if (versionId === undefined) return undefined
+function resolveAllVersions() {
+    /** @type {Tier[]|undefined} */ let tiers
+    /** @type {Map<string, Implementation>} */ const implementations = new Map()
+    /** @type {Map<string, Expectation>} */ const readImplementations = new Map()
+    /** @type {Set<string>} */ const everListed = new Set()
+    /** @type {Set<string>} */ let listedBefore = new Set()
 
-    const version = versions.find((each) => each.id === versionId)
-    if (!version) throw new Error(`${name} applies ${bound} ${JSON.stringify(versionId)}, which is no version`)
-    return version
+    for (const version of readVersionDefinitions()) {
+        const directory = path.join(versionsDirectory, version.id)
+        const fileNames = expectationFileNamesIn(directory)
+        const introduced = fileNames.map(expectationNameOf)
+
+        for (const fileName of fileNames) {
+            implementations.set(expectationNameOf(fileName), { path: path.join(directory, fileName), version })
+        }
+        const tiersPath = path.join(directory, TIERS_FILE_NAME)
+        if (fs.existsSync(tiersPath)) tiers = readTierDefinitions(tiersPath)
+        if (!tiers) throw new Error(`no ${TIERS_FILE_NAME} under ${version.id} or any version before it`)
+
+        const listed = tiers.flatMap((tier) => tier.expectations)
+        for (const name of listed) {
+            if (!implementations.has(name)) {
+                throw new Error(`${name} is listed under ${version.id} and has no implementation at or before it`)
+            }
+            if (everListed.has(name) && !listedBefore.has(name) && !introduced.includes(name)) {
+                throw new Error(`${name} is listed again under ${version.id} without an implementation of its own`)
+            }
+        }
+        for (const name of introduced) {
+            if (!listed.includes(name)) throw new Error(`${version.id}'s ${name} is listed in no tier under ${version.id}`)
+        }
+
+        /** @type {Expectation[]} */ const expectations = []
+        for (const tier of tiers) {
+            for (const name of tier.expectations) {
+                const implementation = /** @type {Implementation} */ (implementations.get(name))
+                const key = `${implementation.path} ${tier.id}`
+                let expectation = readImplementations.get(key)
+                if (!expectation) {
+                    expectation = readExpectation(name, tier, implementation)
+                    readImplementations.set(key, expectation)
+                }
+                expectations.push({ ...expectation, tier })
+            }
+        }
+        vetRequires(expectations, version)
+        vetSummaries(expectations, readImplementations)
+
+        resolutions.set(version.id, { version, tiers, expectations })
+        for (const name of listed) everListed.add(name)
+        listedBefore = new Set(listed)
+    }
 }
 
 /**
- * @param {Expectation} expectation
- * @param {Version}     version
- * @returns {boolean}  whether the expectation applies under the version: from its first version on, and before its last
- */
-function appliesUnder(expectation, version) {
-    if (expectation.fromVersion !== undefined && version.number < expectation.fromVersion.number) return false
-    if (expectation.untilVersion !== undefined && version.number >= expectation.untilVersion.number) return false
-    return true
-}
-
-/**
- * Reads an expectation from the file defining it: its name, its instrument, its tier, the versions it applies under,
- * and what the file says it checks.
- * @param {Tier[]}    tiers
- * @param {Version[]} versions
- * @param {string}    expectationPath
+ * Reads an expectation from the file implementing it: its name, its instrument, and what the file says it checks.
+ * @param {string}         name
+ * @param {Tier}           tier
+ * @param {Implementation} implementation
  * @returns {Expectation}
- * @throws {Error} if the file cannot be read or parsed, belongs to no tier, has no summary or description,
- *   has a `requires` that is not a list of names, or has a `fromVersion` or `untilVersion` that names no version
- *   or that leave it no version to apply under.
+ * @throws {Error} if the file cannot be read or parsed, has no summary or description, has a `requires` that is not a
+ *   list of names, carries a keyword it may not, or, for a schema, has an `$id` other than its version directory gives.
  */
-function readExpectation(tiers, versions, expectationPath) {
-    const name = expectationNameOf(expectationPath)
-    const definition = JSON.parse(fs.readFileSync(expectationPath, 'utf8'))
+function readExpectation(name, tier, implementation) {
+    const fileName = path.basename(implementation.path)
+    const where = `${implementation.version.id}'s ${name}`
+    const definition = JSON.parse(fs.readFileSync(implementation.path, 'utf8'))
 
-    if (typeof definition.summary !== 'string') throw new Error(`${name} has no summary`)
-    if (typeof definition.description !== 'string') throw new Error(`${name} has no description`)
+    if (typeof definition.summary !== 'string') throw new Error(`${where} has no summary`)
+    if (typeof definition.description !== 'string') throw new Error(`${where} has no description`)
+
+    for (const [keyword, reason] of Object.entries(REFUSED_KEYWORDS)) {
+        if (keyword in definition) throw new Error(`${where} carries ${keyword}, which no expectation may: ${reason}`)
+    }
+
+    const instrument = INSTRUMENT_OF_SUFFIX[instrumentSuffixOf(fileName) ?? '']
+    const expectedId = `${ID_BASE}/${implementation.version.id}/${fileName}`
+    if (instrument === 'json-schema' && definition.$id !== expectedId) {
+        throw new Error(`${where} has the $id ${JSON.stringify(definition.$id)}, not ${expectedId}`)
+    }
 
     const requires = definition.requires ?? []
     if (!Array.isArray(requires) || requires.some((each) => typeof each !== 'string')) {
-        throw new Error(`${name} has a requires that is not a list of expectation names`)
+        throw new Error(`${where} has a requires that is not a list of expectation names`)
     }
 
     const validatorFlags = definition.validatorFlags ?? []
     if (!Array.isArray(validatorFlags) || validatorFlags.some((each) => typeof each !== 'string')) {
-        throw new Error(`${name} has validatorFlags that are not a list of options`)
+        throw new Error(`${where} has validatorFlags that are not a list of options`)
     }
 
-    /** @type {Expectation} */ const expectation = {
+    return {
         name,
-        instrument: INSTRUMENT_OF_SUFFIX[instrumentSuffixOf(path.basename(expectationPath)) ?? ''],
-        definitionPath: expectationPath,
-        tier: tierOfExpectation(tiers, name),
+        instrument,
+        definitionPath: implementation.path,
+        version: implementation.version,
+        tier,
         summary: definition.summary,
         description: definition.description,
         requires,
         validatorFlags,
-        fromVersion: versionBound(versions, name, 'from', definition.fromVersion),
-        untilVersion: versionBound(versions, name, 'until', definition.untilVersion),
     }
-
-    if (!versions.some((version) => appliesUnder(expectation, version))) {
-        throw new Error(`${name} applies under no version`)
-    }
-
-    return expectation
 }
 
 /**
- * Confirms that every expectation a tier lists requires only expectations listed before it, in its own tier or a lower
- * one, that apply under every version it applies under.
- * @param {Expectation[]} tierExpectations  in the order the tier lists them
- * @param {Expectation[]} expectations  every expectation, for naming what a requires gets wrong
- * @param {Version[]}     versions
- * @returns {Expectation[]}  the tier's expectations, in the order it lists them
- * @throws {Error} if an expectation requires one that does not exist, is listed after it, or does not apply under a
- *   version it applies under.
+ * Confirms that every expectation under a version requires only expectations listed before it, in its own tier or a
+ * lower one, under that version.
+ * @param {Expectation[]} expectations  in tier order
+ * @param {Version}       version
+ * @throws {Error} if an expectation requires one not listed under the version, or listed after it.
  */
-function inListedOrder(tierExpectations, expectations, versions) {
-    tierExpectations.forEach((expectation, index) => {
+function vetRequires(expectations, version) {
+    expectations.forEach((expectation, index) => {
         for (const name of expectation.requires) {
-            const required = expectations.find((each) => each.name === name)
-            if (!required) throw new Error(`${expectation.name} requires ${name}, which is no expectation`)
-            const listedAfter = required.tier.number > expectation.tier.number
-                || (required.tier.number === expectation.tier.number && tierExpectations.indexOf(required) > index)
-            if (listedAfter) throw new Error(`${expectation.name} requires ${name}, which is listed after it`)
-            const unrequirable = versions.find((version) => appliesUnder(expectation, version) && !appliesUnder(required, version))
-            if (unrequirable) {
-                throw new Error(`${expectation.name} requires ${name}, which does not apply under ${unrequirable.id}`)
-            }
+            const requiredIndex = expectations.findIndex((each) => each.name === name)
+            if (requiredIndex < 0) throw new Error(`${expectation.name} requires ${name}, which is not listed under ${version.id}`)
+            if (requiredIndex > index) throw new Error(`${expectation.name} requires ${name}, which is listed after it under ${version.id}`)
         }
     })
-    return tierExpectations
 }
 
 /**
- * @param {Tier[]}   tiers
- * @param {string[]} expectationPaths
- * @throws {Error} if a tier lists an expectation that has no file.
+ * Confirms that every implementation of an expectation read so far gives the same summary, its summary being what
+ * keeps its intent the same in every version.
+ * @param {Expectation[]}            expectations  those just resolved
+ * @param {Map<string, Expectation>} readImplementations  every implementation read so far
+ * @throws {Error} if two implementations of one expectation give different summaries.
  */
-function vetTierExpectations(tiers, expectationPaths) {
-    const names = expectationPaths.map(expectationNameOf)
-
-    for (const tier of tiers) {
-        const absent = tier.expectations.filter((name) => !names.includes(name))
-        if (absent.length > 0) {
-            throw new Error(`no expectation file for ${absent.join(', ')}, listed in ${tier.id}`)
+function vetSummaries(expectations, readImplementations) {
+    for (const expectation of expectations) {
+        for (const other of readImplementations.values()) {
+            if (other.name === expectation.name && other.summary !== expectation.summary) {
+                throw new Error(`${expectation.name} has one summary under ${other.version.id} `
+                    + `and another under ${expectation.version.id}`)
+            }
         }
     }
 }
@@ -623,34 +682,20 @@ function checkAgainstSchema(candidate, expectation) {
 }
 
 /**
- * Checks the tiers in order, each against its expectations that apply under the candidate's target version. Above the
+ * Checks the tiers in order, as the candidate's target version defines them, each against its expectations. Above the
  * target tier, expectations are not claimed. Above a tier that blocks higher tiers and is not met, they are not
  * assessed. Within a tier, an expectation whose required expectation is not met is not assessed.
  * @param {Candidate} candidate
  * @returns {Finding[]}  in tier order, and within a tier in the order it lists its expectations
- * @throws {Error} if the expectations cannot be listed, one belongs to no tier, one requires an expectation listed
- *   after it or applying under fewer versions, a tier has no expectation that applies under the target version, or a
- *   validator makes no determination.
+ * @throws {Error} if the expectations do not resolve, or a validator makes no determination.
  */
 function checkCandidateAgainstExpectations(candidate) {
-    const tiers = readTierDefinitions()
-    const versions = readVersionDefinitions()
-    const expectationPaths = findExpectationFiles()
-    vetTierExpectations(tiers, expectationPaths)
-    const expectations = expectationPaths.map((expectationPath) => readExpectation(tiers, versions, expectationPath))
+    const { tiers, expectations } = resolveVersion(candidate.targetVersion)
 
     /** @type {Finding[]} */ const findings = []
     let blockedByLowerTier = false
     for (const tier of tiers) {
-        const tierExpectations = inListedOrder(
-            tier.expectations.map((name) => /** @type {Expectation} */ (expectations.find((each) => each.name === name))),
-            expectations,
-            versions,
-        ).filter((expectation) => appliesUnder(expectation, candidate.targetVersion))
-
-        if (tierExpectations.length === 0) {
-            throw new Error(`${tier.id} has no expectation that applies under ${candidate.targetVersion.id}`)
-        }
+        const tierExpectations = expectations.filter((expectation) => expectation.tier.number === tier.number)
 
         /** @type {Finding[]} */ const tierFindings = []
         for (const expectation of tierExpectations) {
@@ -685,7 +730,8 @@ function checkCandidateAgainstExpectations(candidate) {
 function assessTiers(candidate, findings) {
     /** @type {Assessment[]} */ const assessments = []
     let lowerTierNotMet = false
-    for (const tier of readTierDefinitions().filter((each) => each.number <= candidate.targetTier.number)) {
+    const { tiers } = resolveVersion(candidate.targetVersion)
+    for (const tier of tiers.filter((each) => each.number <= candidate.targetTier.number)) {
         const tierFindings = findings.filter((finding) => finding.expectation.tier.number === tier.number)
 
         if (!lowerTierNotMet && tierFindings.every((finding) => finding.outcome === EXPECTATION.MET)) {
@@ -781,13 +827,15 @@ function runAsCommand() {
         const targetVersionId = optionValues['target-version']
         const candidateDescription = optionValues.description
 
+        const targetVersion = lookUpVersion(targetVersionId ?? ASSUMED_VERSION)
+
         /** @type {Candidate} */ const candidate = {
             fileName: path.basename(candidatePath),
             path: candidatePath,
             description: candidateDescription,
             descriptionSource: candidateDescription !== undefined ? 'option' : undefined,
-            targetTier: lookUpTier(targetTierId ?? ASSUMED_TIER),
-            targetVersion: lookUpVersion(targetVersionId ?? ASSUMED_VERSION),
+            targetTier: lookUpTier(targetTierId ?? ASSUMED_TIER, targetVersion),
+            targetVersion,
             targetTierSource: targetTierId !== undefined ? 'option' : 'default',
             targetVersionSource: targetVersionId !== undefined ? 'option' : 'default',
         }

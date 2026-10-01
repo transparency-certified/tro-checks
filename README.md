@@ -28,7 +28,7 @@ above the target tier are reported as *not claimed*.
 <tr><td><samp>Tier&nbsp;2&nbsp;&#8209;&nbsp;SAFE&#8209;JSON&#8209;LD</samp></td><td>JSON-LD that uses only those constructs our supported JSON-LD processors handle consistently, and whose interpretation depends on nothing outside the file</td></tr>
 <tr><td><samp>Tier&nbsp;3&nbsp;&#8209;&nbsp;TRACE&#8209;PERMISSIBLE&#8209;JSON&#8209;LD</samp></td><td>JSON-LD that avoids constructs and practices TRACE disallows</td></tr>
 <tr><td><samp>Tier&nbsp;4&nbsp;&#8209;&nbsp;USES&#8209;TROV&#8209;CORRECTLY</samp></td><td>JSON-LD that uses TROV terms only in ways TRACE allows</td></tr>
-<tr><td><samp>Tier&nbsp;5&nbsp;&#8209;&nbsp;DEFINES&#8209;TRS</samp></td><td>JSON-LD that defines a Trusted Research System</td></tr>
+<tr><td><samp>Tier&nbsp;5&nbsp;&#8209;&nbsp;DEFINES&#8209;TRS</samp></td><td>JSON-LD that defines a Trusted Research System, identified by an absolute IRI</td></tr>
 <tr><td><samp>Tier&nbsp;6&nbsp;&#8209;&nbsp;STANDALONE&#8209;TRO</samp></td><td>A TRO declaration with the structure the TRACE Specification requires, whose references resolve within it</td></tr>
 <tr><td><samp>Tier&nbsp;7&nbsp;&#8209;&nbsp;LINKABLE&#8209;TRO</samp></td><td>A TRO declaration whose element identifiers cannot collide with those in another TRO</td></tr>
 </tbody>
@@ -39,11 +39,14 @@ above the target tier are reported as *not claimed*.
 ### Specification versions
 
 A candidate targets its tier under one **version** of the TRACE Specification: a release, or
-a pre-release of one. The versions are ordered, and an expectation applies under every
-version unless it names the version it applies from, or the version it applies until. An
-expectation that does not apply under the candidate's version is not checked and is not
-listed in the report. A candidate can be checked under a version that has not yet been
-released.
+a pre-release of one. The versions are ordered, and each version's directory under
+[`exports/versions/`](exports/versions) holds what that version adds or changes: the
+expectations it introduces or redefines, and its tiers where they change. Everything else
+carries forward from the versions before it. A version applies the expectations its tiers
+list; one it leaves out is not checked and is not listed in the report. An expectation
+keeps its name and its summary in every version, while what it checks in detail may
+differ. A candidate can be checked under a version that has not yet been released.
+[`docs/version-history.md`](docs/version-history.md) says what each version changes.
 
 <!-- generated: version-summary -->
 
@@ -61,10 +64,11 @@ released.
 
 ### The expectations in each tier
 
-The table below lists every tier and its expectations, in the order they are checked, and the
-versions each expectation applies under. This table is generated
-from [`exports/tiers.json`](exports/tiers.json) and the expectation files themselves by
-`make update-readme`; edit those rather than the rows below.
+The table below lists every tier and its expectations under the latest version, in the
+order they are checked, and the versions each expectation applies under and is redefined
+in. The tiers above are also the latest version's. This table is generated from
+[`exports/versions/`](exports/versions) by `make update-readme`; edit the files there
+rather than the rows below.
 
 <!-- generated: tier-expectations -->
 
@@ -115,7 +119,7 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <tr><th align="left">Expectation</th><th align="left">What it requires</th><th align="left">Versions</th></tr>
 <tr><td nowrap><samp>context-and-nonempty-graph-present</samp></td><td>The file has a non-null <code>@context</code> and an <code>@graph</code> holding at least one node</td><td>all</td></tr>
 <tr><td nowrap><samp>core-prefixes-pinned</samp></td><td><code>trov</code> is declared and is the only prefix for a TROV namespace; <code>rdf</code>, <code>rdfs</code> and <code>schema</code> prefixes, if declared, are the standard ones</td><td>all</td></tr>
-<tr><td nowrap><samp>trov-terms-known</samp></td><td>Every <code>trov:</code> name is one TROV defines</td><td>all</td></tr>
+<tr><td nowrap><samp>trov-terms-known</samp></td><td>Every <code>trov:</code> name is one TROV defines</td><td>redefined in <code>0.1</code></td></tr>
 <tr><td nowrap><samp>trov-version-known</samp></td><td>The TRO declares, in <code>trov:vocabularyVersion</code>, a known version of TROV</td><td>all</td></tr>
 <tr><td nowrap><samp>hash-algorithms-permitted</samp></td><td>Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families</td><td>all</td></tr>
 <tr><td nowrap><samp>hash-values-correct-form</samp></td><td>Every hash value is lowercase hexadecimal of the length its algorithm produces</td><td>all</td></tr>
@@ -123,7 +127,7 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <tr><td nowrap><samp>times-iso-8601</samp></td><td>Every <code>trov:startedAtTime</code> and <code>trov:endedAtTime</code> is an ISO 8601 date-time; the TRO's <code>schema:dateCreated</code>, if present, an ISO 8601 date or date-time</td><td>all</td></tr>
 <tr><td nowrap><samp>times-zoned</samp></td><td>Every <code>trov:startedAtTime</code> and <code>trov:endedAtTime</code> carries its time zone</td><td>from <code>0.1</code></td></tr>
 <tr><td nowrap><samp>tro-name-description-text</samp></td><td>The TRO's <code>schema:name</code> and <code>schema:description</code>, if present, are Text: a string or an array of strings</td><td>all</td></tr>
-<tr><td nowrap><samp>creators-person-or-organization</samp></td><td>The TRO's <code>schema:creator</code>, if present, is a node typed <code>schema:Person</code> or <code>schema:Organization</code>, never a string</td><td>all</td></tr>
+<tr><td nowrap><samp>creators-person-or-organization</samp></td><td>The TRO's <code>schema:creator</code>, if present, is a node typed <code>schema:Person</code> or <code>schema:Organization</code>, never a string</td><td>from <code>0.1</code></td></tr>
 <tr><td nowrap><samp>trov-capabilities-predefined</samp></td><td>A capability's <code>trov:</code> type is one TROV predefines</td><td>all</td></tr>
 <tr><td nowrap><samp>trov-performance-attributes-predefined</samp></td><td>A performance attribute's <code>trov:</code> type is one TROV predefines</td><td>all</td></tr>
 <tr><td nowrap><samp>trov-tro-attributes-predefined</samp></td><td>A TRO attribute's <code>trov:</code> type is one TROV predefines</td><td>all</td></tr>
@@ -168,7 +172,8 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 
 ## How expectations are checked
 
-Each expectation is defined by a file in [`exports/`](exports). Most are JSON Schemas, in
+Each expectation is defined by a file in a version's directory under
+[`exports/versions/`](exports/versions). Most are JSON Schemas, in
 files ending `.schema.json`. Two widely used JSON Schema validators,
 [python-jsonschema](https://github.com/python-jsonschema/jsonschema) and
 [Ajv](https://ajv.js.org/), check each one through the wrappers in
@@ -176,7 +181,8 @@ files ending `.schema.json`. Two widely used JSON Schema validators,
 met if either validator rejects the candidate. A schema can name options to pass to both
 validators, as `duplicate-member-names-absent` passes `--reject-duplicate-members`. The
 rest, in files ending `.parse.json`, are checked by `check-tro` itself as it reads the
-candidate, such as whether the candidate is UTF-8 and parses as JSON.
+candidate, such as whether the candidate is UTF-8 and parses as JSON. What these check is
+written in `check-tro`, so a later version can redefine only their descriptions.
 
 ### Supported parsers and processors
 
@@ -284,10 +290,12 @@ from: the manifest, the option, or the default.
 
 | File | What it is |
 | --- | --- |
-| [`exports/*.parse.json`](exports) | The expectations `check-tro` checks as it parses a candidate, each giving its summary and description. |
-| [`exports/*.schema.json`](exports) | The expectations checked by JSON Schema, one schema each. |
-| [`exports/tiers.json`](exports/tiers.json) | The tiers in order, each with its ID, description, the expectations that belong to it, and `blocksHigherTiers` where no tier above it is assessed until it is met. An expectation file that no tier lists, a listed expectation with no file, or a tier with no expectations stops every run. |
-| [`exports/versions.json`](exports/versions.json) | The versions of the Specification in order, each with its ID and description. An expectation file names one as its `fromVersion` or `untilVersion` where it does not apply under every version. |
+| [`exports/versions.json`](exports/versions.json) | The versions of the Specification in order, each with its ID and description. |
+| [`exports/versions/<version>/`](exports/versions) | What a version adds or changes: the expectations it introduces or redefines, and its `tiers.json` where its tiers change. |
+| `exports/versions/<version>/*.schema.json` | Expectations checked by JSON Schema, one schema each. A schema's `$id` names the version whose directory holds it. |
+| `exports/versions/<version>/*.parse.json` | Expectations `check-tro` checks as it parses a candidate, each giving its summary and description. |
+| `exports/versions/<version>/tiers.json` | The tiers in order, each with its ID, description, the expectations that belong to it, and `blocksHigherTiers` where no tier above it is assessed until it is met. It decides which expectations the version applies. A listed expectation with no file at or before the version, a file in the version's directory its tiers do not list, or a tier with no expectations stops every run. |
+| [`docs/version-history.md`](docs/version-history.md) | What each version changes from the one before, with the diff of every file it redefines. Written by `make update-readme`. |
 | [`exports/check-tro.js`](exports/check-tro.js) | The checker. Applies the expectations in a candidate's target and writes the report. Installed as `check-tro`. |
 | [`exports/check-tros.js`](exports/check-tros.js) | Runs the checker over the candidates the manifest names, each against each of its targets, writing one report per target and `reports/README.md`, the summary that links to them. Installed as `check-tros`. |
 | [`exports/render-readme.js`](exports/render-readme.js) | Writes this README's account of what is checked from the tiers and the expectations themselves. Run by `make update-readme`. |
@@ -314,16 +322,22 @@ reads. A field renamed in one file and not in another fails there.
 
 ## Adding an expectation
 
-Put a `<name>.schema.json` with a `summary` and a `description` in
-[`exports/`](exports), and a `requires` listing any expectations that must be
-met before it is checked. Give it a `fromVersion` or an `untilVersion` if it does not
-apply under every version. List it in
-[`exports/base-manifest`](exports/base-manifest), and add it to a tier in
-[`exports/tiers.json`](exports/tiers.json), after every expectation it requires:
-expectations are checked and reported in the order the tiers list them. Then run `make update-readme`, which
-writes its row into the table under *What is checked* above from the `summary`
-you gave it. Add it to [`docs/json-schema-capabilities.md`](docs/json-schema-capabilities.md), and include a demo
+Put a `<name>.schema.json` with a `summary` and a `description` in the directory of the
+version it first applies under, [`exports/versions/<version>/`](exports/versions), with an
+`$id` naming that version, and a `requires` listing any expectations that must be met
+before it is checked. Add it to a tier in that version's `tiers.json`, copying the latest
+`tiers.json` before it if the version has none, after every expectation it requires:
+expectations are checked and reported in the order the tiers list them. List it in
+[`exports/base-manifest`](exports/base-manifest) by its path, three times on one line, as
+the other versioned files are. Then run `make update-readme`, which writes its row into the
+table under *What is checked* above from the `summary` you gave it. Add it to
+[`docs/json-schema-capabilities.md`](docs/json-schema-capabilities.md), and include a demo
 in [`demo/`](demo).
+
+To redefine an expectation in a later version, put a complete copy of its file, changed, in
+that version's directory; its name and `summary` stay the same. To retire it, leave it out
+of that version's `tiers.json`. A version that lists a retired expectation again gives it a
+file of its own.
 
 The `summary` is the row. Write it as plain prose with no line breaks of your
 own: the table is HTML, and the reader's browser breaks it to the width it has.

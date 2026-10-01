@@ -1,0 +1,110 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/trace-spec-2026-04-19/hash-algorithms-permitted.schema.json",
+    "title": "Hash algorithms permitted",
+    "description": "Every trov:hash on the TRO's artifacts and composition fingerprint names its algorithm in trov:hashAlgorithm, and the algorithm is one TRACE permits: sha256, sha384, sha512, sha3-256, sha3-384, sha3-512, blake2b, blake2s or blake3, spelled so.",
+    "summary": "Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families",
+    "requires": [
+        "core-prefixes-pinned"
+    ],
+    "type": "object",
+    "properties": {
+        "@graph": {
+            "type": "array",
+            "items": {
+                "if": {
+                    "type": "object"
+                },
+                "then": {
+                    "properties": {
+                        "trov:hasComposition": {
+                            "if": {
+                                "type": "object"
+                            },
+                            "then": {
+                                "properties": {
+                                    "trov:hasArtifact": {
+                                        "if": {
+                                            "type": "array"
+                                        },
+                                        "then": {
+                                            "items": {
+                                                "if": {
+                                                    "type": "object"
+                                                },
+                                                "then": {
+                                                    "properties": {
+                                                        "trov:hash": {
+                                                            "if": {
+                                                                "type": "array"
+                                                            },
+                                                            "then": {
+                                                                "items": {
+                                                                    "$ref": "#/$defs/hash"
+                                                                }
+                                                            },
+                                                            "else": {
+                                                                "$ref": "#/$defs/hash"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "trov:hasFingerprint": {
+                                        "if": {
+                                            "type": "object"
+                                        },
+                                        "then": {
+                                            "properties": {
+                                                "trov:hash": {
+                                                    "$ref": "#/$defs/hash"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "$defs": {
+        "hash": {
+            "if": {
+                "type": "object"
+            },
+            "then": {
+                "required": [
+                    "trov:hashAlgorithm"
+                ],
+                "properties": {
+                    "trov:hashAlgorithm": {
+                        "type": "string",
+                        "enum": [
+                            "sha256",
+                            "sha384",
+                            "sha512",
+                            "sha3-256",
+                            "sha3-384",
+                            "sha3-512",
+                            "blake2b",
+                            "blake2s",
+                            "blake3"
+                        ],
+                        "errorMessage": {
+                            "type": "a hash names its algorithm by a string",
+                            "enum": "a hash names an algorithm TRACE permits"
+                        }
+                    }
+                },
+                "errorMessage": {
+                    "required": "a hash names its algorithm in trov:hashAlgorithm"
+                }
+            }
+        }
+    }
+}
