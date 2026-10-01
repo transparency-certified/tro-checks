@@ -67,7 +67,7 @@ from [`exports/tiers.json`](exports/tiers.json) and the expectation files themse
 <tr><td nowrap><samp>context-import-absent</samp></td><td>The <code>@context</code> never uses <code>@import</code> to pull in entries from another context at a web address</td></tr>
 <tr><td nowrap><samp>context-id-coercion-absent</samp></td><td>The <code>@context</code> never uses <code>"@type": "@id"</code> to tell a reader to interpret a property's bare-string <code>&lt;value&gt;</code> as <code>{ "@id": &lt;value&gt; }</code></td></tr>
 <tr><td nowrap><samp>graph-at-root-only</samp></td><td><code>@graph</code> appears only at the root</td></tr>
-<tr><td nowrap><samp>graph-array-of-objects</samp></td><td>The root <code>@graph</code>, if any, holds objects, not bare values</td></tr>
+<tr><td nowrap><samp>graph-object-or-array</samp></td><td>The <code>@graph</code>, if present, is an object or an array of objects</td></tr>
 <tr><td nowrap><samp>ids-and-types-strings</samp></td><td>Every <code>@id</code> is a string; every <code>@type</code> a string or an array of strings</td></tr>
 <tr><td nowrap><samp>id-segments-portable</samp></td><td>Every segment of a relative <code>@id</code> is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit</td></tr>
 </tbody>

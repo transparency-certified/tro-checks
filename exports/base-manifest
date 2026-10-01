@@ -11,7 +11,7 @@ duplicate-member-names-absent.schema.json
 unicode-escapes-spell-whole-characters.parse.json
 numbers-within-range.parse.json
 context-object-array-or-null.schema.json
-graph-array-of-objects.schema.json
+graph-object-or-array.schema.json
 disallowed-node-keywords-absent.schema.json
 disallowed-context-keywords-absent.schema.json
 ids-and-types-strings.schema.json

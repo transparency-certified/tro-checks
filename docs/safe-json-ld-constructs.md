@@ -3,7 +3,7 @@
 The expectations in Tier 2, `SAFE-JSON-LD`, aim to ensure that TROs employ only those
 JSON-LD constructs that work consistently in all of the JSON-LD processors we support,
 and whose interpretation depends on nothing outside the file.
-Three of them, `context-object-array-or-null`, `graph-array-of-objects` and
+Three of them, `context-object-array-or-null`, `graph-object-or-array` and
 `ids-and-types-strings`, flag documents that are not JSON-LD at all. Each of the rest flags
 a construct the JSON-LD standard allows but the supported processors do not all handle as
 the standard specifies, or whose meaning depends on something outside the file.

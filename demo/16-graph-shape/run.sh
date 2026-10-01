@@ -12,7 +12,7 @@ report_on() {
     cat "tmp/${1%.jsonld}.md"
 }
 
-title "tro-checks  ·  demo 16: graph-array-of-objects (TIER 2 - SAFE-JSON-LD)"
+title "tro-checks  ·  demo 16: graph-object-or-array (TIER 2 - SAFE-JSON-LD)"
 
 show "expectation met: the @graph value is a node object" \
     report_on instance-graph-node-object.jsonld

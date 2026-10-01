@@ -1,6 +1,6 @@
 ##############################################################################
 #
-#   tro-checks  ·  demo 16: graph-array-of-objects (TIER 2 - SAFE-JSON-LD)
+#   tro-checks  ·  demo 16: graph-object-or-array (TIER 2 - SAFE-JSON-LD)
 #
 ##############################################################################
 
@@ -53,7 +53,7 @@ wrote tmp/instance-graph-node-object.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met
 | `context-import-absent` | The `@context` never uses `@import` to pull in entries from another context at a web address | ✅ met |
 | `context-id-coercion-absent` | The `@context` never uses `"@type": "@id"` to tell a reader to interpret a property's bare-string `<value>` as `{ "@id": <value> }` | ✅ met |
 | `graph-at-root-only` | `@graph` appears only at the root | ✅ met |
-| `graph-array-of-objects` | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| `graph-object-or-array` | The `@graph`, if present, is an object or an array of objects | ✅ met |
 | `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
 | `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
 | *Tier 3 — TRACE-PERMISSIBLE-JSON-LD  not claimed* |  |  |
@@ -163,7 +163,7 @@ wrote tmp/instance-graph-string.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | `context-import-absent` | The `@context` never uses `@import` to pull in entries from another context at a web address | ✅ met |
 | `context-id-coercion-absent` | The `@context` never uses `"@type": "@id"` to tell a reader to interpret a property's bare-string `<value>` as `{ "@id": <value> }` | ✅ met |
 | `graph-at-root-only` | `@graph` appears only at the root | ✅ met |
-| `graph-array-of-objects` | The root `@graph`, if any, holds objects, not bare values | ❌ not met |
+| `graph-object-or-array` | The `@graph`, if present, is an object or an array of objects | ❌ not met |
 | `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
 | `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
 | *Tier 3 — TRACE-PERMISSIBLE-JSON-LD  not claimed* |  |  |
@@ -224,7 +224,7 @@ wrote tmp/instance-graph-string.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD unmet
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
-### Unmet expectation: graph-array-of-objects
+### Unmet expectation: graph-object-or-array
 Detailed expectation: Where the document carries an @graph at its root, the value is an object or an array of objects.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
@@ -282,7 +282,7 @@ wrote tmp/instance-graph-array.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met
 | `context-import-absent` | The `@context` never uses `@import` to pull in entries from another context at a web address | ✅ met |
 | `context-id-coercion-absent` | The `@context` never uses `"@type": "@id"` to tell a reader to interpret a property's bare-string `<value>` as `{ "@id": <value> }` | ✅ met |
 | `graph-at-root-only` | `@graph` appears only at the root | ✅ met |
-| `graph-array-of-objects` | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| `graph-object-or-array` | The `@graph`, if present, is an object or an array of objects | ✅ met |
 | `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
 | `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
 | *Tier 3 — TRACE-PERMISSIBLE-JSON-LD  not claimed* |  |  |
@@ -395,7 +395,7 @@ wrote tmp/instance-graph-array-with-scalar.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD u
 | `context-import-absent` | The `@context` never uses `@import` to pull in entries from another context at a web address | ✅ met |
 | `context-id-coercion-absent` | The `@context` never uses `"@type": "@id"` to tell a reader to interpret a property's bare-string `<value>` as `{ "@id": <value> }` | ✅ met |
 | `graph-at-root-only` | `@graph` appears only at the root | ✅ met |
-| `graph-array-of-objects` | The root `@graph`, if any, holds objects, not bare values | ❌ not met |
+| `graph-object-or-array` | The `@graph`, if present, is an object or an array of objects | ❌ not met |
 | `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
 | `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
 | *Tier 3 — TRACE-PERMISSIBLE-JSON-LD  not claimed* |  |  |
@@ -456,7 +456,7 @@ wrote tmp/instance-graph-array-with-scalar.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD u
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
-### Unmet expectation: graph-array-of-objects
+### Unmet expectation: graph-object-or-array
 Detailed expectation: Where the document carries an @graph at its root, the value is an object or an array of objects.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |

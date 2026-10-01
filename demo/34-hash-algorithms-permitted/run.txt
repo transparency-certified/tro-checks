@@ -101,7 +101,7 @@ wrote tmp/instance-permitted-algorithms.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met,
 | `context-import-absent` | The `@context` never uses `@import` to pull in entries from another context at a web address | ✅ met |
 | `context-id-coercion-absent` | The `@context` never uses `"@type": "@id"` to tell a reader to interpret a property's bare-string `<value>` as `{ "@id": <value> }` | ✅ met |
 | `graph-at-root-only` | `@graph` appears only at the root | ✅ met |
-| `graph-array-of-objects` | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| `graph-object-or-array` | The `@graph`, if present, is an object or an array of objects | ✅ met |
 | `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
 | `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
 | **Tier 3 — TRACE-PERMISSIBLE-JSON-LD  ✅ met** |  |  |
@@ -251,7 +251,7 @@ wrote tmp/instance-md5-beside-sha256.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 | `context-import-absent` | The `@context` never uses `@import` to pull in entries from another context at a web address | ✅ met |
 | `context-id-coercion-absent` | The `@context` never uses `"@type": "@id"` to tell a reader to interpret a property's bare-string `<value>` as `{ "@id": <value> }` | ✅ met |
 | `graph-at-root-only` | `@graph` appears only at the root | ✅ met |
-| `graph-array-of-objects` | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| `graph-object-or-array` | The `@graph`, if present, is an object or an array of objects | ✅ met |
 | `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
 | `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
 | **Tier 3 — TRACE-PERMISSIBLE-JSON-LD  ✅ met** |  |  |
@@ -401,7 +401,7 @@ wrote tmp/instance-algorithm-misspelled.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met,
 | `context-import-absent` | The `@context` never uses `@import` to pull in entries from another context at a web address | ✅ met |
 | `context-id-coercion-absent` | The `@context` never uses `"@type": "@id"` to tell a reader to interpret a property's bare-string `<value>` as `{ "@id": <value> }` | ✅ met |
 | `graph-at-root-only` | `@graph` appears only at the root | ✅ met |
-| `graph-array-of-objects` | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| `graph-object-or-array` | The `@graph`, if present, is an object or an array of objects | ✅ met |
 | `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
 | `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
 | **Tier 3 — TRACE-PERMISSIBLE-JSON-LD  ✅ met** |  |  |
@@ -550,7 +550,7 @@ wrote tmp/instance-hash-without-algorithm.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD me
 | `context-import-absent` | The `@context` never uses `@import` to pull in entries from another context at a web address | ✅ met |
 | `context-id-coercion-absent` | The `@context` never uses `"@type": "@id"` to tell a reader to interpret a property's bare-string `<value>` as `{ "@id": <value> }` | ✅ met |
 | `graph-at-root-only` | `@graph` appears only at the root | ✅ met |
-| `graph-array-of-objects` | The root `@graph`, if any, holds objects, not bare values | ✅ met |
+| `graph-object-or-array` | The `@graph`, if present, is an object or an array of objects | ✅ met |
 | `ids-and-types-strings` | Every `@id` is a string; every `@type` a string or an array of strings | ✅ met |
 | `id-segments-portable` | Every segment of a relative `@id` is a portable name: letters, digits, dots, hyphens and underscores, beginning and ending with a letter or digit | ✅ met |
 | **Tier 3 — TRACE-PERMISSIBLE-JSON-LD  ✅ met** |  |  |

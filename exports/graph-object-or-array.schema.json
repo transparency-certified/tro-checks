@@ -1,9 +1,9 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://w3id.org/trace/tro/0.1/graph-array-of-objects.schema.json",
-    "title": "Graph array of objects",
+    "$id": "https://w3id.org/trace/tro/0.1/graph-object-or-array.schema.json",
+    "title": "Graph object or array",
     "description": "Where the document carries an @graph at its root, the value is an object or an array of objects.",
-    "summary": "The root `@graph`, if any, holds objects, not bare values",
+    "summary": "The `@graph`, if present, is an object or an array of objects",
     "properties": {
         "@graph": {
             "type": ["object", "array"],

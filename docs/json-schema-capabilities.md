@@ -17,7 +17,7 @@ Every expectation listed uses `dialect-declaration` (`22`), `id-and-anchor` (`13
 | 2 | `context-import-absent` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `required` (`04`), `not` (`08`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 2 | `context-id-coercion-absent` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `not` (`08`), `const` (`10`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 2 | `graph-at-root-only` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `additional-properties` (`09`), `required` (`04`), `not` (`08`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`), `boolean-schema` (`01`) |
-| 2 | `graph-array-of-objects` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`) |
+| 2 | `graph-object-or-array` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`) |
 | 2 | `ids-and-types-strings` | `type-applicability` (`05`), `properties` (`02`), `items` (`03`), `boolean-schema` (`01`), `additional-properties` (`09`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 2 | `id-segments-portable` | `properties` (`02`), `items` (`03`), `boolean-schema` (`01`), `additional-properties` (`09`), `pattern` (`07`), `not` (`08`), `allOf` (`12`), `if-then-else` (`11`), `defs-and-ref` (`12`), `recursive-ref` (`17`) |
 | 3 | `root-context-and-graph-only` | `properties` (`02`), `boolean-schema` (`01`), `additional-properties` (`09`) |
