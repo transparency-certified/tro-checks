@@ -72,11 +72,11 @@ wrote tmp/instance-mime-types-two-part.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 
 
 # Report
 ## Candidate Information
-|  |  |
-| --- | --- |
-| Candidate | `instance-mime-types-two-part.jsonld` |
-| Target | 4 USES-TROV-CORRECTLY |
-| Target declared by | the `--target` option |
+|  |  | Declared by |
+| --- | --- | --- |
+| Candidate | `instance-mime-types-two-part.jsonld` |  |
+| Target version | trace-spec-2026-04-19 | the default |
+| Target tier | 4 USES-TROV-CORRECTLY | the `--target-tier` option |
 ## Tier Assessments
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
@@ -130,7 +130,7 @@ wrote tmp/instance-mime-types-two-part.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 
 | `context-and-nonempty-graph-present` | The file has a non-null `@context` and an `@graph` holding at least one node | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a known version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -238,11 +238,11 @@ wrote tmp/instance-mime-type-one-part.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 
 # Report
 ## Candidate Information
-|  |  |
-| --- | --- |
-| Candidate | `instance-mime-type-one-part.jsonld` |
-| Target | 4 USES-TROV-CORRECTLY |
-| Target declared by | the `--target` option |
+|  |  | Declared by |
+| --- | --- | --- |
+| Candidate | `instance-mime-type-one-part.jsonld` |  |
+| Target version | trace-spec-2026-04-19 | the default |
+| Target tier | 4 USES-TROV-CORRECTLY | the `--target-tier` option |
 ## Tier Assessments
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
@@ -296,7 +296,7 @@ wrote tmp/instance-mime-type-one-part.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | `context-and-nonempty-graph-present` | The file has a non-null `@context` and an `@graph` holding at least one node | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a known version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ❌ not met |
@@ -410,11 +410,11 @@ wrote tmp/instance-mime-type-with-parameter.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD 
 
 # Report
 ## Candidate Information
-|  |  |
-| --- | --- |
-| Candidate | `instance-mime-type-with-parameter.jsonld` |
-| Target | 4 USES-TROV-CORRECTLY |
-| Target declared by | the `--target` option |
+|  |  | Declared by |
+| --- | --- | --- |
+| Candidate | `instance-mime-type-with-parameter.jsonld` |  |
+| Target version | trace-spec-2026-04-19 | the default |
+| Target tier | 4 USES-TROV-CORRECTLY | the `--target-tier` option |
 ## Tier Assessments
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
@@ -468,7 +468,7 @@ wrote tmp/instance-mime-type-with-parameter.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD 
 | `context-and-nonempty-graph-present` | The file has a non-null `@context` and an `@graph` holding at least one node | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a known version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ❌ not met |

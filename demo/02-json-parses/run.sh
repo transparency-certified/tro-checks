@@ -7,7 +7,7 @@ mkdir -p tmp
 report_on() {
     cat "$1"
     echo
-    check-tro --target SAFE-JSON --compact --candidate "$1" --report "tmp/${1%.jsonld}.md"
+    check-tro --target-tier SAFE-JSON --compact --candidate "$1" --report "tmp/${1%.jsonld}.md"
     echo
     cat "tmp/${1%.jsonld}.md"
 }
@@ -15,7 +15,7 @@ report_on() {
 report_at_trace_json_ld_on() {
     cat "$1"
     echo
-    check-tro --target TRACE-PERMISSIBLE-JSON-LD --compact --candidate "$1" --report "tmp/${1%.jsonld}-at-trace-json-ld.md"
+    check-tro --target-tier TRACE-PERMISSIBLE-JSON-LD --compact --candidate "$1" --report "tmp/${1%.jsonld}-at-trace-json-ld.md"
     echo
     cat "tmp/${1%.jsonld}-at-trace-json-ld.md"
 }

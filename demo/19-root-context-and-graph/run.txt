@@ -18,11 +18,11 @@ wrote tmp/instance-context-and-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 
 # Report
 ## Candidate Information
-|  |  |
-| --- | --- |
-| Candidate | `instance-context-and-graph.jsonld` |
-| Target | 3 TRACE-PERMISSIBLE-JSON-LD |
-| Target declared by | the `--target` option |
+|  |  | Declared by |
+| --- | --- | --- |
+| Candidate | `instance-context-and-graph.jsonld` |  |
+| Target version | trace-spec-2026-04-19 | the default |
+| Target tier | 3 TRACE-PERMISSIBLE-JSON-LD | the `--target-tier` option |
 ## Tier Assessments
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
@@ -76,7 +76,7 @@ wrote tmp/instance-context-and-graph.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 | *`context-and-nonempty-graph-present`* | *The file has a non-null `@context` and an `@graph` holding at least one node* | *not claimed* |
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
 | *`trov-terms-known`* | *Every `trov:` name is one TROV defines* | *not claimed* |
-| *`trov-version-known`* | *The TRO declares, in `trov:vocabularyVersion`, a released version of TROV* | *not claimed* |
+| *`trov-version-known`* | *The TRO declares, in `trov:vocabularyVersion`, a known version of TROV* | *not claimed* |
 | *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
 | *`hash-values-correct-form`* | *Every hash value is lowercase hexadecimal of the length its algorithm produces* | *not claimed* |
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
@@ -127,11 +127,11 @@ wrote tmp/instance-context-only.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 
 # Report
 ## Candidate Information
-|  |  |
-| --- | --- |
-| Candidate | `instance-context-only.jsonld` |
-| Target | 3 TRACE-PERMISSIBLE-JSON-LD |
-| Target declared by | the `--target` option |
+|  |  | Declared by |
+| --- | --- | --- |
+| Candidate | `instance-context-only.jsonld` |  |
+| Target version | trace-spec-2026-04-19 | the default |
+| Target tier | 3 TRACE-PERMISSIBLE-JSON-LD | the `--target-tier` option |
 ## Tier Assessments
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
@@ -185,7 +185,7 @@ wrote tmp/instance-context-only.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | *`context-and-nonempty-graph-present`* | *The file has a non-null `@context` and an `@graph` holding at least one node* | *not claimed* |
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
 | *`trov-terms-known`* | *Every `trov:` name is one TROV defines* | *not claimed* |
-| *`trov-version-known`* | *The TRO declares, in `trov:vocabularyVersion`, a released version of TROV* | *not claimed* |
+| *`trov-version-known`* | *The TRO declares, in `trov:vocabularyVersion`, a known version of TROV* | *not claimed* |
 | *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
 | *`hash-values-correct-form`* | *Every hash value is lowercase hexadecimal of the length its algorithm produces* | *not claimed* |
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
@@ -238,11 +238,11 @@ wrote tmp/instance-node-at-root.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 
 # Report
 ## Candidate Information
-|  |  |
-| --- | --- |
-| Candidate | `instance-node-at-root.jsonld` |
-| Target | 3 TRACE-PERMISSIBLE-JSON-LD |
-| Target declared by | the `--target` option |
+|  |  | Declared by |
+| --- | --- | --- |
+| Candidate | `instance-node-at-root.jsonld` |  |
+| Target version | trace-spec-2026-04-19 | the default |
+| Target tier | 3 TRACE-PERMISSIBLE-JSON-LD | the `--target-tier` option |
 ## Tier Assessments
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
@@ -296,7 +296,7 @@ wrote tmp/instance-node-at-root.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE
 | *`context-and-nonempty-graph-present`* | *The file has a non-null `@context` and an `@graph` holding at least one node* | *not claimed* |
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
 | *`trov-terms-known`* | *Every `trov:` name is one TROV defines* | *not claimed* |
-| *`trov-version-known`* | *The TRO declares, in `trov:vocabularyVersion`, a released version of TROV* | *not claimed* |
+| *`trov-version-known`* | *The TRO declares, in `trov:vocabularyVersion`, a known version of TROV* | *not claimed* |
 | *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
 | *`hash-values-correct-form`* | *Every hash value is lowercase hexadecimal of the length its algorithm produces* | *not claimed* |
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |
@@ -358,11 +358,11 @@ wrote tmp/instance-extra-root-member.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 
 # Report
 ## Candidate Information
-|  |  |
-| --- | --- |
-| Candidate | `instance-extra-root-member.jsonld` |
-| Target | 3 TRACE-PERMISSIBLE-JSON-LD |
-| Target declared by | the `--target` option |
+|  |  | Declared by |
+| --- | --- | --- |
+| Candidate | `instance-extra-root-member.jsonld` |  |
+| Target version | trace-spec-2026-04-19 | the default |
+| Target tier | 3 TRACE-PERMISSIBLE-JSON-LD | the `--target-tier` option |
 ## Tier Assessments
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
@@ -416,7 +416,7 @@ wrote tmp/instance-extra-root-member.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 
 | *`context-and-nonempty-graph-present`* | *The file has a non-null `@context` and an `@graph` holding at least one node* | *not claimed* |
 | *`core-prefixes-pinned`* | *`trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones* | *not claimed* |
 | *`trov-terms-known`* | *Every `trov:` name is one TROV defines* | *not claimed* |
-| *`trov-version-known`* | *The TRO declares, in `trov:vocabularyVersion`, a released version of TROV* | *not claimed* |
+| *`trov-version-known`* | *The TRO declares, in `trov:vocabularyVersion`, a known version of TROV* | *not claimed* |
 | *`hash-algorithms-permitted`* | *Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families* | *not claimed* |
 | *`hash-values-correct-form`* | *Every hash value is lowercase hexadecimal of the length its algorithm produces* | *not claimed* |
 | *`mime-types-two-part`* | *Every artifact's `trov:mimeType` is a string of the form `type/subtype`* | *not claimed* |

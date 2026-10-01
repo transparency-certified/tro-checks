@@ -7,7 +7,7 @@ mkdir -p tmp
 report_on() {
     cat "$1"
     echo
-    check-tro --target LINKABLE-TRO --compact --candidate "$1" --report "tmp/${1%.jsonld}.md"
+    check-tro --target-tier LINKABLE-TRO --compact --candidate "$1" --report "tmp/${1%.jsonld}.md"
     echo
     cat "tmp/${1%.jsonld}.md"
 }

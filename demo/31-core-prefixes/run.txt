@@ -31,11 +31,11 @@ wrote tmp/instance-core-prefixes.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRAC
 
 # Report
 ## Candidate Information
-|  |  |
-| --- | --- |
-| Candidate | `instance-core-prefixes.jsonld` |
-| Target | 4 USES-TROV-CORRECTLY |
-| Target declared by | the `--target` option |
+|  |  | Declared by |
+| --- | --- | --- |
+| Candidate | `instance-core-prefixes.jsonld` |  |
+| Target version | trace-spec-2026-04-19 | the default |
+| Target tier | 4 USES-TROV-CORRECTLY | the `--target-tier` option |
 ## Tier Assessments
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
@@ -89,7 +89,7 @@ wrote tmp/instance-core-prefixes.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRAC
 | `context-and-nonempty-graph-present` | The file has a non-null `@context` and an `@graph` holding at least one node | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | ✅ met |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a known version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | ✅ met |
@@ -156,11 +156,11 @@ wrote tmp/instance-trov-other-version.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 
 # Report
 ## Candidate Information
-|  |  |
-| --- | --- |
-| Candidate | `instance-trov-other-version.jsonld` |
-| Target | 4 USES-TROV-CORRECTLY |
-| Target declared by | the `--target` option |
+|  |  | Declared by |
+| --- | --- | --- |
+| Candidate | `instance-trov-other-version.jsonld` |  |
+| Target version | trace-spec-2026-04-19 | the default |
+| Target tier | 4 USES-TROV-CORRECTLY | the `--target-tier` option |
 ## Tier Assessments
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
@@ -214,7 +214,7 @@ wrote tmp/instance-trov-other-version.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | `context-and-nonempty-graph-present` | The file has a non-null `@context` and an `@graph` holding at least one node | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ❌ not met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | not assessed |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | not assessed |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a known version of TROV | not assessed |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | not assessed |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | not assessed |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | not assessed |
@@ -255,10 +255,10 @@ wrote tmp/instance-trov-other-version.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: core-prefixes-pinned
-Detailed expectation: The root @context declares the trov prefix, mapping it to the namespace of a released version of TROV (https://w3id.org/trace/trov/0.1#), and where it declares rdf, rdfs or schema, each maps to exactly the namespace the Declaration Format's @context block gives it: rdf to http://www.w3.org/1999/02/22-rdf-syntax-ns#, rdfs to http://www.w3.org/2000/01/rdf-schema#, and schema to https://schema.org/. Every check that reads a trov: name out of the JSON relies on this pin to mean the TROV term of that name; a term under any other prefix is not read as TROV, whatever namespace that prefix maps to. Only the root @context is examined: by TRACE-PERMISSIBLE-JSON-LD there is no other.
+Detailed expectation: The root @context declares the trov prefix, mapping it to the namespace of a known version of TROV (https://w3id.org/trace/trov/0.1#), and where it declares rdf, rdfs or schema, each maps to exactly the namespace the Declaration Format's @context block gives it: rdf to http://www.w3.org/1999/02/22-rdf-syntax-ns#, rdfs to http://www.w3.org/2000/01/rdf-schema#, and schema to https://schema.org/. Every check that reads a trov: name out of the JSON relies on this pin to mean the TROV term of that name; a term under any other prefix is not read as TROV, whatever namespace that prefix maps to. Only the root @context is examined: by TRACE-PERMISSIBLE-JSON-LD there is no other.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `"https://w3id.org/trace/trov/0.2#"` | `/@context/trov` | the trov prefix maps to the namespace of a released version of TROV |
+| `"https://w3id.org/trace/trov/0.2#"` | `/@context/trov` | the trov prefix maps to the namespace of a known version of TROV |
 
 ----- [3] expectation unmet: schema maps to the http namespace ---------------
 
@@ -287,11 +287,11 @@ wrote tmp/instance-schema-http.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-
 
 # Report
 ## Candidate Information
-|  |  |
-| --- | --- |
-| Candidate | `instance-schema-http.jsonld` |
-| Target | 4 USES-TROV-CORRECTLY |
-| Target declared by | the `--target` option |
+|  |  | Declared by |
+| --- | --- | --- |
+| Candidate | `instance-schema-http.jsonld` |  |
+| Target version | trace-spec-2026-04-19 | the default |
+| Target tier | 4 USES-TROV-CORRECTLY | the `--target-tier` option |
 ## Tier Assessments
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
@@ -345,7 +345,7 @@ wrote tmp/instance-schema-http.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-
 | `context-and-nonempty-graph-present` | The file has a non-null `@context` and an `@graph` holding at least one node | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ❌ not met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | not assessed |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | not assessed |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a known version of TROV | not assessed |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | not assessed |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | not assessed |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | not assessed |
@@ -386,7 +386,7 @@ wrote tmp/instance-schema-http.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TRACE-
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: core-prefixes-pinned
-Detailed expectation: The root @context declares the trov prefix, mapping it to the namespace of a released version of TROV (https://w3id.org/trace/trov/0.1#), and where it declares rdf, rdfs or schema, each maps to exactly the namespace the Declaration Format's @context block gives it: rdf to http://www.w3.org/1999/02/22-rdf-syntax-ns#, rdfs to http://www.w3.org/2000/01/rdf-schema#, and schema to https://schema.org/. Every check that reads a trov: name out of the JSON relies on this pin to mean the TROV term of that name; a term under any other prefix is not read as TROV, whatever namespace that prefix maps to. Only the root @context is examined: by TRACE-PERMISSIBLE-JSON-LD there is no other.
+Detailed expectation: The root @context declares the trov prefix, mapping it to the namespace of a known version of TROV (https://w3id.org/trace/trov/0.1#), and where it declares rdf, rdfs or schema, each maps to exactly the namespace the Declaration Format's @context block gives it: rdf to http://www.w3.org/1999/02/22-rdf-syntax-ns#, rdfs to http://www.w3.org/2000/01/rdf-schema#, and schema to https://schema.org/. Every check that reads a trov: name out of the JSON relies on this pin to mean the TROV term of that name; a term under any other prefix is not read as TROV, whatever namespace that prefix maps to. Only the root @context is examined: by TRACE-PERMISSIBLE-JSON-LD there is no other.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"http://schema.org/"` | `/@context/schema` | the schema prefix maps to https://schema.org/ |
@@ -412,11 +412,11 @@ wrote tmp/instance-trov-undeclared.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TR
 
 # Report
 ## Candidate Information
-|  |  |
-| --- | --- |
-| Candidate | `instance-trov-undeclared.jsonld` |
-| Target | 4 USES-TROV-CORRECTLY |
-| Target declared by | the `--target` option |
+|  |  | Declared by |
+| --- | --- | --- |
+| Candidate | `instance-trov-undeclared.jsonld` |  |
+| Target version | trace-spec-2026-04-19 | the default |
+| Target tier | 4 USES-TROV-CORRECTLY | the `--target-tier` option |
 ## Tier Assessments
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
@@ -470,7 +470,7 @@ wrote tmp/instance-trov-undeclared.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TR
 | `context-and-nonempty-graph-present` | The file has a non-null `@context` and an `@graph` holding at least one node | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ❌ not met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | not assessed |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | not assessed |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a known version of TROV | not assessed |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | not assessed |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | not assessed |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | not assessed |
@@ -511,7 +511,7 @@ wrote tmp/instance-trov-undeclared.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3 TR
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: core-prefixes-pinned
-Detailed expectation: The root @context declares the trov prefix, mapping it to the namespace of a released version of TROV (https://w3id.org/trace/trov/0.1#), and where it declares rdf, rdfs or schema, each maps to exactly the namespace the Declaration Format's @context block gives it: rdf to http://www.w3.org/1999/02/22-rdf-syntax-ns#, rdfs to http://www.w3.org/2000/01/rdf-schema#, and schema to https://schema.org/. Every check that reads a trov: name out of the JSON relies on this pin to mean the TROV term of that name; a term under any other prefix is not read as TROV, whatever namespace that prefix maps to. Only the root @context is examined: by TRACE-PERMISSIBLE-JSON-LD there is no other.
+Detailed expectation: The root @context declares the trov prefix, mapping it to the namespace of a known version of TROV (https://w3id.org/trace/trov/0.1#), and where it declares rdf, rdfs or schema, each maps to exactly the namespace the Declaration Format's @context block gives it: rdf to http://www.w3.org/1999/02/22-rdf-syntax-ns#, rdfs to http://www.w3.org/2000/01/rdf-schema#, and schema to https://schema.org/. Every check that reads a trov: name out of the JSON relies on this pin to mean the TROV term of that name; a term under any other prefix is not read as TROV, whatever namespace that prefix maps to. Only the root @context is examined: by TRACE-PERMISSIBLE-JSON-LD there is no other.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"rdf":"http://www.w3.org/1999/02/22-rdf-syntax-ns#","rdfs":"http://www.w3.org/2000/01/rdf-schema#","schema":"https://schema.org/"}` | `/@context` | the @context declares the trov prefix |
@@ -544,11 +544,11 @@ wrote tmp/instance-second-trov-prefix.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 
 # Report
 ## Candidate Information
-|  |  |
-| --- | --- |
-| Candidate | `instance-second-trov-prefix.jsonld` |
-| Target | 4 USES-TROV-CORRECTLY |
-| Target declared by | the `--target` option |
+|  |  | Declared by |
+| --- | --- | --- |
+| Candidate | `instance-second-trov-prefix.jsonld` |  |
+| Target version | trace-spec-2026-04-19 | the default |
+| Target tier | 4 USES-TROV-CORRECTLY | the `--target-tier` option |
 ## Tier Assessments
 | Tier | ID | Description | Status |
 | --- | --- | --- | --- |
@@ -602,7 +602,7 @@ wrote tmp/instance-second-trov-prefix.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | `context-and-nonempty-graph-present` | The file has a non-null `@context` and an `@graph` holding at least one node | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ❌ not met |
 | `trov-terms-known` | Every `trov:` name is one TROV defines | not assessed |
-| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a released version of TROV | not assessed |
+| `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a known version of TROV | not assessed |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | not assessed |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | not assessed |
 | `mime-types-two-part` | Every artifact's `trov:mimeType` is a string of the form `type/subtype` | not assessed |
@@ -643,7 +643,7 @@ wrote tmp/instance-second-trov-prefix.md; 1 SAFE-JSON met, 2 SAFE-JSON-LD met, 3
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for Each Unmet Expectation
 ### Unmet expectation: core-prefixes-pinned
-Detailed expectation: The root @context declares the trov prefix, mapping it to the namespace of a released version of TROV (https://w3id.org/trace/trov/0.1#), and where it declares rdf, rdfs or schema, each maps to exactly the namespace the Declaration Format's @context block gives it: rdf to http://www.w3.org/1999/02/22-rdf-syntax-ns#, rdfs to http://www.w3.org/2000/01/rdf-schema#, and schema to https://schema.org/. Every check that reads a trov: name out of the JSON relies on this pin to mean the TROV term of that name; a term under any other prefix is not read as TROV, whatever namespace that prefix maps to. Only the root @context is examined: by TRACE-PERMISSIBLE-JSON-LD there is no other.
+Detailed expectation: The root @context declares the trov prefix, mapping it to the namespace of a known version of TROV (https://w3id.org/trace/trov/0.1#), and where it declares rdf, rdfs or schema, each maps to exactly the namespace the Declaration Format's @context block gives it: rdf to http://www.w3.org/1999/02/22-rdf-syntax-ns#, rdfs to http://www.w3.org/2000/01/rdf-schema#, and schema to https://schema.org/. Every check that reads a trov: name out of the JSON relies on this pin to mean the TROV term of that name; a term under any other prefix is not read as TROV, whatever namespace that prefix maps to. Only the root @context is examined: by TRACE-PERMISSIBLE-JSON-LD there is no other.
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"https://w3id.org/trace/trov/0.1#"` | `/@context/tv` | no prefix other than trov maps to a TROV namespace |

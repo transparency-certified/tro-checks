@@ -8,7 +8,7 @@ mkdir -p tmp
 report_on() {
     cat -v "$1"
     echo
-    check-tro --target SAFE-JSON --compact --candidate "$1" --report "tmp/${1%.jsonld}.md"
+    check-tro --target-tier SAFE-JSON --compact --candidate "$1" --report "tmp/${1%.jsonld}.md"
     echo
     cat "tmp/${1%.jsonld}.md"
 }
