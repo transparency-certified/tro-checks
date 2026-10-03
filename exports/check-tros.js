@@ -14,7 +14,7 @@ const { parseArgs } = require('node:util')
 const path = require('node:path')
 
 const checkTro = require('./check-tro.js')
-const { renderSummaryAsMarkdown, tierLabel } = require('./render-report.js')
+const { renderSummaryAsMarkdown, renderAllAsMarkdown, tierLabel } = require('./render-report.js')
 
 /** @typedef {import('./types.js').Tier} Tier */
 /** @typedef {import('./types.js').Version} Version */
@@ -36,6 +36,7 @@ const CANDIDATE_SUFFIX = '.jsonld'
 const MANIFEST_NAME = 'manifest.json'
 const REPORT_SUFFIX = '.md'
 const SUMMARY_NAME = 'README.md'
+const ALL_NAME = 'all.md'
 
 /**
  * @param {string} candidatesDirectory
@@ -196,7 +197,7 @@ function reportOn(candidate, reportsDirectory) {
     checkTro.writeReport(reportPath, candidate, findings, assessments)
     process.stdout.write(`${checkTro.summarizeInOneLine(reportPath, assessments)}\n`)
 
-    return { candidate, fileName, assessments }
+    return { candidate, fileName, findings, assessments }
 }
 
 /**
@@ -222,7 +223,8 @@ function checkEach(candidates, reportsDirectory) {
 }
 
 /**
- * Writes the summary of the reports a run wrote, and says which reports in the directory the run did not write.
+ * Writes the summary of the reports a run wrote, and the document holding the summary and every report, and says
+ * which reports in the directory the run did not write.
  * @param {WrittenReport[]} written
  * @param {string}          reportsDirectory
  * @throws {Error} if the summary cannot be written, or the directory cannot be listed.
@@ -232,10 +234,15 @@ function summarize(written, reportsDirectory) {
     fs.writeFileSync(summaryPath, renderSummaryAsMarkdown(written))
     process.stdout.write(`wrote ${summaryPath}; ${written.length} ${written.length === 1 ? 'report' : 'reports'}\n`)
 
+    const allPath = path.join(reportsDirectory, ALL_NAME)
+    fs.writeFileSync(allPath, renderAllAsMarkdown(written))
+    process.stdout.write(`wrote ${allPath}; the summary and every report in one document\n`)
+
     const writtenNames = written.map((report) => report.fileName)
     const leftOver = fs
         .readdirSync(reportsDirectory)
-        .filter((name) => name.endsWith(REPORT_SUFFIX) && name !== SUMMARY_NAME && !writtenNames.includes(name))
+        .filter((name) => name.endsWith(REPORT_SUFFIX) && ![SUMMARY_NAME, ALL_NAME].includes(name)
+            && !writtenNames.includes(name))
         .sort()
 
     for (const name of leftOver) {

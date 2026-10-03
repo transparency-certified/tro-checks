@@ -1,8 +1,9 @@
 //
-// Write a candidate's findings and assessments as the Markdown report, and the
-// reports a run wrote as the Markdown summary that links to them.
+// Write a candidate's findings and assessments as the Markdown report, the
+// reports a run wrote as the Markdown summary that links to them, and the
+// summary and every report as one Markdown document.
 //
-//   const { renderReportAsMarkdown, renderSummaryAsMarkdown } = require('./render-report.js')
+//   const { renderReportAsMarkdown, renderSummaryAsMarkdown, renderAllAsMarkdown } = require('./render-report.js')
 
 // @ts-check
 
@@ -48,12 +49,23 @@
  * @typedef {object} WrittenReport  one report a run wrote
  * @property {Candidate}    candidate    the candidate, with the target it was checked against
  * @property {string}       fileName     the report's, within the reports directory
+ * @property {Finding[]}    findings     what the report says of each expectation
  * @property {Assessment[]} assessments  what the report says of each tier at or below the target
  */
+/**
+ * @typedef {object} Placement  where a report sits: in a file of its own, or as a section of one holding them all
+ * @property {string} anchorPrefix  put before every anchor the report makes and links to, so that no two reports in
+ *   one document share an anchor; empty for a report in a file of its own
+ * @property {number} headingDepth  how many levels below the document's own its headings sit
+ */
+
+/** @type {Placement} */
+const ON_ITS_OWN = { anchorPrefix: '', headingDepth: 0 }
 
 module.exports = {
     renderReportAsMarkdown,
     renderSummaryAsMarkdown,
+    renderAllAsMarkdown,
     htmlTableLines,
     tierLabel,
 }
@@ -67,19 +79,31 @@ function tierLabel(tier) {
 }
 
 /**
- * @param {Tier} tier
+ * @param {Tier}      tier
+ * @param {Placement} placement
  * @returns {string}  the anchor of the band that introduces the tier's expectations in a report
  */
-function tierAnchor(tier) {
-    return `tier-${tier.number}-${tier.id.toLowerCase()}`
+function tierAnchor(tier, placement) {
+    return `${placement.anchorPrefix}tier-${tier.number}-${tier.id.toLowerCase()}`
 }
 
 /**
- * @param {string} expectationName
- * @returns {string}  the anchor a Markdown renderer gives the heading of an unmet expectation's diagnostics
+ * @param {string}    expectationName
+ * @param {Placement} placement
+ * @returns {string}  the anchor of the section giving an unmet expectation's diagnostics
  */
-function diagnosticsAnchor(expectationName) {
-    return `unmet-expectation-${expectationName}`
+function diagnosticsAnchor(expectationName, placement) {
+    return `${placement.anchorPrefix}unmet-expectation-${expectationName}`
+}
+
+/**
+ * @param {number}    level      the heading's level in a report in a file of its own
+ * @param {string}    text
+ * @param {Placement} placement
+ * @returns {string}  the heading, at its level where the report sits
+ */
+function heading(level, text, placement) {
+    return `${'#'.repeat(level + placement.headingDepth)} ${text}`
 }
 
 const SOURCE_LABELS = {
@@ -467,10 +491,11 @@ function declaredBy(source, option) {
 /**
  * @param {Candidate} candidate
  * @param {Dialect}   dialect
+ * @param {Placement} placement
  * @returns {string[]}  the Candidate Information section's lines
  * @throws {Error} if the description, the target version or the target tier came from a source that has no label.
  */
-function candidateLines(candidate, dialect) {
+function candidateLines(candidate, dialect, placement) {
     const { targetTier, targetVersion } = candidate
 
     /** @type {Row[]} */
@@ -484,7 +509,7 @@ function candidateLines(candidate, dialect) {
     rows.push({ cells: [
         { atom: 'Target tier' }, { id: tierLabel(targetTier) }, declaredBy(candidate.targetTierSource, '--target-tier')] })
 
-    return ['## Candidate Information', '', ...dialect.table(['', '', 'Declared by'], rows)]
+    return [heading(2, 'Candidate Information', placement), '', ...dialect.table(['', '', 'Declared by'], rows)]
 }
 
 /**
@@ -516,14 +541,15 @@ function tierStatus(tier, assessments) {
  * @param {Tier[]}       tiers
  * @param {Assessment[]} assessments
  * @param {Dialect}      dialect
+ * @param {Placement}    placement
  * @returns {string[]}  the Tier Assessments table's lines
  */
-function tierTableLines(tiers, assessments, dialect) {
+function tierTableLines(tiers, assessments, dialect, placement) {
     /** @type {Row[]} */
     const rows = tiers.map((tier) => {
         const status = tierStatus(tier, assessments)
         return {
-            cells: [{ id: tierLabel(tier), anchor: tierAnchor(tier) }, tier.description, { atom: status.label }],
+            cells: [{ id: tierLabel(tier), anchor: tierAnchor(tier, placement) }, tier.description, { atom: status.label }],
             emphasized: status.emphasized,
         }
     })
@@ -537,18 +563,20 @@ function tierTableLines(tiers, assessments, dialect) {
  * @param {Finding[]}    findings
  * @param {Assessment[]} assessments
  * @param {Dialect}      dialect
+ * @param {Placement}    placement
  * @returns {string[]}  the Expectation Findings by Tier section's lines
  */
-function tierFindingsLines(tiers, findings, assessments, dialect) {
+function tierFindingsLines(tiers, findings, assessments, dialect, placement) {
     /** @type {(Row|Band)[]} */
     const rows = []
     for (const tier of tiers) {
         const status = tierStatus(tier, assessments)
         rows.push({
-            label: tierLabel(tier), status: status.label, anchor: tierAnchor(tier), emphasized: status.emphasized })
+            label: tierLabel(tier), status: status.label, anchor: tierAnchor(tier, placement),
+            emphasized: status.emphasized })
         for (const finding of findings.filter((each) => each.expectation.tier.number === tier.number)) {
             const { expectation } = finding
-            const anchor = finding.outcome === 'unmet' ? diagnosticsAnchor(expectation.name) : undefined
+            const anchor = finding.outcome === 'unmet' ? diagnosticsAnchor(expectation.name, placement) : undefined
             rows.push({
                 cells: [{ code: expectation.name, anchor }, expectation.summary, { atom: statusLabel(finding.outcome) }],
                 emphasized: finding.outcome === 'not claimed',
@@ -560,12 +588,16 @@ function tierFindingsLines(tiers, findings, assessments, dialect) {
 }
 
 /**
- * An unmet expectation's details: what it checks, then one row per error -- what was found, where, and why.
- * @param {Finding} finding
- * @param {Dialect} dialect
+ * An unmet expectation's details: what it checks, then one row per error -- what was found, where, and why. Where
+ * linked, the heading is preceded by an anchor of its own: a heading's anchor is the renderer's to give, and not every
+ * renderer gives one.
+ * @param {Finding}   finding
+ * @param {Dialect}   dialect
+ * @param {Placement} placement
+ * @param {boolean}   linked
  * @returns {string[]}
  */
-function unmetExpectationLines(finding, dialect) {
+function unmetExpectationLines(finding, dialect, placement, linked) {
     /** @type {Diagnosis[]} */
     const diagnoses = finding.errors.map((error) => ({
         found: 'found' in error ? { code: JSON.stringify(error.found) } : '',
@@ -574,8 +606,10 @@ function unmetExpectationLines(finding, dialect) {
         problem: stateConstraint(error),
     }))
 
+    const anchor = linked ? [`<a id="${diagnosticsAnchor(finding.expectation.name, placement)}"></a>`, ''] : []
     return [
-        `### Unmet expectation: ${finding.expectation.name}`,
+        ...anchor,
+        heading(3, `Unmet expectation: ${finding.expectation.name}`, placement),
         '',
         `Detailed expectation: ${writable(finding.expectation.description)}`,
         '',
@@ -605,22 +639,24 @@ function listed(items) {
 }
 
 /**
- * @param {Tier}    tier
- * @param {boolean} [linked]  whether to link the tier to the band that introduces its expectations
+ * @param {Tier}      tier
+ * @param {Placement} [linkedIn]  where the report sits, to link the tier to the band that introduces its
+ *   expectations; absent for no link
  * @returns {string}  the tier as a sentence names it, in the report's own Markdown
  */
-function tierInProse(tier, linked) {
+function tierInProse(tier, linkedIn) {
     const label = codeSpan(tierLabel(tier))
-    return linked ? `[${label}](#${tierAnchor(tier)})` : label
+    return linkedIn ? `[${label}](#${tierAnchor(tier, linkedIn)})` : label
 }
 
 /**
  * Says what a candidate is expected to satisfy: each version in order, with its tiers from the lowest up.
  * @param {{tier: Tier, version: Version}[]} targets
- * @param {boolean} [linked]  whether to link each tier to the band that introduces its expectations
+ * @param {Placement} [linkedIn]  where the report sits, to link each tier to the band that introduces its
+ *   expectations; absent for no links
  * @returns {string}  one sentence, in the report's own Markdown
  */
-function expectationSentence(targets, linked) {
+function expectationSentence(targets, linkedIn) {
     /** @type {Version[]} */ const versions = []
     for (const { version } of targets) {
         if (!versions.some((each) => each.number === version.number)) versions.push(version)
@@ -632,7 +668,7 @@ function expectationSentence(targets, linked) {
             .filter((target) => target.version.number === version.number)
             .map((target) => target.tier)
             .sort((one, other) => one.number - other.number)
-        return `${listed(tiers.map((tier) => tierInProse(tier, linked)))} at version ${codeSpan(version.id)}`
+        return `${listed(tiers.map((tier) => tierInProse(tier, linkedIn)))} at version ${codeSpan(version.id)}`
     })
 
     return `This candidate is expected to satisfy ${clauses.join(', and ')}.`
@@ -643,10 +679,11 @@ function expectationSentence(targets, linked) {
  * meet and in which tiers, and how many were not assessed.
  * @param {Candidate} candidate
  * @param {Finding[]} findings
- * @param {boolean}   [linked]  whether to link each tier to the band that introduces its expectations
+ * @param {Placement} [linkedIn]  where the report sits, to link each tier to the band that introduces its
+ *   expectations; absent for no links
  * @returns {string[]}  one sentence or two, in the report's own Markdown
  */
-function resultSentences(candidate, findings, linked) {
+function resultSentences(candidate, findings, linkedIn) {
     const unmet = findings.filter((finding) => finding.outcome === 'unmet')
     const notAssessed = findings.filter((finding) => finding.outcome === 'not assessed')
 
@@ -662,11 +699,11 @@ function resultSentences(candidate, findings, linked) {
     const unmetTiers = tiersOf(unmet)
     if (unmetTiers.length === 1) {
         sentences.push(
-            `The candidate does not meet ${inWords(unmet.length)} of the expectations in ${tierInProse(unmetTiers[0], linked)}.`)
+            `The candidate does not meet ${inWords(unmet.length)} of the expectations in ${tierInProse(unmetTiers[0], linkedIn)}.`)
     } else if (unmetTiers.length > 1) {
         const counts = unmetTiers.map((tier) => {
             const count = unmet.filter((finding) => finding.expectation.tier.number === tier.number).length
-            return `${inWords(count)} in ${tierInProse(tier, linked)}`
+            return `${inWords(count)} in ${tierInProse(tier, linkedIn)}`
         })
         sentences.push(`The candidate does not meet ${inWords(unmet.length)} of the expectations: ${listed(counts)}.`)
     }
@@ -688,12 +725,14 @@ function resultSentences(candidate, findings, linked) {
  * came out, and what the sections below contain.
  * @param {Candidate} candidate
  * @param {Finding[]} findings
- * @param {boolean}   [linked]  whether to link each tier it names to the band that introduces its expectations
+ * @param {Placement} placement
+ * @param {boolean}   linked  whether to link each tier it names to the band that introduces its expectations
  * @returns {string[]}
  */
-function openingLines(candidate, findings, linked) {
+function openingLines(candidate, findings, placement, linked) {
+    const linkedIn = linked ? placement : undefined
     const lines = [
-        `# Report on ${codeSpan(candidate.fileName)}`,
+        heading(1, `Report on ${codeSpan(candidate.fileName)}`, placement),
         '',
         'This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the '
         + 'TRACE Specification.',
@@ -701,8 +740,8 @@ function openingLines(candidate, findings, linked) {
 
     if (candidate.description) lines.push('', writable(candidate.description))
 
-    const expectation = expectationSentence([{ tier: candidate.targetTier, version: candidate.targetVersion }], linked)
-    lines.push('', [expectation, ...resultSentences(candidate, findings, linked)].join(' '))
+    const expectation = expectationSentence([{ tier: candidate.targetTier, version: candidate.targetVersion }], linkedIn)
+    lines.push('', [expectation, ...resultSentences(candidate, findings, linkedIn)].join(' '))
 
     const someUnmet = findings.some((finding) => finding.outcome === 'unmet')
     lines.push('', someUnmet
@@ -718,30 +757,31 @@ function openingLines(candidate, findings, linked) {
  * @param {Finding[]}    findings
  * @param {Assessment[]} assessments
  * @param {boolean}      [compactly]  without blank lines, tables in Markdown (for terminal output, yields invalid Markdown)
+ * @param {Placement}    [placement]  where the report sits; by default, in a file of its own
  * @returns {string}
  */
-function renderReportAsMarkdown(candidate, findings, assessments, compactly) {
+function renderReportAsMarkdown(candidate, findings, assessments, compactly, placement = ON_ITS_OWN) {
     const dialect = compactly ? pipeDialect : htmlDialect
     const tiers = tiersOf(findings)
     const reportLines = [
-        ...openingLines(candidate, findings, !compactly),
+        ...openingLines(candidate, findings, placement, !compactly),
         '',
-        ...candidateLines(candidate, dialect),
+        ...candidateLines(candidate, dialect, placement),
         '',
-        '## Tier Assessments',
+        heading(2, 'Tier Assessments', placement),
         '',
-        ...tierTableLines(tiers, assessments, dialect),
+        ...tierTableLines(tiers, assessments, dialect, placement),
         '',
-        '## Expectation Findings by Tier',
+        heading(2, 'Expectation Findings by Tier', placement),
         '',
-        ...tierFindingsLines(tiers, findings, assessments, dialect),
+        ...tierFindingsLines(tiers, findings, assessments, dialect, placement),
     ]
 
     const unmetFindings = findings.filter((finding) => finding.outcome === 'unmet')
     if (unmetFindings.length > 0) {
-        reportLines.push('', '## Diagnostics for Each Unmet Expectation')
+        reportLines.push('', heading(2, 'Diagnostics for Each Unmet Expectation', placement))
         for (const finding of unmetFindings) {
-            reportLines.push('', ...unmetExpectationLines(finding, dialect))
+            reportLines.push('', ...unmetExpectationLines(finding, dialect, placement, !compactly))
         }
     }
 
@@ -753,10 +793,12 @@ function renderReportAsMarkdown(candidate, findings, assessments, compactly) {
 /**
  * One candidate's reports as a row each: the target, whether the target tier was met, and a link to the report.
  * @param {WrittenReport[]} candidateReports  the reports on one candidate
+ * @param {boolean}         inOneDocument     whether the reports follow in the same document, so that each link goes
+ *   to its section there rather than to its file
  * @returns {Row[]}  by target version, and by target tier within a version
  * @throws {Error} if a report carries no assessment of its target tier.
  */
-function summaryRows(candidateReports) {
+function summaryRows(candidateReports, inOneDocument) {
     const inTargetOrder = [...candidateReports].sort((one, other) =>
         one.candidate.targetVersion.number - other.candidate.targetVersion.number
         || one.candidate.targetTier.number - other.candidate.targetTier.number)
@@ -770,7 +812,7 @@ function summaryRows(candidateReports) {
             { id: targetVersion.id },
             { id: tierLabel(targetTier) },
             { atom: statusLabel(assessment.outcome) },
-            `[${fileName}](${encodeURI(fileName)})`,
+            `[${fileName}](${inOneDocument ? `#${reportAnchor(fileName)}` : encodeURI(fileName)})`,
         ] }
     })
 }
@@ -779,10 +821,11 @@ function summaryRows(candidateReports) {
  * The summary of the reports a run wrote: under each candidate, what it is and a table of its reports. A candidate
  * is headed by its title, with its file named beneath, or by its name where it has no title.
  * @param {WrittenReport[]} writtenReports  in the order the candidates and their targets were checked
+ * @param {boolean}         [inOneDocument]  whether the reports follow in the same document
  * @returns {string}
  * @throws {Error} if a report carries no assessment of its target tier.
  */
-function renderSummaryAsMarkdown(writtenReports) {
+function renderSummaryAsMarkdown(writtenReports, inOneDocument = false) {
     const summaryLines = ['# Reports', '', 'One report for each target of each candidate.']
 
     const fileNames = [...new Set(writtenReports.map((report) => report.candidate.fileName))]
@@ -799,8 +842,36 @@ function renderSummaryAsMarkdown(writtenReports) {
         summaryLines.push('', expectationSentence(candidateReports.map((report) => (
             { tier: report.candidate.targetTier, version: report.candidate.targetVersion }))))
         summaryLines.push(
-            '', ...htmlDialect.table(['Target version', 'Target tier', 'Status', 'Report'], summaryRows(candidateReports)))
+            '', ...htmlDialect.table(['Target version', 'Target tier', 'Status', 'Report'], summaryRows(candidateReports, inOneDocument)))
     }
 
     return `${summaryLines.join('\n')}\n`
+}
+
+/**
+ * @param {string} fileName  a report's
+ * @returns {string}  the anchor of the report's section in the document holding every report, and the prefix of
+ *   every anchor within it
+ */
+function reportAnchor(fileName) {
+    return fileName.replace(/\.md$/, '')
+}
+
+/**
+ * Every report a run wrote, in one document: the summary, its links going to the reports' sections below, then each
+ * report a heading level down, with its anchors made its own. For a reader with no files to follow, such as the page
+ * of a GitHub Actions run.
+ * @param {WrittenReport[]} writtenReports  in the order the candidates and their targets were checked
+ * @returns {string}
+ * @throws {Error} if a report carries no assessment of its target tier.
+ */
+function renderAllAsMarkdown(writtenReports) {
+    const lines = [renderSummaryAsMarkdown(writtenReports, true).trimEnd()]
+    for (const { candidate, fileName, findings, assessments } of writtenReports) {
+        const anchor = reportAnchor(fileName)
+        const placement = { anchorPrefix: `${anchor}--`, headingDepth: 1 }
+        lines.push('', '---', '', `<a id="${anchor}"></a>`, '',
+            renderReportAsMarkdown(candidate, findings, assessments, false, placement).trimEnd())
+    }
+    return `${lines.join('\n')}\n`
 }
