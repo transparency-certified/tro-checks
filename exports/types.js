@@ -72,7 +72,7 @@ module.exports = {}
  * @property {string}                [document]     which schema file, where not the expectation's own
  * @property {Object<string, *>}     [constraint]   what the keyword demanded
  * @property {Object<string, *>}     [particulars]  what specifically went wrong
- * @property {*}                     [found]        the value at site
+ * @property {*}                     [found]        the value at site; absent where the name site ends in was what failed
  * @property {string}                [message]      the expectation's own words, where it has them
  * @property {Attempt[]}             [rejections]   the attempts, for a keyword that offered alternatives
  */

@@ -83,7 +83,7 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | `context-and-nonempty-graph-present` | The file has a non-null `@context` and an `@graph` holding at least one node | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
-| `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
+| `trov-terms-known` | Every term with the `trov:` prefix is one TROV defines | ✅ met |
 | `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a known version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
@@ -199,7 +199,7 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | `context-and-nonempty-graph-present` | The file has a non-null `@context` and an `@graph` holding at least one node | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
-| `trov-terms-known` | Every `trov:` name is one TROV defines | ❌ not met |
+| `trov-terms-known` | Every term with the `trov:` prefix is one TROV defines | ❌ not met |
 | `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a known version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
@@ -240,7 +240,7 @@ Detailed expectation: Where a property name or a string value carries the trov: 
 Defined in version: `trace-spec-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `{"@id":"tro","@type":"trov:TransparentResearchObject","trov:vocabularyVersion":"0.1","trov:wasAssembledBy":{"@id":"https://trs.example.org/demo/","@type":"trov:TrustedResearchSystem"},"trov:vocabularyRelease":"0.1"}` | `/@graph/0` | a trov: name is a term TROV defines |
+|  | `/@graph/0/trov:vocabularyRelease` | a term with the trov: prefix is one TROV defines |
 
 ----- [3] expectation met: the @id trov:IncludesAllInputData is defined by TROV -----
 
@@ -322,7 +322,7 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | `context-and-nonempty-graph-present` | The file has a non-null `@context` and an `@graph` holding at least one node | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
-| `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
+| `trov-terms-known` | Every term with the `trov:` prefix is one TROV defines | ✅ met |
 | `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a known version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
@@ -438,7 +438,7 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | `context-and-nonempty-graph-present` | The file has a non-null `@context` and an `@graph` holding at least one node | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
-| `trov-terms-known` | Every `trov:` name is one TROV defines | ❌ not met |
+| `trov-terms-known` | Every term with the `trov:` prefix is one TROV defines | ❌ not met |
 | `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a known version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
@@ -479,7 +479,7 @@ Detailed expectation: Where a property name or a string value carries the trov: 
 Defined in version: `trace-spec-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `"trov:IncludesAllOutputData"` | `/@graph/0/trov:hasAttribute/@id` | a trov: name is a term TROV defines |
+| `"trov:IncludesAllOutputData"` | `/@graph/0/trov:hasAttribute/@id` | a term with the trov: prefix is one TROV defines |
 
 ----- [5] expectation met: the @type trov:TrustedResearchPerformance is defined by TROV -----
 
@@ -561,7 +561,7 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | `context-and-nonempty-graph-present` | The file has a non-null `@context` and an `@graph` holding at least one node | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
-| `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
+| `trov-terms-known` | Every term with the `trov:` prefix is one TROV defines | ✅ met |
 | `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a known version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
@@ -677,7 +677,7 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | `context-and-nonempty-graph-present` | The file has a non-null `@context` and an `@graph` holding at least one node | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
-| `trov-terms-known` | Every `trov:` name is one TROV defines | ❌ not met |
+| `trov-terms-known` | Every term with the `trov:` prefix is one TROV defines | ❌ not met |
 | `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a known version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
@@ -718,7 +718,7 @@ Detailed expectation: Where a property name or a string value carries the trov: 
 Defined in version: `trace-spec-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `"trov:TrustedResearchPerformace"` | `/@graph/0/trov:hasPerformance/@type` | a trov: name is a term TROV defines |
+| `"trov:TrustedResearchPerformace"` | `/@graph/0/trov:hasPerformance/@type` | a term with the trov: prefix is one TROV defines |
 
 ----- [7] expectation met: the bare value trov:CanIsolateEnvironment is defined by TROV -----
 
@@ -800,7 +800,7 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | `context-and-nonempty-graph-present` | The file has a non-null `@context` and an `@graph` holding at least one node | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
-| `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
+| `trov-terms-known` | Every term with the `trov:` prefix is one TROV defines | ✅ met |
 | `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a known version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
@@ -916,7 +916,7 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | `context-and-nonempty-graph-present` | The file has a non-null `@context` and an `@graph` holding at least one node | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
-| `trov-terms-known` | Every `trov:` name is one TROV defines | ❌ not met |
+| `trov-terms-known` | Every term with the `trov:` prefix is one TROV defines | ❌ not met |
 | `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a known version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
@@ -957,7 +957,7 @@ Detailed expectation: Where a property name or a string value carries the trov: 
 Defined in version: `trace-spec-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `"trov:CanIsolateNetwork"` | `/@graph/0/trov:hasCapability` | a trov: name is a term TROV defines |
+| `"trov:CanIsolateNetwork"` | `/@graph/0/trov:hasCapability` | a term with the trov: prefix is one TROV defines |
 
 ----- [9] expectation met at version trace-spec-2026-04-19: the TRS's trov:name is a pre-release term that version admits -----
 
@@ -1038,7 +1038,7 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | `context-and-nonempty-graph-present` | The file has a non-null `@context` and an `@graph` holding at least one node | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
-| `trov-terms-known` | Every `trov:` name is one TROV defines | ✅ met |
+| `trov-terms-known` | Every term with the `trov:` prefix is one TROV defines | ✅ met |
 | `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a known version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
@@ -1153,7 +1153,7 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | `context-and-nonempty-graph-present` | The file has a non-null `@context` and an `@graph` holding at least one node | ✅ met |
 | `core-prefixes-pinned` | `trov` is declared and is the only prefix for a TROV namespace; `rdf`, `rdfs` and `schema` prefixes, if declared, are the standard ones | ✅ met |
-| `trov-terms-known` | Every `trov:` name is one TROV defines | ❌ not met |
+| `trov-terms-known` | Every term with the `trov:` prefix is one TROV defines | ❌ not met |
 | `trov-version-known` | The TRO declares, in `trov:vocabularyVersion`, a known version of TROV | ✅ met |
 | `hash-algorithms-permitted` | Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families | ✅ met |
 | `hash-values-correct-form` | Every hash value is lowercase hexadecimal of the length its algorithm produces | ✅ met |
@@ -1199,4 +1199,4 @@ Detailed expectation: Where a property name or a string value carries the trov: 
 Defined in version: `0.1`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `{"@id":"https://trs.example.org/demo/","@type":"trov:TrustedResearchSystem","trov:name":"demo-trs"}` | `/@graph/0/trov:wasAssembledBy` | a trov: name is a term TROV defines |
+|  | `/@graph/0/trov:wasAssembledBy/trov:name` | a term with the trov: prefix is one TROV defines |

@@ -122,10 +122,23 @@ function subjectOf(site) {
 }
 
 /**
+ * Names what failed a check against a list of allowed values: the value found, or, where nothing was found, the
+ * name the site ends in, which is a property name that failed.
+ * @param {Diagnostic} diagnostic
+ * @returns {string}  in the report's own Markdown
+ */
+function offenderOf({ found, site }) {
+    if (found !== undefined) return codeSpan(typeof found === 'string' ? found : JSON.stringify(found))
+    const last = site?.[site.length - 1]
+    return last === undefined ? 'the document' : codeSpan(String(last))
+}
+
+/**
  * @param {Diagnostic} diagnostic
  * @returns {string}  what the keyword demanded of the thing it was checking, in the keyword's own terms
  */
-function stateConstraint({ keyword, constraint = {}, particulars = {}, site }) {
+function stateConstraint(diagnostic) {
+    const { keyword, constraint = {}, particulars = {}, site } = diagnostic
     const subject = subjectOf(site)
     switch (keyword) {
         case 'required': return `${subject} is missing the required member \`${particulars.missingProperty}\``
@@ -134,7 +147,12 @@ function stateConstraint({ keyword, constraint = {}, particulars = {}, site }) {
             return `${subject} has a member \`${particulars.additionalProperty ?? particulars.unevaluatedProperty}\`,`
                 + ' which is not allowed here'
         case 'type': return `${subject} was expected to be of type ${[].concat(constraint.type).join(' or ')}`
-        case 'enum': return `${subject} was expected to be one of ${JSON.stringify(constraint.allowedValues)}`
+        case 'enum': {
+            const count = constraint.allowedValues.length
+            return count === 1
+                ? `${offenderOf(diagnostic)} is not the allowed value`
+                : `${offenderOf(diagnostic)} is not one of the ${count} allowed values`
+        }
         case 'const': return `${subject} was expected to be ${JSON.stringify(constraint.allowedValue)}`
         case 'pattern': return `${subject} was expected to match pattern \`${constraint.pattern}\``
         case 'maximum': case 'minimum': case 'exclusiveMaximum': case 'exclusiveMinimum':
