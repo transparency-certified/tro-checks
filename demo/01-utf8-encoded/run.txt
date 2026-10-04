@@ -16,7 +16,7 @@ $ report_on instance-utf8.jsonld
 
 wrote tmp/instance-utf8.md; Tier 1 - SAFE-JSON met
 
-# Report on `instance-utf8.jsonld`
+# Report on `instance-utf8.jsonld` at version `trace-spec-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 1 - SAFE-JSON` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier.
 The sections below give the status of each tier, then the status of each expectation.
@@ -24,6 +24,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-utf8.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `trace-spec-2026-04-19` | the default |
 | Target tier | `Tier 1 - SAFE-JSON` | the `--target-tier` option |
 ## Tier Assessments
@@ -126,7 +127,7 @@ $ report_on instance-latin1.jsonld
 
 wrote tmp/instance-latin1.md; Tier 1 - SAFE-JSON unmet
 
-# Report on `instance-latin1.jsonld`
+# Report on `instance-latin1.jsonld` at version `trace-spec-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 1 - SAFE-JSON` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 1 - SAFE-JSON`. A further four expectations were not assessed, because a tier below them, or an expectation they require, was not met.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
@@ -134,6 +135,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-latin1.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `trace-spec-2026-04-19` | the default |
 | Target tier | `Tier 1 - SAFE-JSON` | the `--target-tier` option |
 ## Tier Assessments

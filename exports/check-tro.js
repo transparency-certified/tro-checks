@@ -41,6 +41,7 @@ module.exports = {
     resolveVersion,
     checkCandidateAgainstExpectations,
     assessTiers,
+    statedCreator,
     writeReport,
     summarizeInOneLine,
 }
@@ -509,6 +510,39 @@ function parsedCandidate(candidate) {
 }
 
 /**
+ * What the candidate states it was created with: each tool its TRO's trov:createdWith names, by its schema:name and
+ * schema:softwareVersion, following a reference to a node elsewhere in the graph. A claim of the candidate's, reported
+ * as such, and nothing a check relies on.
+ * @param {Candidate} candidate
+ * @returns {string|undefined}  the tools, separated by commas; undefined where the candidate states none, or cannot be
+ *   read as JSON
+ */
+function statedCreator(candidate) {
+    let document
+    try {
+        document = parsedCandidate(candidate)
+    } catch {
+        return undefined
+    }
+    /** @type {*[]} */ const graph = Array.isArray(document?.['@graph']) ? document['@graph'] : []
+    const tro = graph.find((node) =>
+        /** @type {*[]} */ ([]).concat(node?.['@type'] ?? []).includes('trov:TransparentResearchObject'))
+    if (tro === undefined) return undefined
+
+    const tools = /** @type {*[]} */ ([]).concat(tro['trov:createdWith'] ?? []).map((/** @type {*} */ tool) => {
+        const isReference = tool !== null && typeof tool === 'object' && Object.keys(tool).join() === '@id'
+        return isReference ? graph.find((node) => node?.['@id'] === tool['@id']) ?? tool : tool
+    })
+    const named = tools.flatMap((tool) => {
+        const name = tool?.['schema:name']
+        const version = tool?.['schema:softwareVersion']
+        if (typeof name !== 'string') return []
+        return [typeof version === 'string' ? `${name} ${version}` : name]
+    })
+    return named.length > 0 ? named.join(', ') : undefined
+}
+
+/**
  * Visits every value and member name in a parsed JSON value, with where each sits.
  * @param {*} value
  * @param {(string|number)[]} site
@@ -839,6 +873,7 @@ function runAsCommand() {
             targetTierSource: targetTierId !== undefined ? 'option' : 'default',
             targetVersionSource: targetVersionId !== undefined ? 'option' : 'default',
         }
+        candidate.createdWith = statedCreator(candidate)
 
         const findings = checkCandidateAgainstExpectations(candidate)
         const assessments = assessTiers(candidate, findings)

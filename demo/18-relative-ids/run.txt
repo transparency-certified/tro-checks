@@ -28,7 +28,7 @@ $ report_on instance-plain-relative-ids.jsonld
 
 wrote tmp/instance-plain-relative-ids.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met
 
-# Report on `instance-plain-relative-ids.jsonld`
+# Report on `instance-plain-relative-ids.jsonld` at version `trace-spec-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the tier below it.
 The sections below give the status of each tier, then the status of each expectation.
@@ -36,6 +36,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-plain-relative-ids.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `trace-spec-2026-04-19` | the default |
 | Target tier | `Tier 2 - SAFE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
@@ -140,7 +141,7 @@ $ report_on instance-leading-slash.jsonld
 
 wrote tmp/instance-leading-slash.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD unmet
 
-# Report on `instance-leading-slash.jsonld`
+# Report on `instance-leading-slash.jsonld` at version `trace-spec-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 2 - SAFE-JSON-LD`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
@@ -148,6 +149,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-leading-slash.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `trace-spec-2026-04-19` | the default |
 | Target tier | `Tier 2 - SAFE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
@@ -267,7 +269,7 @@ $ report_on instance-dot-segments.jsonld
 
 wrote tmp/instance-dot-segments.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD unmet
 
-# Report on `instance-dot-segments.jsonld`
+# Report on `instance-dot-segments.jsonld` at version `trace-spec-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 2 - SAFE-JSON-LD`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
@@ -275,6 +277,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-dot-segments.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `trace-spec-2026-04-19` | the default |
 | Target tier | `Tier 2 - SAFE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
@@ -396,7 +399,7 @@ $ report_on instance-query-and-fragment.jsonld
 
 wrote tmp/instance-query-and-fragment.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD unmet
 
-# Report on `instance-query-and-fragment.jsonld`
+# Report on `instance-query-and-fragment.jsonld` at version `trace-spec-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 2 - SAFE-JSON-LD`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
@@ -404,6 +407,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-query-and-fragment.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `trace-spec-2026-04-19` | the default |
 | Target tier | `Tier 2 - SAFE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
@@ -522,7 +526,7 @@ $ report_on instance-keyword-like-id.jsonld
 
 wrote tmp/instance-keyword-like-id.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD unmet
 
-# Report on `instance-keyword-like-id.jsonld`
+# Report on `instance-keyword-like-id.jsonld` at version `trace-spec-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 2 - SAFE-JSON-LD`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
@@ -530,6 +534,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-keyword-like-id.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `trace-spec-2026-04-19` | the default |
 | Target tier | `Tier 2 - SAFE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments

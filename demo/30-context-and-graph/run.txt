@@ -29,7 +29,7 @@ $ report_on instance-context-and-graph.jsonld
 
 wrote tmp/instance-context-and-graph.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
 
-# Report on `instance-context-and-graph.jsonld`
+# Report on `instance-context-and-graph.jsonld` at version `trace-spec-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the three tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
@@ -37,6 +37,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-context-and-graph.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `trace-spec-2026-04-19` | the default |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
@@ -147,7 +148,7 @@ $ report_on instance-null-context.jsonld
 
 wrote tmp/instance-null-context.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report on `instance-null-context.jsonld`
+# Report on `instance-null-context.jsonld` at version `trace-spec-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
@@ -155,6 +156,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-null-context.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `trace-spec-2026-04-19` | the default |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
@@ -266,7 +268,7 @@ $ report_on instance-no-graph.jsonld
 
 wrote tmp/instance-no-graph.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report on `instance-no-graph.jsonld`
+# Report on `instance-no-graph.jsonld` at version `trace-spec-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
@@ -274,6 +276,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-no-graph.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `trace-spec-2026-04-19` | the default |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
@@ -386,7 +389,7 @@ $ report_on instance-empty-graph.jsonld
 
 wrote tmp/instance-empty-graph.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report on `instance-empty-graph.jsonld`
+# Report on `instance-empty-graph.jsonld` at version `trace-spec-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
@@ -394,6 +397,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-empty-graph.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `trace-spec-2026-04-19` | the default |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments

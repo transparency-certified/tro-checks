@@ -21,7 +21,7 @@ $ report_on instance-numbers-in-range.jsonld
 
 wrote tmp/instance-numbers-in-range.md; Tier 1 - SAFE-JSON met
 
-# Report on `instance-numbers-in-range.jsonld`
+# Report on `instance-numbers-in-range.jsonld` at version `trace-spec-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 1 - SAFE-JSON` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier.
 The sections below give the status of each tier, then the status of each expectation.
@@ -29,6 +29,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-numbers-in-range.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `trace-spec-2026-04-19` | the default |
 | Target tier | `Tier 1 - SAFE-JSON` | the `--target-tier` option |
 ## Tier Assessments
@@ -131,7 +132,7 @@ $ report_on instance-inexact-integer.jsonld
 
 wrote tmp/instance-inexact-integer.md; Tier 1 - SAFE-JSON unmet
 
-# Report on `instance-inexact-integer.jsonld`
+# Report on `instance-inexact-integer.jsonld` at version `trace-spec-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 1 - SAFE-JSON` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 1 - SAFE-JSON`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
@@ -139,6 +140,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-inexact-integer.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `trace-spec-2026-04-19` | the default |
 | Target tier | `Tier 1 - SAFE-JSON` | the `--target-tier` option |
 ## Tier Assessments
@@ -248,7 +250,7 @@ $ report_on instance-overflowing-number.jsonld
 
 wrote tmp/instance-overflowing-number.md; Tier 1 - SAFE-JSON unmet
 
-# Report on `instance-overflowing-number.jsonld`
+# Report on `instance-overflowing-number.jsonld` at version `trace-spec-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 1 - SAFE-JSON` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 1 - SAFE-JSON`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
@@ -256,6 +258,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-overflowing-number.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `trace-spec-2026-04-19` | the default |
 | Target tier | `Tier 1 - SAFE-JSON` | the `--target-tier` option |
 ## Tier Assessments

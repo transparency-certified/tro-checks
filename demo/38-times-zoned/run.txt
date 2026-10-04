@@ -70,7 +70,7 @@ $ report_on instance-times-zoned.jsonld
 
 wrote tmp/instance-times-zoned.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
 
-# Report on `instance-times-zoned.jsonld`
+# Report on `instance-times-zoned.jsonld` at version `0.1`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `0.1`. The candidate meets every expectation in that tier and in the three tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
@@ -78,6 +78,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-times-zoned.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `0.1` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
@@ -239,7 +240,7 @@ $ report_on instance-time-with-offset.jsonld
 
 wrote tmp/instance-time-with-offset.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
 
-# Report on `instance-time-with-offset.jsonld`
+# Report on `instance-time-with-offset.jsonld` at version `0.1`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `0.1`. The candidate meets every expectation in that tier and in the three tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
@@ -247,6 +248,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-time-with-offset.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `0.1` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
@@ -408,7 +410,7 @@ $ report_on instance-date-created-unzoned.jsonld
 
 wrote tmp/instance-date-created-unzoned.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
 
-# Report on `instance-date-created-unzoned.jsonld`
+# Report on `instance-date-created-unzoned.jsonld` at version `0.1`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `0.1`. The candidate meets every expectation in that tier and in the three tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
@@ -416,6 +418,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-date-created-unzoned.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `0.1` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
@@ -577,7 +580,7 @@ $ report_on instance-time-unzoned.jsonld
 
 wrote tmp/instance-time-unzoned.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report on `instance-time-unzoned.jsonld`
+# Report on `instance-time-unzoned.jsonld` at version `0.1`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `0.1`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
@@ -585,6 +588,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-time-unzoned.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `0.1` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments

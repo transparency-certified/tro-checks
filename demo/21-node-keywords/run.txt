@@ -23,7 +23,7 @@ $ report_on instance-allowed-node-keywords.jsonld
 
 wrote tmp/instance-allowed-node-keywords.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met
 
-# Report on `instance-allowed-node-keywords.jsonld`
+# Report on `instance-allowed-node-keywords.jsonld` at version `trace-spec-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the two tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
@@ -31,6 +31,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-allowed-node-keywords.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `trace-spec-2026-04-19` | the default |
 | Target tier | `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
@@ -140,7 +141,7 @@ $ report_on instance-reverse-in-body.jsonld
 
 wrote tmp/instance-reverse-in-body.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD unmet
 
-# Report on `instance-reverse-in-body.jsonld`
+# Report on `instance-reverse-in-body.jsonld` at version `trace-spec-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 3 - TRACE-PERMISSIBLE-JSON-LD`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
@@ -148,6 +149,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-reverse-in-body.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `trace-spec-2026-04-19` | the default |
 | Target tier | `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments

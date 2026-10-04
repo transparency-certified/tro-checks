@@ -52,7 +52,7 @@ $ report_on instance-capability-absolute.jsonld
 
 wrote tmp/instance-capability-absolute.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS met
 
-# Report on `instance-capability-absolute.jsonld`
+# Report on `instance-capability-absolute.jsonld` at version `0.1`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 5 - DEFINES-TRS` at version `0.1`. The candidate meets every expectation in that tier and in the four tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
@@ -60,6 +60,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-capability-absolute.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `0.1` | the `--target-version` option |
 | Target tier | `Tier 5 - DEFINES-TRS` | the `--target-tier` option |
 ## Tier Assessments
@@ -203,7 +204,7 @@ $ report_on instance-capability-relative.jsonld
 
 wrote tmp/instance-capability-relative.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS unmet
 
-# Report on `instance-capability-relative.jsonld`
+# Report on `instance-capability-relative.jsonld` at version `0.1`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 5 - DEFINES-TRS` at version `0.1`. The candidate does not meet one of the expectations in `Tier 5 - DEFINES-TRS`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
@@ -211,6 +212,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-capability-relative.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `0.1` | the `--target-version` option |
 | Target tier | `Tier 5 - DEFINES-TRS` | the `--target-tier` option |
 ## Tier Assessments

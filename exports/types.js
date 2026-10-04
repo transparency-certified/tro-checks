@@ -42,6 +42,8 @@ module.exports = {}
  * @property {string}                         path
  * @property {string}                         [title]     what the summary of reports calls it, where the manifest gives one
  * @property {string}                         [description]
+ * @property {string}                         [createdWith]  the tools its TRO states it was created with, as names
+ *   and versions, where it states any
  * @property {'manifest'|'option'}            [descriptionSource]  where the description came from, where there is one
  * @property {Tier}                           targetTier
  * @property {Version}                        targetVersion  the version of the Specification the target tier is claimed under

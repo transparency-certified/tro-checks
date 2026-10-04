@@ -27,7 +27,7 @@ $ report_on instance-base-declared.jsonld
 
 wrote tmp/instance-base-declared.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS met, Tier 6 - STANDALONE-TRO met, Tier 7 - LINKABLE-TRO met
 
-# Report on `instance-base-declared.jsonld`
+# Report on `instance-base-declared.jsonld` at version `trace-spec-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 7 - LINKABLE-TRO` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the six tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
@@ -35,6 +35,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-base-declared.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `trace-spec-2026-04-19` | the default |
 | Target tier | `Tier 7 - LINKABLE-TRO` | the `--target-tier` option |
 ## Tier Assessments
@@ -147,7 +148,7 @@ $ report_on instance-no-base.jsonld
 
 wrote tmp/instance-no-base.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS met, Tier 6 - STANDALONE-TRO met, Tier 7 - LINKABLE-TRO unmet
 
-# Report on `instance-no-base.jsonld`
+# Report on `instance-no-base.jsonld` at version `trace-spec-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 7 - LINKABLE-TRO` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 7 - LINKABLE-TRO`. A further three expectations were not assessed, because a tier below them, or an expectation they require, was not met.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
@@ -155,6 +156,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-no-base.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `trace-spec-2026-04-19` | the default |
 | Target tier | `Tier 7 - LINKABLE-TRO` | the `--target-tier` option |
 ## Tier Assessments

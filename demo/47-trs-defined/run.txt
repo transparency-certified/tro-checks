@@ -52,7 +52,7 @@ $ report_on instance-trs-in-place.jsonld
 
 wrote tmp/instance-trs-in-place.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS met
 
-# Report on `instance-trs-in-place.jsonld`
+# Report on `instance-trs-in-place.jsonld` at version `trace-spec-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 5 - DEFINES-TRS` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the four tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
@@ -60,6 +60,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-trs-in-place.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `trace-spec-2026-04-19` | the default |
 | Target tier | `Tier 5 - DEFINES-TRS` | the `--target-tier` option |
 ## Tier Assessments
@@ -201,7 +202,7 @@ $ report_on instance-trs-top-level.jsonld
 
 wrote tmp/instance-trs-top-level.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS met
 
-# Report on `instance-trs-top-level.jsonld`
+# Report on `instance-trs-top-level.jsonld` at version `trace-spec-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 5 - DEFINES-TRS` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the four tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
@@ -209,6 +210,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-trs-top-level.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `trace-spec-2026-04-19` | the default |
 | Target tier | `Tier 5 - DEFINES-TRS` | the `--target-tier` option |
 ## Tier Assessments
@@ -324,7 +326,7 @@ $ report_on instance-trs-certificate.jsonld
 
 wrote tmp/instance-trs-certificate.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS met
 
-# Report on `instance-trs-certificate.jsonld`
+# Report on `instance-trs-certificate.jsonld` at version `trace-spec-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 5 - DEFINES-TRS` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the four tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
@@ -332,6 +334,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-trs-certificate.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `trace-spec-2026-04-19` | the default |
 | Target tier | `Tier 5 - DEFINES-TRS` | the `--target-tier` option |
 ## Tier Assessments
@@ -470,7 +473,7 @@ $ report_on instance-trs-nested.jsonld
 
 wrote tmp/instance-trs-nested.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS unmet
 
-# Report on `instance-trs-nested.jsonld`
+# Report on `instance-trs-nested.jsonld` at version `trace-spec-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 5 - DEFINES-TRS` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 5 - DEFINES-TRS`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
@@ -478,6 +481,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-trs-nested.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `trace-spec-2026-04-19` | the default |
 | Target tier | `Tier 5 - DEFINES-TRS` | the `--target-tier` option |
 ## Tier Assessments
@@ -617,7 +621,7 @@ $ report_on instance-trs-absent.jsonld
 
 wrote tmp/instance-trs-absent.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS unmet
 
-# Report on `instance-trs-absent.jsonld`
+# Report on `instance-trs-absent.jsonld` at version `trace-spec-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
 This candidate is expected to satisfy `Tier 5 - DEFINES-TRS` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 5 - DEFINES-TRS`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
@@ -625,6 +629,7 @@ The sections below give the status of each tier, then the status of each expecta
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-trs-absent.jsonld` |  |
+| Created with | not stated | the candidate |
 | Target version | `trace-spec-2026-04-19` | the default |
 | Target tier | `Tier 5 - DEFINES-TRS` | the `--target-tier` option |
 ## Tier Assessments

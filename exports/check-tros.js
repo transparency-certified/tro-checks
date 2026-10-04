@@ -14,7 +14,7 @@ const { parseArgs } = require('node:util')
 const path = require('node:path')
 
 const checkTro = require('./check-tro.js')
-const { renderSummaryAsMarkdown, renderAllAsMarkdown, tierLabel } = require('./render-report.js')
+const { renderSummaryAsMarkdown, renderIntegratedReportAsMarkdown, tierLabel } = require('./render-report.js')
 
 /** @typedef {import('./types.js').Tier} Tier */
 /** @typedef {import('./types.js').Version} Version */
@@ -36,7 +36,7 @@ const CANDIDATE_SUFFIX = '.jsonld'
 const MANIFEST_NAME = 'manifest.json'
 const REPORT_SUFFIX = '.md'
 const SUMMARY_NAME = 'README.md'
-const ALL_NAME = 'all.md'
+const INTEGRATED_NAME = 'integrated-report.md'
 
 /**
  * @param {string} candidatesDirectory
@@ -191,6 +191,7 @@ function reportOn(candidate, reportsDirectory) {
     const fileName = reportFileNameOf(candidate)
     const reportPath = path.join(reportsDirectory, fileName)
 
+    candidate.createdWith = checkTro.statedCreator(candidate)
     const findings = checkTro.checkCandidateAgainstExpectations(candidate)
     const assessments = checkTro.assessTiers(candidate, findings)
 
@@ -234,14 +235,14 @@ function summarize(written, reportsDirectory) {
     fs.writeFileSync(summaryPath, renderSummaryAsMarkdown(written))
     process.stdout.write(`wrote ${summaryPath}; ${written.length} ${written.length === 1 ? 'report' : 'reports'}\n`)
 
-    const allPath = path.join(reportsDirectory, ALL_NAME)
-    fs.writeFileSync(allPath, renderAllAsMarkdown(written))
-    process.stdout.write(`wrote ${allPath}; the summary and every report in one document\n`)
+    const integratedPath = path.join(reportsDirectory, INTEGRATED_NAME)
+    fs.writeFileSync(integratedPath, renderIntegratedReportAsMarkdown(written))
+    process.stdout.write(`wrote ${integratedPath}; the summary and every report in one document\n`)
 
     const writtenNames = written.map((report) => report.fileName)
     const leftOver = fs
         .readdirSync(reportsDirectory)
-        .filter((name) => name.endsWith(REPORT_SUFFIX) && ![SUMMARY_NAME, ALL_NAME].includes(name)
+        .filter((name) => name.endsWith(REPORT_SUFFIX) && ![SUMMARY_NAME, INTEGRATED_NAME].includes(name)
             && !writtenNames.includes(name))
         .sort()
 
