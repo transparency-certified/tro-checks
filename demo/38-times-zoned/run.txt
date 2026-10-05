@@ -683,7 +683,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: times-zoned
 Detailed expectation: Every trov:startedAtTime and trov:endedAtTime carries its time zone: Z, or an offset of the form +hh:mm or -hh:mm.
 Defined in version: `0.1`

@@ -243,7 +243,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: context-aliases-absent
 Detailed expectation: No object the @context gives for a property has an @id, so no name in the file stands in for a property of another name. A declaration's property names are therefore spelled the same in the JSON as in the vocabulary, and a reader of the plain JSON and a reader of the RDF see the same keys.
 Defined in version: `trace-spec-2026-04-19`

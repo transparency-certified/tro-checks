@@ -459,7 +459,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: trs-id-absolute
 Detailed expectation: The @id of the TRS the document defines is an absolute IRI, or a compact IRI whose prefix is not trov, so that it is the same wherever the TRS is defined.
 Defined in version: `0.1`
@@ -618,7 +618,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: trs-id-absolute
 Detailed expectation: The @id of the TRS the document defines is an absolute IRI, or a compact IRI whose prefix is not trov, so that it is the same wherever the TRS is defined.
 Defined in version: `0.1`

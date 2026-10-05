@@ -236,7 +236,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: trov-terms-known
 Detailed expectation: Where a property name or a string value carries the trov: prefix, it is a term TROV defines.
 Defined in version: `trace-spec-2026-04-19`
@@ -477,7 +477,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: trov-terms-known
 Detailed expectation: Where a property name or a string value carries the trov: prefix, it is a term TROV defines.
 Defined in version: `trace-spec-2026-04-19`
@@ -718,7 +718,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: trov-terms-known
 Detailed expectation: Where a property name or a string value carries the trov: prefix, it is a term TROV defines.
 Defined in version: `trace-spec-2026-04-19`
@@ -959,7 +959,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: trov-terms-known
 Detailed expectation: Where a property name or a string value carries the trov: prefix, it is a term TROV defines.
 Defined in version: `trace-spec-2026-04-19`
@@ -1203,7 +1203,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: trov-terms-known
 Detailed expectation: Where a property name or a string value carries the trov: prefix, it is a term TROV defines.
 Defined in version: `0.1`

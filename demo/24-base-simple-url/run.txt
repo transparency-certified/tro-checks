@@ -229,7 +229,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: base-simple-url
 Detailed expectation: Where an @context declares an @base as a string, the @base is a simple URL. It names a host, uses only characters allowed in a URL, ends in /, and has a path whose segments are portable names: letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit. It carries no user name or password, no . or .. segments, and no ? or #.
 Defined in version: `trace-spec-2026-04-19`
@@ -350,7 +350,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: base-simple-url
 Detailed expectation: Where an @context declares an @base as a string, the @base is a simple URL. It names a host, uses only characters allowed in a URL, ends in /, and has a path whose segments are portable names: letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit. It carries no user name or password, no . or .. segments, and no ? or #.
 Defined in version: `trace-spec-2026-04-19`
@@ -470,7 +470,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: base-simple-url
 Detailed expectation: Where an @context declares an @base as a string, the @base is a simple URL. It names a host, uses only characters allowed in a URL, ends in /, and has a path whose segments are portable names: letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit. It carries no user name or password, no . or .. segments, and no ? or #.
 Defined in version: `trace-spec-2026-04-19`
@@ -591,7 +591,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: base-simple-url
 Detailed expectation: Where an @context declares an @base as a string, the @base is a simple URL. It names a host, uses only characters allowed in a URL, ends in /, and has a path whose segments are portable names: letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit. It carries no user name or password, no . or .. segments, and no ? or #.
 Defined in version: `trace-spec-2026-04-19`
@@ -712,7 +712,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: base-simple-url
 Detailed expectation: Where an @context declares an @base as a string, the @base is a simple URL. It names a host, uses only characters allowed in a URL, ends in /, and has a path whose segments are portable names: letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit. It carries no user name or password, no . or .. segments, and no ? or #.
 Defined in version: `trace-spec-2026-04-19`
@@ -833,7 +833,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: base-simple-url
 Detailed expectation: Where an @context declares an @base as a string, the @base is a simple URL. It names a host, uses only characters allowed in a URL, ends in /, and has a path whose segments are portable names: letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit. It carries no user name or password, no . or .. segments, and no ? or #.
 Defined in version: `trace-spec-2026-04-19`

@@ -233,7 +233,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: remote-contexts-absent
 Detailed expectation: The top-level @context is not a string, and where it is an array, no member of the array is a string. In JSON-LD a string there is the web address of a context to be fetched, so what the file means would depend on what that address returns when it is read. Any string is refused, whether or not it looks like a URL. Contexts below the top level are refused by context-at-root-only.
 Defined in version: `trace-spec-2026-04-19`
@@ -359,7 +359,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: remote-contexts-absent
 Detailed expectation: The top-level @context is not a string, and where it is an array, no member of the array is a string. In JSON-LD a string there is the web address of a context to be fetched, so what the file means would depend on what that address returns when it is read. Any string is refused, whether or not it looks like a URL. Contexts below the top level are refused by context-at-root-only.
 Defined in version: `trace-spec-2026-04-19`

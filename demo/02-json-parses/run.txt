@@ -326,7 +326,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: json-parses
 Detailed expectation: The candidate's text parses as a single JSON value, with nothing before or after it, without errors. Parsing checks syntax only: a candidate that parses can still hold a \u escape spelling half a Unicode character, which unicode-escapes-spell-whole-characters is the rule for.
 Defined in version: `trace-spec-2026-04-19`
@@ -444,7 +444,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: json-parses
 Detailed expectation: The candidate's text parses as a single JSON value, with nothing before or after it, without errors. Parsing checks syntax only: a candidate that parses can still hold a \u escape spelling half a Unicode character, which unicode-escapes-spell-whole-characters is the rule for.
 Defined in version: `trace-spec-2026-04-19`
@@ -557,7 +557,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: json-parses
 Detailed expectation: The candidate's text parses as a single JSON value, with nothing before or after it, without errors. Parsing checks syntax only: a candidate that parses can still hold a \u escape spelling half a Unicode character, which unicode-escapes-spell-whole-characters is the rule for.
 Defined in version: `trace-spec-2026-04-19`

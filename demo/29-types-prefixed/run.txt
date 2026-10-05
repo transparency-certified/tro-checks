@@ -238,7 +238,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: types-prefixed-or-absolute
 Detailed expectation: Outside the @context, every @type value is a compact IRI written with a prefix, or an absolute IRI: it has a colon before any slash. A bare name such as Thing would be resolved against the @base, naming a class nobody defined, without an error from any processor. Whether the prefix is declared is a separate expectation.
 Defined in version: `trace-spec-2026-04-19`
@@ -364,7 +364,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: types-prefixed-or-absolute
 Detailed expectation: Outside the @context, every @type value is a compact IRI written with a prefix, or an absolute IRI: it has a colon before any slash. A bare name such as Thing would be resolved against the @base, naming a class nobody defined, without an error from any processor. Whether the prefix is declared is a separate expectation.
 Defined in version: `trace-spec-2026-04-19`

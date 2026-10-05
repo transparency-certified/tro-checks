@@ -247,7 +247,7 @@ The sections below give the status of each tier, then the status of each expecta
 | `base-host-ownable` | The `@base` host is a domain name the minter could hold, not a reserved or documentation name | ✅ met |
 | `node-ids-present` | Every node carries an explicit `@id` | ✅ met |
 | `blank-node-ids-absent` | No `@id` is a blank node identifier | ✅ met |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: base-has-path
 Detailed expectation: Where an @context declares a non-null @base, it names something below the host: at least one path segment follows the authority. A base that is only a host is shared by every TRO its system mints, so all their element identifiers collide.
 Defined in version: `trace-spec-2026-04-19`

@@ -243,7 +243,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: context-datatypes-named-by-iri
 Detailed expectation: Where an object the @context gives for a property has a @type, it is a string naming a datatype by an absolute IRI or by a prefixed name, never a keyword such as @vocab, @json or @none.
 Defined in version: `trace-spec-2026-04-19`

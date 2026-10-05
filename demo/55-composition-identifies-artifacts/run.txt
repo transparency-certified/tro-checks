@@ -293,7 +293,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: composition-identifies-artifacts
 Detailed expectation: Where the TRO carries a trov:hasComposition, the composition carries trov:hasArtifact, an array holding at least one artifact.
 Defined in version: `trace-spec-2026-04-19`
@@ -434,7 +434,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: composition-identifies-artifacts
 Detailed expectation: Where the TRO carries a trov:hasComposition, the composition carries trov:hasArtifact, an array holding at least one artifact.
 Defined in version: `trace-spec-2026-04-19`

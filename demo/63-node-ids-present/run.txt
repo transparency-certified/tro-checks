@@ -269,7 +269,7 @@ The sections below give the status of each tier, then the status of each expecta
 | `base-host-ownable` | The `@base` host is a domain name the minter could hold, not a reserved or documentation name | ✅ met |
 | `node-ids-present` | Every node carries an explicit `@id` | ❌ not met |
 | `blank-node-ids-absent` | No `@id` is a blank node identifier | ✅ met |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: node-ids-present
 Detailed expectation: Every node object carries an explicit @id.
 Defined in version: `trace-spec-2026-04-19`

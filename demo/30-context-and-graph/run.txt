@@ -246,7 +246,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: context-and-nonempty-graph-present
 Detailed expectation: The file has an @context that is not null and not [null], and an @graph holding at least one node. A document that uses TROV needs a context to say what trov: stands for, and in a `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` document its nodes can only be in an @graph. A document with no context, or no nodes, uses no TROV and so does not use it correctly.
 Defined in version: `trace-spec-2026-04-19`
@@ -366,7 +366,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: context-and-nonempty-graph-present
 Detailed expectation: The file has an @context that is not null and not [null], and an @graph holding at least one node. A document that uses TROV needs a context to say what trov: stands for, and in a `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` document its nodes can only be in an @graph. A document with no context, or no nodes, uses no TROV and so does not use it correctly.
 Defined in version: `trace-spec-2026-04-19`
@@ -487,7 +487,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: context-and-nonempty-graph-present
 Detailed expectation: The file has an @context that is not null and not [null], and an @graph holding at least one node. A document that uses TROV needs a context to say what trov: stands for, and in a `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` document its nodes can only be in an @graph. A document with no context, or no nodes, uses no TROV and so does not use it correctly.
 Defined in version: `trace-spec-2026-04-19`

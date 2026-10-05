@@ -555,7 +555,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: trov-signing-mechanisms-predefined
 Detailed expectation: Every value of trov:signingMechanism identifies its mechanism by reference, {"@id": …}, and a trov: one is a mechanism TROV predefines: trov:X509CMSSigning or trov:GPGSigning. A mechanism in any other namespace is a custom one and is not judged here.
 Defined in version: `trace-spec-2026-04-19`
@@ -744,7 +744,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: trov-signing-mechanisms-predefined
 Detailed expectation: Every value of trov:signingMechanism identifies its mechanism by reference, {"@id": …}, and a trov: one is a mechanism TROV predefines: trov:X509CMSSigning or trov:GPGSigning. A mechanism in any other namespace is a custom one and is not judged here.
 Defined in version: `trace-spec-2026-04-19`

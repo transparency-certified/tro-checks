@@ -247,7 +247,7 @@ The sections below give the status of each tier, then the status of each expecta
 | `base-host-ownable` | The `@base` host is a domain name the minter could hold, not a reserved or documentation name | ❌ not met |
 | `node-ids-present` | Every node carries an explicit `@id` | ✅ met |
 | `blank-node-ids-absent` | No `@id` is a blank node identifier | ✅ met |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: base-host-ownable
 Detailed expectation: Where an @context declares a non-null @base, its host is a domain name the minter could hold: a dotted name whose labels a registrar would accept, and not one of the names reserved so that nobody can ever hold them. A base under a reserved name cannot be under the control of the TRO's minter, which is a fact the RFCs record rather than a rule TRACE makes. The reserved list is RFC 2606 and 6761's .test, .example, .invalid and .localhost with example.com, example.net and example.org, RFC 6762's .local, RFC 8375's home.arpa, RFC 9476's .alt, and .internal, which ICANN reserved by board resolution rather than by RFC. The patterns read lowercase names; an uppercase spelling is refused by base-host-lowercase.
 Defined in version: `trace-spec-2026-04-19`
@@ -376,7 +376,7 @@ The sections below give the status of each tier, then the status of each expecta
 | `base-host-ownable` | The `@base` host is a domain name the minter could hold, not a reserved or documentation name | ❌ not met |
 | `node-ids-present` | Every node carries an explicit `@id` | ✅ met |
 | `blank-node-ids-absent` | No `@id` is a blank node identifier | ✅ met |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: base-host-ownable
 Detailed expectation: Where an @context declares a non-null @base, its host is a domain name the minter could hold: a dotted name whose labels a registrar would accept, and not one of the names reserved so that nobody can ever hold them. A base under a reserved name cannot be under the control of the TRO's minter, which is a fact the RFCs record rather than a rule TRACE makes. The reserved list is RFC 2606 and 6761's .test, .example, .invalid and .localhost with example.com, example.net and example.org, RFC 6762's .local, RFC 8375's home.arpa, RFC 9476's .alt, and .internal, which ICANN reserved by board resolution rather than by RFC. The patterns read lowercase names; an uppercase spelling is refused by base-host-lowercase.
 Defined in version: `trace-spec-2026-04-19`

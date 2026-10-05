@@ -498,7 +498,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: times-iso-8601
 Detailed expectation: Every trov:startedAtTime and trov:endedAtTime is an ISO 8601 date-time, YYYY-MM-DDThh:mm:ss with an optional fraction of a second and an optional zone, wherever it appears; the TRO's schema:dateCreated, if present, is an ISO 8601 date or date-time, as schema.org defines it. A schema:dateCreated on any other node is not judged: it is schema.org used outside anything TROV specifies.
 Defined in version: `trace-spec-2026-04-19`
@@ -670,7 +670,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: times-iso-8601
 Detailed expectation: Every trov:startedAtTime and trov:endedAtTime is an ISO 8601 date-time, YYYY-MM-DDThh:mm:ss with an optional fraction of a second and an optional zone, wherever it appears; the TRO's schema:dateCreated, if present, is an ISO 8601 date or date-time, as schema.org defines it. A schema:dateCreated on any other node is not judged: it is schema.org used outside anything TROV specifies.
 Defined in version: `trace-spec-2026-04-19`

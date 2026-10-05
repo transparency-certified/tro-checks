@@ -251,7 +251,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: core-prefixes-pinned
 Detailed expectation: The root @context declares the trov prefix, mapping it to the namespace of a known version of TROV (https://w3id.org/trace/trov/0.1#), and where it declares rdf, rdfs or schema, each maps to exactly the namespace the Declaration Format's @context block gives it: rdf to http://www.w3.org/1999/02/22-rdf-syntax-ns#, rdfs to http://www.w3.org/2000/01/rdf-schema#, and schema to https://schema.org/. Every check that reads a term with the trov: prefix out of the JSON relies on this pin to mean the TROV term of that name; a term under any other prefix is not read as TROV, whatever namespace that prefix maps to. Only the root @context is examined: by `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` there is no other.
 Defined in version: `trace-spec-2026-04-19`
@@ -382,7 +382,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: core-prefixes-pinned
 Detailed expectation: The root @context declares the trov prefix, mapping it to the namespace of a known version of TROV (https://w3id.org/trace/trov/0.1#), and where it declares rdf, rdfs or schema, each maps to exactly the namespace the Declaration Format's @context block gives it: rdf to http://www.w3.org/1999/02/22-rdf-syntax-ns#, rdfs to http://www.w3.org/2000/01/rdf-schema#, and schema to https://schema.org/. Every check that reads a term with the trov: prefix out of the JSON relies on this pin to mean the TROV term of that name; a term under any other prefix is not read as TROV, whatever namespace that prefix maps to. Only the root @context is examined: by `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` there is no other.
 Defined in version: `trace-spec-2026-04-19`
@@ -507,7 +507,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: core-prefixes-pinned
 Detailed expectation: The root @context declares the trov prefix, mapping it to the namespace of a known version of TROV (https://w3id.org/trace/trov/0.1#), and where it declares rdf, rdfs or schema, each maps to exactly the namespace the Declaration Format's @context block gives it: rdf to http://www.w3.org/1999/02/22-rdf-syntax-ns#, rdfs to http://www.w3.org/2000/01/rdf-schema#, and schema to https://schema.org/. Every check that reads a term with the trov: prefix out of the JSON relies on this pin to mean the TROV term of that name; a term under any other prefix is not read as TROV, whatever namespace that prefix maps to. Only the root @context is examined: by `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` there is no other.
 Defined in version: `trace-spec-2026-04-19`
@@ -639,7 +639,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: core-prefixes-pinned
 Detailed expectation: The root @context declares the trov prefix, mapping it to the namespace of a known version of TROV (https://w3id.org/trace/trov/0.1#), and where it declares rdf, rdfs or schema, each maps to exactly the namespace the Declaration Format's @context block gives it: rdf to http://www.w3.org/1999/02/22-rdf-syntax-ns#, rdfs to http://www.w3.org/2000/01/rdf-schema#, and schema to https://schema.org/. Every check that reads a term with the trov: prefix out of the JSON relies on this pin to mean the TROV term of that name; a term under any other prefix is not read as TROV, whatever namespace that prefix maps to. Only the root @context is examined: by `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` there is no other.
 Defined in version: `trace-spec-2026-04-19`

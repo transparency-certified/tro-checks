@@ -74,6 +74,30 @@ function allDiagnosticsAnchor(placement) {
 }
 
 /**
+ * The title of one of the report's sections, saying among other reports which report it belongs to, so that a reader
+ * arriving by a link, or scrolling, knows where they are.
+ * @param {string}    title
+ * @param {Placement} placement
+ * @returns {string}
+ */
+function sectionTitle(title, placement) {
+    const { position } = placement
+    return position ? `Report ${position.number} of ${position.of}: ${title}` : title
+}
+
+/**
+ * The title of the report's diagnostics section, saying how many expectations it covers.
+ * @param {number}    unmetCount
+ * @param {Placement} placement
+ * @returns {string}
+ */
+function diagnosticsTitle(unmetCount, placement) {
+    return sectionTitle(unmetCount === 1
+        ? 'Diagnostics for the Unmet Expectation'
+        : `Diagnostics for the ${unmetCount} Unmet Expectations`, placement)
+}
+
+/**
  * @param {number}    level      the heading's level in a report in a file of its own
  * @param {string}    text
  * @param {Placement} placement
@@ -524,7 +548,7 @@ function candidateLines(candidate, dialect, placement) {
     rows.push({ cells: [
         { atom: 'Target tier' }, { id: tierLabel(targetTier) }, declaredBy(candidate.targetTierSource, '--target-tier')] })
 
-    return [heading(2, 'Candidate Information', placement), '', ...dialect.table(['', '', 'Declared by'], rows)]
+    return [heading(2, sectionTitle('Candidate Information', placement), placement), '', ...dialect.table(['', '', 'Declared by'], rows)]
 }
 
 /**
@@ -788,11 +812,11 @@ function renderReportAsMarkdown(candidate, findings, assessments, compactly, pla
         '',
         ...candidateLines(candidate, dialect, placement),
         '',
-        heading(2, 'Tier Assessments', placement),
+        heading(2, sectionTitle('Tier Assessments', placement), placement),
         '',
         ...tierTableLines(tiers, assessments, dialect, placement),
         '',
-        heading(2, 'Expectation Findings by Tier', placement),
+        heading(2, sectionTitle('Expectation Findings by Tier', placement), placement),
         '',
         ...tierFindingsLines(tiers, findings, assessments, dialect, placement),
     ]
@@ -800,7 +824,7 @@ function renderReportAsMarkdown(candidate, findings, assessments, compactly, pla
     const unmetFindings = findings.filter((finding) => finding.outcome === 'unmet')
     if (unmetFindings.length > 0) {
         if (!compactly) reportLines.push('', `<a id="${allDiagnosticsAnchor(placement)}"></a>`)
-        reportLines.push('', heading(2, 'Diagnostics for Each Unmet Expectation', placement))
+        reportLines.push('', heading(2, diagnosticsTitle(unmetFindings.length, placement), placement))
         for (const finding of unmetFindings) {
             reportLines.push('', ...unmetExpectationLines(finding, dialect, placement, !compactly))
         }

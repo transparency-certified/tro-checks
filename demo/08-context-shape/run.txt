@@ -221,7 +221,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: context-object-array-or-null
 Detailed expectation: Where the document carries an @context at its top level, the value is a context object, an array of context objects, or null. An array may also hold null, which JSON-LD reads as clearing what came before it. A string, which JSON-LD reads as the web address of a context to fetch, is reported by remote-contexts-absent, so this expectation is assessed only once that one is met.
 Defined in version: `trace-spec-2026-04-19`
@@ -452,7 +452,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: context-object-array-or-null
 Detailed expectation: Where the document carries an @context at its top level, the value is a context object, an array of context objects, or null. An array may also hold null, which JSON-LD reads as clearing what came before it. A string, which JSON-LD reads as the web address of a context to fetch, is reported by remote-contexts-absent, so this expectation is assessed only once that one is met.
 Defined in version: `trace-spec-2026-04-19`

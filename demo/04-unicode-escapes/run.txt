@@ -225,7 +225,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: unicode-escapes-spell-whole-characters
 Detailed expectation: No string or member name holds a \u escape in the range \uD800 to \uDFFF without its pair. Such an escape spells half a Unicode character, so the text is not valid Unicode and cannot be written as UTF-8. Escapes are how such a character reaches a candidate that utf8-encoded accepts, since no valid UTF-8 byte sequence can carry one. Only escapes are judged here: bytes that are not valid UTF-8 are utf8-encoded's, and the noncharacters are valid text and are not refused. RFC 8259 admits an unpaired surrogate in its own grammar, so a conformant parser accepts one and implementations then differ over what they do with a string they cannot encode; I-JSON (RFC 7493) is the profile that forbids it.
 Defined in version: `trace-spec-2026-04-19`
@@ -343,7 +343,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: unicode-escapes-spell-whole-characters
 Detailed expectation: No string or member name holds a \u escape in the range \uD800 to \uDFFF without its pair. Such an escape spells half a Unicode character, so the text is not valid Unicode and cannot be written as UTF-8. Escapes are how such a character reaches a candidate that utf8-encoded accepts, since no valid UTF-8 byte sequence can carry one. Only escapes are judged here: bytes that are not valid UTF-8 are utf8-encoded's, and the noncharacters are valid text and are not refused. RFC 8259 admits an unpaired surrogate in its own grammar, so a conformant parser accepts one and implementations then differ over what they do with a string they cannot encode; I-JSON (RFC 7493) is the profile that forbids it.
 Defined in version: `trace-spec-2026-04-19`

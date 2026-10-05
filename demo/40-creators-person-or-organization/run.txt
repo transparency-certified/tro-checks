@@ -522,7 +522,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: creators-person-or-organization
 Detailed expectation: Where the TRO carries schema:creator, each value is a node -- an object, not a string -- and where the node carries a @type, it is schema:Person or schema:Organization, the types schema.org expects of a creator. A bare reference, an object holding only an @id, passes.
 Defined in version: `0.1`
@@ -703,7 +703,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: creators-person-or-organization
 Detailed expectation: Where the TRO carries schema:creator, each value is a node -- an object, not a string -- and where the node carries a @type, it is schema:Person or schema:Organization, the types schema.org expects of a creator. A bare reference, an object holding only an @id, passes.
 Defined in version: `0.1`

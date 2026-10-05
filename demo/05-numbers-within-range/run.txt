@@ -230,7 +230,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: numbers-within-range
 Detailed expectation: Every number in the candidate is within the range of an IEEE 754 double, and every integer is between -(2^53 - 1) and 2^53 - 1, so no parser rounds it.
 Defined in version: `trace-spec-2026-04-19`
@@ -348,7 +348,7 @@ The sections below give the status of each tier, then the status of each expecta
 | *`base-host-ownable`* | *The `@base` host is a domain name the minter could hold, not a reserved or documentation name* | *not claimed* |
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
-## Diagnostics for Each Unmet Expectation
+## Diagnostics for the Unmet Expectation
 ### Unmet expectation: numbers-within-range
 Detailed expectation: Every number in the candidate is within the range of an IEEE 754 double, and every integer is between -(2^53 - 1) and 2^53 - 1, so no parser rounds it.
 Defined in version: `trace-spec-2026-04-19`
