@@ -511,8 +511,8 @@ function parsedCandidate(candidate) {
 
 /**
  * What the candidate states it was created with: each tool its TRO's trov:createdWith names, by its schema:name and
- * schema:softwareVersion, following a reference to a node elsewhere in the graph. A claim of the candidate's, reported
- * as such, and nothing a check relies on.
+ * schema:softwareVersion, following a reference to the node it names, wherever in the document that node is described.
+ * A claim of the candidate's, reported as such, and nothing a check relies on.
  * @param {Candidate} candidate
  * @returns {string|undefined}  the tools, separated by commas; undefined where the candidate states none, or cannot be
  *   read as JSON
@@ -529,10 +529,24 @@ function statedCreator(candidate) {
         /** @type {*[]} */ ([]).concat(node?.['@type'] ?? []).includes('trov:TransparentResearchObject'))
     if (tro === undefined) return undefined
 
-    const tools = /** @type {*[]} */ ([]).concat(tro['trov:createdWith'] ?? []).map((/** @type {*} */ tool) => {
-        const isReference = tool !== null && typeof tool === 'object' && Object.keys(tool).join() === '@id'
-        return isReference ? graph.find((node) => node?.['@id'] === tool['@id']) ?? tool : tool
-    })
+    const isObject = (/** @type {*} */ value) => value !== null && typeof value === 'object' && !Array.isArray(value)
+    const isReference = (/** @type {*} */ value) => isObject(value) && Object.keys(value).join() === '@id'
+
+    // Every node described in the document, by its @id: a node is the same node wherever it is described.
+    /** @type {Map<string, *>} */ const described = new Map()
+    const collect = (/** @type {*} */ value) => {
+        if (Array.isArray(value)) {
+            value.forEach(collect)
+        } else if (isObject(value)) {
+            const id = value['@id']
+            if (typeof id === 'string' && !isReference(value) && !described.has(id)) described.set(id, value)
+            Object.values(value).forEach(collect)
+        }
+    }
+    collect(document)
+
+    const tools = /** @type {*[]} */ ([]).concat(tro['trov:createdWith'] ?? []).map((/** @type {*} */ tool) =>
+        isReference(tool) ? described.get(tool['@id']) ?? tool : tool)
     const named = tools.flatMap((tool) => {
         const name = tool?.['schema:name']
         const version = tool?.['schema:softwareVersion']
