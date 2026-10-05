@@ -29,16 +29,16 @@ $ report_on instance-context-and-graph.jsonld
 
 wrote tmp/instance-context-and-graph.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
 
-# Report on `instance-context-and-graph.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-context-and-graph.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the three tiers below it.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the three tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-context-and-graph.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -148,16 +148,16 @@ $ report_on instance-null-context.jsonld
 
 wrote tmp/instance-null-context.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report on `instance-null-context.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-null-context.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-null-context.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -249,7 +249,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: context-and-nonempty-graph-present
 Detailed expectation: The file has an @context that is not null and not [null], and an @graph holding at least one node. A document that uses TROV needs a context to say what trov: stands for, and in a `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` document its nodes can only be in an @graph. A document with no context, or no nodes, uses no TROV and so does not use it correctly.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `null` | `/@context` | the @context is not null |
@@ -268,16 +268,16 @@ $ report_on instance-no-graph.jsonld
 
 wrote tmp/instance-no-graph.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report on `instance-no-graph.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-no-graph.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-no-graph.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -369,7 +369,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: context-and-nonempty-graph-present
 Detailed expectation: The file has an @context that is not null and not [null], and an @graph holding at least one node. A document that uses TROV needs a context to say what trov: stands for, and in a `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` document its nodes can only be in an @graph. A document with no context, or no nodes, uses no TROV and so does not use it correctly.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@context":{"rdf":"http://www.w3.org/1999/02/22-rdf-syntax-ns#","rdfs":"http://www.w3.org/2000/01/rdf-schema#","trov":"https://w3id.org/trace/trov/0.1#","schema":"https://schema.org/"}}` | the document | the file has an @graph |
@@ -389,16 +389,16 @@ $ report_on instance-empty-graph.jsonld
 
 wrote tmp/instance-empty-graph.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report on `instance-empty-graph.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-empty-graph.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-empty-graph.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -490,7 +490,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: context-and-nonempty-graph-present
 Detailed expectation: The file has an @context that is not null and not [null], and an @graph holding at least one node. A document that uses TROV needs a context to say what trov: stands for, and in a `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` document its nodes can only be in an @graph. A document with no context, or no nodes, uses no TROV and so does not use it correctly.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `[]` | `/@graph` | the @graph holds at least one node |

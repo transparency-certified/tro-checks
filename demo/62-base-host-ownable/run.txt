@@ -27,16 +27,16 @@ $ report_on instance-ownable-host.jsonld
 
 wrote tmp/instance-ownable-host.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS met, Tier 6 - STANDALONE-TRO met, Tier 7 - LINKABLE-TRO met
 
-# Report on `instance-ownable-host.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-ownable-host.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 7 - LINKABLE-TRO` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the six tiers below it.
+This candidate is expected to satisfy `Tier 7 - LINKABLE-TRO` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the six tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-ownable-host.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 7 - LINKABLE-TRO` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -149,16 +149,16 @@ $ report_on instance-documentation-host.jsonld
 
 wrote tmp/instance-documentation-host.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS met, Tier 6 - STANDALONE-TRO met, Tier 7 - LINKABLE-TRO unmet
 
-# Report on `instance-documentation-host.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-documentation-host.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 7 - LINKABLE-TRO` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 7 - LINKABLE-TRO`.
+This candidate is expected to satisfy `Tier 7 - LINKABLE-TRO` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 7 - LINKABLE-TRO`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-documentation-host.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 7 - LINKABLE-TRO` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -250,7 +250,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: base-host-ownable
 Detailed expectation: Where an @context declares a non-null @base, its host is a domain name the minter could hold: a dotted name whose labels a registrar would accept, and not one of the names reserved so that nobody can ever hold them. A base under a reserved name cannot be under the control of the TRO's minter, which is a fact the RFCs record rather than a rule TRACE makes. The reserved list is RFC 2606 and 6761's .test, .example, .invalid and .localhost with example.com, example.net and example.org, RFC 6762's .local, RFC 8375's home.arpa, RFC 9476's .alt, and .internal, which ICANN reserved by board resolution rather than by RFC. The patterns read lowercase names; an uppercase spelling is refused by base-host-lowercase.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"https://tro.example.org/tro/1/"` | `/@context/@base` | an @base host is not under example.com, example.net or example.org |
@@ -278,16 +278,16 @@ $ report_on instance-bare-label-host.jsonld
 
 wrote tmp/instance-bare-label-host.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS met, Tier 6 - STANDALONE-TRO met, Tier 7 - LINKABLE-TRO unmet
 
-# Report on `instance-bare-label-host.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-bare-label-host.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 7 - LINKABLE-TRO` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 7 - LINKABLE-TRO`.
+This candidate is expected to satisfy `Tier 7 - LINKABLE-TRO` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 7 - LINKABLE-TRO`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-bare-label-host.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 7 - LINKABLE-TRO` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -379,7 +379,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: base-host-ownable
 Detailed expectation: Where an @context declares a non-null @base, its host is a domain name the minter could hold: a dotted name whose labels a registrar would accept, and not one of the names reserved so that nobody can ever hold them. A base under a reserved name cannot be under the control of the TRO's minter, which is a fact the RFCs record rather than a rule TRACE makes. The reserved list is RFC 2606 and 6761's .test, .example, .invalid and .localhost with example.com, example.net and example.org, RFC 6762's .local, RFC 8375's home.arpa, RFC 9476's .alt, and .internal, which ICANN reserved by board resolution rather than by RFC. The patterns read lowercase names; an uppercase spelling is refused by base-host-lowercase.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"https://trs/tro/1/"` | `/@context/@base` | an @base host is a dotted domain name whose labels a registrar would accept -- not an address, not a bare label, and no label beginning or ending with a hyphen |

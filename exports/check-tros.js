@@ -174,11 +174,12 @@ function sayWhatWasSkipped(candidatesManifest, candidatesDirectory) {
 
 /**
  * @param {Candidate} candidate
- * @returns {string}  the name of the file its report is written to: its own name, its target version, and the
- *   number of its target tier
+ * @returns {string}  the name of the file its report is written to, reading as what was checked: the candidate at its
+ *   target version, to its target tier -- 02-readme-trs-declaration__at__trace-0.1__to__tier-6.md
  */
 function reportFileNameOf(candidate) {
-    return `${candidate.name}_${candidate.targetVersion.id}_tier-${candidate.targetTier.number}${REPORT_SUFFIX}`
+    const { name, targetVersion, targetTier } = candidate
+    return `${name}__at__${targetVersion.id}__to__tier-${targetTier.number}${REPORT_SUFFIX}`
 }
 
 /**

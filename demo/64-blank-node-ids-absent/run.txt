@@ -27,16 +27,16 @@ $ report_on instance-named-ids.jsonld
 
 wrote tmp/instance-named-ids.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS met, Tier 6 - STANDALONE-TRO met, Tier 7 - LINKABLE-TRO met
 
-# Report on `instance-named-ids.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-named-ids.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 7 - LINKABLE-TRO` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the six tiers below it.
+This candidate is expected to satisfy `Tier 7 - LINKABLE-TRO` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the six tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-named-ids.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 7 - LINKABLE-TRO` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -158,16 +158,16 @@ $ report_on instance-blank-node-id.jsonld
 
 wrote tmp/instance-blank-node-id.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS met, Tier 6 - STANDALONE-TRO met, Tier 7 - LINKABLE-TRO unmet
 
-# Report on `instance-blank-node-id.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-blank-node-id.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 7 - LINKABLE-TRO` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 7 - LINKABLE-TRO`.
+This candidate is expected to satisfy `Tier 7 - LINKABLE-TRO` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 7 - LINKABLE-TRO`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-blank-node-id.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 7 - LINKABLE-TRO` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -259,7 +259,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: blank-node-ids-absent
 Detailed expectation: Outside the @context, no @id is a blank node identifier. A blank node label is scoped to the document it appears in and any processor may rename it, so an element carrying one cannot be pointed at from outside -- the opposite of what this tier promises.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"_:p1"` | `/@graph/0/trov:hasPerformance/0/@id` | an @id is not a blank node identifier |

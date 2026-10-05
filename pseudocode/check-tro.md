@@ -13,7 +13,7 @@
 - The location to write the report was not given.
 
 **The program builds a representation of the candidate.**
-- It settles which version was meant — the one asked for, or `trace-spec-2026-04-19`.
+- It settles which version was meant — the one asked for, or `trace-2026-04-19`.
   - It reads the version definitions the module ships, numbering the versions in their order.
   - It stops if a version has no ID or no description.
   - It stops if no version answers to that ID.

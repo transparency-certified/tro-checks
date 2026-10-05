@@ -1,0 +1,25 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/2026-04-19/remote-contexts-absent.schema.json",
+    "title": "Remote contexts absent",
+    "description": "The top-level @context is not a string, and where it is an array, no member of the array is a string. In JSON-LD a string there is the web address of a context to be fetched, so what the file means would depend on what that address returns when it is read. Any string is refused, whether or not it looks like a URL. Contexts below the top level are refused by context-at-root-only.",
+    "summary": "The `@context` never refers by web address to a context kept elsewhere",
+    "$defs": {
+        "notRemote": {
+            "not": { "type": "string" },
+            "errorMessage": {
+                "not": "the @context never refers by web address to a context kept elsewhere"
+            }
+        }
+    },
+    "if": { "type": "object" },
+    "then": {
+        "properties": {
+            "@context": {
+                "$ref": "#/$defs/notRemote",
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/notRemote" } }
+            }
+        }
+    }
+}

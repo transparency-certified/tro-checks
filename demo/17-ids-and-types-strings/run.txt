@@ -22,16 +22,16 @@ $ report_on instance-string-ids-and-types.jsonld
 
 wrote tmp/instance-string-ids-and-types.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met
 
-# Report on `instance-string-ids-and-types.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-string-ids-and-types.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the tier below it.
+This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the tier below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-string-ids-and-types.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 2 - SAFE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -138,16 +138,16 @@ $ report_on instance-number-id.jsonld
 
 wrote tmp/instance-number-id.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD unmet
 
-# Report on `instance-number-id.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-number-id.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 2 - SAFE-JSON-LD`.
+This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 2 - SAFE-JSON-LD`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-number-id.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 2 - SAFE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -239,7 +239,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: ids-and-types-strings
 Detailed expectation: Outside the @context, every @id is a string, and every @type is a string or an array of strings.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `2` | `/@graph/0/ex:part/@id` | an @id is a string |
@@ -261,16 +261,16 @@ $ report_on instance-type-array-with-object.jsonld
 
 wrote tmp/instance-type-array-with-object.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD unmet
 
-# Report on `instance-type-array-with-object.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-type-array-with-object.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 2 - SAFE-JSON-LD`.
+This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 2 - SAFE-JSON-LD`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-type-array-with-object.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 2 - SAFE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -362,7 +362,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: ids-and-types-strings
 Detailed expectation: Outside the @context, every @id is a string, and every @type is a string or an array of strings.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@id":"ex:Whole"}` | `/@graph/0/@type/1` | an @type is a string or an array of strings |

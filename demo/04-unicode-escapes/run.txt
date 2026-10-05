@@ -16,16 +16,16 @@ $ report_on instance-paired-surrogates.jsonld
 
 wrote tmp/instance-paired-surrogates.md; Tier 1 - SAFE-JSON met
 
-# Report on `instance-paired-surrogates.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-paired-surrogates.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 1 - SAFE-JSON` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier.
+This candidate is expected to satisfy `Tier 1 - SAFE-JSON` at version `trace-2026-04-19`. The candidate meets every expectation in that tier.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-paired-surrogates.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 1 - SAFE-JSON` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -127,16 +127,16 @@ $ report_on instance-lone-surrogate-in-string.jsonld
 
 wrote tmp/instance-lone-surrogate-in-string.md; Tier 1 - SAFE-JSON unmet
 
-# Report on `instance-lone-surrogate-in-string.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-lone-surrogate-in-string.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 1 - SAFE-JSON` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 1 - SAFE-JSON`.
+This candidate is expected to satisfy `Tier 1 - SAFE-JSON` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 1 - SAFE-JSON`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-lone-surrogate-in-string.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 1 - SAFE-JSON` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -228,7 +228,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: unicode-escapes-spell-whole-characters
 Detailed expectation: No string or member name holds a \u escape in the range \uD800 to \uDFFF without its pair. Such an escape spells half a Unicode character, so the text is not valid Unicode and cannot be written as UTF-8. Escapes are how such a character reaches a candidate that utf8-encoded accepts, since no valid UTF-8 byte sequence can carry one. Only escapes are judged here: bytes that are not valid UTF-8 are utf8-encoded's, and the noncharacters are valid text and are not refused. RFC 8259 admits an unpaired surrogate in its own grammar, so a conformant parser accepts one and implementations then differ over what they do with a string they cannot encode; I-JSON (RFC 7493) is the profile that forbids it.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"half a smile \ud83d"` | `/@graph/0/ex:name` | every \u escape in a string spells a whole Unicode character |
@@ -245,16 +245,16 @@ $ report_on instance-lone-surrogate-in-member-name.jsonld
 
 wrote tmp/instance-lone-surrogate-in-member-name.md; Tier 1 - SAFE-JSON unmet
 
-# Report on `instance-lone-surrogate-in-member-name.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-lone-surrogate-in-member-name.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 1 - SAFE-JSON` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 1 - SAFE-JSON`.
+This candidate is expected to satisfy `Tier 1 - SAFE-JSON` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 1 - SAFE-JSON`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-lone-surrogate-in-member-name.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 1 - SAFE-JSON` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -346,7 +346,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: unicode-escapes-spell-whole-characters
 Detailed expectation: No string or member name holds a \u escape in the range \uD800 to \uDFFF without its pair. Such an escape spells half a Unicode character, so the text is not valid Unicode and cannot be written as UTF-8. Escapes are how such a character reaches a candidate that utf8-encoded accepts, since no valid UTF-8 byte sequence can carry one. Only escapes are judged here: bytes that are not valid UTF-8 are utf8-encoded's, and the noncharacters are valid text and are not refused. RFC 8259 admits an unpaired surrogate in its own grammar, so a conformant parser accepts one and implementations then differ over what they do with a string they cannot encode; I-JSON (RFC 7493) is the profile that forbids it.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"ex:\ude00name"` | `/@graph/0/ex:\ude00name` | every \u escape in a member name spells a whole Unicode character |

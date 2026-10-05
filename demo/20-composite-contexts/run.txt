@@ -21,16 +21,16 @@ $ report_on instance-single-object.jsonld
 
 wrote tmp/instance-single-object.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met
 
-# Report on `instance-single-object.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-single-object.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the two tiers below it.
+This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the two tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-single-object.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -139,16 +139,16 @@ $ report_on instance-single-object-in-array.jsonld
 
 wrote tmp/instance-single-object-in-array.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met
 
-# Report on `instance-single-object-in-array.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-single-object-in-array.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the two tiers below it.
+This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the two tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-single-object-in-array.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -260,16 +260,16 @@ $ report_on instance-two-parts.jsonld
 
 wrote tmp/instance-two-parts.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD unmet
 
-# Report on `instance-two-parts.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-two-parts.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 3 - TRACE-PERMISSIBLE-JSON-LD`.
+This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 3 - TRACE-PERMISSIBLE-JSON-LD`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-two-parts.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -361,7 +361,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: composite-contexts-absent
 Detailed expectation: The @context is not assembled from several parts: where it is written as an array, the array has at most one member. A single context in brackets is admitted, as the Declaration Format's example writes it. A context that is absent, null or empty is not judged here; `Tier 4 - USES-TROV-CORRECTLY` requires one that says something.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `[{"ex":"https://example.org/terms#"},{"ex2":"https://example.org/more#"}]` | `/@context` | the @context is never composed from several parts |

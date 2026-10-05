@@ -1,0 +1,47 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/2026-04-19/context-datatypes-named-by-iri.schema.json",
+    "title": "Context datatypes named by IRI",
+    "description": "Where an object the @context gives for a property has a @type, it is a string naming a datatype by an absolute IRI or by a prefixed name, never a keyword such as @vocab, @json or @none.",
+    "summary": "Every datatype the `@context` gives a property is named by a prefixed or absolute IRI",
+    "$defs": {
+        "propertyObject": {
+            "if": { "type": "object" },
+            "then": {
+                "properties": {
+                    "@type": {
+                        "type": "string",
+                        "pattern": "^[A-Za-z][A-Za-z0-9+.-]*:",
+                        "errorMessage": {
+                            "type": "the datatype the @context gives a property is a string",
+                            "pattern": "the datatype the @context gives a property is named by a prefixed or absolute IRI"
+                        }
+                    }
+                }
+            }
+        },
+        "context": {
+            "if": { "type": "object" },
+            "then": {
+                "properties": { "@base": true },
+                "additionalProperties": { "$ref": "#/$defs/propertyObject" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/context" } }
+            }
+        },
+        "node": {
+            "if": { "type": "object" },
+            "then": {
+                "properties": { "@context": { "$ref": "#/$defs/context" } },
+                "additionalProperties": { "$ref": "#/$defs/node" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/node" } }
+            }
+        }
+    },
+    "$ref": "#/$defs/node"
+}

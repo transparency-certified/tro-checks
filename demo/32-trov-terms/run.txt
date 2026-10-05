@@ -19,18 +19,18 @@ $ report_on instance-property-name-known.jsonld
     ]
 }
 
-wrote tmp/instance-property-name-known_trace-spec-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
+wrote tmp/instance-property-name-known__at__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
 
-# Report on `instance-property-name-known.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-property-name-known.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the three tiers below it.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the three tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-property-name-known.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the `--target-version` option |
+| Target version | `trace-2026-04-19` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -136,18 +136,18 @@ $ report_on instance-property-name-unknown.jsonld
     ]
 }
 
-wrote tmp/instance-property-name-unknown_trace-spec-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
+wrote tmp/instance-property-name-unknown__at__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report on `instance-property-name-unknown.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-property-name-unknown.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-property-name-unknown.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the `--target-version` option |
+| Target version | `trace-2026-04-19` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -239,7 +239,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: trov-terms-known
 Detailed expectation: Where a property name or a string value carries the trov: prefix, it is a term TROV defines.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 |  | `/@graph/0/trov:vocabularyRelease` | a term with the trov: prefix is one TROV defines |
@@ -260,18 +260,18 @@ $ report_on instance-id-known.jsonld
     ]
 }
 
-wrote tmp/instance-id-known_trace-spec-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
+wrote tmp/instance-id-known__at__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
 
-# Report on `instance-id-known.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-id-known.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the three tiers below it.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the three tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-id-known.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the `--target-version` option |
+| Target version | `trace-2026-04-19` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -377,18 +377,18 @@ $ report_on instance-id-unknown.jsonld
     ]
 }
 
-wrote tmp/instance-id-unknown_trace-spec-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
+wrote tmp/instance-id-unknown__at__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report on `instance-id-unknown.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-id-unknown.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-id-unknown.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the `--target-version` option |
+| Target version | `trace-2026-04-19` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -480,7 +480,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: trov-terms-known
 Detailed expectation: Where a property name or a string value carries the trov: prefix, it is a term TROV defines.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"trov:IncludesAllOutputData"` | `/@graph/0/trov:hasAttribute/@id` | a term with the trov: prefix is one TROV defines |
@@ -501,18 +501,18 @@ $ report_on instance-type-known.jsonld
     ]
 }
 
-wrote tmp/instance-type-known_trace-spec-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
+wrote tmp/instance-type-known__at__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
 
-# Report on `instance-type-known.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-type-known.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the three tiers below it.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the three tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-type-known.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the `--target-version` option |
+| Target version | `trace-2026-04-19` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -618,18 +618,18 @@ $ report_on instance-type-unknown.jsonld
     ]
 }
 
-wrote tmp/instance-type-unknown_trace-spec-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
+wrote tmp/instance-type-unknown__at__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report on `instance-type-unknown.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-type-unknown.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-type-unknown.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the `--target-version` option |
+| Target version | `trace-2026-04-19` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -721,7 +721,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: trov-terms-known
 Detailed expectation: Where a property name or a string value carries the trov: prefix, it is a term TROV defines.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"trov:TrustedResearchPerformace"` | `/@graph/0/trov:hasPerformance/@type` | a term with the trov: prefix is one TROV defines |
@@ -742,18 +742,18 @@ $ report_on instance-value-known.jsonld
     ]
 }
 
-wrote tmp/instance-value-known_trace-spec-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
+wrote tmp/instance-value-known__at__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
 
-# Report on `instance-value-known.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-value-known.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the three tiers below it.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the three tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-value-known.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the `--target-version` option |
+| Target version | `trace-2026-04-19` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -859,18 +859,18 @@ $ report_on instance-value-unknown.jsonld
     ]
 }
 
-wrote tmp/instance-value-unknown_trace-spec-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
+wrote tmp/instance-value-unknown__at__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report on `instance-value-unknown.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-value-unknown.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-value-unknown.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the `--target-version` option |
+| Target version | `trace-2026-04-19` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -962,14 +962,14 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: trov-terms-known
 Detailed expectation: Where a property name or a string value carries the trov: prefix, it is a term TROV defines.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"trov:CanIsolateNetwork"` | `/@graph/0/trov:hasCapability` | a term with the trov: prefix is one TROV defines |
 
------ [9] expectation met at version trace-spec-2026-04-19: the TRS's trov:name is a pre-release term that version admits -----
+----- [9] expectation met at version trace-2026-04-19: the TRS's trov:name is a pre-release term that version admits -----
 
-$ report_on instance-trs-name.jsonld trace-spec-2026-04-19
+$ report_on instance-trs-name.jsonld trace-2026-04-19
 {
     "@context": { "trov": "https://w3id.org/trace/trov/0.1#" },
     "@graph": [
@@ -982,18 +982,18 @@ $ report_on instance-trs-name.jsonld trace-spec-2026-04-19
     ]
 }
 
-wrote tmp/instance-trs-name_trace-spec-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
+wrote tmp/instance-trs-name__at__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
 
-# Report on `instance-trs-name.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-trs-name.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the three tiers below it.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the three tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-trs-name.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the `--target-version` option |
+| Target version | `trace-2026-04-19` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -1083,9 +1083,9 @@ The sections below give the status of each tier, then the status of each expecta
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 
------ [10] expectation unmet at version 0.1: trov:name is not defined by TROV -----
+----- [10] expectation unmet at version trace-0.1: trov:name is not defined by TROV -----
 
-$ report_on instance-trs-name.jsonld 0.1
+$ report_on instance-trs-name.jsonld trace-0.1
 {
     "@context": { "trov": "https://w3id.org/trace/trov/0.1#" },
     "@graph": [
@@ -1098,18 +1098,18 @@ $ report_on instance-trs-name.jsonld 0.1
     ]
 }
 
-wrote tmp/instance-trs-name_0.1.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
+wrote tmp/instance-trs-name__at__trace-0.1.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report on `instance-trs-name.jsonld` at version `0.1`
+# Report on `instance-trs-name.jsonld` at version `trace-0.1`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `0.1`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-0.1`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-trs-name.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `0.1` | the `--target-version` option |
+| Target version | `trace-0.1` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -1206,7 +1206,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: trov-terms-known
 Detailed expectation: Where a property name or a string value carries the trov: prefix, it is a term TROV defines.
-Defined in version: `0.1`
+Defined in version: `trace-0.1`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 |  | `/@graph/0/trov:wasAssembledBy/trov:name` | a term with the trov: prefix is one TROV defines |

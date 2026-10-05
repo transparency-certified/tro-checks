@@ -18,16 +18,16 @@ $ report_on instance-https-base.jsonld
 
 wrote tmp/instance-https-base.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met
 
-# Report on `instance-https-base.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-https-base.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the two tiers below it.
+This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the two tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-https-base.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -131,16 +131,16 @@ $ report_on instance-ftp-base.jsonld
 
 wrote tmp/instance-ftp-base.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD unmet
 
-# Report on `instance-ftp-base.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-ftp-base.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 3 - TRACE-PERMISSIBLE-JSON-LD`.
+This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 3 - TRACE-PERMISSIBLE-JSON-LD`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-ftp-base.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -232,7 +232,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: base-web-scheme
 Detailed expectation: Where an @context declares a non-null @base, it is a string using the https or http scheme.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"ftp://example.org/tro/2f8a1c94/"` | `/@context/@base` | an @base uses the https or http scheme |
@@ -251,16 +251,16 @@ $ report_on instance-number-base.jsonld
 
 wrote tmp/instance-number-base.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD unmet
 
-# Report on `instance-number-base.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-number-base.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 3 - TRACE-PERMISSIBLE-JSON-LD`.
+This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 3 - TRACE-PERMISSIBLE-JSON-LD`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-number-base.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -352,7 +352,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: base-web-scheme
 Detailed expectation: Where an @context declares a non-null @base, it is a string using the https or http scheme.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `42` | `/@context/@base` | an @base is a string |

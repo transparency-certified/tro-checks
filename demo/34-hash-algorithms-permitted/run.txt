@@ -62,16 +62,16 @@ $ report_on instance-permitted-algorithms.jsonld
 
 wrote tmp/instance-permitted-algorithms.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
 
-# Report on `instance-permitted-algorithms.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-permitted-algorithms.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the three tiers below it.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the three tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-permitted-algorithms.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -211,16 +211,16 @@ $ report_on instance-md5-beside-sha256.jsonld
 
 wrote tmp/instance-md5-beside-sha256.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report on `instance-md5-beside-sha256.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-md5-beside-sha256.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`. One other expectation was not assessed, because a tier below it, or an expectation it requires, was not met.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`. One other expectation was not assessed, because a tier below it, or an expectation it requires, was not met.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-md5-beside-sha256.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -312,7 +312,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: hash-algorithms-permitted
 Detailed expectation: Every trov:hash on the TRO's artifacts and composition fingerprint names its algorithm in trov:hashAlgorithm, and the algorithm is one TRACE permits: sha256, sha384, sha512, sha3-256, sha3-384, sha3-512, blake2b, blake2s or blake3, spelled so.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"md5"` | `/@graph/0/trov:hasComposition/trov:hasArtifact/0/trov:hash/1/trov:hashAlgorithm` | a hash names an algorithm TRACE permits |
@@ -361,16 +361,16 @@ $ report_on instance-algorithm-misspelled.jsonld
 
 wrote tmp/instance-algorithm-misspelled.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report on `instance-algorithm-misspelled.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-algorithm-misspelled.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`. One other expectation was not assessed, because a tier below it, or an expectation it requires, was not met.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`. One other expectation was not assessed, because a tier below it, or an expectation it requires, was not met.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-algorithm-misspelled.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -462,7 +462,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: hash-algorithms-permitted
 Detailed expectation: Every trov:hash on the TRO's artifacts and composition fingerprint names its algorithm in trov:hashAlgorithm, and the algorithm is one TRACE permits: sha256, sha384, sha512, sha3-256, sha3-384, sha3-512, blake2b, blake2s or blake3, spelled so.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"SHA-256"` | `/@graph/0/trov:hasComposition/trov:hasArtifact/0/trov:hash/trov:hashAlgorithm` | a hash names an algorithm TRACE permits |
@@ -510,16 +510,16 @@ $ report_on instance-hash-without-algorithm.jsonld
 
 wrote tmp/instance-hash-without-algorithm.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report on `instance-hash-without-algorithm.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-hash-without-algorithm.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`. One other expectation was not assessed, because a tier below it, or an expectation it requires, was not met.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`. One other expectation was not assessed, because a tier below it, or an expectation it requires, was not met.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-hash-without-algorithm.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -611,7 +611,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: hash-algorithms-permitted
 Detailed expectation: Every trov:hash on the TRO's artifacts and composition fingerprint names its algorithm in trov:hashAlgorithm, and the algorithm is one TRACE permits: sha256, sha384, sha512, sha3-256, sha3-384, sha3-512, blake2b, blake2s or blake3, spelled so.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"trov:hashValue":"208fadf260c2cb9b1c747f03326626e66ddbb3cc6eee10b6e111ff0b803686fe"}` | `/@graph/0/trov:hasComposition/trov:hasArtifact/0/trov:hash` | a hash names its algorithm in trov:hashAlgorithm |

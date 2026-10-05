@@ -20,6 +20,8 @@ module.exports = {}
 /**
  * @typedef {object} Version  a release of the TRACE Specification, or a pre-release of one
  * @property {string} id           names the version wherever one is chosen: a target, a manifest entry, a directory of expectations
+ * @property {string} urlForm      the version as its schemas' URLs write it, after https://w3id.org/trace/tro/: as the
+ *   Specification writes it, without the id's trace- prefix, which the URL already gives
  * @property {number} number       its place in the order, from 1
  * @property {string} description  what the version is
  */

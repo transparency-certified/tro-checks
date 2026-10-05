@@ -1,0 +1,24 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/2026-04-19/context-object-array-or-null.schema.json",
+    "title": "Context object, array or null",
+    "description": "Where the document carries an @context at its top level, the value is a context object, an array of context objects, or null. An array may also hold null, which JSON-LD reads as clearing what came before it. A string, which JSON-LD reads as the web address of a context to fetch, is reported by remote-contexts-absent, so this expectation is assessed only once that one is met.",
+    "summary": "The `@context`, if present, is an object, an array of objects, or `null`",
+    "requires": [
+        "remote-contexts-absent"
+    ],
+    "properties": {
+        "@context": {
+            "type": ["null", "object", "array"],
+            "items": {
+                "type": ["null", "object"],
+                "errorMessage": {
+                    "type": "every member of an @context array is a context object"
+                }
+            },
+            "errorMessage": {
+                "type": "an @context is an object, an array of objects, or null"
+            }
+        }
+    }
+}

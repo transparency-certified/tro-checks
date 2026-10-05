@@ -1,0 +1,78 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/2026-04-19/base-simple-url.schema.json",
+    "title": "Base simple URL",
+    "description": "Where an @context declares an @base as a string, the @base is a simple URL. It names a host, uses only characters allowed in a URL, ends in /, and has a path whose segments are portable names: letters, digits, dots, hyphens and underscores, each beginning and ending with a letter or digit. It carries no user name or password, no . or .. segments, and no ? or #.",
+    "summary": "The `@base`, if any, is a simple URL. It names a host, has a path of portable names, uses only URL characters, and ends in `/`. It has no user info, dot segments, query or fragment",
+    "$defs": {
+        "base": {
+            "if": { "type": "string" },
+            "then": {
+                "allOf": [
+                    {
+                        "pattern": "^[^:/?#]+://([^/?#@]*@)?[^/?#@:]",
+                        "errorMessage": {
+                            "pattern": "an @base names a host"
+                        }
+                    },
+                    {
+                        "not": { "pattern": "^[^:/?#]+://[^/?#]*@" },
+                        "errorMessage": {
+                            "not": "an @base carries no user name or password"
+                        }
+                    },
+                    {
+                        "not": { "pattern": "(^|/)\\.\\.?([/?#]|$)" },
+                        "errorMessage": {
+                            "not": "an @base has no . or .. segments"
+                        }
+                    },
+                    {
+                        "not": { "pattern": "[?#]" },
+                        "errorMessage": {
+                            "not": "an @base contains no ? or #"
+                        }
+                    },
+                    {
+                        "pattern": "/$",
+                        "errorMessage": {
+                            "pattern": "an @base ends in /"
+                        }
+                    },
+                    {
+                        "pattern": "^([A-Za-z0-9._~:/?#\\[\\]@!$&'()*+,;=-]|%[0-9A-Fa-f]{2})*$",
+                        "errorMessage": {
+                            "pattern": "an @base contains only characters allowed in a URL"
+                        }
+                    },
+                    {
+                        "pattern": "^[^:/?#]+://[^/?#]+(/[A-Za-z0-9]([A-Za-z0-9._-]*[A-Za-z0-9])?)*/$",
+                        "errorMessage": {
+                            "pattern": "a segment of an @base path holds only letters, digits, dots, hyphens and underscores, and begins and ends with a letter or digit"
+                        }
+                    }
+                ]
+            }
+        },
+        "context": {
+            "if": { "type": "object" },
+            "then": { "properties": { "@base": { "$ref": "#/$defs/base" } } },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/context" } }
+            }
+        },
+        "node": {
+            "if": { "type": "object" },
+            "then": {
+                "properties": { "@context": { "$ref": "#/$defs/context" } },
+                "additionalProperties": { "$ref": "#/$defs/node" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/node" } }
+            }
+        }
+    },
+    "$ref": "#/$defs/node"
+}

@@ -48,16 +48,16 @@ $ report_on instance-fingerprint-present.jsonld
 
 wrote tmp/instance-fingerprint-present.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS met, Tier 6 - STANDALONE-TRO met
 
-# Report on `instance-fingerprint-present.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-fingerprint-present.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 6 - STANDALONE-TRO` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the five tiers below it.
+This candidate is expected to satisfy `Tier 6 - STANDALONE-TRO` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the five tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-fingerprint-present.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 6 - STANDALONE-TRO` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -183,16 +183,16 @@ $ report_on instance-no-fingerprint.jsonld
 
 wrote tmp/instance-no-fingerprint.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS met, Tier 6 - STANDALONE-TRO unmet
 
-# Report on `instance-no-fingerprint.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-no-fingerprint.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 6 - STANDALONE-TRO` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 6 - STANDALONE-TRO`.
+This candidate is expected to satisfy `Tier 6 - STANDALONE-TRO` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 6 - STANDALONE-TRO`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-no-fingerprint.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 6 - STANDALONE-TRO` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -284,7 +284,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: composition-has-fingerprint
 Detailed expectation: Where the TRO carries a trov:hasComposition, the composition carries one trov:hasFingerprint, an object, and the fingerprint carries one trov:hash, an object.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@id":"composition","@type":"trov:ArtifactComposition","trov:hasArtifact":[{"@id":"composition/artifact/0","@type":"trov:ResearchArtifact","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"208fadf260c2cb9b1c747f03326626e66ddbb3cc6eee10b6e111ff0b803686fe"}}]}` | `/@graph/0/trov:hasComposition` | a composition carries a trov:hasFingerprint |
@@ -335,16 +335,16 @@ $ report_on instance-fingerprint-array.jsonld
 
 wrote tmp/instance-fingerprint-array.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS met, Tier 6 - STANDALONE-TRO unmet
 
-# Report on `instance-fingerprint-array.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-fingerprint-array.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 6 - STANDALONE-TRO` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 6 - STANDALONE-TRO`.
+This candidate is expected to satisfy `Tier 6 - STANDALONE-TRO` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 6 - STANDALONE-TRO`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-fingerprint-array.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 6 - STANDALONE-TRO` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -436,7 +436,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: composition-has-fingerprint
 Detailed expectation: Where the TRO carries a trov:hasComposition, the composition carries one trov:hasFingerprint, an object, and the fingerprint carries one trov:hash, an object.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `[{"@id":"fingerprint","@type":"trov:CompositionFingerprint","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"44863b03e9909b7100e05b02526909a346fd7455183f6619e0fe6198c89981e0"}}]` | `/@graph/0/trov:hasComposition/trov:hasFingerprint` | a composition carries one fingerprint, an object, not an array of them |
@@ -487,16 +487,16 @@ $ report_on instance-fingerprint-hash-array.jsonld
 
 wrote tmp/instance-fingerprint-hash-array.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS met, Tier 6 - STANDALONE-TRO unmet
 
-# Report on `instance-fingerprint-hash-array.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-fingerprint-hash-array.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 6 - STANDALONE-TRO` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 6 - STANDALONE-TRO`.
+This candidate is expected to satisfy `Tier 6 - STANDALONE-TRO` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 6 - STANDALONE-TRO`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-fingerprint-hash-array.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 6 - STANDALONE-TRO` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -588,7 +588,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: composition-has-fingerprint
 Detailed expectation: Where the TRO carries a trov:hasComposition, the composition carries one trov:hasFingerprint, an object, and the fingerprint carries one trov:hash, an object.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `[{"trov:hashAlgorithm":"sha256","trov:hashValue":"44863b03e9909b7100e05b02526909a346fd7455183f6619e0fe6198c89981e0"}]` | `/@graph/0/trov:hasComposition/trov:hasFingerprint/trov:hash` | a fingerprint carries one hash, an object, not an array of them |

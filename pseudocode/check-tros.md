@@ -23,7 +23,7 @@
 - It takes an entry that gives no target to have one, with neither a tier nor a version.
 - It stops if the entry's target is not an object giving a tier, a version, or both, or a list of such objects.
 - It settles the target's tier — the one given on the command line, the one the entry names, or `STANDALONE-TRO`.
-- It settles the target's version — the one given on the command line, the one the entry names, or `trace-spec-2026-04-19`.
+- It settles the target's version — the one given on the command line, the one the entry names, or `trace-2026-04-19`.
 - It records where the tier and the version each came from — the command line, the manifest, or the default.
 - It records that the description, where the entry gives one, came from the manifest.
 - It stops if the entry gives a title that is not a string.

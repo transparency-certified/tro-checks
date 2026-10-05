@@ -25,16 +25,16 @@ $ report_on instance-datatype-iri.jsonld
 
 wrote tmp/instance-datatype-iri.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met
 
-# Report on `instance-datatype-iri.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-datatype-iri.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the two tiers below it.
+This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the two tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-datatype-iri.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -145,16 +145,16 @@ $ report_on instance-datatype-keyword.jsonld
 
 wrote tmp/instance-datatype-keyword.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD unmet
 
-# Report on `instance-datatype-keyword.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-datatype-keyword.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 3 - TRACE-PERMISSIBLE-JSON-LD`.
+This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 3 - TRACE-PERMISSIBLE-JSON-LD`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-datatype-keyword.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -246,7 +246,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: context-datatypes-named-by-iri
 Detailed expectation: Where an object the @context gives for a property has a @type, it is a string naming a datatype by an absolute IRI or by a prefixed name, never a keyword such as @vocab, @json or @none.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"@vocab"` | `/@context/ex:kind/@type` | the datatype the @context gives a property is named by a prefixed or absolute IRI |

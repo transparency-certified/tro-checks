@@ -16,16 +16,16 @@ $ report_on instance-utf8.jsonld
 
 wrote tmp/instance-utf8.md; Tier 1 - SAFE-JSON met
 
-# Report on `instance-utf8.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-utf8.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 1 - SAFE-JSON` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier.
+This candidate is expected to satisfy `Tier 1 - SAFE-JSON` at version `trace-2026-04-19`. The candidate meets every expectation in that tier.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-utf8.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 1 - SAFE-JSON` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -127,16 +127,16 @@ $ report_on instance-latin1.jsonld
 
 wrote tmp/instance-latin1.md; Tier 1 - SAFE-JSON unmet
 
-# Report on `instance-latin1.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-latin1.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 1 - SAFE-JSON` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 1 - SAFE-JSON`. A further four expectations were not assessed, because a tier below them, or an expectation they require, was not met.
+This candidate is expected to satisfy `Tier 1 - SAFE-JSON` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 1 - SAFE-JSON`. A further four expectations were not assessed, because a tier below them, or an expectation they require, was not met.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-latin1.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 1 - SAFE-JSON` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -228,7 +228,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: utf8-encoded
 Detailed expectation: The candidate's bytes are valid UTF-8. This rule judges bytes. Whether a \u escape spells a whole character is checked by unicode-escapes-spell-whole-characters, since an escape is ASCII and is decoded after these bytes are read.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 |  | the document | the candidate is not valid UTF-8 |

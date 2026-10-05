@@ -70,16 +70,16 @@ $ report_on instance-version-0-1.jsonld
 
 wrote tmp/instance-version-0-1.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
 
-# Report on `instance-version-0-1.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-version-0-1.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the three tiers below it.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the three tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-version-0-1.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -234,16 +234,16 @@ $ report_on instance-no-version.jsonld
 
 wrote tmp/instance-no-version.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report on `instance-no-version.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-no-version.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-no-version.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -335,7 +335,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: trov-version-known
 Detailed expectation: The TRO carries trov:vocabularyVersion, a string naming a known version of TROV: 0.1.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@id":"tro","@type":"trov:TransparentResearchObject","schema:name":"Example TRO","schema:description":"A declaration for the demos","schema:dateCreated":"2026-09-17T18:00:00Z","trov:wasAssembledBy":{"@id":"https://trs.example.org/demo/","@type":"trov:TrustedResearchSystem"},"trov:hasComposition":{"@id":"composition","@type":"trov:ArtifactComposition","trov:hasFingerprint":{"@id":"fingerprint","@type":"trov:CompositionFingerprint","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"44863b03e9909b7100e05b02526909a346fd7455183f6619e0fe6198c89981e0"}},"trov:hasArtifact":[{"@id":"composition/artifact/0","@type":"trov:ResearchArtifact","trov:mimeType":"text/plain","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"208fadf260c2cb9b1c747f03326626e66ddbb3cc6eee10b6e111ff0b803686fe"}},{"@id":"composition/artifact/1","@type":"trov:ResearchArtifact","trov:mimeType":"application/x-python","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"7409dfd1bf7d574571821f33c99d1ea8ac5a3e59a645a6c7d91e248745457ef3"}}]},"trov:hasPerformance":[{"@id":"trp/0","@type":"trov:TrustedResearchPerformance","trov:startedAtTime":"2026-09-17T17:00:00Z","trov:endedAtTime":"2026-09-17T17:25:00.250Z"}]}` | `/@graph/0` | a TRO declares its TROV version in trov:vocabularyVersion |
@@ -406,16 +406,16 @@ $ report_on instance-version-number.jsonld
 
 wrote tmp/instance-version-number.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report on `instance-version-number.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-version-number.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-version-number.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -507,7 +507,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: trov-version-known
 Detailed expectation: The TRO carries trov:vocabularyVersion, a string naming a known version of TROV: 0.1.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `0.1` | `/@graph/0/trov:vocabularyVersion` | a TRO declares its vocabulary version as a string |
@@ -578,16 +578,16 @@ $ report_on instance-version-0-2.jsonld
 
 wrote tmp/instance-version-0-2.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report on `instance-version-0-2.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-version-0-2.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-version-0-2.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -679,7 +679,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: trov-version-known
 Detailed expectation: The TRO carries trov:vocabularyVersion, a string naming a known version of TROV: 0.1.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"0.2"` | `/@graph/0/trov:vocabularyVersion` | a TRO declares a known version of TROV |

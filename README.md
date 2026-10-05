@@ -55,8 +55,8 @@ differ. A candidate can be checked under a version that has not yet been release
 <tr><th align="left">Version</th><th align="left">What it is</th></tr>
 </thead>
 <tbody>
-<tr><td><samp>trace&#8209;spec&#8209;2026&#8209;04&#8209;19</samp></td><td>The first release of the TRACE Specification</td></tr>
-<tr><td><samp>0.1</samp></td><td>TRACE Specification 0.1, not yet released</td></tr>
+<tr><td><samp>trace&#8209;2026&#8209;04&#8209;19</samp></td><td>The first release of the TRACE Specification, tagged trace-spec-2026-04-19</td></tr>
+<tr><td><samp>trace&#8209;0.1</samp></td><td>TRACE Specification 0.1, not yet released</td></tr>
 </tbody>
 </table>
 
@@ -119,15 +119,15 @@ rather than the rows below.
 <tr><th align="left">Expectation</th><th align="left">What it requires</th><th align="left">Versions</th></tr>
 <tr><td nowrap><samp>context-and-nonempty-graph-present</samp></td><td>The file has a non-null <code>@context</code> and an <code>@graph</code> holding at least one node</td><td>all</td></tr>
 <tr><td nowrap><samp>core-prefixes-pinned</samp></td><td><code>trov</code> is declared and is the only prefix for a TROV namespace; <code>rdf</code>, <code>rdfs</code> and <code>schema</code> prefixes, if declared, are the standard ones</td><td>all</td></tr>
-<tr><td nowrap><samp>trov-terms-known</samp></td><td>Every <code>trov:</code> name is one TROV defines</td><td>redefined in <code>0.1</code></td></tr>
+<tr><td nowrap><samp>trov-terms-known</samp></td><td>Every term with the <code>trov:</code> prefix is one TROV defines</td><td>redefined in <code>trace-0.1</code></td></tr>
 <tr><td nowrap><samp>trov-version-known</samp></td><td>The TRO declares, in <code>trov:vocabularyVersion</code>, a known version of TROV</td><td>all</td></tr>
 <tr><td nowrap><samp>hash-algorithms-permitted</samp></td><td>Every hash names an algorithm TRACE permits: a collision-resistant digest from the SHA-2, SHA-3 or BLAKE families</td><td>all</td></tr>
 <tr><td nowrap><samp>hash-values-correct-form</samp></td><td>Every hash value is lowercase hexadecimal of the length its algorithm produces</td><td>all</td></tr>
 <tr><td nowrap><samp>mime-types-two-part</samp></td><td>Every artifact's <code>trov:mimeType</code> is a string of the form <code>type/subtype</code></td><td>all</td></tr>
 <tr><td nowrap><samp>times-iso-8601</samp></td><td>Every <code>trov:startedAtTime</code> and <code>trov:endedAtTime</code> is an ISO 8601 date-time; the TRO's <code>schema:dateCreated</code>, if present, an ISO 8601 date or date-time</td><td>all</td></tr>
-<tr><td nowrap><samp>times-zoned</samp></td><td>Every <code>trov:startedAtTime</code> and <code>trov:endedAtTime</code> carries its time zone</td><td>from <code>0.1</code></td></tr>
+<tr><td nowrap><samp>times-zoned</samp></td><td>Every <code>trov:startedAtTime</code> and <code>trov:endedAtTime</code> carries its time zone</td><td>from <code>trace-0.1</code></td></tr>
 <tr><td nowrap><samp>tro-name-description-text</samp></td><td>The TRO's <code>schema:name</code> and <code>schema:description</code>, if present, are Text: a string or an array of strings</td><td>all</td></tr>
-<tr><td nowrap><samp>creators-person-or-organization</samp></td><td>The TRO's <code>schema:creator</code>, if present, is a node typed <code>schema:Person</code> or <code>schema:Organization</code>, never a string</td><td>from <code>0.1</code></td></tr>
+<tr><td nowrap><samp>creators-person-or-organization</samp></td><td>The TRO's <code>schema:creator</code>, if present, is a node typed <code>schema:Person</code> or <code>schema:Organization</code>, never a string</td><td>from <code>trace-0.1</code></td></tr>
 <tr><td nowrap><samp>trov-capabilities-predefined</samp></td><td>A capability's <code>trov:</code> type is one TROV predefines</td><td>all</td></tr>
 <tr><td nowrap><samp>trov-performance-attributes-predefined</samp></td><td>A performance attribute's <code>trov:</code> type is one TROV predefines</td><td>all</td></tr>
 <tr><td nowrap><samp>trov-tro-attributes-predefined</samp></td><td>A TRO attribute's <code>trov:</code> type is one TROV predefines</td><td>all</td></tr>
@@ -139,8 +139,8 @@ rather than the rows below.
 <tr><th colspan="3" align="left"><br><samp>Tier&nbsp;5&nbsp;&#8209;&nbsp;DEFINES&#8209;TRS</samp></th></tr>
 <tr><th align="left">Expectation</th><th align="left">What it requires</th><th align="left">Versions</th></tr>
 <tr><td nowrap><samp>trs-defined</samp></td><td>A TRS is defined, with an <code>@id</code>, at the top of the <code>@graph</code> or as the object of <code>trov:wasAssembledBy</code>, and nowhere else</td><td>all</td></tr>
-<tr><td nowrap><samp>trs-id-absolute</samp></td><td>The TRS is identified by an absolute IRI, or a compact IRI outside the <code>trov</code> namespace</td><td>from <code>0.1</code></td></tr>
-<tr><td nowrap><samp>capability-ids-absolute</samp></td><td>Every capability is identified by an absolute IRI, or a compact IRI outside the <code>trov</code> namespace</td><td>from <code>0.1</code></td></tr>
+<tr><td nowrap><samp>trs-id-absolute</samp></td><td>The TRS is identified by an absolute IRI, or a compact IRI outside the <code>trov</code> namespace</td><td>from <code>trace-0.1</code></td></tr>
+<tr><td nowrap><samp>capability-ids-absolute</samp></td><td>Every capability is identified by an absolute IRI, or a compact IRI outside the <code>trov</code> namespace</td><td>from <code>trace-0.1</code></td></tr>
 </tbody>
 <tbody>
 <tr><th colspan="3" align="left"><br><samp>Tier&nbsp;6&nbsp;&#8209;&nbsp;STANDALONE&#8209;TRO</samp></th></tr>
@@ -148,7 +148,7 @@ rather than the rows below.
 <tr><td nowrap><samp>tro-top-level-in-graph</samp></td><td>The TRO is a top-level member of the <code>@graph</code></td><td>all</td></tr>
 <tr><td nowrap><samp>trov-objects-identified</samp></td><td>Every object typed with a TROV class carries an <code>@id</code></td><td>all</td></tr>
 <tr><td nowrap><samp>tro-assembled-by-trs</samp></td><td>The TRO names its assembling system, typed as a TRS</td><td>all</td></tr>
-<tr><td nowrap><samp>performance-attribute-warrants-absolute</samp></td><td>Every performance attribute refers to the capability warranting it by absolute IRI</td><td>from <code>0.1</code></td></tr>
+<tr><td nowrap><samp>performance-attribute-warrants-absolute</samp></td><td>Every performance attribute refers to the capability warranting it by absolute IRI</td><td>from <code>trace-0.1</code></td></tr>
 <tr><td nowrap><samp>tro-composition-single</samp></td><td>A <code>trov:hasComposition</code> is one object, not an array</td><td>all</td></tr>
 <tr><td nowrap><samp>composition-has-fingerprint</samp></td><td>The TRO's composition, if any, carries one fingerprint, which carries one hash</td><td>all</td></tr>
 <tr><td nowrap><samp>composition-identifies-artifacts</samp></td><td>The TRO's composition, if any, names at least one artifact in a <code>trov:hasArtifact</code> array</td><td>all</td></tr>
@@ -252,7 +252,7 @@ declared in `candidates/manifest.json` under a key naming its file, so the key
     "spec-example-2026-04-08": {
         "target": {
             "tier": "STANDALONE-TRO",
-            "version": "trace-spec-2026-04-19"
+            "version": "trace-2026-04-19"
         },
         "title": "A few words naming this candidate. Heads its reports in the summary.",
         "description": "What this candidate is. Copied into its reports."
@@ -265,22 +265,22 @@ checked against each:
 
 ```json
         "target": [
-            { "tier": "USES-TROV-CORRECTLY", "version": "trace-spec-2026-04-19" },
-            { "tier": "STANDALONE-TRO", "version": "trace-spec-2026-04-19" },
-            { "tier": "USES-TROV-CORRECTLY", "version": "0.1" }
+            { "tier": "USES-TROV-CORRECTLY", "version": "trace-2026-04-19" },
+            { "tier": "STANDALONE-TRO", "version": "trace-2026-04-19" },
+            { "tier": "USES-TROV-CORRECTLY", "version": "trace-0.1" }
         ],
 ```
 
 `check-tros` checks what the manifest declares: a `.jsonld` file the manifest
 does not name is reported as skipped, and an entry naming a file that is not in
 the directory stops the run. `make build-reports` in the REPRO writes one report
-per target to `reports/<name>_<version>_tier-<number>.md`, and a summary,
+per target to `reports/<name>__at__<version>__to__tier-<number>.md`, and a summary,
 `reports/README.md`, that lists the reports under each candidate, says whether each
 target was met, and links to each report. A candidate is headed there by its `title`, or
 by its name where the manifest gives it no title.
 
 `check-tros` takes each target's tier and version from the manifest. It
-assumes `STANDALONE-TRO` when the manifest names no tier, and `trace-spec-2026-04-19`
+assumes `STANDALONE-TRO` when the manifest names no tier, and `trace-2026-04-19`
 when it names no version. `--target-tier` and `--target-version` each replace that half
 of every target in the run, and a candidate is checked once against targets that are then
 the same. The report says where the tier and the version each came

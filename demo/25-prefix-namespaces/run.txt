@@ -20,16 +20,16 @@ $ report_on instance-terminated-namespaces.jsonld
 
 wrote tmp/instance-terminated-namespaces.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met
 
-# Report on `instance-terminated-namespaces.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-terminated-namespaces.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the two tiers below it.
+This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the two tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-terminated-namespaces.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -133,16 +133,16 @@ $ report_on instance-unterminated-namespace.jsonld
 
 wrote tmp/instance-unterminated-namespace.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD unmet
 
-# Report on `instance-unterminated-namespace.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-unterminated-namespace.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 3 - TRACE-PERMISSIBLE-JSON-LD`.
+This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 3 - TRACE-PERMISSIBLE-JSON-LD`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-unterminated-namespace.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -234,7 +234,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: prefix-namespaces-terminated
 Detailed expectation: In every @context, each prefix that maps to a string maps to an absolute IRI ending in # or /.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"https://example.org/terms"` | `/@context/ex` | a prefix's namespace ends in # or / |
@@ -253,16 +253,16 @@ $ report_on instance-relative-namespace.jsonld
 
 wrote tmp/instance-relative-namespace.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD unmet
 
-# Report on `instance-relative-namespace.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-relative-namespace.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 3 - TRACE-PERMISSIBLE-JSON-LD`.
+This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 3 - TRACE-PERMISSIBLE-JSON-LD`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-relative-namespace.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -354,7 +354,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: prefix-namespaces-terminated
 Detailed expectation: In every @context, each prefix that maps to a string maps to an absolute IRI ending in # or /.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"terms#"` | `/@context/ex` | a prefix maps to an absolute IRI |
@@ -373,16 +373,16 @@ $ report_on instance-core-prefix-unterminated.jsonld
 
 wrote tmp/instance-core-prefix-unterminated.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD unmet
 
-# Report on `instance-core-prefix-unterminated.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-core-prefix-unterminated.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 3 - TRACE-PERMISSIBLE-JSON-LD`.
+This candidate is expected to satisfy `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 3 - TRACE-PERMISSIBLE-JSON-LD`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-core-prefix-unterminated.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 3 - TRACE-PERMISSIBLE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -474,7 +474,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: prefix-namespaces-terminated
 Detailed expectation: In every @context, each prefix that maps to a string maps to an absolute IRI ending in # or /.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"https://schema.org"` | `/@context/schema` | a prefix's namespace ends in # or / |

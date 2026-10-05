@@ -14,16 +14,16 @@ $ report_on instance-graph-node-object.jsonld
 
 wrote tmp/instance-graph-node-object.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met
 
-# Report on `instance-graph-node-object.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-graph-node-object.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the tier below it.
+This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the tier below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-graph-node-object.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 2 - SAFE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -123,16 +123,16 @@ $ report_on instance-graph-string.jsonld
 
 wrote tmp/instance-graph-string.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD unmet
 
-# Report on `instance-graph-string.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-graph-string.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 2 - SAFE-JSON-LD`.
+This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 2 - SAFE-JSON-LD`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-graph-string.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 2 - SAFE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -224,7 +224,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: graph-object-or-array
 Detailed expectation: Where the document carries an @graph at its root, the value is an object or an array of objects.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"https://example.org/thing/1"` | `/@graph` | an @graph holds a node object, or an array of node objects |
@@ -242,16 +242,16 @@ $ report_on instance-graph-array.jsonld
 
 wrote tmp/instance-graph-array.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met
 
-# Report on `instance-graph-array.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-graph-array.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the tier below it.
+This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the tier below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-graph-array.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 2 - SAFE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -354,16 +354,16 @@ $ report_on instance-graph-array-with-scalar.jsonld
 
 wrote tmp/instance-graph-array-with-scalar.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD unmet
 
-# Report on `instance-graph-array-with-scalar.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-graph-array-with-scalar.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 2 - SAFE-JSON-LD`.
+This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 2 - SAFE-JSON-LD`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-graph-array-with-scalar.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 2 - SAFE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -455,7 +455,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: graph-object-or-array
 Detailed expectation: Where the document carries an @graph at its root, the value is an object or an array of objects.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"https://example.org/thing/2"` | `/@graph/1` | every member of an @graph array is a node object |

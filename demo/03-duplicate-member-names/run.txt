@@ -16,16 +16,16 @@ $ report_on instance-names-unique.jsonld
 
 wrote tmp/instance-names-unique.md; Tier 1 - SAFE-JSON met
 
-# Report on `instance-names-unique.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-names-unique.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 1 - SAFE-JSON` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier.
+This candidate is expected to satisfy `Tier 1 - SAFE-JSON` at version `trace-2026-04-19`. The candidate meets every expectation in that tier.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-names-unique.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 1 - SAFE-JSON` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -127,16 +127,16 @@ $ report_on instance-nested-duplicate.jsonld
 
 wrote tmp/instance-nested-duplicate.md; Tier 1 - SAFE-JSON unmet
 
-# Report on `instance-nested-duplicate.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-nested-duplicate.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 1 - SAFE-JSON` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 1 - SAFE-JSON`.
+This candidate is expected to satisfy `Tier 1 - SAFE-JSON` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 1 - SAFE-JSON`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-nested-duplicate.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 1 - SAFE-JSON` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -228,7 +228,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: duplicate-member-names-absent
 Detailed expectation: No object in the candidate repeats a member name. The validators check this as they parse the candidate, so the schema itself asserts nothing.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 |  | the document | instance contains duplicate member name "ex:name" |
@@ -246,16 +246,16 @@ $ report_on instance-duplicate-context.jsonld
 
 wrote tmp/instance-duplicate-context.md; Tier 1 - SAFE-JSON unmet
 
-# Report on `instance-duplicate-context.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-duplicate-context.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 1 - SAFE-JSON` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 1 - SAFE-JSON`.
+This candidate is expected to satisfy `Tier 1 - SAFE-JSON` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 1 - SAFE-JSON`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-duplicate-context.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 1 - SAFE-JSON` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -347,7 +347,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: duplicate-member-names-absent
 Detailed expectation: No object in the candidate repeats a member name. The validators check this as they parse the candidate, so the schema itself asserts nothing.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 |  | the document | instance contains duplicate member name "@context" |

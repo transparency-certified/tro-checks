@@ -2,9 +2,9 @@
 
 What each version of the Specification changes in the expectations, from the version before it. Generated from `exports/versions/` by `make update-readme`; not to be edited by hand.
 
-`trace-spec-2026-04-19` is the first version: its directory holds every expectation it lists.
+`trace-2026-04-19` is the first version: its directory holds every expectation it lists.
 
-## `0.1`
+## `trace-0.1`
 
 Adds `times-zoned`, `creators-person-or-organization`, `trs-id-absolute`, `capability-ids-absolute`, `performance-attribute-warrants-absolute`.
 
@@ -44,7 +44,7 @@ Adds `times-zoned`, `creators-person-or-organization`, `trs-id-absolute`, `capab
 ```diff
   {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
--     "$id": "https://w3id.org/trace/tro/trace-spec-2026-04-19/trov-terms-known.schema.json",
+-     "$id": "https://w3id.org/trace/tro/2026-04-19/trov-terms-known.schema.json",
 +     "$id": "https://w3id.org/trace/tro/0.1/trov-terms-known.schema.json",
       "title": "TROV terms known",
       "description": "Where a property name or a string value carries the trov: prefix, it is a term TROV defines.",

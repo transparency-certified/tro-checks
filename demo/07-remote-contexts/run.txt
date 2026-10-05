@@ -21,16 +21,16 @@ $ report_on instance-inline-context.jsonld
 
 wrote tmp/instance-inline-context.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met
 
-# Report on `instance-inline-context.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-inline-context.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the tier below it.
+This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the tier below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-inline-context.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 2 - SAFE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -135,16 +135,16 @@ $ report_on instance-remote-context.jsonld
 
 wrote tmp/instance-remote-context.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD unmet
 
-# Report on `instance-remote-context.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-remote-context.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 2 - SAFE-JSON-LD`. One other expectation was not assessed, because a tier below it, or an expectation it requires, was not met.
+This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 2 - SAFE-JSON-LD`. One other expectation was not assessed, because a tier below it, or an expectation it requires, was not met.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-remote-context.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 2 - SAFE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -236,7 +236,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: remote-contexts-absent
 Detailed expectation: The top-level @context is not a string, and where it is an array, no member of the array is a string. In JSON-LD a string there is the web address of a context to be fetched, so what the file means would depend on what that address returns when it is read. Any string is refused, whether or not it looks like a URL. Contexts below the top level are refused by context-at-root-only.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"https://example.org/context.jsonld"` | `/@context` | the @context never refers by web address to a context kept elsewhere |
@@ -261,16 +261,16 @@ $ report_on instance-remote-in-array.jsonld
 
 wrote tmp/instance-remote-in-array.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD unmet
 
-# Report on `instance-remote-in-array.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-remote-in-array.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 2 - SAFE-JSON-LD`. One other expectation was not assessed, because a tier below it, or an expectation it requires, was not met.
+This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 2 - SAFE-JSON-LD`. One other expectation was not assessed, because a tier below it, or an expectation it requires, was not met.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-remote-in-array.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 2 - SAFE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -362,7 +362,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: remote-contexts-absent
 Detailed expectation: The top-level @context is not a string, and where it is an array, no member of the array is a string. In JSON-LD a string there is the web address of a context to be fetched, so what the file means would depend on what that address returns when it is read. Any string is refused, whether or not it looks like a URL. Contexts below the top level are refused by context-at-root-only.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"https://example.org/context.jsonld"` | `/@context/1` | the @context never refers by web address to a context kept elsewhere |

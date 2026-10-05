@@ -23,16 +23,16 @@ $ report_on instance-context-at-root.jsonld
 
 wrote tmp/instance-context-at-root.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met
 
-# Report on `instance-context-at-root.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-context-at-root.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the tier below it.
+This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the tier below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-context-at-root.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 2 - SAFE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -142,16 +142,16 @@ $ report_on instance-context-in-node.jsonld
 
 wrote tmp/instance-context-in-node.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD unmet
 
-# Report on `instance-context-in-node.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-context-in-node.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 2 - SAFE-JSON-LD`.
+This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 2 - SAFE-JSON-LD`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-context-in-node.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 2 - SAFE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -243,7 +243,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: context-at-root-only
 Detailed expectation: The only @context is the one at the document's root: no node below it carries an @context, and no term definition within it carries one either.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@id":"https://example.org/thing/1","@context":{"part":"https://example.org/terms#part"},"part":"x"}` | `/@graph/0` | the only @context is the document root's |
@@ -269,16 +269,16 @@ $ report_on instance-scoped-context.jsonld
 
 wrote tmp/instance-scoped-context.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD unmet
 
-# Report on `instance-scoped-context.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-scoped-context.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 2 - SAFE-JSON-LD`.
+This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 2 - SAFE-JSON-LD`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-scoped-context.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 2 - SAFE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -370,7 +370,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: context-at-root-only
 Detailed expectation: The only @context is the one at the document's root: no node below it carries an @context, and no term definition within it carries one either.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@context":{"part":"https://example.org/terms#part"}}` | `/@context/ex:Thing` | the only @context is the document root's |

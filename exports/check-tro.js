@@ -30,7 +30,7 @@ const { renderReportAsMarkdown, tierLabel } = require('./render-report.js')
  */
 
 const ASSUMED_TIER = 'STANDALONE-TRO'
-const ASSUMED_VERSION = 'trace-spec-2026-04-19'
+const ASSUMED_VERSION = 'trace-2026-04-19'
 
 module.exports = {
     ASSUMED_TIER,
@@ -131,6 +131,7 @@ function readVersionDefinitions() {
     for (const version of versions) {
         if (typeof version.id !== 'string') throw new Error(`version ${version.number} has no id`)
         if (typeof version.description !== 'string') throw new Error(`${version.id} has no description`)
+        if (typeof version.urlForm !== 'string') throw new Error(`${version.id} has no urlForm`)
     }
 
     return versions
@@ -276,7 +277,7 @@ function resolveAllVersions() {
  * @param {Implementation} implementation
  * @returns {Expectation}
  * @throws {Error} if the file cannot be read or parsed, has no summary or description, has a `requires` that is not a
- *   list of names, carries a keyword it may not, or, for a schema, has an `$id` other than its version directory gives.
+ *   list of names, carries a keyword it may not, or, for a schema, has an `$id` other than its version's URL form gives.
  */
 function readExpectation(name, tier, implementation) {
     const fileName = path.basename(implementation.path)
@@ -291,7 +292,7 @@ function readExpectation(name, tier, implementation) {
     }
 
     const instrument = INSTRUMENT_OF_SUFFIX[instrumentSuffixOf(fileName) ?? '']
-    const expectedId = `${ID_BASE}/${implementation.version.id}/${fileName}`
+    const expectedId = `${ID_BASE}/${implementation.version.urlForm}/${fileName}`
     if (instrument === 'json-schema' && definition.$id !== expectedId) {
         throw new Error(`${where} has the $id ${JSON.stringify(definition.$id)}, not ${expectedId}`)
     }

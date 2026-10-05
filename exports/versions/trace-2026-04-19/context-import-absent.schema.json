@@ -1,0 +1,33 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://w3id.org/trace/tro/2026-04-19/context-import-absent.schema.json",
+    "title": "Context import absent",
+    "description": "No @context pulls in entries from another context: @import appears nowhere within a context.",
+    "summary": "The `@context` never uses `@import` to pull in entries from another context at a web address",
+    "$defs": {
+        "contextValue": {
+            "if": { "type": "object" },
+            "then": {
+                "not": { "required": ["@import"] },
+                "errorMessage": { "not": "a context has no @import" },
+                "additionalProperties": { "$ref": "#/$defs/contextValue" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/contextValue" } }
+            }
+        },
+        "node": {
+            "if": { "type": "object" },
+            "then": {
+                "properties": { "@context": { "$ref": "#/$defs/contextValue" } },
+                "additionalProperties": { "$ref": "#/$defs/node" }
+            },
+            "else": {
+                "if": { "type": "array" },
+                "then": { "items": { "$ref": "#/$defs/node" } }
+            }
+        }
+    },
+    "$ref": "#/$defs/node"
+}

@@ -20,16 +20,16 @@ $ report_on instance-no-import.jsonld
 
 wrote tmp/instance-no-import.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met
 
-# Report on `instance-no-import.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-no-import.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the tier below it.
+This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the tier below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-no-import.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 2 - SAFE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -136,16 +136,16 @@ $ report_on instance-import.jsonld
 
 wrote tmp/instance-import.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD unmet
 
-# Report on `instance-import.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-import.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 2 - SAFE-JSON-LD`.
+This candidate is expected to satisfy `Tier 2 - SAFE-JSON-LD` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 2 - SAFE-JSON-LD`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-import.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 2 - SAFE-JSON-LD` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -237,7 +237,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: context-import-absent
 Detailed expectation: No @context pulls in entries from another context: @import appears nowhere within a context.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `{"@import":"https://example.org/base-context.jsonld","ex":"https://example.org/terms#"}` | `/@context` | a context has no @import |

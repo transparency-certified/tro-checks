@@ -48,16 +48,16 @@ $ report_on instance-composition-single.jsonld
 
 wrote tmp/instance-composition-single.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS met, Tier 6 - STANDALONE-TRO met
 
-# Report on `instance-composition-single.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-composition-single.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 6 - STANDALONE-TRO` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the five tiers below it.
+This candidate is expected to satisfy `Tier 6 - STANDALONE-TRO` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the five tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-composition-single.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 6 - STANDALONE-TRO` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -193,16 +193,16 @@ $ report_on instance-compositions-array.jsonld
 
 wrote tmp/instance-compositions-array.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS met, Tier 6 - STANDALONE-TRO unmet
 
-# Report on `instance-compositions-array.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-compositions-array.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 6 - STANDALONE-TRO` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 6 - STANDALONE-TRO`.
+This candidate is expected to satisfy `Tier 6 - STANDALONE-TRO` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 6 - STANDALONE-TRO`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-compositions-array.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 6 - STANDALONE-TRO` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -294,7 +294,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: tro-composition-single
 Detailed expectation: A trov:hasComposition, where one is present, is a single object: one TRO describes one composition.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `[{"@id":"composition","@type":"trov:ArtifactComposition","trov:hasFingerprint":{"@id":"fingerprint","@type":"trov:CompositionFingerprint","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"44863b03e9909b7100e05b02526909a346fd7455183f6619e0fe6198c89981e0"}},"trov:hasArtifact":[{"@id":"composition/artifact/0","@type":"trov:ResearchArtifact","trov:hash":{"trov:hashAlgorithm":"sha256","trov:hashValue":"208fadf260c2cb9b1c747f03326626e66ddbb3cc6eee10b6e111ff0b803686fe"}}]}]` | `/@graph/0/trov:hasComposition` | a TRO carries one composition, an object, not an array of them |

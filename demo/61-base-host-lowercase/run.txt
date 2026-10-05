@@ -27,16 +27,16 @@ $ report_on instance-lowercase-host.jsonld
 
 wrote tmp/instance-lowercase-host.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS met, Tier 6 - STANDALONE-TRO met, Tier 7 - LINKABLE-TRO met
 
-# Report on `instance-lowercase-host.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-lowercase-host.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 7 - LINKABLE-TRO` at version `trace-spec-2026-04-19`. The candidate meets every expectation in that tier and in the six tiers below it.
+This candidate is expected to satisfy `Tier 7 - LINKABLE-TRO` at version `trace-2026-04-19`. The candidate meets every expectation in that tier and in the six tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-lowercase-host.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 7 - LINKABLE-TRO` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -149,16 +149,16 @@ $ report_on instance-uppercase-host.jsonld
 
 wrote tmp/instance-uppercase-host.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS met, Tier 6 - STANDALONE-TRO met, Tier 7 - LINKABLE-TRO unmet
 
-# Report on `instance-uppercase-host.jsonld` at version `trace-spec-2026-04-19`
+# Report on `instance-uppercase-host.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 7 - LINKABLE-TRO` at version `trace-spec-2026-04-19`. The candidate does not meet one of the expectations in `Tier 7 - LINKABLE-TRO`.
+This candidate is expected to satisfy `Tier 7 - LINKABLE-TRO` at version `trace-2026-04-19`. The candidate does not meet one of the expectations in `Tier 7 - LINKABLE-TRO`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-uppercase-host.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-spec-2026-04-19` | the default |
+| Target version | `trace-2026-04-19` | the default |
 | Target tier | `Tier 7 - LINKABLE-TRO` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -250,7 +250,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: base-host-lowercase
 Detailed expectation: Where an @context declares a non-null @base, its host carries no uppercase letter. DNS ignores case and RDF does not: two spellings of one host are two namespaces, and nothing written under the one joins what was written under the other.
-Defined in version: `trace-spec-2026-04-19`
+Defined in version: `trace-2026-04-19`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"https://Transparency-Certified.github.io/tro/4a8d2c10-6f3b-4e59-9c21-7b0e5d3a1f84/"` | `/@context/@base` | an @base host is lowercase |
