@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://w3id.org/trace/tro/0.1/trov-terms-known.schema.json",
+    "$id": "https://w3id.org/trace/tro/main/trov-terms-known.schema.json",
     "title": "TROV terms known",
     "description": "Where a property name or a string value carries the trov: prefix, it is a term TROV defines.",
     "summary": "Every term with the `trov:` prefix is one TROV defines",

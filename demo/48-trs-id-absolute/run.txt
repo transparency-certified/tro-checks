@@ -23,7 +23,8 @@ $ report_on instance-trs-absolute-iri.jsonld
                 "@type": "trov:TrustedResearchSystem",
                 "trov:hasCapability": [
                     {
-                        "@id": "trov:CanProvideInternetIsolation"
+                        "@id": "https://trs.example.org/demo/capability/0",
+                        "@type": "trov:CanProvideInternetIsolation"
                     }
                 ]
             },
@@ -39,7 +40,7 @@ $ report_on instance-trs-absolute-iri.jsonld
                             "@id": "trp/0/attribute/0",
                             "@type": "trov:InternetIsolation",
                             "trov:warrantedBy": {
-                                "@id": "trov:CanProvideInternetIsolation"
+                                "@id": "https://trs.example.org/demo/capability/0"
                             }
                         }
                     ]
@@ -51,16 +52,16 @@ $ report_on instance-trs-absolute-iri.jsonld
 
 wrote tmp/instance-trs-absolute-iri.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS met
 
-# Report on `instance-trs-absolute-iri.jsonld` at version `trace-0.1`
+# Report on `instance-trs-absolute-iri.jsonld` at version `trace-main`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 5 - DEFINES-TRS` at version `trace-0.1`. The candidate meets every expectation in that tier and in the four tiers below it.
+This candidate is expected to satisfy `Tier 5 - DEFINES-TRS` at version `trace-main`. The candidate meets every expectation in that tier and in the four tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-trs-absolute-iri.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-0.1` | the `--target-version` option |
+| Target version | `trace-main` | the `--target-version` option |
 | Target tier | `Tier 5 - DEFINES-TRS` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -133,7 +134,6 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | `trs-defined` | A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else | ✅ met |
 | `trs-id-absolute` | The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ✅ met |
-| `capability-terms-known` | Every capability the TRS lists is a known term: one TROV defines or the TRS declares | ✅ met |
 | *`Tier 6 - STANDALONE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
@@ -174,7 +174,8 @@ $ report_on instance-trs-compact-iri.jsonld
                 "@type": "trov:TrustedResearchSystem",
                 "trov:hasCapability": [
                     {
-                        "@id": "trov:CanProvideInternetIsolation"
+                        "@id": "https://trs.example.org/demo/capability/0",
+                        "@type": "trov:CanProvideInternetIsolation"
                     }
                 ]
             },
@@ -190,7 +191,7 @@ $ report_on instance-trs-compact-iri.jsonld
                             "@id": "trp/0/attribute/0",
                             "@type": "trov:InternetIsolation",
                             "trov:warrantedBy": {
-                                "@id": "trov:CanProvideInternetIsolation"
+                                "@id": "https://trs.example.org/demo/capability/0"
                             }
                         }
                     ]
@@ -202,16 +203,16 @@ $ report_on instance-trs-compact-iri.jsonld
 
 wrote tmp/instance-trs-compact-iri.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS met
 
-# Report on `instance-trs-compact-iri.jsonld` at version `trace-0.1`
+# Report on `instance-trs-compact-iri.jsonld` at version `trace-main`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 5 - DEFINES-TRS` at version `trace-0.1`. The candidate meets every expectation in that tier and in the four tiers below it.
+This candidate is expected to satisfy `Tier 5 - DEFINES-TRS` at version `trace-main`. The candidate meets every expectation in that tier and in the four tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-trs-compact-iri.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-0.1` | the `--target-version` option |
+| Target version | `trace-main` | the `--target-version` option |
 | Target tier | `Tier 5 - DEFINES-TRS` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -284,7 +285,6 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | `trs-defined` | A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else | ✅ met |
 | `trs-id-absolute` | The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ✅ met |
-| `capability-terms-known` | Every capability the TRS lists is a known term: one TROV defines or the TRS declares | ✅ met |
 | *`Tier 6 - STANDALONE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
@@ -325,7 +325,8 @@ $ report_on instance-trs-relative.jsonld
                 "@type": "trov:TrustedResearchSystem",
                 "trov:hasCapability": [
                     {
-                        "@id": "trov:CanProvideInternetIsolation"
+                        "@id": "https://trs.example.org/demo/capability/0",
+                        "@type": "trov:CanProvideInternetIsolation"
                     }
                 ]
             },
@@ -341,7 +342,7 @@ $ report_on instance-trs-relative.jsonld
                             "@id": "trp/0/attribute/0",
                             "@type": "trov:InternetIsolation",
                             "trov:warrantedBy": {
-                                "@id": "trov:CanProvideInternetIsolation"
+                                "@id": "https://trs.example.org/demo/capability/0"
                             }
                         }
                     ]
@@ -353,16 +354,16 @@ $ report_on instance-trs-relative.jsonld
 
 wrote tmp/instance-trs-relative.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS unmet
 
-# Report on `instance-trs-relative.jsonld` at version `trace-0.1`
+# Report on `instance-trs-relative.jsonld` at version `trace-main`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 5 - DEFINES-TRS` at version `trace-0.1`. The candidate does not meet one of the expectations in `Tier 5 - DEFINES-TRS`.
+This candidate is expected to satisfy `Tier 5 - DEFINES-TRS` at version `trace-main`. The candidate does not meet one of the expectations in `Tier 5 - DEFINES-TRS`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-trs-relative.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-0.1` | the `--target-version` option |
+| Target version | `trace-main` | the `--target-version` option |
 | Target tier | `Tier 5 - DEFINES-TRS` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -435,7 +436,6 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | `trs-defined` | A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else | ✅ met |
 | `trs-id-absolute` | The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ❌ not met |
-| `capability-terms-known` | Every capability the TRS lists is a known term: one TROV defines or the TRS declares | ✅ met |
 | *`Tier 6 - STANDALONE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
@@ -459,7 +459,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: trs-id-absolute
 Detailed expectation: The @id of the TRS the document defines is an absolute IRI, or a compact IRI whose prefix is not trov, so that it is the same wherever the TRS is defined.
-Defined in version: `trace-0.1`
+Defined in version: `trace-main`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"trs"` | `/@graph/0/trov:wasAssembledBy/@id` | a TRS is identified by an absolute IRI, or by a compact IRI outside the trov namespace |
@@ -483,7 +483,8 @@ $ report_on instance-trs-trov.jsonld
                 "@type": "trov:TrustedResearchSystem",
                 "trov:hasCapability": [
                     {
-                        "@id": "trov:CanProvideInternetIsolation"
+                        "@id": "https://trs.example.org/demo/capability/0",
+                        "@type": "trov:CanProvideInternetIsolation"
                     }
                 ]
             },
@@ -499,7 +500,7 @@ $ report_on instance-trs-trov.jsonld
                             "@id": "trp/0/attribute/0",
                             "@type": "trov:InternetIsolation",
                             "trov:warrantedBy": {
-                                "@id": "trov:CanProvideInternetIsolation"
+                                "@id": "https://trs.example.org/demo/capability/0"
                             }
                         }
                     ]
@@ -511,16 +512,16 @@ $ report_on instance-trs-trov.jsonld
 
 wrote tmp/instance-trs-trov.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met, Tier 5 - DEFINES-TRS unmet
 
-# Report on `instance-trs-trov.jsonld` at version `trace-0.1`
+# Report on `instance-trs-trov.jsonld` at version `trace-main`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 5 - DEFINES-TRS` at version `trace-0.1`. The candidate does not meet one of the expectations in `Tier 5 - DEFINES-TRS`.
+This candidate is expected to satisfy `Tier 5 - DEFINES-TRS` at version `trace-main`. The candidate does not meet one of the expectations in `Tier 5 - DEFINES-TRS`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-trs-trov.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-0.1` | the `--target-version` option |
+| Target version | `trace-main` | the `--target-version` option |
 | Target tier | `Tier 5 - DEFINES-TRS` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -593,7 +594,6 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | `trs-defined` | A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else | ✅ met |
 | `trs-id-absolute` | The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ❌ not met |
-| `capability-terms-known` | Every capability the TRS lists is a known term: one TROV defines or the TRS declares | ✅ met |
 | *`Tier 6 - STANDALONE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
@@ -617,7 +617,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: trs-id-absolute
 Detailed expectation: The @id of the TRS the document defines is an absolute IRI, or a compact IRI whose prefix is not trov, so that it is the same wherever the TRS is defined.
-Defined in version: `trace-0.1`
+Defined in version: `trace-main`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"trov:TrustedResearchSystem"` | `/@graph/0/trov:wasAssembledBy/@id` | a TRS is identified by an absolute IRI, or by a compact IRI outside the trov namespace |

@@ -7,7 +7,7 @@ mkdir -p tmp
 report_on() {
     cat "$1"
     echo
-    check-tro --target-tier USES-TROV-CORRECTLY --target-version trace-0.1 --compact --candidate "$1" --report "tmp/${1%.jsonld}.md"
+    check-tro --target-tier USES-TROV-CORRECTLY --target-version trace-main --compact --candidate "$1" --report "tmp/${1%.jsonld}.md"
     echo
     cat "tmp/${1%.jsonld}.md"
 }

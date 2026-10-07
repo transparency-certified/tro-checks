@@ -66,10 +66,9 @@ versions/trace-2026-04-19/trs-defined.schema.json versions/trace-2026-04-19/trs-
 versions/trace-2026-04-19/types-prefixed-or-absolute.schema.json versions/trace-2026-04-19/types-prefixed-or-absolute.schema.json versions/trace-2026-04-19/types-prefixed-or-absolute.schema.json
 versions/trace-2026-04-19/unicode-escapes-spell-whole-characters.parse.json versions/trace-2026-04-19/unicode-escapes-spell-whole-characters.parse.json versions/trace-2026-04-19/unicode-escapes-spell-whole-characters.parse.json
 versions/trace-2026-04-19/utf8-encoded.parse.json versions/trace-2026-04-19/utf8-encoded.parse.json versions/trace-2026-04-19/utf8-encoded.parse.json
-versions/trace-0.1/tiers.json versions/trace-0.1/tiers.json versions/trace-0.1/tiers.json
-versions/trace-0.1/capability-terms-known.schema.json versions/trace-0.1/capability-terms-known.schema.json versions/trace-0.1/capability-terms-known.schema.json
-versions/trace-0.1/creators-person-or-organization.schema.json versions/trace-0.1/creators-person-or-organization.schema.json versions/trace-0.1/creators-person-or-organization.schema.json
-versions/trace-0.1/performance-attribute-warrants-absolute.schema.json versions/trace-0.1/performance-attribute-warrants-absolute.schema.json versions/trace-0.1/performance-attribute-warrants-absolute.schema.json
-versions/trace-0.1/times-zoned.schema.json versions/trace-0.1/times-zoned.schema.json versions/trace-0.1/times-zoned.schema.json
-versions/trace-0.1/trov-terms-known.schema.json versions/trace-0.1/trov-terms-known.schema.json versions/trace-0.1/trov-terms-known.schema.json
-versions/trace-0.1/trs-id-absolute.schema.json versions/trace-0.1/trs-id-absolute.schema.json versions/trace-0.1/trs-id-absolute.schema.json
+versions/trace-main/tiers.json versions/trace-main/tiers.json versions/trace-main/tiers.json
+versions/trace-main/creators-person-or-organization.schema.json versions/trace-main/creators-person-or-organization.schema.json versions/trace-main/creators-person-or-organization.schema.json
+versions/trace-main/performance-attribute-warrants-absolute.schema.json versions/trace-main/performance-attribute-warrants-absolute.schema.json versions/trace-main/performance-attribute-warrants-absolute.schema.json
+versions/trace-main/times-zoned.schema.json versions/trace-main/times-zoned.schema.json versions/trace-main/times-zoned.schema.json
+versions/trace-main/trov-terms-known.schema.json versions/trace-main/trov-terms-known.schema.json versions/trace-main/trov-terms-known.schema.json
+versions/trace-main/trs-id-absolute.schema.json versions/trace-main/trs-id-absolute.schema.json versions/trace-main/trs-id-absolute.schema.json

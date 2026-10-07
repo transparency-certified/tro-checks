@@ -14,7 +14,8 @@
                 "@type": "trov:TrustedResearchSystem",
                 "trov:hasCapability": [
                     {
-                        "@id": "trov:CanProvideInternetIsolation"
+                        "@id": "https://trs.example.org/demo/capability/0",
+                        "@type": "trov:CanProvideInternetIsolation"
                     }
                 ]
             },
@@ -30,7 +31,7 @@
                             "@id": "trp/0/attribute/0",
                             "@type": "trov:InternetIsolation",
                             "trov:warrantedBy": {
-                                "@id": "trov:CanProvideInternetIsolation"
+                                "@id": "https://trs.example.org/demo/capability/0"
                             }
                         }
                     ]

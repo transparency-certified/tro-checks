@@ -5,8 +5,8 @@
         "description": "The first release of the TRACE Specification, tagged trace-spec-2026-04-19"
     },
     {
-        "id": "trace-0.1",
-        "urlForm": "0.1",
-        "description": "TRACE Specification 0.1, not yet released"
+        "id": "trace-main",
+        "urlForm": "main",
+        "description": "The Specification as it is being developed ahead of the 0.1 release; changes frequently."
     }
 ]

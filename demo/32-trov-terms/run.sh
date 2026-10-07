@@ -42,7 +42,7 @@ show "expectation unmet: the bare value trov:CanIsolateNetwork is not defined by
 show "expectation met at version trace-2026-04-19: the TRS's trov:name is a pre-release term that version admits" \
     report_on instance-trs-name.jsonld trace-2026-04-19
 
-show "expectation unmet at version trace-0.1: trov:name is not defined by TROV" \
-    report_on instance-trs-name.jsonld trace-0.1
+show "expectation unmet at version trace-main: trov:name is not defined by TROV" \
+    report_on instance-trs-name.jsonld trace-main
 
 exit 0

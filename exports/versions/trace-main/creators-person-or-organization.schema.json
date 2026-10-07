@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://w3id.org/trace/tro/0.1/creators-person-or-organization.schema.json",
+    "$id": "https://w3id.org/trace/tro/main/creators-person-or-organization.schema.json",
     "title": "Creators Person or Organization",
     "description": "Where the TRO carries schema:creator, each value is a node -- an object, not a string -- and where the node carries a @type, it is schema:Person or schema:Organization, the types schema.org expects of a creator. A bare reference, an object holding only an @id, passes.",
     "summary": "The TRO's `schema:creator`, if present, is a node typed `schema:Person` or `schema:Organization`, never a string",

@@ -1083,9 +1083,9 @@ The sections below give the status of each tier, then the status of each expecta
 | *`node-ids-present`* | *Every node carries an explicit `@id`* | *not claimed* |
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 
------ [10] expectation unmet at version trace-0.1: trov:name is not defined by TROV -----
+----- [10] expectation unmet at version trace-main: trov:name is not defined by TROV -----
 
-$ report_on instance-trs-name.jsonld trace-0.1
+$ report_on instance-trs-name.jsonld trace-main
 {
     "@context": { "trov": "https://w3id.org/trace/trov/0.1#" },
     "@graph": [
@@ -1098,18 +1098,18 @@ $ report_on instance-trs-name.jsonld trace-0.1
     ]
 }
 
-wrote tmp/instance-trs-name__at__trace-0.1.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
+wrote tmp/instance-trs-name__at__trace-main.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report on `instance-trs-name.jsonld` at version `trace-0.1`
+# Report on `instance-trs-name.jsonld` at version `trace-main`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-0.1`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-main`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-trs-name.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-0.1` | the `--target-version` option |
+| Target version | `trace-main` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -1182,7 +1182,6 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
 | *`trs-id-absolute`* | *The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
-| *`capability-terms-known`* | *Every capability the TRS lists is a known term: one TROV defines or the TRS declares* | *not claimed* |
 | *`Tier 6 - STANDALONE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
@@ -1206,7 +1205,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: trov-terms-known
 Detailed expectation: Where a property name or a string value carries the trov: prefix, it is a term TROV defines.
-Defined in version: `trace-0.1`
+Defined in version: `trace-main`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 |  | `/@graph/0/trov:wasAssembledBy/trov:name` | a term with the trov: prefix is one TROV defines |

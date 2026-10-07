@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://w3id.org/trace/tro/0.1/trs-id-absolute.schema.json",
+    "$id": "https://w3id.org/trace/tro/main/trs-id-absolute.schema.json",
     "title": "TRS id absolute",
     "description": "The @id of the TRS the document defines is an absolute IRI, or a compact IRI whose prefix is not trov, so that it is the same wherever the TRS is defined.",
     "summary": "The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace",

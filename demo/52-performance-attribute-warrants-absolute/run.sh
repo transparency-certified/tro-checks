@@ -7,14 +7,14 @@ mkdir -p tmp
 report_on() {
     cat "$1"
     echo
-    check-tro --target-tier STANDALONE-TRO --target-version trace-0.1 --compact --candidate "$1" --report "tmp/${1%.jsonld}.md"
+    check-tro --target-tier STANDALONE-TRO --target-version trace-main --compact --candidate "$1" --report "tmp/${1%.jsonld}.md"
     echo
     cat "tmp/${1%.jsonld}.md"
 }
 
 title "tro-checks  ·  demo 52: performance-attribute-warrants-absolute (Tier 6 - STANDALONE-TRO)"
 
-show "expectation met: the performance attribute's warrant refers to the capability by its term, trov:CanProvideInternetIsolation" \
+show "expectation met: the performance attribute's warrant refers to the capability by absolute IRI" \
     report_on instance-warrant-absolute.jsonld
 
 show "expectation unmet: the warrant refers to the capability by the relative id trs/capability/0" \

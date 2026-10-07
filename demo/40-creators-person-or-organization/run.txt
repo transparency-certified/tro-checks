@@ -75,16 +75,16 @@ $ report_on instance-creator-organization.jsonld
 
 wrote tmp/instance-creator-organization.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
 
-# Report on `instance-creator-organization.jsonld` at version `trace-0.1`
+# Report on `instance-creator-organization.jsonld` at version `trace-main`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-0.1`. The candidate meets every expectation in that tier and in the three tiers below it.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-main`. The candidate meets every expectation in that tier and in the three tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-creator-organization.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-0.1` | the `--target-version` option |
+| Target version | `trace-main` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -157,7 +157,6 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
 | *`trs-id-absolute`* | *The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
-| *`capability-terms-known`* | *Every capability the TRS lists is a known term: one TROV defines or the TRS declares* | *not claimed* |
 | *`Tier 6 - STANDALONE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
@@ -248,16 +247,16 @@ $ report_on instance-creator-reference.jsonld
 
 wrote tmp/instance-creator-reference.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
 
-# Report on `instance-creator-reference.jsonld` at version `trace-0.1`
+# Report on `instance-creator-reference.jsonld` at version `trace-main`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-0.1`. The candidate meets every expectation in that tier and in the three tiers below it.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-main`. The candidate meets every expectation in that tier and in the three tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-creator-reference.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-0.1` | the `--target-version` option |
+| Target version | `trace-main` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -330,7 +329,6 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
 | *`trs-id-absolute`* | *The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
-| *`capability-terms-known`* | *Every capability the TRS lists is a known term: one TROV defines or the TRS declares* | *not claimed* |
 | *`Tier 6 - STANDALONE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
@@ -419,16 +417,16 @@ $ report_on instance-creator-string.jsonld
 
 wrote tmp/instance-creator-string.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report on `instance-creator-string.jsonld` at version `trace-0.1`
+# Report on `instance-creator-string.jsonld` at version `trace-main`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-0.1`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-main`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-creator-string.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-0.1` | the `--target-version` option |
+| Target version | `trace-main` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -501,7 +499,6 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
 | *`trs-id-absolute`* | *The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
-| *`capability-terms-known`* | *Every capability the TRS lists is a known term: one TROV defines or the TRS declares* | *not claimed* |
 | *`Tier 6 - STANDALONE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
@@ -525,7 +522,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: creators-person-or-organization
 Detailed expectation: Where the TRO carries schema:creator, each value is a node -- an object, not a string -- and where the node carries a @type, it is schema:Person or schema:Organization, the types schema.org expects of a creator. A bare reference, an object holding only an @id, passes.
-Defined in version: `trace-0.1`
+Defined in version: `trace-main`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"Example Bank"` | `/@graph/0/schema:creator` | schema:creator is a Person or an Organization, given as a node, not as a string |
@@ -600,16 +597,16 @@ $ report_on instance-creator-thing.jsonld
 
 wrote tmp/instance-creator-thing.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report on `instance-creator-thing.jsonld` at version `trace-0.1`
+# Report on `instance-creator-thing.jsonld` at version `trace-main`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-0.1`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-main`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-creator-thing.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-0.1` | the `--target-version` option |
+| Target version | `trace-main` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -682,7 +679,6 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
 | *`trs-id-absolute`* | *The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
-| *`capability-terms-known`* | *Every capability the TRS lists is a known term: one TROV defines or the TRS declares* | *not claimed* |
 | *`Tier 6 - STANDALONE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
@@ -706,7 +702,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: creators-person-or-organization
 Detailed expectation: Where the TRO carries schema:creator, each value is a node -- an object, not a string -- and where the node carries a @type, it is schema:Person or schema:Organization, the types schema.org expects of a creator. A bare reference, an object holding only an @id, passes.
-Defined in version: `trace-0.1`
+Defined in version: `trace-main`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"schema:Thing"` | `/@graph/0/schema:creator/@type` | a schema:creator node is typed schema:Person or schema:Organization |

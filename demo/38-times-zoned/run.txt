@@ -70,16 +70,16 @@ $ report_on instance-times-zoned.jsonld
 
 wrote tmp/instance-times-zoned.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
 
-# Report on `instance-times-zoned.jsonld` at version `trace-0.1`
+# Report on `instance-times-zoned.jsonld` at version `trace-main`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-0.1`. The candidate meets every expectation in that tier and in the three tiers below it.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-main`. The candidate meets every expectation in that tier and in the three tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-times-zoned.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-0.1` | the `--target-version` option |
+| Target version | `trace-main` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -152,7 +152,6 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
 | *`trs-id-absolute`* | *The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
-| *`capability-terms-known`* | *Every capability the TRS lists is a known term: one TROV defines or the TRS declares* | *not claimed* |
 | *`Tier 6 - STANDALONE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
@@ -240,16 +239,16 @@ $ report_on instance-time-with-offset.jsonld
 
 wrote tmp/instance-time-with-offset.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
 
-# Report on `instance-time-with-offset.jsonld` at version `trace-0.1`
+# Report on `instance-time-with-offset.jsonld` at version `trace-main`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-0.1`. The candidate meets every expectation in that tier and in the three tiers below it.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-main`. The candidate meets every expectation in that tier and in the three tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-time-with-offset.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-0.1` | the `--target-version` option |
+| Target version | `trace-main` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -322,7 +321,6 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
 | *`trs-id-absolute`* | *The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
-| *`capability-terms-known`* | *Every capability the TRS lists is a known term: one TROV defines or the TRS declares* | *not claimed* |
 | *`Tier 6 - STANDALONE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
@@ -410,16 +408,16 @@ $ report_on instance-date-created-unzoned.jsonld
 
 wrote tmp/instance-date-created-unzoned.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
 
-# Report on `instance-date-created-unzoned.jsonld` at version `trace-0.1`
+# Report on `instance-date-created-unzoned.jsonld` at version `trace-main`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-0.1`. The candidate meets every expectation in that tier and in the three tiers below it.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-main`. The candidate meets every expectation in that tier and in the three tiers below it.
 The sections below give the status of each tier, then the status of each expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-date-created-unzoned.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-0.1` | the `--target-version` option |
+| Target version | `trace-main` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -492,7 +490,6 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
 | *`trs-id-absolute`* | *The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
-| *`capability-terms-known`* | *Every capability the TRS lists is a known term: one TROV defines or the TRS declares* | *not claimed* |
 | *`Tier 6 - STANDALONE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
@@ -580,16 +577,16 @@ $ report_on instance-time-unzoned.jsonld
 
 wrote tmp/instance-time-unzoned.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
-# Report on `instance-time-unzoned.jsonld` at version `trace-0.1`
+# Report on `instance-time-unzoned.jsonld` at version `trace-main`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
-This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-0.1`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
+This candidate is expected to satisfy `Tier 4 - USES-TROV-CORRECTLY` at version `trace-main`. The candidate does not meet one of the expectations in `Tier 4 - USES-TROV-CORRECTLY`.
 The sections below give the status of each tier, then the status of each expectation, then, for each expectation not met, what was found, where in the candidate, and why it does not meet the expectation.
 ## Candidate Information
 |  |  | Declared by |
 | --- | --- | --- |
 | Candidate | `instance-time-unzoned.jsonld` |  |
 | Created with | not stated | the candidate |
-| Target version | `trace-0.1` | the `--target-version` option |
+| Target version | `trace-main` | the `--target-version` option |
 | Target tier | `Tier 4 - USES-TROV-CORRECTLY` | the `--target-tier` option |
 ## Tier Assessments
 | Tier | Description | Status |
@@ -662,7 +659,6 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
 | *`trs-id-absolute`* | *The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
-| *`capability-terms-known`* | *Every capability the TRS lists is a known term: one TROV defines or the TRS declares* | *not claimed* |
 | *`Tier 6 - STANDALONE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
@@ -686,7 +682,7 @@ The sections below give the status of each tier, then the status of each expecta
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: times-zoned
 Detailed expectation: Every trov:startedAtTime and trov:endedAtTime carries its time zone: Z, or an offset of the form +hh:mm or -hh:mm.
-Defined in version: `trace-0.1`
+Defined in version: `trace-main`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
 | `"2026-09-17T17:00:00"` | `/@graph/0/trov:hasPerformance/0/trov:startedAtTime` | a time carries its zone: Z, or an offset +hh:mm or -hh:mm |
