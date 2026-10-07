@@ -78,7 +78,7 @@
         "expectations": [
             "trs-defined",
             "trs-id-absolute",
-            "capability-ids-absolute"
+            "capability-terms-known"
         ]
     },
     {

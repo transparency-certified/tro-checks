@@ -1182,13 +1182,13 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | *`trs-defined`* | *A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else* | *not claimed* |
 | *`trs-id-absolute`* | *The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
-| *`capability-ids-absolute`* | *Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace* | *not claimed* |
+| *`capability-terms-known`* | *Every capability the TRS lists is a known term: one TROV defines or the TRS declares* | *not claimed* |
 | *`Tier 6 - STANDALONE-TRO`  not claimed* |  |  |
 | Expectation | Summary | Status |
 | *`tro-top-level-in-graph`* | *The TRO is a top-level member of the `@graph`* | *not claimed* |
 | *`trov-objects-identified`* | *Every object typed with a TROV class carries an `@id`* | *not claimed* |
 | *`tro-assembled-by-trs`* | *The TRO names its assembling system, typed as a TRS* | *not claimed* |
-| *`performance-attribute-warrants-absolute`* | *Every performance attribute refers to the capability warranting it by absolute IRI* | *not claimed* |
+| *`performance-attribute-warrants-absolute`* | *Every performance attribute refers to the capability warranting it by a compact or absolute IRI* | *not claimed* |
 | *`tro-composition-single`* | *A `trov:hasComposition` is one object, not an array* | *not claimed* |
 | *`composition-has-fingerprint`* | *The TRO's composition, if any, carries one fingerprint, which carries one hash* | *not claimed* |
 | *`composition-identifies-artifacts`* | *The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array* | *not claimed* |

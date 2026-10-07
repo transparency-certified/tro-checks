@@ -67,7 +67,7 @@ versions/trace-2026-04-19/types-prefixed-or-absolute.schema.json versions/trace-
 versions/trace-2026-04-19/unicode-escapes-spell-whole-characters.parse.json versions/trace-2026-04-19/unicode-escapes-spell-whole-characters.parse.json versions/trace-2026-04-19/unicode-escapes-spell-whole-characters.parse.json
 versions/trace-2026-04-19/utf8-encoded.parse.json versions/trace-2026-04-19/utf8-encoded.parse.json versions/trace-2026-04-19/utf8-encoded.parse.json
 versions/trace-0.1/tiers.json versions/trace-0.1/tiers.json versions/trace-0.1/tiers.json
-versions/trace-0.1/capability-ids-absolute.schema.json versions/trace-0.1/capability-ids-absolute.schema.json versions/trace-0.1/capability-ids-absolute.schema.json
+versions/trace-0.1/capability-terms-known.schema.json versions/trace-0.1/capability-terms-known.schema.json versions/trace-0.1/capability-terms-known.schema.json
 versions/trace-0.1/creators-person-or-organization.schema.json versions/trace-0.1/creators-person-or-organization.schema.json versions/trace-0.1/creators-person-or-organization.schema.json
 versions/trace-0.1/performance-attribute-warrants-absolute.schema.json versions/trace-0.1/performance-attribute-warrants-absolute.schema.json versions/trace-0.1/performance-attribute-warrants-absolute.schema.json
 versions/trace-0.1/times-zoned.schema.json versions/trace-0.1/times-zoned.schema.json versions/trace-0.1/times-zoned.schema.json

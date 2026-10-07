@@ -18,25 +18,7 @@
                         "@type": "trov:CanProvideInternetIsolation"
                     }
                 ]
-            },
-            "trov:hasPerformance": [
-                {
-                    "@id": "trp/0",
-                    "@type": "trov:TrustedResearchPerformance",
-                    "trov:wasConductedBy": {
-                        "@id": "https://trs.example.org/demo/"
-                    },
-                    "trov:hasPerformanceAttribute": [
-                        {
-                            "@id": "trp/0/attribute/0",
-                            "@type": "trov:InternetIsolation",
-                            "trov:warrantedBy": {
-                                "@id": "https://trs.example.org/demo/capability/0"
-                            }
-                        }
-                    ]
-                }
-            ]
+            }
         }
     ]
 }

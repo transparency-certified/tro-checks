@@ -46,7 +46,6 @@ carries forward from the versions before it. A version applies the expectations 
 list; one it leaves out is not checked and is not listed in the report. An expectation
 keeps its name and its summary in every version, while what it checks in detail may
 differ. A candidate can be checked under a version that has not yet been released.
-[`docs/version-history.md`](docs/version-history.md) says what each version changes.
 
 <!-- generated: version-summary -->
 
@@ -140,7 +139,7 @@ rather than the rows below.
 <tr><th align="left">Expectation</th><th align="left">What it requires</th><th align="left">Versions</th></tr>
 <tr><td nowrap><samp>trs-defined</samp></td><td>A TRS is defined, with an <code>@id</code>, at the top of the <code>@graph</code> or as the object of <code>trov:wasAssembledBy</code>, and nowhere else</td><td>all</td></tr>
 <tr><td nowrap><samp>trs-id-absolute</samp></td><td>The TRS is identified by an absolute IRI, or a compact IRI outside the <code>trov</code> namespace</td><td>from <code>trace-0.1</code></td></tr>
-<tr><td nowrap><samp>capability-ids-absolute</samp></td><td>Every capability is identified by an absolute IRI, or a compact IRI outside the <code>trov</code> namespace</td><td>from <code>trace-0.1</code></td></tr>
+<tr><td nowrap><samp>capability-terms-known</samp></td><td>Every capability the TRS lists is a known term: one TROV defines or the TRS declares</td><td>from <code>trace-0.1</code></td></tr>
 </tbody>
 <tbody>
 <tr><th colspan="3" align="left"><br><samp>Tier&nbsp;6&nbsp;&#8209;&nbsp;STANDALONE&#8209;TRO</samp></th></tr>
@@ -148,7 +147,7 @@ rather than the rows below.
 <tr><td nowrap><samp>tro-top-level-in-graph</samp></td><td>The TRO is a top-level member of the <code>@graph</code></td><td>all</td></tr>
 <tr><td nowrap><samp>trov-objects-identified</samp></td><td>Every object typed with a TROV class carries an <code>@id</code></td><td>all</td></tr>
 <tr><td nowrap><samp>tro-assembled-by-trs</samp></td><td>The TRO names its assembling system, typed as a TRS</td><td>all</td></tr>
-<tr><td nowrap><samp>performance-attribute-warrants-absolute</samp></td><td>Every performance attribute refers to the capability warranting it by absolute IRI</td><td>from <code>trace-0.1</code></td></tr>
+<tr><td nowrap><samp>performance-attribute-warrants-absolute</samp></td><td>Every performance attribute refers to the capability warranting it by a compact or absolute IRI</td><td>from <code>trace-0.1</code></td></tr>
 <tr><td nowrap><samp>tro-composition-single</samp></td><td>A <code>trov:hasComposition</code> is one object, not an array</td><td>all</td></tr>
 <tr><td nowrap><samp>composition-has-fingerprint</samp></td><td>The TRO's composition, if any, carries one fingerprint, which carries one hash</td><td>all</td></tr>
 <tr><td nowrap><samp>composition-identifies-artifacts</samp></td><td>The TRO's composition, if any, names at least one artifact in a <code>trov:hasArtifact</code> array</td><td>all</td></tr>
@@ -295,7 +294,6 @@ from: the manifest, the option, or the default.
 | `exports/versions/<version>/*.schema.json` | Expectations checked by JSON Schema, one schema each. A schema's `$id` names the version whose directory holds it. |
 | `exports/versions/<version>/*.parse.json` | Expectations `check-tro` checks as it parses a candidate, each giving its summary and description. |
 | `exports/versions/<version>/tiers.json` | The tiers in order, each with its ID, description, the expectations that belong to it, and `blocksHigherTiers` where no tier above it is assessed until it is met. It decides which expectations the version applies. A listed expectation with no file at or before the version, a file in the version's directory its tiers do not list, or a tier with no expectations stops every run. |
-| [`docs/version-history.md`](docs/version-history.md) | What each version changes from the one before, with the diff of every file it redefines. Written by `make update-readme`. |
 | [`exports/check-tro.js`](exports/check-tro.js) | The checker. Applies the expectations in a candidate's target and writes the report. Installed as `check-tro`. |
 | [`exports/check-tros.js`](exports/check-tros.js) | Runs the checker over the candidates the manifest names, each against each of its targets, writing one report per target and `reports/README.md`, the summary that links to them. Installed as `check-tros`. |
 | [`exports/render-readme.js`](exports/render-readme.js) | Writes this README's account of what is checked from the tiers and the expectations themselves. Run by `make update-readme`. |

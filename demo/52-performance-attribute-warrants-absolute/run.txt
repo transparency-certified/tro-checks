@@ -4,7 +4,7 @@
 #
 ##############################################################################
 
------ [1] expectation met: the performance attribute's warrant refers to the capability by absolute IRI -----
+----- [1] expectation met: the performance attribute's warrant refers to the capability by its term, trov:CanProvideInternetIsolation -----
 
 $ report_on instance-warrant-absolute.jsonld
 {
@@ -23,8 +23,7 @@ $ report_on instance-warrant-absolute.jsonld
                 "@type": "trov:TrustedResearchSystem",
                 "trov:hasCapability": [
                     {
-                        "@id": "https://trs.example.org/demo/capability/0",
-                        "@type": "trov:CanProvideInternetIsolation"
+                        "@id": "trov:CanProvideInternetIsolation"
                     }
                 ]
             },
@@ -40,7 +39,7 @@ $ report_on instance-warrant-absolute.jsonld
                             "@id": "trp/0/attribute/0",
                             "@type": "trov:InternetIsolation",
                             "trov:warrantedBy": {
-                                "@id": "https://trs.example.org/demo/capability/0"
+                                "@id": "trov:CanProvideInternetIsolation"
                             }
                         }
                     ]
@@ -134,13 +133,13 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | `trs-defined` | A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else | ✅ met |
 | `trs-id-absolute` | The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ✅ met |
-| `capability-ids-absolute` | Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ✅ met |
+| `capability-terms-known` | Every capability the TRS lists is a known term: one TROV defines or the TRS declares | ✅ met |
 | **`Tier 6 - STANDALONE-TRO`  ✅ met** |  |  |
 | Expectation | Summary | Status |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `trov-objects-identified` | Every object typed with a TROV class carries an `@id` | ✅ met |
 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS | ✅ met |
-| `performance-attribute-warrants-absolute` | Every performance attribute refers to the capability warranting it by absolute IRI | ✅ met |
+| `performance-attribute-warrants-absolute` | Every performance attribute refers to the capability warranting it by a compact or absolute IRI | ✅ met |
 | `tro-composition-single` | A `trov:hasComposition` is one object, not an array | ✅ met |
 | `composition-has-fingerprint` | The TRO's composition, if any, carries one fingerprint, which carries one hash | ✅ met |
 | `composition-identifies-artifacts` | The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array | ✅ met |
@@ -175,8 +174,7 @@ $ report_on instance-warrant-relative.jsonld
                 "@type": "trov:TrustedResearchSystem",
                 "trov:hasCapability": [
                     {
-                        "@id": "https://trs.example.org/demo/capability/0",
-                        "@type": "trov:CanProvideInternetIsolation"
+                        "@id": "trov:CanProvideInternetIsolation"
                     }
                 ]
             },
@@ -286,13 +284,13 @@ The sections below give the status of each tier, then the status of each expecta
 | Expectation | Summary | Status |
 | `trs-defined` | A TRS is defined, with an `@id`, at the top of the `@graph` or as the object of `trov:wasAssembledBy`, and nowhere else | ✅ met |
 | `trs-id-absolute` | The TRS is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ✅ met |
-| `capability-ids-absolute` | Every capability is identified by an absolute IRI, or a compact IRI outside the `trov` namespace | ✅ met |
+| `capability-terms-known` | Every capability the TRS lists is a known term: one TROV defines or the TRS declares | ✅ met |
 | **`Tier 6 - STANDALONE-TRO`  ❌ not met** |  |  |
 | Expectation | Summary | Status |
 | `tro-top-level-in-graph` | The TRO is a top-level member of the `@graph` | ✅ met |
 | `trov-objects-identified` | Every object typed with a TROV class carries an `@id` | ✅ met |
 | `tro-assembled-by-trs` | The TRO names its assembling system, typed as a TRS | ✅ met |
-| `performance-attribute-warrants-absolute` | Every performance attribute refers to the capability warranting it by absolute IRI | ❌ not met |
+| `performance-attribute-warrants-absolute` | Every performance attribute refers to the capability warranting it by a compact or absolute IRI | ❌ not met |
 | `tro-composition-single` | A `trov:hasComposition` is one object, not an array | ✅ met |
 | `composition-has-fingerprint` | The TRO's composition, if any, carries one fingerprint, which carries one hash | ✅ met |
 | `composition-identifies-artifacts` | The TRO's composition, if any, names at least one artifact in a `trov:hasArtifact` array | ✅ met |
@@ -309,8 +307,8 @@ The sections below give the status of each tier, then the status of each expecta
 | *`blank-node-ids-absent`* | *No `@id` is a blank node identifier* | *not claimed* |
 ## Diagnostics for the Unmet Expectation
 ### Unmet expectation: performance-attribute-warrants-absolute
-Detailed expectation: Every trov:warrantedBy on a value of trov:hasPerformanceAttribute refers to its capability by an absolute IRI, or a compact IRI whose prefix is not trov.
+Detailed expectation: Every trov:warrantedBy on a value of trov:hasPerformanceAttribute refers to its capability by a compact or absolute IRI, such as the capability term itself.
 Defined in version: `trace-0.1`
 | Found | Where | Expectation not met because |
 | --- | --- | --- |
-| `"trs/capability/0"` | `/@graph/0/trov:hasPerformance/0/trov:hasPerformanceAttribute/0/trov:warrantedBy/@id` | a performance attribute's warrant refers to its capability by absolute IRI, or by a compact IRI outside the trov namespace |
+| `"trs/capability/0"` | `/@graph/0/trov:hasPerformance/0/trov:hasPerformanceAttribute/0/trov:warrantedBy/@id` | a performance attribute's warrant refers to its capability by a compact or absolute IRI, not by a relative id |

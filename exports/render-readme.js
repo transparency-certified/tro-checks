@@ -1,7 +1,7 @@
 //
 // Write the README's account of what is checked from the expectations themselves, so that
 // the tiers, the versions, their order and every summary are said once, in the files the
-// checker reads; and write docs/version-history.md, which says what each version changed.
+// checker reads.
 //
 //   node render-readme.js <repository directory>
 //
@@ -24,7 +24,6 @@ const checkTro = require('./check-tro.js')
 const TIER_SUMMARY = 'tier-summary'
 const VERSION_SUMMARY = 'version-summary'
 const TIER_EXPECTATIONS = 'tier-expectations'
-const HISTORY_PATH = path.join('docs', 'version-history.md')
 
 /**
  * @param {string} region  the name the markers carry
@@ -97,97 +96,6 @@ function tierExpectationLines(latest, resolutions) {
 }
 
 /**
- * The changed lines between two texts, with two lines of context, in the form of a unified diff without its headers.
- * @param {string} before
- * @param {string} after
- * @returns {string[]}
- */
-function changedLines(before, after) {
-    const a = before.split('\n')
-    const b = after.split('\n')
-    /** @type {number[][]} */ const common = Array.from({ length: a.length + 1 }, () => new Array(b.length + 1).fill(0))
-    for (let i = a.length - 1; i >= 0; i -= 1) {
-        for (let j = b.length - 1; j >= 0; j -= 1) {
-            common[i][j] = a[i] === b[j] ? common[i + 1][j + 1] + 1 : Math.max(common[i + 1][j], common[i][j + 1])
-        }
-    }
-
-    /** @type {{mark: string, text: string}[]} */ const lines = []
-    let i = 0
-    let j = 0
-    while (i < a.length || j < b.length) {
-        if (i < a.length && j < b.length && a[i] === b[j]) {
-            lines.push({ mark: ' ', text: a[i] }); i += 1; j += 1
-        } else if (i < a.length && (j === b.length || common[i + 1][j] >= common[i][j + 1])) {
-            lines.push({ mark: '-', text: a[i] }); i += 1
-        } else {
-            lines.push({ mark: '+', text: b[j] }); j += 1
-        }
-    }
-
-    const near = lines.map((_, index) =>
-        lines.slice(Math.max(0, index - 2), index + 3).some((line) => line.mark !== ' '))
-    /** @type {string[]} */ const shown = []
-    lines.forEach((line, index) => {
-        if (near[index]) shown.push(`${line.mark} ${line.text}`)
-        else if (index > 0 && near[index - 1]) shown.push('  …')
-    })
-    return shown
-}
-
-/**
- * @param {string}   heading
- * @param {string}   before
- * @param {string}   after
- * @returns {string[]}  the heading and a diff block of the changes
- */
-function diffSection(heading, before, after) {
-    return [heading, '', '```diff', ...changedLines(before, after), '```', '']
-}
-
-/**
- * What each version changed from the one before: the expectations it adds and retires, and the diff of every file it
- * replaces, tiers.json included.
- * @param {Resolution[]} resolutions  every version's, in order
- * @returns {string[]}
- */
-function versionHistoryLines(resolutions) {
-    const lines = [
-        '# Version history',
-        '',
-        'What each version of the Specification changes in the expectations, from the version before it. Generated from '
-            + '`exports/versions/` by `make update-readme`; not to be edited by hand.',
-        '',
-        `\`${resolutions[0].version.id}\` is the first version: its directory holds every expectation it lists.`,
-        '',
-    ]
-    for (let index = 1; index < resolutions.length; index += 1) {
-        const before = resolutions[index - 1]
-        const after = resolutions[index]
-        const names = (/** @type {Resolution} */ resolution) => resolution.expectations.map((each) => each.name)
-
-        lines.push(`## \`${after.version.id}\``, '')
-        const added = names(after).filter((name) => !names(before).includes(name))
-        const retired = names(before).filter((name) => !names(after).includes(name))
-        if (added.length > 0) lines.push(`Adds ${added.map((name) => `\`${name}\``).join(', ')}.`, '')
-        if (retired.length > 0) lines.push(`Retires ${retired.map((name) => `\`${name}\``).join(', ')}.`, '')
-
-        const tiersJson = (/** @type {Tier[]} */ tiers) => JSON.stringify(tiers.map(({ number, ...tier }) => tier), null, 4)
-        if (tiersJson(before.tiers) !== tiersJson(after.tiers)) {
-            lines.push(...diffSection('### `tiers.json`', tiersJson(before.tiers), tiersJson(after.tiers)))
-        }
-        for (const expectation of after.expectations) {
-            const previous = before.expectations.find((each) => each.name === expectation.name)
-            if (!previous || previous.definitionPath === expectation.definitionPath) continue
-            lines.push(...diffSection(`### \`${expectation.name}\``,
-                fs.readFileSync(previous.definitionPath, 'utf8'), fs.readFileSync(expectation.definitionPath, 'utf8')))
-        }
-        if (lines[lines.length - 2] === `## \`${after.version.id}\``) lines.push('Changes nothing.', '')
-    }
-    return lines
-}
-
-/**
  * Replaces what lies between a region's markers, which stay.
  * @param {string}   readme
  * @param {string}   region
@@ -220,10 +128,6 @@ function writeReadme(repository) {
     fs.writeFileSync(readmePath, readme)
     process.stdout.write(`wrote ${readmePath}; ${latest.tiers.length} tiers, ${latest.expectations.length} expectations `
         + `under ${latest.version.id}\n`)
-
-    const historyPath = path.join(repository, HISTORY_PATH)
-    fs.writeFileSync(historyPath, versionHistoryLines(resolutions).join('\n'))
-    process.stdout.write(`wrote ${historyPath}; ${versions.length} versions\n`)
 }
 
 if (require.main === module) {

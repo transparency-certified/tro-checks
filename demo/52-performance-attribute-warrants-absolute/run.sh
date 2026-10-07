@@ -14,7 +14,7 @@ report_on() {
 
 title "tro-checks  ·  demo 52: performance-attribute-warrants-absolute (Tier 6 - STANDALONE-TRO)"
 
-show "expectation met: the performance attribute's warrant refers to the capability by absolute IRI" \
+show "expectation met: the performance attribute's warrant refers to the capability by its term, trov:CanProvideInternetIsolation" \
     report_on instance-warrant-absolute.jsonld
 
 show "expectation unmet: the warrant refers to the capability by the relative id trs/capability/0" \
