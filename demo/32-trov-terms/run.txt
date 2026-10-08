@@ -19,7 +19,7 @@ $ report_on instance-property-name-known.jsonld
     ]
 }
 
-wrote tmp/instance-property-name-known__at__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
+wrote tmp/instance-property-name-known__to__tier-4__of__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
 
 # Report on `instance-property-name-known.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
@@ -136,7 +136,7 @@ $ report_on instance-property-name-unknown.jsonld
     ]
 }
 
-wrote tmp/instance-property-name-unknown__at__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
+wrote tmp/instance-property-name-unknown__to__tier-4__of__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
 # Report on `instance-property-name-unknown.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
@@ -260,7 +260,7 @@ $ report_on instance-id-known.jsonld
     ]
 }
 
-wrote tmp/instance-id-known__at__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
+wrote tmp/instance-id-known__to__tier-4__of__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
 
 # Report on `instance-id-known.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
@@ -377,7 +377,7 @@ $ report_on instance-id-unknown.jsonld
     ]
 }
 
-wrote tmp/instance-id-unknown__at__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
+wrote tmp/instance-id-unknown__to__tier-4__of__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
 # Report on `instance-id-unknown.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
@@ -501,7 +501,7 @@ $ report_on instance-type-known.jsonld
     ]
 }
 
-wrote tmp/instance-type-known__at__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
+wrote tmp/instance-type-known__to__tier-4__of__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
 
 # Report on `instance-type-known.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
@@ -618,7 +618,7 @@ $ report_on instance-type-unknown.jsonld
     ]
 }
 
-wrote tmp/instance-type-unknown__at__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
+wrote tmp/instance-type-unknown__to__tier-4__of__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
 # Report on `instance-type-unknown.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
@@ -742,7 +742,7 @@ $ report_on instance-value-known.jsonld
     ]
 }
 
-wrote tmp/instance-value-known__at__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
+wrote tmp/instance-value-known__to__tier-4__of__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
 
 # Report on `instance-value-known.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
@@ -859,7 +859,7 @@ $ report_on instance-value-unknown.jsonld
     ]
 }
 
-wrote tmp/instance-value-unknown__at__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
+wrote tmp/instance-value-unknown__to__tier-4__of__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
 # Report on `instance-value-unknown.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
@@ -982,7 +982,7 @@ $ report_on instance-trs-name.jsonld trace-2026-04-19
     ]
 }
 
-wrote tmp/instance-trs-name__at__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
+wrote tmp/instance-trs-name__to__tier-4__of__trace-2026-04-19.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY met
 
 # Report on `instance-trs-name.jsonld` at version `trace-2026-04-19`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.
@@ -1098,7 +1098,7 @@ $ report_on instance-trs-name.jsonld trace-main
     ]
 }
 
-wrote tmp/instance-trs-name__at__trace-main.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
+wrote tmp/instance-trs-name__to__tier-4__of__trace-main.md; Tier 1 - SAFE-JSON met, Tier 2 - SAFE-JSON-LD met, Tier 3 - TRACE-PERMISSIBLE-JSON-LD met, Tier 4 - USES-TROV-CORRECTLY unmet
 
 # Report on `instance-trs-name.jsonld` at version `trace-main`
 This report was written by `tro-checks`, which checks a TRO declaration against the requirements of the TRACE Specification.

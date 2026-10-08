@@ -272,7 +272,7 @@ checked against each:
 `check-tros` checks what the manifest declares: a `.jsonld` file the manifest
 does not name is reported as skipped, and an entry naming a file that is not in
 the directory stops the run. `make build-reports` in the REPRO writes one report
-per target to `reports/<name>__at__<version>__to__tier-<number>.md`, and a summary,
+per target to `reports/<name>__to__tier-<number>__of__<version>.md`, and a summary,
 `reports/README.md`, that lists the reports under each candidate, says whether each
 target was met, and links to each report. A candidate is headed there by its `title`, or
 by its name where the manifest gives it no title.

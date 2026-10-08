@@ -8,9 +8,9 @@ report_on() {
     local version="${2:-trace-2026-04-19}"
     cat "$1"
     echo
-    check-tro --target-tier USES-TROV-CORRECTLY --target-version "$version" --compact --candidate "$1" --report "tmp/${1%.jsonld}__at__${version}.md"
+    check-tro --target-tier USES-TROV-CORRECTLY --target-version "$version" --compact --candidate "$1" --report "tmp/${1%.jsonld}__to__tier-4__of__${version}.md"
     echo
-    cat "tmp/${1%.jsonld}__at__${version}.md"
+    cat "tmp/${1%.jsonld}__to__tier-4__of__${version}.md"
 }
 
 title "tro-checks  ·  demo 32: trov-terms-known (Tier 4 - USES-TROV-CORRECTLY)"
