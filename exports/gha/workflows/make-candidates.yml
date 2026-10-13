@@ -1,18 +1,8 @@
-# Make candidates and update reports: makes the candidates again with this repository's make build-candidates, then checks
-# every candidate against each target in its manifest entry, using this repository's image built
-# afresh, and shows the combined report on the run's page.
-#
-# Started by hand only. Commits the candidates and reports to the branch it ran on when Commit is
-# ticked. The run fails only if the candidates could not be made or checked; how they fared is in
-# the reports.
-#
-# Installed from tro-checks TRO_CHECKS_VERSION by make install-tro-checks-gha, which overwrites it.
-
 name: Make candidates and update reports
 run-name: >-
-  Make candidates and update reports
-  (${{ inputs.commit && 'committing' || 'not committing' }})
+  Make candidates and update reports (${{ inputs.commit && 'by hand, committing' || 'by hand, not committing' }})
 
+# Start by hand, optionally committing the candidates and reports.
 on:
   workflow_dispatch:
     inputs:
@@ -21,19 +11,21 @@ on:
         default: false
         type: boolean
 
-# Writing is needed only to commit, and only to the branch the run is on.
+# Let the workflow commit the candidates and reports.
 permissions:
   contents: write
 
 jobs:
-  make-and-update:
+
+  # Make the candidates and reports, committing any that changed when Commit is ticked.
+  make-candidates-and-update-reports:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - name: Check out the repository
+        uses: actions/checkout@v7
 
-      # The image runs as a user that cannot otherwise write to the runner's checkout, including the
-      # directories the Makefile creates for each session.
-      - name: Let the image write the candidates and reports
+      # Temporary, until repros gives the container the host user's ID.
+      - name: Create the log directories and make the whole repository writable
         run: |
           mkdir -p .repro-logs .repro-sessions/active
           chmod -R a+rwX .
@@ -41,50 +33,35 @@ jobs:
       - name: Build the image
         run: make build-image
 
-      # Git in the image refuses a checkout owned by another user unless told to trust it.
       - name: Make the candidates
         run: |
+          # The options are temporary, until repros gives the container the host user's ID and detects
+          # that there is no terminal.
           make build-candidates REPRO_INTERACTIVE_SESSION=false \
               REPRO_DOCKER_OPTIONS="--env GIT_CONFIG_COUNT=1 --env GIT_CONFIG_KEY_0=safe.directory --env 'GIT_CONFIG_VALUE_0=*'"
 
-      - name: Check the candidates
+      - name: Make the reports
         run: |
+          # The options are temporary, until repros gives the container the host user's ID and detects
+          # that there is no terminal.
           make build-reports REPRO_INTERACTIVE_SESSION=false \
               REPRO_DOCKER_OPTIONS="--env GIT_CONFIG_COUNT=1 --env GIT_CONFIG_KEY_0=safe.directory --env 'GIT_CONFIG_VALUE_0=*'"
 
-      - name: Compare with what is committed
-        id: compare
+      - name: Commit the candidates and reports
+        if: inputs.commit
         run: |
           if [ -n "$(git status --porcelain -- candidates reports)" ]; then
-            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -- candidates reports
+            git commit -m "Make candidates and update reports"
+            git push
+            echo "Committed the new candidates and reports to ${{ github.ref_name }}." >> "$GITHUB_STEP_SUMMARY"
           fi
-
-      - name: Commit the candidates and reports
-        if: inputs.commit && steps.compare.outputs.changed == 'true'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- candidates reports
-          git commit -m "Make candidates and update reports"
-          git push
 
       - name: Show the reports
         if: ${{ !cancelled() }}
-        run: |
-          if [ "${{ steps.compare.outputs.changed }}" = true ]; then
-            if [ "${{ inputs.commit }}" = true ]; then
-              outcome="the candidates or reports changed, and were committed to ${{ github.ref_name }}"
-            else
-              outcome="the candidates or reports changed; nothing was committed"
-            fi
-          else
-            outcome="the candidates and reports are the same as those committed"
-          fi
-          {
-            echo "**Make candidates and update reports:** made the candidates and checked them against the targets in the manifest, with this repository's image (tro-checks $(jq -r '."tro-checks"' reports/last-check.json)); ${outcome}."
-            echo
-            cat reports/integrated-report.md
-          } >> "$GITHUB_STEP_SUMMARY"
+        run: cat reports/integrated-report.md >> "$GITHUB_STEP_SUMMARY"
 
       - name: Attach the candidates and reports
         if: ${{ !cancelled() }}

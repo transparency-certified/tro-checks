@@ -1,0 +1,70 @@
+name: Preview report for pasted declaration
+run-name: >-
+  Preview report for pasted declaration (${{ inputs.version }}, ${{ inputs.tier }},
+  ${{ inputs.repository-image && 'this repository''s image' || format('tro-checks {0}', inputs.tro-checks) }})
+
+# Start by hand, pasting the declaration and naming the target and the image to check it with.
+on:
+  workflow_dispatch:
+    inputs:
+      declaration:
+        description: The TRO declaration, pasted
+        required: true
+        type: string
+      version:
+        description: The TRACE version to check it against
+        default: trace-main
+        type: string
+      tier:
+        description: The tier to check it for
+        default: STANDALONE-TRO
+        type: string
+      tro-checks:
+        description: The version of tro-checks' published image, main or a release tag
+        default: main
+        type: string
+      repository-image:
+        description: Use this repository's image instead
+        default: false
+        type: boolean
+
+# Let the workflow read the repository, and nothing more.
+permissions:
+  contents: read
+
+jobs:
+
+  # Check the declaration and show its report, committing nothing.
+  preview-declaration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
+
+      - name: Save the declaration to a file
+        env:
+          DECLARATION: ${{ inputs.declaration }}
+        run: |
+          mkdir -p preview
+          printf '%s\n' "$DECLARATION" > preview/declaration.jsonld
+
+      - name: Check the declaration
+        uses: ./.github/actions/check-declaration
+        with:
+          declaration: preview/declaration.jsonld
+          report: preview/report.md
+          version: ${{ inputs.version }}
+          tier: ${{ inputs.tier }}
+          repository-image: ${{ inputs.repository-image }}
+          tro-checks: ${{ inputs.tro-checks }}
+
+      - name: Show the report
+        run: cat preview/report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Attach the declaration and report
+        uses: actions/upload-artifact@v7
+        with:
+          name: declaration-and-report
+          path: |
+            preview/declaration.jsonld
+            preview/report.md

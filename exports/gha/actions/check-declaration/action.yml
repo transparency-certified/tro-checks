@@ -1,0 +1,56 @@
+name: Check one declaration
+description: Check one declaration
+
+inputs:
+  declaration:
+    description: The declaration file, relative to the repository's top directory
+    required: true
+  report:
+    description: Where to write the report, relative to the repository's top directory
+    required: true
+  version:
+    description: The TRACE version to check it against
+    required: true
+  tier:
+    description: The tier to check it for
+    required: true
+  repository-image:
+    description: Use this repository's image instead of tro-checks' published one
+    default: 'false'
+  tro-checks:
+    description: The version of tro-checks' published image, main or a release tag
+    default: main
+
+runs:
+  using: composite
+  steps:
+
+    # Temporary, until repros gives the container the host user's ID.
+    - name: Create the log and report directories and make the whole repository writable
+      shell: bash
+      env:
+        REPORT: ${{ inputs.report }}
+      run: |
+        mkdir -p .repro-logs .repro-sessions/active "$(dirname "$REPORT")"
+        chmod -R a+rwX .
+
+    - name: Build this repository's image
+      if: inputs.repository-image == 'true'
+      shell: bash
+      run: make build-image
+
+    - name: Check the declaration
+      shell: bash
+      env:
+        CHECK_DECLARATION: ${{ inputs.declaration }}
+        CHECK_REPORT: ${{ inputs.report }}
+        CHECK_VERSION: ${{ inputs.version }}
+        CHECK_TIER: ${{ inputs.tier }}
+        PUBLISHED_IMAGE: ${{ inputs.repository-image != 'true' && format('ghcr.io/transparency-certified/tro-checks:{0}', inputs.tro-checks) || '' }}
+      run: |
+        # The git and terminal options are temporary, until repros gives the container the host
+        # user's ID and detects that there is no terminal.
+        make run-in-repro REPRO_INTERACTIVE_SESSION=false \
+            ${PUBLISHED_IMAGE:+REPRO_IMAGE="$PUBLISHED_IMAGE"} \
+            REPRO_DOCKER_OPTIONS="--env CHECK_DECLARATION --env CHECK_REPORT --env CHECK_VERSION --env CHECK_TIER --env GIT_CONFIG_COUNT=1 --env GIT_CONFIG_KEY_0=safe.directory --env 'GIT_CONFIG_VALUE_0=*'" \
+            CMD='check-tro --candidate "$$REPRO_MNT/$$CHECK_DECLARATION" --report "$$REPRO_MNT/$$CHECK_REPORT" --target-version "$$CHECK_VERSION" --target-tier "$$CHECK_TIER"; [ $$? -le 1 ]'

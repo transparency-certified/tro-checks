@@ -1,18 +1,9 @@
-# Update reports for all candidates: checks every candidate against each target in its manifest entry, using this
-# repository's image built afresh, and shows the combined report on the run's page.
-#
-# Started by hand, committing the reports to the branch it ran on when Commit is ticked; and
-# automatically on every push to a branch, first checking whether the reports are up to date with
-# the candidates and manifest, stopping if they are, and otherwise committing the new reports. The
-# run fails only if the checks could not run; how the candidates fared is in the reports.
-#
-# Installed from tro-checks TRO_CHECKS_VERSION by make install-tro-checks-gha, which overwrites it.
-
 name: Update reports for all candidates
 run-name: >-
-  Update reports for all candidates
-  (${{ github.event_name == 'push' && 'after a push' || (inputs.commit && 'by hand, committing' || 'by hand, not committing') }})
+  Update reports for all candidates (${{ github.event_name == 'push' && 'after a push, committing' ||
+  inputs.commit && 'by hand, committing' || 'by hand, not committing' }})
 
+# Start on a push to any branch, or by hand, optionally committing the reports.
 on:
   push:
     branches: ['**']
@@ -23,46 +14,49 @@ on:
         default: true
         type: boolean
 
-# Writing is needed only to commit, and only to the branch the run is on.
+# Let the workflow commit the reports.
 permissions:
   contents: write
 
-# A newer push cancels an unfinished automatic run on the same branch; runs started by hand are
-# never cancelled.
+# Cancel any unfinished run from an earlier push when a new push is made to the same branch.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name }}
   cancel-in-progress: ${{ github.event_name == 'push' }}
 
 jobs:
-  # Automatic runs only: compare the hash of the candidates and manifest with the one recorded when
-  # the reports were last made. Must compute the hash as tro-checks' record-last-check does.
-  up-to-date:
+
+  # After a push, determine whether the candidates have changed since the reports were last made.
+  detect-candidate-changes:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     outputs:
-      current: ${{ steps.compare.outputs.current }}
+      changed: ${{ steps.compare.outputs.changed }}
     steps:
-      - uses: actions/checkout@v7
+      - name: Check out the repository
+        uses: actions/checkout@v7
 
-      - name: Compare the candidates with the last check
+      - name: Compare the candidates with those last reported on
         id: compare
         run: |
+          # Must hash as record-last-check does.
           hash=$(LC_ALL=C sha256sum candidates/* | sha256sum | cut -d' ' -f1)
           if [ -f reports/last-check.json ] && [ "$(jq -r .hash reports/last-check.json)" = "$hash" ]; then
-            echo "current=true" >> "$GITHUB_OUTPUT"
-            echo "**Update reports for all candidates:** the reports are already up to date with the candidates and manifest; nothing was checked." >> "$GITHUB_STEP_SUMMARY"
+            echo "The candidates haven't changed since the reports were last made." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
-  update:
-    needs: up-to-date
-    if: ${{ !cancelled() && needs.up-to-date.outputs.current != 'true' }}
+  # Make the reports, committing any that changed after a push or when Commit is ticked.
+  update-reports:
+    needs: detect-candidate-changes
+    if: ${{ !cancelled() && (github.event_name != 'push' || needs.detect-candidate-changes.outputs.changed == 'true') }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - name: Check out the repository
+        uses: actions/checkout@v7
 
-      # The image runs as a user that cannot otherwise write to the runner's checkout, including the
-      # directories the Makefile creates for each session.
-      - name: Let the image write the reports
+      # Temporary, until repros gives the container the host user's ID.
+      - name: Create the log directories and make the whole repository writable
         run: |
           mkdir -p .repro-logs .repro-sessions/active
           chmod -R a+rwX .
@@ -70,40 +64,28 @@ jobs:
       - name: Build the image
         run: make build-image
 
-      # Git in the image refuses a checkout owned by another user unless told to trust it.
-      - name: Check the candidates
+      - name: Make the reports
         run: |
+          # The options are temporary, until repros gives the container the host user's ID and detects
+          # that there is no terminal.
           make build-reports REPRO_INTERACTIVE_SESSION=false \
               REPRO_DOCKER_OPTIONS="--env GIT_CONFIG_COUNT=1 --env GIT_CONFIG_KEY_0=safe.directory --env 'GIT_CONFIG_VALUE_0=*'"
 
       - name: Commit the reports
-        id: commit
         if: github.event_name == 'push' || inputs.commit
         run: |
-          if [ -z "$(git status --porcelain -- reports)" ]; then
-            echo "outcome=unchanged" >> "$GITHUB_OUTPUT"
-            exit 0
+          if [ -n "$(git status --porcelain -- reports)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -- reports
+            git commit -m "Update reports for all candidates"
+            git push
+            echo "Committed the new reports to ${{ github.ref_name }}." >> "$GITHUB_STEP_SUMMARY"
           fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- reports
-          git commit -m "Update reports for all candidates"
-          git push
-          echo "outcome=committed" >> "$GITHUB_OUTPUT"
 
       - name: Show the reports
         if: ${{ !cancelled() }}
-        run: |
-          case "${{ steps.commit.outputs.outcome }}" in
-            committed) outcome="the new reports were committed to ${{ github.ref_name }}" ;;
-            unchanged) outcome="the reports were unchanged, so nothing was committed" ;;
-            *) outcome="nothing was committed" ;;
-          esac
-          {
-            echo "**Update reports for all candidates:** checked every candidate against the targets in the manifest, with this repository's image (tro-checks $(jq -r '."tro-checks"' reports/last-check.json)); ${outcome}."
-            echo
-            cat reports/integrated-report.md
-          } >> "$GITHUB_STEP_SUMMARY"
+        run: cat reports/integrated-report.md >> "$GITHUB_STEP_SUMMARY"
 
       - name: Attach the reports
         if: ${{ !cancelled() }}

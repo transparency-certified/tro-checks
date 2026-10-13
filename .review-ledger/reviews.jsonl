@@ -82,3 +82,5 @@
 {"kind":"review","path":"models/checker-classes.md","blob":"619facdf992d8ba540c0882e3c448c4867da1642","by":"Timothy McPhillips","date":"2026-09-14","type":"cursory"}
 {"kind":"review","path":"models/checker-erd.md","blob":"25d4d6646a3f98b901d96de6ae282c367f837508","by":"Timothy McPhillips","date":"2026-09-14","type":"cursory"}
 {"kind":"review","path":"models/checker-erd.md","blob":"3a14a7d840ae7e4cba203cef1f7758ca2d490f73","by":"Timothy McPhillips","date":"2026-09-14","type":"cursory"}
+{"kind":"review","path":"exports/gha/workflows/update-reports.yml","blob":"4a3a6cf49bd647a020d3ca588fc0eca256d2e32a","by":"Timothy McPhillips","date":"2026-10-13","type":"cursory"}
+{"kind":"review","path":"exports/gha/workflows/make-candidates.yml","blob":"270165b7cc251ac9c87dff05cc90cb65cbb4a25c","by":"Timothy McPhillips","date":"2026-10-13","type":"cursory"}

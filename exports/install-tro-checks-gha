@@ -1,18 +1,11 @@
 #!/usr/bin/env bash
-#
-# Copies tro-checks' GitHub Actions workflows into the repository mounted at REPRO_MNT: the three every
-# repository gets, and each optional one the repository already has or that is named, e.g.
-#
-#     install-tro-checks-gha make-candidates pull-candidates
-#
-# Overwrites earlier copies, so running it again is the upgrade; git shows what changed. Each copy
-# records the tro-checks version it came from.
 
 set -euo pipefail
+shopt -s nullglob
 
 always="preview-pasted-declaration preview-one-candidate update-reports"
 
-read -r _ version install_dir < "${REPRO_INDEX_DIR}/tro-checks"
+read -r _ _ install_dir < "${REPRO_INDEX_DIR}/tro-checks"
 originals=${install_dir}/gha
 workflows=${REPRO_MNT}/.github/workflows
 
@@ -23,12 +16,13 @@ for original in "${originals}"/workflows/*.yml; do
         *" ${name} "*) ;;
         *) [[ -f ${workflows}/${name}.yml ]] || continue ;;
     esac
-    sed "s/TRO_CHECKS_VERSION/${version}/" "${original}" > "${workflows}/${name}.yml"
+    cp "${original}" "${workflows}/${name}.yml"
     echo "Installed .github/workflows/${name}.yml"
 done
 
-if [[ -d ${originals}/actions ]]; then
-    mkdir -p "${REPRO_MNT}/.github/actions"
-    cp -r "${originals}/actions/." "${REPRO_MNT}/.github/actions/"
-    echo "Installed .github/actions/"
-fi
+for original in "${originals}"/actions/*/action.yml; do
+    action=$(basename "$(dirname "${original}")")
+    mkdir -p "${REPRO_MNT}/.github/actions/${action}"
+    cp "${original}" "${REPRO_MNT}/.github/actions/${action}/action.yml"
+    echo "Installed .github/actions/${action}/action.yml"
+done
