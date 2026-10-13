@@ -1,0 +1,117 @@
+# Workflow 3: checks every candidate against each target in its manifest entry, using this
+# repository's image built afresh, and shows the combined report on the run's page.
+#
+# Started by hand, committing the reports to the branch it ran on when Commit is ticked; and
+# automatically on every push to a branch, first checking whether the reports are up to date with
+# the candidates and manifest, stopping if they are, and otherwise committing the new reports. The
+# run fails only if the checks could not run; how the candidates fared is in the reports.
+#
+# Installed from tro-checks TRO_CHECKS_VERSION by make install-tro-checks-gha, which overwrites it.
+
+name: 3. Update reports for all candidates
+run-name: >-
+  3. Update reports for all candidates
+  (${{ github.event_name == 'push' && 'after a push' || (inputs.commit && 'by hand, committing' || 'by hand, not committing') }})
+
+on:
+  push:
+    branches: ['**']
+  workflow_dispatch:
+    inputs:
+      commit:
+        description: Commit the reports to this branch
+        default: true
+        type: boolean
+
+# Writing is needed only to commit, and only to the branch the run is on.
+permissions:
+  contents: write
+
+# A newer push cancels an unfinished automatic run on the same branch; runs started by hand are
+# never cancelled.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name }}
+  cancel-in-progress: ${{ github.event_name == 'push' }}
+
+jobs:
+  # Automatic runs only: compare the hash of the candidates and manifest with the one recorded when
+  # the reports were last made. Must compute the hash as tro-checks' record-last-check does.
+  up-to-date:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    outputs:
+      current: ${{ steps.compare.outputs.current }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Compare the candidates with the last check
+        id: compare
+        run: |
+          hash=$(LC_ALL=C sha256sum candidates/* | sha256sum | cut -d' ' -f1)
+          if [ -f reports/last-check.json ] && [ "$(jq -r .hash reports/last-check.json)" = "$hash" ]; then
+            echo "current=true" >> "$GITHUB_OUTPUT"
+            echo "**3. Update reports for all candidates:** the reports are already up to date with the candidates and manifest; nothing was checked." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+  update:
+    needs: up-to-date
+    if: ${{ !cancelled() && needs.up-to-date.outputs.current != 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # The image runs as a user that cannot otherwise write to the runner's checkout, including the
+      # directories the Makefile creates for each session.
+      - name: Let the image write the reports
+        run: |
+          mkdir -p .repro-logs .repro-sessions/active
+          chmod -R a+rwX .
+
+      - name: Build the image
+        run: make build-image
+
+      # Git in the image refuses a checkout owned by another user unless told to trust it.
+      - name: Check the candidates
+        run: |
+          make build-reports REPRO_INTERACTIVE_SESSION=false \
+              REPRO_DOCKER_OPTIONS="--env GIT_CONFIG_COUNT=1 --env GIT_CONFIG_KEY_0=safe.directory --env 'GIT_CONFIG_VALUE_0=*'"
+
+      # Commit when a report changed, or when the candidates changed without changing any report, so
+      # that last-check.json records their new hash; not for last-check.json's new time alone.
+      - name: Commit the reports
+        id: commit
+        if: github.event_name == 'push' || inputs.commit
+        run: |
+          committed=$(git show HEAD:reports/last-check.json 2>/dev/null | jq -r .hash || true)
+          if [ -z "$(git status --porcelain -- reports ':!reports/last-check.json')" ] && \
+             [ "$(jq -r .hash reports/last-check.json)" = "$committed" ]; then
+            echo "outcome=unchanged" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- reports
+          git commit -m "Update reports for all candidates"
+          git push
+          echo "outcome=committed" >> "$GITHUB_OUTPUT"
+
+      - name: Show the reports
+        if: ${{ !cancelled() }}
+        run: |
+          case "${{ steps.commit.outputs.outcome }}" in
+            committed) outcome="the new reports were committed to ${{ github.ref_name }}" ;;
+            unchanged) outcome="the reports were unchanged, so nothing was committed" ;;
+            *) outcome="nothing was committed" ;;
+          esac
+          {
+            echo "**3. Update reports for all candidates:** checked every candidate against the targets in the manifest, with this repository's image (tro-checks $(jq -r '."tro-checks"' reports/last-check.json)); ${outcome}."
+            echo
+            cat reports/integrated-report.md
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Attach the reports
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: reports
+          path: reports/

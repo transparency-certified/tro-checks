@@ -5,6 +5,10 @@ render-report.js
 render-readme.js
 types.js
 versions.json
+host-makefile
+install-tro-checks-gha
+record-last-check
+gha/workflows/3-update-reports.yml gha/workflows/3-update-reports.yml gha/workflows/3-update-reports.yml
 versions/trace-2026-04-19/tiers.json versions/trace-2026-04-19/tiers.json versions/trace-2026-04-19/tiers.json
 versions/trace-2026-04-19/artifact-hashes-present.schema.json versions/trace-2026-04-19/artifact-hashes-present.schema.json versions/trace-2026-04-19/artifact-hashes-present.schema.json
 versions/trace-2026-04-19/base-declared.schema.json versions/trace-2026-04-19/base-declared.schema.json versions/trace-2026-04-19/base-declared.schema.json
