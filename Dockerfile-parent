@@ -1,4 +1,4 @@
-FROM cirss/repro-parent:latest
+FROM ghcr.io/cirss/repro-parent:latest
 
 ARG PARENT_BUILD_ARG_1
 ENV NODE_VERSION=${PARENT_BUILD_ARG_1}
