@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 #
-# Writes reports/last-check.json in the repository mounted at REPRO_MNT: when the reports were made,
-# the tro-checks version they were made with, and one hash of the candidates and manifest. Workflow 3
-# computes the same hash to decide whether the reports are up to date, so the two must stay the same.
+# Writes reports/last-check.json in the repository mounted at REPRO_MNT: the tro-checks version the
+# reports were made with, and one hash of the candidates and manifest. Workflow 3 computes the hash the
+# same way to decide whether the reports are up to date.
 
 set -euo pipefail
 
 cd "${REPRO_MNT}"
 read -r _ version _ < "${REPRO_INDEX_DIR}/tro-checks"
 hash=$(LC_ALL=C sha256sum candidates/* | sha256sum | cut -d' ' -f1)
-printf '{"time": "%s", "tro-checks": "%s", "hash": "%s"}\n' \
-    "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "${version}" "${hash}" > reports/last-check.json
+printf '{"tro-checks": "%s", "hash": "%s"}\n' "${version}" "${hash}" > reports/last-check.json

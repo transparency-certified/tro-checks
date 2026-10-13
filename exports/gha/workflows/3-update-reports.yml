@@ -76,15 +76,11 @@ jobs:
           make build-reports REPRO_INTERACTIVE_SESSION=false \
               REPRO_DOCKER_OPTIONS="--env GIT_CONFIG_COUNT=1 --env GIT_CONFIG_KEY_0=safe.directory --env 'GIT_CONFIG_VALUE_0=*'"
 
-      # Commit when a report changed, or when the candidates changed without changing any report, so
-      # that last-check.json records their new hash; not for last-check.json's new time alone.
       - name: Commit the reports
         id: commit
         if: github.event_name == 'push' || inputs.commit
         run: |
-          committed=$(git show HEAD:reports/last-check.json 2>/dev/null | jq -r .hash || true)
-          if [ -z "$(git status --porcelain -- reports ':!reports/last-check.json')" ] && \
-             [ "$(jq -r .hash reports/last-check.json)" = "$committed" ]; then
+          if [ -z "$(git status --porcelain -- reports)" ]; then
             echo "outcome=unchanged" >> "$GITHUB_OUTPUT"
             exit 0
           fi
