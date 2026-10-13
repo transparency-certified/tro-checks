@@ -10,8 +10,12 @@
 install-tro-checks-gha: session
 	$(RUN_IN_REPRO) 'install-tro-checks-gha $(filter-out install-tro-checks-gha,$(MAKECMDGOALS))'
 
-# Absorb the words after -- so make doesn't treat them as targets.
+# Absorb the words after -- so make doesn't treat them as targets, even where a file has the same name.
 ifneq (,$(filter install-tro-checks-gha,$(MAKECMDGOALS)))
-%:
+TRO_CHECKS_GHA_NAMES := $(filter-out install-tro-checks-gha,$(MAKECMDGOALS))
+ifneq (,$(TRO_CHECKS_GHA_NAMES))
+.PHONY: $(TRO_CHECKS_GHA_NAMES)
+$(TRO_CHECKS_GHA_NAMES):
 	@:
+endif
 endif
