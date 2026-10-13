@@ -3,8 +3,9 @@
 #
 #     -include .tro-checks/host-makefile
 
-## install-tro-checks-gha: Install tro-checks' GitHub Actions workflows 1-3, and 4 or 5 if already
-##                    present or named, e.g. make install-tro-checks-gha -- 4 5.
+## install-tro-checks-gha: Install tro-checks' GitHub Actions workflows, with any optional ones
+##                    already present or named, e.g.
+##                    make install-tro-checks-gha -- make-candidates pull-candidates.
 .PHONY: install-tro-checks-gha
 install-tro-checks-gha: session
 	$(RUN_IN_REPRO) 'install-tro-checks-gha $(filter-out install-tro-checks-gha,$(MAKECMDGOALS))'

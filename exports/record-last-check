@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # Writes reports/last-check.json in the repository mounted at REPRO_MNT: the tro-checks version the
-# reports were made with, and one hash of the candidates and manifest. Workflow 3 computes the hash the
+# reports were made with, and one hash of the candidates and manifest. The update-reports workflow computes the hash the
 # same way to decide whether the reports are up to date.
 
 set -euo pipefail

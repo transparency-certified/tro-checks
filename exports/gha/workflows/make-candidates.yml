@@ -1,4 +1,4 @@
-# Workflow 4: makes the candidates again with this repository's make build-candidates, then checks
+# Make candidates and update reports: makes the candidates again with this repository's make build-candidates, then checks
 # every candidate against each target in its manifest entry, using this repository's image built
 # afresh, and shows the combined report on the run's page.
 #

@@ -8,8 +8,8 @@ versions.json
 host-makefile
 install-tro-checks-gha
 record-last-check
-gha/workflows/3-update-reports.yml gha/workflows/3-update-reports.yml gha/workflows/3-update-reports.yml
-gha/workflows/4-make-candidates.yml gha/workflows/4-make-candidates.yml gha/workflows/4-make-candidates.yml
+gha/workflows/update-reports.yml gha/workflows/update-reports.yml gha/workflows/update-reports.yml
+gha/workflows/make-candidates.yml gha/workflows/make-candidates.yml gha/workflows/make-candidates.yml
 versions/trace-2026-04-19/tiers.json versions/trace-2026-04-19/tiers.json versions/trace-2026-04-19/tiers.json
 versions/trace-2026-04-19/artifact-hashes-present.schema.json versions/trace-2026-04-19/artifact-hashes-present.schema.json versions/trace-2026-04-19/artifact-hashes-present.schema.json
 versions/trace-2026-04-19/base-declared.schema.json versions/trace-2026-04-19/base-declared.schema.json versions/trace-2026-04-19/base-declared.schema.json

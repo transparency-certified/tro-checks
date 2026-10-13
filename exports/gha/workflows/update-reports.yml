@@ -1,4 +1,4 @@
-# Workflow 3: checks every candidate against each target in its manifest entry, using this
+# Update reports for all candidates: checks every candidate against each target in its manifest entry, using this
 # repository's image built afresh, and shows the combined report on the run's page.
 #
 # Started by hand, committing the reports to the branch it ran on when Commit is ticked; and
