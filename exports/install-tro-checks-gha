@@ -26,3 +26,12 @@ for original in "${originals}"/actions/*/action.yml; do
     cp "${original}" "${REPRO_MNT}/.github/actions/${action}/action.yml"
     echo "Installed .github/actions/${action}/action.yml"
 done
+
+tiers=${REPRO_MNT}/.github/actions/check-tro-declaration/versions
+rm -rf "${tiers}"
+for original in "${install_dir}"/versions/*/tiers.json; do
+    version=$(basename "$(dirname "${original}")")
+    mkdir -p "${tiers}/${version}"
+    cp "${original}" "${tiers}/${version}/tiers.json"
+    echo "Installed .github/actions/check-tro-declaration/versions/${version}/tiers.json"
+done

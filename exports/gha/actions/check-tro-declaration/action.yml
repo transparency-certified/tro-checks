@@ -14,13 +14,26 @@ inputs:
   target-tier:
     description: The tier to check it for
     required: true
-  tro-checks-version:
-    description: The tro-checks version, main or a release tag, or "repository" for this repository's own
-    default: main
 
 runs:
   using: composite
   steps:
+
+    - name: Stop if the TRACE version has no such tier
+      shell: bash
+      env:
+        TARGET_VERSION: ${{ inputs.target-version }}
+        TARGET_TIER: ${{ inputs.target-tier }}
+      run: |
+        tiers_file=$GITHUB_ACTION_PATH/versions/$TARGET_VERSION/tiers.json
+        if [ ! -f "$tiers_file" ]; then
+          echo "This repository's tro-checks has no TRACE version $TARGET_VERSION." | tee -a "$GITHUB_STEP_SUMMARY"
+          exit 1
+        fi
+        if ! jq -e --arg tier "$TARGET_TIER" 'map(.id) | index($tier)' "$tiers_file" > /dev/null; then
+          echo "$TARGET_VERSION has no tier $TARGET_TIER: its tiers are $(jq -r 'map(.id) | join(", ")' "$tiers_file")." | tee -a "$GITHUB_STEP_SUMMARY"
+          exit 1
+        fi
 
     # Temporary, until repros gives the container the host user's ID.
     - name: Create the log and report directories and make the whole repository writable
@@ -31,8 +44,7 @@ runs:
         mkdir -p .repro-logs .repro-sessions/active "$(dirname "$REPORT_FILE")"
         chmod -R a+rwX .
 
-    - name: Build this repository's image
-      if: inputs.tro-checks-version == 'repository'
+    - name: Build the image
       shell: bash
       run: make build-image
 
@@ -43,11 +55,9 @@ runs:
         REPORT_FILE: ${{ inputs.report-file }}
         TARGET_VERSION: ${{ inputs.target-version }}
         TARGET_TIER: ${{ inputs.target-tier }}
-        PUBLISHED_IMAGE: ${{ inputs.tro-checks-version != 'repository' && format('ghcr.io/transparency-certified/tro-checks:{0}', inputs.tro-checks-version) || '' }}
       run: |
         # The git and terminal options are temporary, until repros gives the container the host
         # user's ID and detects that there is no terminal.
         make run-in-repro REPRO_INTERACTIVE_SESSION=false \
-            ${PUBLISHED_IMAGE:+REPRO_IMAGE="$PUBLISHED_IMAGE"} \
             REPRO_DOCKER_OPTIONS="--env DECLARATION_FILE --env REPORT_FILE --env TARGET_VERSION --env TARGET_TIER --env GIT_CONFIG_COUNT=1 --env GIT_CONFIG_KEY_0=safe.directory --env 'GIT_CONFIG_VALUE_0=*'" \
             CMD='check-tro --candidate "$$REPRO_MNT/$$DECLARATION_FILE" --report "$$REPRO_MNT/$$REPORT_FILE" --target-version "$$TARGET_VERSION" --target-tier "$$TARGET_TIER"; [ $$? -le 1 ]'

@@ -1,9 +1,8 @@
 name: Preview one candidate
 run-name: >-
-  Preview one candidate (${{ inputs.candidate }}, ${{ inputs.target-version }}, ${{ inputs.target-tier }},
-  ${{ inputs.tro-checks-version == 'repository' && 'this repository''s tro-checks' || format('tro-checks {0}', inputs.tro-checks-version) }})
+  Preview one candidate (${{ inputs.candidate }}, ${{ inputs.target-version }}, ${{ inputs.target-tier }})
 
-# Start by hand, naming the candidate, the target, and the tro-checks version to check it with.
+# Start by hand, naming the candidate and the target to check it against.
 on:
   workflow_dispatch:
     inputs:
@@ -30,10 +29,6 @@ on:
           - DEFINES-TRS
           - STANDALONE-TRO
           - LINKABLE-TRO
-      tro-checks-version:
-        description: The tro-checks version, main or a release tag, or "repository" for this repository's own
-        default: main
-        type: string
 
 # Let the workflow read the repository, and nothing more.
 permissions:
@@ -70,7 +65,6 @@ jobs:
           report-file: preview/report.md
           target-version: ${{ inputs.target-version }}
           target-tier: ${{ inputs.target-tier }}
-          tro-checks-version: ${{ inputs.tro-checks-version }}
 
       - name: Show the report
         run: cat preview/report.md >> "$GITHUB_STEP_SUMMARY"
