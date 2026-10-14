@@ -1,6 +1,6 @@
-name: Update reports for all candidates
+name: Update reports
 run-name: >-
-  Update reports for all candidates (${{ github.event_name == 'push' && 'after a push, committing' ||
+  Update reports (${{ github.event_name == 'push' && 'after a push, committing' ||
   inputs.commit && 'by hand, committing' || 'by hand, not committing' }})
 
 # Start on a push to any branch, or by hand, optionally committing the reports.
@@ -30,26 +30,26 @@ jobs:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     outputs:
-      changed: ${{ steps.compare.outputs.changed }}
+      candidates-changed: ${{ steps.compare-candidates.outputs.candidates-changed }}
     steps:
       - name: Check out the repository
         uses: actions/checkout@v7
 
       - name: Compare the candidates with those last reported on
-        id: compare
+        id: compare-candidates
         run: |
           # Must hash as record-last-check does.
           hash=$(LC_ALL=C sha256sum candidates/* | sha256sum | cut -d' ' -f1)
           if [ -f reports/last-check.json ] && [ "$(jq -r .hash reports/last-check.json)" = "$hash" ]; then
             echo "The candidates haven't changed since the reports were last made." >> "$GITHUB_STEP_SUMMARY"
           else
-            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "candidates-changed=true" >> "$GITHUB_OUTPUT"
           fi
 
   # Make the reports, committing any that changed after a push or when Commit is ticked.
   update-reports:
     needs: detect-candidate-changes
-    if: ${{ !cancelled() && (github.event_name != 'push' || needs.detect-candidate-changes.outputs.changed == 'true') }}
+    if: ${{ !cancelled() && (github.event_name != 'push' || needs.detect-candidate-changes.outputs.candidates-changed == 'true') }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository
@@ -78,7 +78,7 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add -- reports
-            git commit -m "Update reports for all candidates"
+            git commit -m "Update reports"
             git push
             echo "Committed the new reports to ${{ github.ref_name }}." >> "$GITHUB_STEP_SUMMARY"
           fi

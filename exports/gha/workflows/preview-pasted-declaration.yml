@@ -1,6 +1,6 @@
-name: Preview report for pasted declaration
+name: Preview pasted declaration
 run-name: >-
-  Preview report for pasted declaration (${{ inputs.version }}, ${{ inputs.tier }},
+  Preview pasted declaration (${{ inputs.version }}, ${{ inputs.tier }},
   ${{ inputs.repository-image && 'this repository''s image' || format('tro-checks {0}', inputs.tro-checks) }})
 
 # Start by hand, pasting the declaration and naming the target and the image to check it with.
@@ -35,7 +35,7 @@ permissions:
 jobs:
 
   # Check the declaration and show its report, committing nothing.
-  preview-declaration:
+  preview-pasted-declaration:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository

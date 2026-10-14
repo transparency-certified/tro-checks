@@ -1,6 +1,6 @@
-name: Preview report for one candidate
+name: Preview one candidate
 run-name: >-
-  Preview report for ${{ inputs.candidate }} (${{ inputs.version }}, ${{ inputs.tier }},
+  Preview one candidate (${{ inputs.candidate }}, ${{ inputs.version }}, ${{ inputs.tier }},
   ${{ inputs.repository-image && 'this repository''s image' || format('tro-checks {0}', inputs.tro-checks) }})
 
 # Start by hand, naming the candidate, the target, and the image to check it with.
@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       candidate:
-        description: The candidate's name, as in the manifest
+        description: The candidate's file name
         required: true
         type: string
       version:
@@ -35,26 +35,29 @@ permissions:
 jobs:
 
   # Check the candidate and show its report, committing nothing.
-  preview-candidate:
+  preview-one-candidate:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository
         uses: actions/checkout@v7
 
-      - name: Stop if no candidate has that name
+      - name: Find the candidate's declaration
+        id: find-declaration
         env:
           CANDIDATE: ${{ inputs.candidate }}
         run: |
-          if ! jq -e --arg name "$CANDIDATE" 'has($name)' candidates/manifest.json > /dev/null || \
-             [ ! -f "candidates/$CANDIDATE.jsonld" ]; then
-            echo "No candidate named $CANDIDATE: the names are $(jq -r 'keys | join(", ")' candidates/manifest.json)." | tee -a "$GITHUB_STEP_SUMMARY"
+          name=${CANDIDATE%.jsonld}
+          if ! jq -e --arg name "$name" 'has($name)' candidates/manifest.json > /dev/null || \
+             [ ! -f "candidates/$name.jsonld" ]; then
+            echo "No candidate file named $CANDIDATE: the files are $(jq -r 'keys | map(. + ".jsonld") | join(", ")' candidates/manifest.json)." | tee -a "$GITHUB_STEP_SUMMARY"
             exit 1
           fi
+          echo "declaration=candidates/$name.jsonld" >> "$GITHUB_OUTPUT"
 
       - name: Check the candidate
         uses: ./.github/actions/check-declaration
         with:
-          declaration: candidates/${{ inputs.candidate }}.jsonld
+          declaration: ${{ steps.find-declaration.outputs.declaration }}
           report: preview/report.md
           version: ${{ inputs.version }}
           tier: ${{ inputs.tier }}
