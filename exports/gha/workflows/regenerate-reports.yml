@@ -37,14 +37,9 @@ jobs:
 
       - name: Compare the candidates with those last reported on
         id: compare-candidates
-        run: |
-          # Must hash as record-last-check does.
-          hash=$(LC_ALL=C sha256sum candidates/* | sha256sum | cut -d' ' -f1)
-          if [ -f reports/last-check.json ] && [ "$(jq -r .hash reports/last-check.json)" = "$hash" ]; then
-            echo "The candidates haven't changed since the reports were last made." >> "$GITHUB_STEP_SUMMARY"
-          else
-            echo "candidates-changed=true" >> "$GITHUB_OUTPUT"
-          fi
+        uses: ./.github/actions/compare-candidates-with-reports
+#       outputs:
+#         candidates-changed
 
   # Make the reports, committing any that changed after a push or when Commit is ticked.
   make-reports:

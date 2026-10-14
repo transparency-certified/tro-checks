@@ -45,18 +45,11 @@ jobs:
 
       - name: Find the candidate's declaration
         id: find-declaration
-        env:
-          CANDIDATE: ${{ inputs.candidate }}
-        run: |
-          declaration_file=$CANDIDATE
-          if [[ $declaration_file != */* ]]; then
-            declaration_file=candidates/${declaration_file%.jsonld}.jsonld
-          fi
-          if [ ! -f "$declaration_file" ]; then
-            echo "No file $declaration_file: the candidates are $(jq -r 'keys | map(. + ".jsonld") | join(", ")' candidates/manifest.json)." | tee -a "$GITHUB_STEP_SUMMARY"
-            exit 1
-          fi
-          echo "declaration-file=$declaration_file" >> "$GITHUB_OUTPUT"
+        uses: ./.github/actions/find-candidate-declaration
+        with:
+          candidate: ${{ inputs.candidate }}
+#       outputs:
+#         declaration-file
 
       - name: Check the candidate
         uses: ./.github/actions/check-tro-declaration

@@ -1,0 +1,24 @@
+name: Compare candidates with reports
+description: Determine whether the candidates have changed since the reports were last made
+
+outputs:
+  candidates-changed:
+    description: true if the candidates have changed, empty otherwise
+    value: ${{ steps.compare.outputs.candidates-changed }}
+
+runs:
+  using: composite
+  steps:
+
+    - name: Compare the candidates' hash with the one recorded with the reports
+      id: compare
+      shell: bash
+      run: |
+        hash=$(bash "$GITHUB_ACTION_PATH/hash-candidates")
+        if [ -f reports/last-check.json ] && [ "$(jq -r .hash reports/last-check.json)" = "$hash" ]; then
+          echo "The candidates haven't changed since the reports were last made." >> "$GITHUB_STEP_SUMMARY"
+        else
+          echo "candidates-changed=true" >> "$GITHUB_OUTPUT"
+        fi
+#     outputs:
+#       candidates-changed

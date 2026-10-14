@@ -13,6 +13,9 @@ gha/workflows/regenerate-candidates.yml gha/workflows/regenerate-candidates.yml 
 gha/workflows/preview-pasted-declaration.yml gha/workflows/preview-pasted-declaration.yml gha/workflows/preview-pasted-declaration.yml
 gha/workflows/preview-one-candidate.yml gha/workflows/preview-one-candidate.yml gha/workflows/preview-one-candidate.yml
 gha/actions/check-tro-declaration/action.yml gha/actions/check-tro-declaration/action.yml gha/actions/check-tro-declaration/action.yml
+gha/actions/find-candidate-declaration/action.yml gha/actions/find-candidate-declaration/action.yml gha/actions/find-candidate-declaration/action.yml
+gha/actions/compare-candidates-with-reports/action.yml gha/actions/compare-candidates-with-reports/action.yml gha/actions/compare-candidates-with-reports/action.yml
+gha/actions/compare-candidates-with-reports/hash-candidates gha/actions/compare-candidates-with-reports/hash-candidates gha/actions/compare-candidates-with-reports/hash-candidates
 versions/trace-2026-04-19/tiers.json versions/trace-2026-04-19/tiers.json versions/trace-2026-04-19/tiers.json
 versions/trace-2026-04-19/artifact-hashes-present.schema.json versions/trace-2026-04-19/artifact-hashes-present.schema.json versions/trace-2026-04-19/artifact-hashes-present.schema.json
 versions/trace-2026-04-19/base-declared.schema.json versions/trace-2026-04-19/base-declared.schema.json versions/trace-2026-04-19/base-declared.schema.json

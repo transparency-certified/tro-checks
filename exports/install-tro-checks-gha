@@ -20,11 +20,11 @@ for original in "${originals}"/workflows/*.yml; do
     echo "Installed .github/workflows/${name}.yml"
 done
 
-for original in "${originals}"/actions/*/action.yml; do
-    action=$(basename "$(dirname "${original}")")
-    mkdir -p "${REPRO_MNT}/.github/actions/${action}"
-    cp "${original}" "${REPRO_MNT}/.github/actions/${action}/action.yml"
-    echo "Installed .github/actions/${action}/action.yml"
+for original in "${originals}"/actions/*/*; do
+    file=${original#"${originals}"/}
+    mkdir -p "${REPRO_MNT}/.github/$(dirname "${file}")"
+    cp "${original}" "${REPRO_MNT}/.github/${file}"
+    echo "Installed .github/${file}"
 done
 
 tiers=${REPRO_MNT}/.github/actions/check-tro-declaration/versions
