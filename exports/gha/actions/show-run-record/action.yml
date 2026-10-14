@@ -1,0 +1,31 @@
+name: Show run record
+description: Write a table of what a run was asked to do at the top of its summary
+
+inputs:
+  rows:
+    description: 'One "label: value" per line, e.g. "The tier to check it for: STANDALONE-TRO"; rows with no value are left out'
+    required: true
+
+runs:
+  using: composite
+  steps:
+
+    - name: Write the run record
+      shell: bash
+      env:
+        ROWS: ${{ inputs.rows }}
+      run: |
+        {
+          echo "## Run record"
+          echo
+          echo "| | |"
+          echo "|---|---|"
+          while IFS= read -r row; do
+            label=${row%%:*}
+            value=${row#*:}
+            value=${value# }
+            [ -n "$value" ] || continue
+            echo "| ${label//|/\\|} | ${value//|/\\|} |"
+          done <<< "$ROWS"
+          echo
+        } >> "$GITHUB_STEP_SUMMARY"

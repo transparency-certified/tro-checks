@@ -24,6 +24,14 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v7
 
+      - name: Show the run's record
+        uses: ./.github/actions/show-run-record
+        with:
+          rows: |
+            Commit the candidates and reports to this branch: ${{ inputs.commit && 'yes' || 'no' }}
+            Started: by hand
+            Repository: ${{ github.repository }} at commit [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})
+
       # Temporary, until repros gives the container the host user's ID.
       - name: Create the log directories and make the whole repository writable
         run: |

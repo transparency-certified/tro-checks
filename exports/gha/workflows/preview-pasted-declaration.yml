@@ -43,6 +43,15 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v7
 
+      - name: Show the run's record
+        uses: ./.github/actions/show-run-record
+        with:
+          rows: |
+            The TRO declaration, pasted: (attached to the run)
+            The TRACE version to check it against: ${{ inputs.target-version }}
+            The tier to check it for: ${{ inputs.target-tier }}
+            Repository: ${{ github.repository }} at commit [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})
+
       - name: Save the declaration to a file
         env:
           DECLARATION: ${{ inputs.declaration }}
