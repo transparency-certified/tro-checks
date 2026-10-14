@@ -1,7 +1,7 @@
-name: Update reports
+name: Regenerate reports
 run-name: >-
-  Update reports (${{ github.event_name == 'push' && 'after a push, committing' ||
-  inputs.commit && 'by hand, committing' || 'by hand, not committing' }})
+  Regenerate reports (${{ github.event_name == 'push' && 'after a push' ||
+  inputs.commit && 'by hand, commit requested' || 'by hand, no commit requested' }})
 
 # Start on a push to any branch, or by hand, optionally committing the reports.
 on:
@@ -78,7 +78,7 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add -- reports
-            git commit -m "Update reports"
+            git commit -m "Regenerate reports"
             git push
             echo "Committed the new reports to ${{ github.ref_name }}." >> "$GITHUB_STEP_SUMMARY"
           fi

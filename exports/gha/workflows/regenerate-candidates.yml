@@ -1,6 +1,6 @@
-name: Make candidates
+name: Regenerate candidates
 run-name: >-
-  Make candidates (${{ inputs.commit && 'by hand, committing' || 'by hand, not committing' }})
+  Regenerate candidates (${{ inputs.commit && 'by hand, commit requested' || 'by hand, no commit requested' }})
 
 # Start by hand, optionally committing the candidates and reports.
 on:
@@ -54,7 +54,7 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add -- candidates reports
-            git commit -m "Make candidates"
+            git commit -m "Regenerate candidates"
             git push
             echo "Committed the new candidates and reports to ${{ github.ref_name }}." >> "$GITHUB_STEP_SUMMARY"
           fi

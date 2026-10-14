@@ -5,7 +5,7 @@
 
 ## install-tro-checks-gha: Install tro-checks' GitHub Actions workflows, with any optional ones
 ##                    already present or named, e.g.
-##                    make install-tro-checks-gha -- make-candidates pull-candidates.
+##                    make install-tro-checks-gha -- regenerate-candidates pull-candidates.
 .PHONY: install-tro-checks-gha
 install-tro-checks-gha: session
 	$(RUN_IN_REPRO) 'install-tro-checks-gha $(filter-out install-tro-checks-gha,$(MAKECMDGOALS))'

@@ -8,17 +8,28 @@ on:
   workflow_dispatch:
     inputs:
       candidate:
-        description: The candidate's file name
+        description: The candidate file
         required: true
         type: string
       version:
         description: The TRACE version to check it against
         default: trace-main
-        type: string
+        type: choice
+        options:
+          - trace-main
+          - trace-2026-04-19
       tier:
         description: The tier to check it for
         default: STANDALONE-TRO
-        type: string
+        type: choice
+        options:
+          - SAFE-JSON
+          - SAFE-JSON-LD
+          - TRACE-PERMISSIBLE-JSON-LD
+          - USES-TROV-CORRECTLY
+          - DEFINES-TRS
+          - STANDALONE-TRO
+          - LINKABLE-TRO
       tro-checks:
         description: The version of tro-checks' published image, main or a release tag
         default: main
@@ -46,13 +57,15 @@ jobs:
         env:
           CANDIDATE: ${{ inputs.candidate }}
         run: |
-          name=${CANDIDATE%.jsonld}
-          if ! jq -e --arg name "$name" 'has($name)' candidates/manifest.json > /dev/null || \
-             [ ! -f "candidates/$name.jsonld" ]; then
-            echo "No candidate file named $CANDIDATE: the files are $(jq -r 'keys | map(. + ".jsonld") | join(", ")' candidates/manifest.json)." | tee -a "$GITHUB_STEP_SUMMARY"
+          declaration=$CANDIDATE
+          if [[ $declaration != */* ]]; then
+            declaration=candidates/${declaration%.jsonld}.jsonld
+          fi
+          if [ ! -f "$declaration" ]; then
+            echo "No file $declaration: the candidates are $(jq -r 'keys | map(. + ".jsonld") | join(", ")' candidates/manifest.json)." | tee -a "$GITHUB_STEP_SUMMARY"
             exit 1
           fi
-          echo "declaration=candidates/$name.jsonld" >> "$GITHUB_OUTPUT"
+          echo "declaration=$declaration" >> "$GITHUB_OUTPUT"
 
       - name: Check the candidate
         uses: ./.github/actions/check-tro-declaration

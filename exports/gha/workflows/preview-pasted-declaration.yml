@@ -14,11 +14,22 @@ on:
       version:
         description: The TRACE version to check it against
         default: trace-main
-        type: string
+        type: choice
+        options:
+          - trace-main
+          - trace-2026-04-19
       tier:
         description: The tier to check it for
         default: STANDALONE-TRO
-        type: string
+        type: choice
+        options:
+          - SAFE-JSON
+          - SAFE-JSON-LD
+          - TRACE-PERMISSIBLE-JSON-LD
+          - USES-TROV-CORRECTLY
+          - DEFINES-TRS
+          - STANDALONE-TRO
+          - LINKABLE-TRO
       tro-checks:
         description: The version of tro-checks' published image, main or a release tag
         default: main

@@ -3,7 +3,7 @@
 set -euo pipefail
 shopt -s nullglob
 
-always="preview-pasted-declaration preview-one-candidate update-reports"
+always="preview-pasted-declaration preview-one-candidate regenerate-reports"
 
 read -r _ _ install_dir < "${REPRO_INDEX_DIR}/tro-checks"
 originals=${install_dir}/gha
