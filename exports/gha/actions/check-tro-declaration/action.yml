@@ -1,24 +1,21 @@
-name: Check one declaration
-description: Check one declaration
+name: Check TRO declaration
+description: Check a TRO declaration file against a TRACE version and tier, and write its report
 
 inputs:
-  declaration:
-    description: The declaration file, relative to the repository's top directory
+  declaration-file:
+    description: The declaration file's path in the repository, e.g. candidates/01-builtin-trs-declaration.jsonld
     required: true
-  report:
-    description: Where to write the report, relative to the repository's top directory
+  report-file:
+    description: The report file's path in the repository, e.g. preview/report.md
     required: true
-  version:
+  target-version:
     description: The TRACE version to check it against
     required: true
-  tier:
+  target-tier:
     description: The tier to check it for
     required: true
-  repository-image:
-    description: Use this repository's image instead of tro-checks' published one
-    default: 'false'
-  tro-checks:
-    description: The version of tro-checks' published image, main or a release tag
+  tro-checks-version:
+    description: The tro-checks version, main or a release tag, or "repository" for this repository's own
     default: main
 
 runs:
@@ -29,28 +26,28 @@ runs:
     - name: Create the log and report directories and make the whole repository writable
       shell: bash
       env:
-        REPORT: ${{ inputs.report }}
+        REPORT_FILE: ${{ inputs.report-file }}
       run: |
-        mkdir -p .repro-logs .repro-sessions/active "$(dirname "$REPORT")"
+        mkdir -p .repro-logs .repro-sessions/active "$(dirname "$REPORT_FILE")"
         chmod -R a+rwX .
 
     - name: Build this repository's image
-      if: inputs.repository-image == 'true'
+      if: inputs.tro-checks-version == 'repository'
       shell: bash
       run: make build-image
 
     - name: Check the declaration
       shell: bash
       env:
-        CHECK_DECLARATION: ${{ inputs.declaration }}
-        CHECK_REPORT: ${{ inputs.report }}
-        CHECK_VERSION: ${{ inputs.version }}
-        CHECK_TIER: ${{ inputs.tier }}
-        PUBLISHED_IMAGE: ${{ inputs.repository-image != 'true' && format('ghcr.io/transparency-certified/tro-checks:{0}', inputs.tro-checks) || '' }}
+        DECLARATION_FILE: ${{ inputs.declaration-file }}
+        REPORT_FILE: ${{ inputs.report-file }}
+        TARGET_VERSION: ${{ inputs.target-version }}
+        TARGET_TIER: ${{ inputs.target-tier }}
+        PUBLISHED_IMAGE: ${{ inputs.tro-checks-version != 'repository' && format('ghcr.io/transparency-certified/tro-checks:{0}', inputs.tro-checks-version) || '' }}
       run: |
         # The git and terminal options are temporary, until repros gives the container the host
         # user's ID and detects that there is no terminal.
         make run-in-repro REPRO_INTERACTIVE_SESSION=false \
             ${PUBLISHED_IMAGE:+REPRO_IMAGE="$PUBLISHED_IMAGE"} \
-            REPRO_DOCKER_OPTIONS="--env CHECK_DECLARATION --env CHECK_REPORT --env CHECK_VERSION --env CHECK_TIER --env GIT_CONFIG_COUNT=1 --env GIT_CONFIG_KEY_0=safe.directory --env 'GIT_CONFIG_VALUE_0=*'" \
-            CMD='check-tro --candidate "$$REPRO_MNT/$$CHECK_DECLARATION" --report "$$REPRO_MNT/$$CHECK_REPORT" --target-version "$$CHECK_VERSION" --target-tier "$$CHECK_TIER"; [ $$? -le 1 ]'
+            REPRO_DOCKER_OPTIONS="--env DECLARATION_FILE --env REPORT_FILE --env TARGET_VERSION --env TARGET_TIER --env GIT_CONFIG_COUNT=1 --env GIT_CONFIG_KEY_0=safe.directory --env 'GIT_CONFIG_VALUE_0=*'" \
+            CMD='check-tro --candidate "$$REPRO_MNT/$$DECLARATION_FILE" --report "$$REPRO_MNT/$$REPORT_FILE" --target-version "$$TARGET_VERSION" --target-tier "$$TARGET_TIER"; [ $$? -le 1 ]'

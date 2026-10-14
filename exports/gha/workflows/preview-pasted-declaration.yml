@@ -1,9 +1,9 @@
 name: Preview pasted declaration
 run-name: >-
-  Preview pasted declaration (${{ inputs.version }}, ${{ inputs.tier }},
-  ${{ inputs.repository-image && 'this repository''s image' || format('tro-checks {0}', inputs.tro-checks) }})
+  Preview pasted declaration (${{ inputs.target-version }}, ${{ inputs.target-tier }},
+  ${{ inputs.tro-checks-version == 'repository' && 'this repository''s tro-checks' || format('tro-checks {0}', inputs.tro-checks-version) }})
 
-# Start by hand, pasting the declaration and naming the target and the image to check it with.
+# Start by hand, pasting the declaration and naming the target and the tro-checks version to check it with.
 on:
   workflow_dispatch:
     inputs:
@@ -11,14 +11,14 @@ on:
         description: The TRO declaration, pasted
         required: true
         type: string
-      version:
+      target-version:
         description: The TRACE version to check it against
         default: trace-main
         type: choice
         options:
           - trace-main
           - trace-2026-04-19
-      tier:
+      target-tier:
         description: The tier to check it for
         default: STANDALONE-TRO
         type: choice
@@ -30,14 +30,10 @@ on:
           - DEFINES-TRS
           - STANDALONE-TRO
           - LINKABLE-TRO
-      tro-checks:
-        description: The version of tro-checks' published image, main or a release tag
+      tro-checks-version:
+        description: The tro-checks version, main or a release tag, or "repository" for this repository's own
         default: main
         type: string
-      repository-image:
-        description: Use this repository's image instead
-        default: false
-        type: boolean
 
 # Let the workflow read the repository, and nothing more.
 permissions:
@@ -62,12 +58,11 @@ jobs:
       - name: Check the declaration
         uses: ./.github/actions/check-tro-declaration
         with:
-          declaration: preview/declaration.jsonld
-          report: preview/report.md
-          version: ${{ inputs.version }}
-          tier: ${{ inputs.tier }}
-          repository-image: ${{ inputs.repository-image }}
-          tro-checks: ${{ inputs.tro-checks }}
+          declaration-file: preview/declaration.jsonld
+          report-file: preview/report.md
+          target-version: ${{ inputs.target-version }}
+          target-tier: ${{ inputs.target-tier }}
+          tro-checks-version: ${{ inputs.tro-checks-version }}
 
       - name: Show the report
         run: cat preview/report.md >> "$GITHUB_STEP_SUMMARY"
