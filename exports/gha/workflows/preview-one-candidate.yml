@@ -35,7 +35,7 @@ permissions:
 jobs:
 
   # Check the candidate and show its report, committing nothing.
-  preview-one-candidate:
+  check-candidate:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository
@@ -55,7 +55,7 @@ jobs:
           echo "declaration=candidates/$name.jsonld" >> "$GITHUB_OUTPUT"
 
       - name: Check the candidate
-        uses: ./.github/actions/check-declaration
+        uses: ./.github/actions/check-tro-declaration
         with:
           declaration: ${{ steps.find-declaration.outputs.declaration }}
           report: preview/report.md

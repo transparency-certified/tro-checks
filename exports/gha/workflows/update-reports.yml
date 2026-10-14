@@ -47,7 +47,7 @@ jobs:
           fi
 
   # Make the reports, committing any that changed after a push or when Commit is ticked.
-  update-reports:
+  make-reports:
     needs: detect-candidate-changes
     if: ${{ !cancelled() && (github.event_name != 'push' || needs.detect-candidate-changes.outputs.candidates-changed == 'true') }}
     runs-on: ubuntu-latest

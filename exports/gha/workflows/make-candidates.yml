@@ -18,7 +18,7 @@ permissions:
 jobs:
 
   # Make the candidates and reports, committing any that changed when Commit is ticked.
-  make-candidates:
+  make-candidates-and-reports:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository

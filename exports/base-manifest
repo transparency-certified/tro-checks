@@ -12,7 +12,7 @@ gha/workflows/update-reports.yml gha/workflows/update-reports.yml gha/workflows/
 gha/workflows/make-candidates.yml gha/workflows/make-candidates.yml gha/workflows/make-candidates.yml
 gha/workflows/preview-pasted-declaration.yml gha/workflows/preview-pasted-declaration.yml gha/workflows/preview-pasted-declaration.yml
 gha/workflows/preview-one-candidate.yml gha/workflows/preview-one-candidate.yml gha/workflows/preview-one-candidate.yml
-gha/actions/check-declaration/action.yml gha/actions/check-declaration/action.yml gha/actions/check-declaration/action.yml
+gha/actions/check-tro-declaration/action.yml gha/actions/check-tro-declaration/action.yml gha/actions/check-tro-declaration/action.yml
 versions/trace-2026-04-19/tiers.json versions/trace-2026-04-19/tiers.json versions/trace-2026-04-19/tiers.json
 versions/trace-2026-04-19/artifact-hashes-present.schema.json versions/trace-2026-04-19/artifact-hashes-present.schema.json versions/trace-2026-04-19/artifact-hashes-present.schema.json
 versions/trace-2026-04-19/base-declared.schema.json versions/trace-2026-04-19/base-declared.schema.json versions/trace-2026-04-19/base-declared.schema.json

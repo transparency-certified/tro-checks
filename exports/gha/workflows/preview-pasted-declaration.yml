@@ -35,7 +35,7 @@ permissions:
 jobs:
 
   # Check the declaration and show its report, committing nothing.
-  preview-pasted-declaration:
+  check-declaration:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository
@@ -49,7 +49,7 @@ jobs:
           printf '%s\n' "$DECLARATION" > preview/declaration.jsonld
 
       - name: Check the declaration
-        uses: ./.github/actions/check-declaration
+        uses: ./.github/actions/check-tro-declaration
         with:
           declaration: preview/declaration.jsonld
           report: preview/report.md
