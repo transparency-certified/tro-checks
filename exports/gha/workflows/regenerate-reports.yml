@@ -25,27 +25,12 @@ concurrency:
 
 jobs:
 
-  # After a push, determine whether the candidates have changed since the reports were last made.
-  detect-candidate-changes:
-    if: github.event_name == 'push'
+  # Record the run, and check the preconditions for making the reports: that the run was started by
+  # hand, or that the candidates have changed since the reports were last made.
+  check-preconditions:
     runs-on: ubuntu-latest
     outputs:
-      candidates-changed: ${{ steps.compare-candidates.outputs.candidates-changed }}
-    steps:
-      - name: Check out the repository
-        uses: actions/checkout@v7
-
-      - name: Compare the candidates with those last reported on
-        id: compare-candidates
-        uses: ./.github/actions/compare-candidates-with-reports
-#       outputs:
-#         candidates-changed
-
-  # Make the reports, committing any that changed after a push or when Commit is ticked.
-  make-reports:
-    needs: detect-candidate-changes
-    if: ${{ !cancelled() && (github.event_name != 'push' || needs.detect-candidate-changes.outputs.candidates-changed == 'true') }}
-    runs-on: ubuntu-latest
+      preconditions-met: ${{ steps.check.outputs.preconditions-met }}
     steps:
       - name: Check out the repository
         uses: actions/checkout@v7
@@ -57,6 +42,26 @@ jobs:
             Commit the reports to this branch: ${{ github.event_name != 'push' && (inputs.commit && 'yes' || 'no') || '' }}
             Started: ${{ github.event_name == 'push' && 'after a push' || 'by hand' }}
             Repository: ${{ github.repository }} at commit [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})
+
+      - name: Check the preconditions
+        id: check
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = push ] && [ "$(bash .github/scripts/candidates-changed)" != true ]; then
+            echo "The candidates haven't changed since the reports were last made." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "preconditions-met=true" >> "$GITHUB_OUTPUT"
+          fi
+#       outputs:
+#         preconditions-met
+
+  # Make the reports, committing any that changed after a push or when Commit is ticked.
+  make-reports:
+    needs: check-preconditions
+    if: needs.check-preconditions.outputs.preconditions-met == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
 
       # Temporary, until repros gives the container the host user's ID.
       - name: Create the log directories and make the whole repository writable

@@ -20,7 +20,7 @@ for original in "${originals}"/workflows/*.yml; do
     echo "Installed .github/workflows/${name}.yml"
 done
 
-for original in "${originals}"/actions/*/*; do
+for original in "${originals}"/actions/*/* "${originals}"/scripts/*; do
     file=${original#"${originals}"/}
     mkdir -p "${REPRO_MNT}/.github/$(dirname "${file}")"
     cp "${original}" "${REPRO_MNT}/.github/${file}"

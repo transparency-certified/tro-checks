@@ -8,5 +8,5 @@ set -euo pipefail
 
 cd "${REPRO_MNT}"
 read -r _ version install_dir < "${REPRO_INDEX_DIR}/tro-checks"
-hash=$(bash "${install_dir}/gha/actions/compare-candidates-with-reports/hash-candidates")
+hash=$(bash "${install_dir}/gha/scripts/hash-candidates")
 printf '{"tro-checks": "%s", "hash": "%s"}\n' "${version}" "${hash}" > reports/last-check.json
