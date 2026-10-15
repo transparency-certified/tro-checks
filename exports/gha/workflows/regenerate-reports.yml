@@ -35,12 +35,19 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v7
 
+      - name: Read the tro-checks version
+        id: read-version
+        run: echo "tro-checks-version=$(cat .github/tro-checks-version)" >> "$GITHUB_OUTPUT"
+#       outputs:
+#         tro-checks-version
+
       - name: Show the run's record
         uses: ./.github/actions/show-run-record
         with:
           rows: |
             Commit the reports to this branch: ${{ github.event_name != 'push' && (inputs.commit && 'yes' || 'no') || '' }}
             Started: ${{ github.event_name == 'push' && 'after a push' || 'by hand' }}
+            tro-checks: ${{ steps.read-version.outputs.tro-checks-version }}
             Repository: ${{ github.repository }} at commit [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})
 
       - name: Check the preconditions

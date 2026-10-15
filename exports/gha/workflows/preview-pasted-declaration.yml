@@ -44,6 +44,12 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v7
 
+      - name: Read the tro-checks version
+        id: read-version
+        run: echo "tro-checks-version=$(cat .github/tro-checks-version)" >> "$GITHUB_OUTPUT"
+#       outputs:
+#         tro-checks-version
+
       - name: Show the run's record
         uses: ./.github/actions/show-run-record
         with:
@@ -51,6 +57,7 @@ jobs:
             The TRO declaration, pasted: (attached to the run)
             The TRACE version to check it against: ${{ inputs.target-version }}
             The tier to check it for: ${{ inputs.target-tier }}
+            tro-checks: ${{ steps.read-version.outputs.tro-checks-version }}
             Repository: ${{ github.repository }} at commit [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})
 
       - name: Check that the TRACE version has the tier
