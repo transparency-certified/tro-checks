@@ -61,23 +61,33 @@ jobs:
 #       outputs:
 #         tier-title
 
+      - name: Find the candidate's declaration
+        id: find-declaration
+        env:
+          CANDIDATE: ${{ inputs.candidate }}
+        run: echo "declaration-file=$(bash .github/scripts/candidate-file "$CANDIDATE")" >> "$GITHUB_OUTPUT"
+#       outputs:
+#         declaration-file
+
       - name: Show the run's record
         uses: ./.github/actions/show-run-record
         with:
           rows: |
             Triggered by: manual run by ${{ github.actor }}
-            Candidate: ${{ inputs.candidate }}
-            Candidate version: [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}) on ${{ github.ref_name }}
+            Candidate: ${{ steps.find-declaration.outputs.declaration-file && format('[{0}]({1}/{2}/blob/{3}/{0})', steps.find-declaration.outputs.declaration-file, github.server_url, github.repository, github.sha) || inputs.candidate }}
+            Candidate version: [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/tree/${{ github.sha }}) on ${{ github.ref_name }}
             Targeted TRACE tier and version: `${{ steps.look-up-tier.outputs.tier-title }}` of `${{ inputs.target-version }}`
             tro-checks version: ${{ steps.find-tro-checks.outputs.tro-checks }}
 
-      - name: Find the candidate's declaration
-        id: find-declaration
-        uses: ./.github/actions/find-candidate-declaration
-        with:
-          candidate: ${{ inputs.candidate }}
-#       outputs:
-#         declaration-file
+      - name: Check that the candidate file exists
+        env:
+          CANDIDATE: ${{ inputs.candidate }}
+          DECLARATION_FILE: ${{ steps.find-declaration.outputs.declaration-file }}
+        run: |
+          if [ -z "$DECLARATION_FILE" ]; then
+            echo "There is no candidate $CANDIDATE: the candidates are $(jq -r 'keys | map(. + ".jsonld") | join(", ")' candidates/manifest.json)." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
 
       - name: Check that the TRACE version has the tier
         env:

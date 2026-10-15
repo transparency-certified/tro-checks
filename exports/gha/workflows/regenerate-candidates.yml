@@ -35,7 +35,7 @@ jobs:
         with:
           rows: |
             Triggered by: manual run by ${{ github.actor }}
-            Candidates' sources version: [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}) on ${{ github.ref_name }}
+            Candidates' sources version: [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/tree/${{ github.sha }}) on ${{ github.ref_name }}
             Commit candidates and reports: ${{ inputs.commit && 'yes' || 'no' }}
             tro-checks version: ${{ steps.find-tro-checks.outputs.tro-checks }}
 
