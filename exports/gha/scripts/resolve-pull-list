@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#
+# Prints pull-list.json with each line resolved: its local name, the commit its source's ref (default:
+# the source's default branch) points to now, and the source's manifest entry for its candidate. The
+# commit is "" and the entry null if GitHub doesn't say. Run from the repository's top directory.
+
+set -euo pipefail
+
+source_dir=$(mktemp -d)
+jq -c '.[]' pull-list.json | while IFS= read -r line; do
+    source=$(jq -r .source <<< "${line}")
+    ref=$(jq -r '.ref // "HEAD"' <<< "${line}")
+    candidate=$(jq -r .candidate <<< "${line}")
+
+    refs=$(timeout 30 git ls-remote "https://github.com/${source}" "${ref}" 2> /dev/null) || refs=
+    commit=$(awk '$2 ~ /\^\{\}$/ {print $1; found = 1} END {if (!found) exit 1}' <<< "${refs}") ||
+        commit=$(awk 'NR == 1 {print $1}' <<< "${refs}")
+
+    entry=null
+    if [ -n "${commit}" ]; then
+        rm -rf "${source_dir}"/* "${source_dir}"/.git
+        git -C "${source_dir}" init -q
+        if git -C "${source_dir}" fetch -q --depth 1 "https://github.com/${source}" "${commit}" 2> /dev/null &&
+                git -C "${source_dir}" checkout -q FETCH_HEAD -- candidates/manifest.json 2> /dev/null; then
+            entry=$(jq -c --arg candidate "${candidate}" '.[$candidate] // null' "${source_dir}"/candidates/manifest.json)
+        fi
+    fi
+
+    jq -c --arg commit "${commit}" --argjson entry "${entry}" \
+        '. + {name: (.name // .candidate), commit: $commit, entry: $entry}' <<< "${line}"
+done | jq -s .
+rm -rf "${source_dir}"

@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+#
+# Copies each candidate in the resolved pull list given (a file written by resolve-pull-list) into
+# candidates/ under its local name, with a manifest entry saying where it came from; and deletes each
+# candidate pulled before that the list no longer names. Run from the repository's top directory.
+
+set -euo pipefail
+
+plan=$1
+manifest=candidates/manifest.json
+[ -f "${manifest}" ] || echo '{}' > "${manifest}"
+
+for name in $(jq -r --slurpfile plan "${plan}" \
+        'to_entries[] | select(.value["pulled-from"]) | .key | select(IN($plan[0][].name) | not)' "${manifest}"); do
+    rm -f candidates/"${name}".*
+    jq --arg name "${name}" 'del(.[$name])' "${manifest}" > "${manifest}.new"
+    mv "${manifest}.new" "${manifest}"
+done
+
+source_dir=$(mktemp -d)
+jq -c '.[]' "${plan}" | while IFS= read -r line; do
+    source=$(jq -r .source <<< "${line}")
+    commit=$(jq -r .commit <<< "${line}")
+    candidate=$(jq -r .candidate <<< "${line}")
+    name=$(jq -r .name <<< "${line}")
+
+    rm -rf "${source_dir}"/*  "${source_dir}"/.git
+    git -C "${source_dir}" init -q
+    git -C "${source_dir}" fetch -q --depth 1 "https://github.com/${source}" "${commit}"
+    git -C "${source_dir}" checkout -q FETCH_HEAD -- candidates
+
+    rm -f candidates/"${name}".*
+    for file in "${source_dir}"/candidates/"${candidate}".*; do
+        cp "${file}" candidates/"${name}.${file##*/"${candidate}".}"
+    done
+
+    jq --arg name "${name}" --argjson line "${line}" \
+        '.[$name] = ($line.entry + {target: ($line.target // $line.entry.target),
+                                    "pulled-from": "\($line.source) at \($line.commit)"})' \
+        "${manifest}" > "${manifest}.new"
+    mv "${manifest}.new" "${manifest}"
+done
+rm -rf "${source_dir}"
