@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#
+# Prints the title the reports give a tier of a TRACE version, e.g. "Tier 6 - STANDALONE-TRO", or
+# just the tier given if this repository's tro-checks has no such version or the version no such tier.
+
+set -euo pipefail
+
+tiers_file=$(dirname "$0")/../versions/$1/tiers.json
+number=
+if [ -f "${tiers_file}" ]; then
+    number=$(jq -r --arg tier "$2" 'map(.id) | index($tier) // empty | . + 1' "${tiers_file}")
+fi
+if [ -n "${number}" ]; then
+    echo "Tier ${number} - $2"
+else
+    echo "$2"
+fi

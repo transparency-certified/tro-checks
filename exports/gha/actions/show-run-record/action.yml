@@ -25,6 +25,8 @@ runs:
             value=${row#*:}
             value=${value# }
             [ -n "$value" ] || continue
+            # Show a linked commit hash as its first seven characters.
+            value=$(sed -E 's/\[([0-9a-f]{7})[0-9a-f]{33}\]/[`\1`]/g' <<< "$value")
             echo "| ${label//|/\\|} | ${value//|/\\|} |"
           done <<< "$ROWS"
           echo

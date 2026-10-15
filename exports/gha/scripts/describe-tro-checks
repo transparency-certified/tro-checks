@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+#
+# Prints, in Markdown, the tro-checks commit that the name in .github/tro-checks-version points to on
+# GitHub, linked, with any tags on it; or just the name, if GitHub doesn't say.
+#
+# Temporary, until repros records the commit it fetched: an image built from a cache can hold an
+# older commit than the name points to now.
+
+set -euo pipefail
+
+repository=https://github.com/transparency-certified/tro-checks
+name=$(cat "$(dirname "$0")/../tro-checks-version")
+
+refs=$(timeout 30 git ls-remote "${repository}" 2> /dev/null) || refs=
+
+commit_of() {
+    awk -v ref="$1" '$2 == ref {print $1}' <<< "${refs}"
+}
+commit=$(commit_of "refs/tags/${name}^{}")
+[ -n "${commit}" ] || commit=$(commit_of "refs/tags/${name}")
+[ -n "${commit}" ] || commit=$(commit_of "refs/heads/${name}")
+
+if [ -z "${commit}" ]; then
+    echo "\`${name}\`, as named in the Dockerfile"
+    exit
+fi
+
+description="[\`${commit:0:7}\`](${repository}/commit/${commit})"
+tags=$(awk -v commit="${commit}" '$1 == commit && $2 ~ /^refs\/tags\// {sub(/^refs\/tags\//, "", $2); sub(/\^\{\}$/, "", $2); print "`" $2 "`"}' <<< "${refs}" | sort -u | paste -sd, - | sed 's/,/, /g')
+if [ -n "${tags}" ]; then
+    description="${description}, tagged ${tags}"
+fi
+echo "${description}"

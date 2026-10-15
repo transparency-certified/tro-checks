@@ -44,21 +44,28 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v7
 
-      - name: Read the tro-checks version
-        id: read-version
-        run: echo "tro-checks-version=$(cat .github/tro-checks-version)" >> "$GITHUB_OUTPUT"
+      - name: Find the tro-checks commit the image will be built with
+        id: find-tro-checks
+        run: echo "tro-checks=$(bash .github/scripts/describe-tro-checks)" >> "$GITHUB_OUTPUT"
 #       outputs:
-#         tro-checks-version
+#         tro-checks
+
+      - name: Look up the tier's title
+        id: look-up-tier
+        env:
+          TARGET_VERSION: ${{ inputs.target-version }}
+          TARGET_TIER: ${{ inputs.target-tier }}
+        run: echo "tier-title=$(bash .github/scripts/tier-title "$TARGET_VERSION" "$TARGET_TIER")" >> "$GITHUB_OUTPUT"
+#       outputs:
+#         tier-title
 
       - name: Show the run's record
         uses: ./.github/actions/show-run-record
         with:
           rows: |
-            The TRO declaration, pasted: (attached to the run)
-            The TRACE version to check it against: ${{ inputs.target-version }}
-            The tier to check it for: ${{ inputs.target-tier }}
-            tro-checks: ${{ steps.read-version.outputs.tro-checks-version }}
-            Repository: ${{ github.repository }} at commit [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})
+            Triggered by: manual run by ${{ github.actor }}
+            Targeted TRACE tier and version: `${{ steps.look-up-tier.outputs.tier-title }}` of `${{ inputs.target-version }}`
+            tro-checks version: ${{ steps.find-tro-checks.outputs.tro-checks }}
 
       - name: Check that the TRACE version has the tier
         env:
