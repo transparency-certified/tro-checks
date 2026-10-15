@@ -19,22 +19,6 @@ runs:
   using: composite
   steps:
 
-    - name: Stop if the TRACE version has no such tier
-      shell: bash
-      env:
-        TARGET_VERSION: ${{ inputs.target-version }}
-        TARGET_TIER: ${{ inputs.target-tier }}
-      run: |
-        tiers_file=$GITHUB_ACTION_PATH/versions/$TARGET_VERSION/tiers.json
-        if [ ! -f "$tiers_file" ]; then
-          echo "This repository's tro-checks has no TRACE version $TARGET_VERSION." | tee -a "$GITHUB_STEP_SUMMARY"
-          exit 1
-        fi
-        if ! jq -e --arg tier "$TARGET_TIER" 'map(.id) | index($tier)' "$tiers_file" > /dev/null; then
-          echo "$TARGET_VERSION has no tier $TARGET_TIER: its tiers are $(jq -r 'map(.id) | join(", ")' "$tiers_file")." | tee -a "$GITHUB_STEP_SUMMARY"
-          exit 1
-        fi
-
     # Temporary, until repros gives the container the host user's ID.
     - name: Create the log and report directories and make the whole repository writable
       shell: bash

@@ -36,8 +36,9 @@ permissions:
 
 jobs:
 
-  # Check the declaration and show its report, committing nothing.
-  check-declaration:
+  # Record the run, and check the precondition for checking the declaration: that the TRACE version
+  # has the tier.
+  check-preconditions:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository
@@ -51,6 +52,29 @@ jobs:
             The TRACE version to check it against: ${{ inputs.target-version }}
             The tier to check it for: ${{ inputs.target-tier }}
             Repository: ${{ github.repository }} at commit [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})
+
+      - name: Check that the TRACE version has the tier
+        env:
+          TARGET_VERSION: ${{ inputs.target-version }}
+          TARGET_TIER: ${{ inputs.target-tier }}
+        run: |
+          tiers=$(bash .github/scripts/version-tiers "$TARGET_VERSION")
+          if [ -z "$tiers" ]; then
+            echo "This repository's tro-checks has no TRACE version $TARGET_VERSION." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          if [[ ", $tiers, " != *", $TARGET_TIER, "* ]]; then
+            echo "$TARGET_VERSION has no tier $TARGET_TIER: its tiers are $tiers." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+
+  # Check the declaration and show its report, committing nothing.
+  check-declaration:
+    needs: check-preconditions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
 
       - name: Save the declaration to a file
         env:

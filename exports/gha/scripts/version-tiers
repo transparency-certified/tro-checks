@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#
+# Prints the tiers of the TRACE version given, separated by ", ", or nothing if this repository's
+# tro-checks has no such version.
+
+set -euo pipefail
+
+tiers_file=$(dirname "$0")/../versions/$1/tiers.json
+if [ -f "${tiers_file}" ]; then
+    jq -r 'map(.id) | join(", ")' "${tiers_file}"
+fi

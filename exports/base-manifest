@@ -16,6 +16,7 @@ gha/actions/check-tro-declaration/action.yml gha/actions/check-tro-declaration/a
 gha/actions/find-candidate-declaration/action.yml gha/actions/find-candidate-declaration/action.yml gha/actions/find-candidate-declaration/action.yml
 gha/scripts/candidates-changed gha/scripts/candidates-changed gha/scripts/candidates-changed
 gha/scripts/hash-candidates gha/scripts/hash-candidates gha/scripts/hash-candidates
+gha/scripts/version-tiers gha/scripts/version-tiers gha/scripts/version-tiers
 gha/actions/show-run-record/action.yml gha/actions/show-run-record/action.yml gha/actions/show-run-record/action.yml
 versions/trace-2026-04-19/tiers.json versions/trace-2026-04-19/tiers.json versions/trace-2026-04-19/tiers.json
 versions/trace-2026-04-19/artifact-hashes-present.schema.json versions/trace-2026-04-19/artifact-hashes-present.schema.json versions/trace-2026-04-19/artifact-hashes-present.schema.json

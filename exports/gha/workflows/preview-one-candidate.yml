@@ -36,9 +36,12 @@ permissions:
 
 jobs:
 
-  # Check the candidate and show its report, committing nothing.
-  check-candidate:
+  # Record the run, and check the preconditions for checking the candidate: that the candidate file
+  # exists, and that the TRACE version has the tier.
+  check-preconditions:
     runs-on: ubuntu-latest
+    outputs:
+      declaration-file: ${{ steps.find-declaration.outputs.declaration-file }}
     steps:
       - name: Check out the repository
         uses: actions/checkout@v7
@@ -60,10 +63,33 @@ jobs:
 #       outputs:
 #         declaration-file
 
+      - name: Check that the TRACE version has the tier
+        env:
+          TARGET_VERSION: ${{ inputs.target-version }}
+          TARGET_TIER: ${{ inputs.target-tier }}
+        run: |
+          tiers=$(bash .github/scripts/version-tiers "$TARGET_VERSION")
+          if [ -z "$tiers" ]; then
+            echo "This repository's tro-checks has no TRACE version $TARGET_VERSION." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          if [[ ", $tiers, " != *", $TARGET_TIER, "* ]]; then
+            echo "$TARGET_VERSION has no tier $TARGET_TIER: its tiers are $tiers." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+
+  # Check the candidate and show its report, committing nothing.
+  check-candidate:
+    needs: check-preconditions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
+
       - name: Check the candidate
         uses: ./.github/actions/check-tro-declaration
         with:
-          declaration-file: ${{ steps.find-declaration.outputs.declaration-file }}
+          declaration-file: ${{ needs.check-preconditions.outputs.declaration-file }}
           report-file: preview/report.md
           target-version: ${{ inputs.target-version }}
           target-tier: ${{ inputs.target-tier }}

@@ -27,11 +27,11 @@ for original in "${originals}"/actions/*/* "${originals}"/scripts/*; do
     echo "Installed .github/${file}"
 done
 
-tiers=${REPRO_MNT}/.github/actions/check-tro-declaration/versions
+tiers=${REPRO_MNT}/.github/versions
 rm -rf "${tiers}"
 for original in "${install_dir}"/versions/*/tiers.json; do
     version=$(basename "$(dirname "${original}")")
     mkdir -p "${tiers}/${version}"
     cp "${original}" "${tiers}/${version}/tiers.json"
-    echo "Installed .github/actions/check-tro-declaration/versions/${version}/tiers.json"
+    echo "Installed .github/versions/${version}/tiers.json"
 done
