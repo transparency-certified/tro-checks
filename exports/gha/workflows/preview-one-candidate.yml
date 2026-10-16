@@ -36,7 +36,7 @@ permissions:
 
 jobs:
 
-  # Record the run, and check the preconditions for checking the candidate: that the candidate file
+  # Record the run, and check the preconditions for reporting on the candidate: that the candidate file
   # exists, and that the TRACE version has the tier.
   check-preconditions:
     runs-on: ubuntu-latest
@@ -104,15 +104,15 @@ jobs:
             exit 1
           fi
 
-  # Check the candidate and show its report, committing nothing.
-  check-candidate:
+  # Report on the candidate and show the report, committing nothing.
+  report-on-candidate:
     needs: check-preconditions
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository
         uses: actions/checkout@v7
 
-      - name: Check the candidate
+      - name: Report on the candidate
         uses: ./.github/actions/check-tro-declaration
         with:
           declaration-file: ${{ needs.check-preconditions.outputs.declaration-file }}

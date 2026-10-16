@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#
+# Prints one hash of the candidates' dependencies: the Dockerfile, generate-candidates.sh and the
+# files in resources/, READMEs left out. Run from the repository's top directory.
+
+set -euo pipefail
+
+find Dockerfile generate-candidates.sh resources -type f ! -name README.md -print0 |
+    LC_ALL=C sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1

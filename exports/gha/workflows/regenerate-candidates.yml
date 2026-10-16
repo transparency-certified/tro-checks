@@ -1,9 +1,12 @@
 name: Regenerate candidates
 run-name: >-
-  Regenerate candidates (${{ inputs.commit && 'by hand, commit requested' || 'by hand, no commit requested' }})
+  Regenerate candidates (${{ github.event_name == 'push' && 'after a push' ||
+  inputs.commit && 'by hand, commit requested' || 'by hand, no commit requested' }})
 
-# Start by hand, optionally committing the candidates and reports.
+# Start on a push to any branch, or by hand, optionally committing the candidates and reports.
 on:
+  push:
+    branches: ['**']
   workflow_dispatch:
     inputs:
       commit:
@@ -15,11 +18,19 @@ on:
 permissions:
   contents: write
 
+# Cancel any unfinished run from an earlier push when a new push is made to the same branch.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name }}
+  cancel-in-progress: ${{ github.event_name == 'push' }}
+
 jobs:
 
-  # Make the candidates and reports, committing any that changed when Commit is ticked.
-  make-candidates-and-reports:
+  # Record the run, and check the precondition for generating the candidates: that the run was started
+  # by hand or the candidates' dependencies have changed since they were last generated.
+  check-preconditions:
     runs-on: ubuntu-latest
+    outputs:
+      preconditions-met: ${{ steps.check.outputs.preconditions-met }}
     steps:
       - name: Check out the repository
         uses: actions/checkout@v7
@@ -34,10 +45,30 @@ jobs:
         uses: ./.github/actions/show-run-record
         with:
           rows: |
-            Triggered by: manual run by ${{ github.actor }}
-            Candidates' sources version: [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/tree/${{ github.sha }}) on ${{ github.ref_name }}
-            Commit candidates and reports: ${{ inputs.commit && 'yes' || 'no' }}
+            Triggered by: ${{ github.event_name == 'push' && 'push' || 'manual run' }} by ${{ github.actor }}
+            Candidates' dependencies version: [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/tree/${{ github.sha }}) on ${{ github.ref_name }}
+            Commit candidates and reports: ${{ github.event_name != 'push' && (inputs.commit && 'yes' || 'no') || '' }}
             tro-checks version: ${{ steps.find-tro-checks.outputs.tro-checks }}
+
+      - name: Check the precondition
+        id: check
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = push ] && [ "$(bash .github/scripts/candidate-dependencies-changed)" != true ]; then
+            echo "No candidates generated. The candidates' dependencies haven't changed since they were last generated." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "preconditions-met=true" >> "$GITHUB_OUTPUT"
+          fi
+#       outputs:
+#         preconditions-met
+
+  # Generate the candidates and reports, committing any that changed after a push or when Commit is ticked.
+  generate-candidates-and-reports:
+    needs: check-preconditions
+    if: needs.check-preconditions.outputs.preconditions-met == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
 
       # Temporary, until repros gives the container the host user's ID.
       - name: Create the log directories and make the whole repository writable
@@ -48,22 +79,23 @@ jobs:
       - name: Build the image
         run: make build-image
 
-      - name: Make the candidates
+      - name: Generate the candidates
         run: |
+          make init-repro REPRO_INTERACTIVE_SESSION=false
           # The options are temporary, until repros gives the container the host user's ID and detects
           # that there is no terminal.
-          make build-candidates REPRO_INTERACTIVE_SESSION=false \
+          make generate-candidates REPRO_INTERACTIVE_SESSION=false \
               REPRO_DOCKER_OPTIONS="--env GIT_CONFIG_COUNT=1 --env GIT_CONFIG_KEY_0=safe.directory --env 'GIT_CONFIG_VALUE_0=*'"
 
-      - name: Make the reports
+      - name: Generate the reports
         run: |
           # The options are temporary, until repros gives the container the host user's ID and detects
           # that there is no terminal.
-          make build-reports REPRO_INTERACTIVE_SESSION=false \
+          make generate-tro-reports REPRO_INTERACTIVE_SESSION=false \
               REPRO_DOCKER_OPTIONS="--env GIT_CONFIG_COUNT=1 --env GIT_CONFIG_KEY_0=safe.directory --env 'GIT_CONFIG_VALUE_0=*'"
 
       - name: Commit the candidates and reports
-        if: inputs.commit
+        if: github.event_name == 'push' || inputs.commit
         run: |
           if [ -n "$(git status --porcelain -- candidates reports)" ]; then
             git config user.name "github-actions[bot]"

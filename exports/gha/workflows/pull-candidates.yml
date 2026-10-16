@@ -106,11 +106,12 @@ jobs:
       - name: Build the image
         run: make build-image
 
-      - name: Make the reports
+      - name: Generate the reports
         run: |
+          make init-repro REPRO_INTERACTIVE_SESSION=false
           # The options are temporary, until repros gives the container the host user's ID and detects
           # that there is no terminal.
-          make build-reports REPRO_INTERACTIVE_SESSION=false \
+          make generate-tro-reports REPRO_INTERACTIVE_SESSION=false \
               REPRO_DOCKER_OPTIONS="--env GIT_CONFIG_COUNT=1 --env GIT_CONFIG_KEY_0=safe.directory --env 'GIT_CONFIG_VALUE_0=*'"
 
       - name: Commit the candidates and reports

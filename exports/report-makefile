@@ -1,6 +1,6 @@
 build-report:
 	check-tros --candidates ${REPRO_MNT}/candidates --reports ${REPRO_MNT}/reports
-	record-last-check
+	record-last-generated reports
 
 clean-report:
 	rm -rf ${REPRO_MNT}/reports

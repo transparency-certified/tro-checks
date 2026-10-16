@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+#
+# Writes reports/last-generated.json or candidates/last-generated.json, as named: the tro-checks
+# version, and one hash of what was generated from, from the same script the workflow that regenerates
+# them runs to decide whether they are up to date.
+
+set -euo pipefail
+
+case "${1:-}" in
+    reports)    hash_script=hash-candidates ;;
+    candidates) hash_script=hash-candidate-dependencies ;;
+    *)          echo "Usage: record-last-generated reports|candidates" >&2; exit 1 ;;
+esac
+
+cd "${REPRO_MNT}"
+read -r _ version install_dir < "${REPRO_INDEX_DIR}/tro-checks"
+hash=$(bash "${install_dir}/gha/scripts/${hash_script}")
+printf '{"tro-checks": "%s", "hash": "%s"}\n' "${version}" "${hash}" > "$1/last-generated.json"

@@ -6,15 +6,25 @@
 ## install-tro-checks-gha: Install tro-checks' GitHub Actions workflows, with any optional ones
 ##                    already present or named, e.g.
 ##                    make install-tro-checks-gha -- regenerate-candidates pull-candidates.
-.PHONY: install-tro-checks-gha
 install-tro-checks-gha: session
 	$(RUN_IN_REPRO) 'install-tro-checks-gha $(filter-out install-tro-checks-gha,$(MAKECMDGOALS))'
 
-# Absorb the words after -- so make doesn't treat them as targets, even where a file has the same name.
+## generate-candidates: Generate the candidates with this repository's generate-candidates.sh.
+generate-candidates: session
+	$(RUN_IN_REPRO) 'bash generate-candidates.sh && record-last-generated candidates'
+
+## generate-tro-reports: Generate the reports on the candidates, first deleting the old ones.
+generate-tro-reports: session clean-tro-reports
+	$(RUN_IN_REPRO) 'make -C ${REPRO_MNT}/.tro-checks -f report-makefile build-report'
+
+## clean-tro-reports: Delete the reports on single TRO declarations.
+clean-tro-reports:
+	rm -f reports/*__to__*.md
+
+# Absorb the words after -- so make doesn't treat them as targets.
 ifneq (,$(filter install-tro-checks-gha,$(MAKECMDGOALS)))
 TRO_CHECKS_GHA_NAMES := $(filter-out install-tro-checks-gha,$(MAKECMDGOALS))
 ifneq (,$(TRO_CHECKS_GHA_NAMES))
-.PHONY: $(TRO_CHECKS_GHA_NAMES)
 $(TRO_CHECKS_GHA_NAMES):
 	@:
 endif

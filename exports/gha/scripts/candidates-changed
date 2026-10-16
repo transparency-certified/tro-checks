@@ -6,7 +6,7 @@
 set -euo pipefail
 
 hash=$(bash "$(dirname "$0")/hash-candidates")
-if [ -f reports/last-check.json ] && [ "$(jq -r .hash reports/last-check.json)" = "$hash" ]; then
+if [ -f reports/last-generated.json ] && [ "$(jq -r .hash reports/last-generated.json)" = "$hash" ]; then
     echo false
 else
     echo true
