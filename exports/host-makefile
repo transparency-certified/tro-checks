@@ -15,7 +15,7 @@ generate-candidates: session
 
 ## generate-tro-reports: Generate the reports on the candidates, first deleting the old ones.
 generate-tro-reports: session clean-tro-reports
-	$(RUN_IN_REPRO) 'make -C ${REPRO_MNT}/.tro-checks -f report-makefile build-report'
+	$(RUN_IN_REPRO) 'make --no-print-directory -C ${REPRO_MNT}/.tro-checks -f report-makefile build-report'
 
 ## clean-tro-reports: Delete the reports on single TRO declarations.
 clean-tro-reports:
