@@ -81,8 +81,8 @@ jobs:
             exit 1
           fi
 
-  # Copy the candidates and generate the reports, committing any that changed when Commit is ticked.
-  copy-candidates-and-generate-reports:
+  # Copy the candidates, and hand them to generate-reports.
+  copy-candidates:
     needs: check-preconditions
     runs-on: ubuntu-latest
     steps:
@@ -95,6 +95,32 @@ jobs:
         run: |
           printf '%s\n' "$RESOLVED" > "$RUNNER_TEMP/resolved-pull-list.json"
           bash .github/scripts/copy-pulled-candidates "$RUNNER_TEMP/resolved-pull-list.json"
+
+      - name: Hand the candidates to generate-reports
+        uses: actions/upload-artifact@v7
+        with:
+          name: copied-candidates
+          path: candidates/
+          retention-days: 1
+
+  # Generate the reports on the copied candidates, committing the candidates and reports when Commit is
+  # ticked.
+  generate-reports:
+    needs: copy-candidates
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
+
+      # Removed so the copied candidates replace them, and candidates copy-candidates deleted stay deleted.
+      - name: Remove the checked-out candidates
+        run: rm -rf candidates
+
+      - name: Take the candidates from copy-candidates
+        uses: actions/download-artifact@v8
+        with:
+          name: copied-candidates
+          path: candidates/
 
       # Temporary, until repros gives the container the host user's ID.
       - name: Create the log directories and make the whole repository writable

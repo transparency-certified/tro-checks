@@ -60,8 +60,8 @@ jobs:
 #       outputs:
 #         preconditions-met
 
-  # Generate the candidates and reports, committing any that changed after a push or when Commit is ticked.
-  generate-candidates-and-reports:
+  # Generate the candidates, and hand them and the image to generate-reports.
+  generate-candidates:
     needs: check-preconditions
     if: needs.check-preconditions.outputs.preconditions-met == 'true'
     runs-on: ubuntu-latest
@@ -86,8 +86,64 @@ jobs:
           make generate-candidates REPRO_INTERACTIVE_SESSION=false \
               REPRO_DOCKER_OPTIONS="--env GIT_CONFIG_COUNT=1 --env GIT_CONFIG_KEY_0=safe.directory --env 'GIT_CONFIG_VALUE_0=*'"
 
+      - name: Hand the candidates to generate-reports
+        uses: actions/upload-artifact@v7
+        with:
+          name: generated-candidates
+          path: candidates/
+          retention-days: 1
+
+      # The reports are generated with the image that generated the candidates. It is handed over as a
+      # file until repros keeps a build cache between jobs, which will make rebuilding it take seconds.
+      - name: Save the image to a file
+        run: |
+          image=$(make -s --no-print-directory --eval='print-image: ; @echo $(REPRO_IMAGE)' print-image)
+          docker save -o "$RUNNER_TEMP/image.tar" "$image"
+
+      - name: Hand the image to generate-reports
+        uses: actions/upload-artifact@v7
+        with:
+          name: image
+          path: ${{ runner.temp }}/image.tar
+          retention-days: 1
+
+  # Generate the reports on the generated candidates, committing the candidates and reports after a push
+  # or when Commit is ticked.
+  generate-reports:
+    needs: generate-candidates
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
+
+      # Removed so the generated candidates replace them, and candidates no longer generated stay deleted.
+      - name: Remove the checked-out candidates
+        run: rm -rf candidates
+
+      - name: Take the candidates from generate-candidates
+        uses: actions/download-artifact@v8
+        with:
+          name: generated-candidates
+          path: candidates/
+
+      - name: Take the image from generate-candidates
+        uses: actions/download-artifact@v8
+        with:
+          name: image
+          path: ${{ runner.temp }}
+
+      - name: Load the image
+        run: docker load -i "$RUNNER_TEMP/image.tar"
+
+      # Temporary, until repros gives the container the host user's ID.
+      - name: Create the log directories and make the whole repository writable
+        run: |
+          mkdir -p .repro-logs .repro-sessions/active
+          chmod -R a+rwX .
+
       - name: Generate the reports
         run: |
+          make init-repro REPRO_INTERACTIVE_SESSION=false
           # The options are temporary, until repros gives the container the host user's ID and detects
           # that there is no terminal.
           make generate-tro-reports REPRO_INTERACTIVE_SESSION=false \
