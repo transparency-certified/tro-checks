@@ -79,7 +79,6 @@ jobs:
         uses: ./.github/actions/show-run-record
         with:
           rows: |
-            Triggered by: manual run by ${{ github.actor }}
             Declaration: [declaration.jsonld](${{ steps.attach-declaration.outputs.artifact-url }})
             Targeted TRACE tier and version: `${{ steps.look-up-tier.outputs.tier-title }}` of `${{ inputs.target-version }}`
             tro-checks version: ${{ steps.find-tro-checks.outputs.tro-checks }}
@@ -91,16 +90,16 @@ jobs:
         run: |
           tiers=$(bash .github/scripts/version-tiers "$TARGET_VERSION")
           if [ -z "$tiers" ]; then
-            echo "This repository's tro-checks has no TRACE version $TARGET_VERSION." | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "Failed in $GITHUB_JOB: this repository's tro-checks has no TRACE version $TARGET_VERSION." | tee -a "$GITHUB_STEP_SUMMARY"
             exit 1
           fi
           if [[ ", $tiers, " != *", $TARGET_TIER, "* ]]; then
-            echo "$TARGET_VERSION has no tier $TARGET_TIER: its tiers are $tiers." | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "Failed in $GITHUB_JOB: $TARGET_VERSION has no tier $TARGET_TIER; its tiers are $tiers." | tee -a "$GITHUB_STEP_SUMMARY"
             exit 1
           fi
 
-  # Check the declaration and show its report, committing nothing.
-  check-declaration:
+  # Report on the declaration and show the report, committing nothing.
+  report-on-declaration:
     needs: check-preconditions
     runs-on: ubuntu-latest
     steps:

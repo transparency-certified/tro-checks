@@ -45,7 +45,6 @@ jobs:
         uses: ./.github/actions/show-run-record
         with:
           rows: |
-            Triggered by: ${{ github.event_name == 'push' && 'push' || 'manual run' }} by ${{ github.actor }}
             Candidates' dependencies version: [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/tree/${{ github.sha }}) on ${{ github.ref_name }}
             Commit candidates and reports: ${{ github.event_name != 'push' && (inputs.commit && 'yes' || 'no') || '' }}
             tro-checks version: ${{ steps.find-tro-checks.outputs.tro-checks }}
@@ -54,7 +53,7 @@ jobs:
         id: check
         run: |
           if [ "$GITHUB_EVENT_NAME" = push ] && [ "$(bash .github/scripts/candidate-dependencies-changed)" != true ]; then
-            echo "No candidates generated. The candidates' dependencies haven't changed since they were last generated." >> "$GITHUB_STEP_SUMMARY"
+            echo "Stopped after $GITHUB_JOB: the candidates are up to date." | tee -a "$GITHUB_STEP_SUMMARY"
           else
             echo "preconditions-met=true" >> "$GITHUB_OUTPUT"
           fi

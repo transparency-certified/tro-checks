@@ -56,7 +56,6 @@ jobs:
         uses: ./.github/actions/show-run-record
         with:
           rows: |
-            Triggered by: manual run by ${{ github.actor }}
             Pull list version: [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/blob/${{ github.sha }}/pull-list.json) on ${{ github.ref_name }}
             ${{ steps.resolve.outputs.pulled-rows }}
             Commit candidates and reports: ${{ inputs.commit && 'yes' || 'no' }}
@@ -67,7 +66,7 @@ jobs:
           RESOLVED: ${{ steps.resolve.outputs.resolved-pull-list }}
         run: |
           if [ ! -f pull-list.json ]; then
-            echo "There is no pull-list.json." | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "Failed in $GITHUB_JOB: there is no pull-list.json." | tee -a "$GITHUB_STEP_SUMMARY"
             exit 1
           fi
           manifest=$(cat candidates/manifest.json 2> /dev/null || echo '{}')
@@ -78,12 +77,12 @@ jobs:
             (.[].name as $name | $manifest[$name] | select(. != null and .["pulled-from"] == null) |
               "A candidate made here is already named \($name).")' <<< "$RESOLVED")
           if [ -n "$problems" ]; then
-            echo "$problems" | tee -a "$GITHUB_STEP_SUMMARY"
+            { echo "Failed in $GITHUB_JOB:"; echo; sed "s/^/- /" <<< "$problems"; } | tee -a "$GITHUB_STEP_SUMMARY"
             exit 1
           fi
 
-  # Copy the candidates and make the reports, committing any that changed when Commit is ticked.
-  copy-candidates-and-make-reports:
+  # Copy the candidates and generate the reports, committing any that changed when Commit is ticked.
+  copy-candidates-and-generate-reports:
     needs: check-preconditions
     runs-on: ubuntu-latest
     steps:

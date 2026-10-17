@@ -73,7 +73,6 @@ jobs:
         uses: ./.github/actions/show-run-record
         with:
           rows: |
-            Triggered by: manual run by ${{ github.actor }}
             Candidate: ${{ steps.find-declaration.outputs.declaration-file && format('[{0}]({1}/{2}/blob/{3}/{0})', steps.find-declaration.outputs.declaration-file, github.server_url, github.repository, github.sha) || inputs.candidate }}
             Candidate version: [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/tree/${{ github.sha }}) on ${{ github.ref_name }}
             Targeted TRACE tier and version: `${{ steps.look-up-tier.outputs.tier-title }}` of `${{ inputs.target-version }}`
@@ -85,7 +84,7 @@ jobs:
           DECLARATION_FILE: ${{ steps.find-declaration.outputs.declaration-file }}
         run: |
           if [ -z "$DECLARATION_FILE" ]; then
-            echo "There is no candidate $CANDIDATE: the candidates are $(jq -r 'keys | map(. + ".jsonld") | join(", ")' candidates/manifest.json)." | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "Failed in $GITHUB_JOB: there is no candidate $CANDIDATE; the candidates are $(jq -r 'keys | map(. + ".jsonld") | join(", ")' candidates/manifest.json)." | tee -a "$GITHUB_STEP_SUMMARY"
             exit 1
           fi
 
@@ -96,11 +95,11 @@ jobs:
         run: |
           tiers=$(bash .github/scripts/version-tiers "$TARGET_VERSION")
           if [ -z "$tiers" ]; then
-            echo "This repository's tro-checks has no TRACE version $TARGET_VERSION." | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "Failed in $GITHUB_JOB: this repository's tro-checks has no TRACE version $TARGET_VERSION." | tee -a "$GITHUB_STEP_SUMMARY"
             exit 1
           fi
           if [[ ", $tiers, " != *", $TARGET_TIER, "* ]]; then
-            echo "$TARGET_VERSION has no tier $TARGET_TIER: its tiers are $tiers." | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "Failed in $GITHUB_JOB: $TARGET_VERSION has no tier $TARGET_TIER; its tiers are $tiers." | tee -a "$GITHUB_STEP_SUMMARY"
             exit 1
           fi
 
