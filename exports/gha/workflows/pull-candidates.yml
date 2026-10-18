@@ -1,0 +1,164 @@
+name: Pull candidates
+run-name: >-
+  Pull candidates (${{ inputs.commit && 'by hand, commit requested' || 'by hand, no commit requested' }})
+
+# Start by hand, optionally committing the pulled candidates and new reports.
+on:
+  workflow_dispatch:
+    inputs:
+      commit:
+        description: Commit the pulled candidates and reports to this branch
+        default: false
+        type: boolean
+
+# Let the workflow commit the candidates and reports.
+permissions:
+  contents: write
+
+jobs:
+
+  # Record the run, and check the preconditions for pulling: that the pull list exists, that each of
+  # its sources has its candidate, and that no two candidates would have the same name.
+  check-preconditions:
+    runs-on: ubuntu-latest
+    outputs:
+      resolved-pull-list: ${{ steps.resolve.outputs.resolved-pull-list }}
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
+
+      - name: Find the tro-checks commit the image will be built with
+        id: find-tro-checks
+        run: echo "tro-checks=$(bash .github/scripts/describe-tro-checks)" >> "$GITHUB_OUTPUT"
+#       outputs:
+#         tro-checks
+
+      - name: Find the commit and manifest entry of each candidate in the pull list
+        id: resolve
+        run: |
+          if [ ! -f pull-list.json ]; then
+            echo "resolved-pull-list=[]" >> "$GITHUB_OUTPUT"
+            exit
+          fi
+          resolved=$(bash .github/scripts/resolve-pull-list)
+          echo "resolved-pull-list=$(jq -c . <<< "$resolved")" >> "$GITHUB_OUTPUT"
+          {
+            echo "pulled-rows<<END_OF_ROWS"
+            jq -r --arg server "$GITHUB_SERVER_URL" '.[] | "Pulled \(.name): `\(.candidate)` of `\(.source)`" +
+              (if .commit != "" then " at [\(.commit)](\($server)/\(.source)/tree/\(.commit))" else "" end)' <<< "$resolved"
+            echo "END_OF_ROWS"
+          } >> "$GITHUB_OUTPUT"
+#       outputs:
+#         resolved-pull-list
+#         pulled-rows
+
+      - name: Show the run's record
+        uses: ./.github/actions/show-run-record
+        with:
+          rows: |
+            Pull list version: [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/blob/${{ github.sha }}/pull-list.json) on ${{ github.ref_name }}
+            ${{ steps.resolve.outputs.pulled-rows }}
+            Commit candidates and reports: ${{ inputs.commit && 'yes' || 'no' }}
+            tro-checks version: ${{ steps.find-tro-checks.outputs.tro-checks }}
+
+      - name: Check the preconditions
+        env:
+          RESOLVED: ${{ steps.resolve.outputs.resolved-pull-list }}
+        run: |
+          if [ ! -f pull-list.json ]; then
+            echo "Failed in $GITHUB_JOB: there is no pull-list.json." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          manifest=$(cat candidates/manifest.json 2> /dev/null || echo '{}')
+          problems=$(jq -r --argjson manifest "$manifest" '
+            (.[] | select(.commit == "") | "Could not find \(.ref // "the default branch") of \(.source)."),
+            (.[] | select(.commit != "" and .entry == null) | "\(.source) has no candidate \(.candidate)."),
+            (group_by(.name)[] | select(length > 1) | "More than one candidate would be named \(.[0].name)."),
+            (.[].name as $name | $manifest[$name] | select(. != null and .["pulled-from"] == null) |
+              "A candidate made here is already named \($name).")' <<< "$RESOLVED")
+          if [ -n "$problems" ]; then
+            { echo "Failed in $GITHUB_JOB:"; echo; sed "s/^/- /" <<< "$problems"; } | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+
+  # Copy the candidates, and hand them to generate-reports.
+  copy-candidates:
+    needs: check-preconditions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
+
+      - name: Copy the candidates
+        env:
+          RESOLVED: ${{ needs.check-preconditions.outputs.resolved-pull-list }}
+        run: |
+          printf '%s\n' "$RESOLVED" > "$RUNNER_TEMP/resolved-pull-list.json"
+          bash .github/scripts/copy-pulled-candidates "$RUNNER_TEMP/resolved-pull-list.json"
+
+      - name: Hand the candidates to generate-reports
+        uses: actions/upload-artifact@v7
+        with:
+          name: copied-candidates
+          path: candidates/
+          retention-days: 1
+
+  # Generate the reports on the copied candidates, committing the candidates and reports when Commit is
+  # ticked.
+  generate-reports:
+    needs: copy-candidates
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
+
+      # Removed so the copied candidates replace them, and candidates copy-candidates deleted stay deleted.
+      - name: Remove the checked-out candidates
+        run: rm -rf candidates
+
+      - name: Take the candidates from copy-candidates
+        uses: actions/download-artifact@v8
+        with:
+          name: copied-candidates
+          path: candidates/
+
+      # Temporary, until repros gives the container the host user's ID.
+      - name: Create the log directories and make the whole repository writable
+        run: |
+          mkdir -p .repro-logs .repro-sessions/active
+          chmod -R a+rwX .
+
+      - name: Build the image
+        run: make build-image
+
+      - name: Generate the reports
+        run: |
+          make init-repro REPRO_INTERACTIVE_SESSION=false
+          # The options are temporary, until repros gives the container the host user's ID and detects
+          # that there is no terminal.
+          make generate-tro-reports REPRO_INTERACTIVE_SESSION=false \
+              REPRO_DOCKER_OPTIONS="--env GIT_CONFIG_COUNT=1 --env GIT_CONFIG_KEY_0=safe.directory --env 'GIT_CONFIG_VALUE_0=*'"
+
+      - name: Commit the candidates and reports
+        if: inputs.commit
+        run: |
+          if [ -n "$(git status --porcelain -- candidates reports)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -- candidates reports
+            git commit -m "Pull candidates"
+            git push
+            changes="${{ github.server_url }}/${{ github.repository }}/commit/$(git rev-parse HEAD)"
+            echo "Committed the pulled candidates and new reports to ${{ github.ref_name }} ([changes](${changes}))." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Show the reports
+        run: cat reports/integrated-report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Attach the candidates and reports
+        uses: actions/upload-artifact@v7
+        with:
+          name: candidates-and-reports
+          path: |
+            candidates/
+            reports/

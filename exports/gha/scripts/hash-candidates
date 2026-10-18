@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#
+# Prints one hash of the files in candidates/, the manifest included. Run from the repository's top directory.
+
+set -euo pipefail
+
+LC_ALL=C sha256sum candidates/* | sha256sum | cut -d' ' -f1

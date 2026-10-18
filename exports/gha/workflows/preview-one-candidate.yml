@@ -1,0 +1,129 @@
+name: Preview one candidate
+run-name: >-
+  Preview one candidate (${{ inputs.candidate }}, ${{ inputs.target-version }}, ${{ inputs.target-tier }})
+
+# Start by hand, naming the candidate and the target to check it against.
+on:
+  workflow_dispatch:
+    inputs:
+      candidate:
+        description: The candidate file
+        required: true
+        type: string
+      target-version:
+        description: The TRACE version to check it against
+        default: trace-main
+        type: choice
+        options:
+          - trace-main
+          - trace-2026-04-19
+      target-tier:
+        description: The tier to check it for
+        default: STANDALONE-TRO
+        type: choice
+        options:
+          - SAFE-JSON
+          - SAFE-JSON-LD
+          - TRACE-PERMISSIBLE-JSON-LD
+          - USES-TROV-CORRECTLY
+          - DEFINES-TRS
+          - STANDALONE-TRO
+          - LINKABLE-TRO
+
+# Let the workflow read the repository, and nothing more.
+permissions:
+  contents: read
+
+jobs:
+
+  # Record the run, and check the preconditions for reporting on the candidate: that the candidate file
+  # exists, and that the TRACE version has the tier.
+  check-preconditions:
+    runs-on: ubuntu-latest
+    outputs:
+      declaration-file: ${{ steps.find-declaration.outputs.declaration-file }}
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
+
+      - name: Find the tro-checks commit the image will be built with
+        id: find-tro-checks
+        run: echo "tro-checks=$(bash .github/scripts/describe-tro-checks)" >> "$GITHUB_OUTPUT"
+#       outputs:
+#         tro-checks
+
+      - name: Look up the tier's title
+        id: look-up-tier
+        env:
+          TARGET_VERSION: ${{ inputs.target-version }}
+          TARGET_TIER: ${{ inputs.target-tier }}
+        run: echo "tier-title=$(bash .github/scripts/tier-title "$TARGET_VERSION" "$TARGET_TIER")" >> "$GITHUB_OUTPUT"
+#       outputs:
+#         tier-title
+
+      - name: Find the candidate's declaration
+        id: find-declaration
+        env:
+          CANDIDATE: ${{ inputs.candidate }}
+        run: echo "declaration-file=$(bash .github/scripts/candidate-file "$CANDIDATE")" >> "$GITHUB_OUTPUT"
+#       outputs:
+#         declaration-file
+
+      - name: Show the run's record
+        uses: ./.github/actions/show-run-record
+        with:
+          rows: |
+            Candidate: ${{ steps.find-declaration.outputs.declaration-file && format('[{0}]({1}/{2}/blob/{3}/{0})', steps.find-declaration.outputs.declaration-file, github.server_url, github.repository, github.sha) || inputs.candidate }}
+            Candidate version: [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/tree/${{ github.sha }}) on ${{ github.ref_name }}
+            Targeted TRACE tier and version: `${{ steps.look-up-tier.outputs.tier-title }}` of `${{ inputs.target-version }}`
+            tro-checks version: ${{ steps.find-tro-checks.outputs.tro-checks }}
+
+      - name: Check that the candidate file exists
+        env:
+          CANDIDATE: ${{ inputs.candidate }}
+          DECLARATION_FILE: ${{ steps.find-declaration.outputs.declaration-file }}
+        run: |
+          if [ -z "$DECLARATION_FILE" ]; then
+            echo "Failed in $GITHUB_JOB: there is no candidate $CANDIDATE; the candidates are $(jq -r 'keys | map(. + ".jsonld") | join(", ")' candidates/manifest.json)." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+
+      - name: Check that the TRACE version has the tier
+        env:
+          TARGET_VERSION: ${{ inputs.target-version }}
+          TARGET_TIER: ${{ inputs.target-tier }}
+        run: |
+          tiers=$(bash .github/scripts/version-tiers "$TARGET_VERSION")
+          if [ -z "$tiers" ]; then
+            echo "Failed in $GITHUB_JOB: this repository's tro-checks has no TRACE version $TARGET_VERSION." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          if [[ ", $tiers, " != *", $TARGET_TIER, "* ]]; then
+            echo "Failed in $GITHUB_JOB: $TARGET_VERSION has no tier $TARGET_TIER; its tiers are $tiers." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+
+  # Report on the candidate and show the report, committing nothing.
+  report-on-candidate:
+    needs: check-preconditions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
+
+      - name: Report on the candidate
+        uses: ./.github/actions/check-tro-declaration
+        with:
+          declaration-file: ${{ needs.check-preconditions.outputs.declaration-file }}
+          report-file: preview/report.md
+          target-version: ${{ inputs.target-version }}
+          target-tier: ${{ inputs.target-tier }}
+
+      - name: Show the report
+        run: cat preview/report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Attach the report
+        uses: actions/upload-artifact@v7
+        with:
+          path: preview/report.md
+          archive: false

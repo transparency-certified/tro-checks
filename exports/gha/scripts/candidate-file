@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#
+# Prints the path of the candidate given, as a path in the repository or a file name in candidates/
+# with or without .jsonld; or nothing, if there is no such file. Run from the repository's top directory.
+
+set -euo pipefail
+
+file=$1
+if [[ ${file} != */* ]]; then
+    file=candidates/${file%.jsonld}.jsonld
+fi
+if [ -f "${file}" ]; then
+    echo "${file}"
+fi

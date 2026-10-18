@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+shopt -s nullglob
+
+always="preview-pasted-declaration preview-one-candidate regenerate-reports"
+
+read -r _ version install_dir < "${REPRO_INDEX_DIR}/tro-checks"
+originals=${install_dir}/gha
+workflows=${REPRO_MNT}/.github/workflows
+
+mkdir -p "${workflows}"
+echo "${version}" > "${REPRO_MNT}/.github/tro-checks-version"
+echo "Installed .github/tro-checks-version"
+
+for original in "${originals}"/workflows/*.yml; do
+    name=$(basename "${original}" .yml)
+    case " ${always} $* " in
+        *" ${name} "*) ;;
+        *) [[ -f ${workflows}/${name}.yml ]] || continue ;;
+    esac
+    cp "${original}" "${workflows}/${name}.yml"
+    echo "Installed .github/workflows/${name}.yml"
+done
+
+for original in "${originals}"/actions/*/* "${originals}"/scripts/*; do
+    file=${original#"${originals}"/}
+    mkdir -p "${REPRO_MNT}/.github/$(dirname "${file}")"
+    cp "${original}" "${REPRO_MNT}/.github/${file}"
+    echo "Installed .github/${file}"
+done
+
+tiers=${REPRO_MNT}/.github/versions
+rm -rf "${tiers}"
+for original in "${install_dir}"/versions/*/tiers.json; do
+    version=$(basename "$(dirname "${original}")")
+    mkdir -p "${tiers}/${version}"
+    cp "${original}" "${tiers}/${version}/tiers.json"
+    echo "Installed .github/versions/${version}/tiers.json"
+done

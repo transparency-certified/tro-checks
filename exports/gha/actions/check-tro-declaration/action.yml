@@ -1,0 +1,47 @@
+name: Check TRO declaration
+description: Check a TRO declaration file against a TRACE version and tier, and write its report
+
+inputs:
+  declaration-file:
+    description: The declaration file's path in the repository, e.g. candidates/01-builtin-trs-declaration.jsonld
+    required: true
+  report-file:
+    description: The report file's path in the repository, e.g. preview/report.md
+    required: true
+  target-version:
+    description: The TRACE version to check it against
+    required: true
+  target-tier:
+    description: The tier to check it for
+    required: true
+
+runs:
+  using: composite
+  steps:
+
+    # Temporary, until repros gives the container the host user's ID.
+    - name: Create the log and report directories and make the whole repository writable
+      shell: bash
+      env:
+        REPORT_FILE: ${{ inputs.report-file }}
+      run: |
+        mkdir -p .repro-logs .repro-sessions/active "$(dirname "$REPORT_FILE")"
+        chmod -R a+rwX .
+
+    - name: Build the image
+      shell: bash
+      run: make build-image
+
+    - name: Check the declaration
+      shell: bash
+      env:
+        DECLARATION_FILE: ${{ inputs.declaration-file }}
+        REPORT_FILE: ${{ inputs.report-file }}
+        TARGET_VERSION: ${{ inputs.target-version }}
+        TARGET_TIER: ${{ inputs.target-tier }}
+      run: |
+        # The git and terminal options are temporary, until repros gives the container the host
+        # user's ID and detects that there is no terminal.
+        make run-in-repro REPRO_INTERACTIVE_SESSION=false \
+            REPRO_DOCKER_OPTIONS="--env DECLARATION_FILE --env REPORT_FILE --env TARGET_VERSION --env TARGET_TIER --env GIT_CONFIG_COUNT=1 --env GIT_CONFIG_KEY_0=safe.directory --env 'GIT_CONFIG_VALUE_0=*'" \
+            CMD='check-tro --candidate "$$REPRO_MNT/$$DECLARATION_FILE" --report "$$REPRO_MNT/$$REPORT_FILE" --target-version "$$TARGET_VERSION" --target-tier "$$TARGET_TIER"; [ $$? -le 1 ]'

@@ -1,0 +1,43 @@
+name: Show run record
+description: Write a table of what a run was asked to do at the top of its summary
+
+inputs:
+  rows:
+    description: 'One "label: value" per line, e.g. "The tier to check it for: STANDALONE-TRO"; rows with no value are left out. A "Triggered by" row is put first.'
+    required: true
+
+runs:
+  using: composite
+  steps:
+
+    - name: Write the run record
+      shell: bash
+      env:
+        ROWS: ${{ inputs.rows }}
+        ACTOR: ${{ github.actor }}
+        COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+        CHANGES: ${{ github.event.compare }}
+      run: |
+        # Say what started the run: a push, named by its last commit's subject, or a manual run.
+        if [ "$GITHUB_EVENT_NAME" = push ]; then
+          trigger="push of *${COMMIT_MESSAGE%%$'\n'*}* by ${ACTOR} ([changes](${CHANGES}))"
+        else
+          trigger="manual run by ${ACTOR}"
+        fi
+        ROWS="Triggered by: ${trigger}"$'\n'"${ROWS}"
+        {
+          echo "## Run record"
+          echo
+          echo "| | |"
+          echo "|---|---|"
+          while IFS= read -r row; do
+            label=${row%%:*}
+            value=${row#*:}
+            value=${value# }
+            [ -n "$value" ] || continue
+            # Show a linked commit hash as its first seven characters.
+            value=$(sed -E 's/\[([0-9a-f]{7})[0-9a-f]{33}\]/[`\1`]/g' <<< "$value")
+            echo "| ${label//|/\\|} | ${value//|/\\|} |"
+          done <<< "$ROWS"
+          echo
+        } >> "$GITHUB_STEP_SUMMARY"

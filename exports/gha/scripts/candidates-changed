@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#
+# Prints true if the candidates have changed since the reports were last made, false if not. Run from
+# the repository's top directory.
+
+set -euo pipefail
+
+hash=$(bash "$(dirname "$0")/hash-candidates")
+if [ -f reports/last-generated.json ] && [ "$(jq -r .hash reports/last-generated.json)" = "$hash" ]; then
+    echo false
+else
+    echo true
+fi

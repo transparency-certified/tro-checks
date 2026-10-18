@@ -1,0 +1,131 @@
+name: Preview pasted declaration
+run-name: >-
+  Preview pasted declaration (${{ inputs.target-version }}, ${{ inputs.target-tier }})
+
+# Start by hand, pasting the declaration and naming the target to check it against.
+on:
+  workflow_dispatch:
+    inputs:
+      declaration:
+        description: The TRO declaration, pasted
+        required: true
+        type: string
+      target-version:
+        description: The TRACE version to check it against
+        default: trace-main
+        type: choice
+        options:
+          - trace-main
+          - trace-2026-04-19
+      target-tier:
+        description: The tier to check it for
+        default: STANDALONE-TRO
+        type: choice
+        options:
+          - SAFE-JSON
+          - SAFE-JSON-LD
+          - TRACE-PERMISSIBLE-JSON-LD
+          - USES-TROV-CORRECTLY
+          - DEFINES-TRS
+          - STANDALONE-TRO
+          - LINKABLE-TRO
+
+# Let the workflow read the repository, and nothing more.
+permissions:
+  contents: read
+
+jobs:
+
+  # Record the run, and check the precondition for checking the declaration: that the TRACE version
+  # has the tier.
+  check-preconditions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
+
+      - name: Find the tro-checks commit the image will be built with
+        id: find-tro-checks
+        run: echo "tro-checks=$(bash .github/scripts/describe-tro-checks)" >> "$GITHUB_OUTPUT"
+#       outputs:
+#         tro-checks
+
+      - name: Look up the tier's title
+        id: look-up-tier
+        env:
+          TARGET_VERSION: ${{ inputs.target-version }}
+          TARGET_TIER: ${{ inputs.target-tier }}
+        run: echo "tier-title=$(bash .github/scripts/tier-title "$TARGET_VERSION" "$TARGET_TIER")" >> "$GITHUB_OUTPUT"
+#       outputs:
+#         tier-title
+
+      - name: Save the declaration to a file
+        env:
+          DECLARATION: ${{ inputs.declaration }}
+        run: |
+          mkdir -p preview
+          printf '%s\n' "$DECLARATION" > preview/declaration.jsonld
+
+      - name: Attach the declaration
+        id: attach-declaration
+        uses: actions/upload-artifact@v7
+        with:
+          path: preview/declaration.jsonld
+          archive: false
+#       outputs:
+#         artifact-url
+
+      - name: Show the run's record
+        uses: ./.github/actions/show-run-record
+        with:
+          rows: |
+            Declaration: [declaration.jsonld](${{ steps.attach-declaration.outputs.artifact-url }})
+            Targeted TRACE tier and version: `${{ steps.look-up-tier.outputs.tier-title }}` of `${{ inputs.target-version }}`
+            tro-checks version: ${{ steps.find-tro-checks.outputs.tro-checks }}
+
+      - name: Check that the TRACE version has the tier
+        env:
+          TARGET_VERSION: ${{ inputs.target-version }}
+          TARGET_TIER: ${{ inputs.target-tier }}
+        run: |
+          tiers=$(bash .github/scripts/version-tiers "$TARGET_VERSION")
+          if [ -z "$tiers" ]; then
+            echo "Failed in $GITHUB_JOB: this repository's tro-checks has no TRACE version $TARGET_VERSION." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          if [[ ", $tiers, " != *", $TARGET_TIER, "* ]]; then
+            echo "Failed in $GITHUB_JOB: $TARGET_VERSION has no tier $TARGET_TIER; its tiers are $tiers." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+
+  # Report on the declaration and show the report, committing nothing.
+  report-on-declaration:
+    needs: check-preconditions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
+
+      - name: Save the declaration to a file
+        env:
+          DECLARATION: ${{ inputs.declaration }}
+        run: |
+          mkdir -p preview
+          printf '%s\n' "$DECLARATION" > preview/declaration.jsonld
+
+      - name: Check the declaration
+        uses: ./.github/actions/check-tro-declaration
+        with:
+          declaration-file: preview/declaration.jsonld
+          report-file: preview/report.md
+          target-version: ${{ inputs.target-version }}
+          target-tier: ${{ inputs.target-tier }}
+
+      - name: Show the report
+        run: cat preview/report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Attach the report
+        uses: actions/upload-artifact@v7
+        with:
+          path: preview/report.md
+          archive: false

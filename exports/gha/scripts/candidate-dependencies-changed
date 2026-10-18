@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#
+# Prints true if the candidates' dependencies have changed since the candidates were last generated,
+# false if not. Run from the repository's top directory.
+
+set -euo pipefail
+
+hash=$(bash "$(dirname "$0")/hash-candidate-dependencies")
+if [ -f candidates/last-generated.json ] && [ "$(jq -r .hash candidates/last-generated.json)" = "$hash" ]; then
+    echo false
+else
+    echo true
+fi

@@ -5,6 +5,26 @@ render-report.js
 render-readme.js
 types.js
 versions.json
+host-makefile
+install-tro-checks-gha
+record-last-generated
+gha/workflows/regenerate-reports.yml gha/workflows/regenerate-reports.yml gha/workflows/regenerate-reports.yml
+gha/workflows/regenerate-candidates.yml gha/workflows/regenerate-candidates.yml gha/workflows/regenerate-candidates.yml
+gha/workflows/pull-candidates.yml gha/workflows/pull-candidates.yml gha/workflows/pull-candidates.yml
+gha/workflows/preview-pasted-declaration.yml gha/workflows/preview-pasted-declaration.yml gha/workflows/preview-pasted-declaration.yml
+gha/workflows/preview-one-candidate.yml gha/workflows/preview-one-candidate.yml gha/workflows/preview-one-candidate.yml
+gha/actions/check-tro-declaration/action.yml gha/actions/check-tro-declaration/action.yml gha/actions/check-tro-declaration/action.yml
+gha/scripts/candidate-file gha/scripts/candidate-file gha/scripts/candidate-file
+gha/scripts/candidate-dependencies-changed gha/scripts/candidate-dependencies-changed gha/scripts/candidate-dependencies-changed
+gha/scripts/candidates-changed gha/scripts/candidates-changed gha/scripts/candidates-changed
+gha/scripts/copy-pulled-candidates gha/scripts/copy-pulled-candidates gha/scripts/copy-pulled-candidates
+gha/scripts/describe-tro-checks gha/scripts/describe-tro-checks gha/scripts/describe-tro-checks
+gha/scripts/hash-candidates gha/scripts/hash-candidates gha/scripts/hash-candidates
+gha/scripts/hash-candidate-dependencies gha/scripts/hash-candidate-dependencies gha/scripts/hash-candidate-dependencies
+gha/scripts/resolve-pull-list gha/scripts/resolve-pull-list gha/scripts/resolve-pull-list
+gha/scripts/tier-title gha/scripts/tier-title gha/scripts/tier-title
+gha/scripts/version-tiers gha/scripts/version-tiers gha/scripts/version-tiers
+gha/actions/show-run-record/action.yml gha/actions/show-run-record/action.yml gha/actions/show-run-record/action.yml
 versions/trace-2026-04-19/tiers.json versions/trace-2026-04-19/tiers.json versions/trace-2026-04-19/tiers.json
 versions/trace-2026-04-19/artifact-hashes-present.schema.json versions/trace-2026-04-19/artifact-hashes-present.schema.json versions/trace-2026-04-19/artifact-hashes-present.schema.json
 versions/trace-2026-04-19/base-declared.schema.json versions/trace-2026-04-19/base-declared.schema.json versions/trace-2026-04-19/base-declared.schema.json
