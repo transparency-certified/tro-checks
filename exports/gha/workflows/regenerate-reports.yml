@@ -106,7 +106,8 @@ jobs:
             git add -- reports
             git commit -m "Regenerate reports"
             git push
-            echo "Committed the new reports to ${{ github.ref_name }}." >> "$GITHUB_STEP_SUMMARY"
+            changes="${{ github.server_url }}/${{ github.repository }}/commit/$(git rev-parse HEAD)"
+            echo "Committed the new reports to ${{ github.ref_name }} ([changes](${changes}))." >> "$GITHUB_STEP_SUMMARY"
           fi
 
       - name: Show the reports

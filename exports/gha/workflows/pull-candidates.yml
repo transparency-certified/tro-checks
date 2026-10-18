@@ -148,7 +148,8 @@ jobs:
             git add -- candidates reports
             git commit -m "Pull candidates"
             git push
-            echo "Committed the pulled candidates and new reports to ${{ github.ref_name }}." >> "$GITHUB_STEP_SUMMARY"
+            changes="${{ github.server_url }}/${{ github.repository }}/commit/$(git rev-parse HEAD)"
+            echo "Committed the pulled candidates and new reports to ${{ github.ref_name }} ([changes](${changes}))." >> "$GITHUB_STEP_SUMMARY"
           fi
 
       - name: Show the reports
