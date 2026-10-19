@@ -1,5 +1,6 @@
-# Check the checker's JavaScript against its JSDoc annotations, with the same
-# configuration the editor reads. Node's own types are installed globally in
-# the image, where tsc does not look unless told.
+# Check the JavaScript against its JSDoc annotations, with the same configuration
+# the editor reads, then run the tests. Node's and Mocha's types are installed
+# globally in the image, where tsc does not look unless told.
 test:
-	cd ${REPRO_MNT} && tsc -p jsconfig.json --typeRoots /usr/local/lib/node_modules/@types --types node
+	cd ${REPRO_MNT} && tsc -p jsconfig.json --typeRoots /usr/local/lib/node_modules/@types --types node,mocha
+	cd ${REPRO_MNT} && mocha tests
