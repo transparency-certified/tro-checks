@@ -6,7 +6,8 @@ render-readme.js
 types.js
 versions.json
 host-makefile
-install-tro-checks-gha
+install-github-workflows install-github-workflows.js
+workflow-catalog.json
 record-last-generated
 gha/workflows/regenerate-reports.yml gha/workflows/regenerate-reports.yml gha/workflows/regenerate-reports.yml
 gha/workflows/regenerate-candidates.yml gha/workflows/regenerate-candidates.yml gha/workflows/regenerate-candidates.yml

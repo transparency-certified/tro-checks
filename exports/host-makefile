@@ -3,11 +3,19 @@
 #
 #     -include .tro-checks/host-makefile
 
-## install-tro-checks-gha: Install tro-checks' GitHub Actions workflows, with any optional ones
-##                    already present or named, e.g.
-##                    make install-tro-checks-gha -- regenerate-candidates pull-candidates.
+## list-tro-checks-gha: List the tro-checks GitHub Actions workflows, and which are installed.
+list-tro-checks-gha: session
+	$(RUN_IN_REPRO) 'install-github-workflows list'
+
+## install-tro-checks-gha: Install the tro-checks GitHub Actions workflows named, e.g.
+##                    make install-tro-checks-gha -- regenerate-reports preview-one-candidate
 install-tro-checks-gha: session
-	$(RUN_IN_REPRO) 'install-tro-checks-gha $(filter-out install-tro-checks-gha,$(MAKECMDGOALS))'
+	$(RUN_IN_REPRO) 'install-github-workflows install $(filter-out install-tro-checks-gha,$(MAKECMDGOALS))'
+
+## update-tro-checks-gha: Update the installed tro-checks GitHub Actions workflows to the
+##                    tro-checks in the image.
+update-tro-checks-gha: session
+	$(RUN_IN_REPRO) 'install-github-workflows update'
 
 ## generate-candidates: Generate the candidates with this repository's generate-candidates.sh.
 generate-candidates: session

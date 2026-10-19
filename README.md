@@ -239,7 +239,9 @@ RUN repro.require tro-checks main ${TRACE} --report
 ```
 
 This installs `check-tro` and `check-tros`, and hooks the check-and-report
-workflow to the REPRO's `build-reports` target.
+workflow to the REPRO's `build-reports` target. The REPRO can also install
+tro-checks' GitHub Actions workflows, described in
+[`docs/github-actions.md`](docs/github-actions.md).
 
 The candidates are `.jsonld` files in the REPRO's `candidates/` directory, each
 declared in `candidates/manifest.json` under a key naming its file, so the key
@@ -295,10 +297,13 @@ from: the manifest, the option, or the default.
 | `exports/versions/<version>/tiers.json` | The tiers in order, each with its ID, description, the expectations that belong to it, and `blocksHigherTiers` where no tier above it is assessed until it is met. It decides which expectations the version applies. A listed expectation with no file at or before the version, a file in the version's directory its tiers do not list, or a tier with no expectations stops every run. |
 | [`exports/check-tro.js`](exports/check-tro.js) | The checker. Applies the expectations in a candidate's target and writes the report. Installed as `check-tro`. |
 | [`exports/check-tros.js`](exports/check-tros.js) | Runs the checker over the candidates the manifest names, each against each of its targets, writing one report per target and `reports/README.md`, the summary that links to them. Installed as `check-tros`. |
+| [`exports/install-github-workflows.js`](exports/install-github-workflows.js) | Lists, installs or updates tro-checks' GitHub Actions workflows, as `workflow-catalog.json` describes them. Installed as `install-github-workflows`, and run by `make list-tro-checks-gha`, `make install-tro-checks-gha` and `make update-tro-checks-gha`. |
+| [`exports/workflow-catalog.json`](exports/workflow-catalog.json) | The workflow catalog: for each of tro-checks' GitHub Actions workflows, its workflow file and the actions, scripts and tiers it uses. |
 | [`exports/render-readme.js`](exports/render-readme.js) | Writes this README's account of what is checked from the tiers and the expectations themselves. Run by `make update-readme`. |
 | [`pseudocode/`](pseudocode) | What the checker does, in outline. |
 | [`GLOSSARY.md`](GLOSSARY.md) | The key entities the tools in this repository concern. |
 | [`models/`](models/README.md) | How the key entities fit together, each subject modeled in more than one paradigm. |
+| [`docs/github-actions.md`](docs/github-actions.md) | The GitHub Actions workflows a consuming REPRO can install: what each does, what it needs and assumes, how to install and update them, and the make targets and records they use. |
 | [`docs/json-schema-capabilities.md`](docs/json-schema-capabilities.md) | The JSON Schema capabilities the expectations use, each with its demo in [`json-schema-demos`](https://github.com/CIRSS/json-schema-demos). |
 | [`docs/safe-json-ld-constructs.md`](docs/safe-json-ld-constructs.md) | For each construct `Tier 2 - SAFE-JSON-LD` excludes, the W3C tests the supported JSON-LD processors do not all pass. |
 | [`REVIEWS.md`](REVIEWS.md) | Who has reviewed each file, at what level of detail. |
@@ -316,6 +321,7 @@ make build-image
 `make test-code` checks the checker's JavaScript against the type annotations
 in its comments, with the configuration in `jsconfig.json` that the editor also
 reads. A field renamed in one file and not in another fails there.
+It then runs the Mocha tests in [`tests/`](tests).
 
 ## Adding an expectation
 

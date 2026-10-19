@@ -210,3 +210,4 @@
 {"kind":"origin","path":"demo/62-base-host-ownable/Makefile","origin":"vendor"}
 {"kind":"origin","path":"demo/63-node-ids-present/Makefile","origin":"vendor"}
 {"kind":"origin","path":"demo/64-blank-node-ids-absent/Makefile","origin":"vendor"}
+{"kind":"review","path":"exports/install-github-workflows.js","blob":"848a30e0e412e87d54beac37bcfa1e786828e9e3","by":"Timothy McPhillips","date":"2026-10-19","type":"cursory"}

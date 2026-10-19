@@ -14,8 +14,6 @@ RUN repro.require tro-checks exports --demo --code
 
 RUN repro.require review-ledger main ${CIRSS} --report
 
-RUN sudo npm install -g 'typescript@5.9.3' '@types/node@22.20.2'
-
 # each demo writes its reports into a local directory named tmp
 RUN repro.env REPRO_DEMO_TMP_DIRNAME tmp
 

@@ -1,0 +1,2 @@
+# make test-code type-checks the JavaScript with tsc and runs the tests with Mocha.
+sudo npm install -g 'typescript@5.9.3' '@types/node@22.20.2' 'mocha@11.8.0' '@types/mocha@10.0.10'

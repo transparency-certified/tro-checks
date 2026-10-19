@@ -1,0 +1,56 @@
+{
+    "preview-pasted-declaration": {
+        "file": "gha/workflows/preview-pasted-declaration.yml",
+        "uses": [
+            "gha/actions/check-tro-declaration/action.yml",
+            "gha/actions/show-run-record/action.yml",
+            "gha/scripts/describe-tro-checks",
+            "gha/scripts/tier-title",
+            "gha/scripts/version-tiers",
+            "versions/trace-2026-04-19/tiers.json",
+            "versions/trace-main/tiers.json"
+        ]
+    },
+    "preview-one-candidate": {
+        "file": "gha/workflows/preview-one-candidate.yml",
+        "uses": [
+            "gha/actions/check-tro-declaration/action.yml",
+            "gha/actions/show-run-record/action.yml",
+            "gha/scripts/candidate-file",
+            "gha/scripts/describe-tro-checks",
+            "gha/scripts/tier-title",
+            "gha/scripts/version-tiers",
+            "versions/trace-2026-04-19/tiers.json",
+            "versions/trace-main/tiers.json"
+        ]
+    },
+    "regenerate-reports": {
+        "file": "gha/workflows/regenerate-reports.yml",
+        "uses": [
+            "gha/actions/show-run-record/action.yml",
+            "gha/scripts/candidate-dependencies-changed",
+            "gha/scripts/candidates-changed",
+            "gha/scripts/describe-tro-checks",
+            "gha/scripts/hash-candidate-dependencies",
+            "gha/scripts/hash-candidates"
+        ]
+    },
+    "regenerate-candidates": {
+        "file": "gha/workflows/regenerate-candidates.yml",
+        "uses": [
+            "gha/actions/show-run-record/action.yml",
+            "gha/scripts/candidate-dependencies-changed",
+            "gha/scripts/describe-tro-checks",
+            "gha/scripts/hash-candidate-dependencies"
+        ]
+    },
+    "pull-candidates": {
+        "file": "gha/workflows/pull-candidates.yml",
+        "uses": [
+            "gha/actions/show-run-record/action.yml",
+            "gha/scripts/copy-pulled-candidates",
+            "gha/scripts/describe-tro-checks",
+            "gha/scripts/resolve-pull-list"
+        ]
+    }
+}

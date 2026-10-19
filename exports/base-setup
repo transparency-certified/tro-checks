@@ -4,4 +4,7 @@ repro.require json-schema-dev main ${CIRSS} --python --javascript
 # bit by mime type and knows shell and Python scripts; a Node script is neither,
 # so it arrives unexecutable. ai-coding-dev does the same for its own reviews
 # command. The command names beside these are symlinks the manifest creates.
-chmod +x "$1/check-tro.js" "$1/check-tros.js"
+chmod +x "$1/check-tro.js" "$1/check-tros.js" "$1/install-github-workflows.js"
+
+# Make the version of tro-checks the image was built with known to the programs run in it.
+repro.env TRO_CHECKS_VERSION ${module_version}
